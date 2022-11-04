@@ -1,5 +1,7 @@
 <template>
-  <Tutorial />
+  <div id="anime">
+    <div class="ex"></div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -9,3 +11,9 @@ export default Vue.extend({
   name: 'IndexPage',
 })
 </script>
+<style>
+@import url("../assets/global.css");
+.ex{
+  background-color: var(--primary);
+}
+</style>
