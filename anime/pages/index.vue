@@ -1,17 +1,17 @@
 <template>
   <div id="anime">
-    
+    <SearchBar/>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-// import ComponentVue from '../components/Component.vue'
+import SearchBar from '../components/SearchBar.vue'
 
 export default Vue.extend({
   name: 'IndexPage',
   components:{
-    // ComponentVue
+    SearchBar
   }
 })
 </script>
