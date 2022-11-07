@@ -1,17 +1,17 @@
 <template>
   <div id="anime">
-    
+    <ComponentVue/>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-// import ComponentVue from '../components/Component.vue'
+import ComponentVue from '../components/Component.vue'
 
 export default Vue.extend({
   name: 'IndexPage',
   components:{
-    // ComponentVue
+    ComponentVue
   }
 })
 </script>
