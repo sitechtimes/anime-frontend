@@ -12,7 +12,7 @@
                 <li class="link">
                     <a href="" class="link-href">History</a>
                 </li>
-                <button>Log In</button>
+                <button class="log-in button">Log In</button>
             </ul>
         </nav>
 
@@ -31,7 +31,6 @@
 .navigation{
     background-color:var(--tertiary);
     width:100%;
-    height:2rem;
     display:flex;
     justify-content:space-evenly;
     align-items:center;
@@ -39,18 +38,37 @@
     margin:0 auto;
     position:fixed;
     z-index:100;
+    padding:1rem;
 }
     #logo{
+        font-size: var(--h2);
         color:var(--white);
-        font-size: var(--h1);
     }
     .routers{
-        width:60%;
+        width:40%;
         display:flex;
-        justify-content:space-evenly;
+        justify-content:space-between;
     }
-   ul, li{
+   ul, li, .link, a{
         text-decoration: none;
-        color:var(--white)
+        list-style-type: none;
+        font-size: var(--h4);
+        color:var(--white);
+    }
+    .button{
+        background: var(--primary);
+        border-radius: 25px;
+        font-style: normal;
+        font-weight: var(--fw-bold);
+        font-size: var(--h4);
+        text-align: center;
+        color: var(--dark-text);
+        border:0;
+        padding:1rem 3rem;
+        transition: all .3s ease-in-out;-webkit-transition: all .3s ease-in-out;
+	    cursor: pointer;
+    }
+    .button:hover{
+        background-color: linear-gradient(84.66deg, var(--primary) 2.58%, var(--alt-linear) 97.55%);
     }
 </style>
