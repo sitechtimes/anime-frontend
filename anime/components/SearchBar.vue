@@ -1,17 +1,37 @@
 <template>
-<form>
-  <input type="text" placeholder="Search anime...">
+<form class="form">
+  <input v-model="text" placeholder="Search anime..." class="input">
+  <p v-for="anime in animes" :key="anime.text" class="box">{{anime.title}}</p>
   </form>
 </template>
 
 <script>
 export default {
-
+  data() {
+    return {
+      text: "",
+      animes: [
+        {title: "hfofhaf"},
+        {title: "hehehehe"},
+        {title: "fjsaifFD"},
+        {title: "fiehiewh"},
+        {title: "eheheheh"},
+        {title: "jioojfqe"},
+        {title: "jdfiowqh"},
+        ],
+    }
+  }
 }
 </script>
 
 <style scoped>
-input {
+.form{
+  color: rgb(219, 219, 219);
+  margin: 0;
+  width: 20vw;
+}
+
+.input {
   background: rgb(66, 66, 66);
   font-size: var(--h4);
   color: rgb(219, 219, 219);
@@ -19,8 +39,7 @@ input {
   border-radius: 10px;
   outline: none;
   padding: 1rem 2rem;
-  margin: 1rem;
-  width: 30vw;
+  width: 100%;
 }
 
 </style>
