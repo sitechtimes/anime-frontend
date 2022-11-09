@@ -1,23 +1,13 @@
 <template>
 <div class="Carousel">
     <div class="Space">
-        <button @click="Previous">Prev</button>
-        <div class="CarouselItem">
-            <h2 class="Title">Title of Anime</h2>
-            <h3 class="Synopsis">Description</h3>
-            <img src="https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg" alt="Img of Anime"/>
+        <button @click="Previous">.</button>
+        <div class="Carousel-Item" v-for="Card in Cards" :key="Card">
+            <div class="Title"> {{Card.Title}} </div>
+            <div class="Text"> {{Card.Description}} </div>
+            <img src="" alt="TBD"/>
         </div>
-        <div class="CarouselItem">
-            <h2 class="Title">Title of Anime</h2>
-            <h3 class="Synopsis">Description</h3>
-            <img src="https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg" alt="Img of Anime"/>
-        </div>
-        <div class="CarouselItem">
-            <h2 class="Title">Title of Anime</h2>
-            <h3 class="Synopsis">Description</h3>
-            <img src="https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg" alt="Img of Anime"/>
-        </div>
-        <button @click="Next">Next</button>
+        <button @click="Next">.</button>
     </div>
 </div>
 </template>
@@ -27,15 +17,30 @@
 export default {
     name: "Carousel",
     data () {
-        return {}
+        return {
+            Cards: [
+                {
+                    Title:"Title of Anime",
+                    Description:"(Synopsis)",
+                    ImgLink:"",
+                },
+                {
+                    Title:"Title of Anime",
+                    Description:"(Synopsis)",
+                    ImgLink:"",
+                },
+                {
+                    Title:"Title of Anime",
+                    Description:"(Synopsis)",
+                    ImgLink:"",
+                },
+            ]
+            }
     }
 }
 </script>
 
 <style scoped>
-h2, h3 {
-    color: var(--white);
-}
 .Carousel {
     overflow: hidden;
 }
