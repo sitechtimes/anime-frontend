@@ -1,7 +1,17 @@
 <template>
 <form class="form">
   <input v-model="text" placeholder="Search anime..." class="input">
-  <p v-for="anime in animes" :key="anime.text" class="box">{{anime.title}}</p>
+  <div v-for="anime in animes" :key="anime.text" class="box">
+    <div class="image-placeholder">insert img here</div>
+    <div class="info-column">
+      <h1>The title</h1>
+      <div class="info-row">
+        <p>PG 13</p>
+        <p>O 9.99</p>
+        <p>Oct 20, 1999</p>
+      </div>
+    </div>
+  </div>
   </form>
 </template>
 
@@ -12,12 +22,6 @@ export default {
       text: "",
       animes: [
         {title: "hfofhaf"},
-        {title: "hehehehe"},
-        {title: "fjsaifFD"},
-        {title: "fiehiewh"},
-        {title: "eheheheh"},
-        {title: "jioojfqe"},
-        {title: "jdfiowqh"},
         ],
     }
   }
@@ -27,7 +31,7 @@ export default {
 <style scoped>
 .form{
   color: rgb(219, 219, 219);
-  margin: 0;
+  margin: 5vw;
   width: 20vw;
 }
 
@@ -40,6 +44,26 @@ export default {
   outline: none;
   padding: 1rem 2rem;
   width: 100%;
+}
+
+.box {
+  background: red;
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+}
+
+.image-placeholder {
+  background: blue;
+}
+
+.info-column {
+  margin-left: 1vw;
+}
+
+.info-row {
+  display: flex;
+  font-size: (--small-text);
 }
 
 </style>
