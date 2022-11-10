@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import ComponentVue from '../components/Component.vue'
+import ComponentVue from '../components/TrendingBox.vue'
 
 export default Vue.extend({
   name: 'IndexPage',
