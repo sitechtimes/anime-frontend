@@ -1,16 +1,16 @@
 <template>
     <section id="nav">
         <nav class="navigation">
-            <h1 id="logo">Technime</h1>
+            <h1 id="logo"><a href="/">Technime</a></h1>
             <ul class="routers">
                 <li class="link">
-                    <a href="" class="link-href">Awards</a>
+                    <a href="awards" class="link-href">Awards</a>
                 </li>
                 <li class="link">
-                    <a href="" class="link-href">Rankings</a>
+                    <a href="ranking" class="link-href">Rankings</a>
                 </li>
                 <li class="link">
-                    <a href="" class="link-href">History</a>
+                    <a href="history" class="link-href">History</a>
                 </li>
                 <button class="log-in button">Log In</button>
             </ul>
@@ -49,11 +49,13 @@
         display:flex;
         justify-content:space-between;
     }
-   ul, li, .link, a{
+   ul, li, a{
         text-decoration: none;
         list-style-type: none;
-        font-size: var(--h4);
         color:var(--white);
+    }
+    .link{
+        font-size: var(--h4);
     }
     .button{
         background: var(--primary);
