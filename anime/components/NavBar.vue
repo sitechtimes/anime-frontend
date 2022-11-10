@@ -65,10 +65,12 @@
         color: var(--dark-text);
         border:0;
         padding:1rem 3rem;
-        transition: all .3s ease-in-out;-webkit-transition: all .3s ease-in-out;
+        transition: background 1s ease-in-out;-webkit-transition: background 1s ease-in-out;
 	    cursor: pointer;
     }
     .button:hover{
-        background-color: linear-gradient(84.66deg, var(--primary) 2.58%, var(--alt-linear) 97.55%);
+        background: linear-gradient(84.66deg, var(--primary) 2.58%, var(--alt-linear) 97.55%);
     }
+
+        
 </style>
