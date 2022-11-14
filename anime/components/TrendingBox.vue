@@ -9,7 +9,7 @@
     </div>
     <div class="content">
       <AnimeCard
-        v-for="anime in trending"
+        v-for="anime in posts"
         :key="anime.id"
         :img="anime.img"
         :ep="anime.episode"
@@ -30,7 +30,7 @@ export default {
   },
   data() {
     return {
-      trending: [
+      posts: [
         {
           id: 1,
           img: 'https://cdn.myanimelist.net/images/anime/5/87048.jpg',
@@ -80,6 +80,41 @@ export default {
           format: 'TV',
           title: 'Kaguya-sama wa Kokurasetai: Tensai-tachi no Renai Zunousen',
         },
+        {
+          id: 8,
+          img: 'https://cdn.myanimelist.net/images/anime/5/87048.jpg',
+          episode: 12,
+          format: 'TV',
+          title: 'Kaguya-sama wa Kokurasetai: Tensai-tachi no Renai Zunousen',
+        },
+        {
+          id: 9,
+          img: 'https://cdn.myanimelist.net/images/anime/5/87048.jpg',
+          episode: 12,
+          format: 'TV',
+          title: 'Kaguya-sama wa Kokurasetai: Tensai-tachi no Renai Zunousen',
+        },
+        {
+          id: 10,
+          img: 'https://cdn.myanimelist.net/images/anime/5/87048.jpg',
+          episode: 12,
+          format: 'TV',
+          title: 'Kaguya-sama wa Kokurasetai: Tensai-tachi no Renai Zunousen',
+        },
+        {
+          id: 11,
+          img: 'https://cdn.myanimelist.net/images/anime/5/87048.jpg',
+          episode: 12,
+          format: 'TV',
+          title: 'Kaguya-sama wa Kokurasetai: Tensai-tachi no Renai Zunousen',
+        },
+        {
+          id: 12,
+          img: 'https://cdn.myanimelist.net/images/anime/5/87048.jpg',
+          episode: 12,
+          format: 'TV',
+          title: 'Kaguya-sama wa Kokurasetai: Tensai-tachi no Renai Zunousen',
+        },
       ],
     }
   },
@@ -90,6 +125,5 @@ export default {
 .content {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
 }
 </style>
