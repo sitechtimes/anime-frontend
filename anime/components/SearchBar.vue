@@ -1,13 +1,16 @@
 <template>
 <form class="form">
   <input v-model="text" placeholder="Search anime..." class="input">
-  <div v-for="anime in animes" :key="anime.text" class="box">
-    <div class="image-placeholder">insert img here</div>
+  <div v-for="anime in searchResult" :key="anime.text" class="box">
+    <div class="image-placeholder">insert img</div>
     <div class="info-column">
-      <h1>The title</h1>
+      <h1>{{anime.title}}</h1>
       <div class="info-row">
-        <p>PG 13</p>
-        <p>O 9.99</p>
+        <p class="rating">PG 13</p>
+        <div>
+          <!-- <p>O</p> -->
+          <p>9.99</p>
+        </div>
         <p>Oct 20, 1999</p>
       </div>
     </div>
@@ -21,8 +24,20 @@ export default {
     return {
       text: "",
       animes: [
-        {title: "hfofhaf"},
+        {title: "One Punch Man"},
+        {title: "Spy x Family"},
+        {title: "Chainsaw Man"},
+        {title: "Summertime Render"},
         ],
+    }
+  },
+  computed: {
+    searchResult() {
+      if (this.text) {
+        return this.animes.filter((item) => {
+          return this.text.toLowerCase().split('').every(v => item.title.toLowerCase().includes(v))
+        })
+      }
     }
   }
 }
@@ -47,7 +62,7 @@ export default {
 }
 
 .box {
-  background: red;
+  background: rgb(32, 19, 81);
   display: flex;
   flex-direction: row;
   padding: 1rem;
@@ -63,7 +78,18 @@ export default {
 
 .info-row {
   display: flex;
+  flex-direction: row;
+  align-items: baseline;
   font-size: (--small-text);
+  gap: 1vw;
+  /* margin: 10rem 0; */
+}
+
+.rating {
+  width: 2.5vw;
+  text-align: center;
+  border: solid gray 0.15rem;
+  border-radius: 5px;
 }
 
 </style>
