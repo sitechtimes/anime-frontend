@@ -1,13 +1,13 @@
 <template>
 <div class="Carousel">
     <div class="Space">
-        <span class="BTN" @click="TBD">.</span>
+        <button class="BTN" @click="LeftMovement">.</button>
         <div class="Carousel-Item" v-for="Card in Cards" :key="Card">
-            <h1> {{Card.Title}} </h1>
-            <h2> {{Card.Description}} </h2>
-            <img class="Img" src="" alt="TBD"/>
+            <h2> {{Card.Title}} </h2>
+            <h3> {{Card.Description}} </h3>
+            <img class="Img" src="Card.ImgLink" alt="TBD"/>
         </div>
-        <span class="BTN" @click="TBD">.</span>
+        <button class="BTN" @click="RightMovement">.</button>
     </div>
 </div>
 </template>
@@ -18,31 +18,46 @@ export default {
     name: "Carousel",
     data () {
         return {
+            ItemLength: {},
             Cards: [
                 {
                     Title:"Title of Anime",
-                    Description:"(Synopsis)",
-                    ImgLink:"",
+                    Description:"(Synopsis of Anime)",
+                    ImgLink:"https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg",
                 },
                 {
                     Title:"Title of Anime",
-                    Description:"(Synopsis)",
-                    ImgLink:"",
+                    Description:"(Synopsis of Anime)",
+                    ImgLink:"https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg",
                 },
                 {
                     Title:"Title of Anime",
-                    Description:"(Synopsis)",
-                    ImgLink:"",
+                    Description:"(Synopsis of Anime)",
+                    ImgLink:"https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg",
                 },
             ]
             }
-    }
+    },
+    methods: {
+        Setup () {
+            var ItemLength = this.CarouselItem.length 
+            //Code for inputting the length of a carousel item (Currently not working/Needs Reworking)
+        },
+        RightMovement () {
+            CarouselItem.transform = translateX(this.ItemLength)
+            //Code for moving the carousel items right 
+        },
+        LeftMovement () {
+            CarouselItem.transform = translateX(-this.ItemLength)
+            //Code for moving the carousel items left (Needs Reworking)
+        },
+    },
 }
 </script>
 
 <style scoped>
 .Img {
-    height: 45%;
+    height: 55%;
 }
 .BTN {
     margin: 5px;
@@ -59,6 +74,8 @@ export default {
     background-color: var(--bg-primary);
 }
 .CarouselItem {
+    width: 100%;
+    height: 55%;
     display: inline-flex;
 }
 </style>
