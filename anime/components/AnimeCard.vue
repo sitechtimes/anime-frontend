@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="card-container">
     <img :src="`${img}`" alt="" />
     <div class="container-bar">
       <p id="ep">{{ episode }}</p>
@@ -34,11 +34,11 @@ export default {
 </script>
 
 <style scoped>
-.container {
+.card-container {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  width: 20%;
+  width: 12vw;
+  padding: 0;
 }
 
 img {
@@ -48,11 +48,12 @@ img {
 .container-bar {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 }
 
-.title p {
-  background-color: #f5f5f5;
+.title {
   width: 100%;
+  color: white;
 }
 
 #ep {

@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="box-container">
     <div class="header">
       <h2></h2>
       <div class="header-pages">
@@ -122,8 +122,24 @@ export default {
 </script>
 
 <style scoped>
+.box-container {
+  background-color: chocolate;
+  border-radius: 1.5rem;
+  padding-top: 5rem;
+  padding-bottom: 2.5rem;
+}
+
 .content {
   display: flex;
   flex-wrap: wrap;
+  row-gap: 1vw;
+  column-gap: 4vw;
+  justify-content: center;
+}
+
+.header-pages {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
 }
 </style>
