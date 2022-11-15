@@ -2,9 +2,9 @@
 <form class="form">
   <input v-model="text" placeholder="Search anime..." class="input">
   <div v-for="anime in searchResult" :key="anime.text" class="box">
-    <div class="image-placeholder">insert img</div>
+    <div class="image-placeholder"></div>
     <div class="info-column">
-      <h1>{{anime.title}}</h1>
+      <h1 class="title">{{anime.title}}</h1>
       <div class="info-row">
         <p class="rating">PG 13</p>
         <div>
@@ -28,14 +28,15 @@ export default {
         {title: "Spy x Family"},
         {title: "Chainsaw Man"},
         {title: "Summertime Render"},
+        {title: "Is It Wrong To Try To Pick Up Girls In A Dungeon?"},
         ],
     }
   },
   computed: {
     searchResult() {
       if (this.text) {
-        return this.animes.filter((item) => {
-          return this.text.toLowerCase().split('').every(v => item.title.toLowerCase().includes(v))
+        return this.animes.filter((anime) => {
+          return this.text.toLowerCase().split().every(search => anime.title.toLowerCase().includes(search))
         })
       }
     }
@@ -47,7 +48,7 @@ export default {
 .form{
   color: rgb(219, 219, 219);
   margin: 5vw;
-  width: 20vw;
+  width: 25vw;
 }
 
 .input {
@@ -66,14 +67,22 @@ export default {
   display: flex;
   flex-direction: row;
   padding: 1rem;
+  height: 9vh;
 }
 
 .image-placeholder {
   background: blue;
+  height: 8vh;
+  width: 3vw;
 }
 
 .info-column {
   margin-left: 1vw;
+  width: 80%;
+}
+
+.title {
+  font-size: 1.75rem;
 }
 
 .info-row {
@@ -81,12 +90,12 @@ export default {
   flex-direction: row;
   align-items: baseline;
   font-size: (--small-text);
+  margin-top: 1vh;
   gap: 1vw;
-  /* margin: 10rem 0; */
 }
 
 .rating {
-  width: 2.5vw;
+  width: 2vw;
   text-align: center;
   border: solid gray 0.15rem;
   border-radius: 5px;
