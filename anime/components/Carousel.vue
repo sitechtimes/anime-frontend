@@ -1,13 +1,13 @@
 <template>
-<div class="Carousel">
-    <div class="Space">
-        <button class="BTN" @click="LeftMovement">.</button>
-        <div class="Carousel-Item" v-for="Card in Cards" :key="Card">
-            <h2> {{Card.Title}} </h2>
-            <h3> {{Card.Description}} </h3>
-            <img class="Img" src="Card.ImgLink" alt="TBD"/>
+<div class="carousel">
+    <div class="space">
+        <button class="btn" @click="LeftMovement">.</button>
+        <div class="carousel-item" v-for="Card in Cards" :key="Card">
+            <h1 class="text"> {{Card.Title}} </h1>
+            <h3 class="text"> {{Card.Description}} </h3>
+            <img class="img" :src="Card.ImgLink" alt="TBD"/>
         </div>
-        <button class="BTN" @click="RightMovement">.</button>
+        <button class="btn" @click="RightMovement">.</button>
     </div>
 </div>
 </template>
@@ -18,21 +18,20 @@ export default {
     name: "Carousel",
     data () {
         return {
-            ItemLength: {},
             Cards: [
                 {
-                    Title:"Title of Anime",
-                    Description:"(Synopsis of Anime)",
+                    Title:"Title",
+                    Description:"(Synopsis)",
                     ImgLink:"https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg",
                 },
                 {
-                    Title:"Title of Anime",
-                    Description:"(Synopsis of Anime)",
+                    Title:"Title",
+                    Description:"(Synopsis)",
                     ImgLink:"https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg",
                 },
                 {
-                    Title:"Title of Anime",
-                    Description:"(Synopsis of Anime)",
+                    Title:"Title",
+                    Description:"(Synopsis)",
                     ImgLink:"https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg",
                 },
             ]
@@ -40,15 +39,15 @@ export default {
     },
     methods: {
         Setup () {
-            var ItemLength = this.CarouselItem.length 
+            ItemLength = this.Card.width 
             //Code for inputting the length of a carousel item (Currently not working/Needs Reworking)
         },
         RightMovement () {
-            CarouselItem.transform = translateX(this.ItemLength)
-            //Code for moving the carousel items right 
+            Cards.transform = translateX(this.ItemLength)
+            //Code for moving the carousel items right (Needs Reworking)
         },
         LeftMovement () {
-            CarouselItem.transform = translateX(-this.ItemLength)
+            Cards.transform = translateX(-this.ItemLength)
             //Code for moving the carousel items left (Needs Reworking)
         },
     },
@@ -56,27 +55,32 @@ export default {
 </script>
 
 <style scoped>
-.Img {
-    height: 55%;
+.img {
+    height: 100px;
+    float:inline-end;
 }
-.BTN {
-    margin: 5px;
+.btn {
+    color: var(white);
+}
+.text {
+    color: var(white);
+    float: inline-start;
 }
 .Space {
     white-space: nowrap;
 }
-.Carousel {
+.carousel {
     margin: 0%;
     padding: 0%;
     overflow: hidden;
-    text-align: center;
-    color: var(--white);
-    background-color: var(--bg-primary);
+    flex-direction: row;
 }
-.CarouselItem {
+.carousel-item {
     width: 100%;
     height: 55%;
-    display: inline-flex;
+    align-self: center;
+    margin: 25px;
+    display: inline-block;
 }
 </style>
 
