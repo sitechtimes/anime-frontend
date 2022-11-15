@@ -18,6 +18,7 @@ export default {
     name: "Carousel",
     data () {
         return {
+            Itemlength: {},
             Cards: [
                 {
                     Title:"Title",
