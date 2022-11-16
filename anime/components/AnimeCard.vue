@@ -37,8 +37,7 @@ export default {
 .card-container {
   display: flex;
   flex-direction: column;
-  width: 12vw;
-  padding: 0;
+  width: 10vw;
 }
 
 img {
@@ -49,6 +48,9 @@ img {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  background-color: black;
+  padding: 0.5rem;
+  border-radius: 0 0 0.5rem 0.5rem;
 }
 
 .title {
@@ -57,17 +59,14 @@ img {
 }
 
 #ep {
-  background-color: #f5f5f5;
-  border-radius: 0.5rem;
+  background-color: #522ae2;
   font-size: 0.8rem;
-  color: #000;
+  color: #f5f5f5;
   padding: 0.2rem 0.5rem;
 }
 
 #format {
-  background-color: #f5f5f5;
-  border-radius: 0.5rem;
-  color: #000;
+  color: #f5f5f5;
   font-size: 0.8rem;
   padding: 0.2rem 0.5rem;
 }

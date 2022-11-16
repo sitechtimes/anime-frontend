@@ -3,8 +3,8 @@
     <div class="header">
       <h2></h2>
       <div class="header-pages">
-        <button></button>
-        <button></button>
+        <button class="page-button"><</button>
+        <button class="page-button">></button>
       </div>
     </div>
     <div class="content">
@@ -12,7 +12,7 @@
         v-for="anime in posts"
         :key="anime.id"
         :img="anime.img"
-        :ep="anime.episode"
+        :episode="anime.episode"
         :format="anime.format"
         :title="anime.title"
       />
@@ -125,8 +125,10 @@ export default {
 .box-container {
   background-color: chocolate;
   border-radius: 1.5rem;
-  padding-top: 5rem;
-  padding-bottom: 2.5rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  margin-left: 10rem;
+  margin-right: 10rem;
 }
 
 .content {
@@ -139,7 +141,18 @@ export default {
 
 .header-pages {
   width: 100%;
+  height: 5rem;
   display: flex;
   justify-content: flex-end;
+  padding-right: 5vw;
+  margin-bottom: 5rem;
+}
+
+.page-button {
+  background-color: transparent;
+  border: none;
+  font-size: 6rem;
+  color: white;
+  cursor: pointer;
 }
 </style>
