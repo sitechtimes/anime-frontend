@@ -1,6 +1,6 @@
 <template>
 <div class="carousel">
-    <button class="left-btn" @click="LeftMovement">&#8249;</button>
+    <button class="left-btn" @click="Left">&#8249;</button>
     <div class="space">
         <div class="carouselitem" v-for="Card in Cards" :key="Card">
             <h1 class="text"> {{Card.Title}} </h1>
@@ -8,7 +8,7 @@
             <img class="img" :src="Card.ImgLink" alt="TBD"/>
         </div>
     </div>
-    <button class="right-btn" @click="RightMovement">&#8250;</button>
+    <button class="right-btn" @click="Right">&#8250;</button>
 </div>
 </template>
 
@@ -18,7 +18,10 @@ export default {
     name: "Carousel",
     data () {
         return {
-            Itemlength: {},
+            Width: '',
+            Length: '',
+            Itemlength: '',
+            Movement: {},
             Cards: [
                 {
                     Title:"Title (1)",
@@ -39,17 +42,20 @@ export default {
             }
     },
     methods: {
-        Setup () {
-            this.ItemLength = this.carouselitem.width 
-            //Code for inputting the length of a carousel item (Currently not working/Needs Reworking)
+        Setup () { //Code for inputting the length of a carousel item (Needs Reworking)
+            this.Width = this.space.scrollWidth
+            this.Length = this.Cards.length 
+            this.ItemLength = `${ this.Width / this.Length }px`
         },
-        RightMovement () {
-            this.Card.transform = translateX(this.ItemLength)
-            //Code for moving the carousel items right (Needs Reworking)
+        Right () { //Code for moving the carousel items right (Needs Reworking)
+            this.Movement = {
+                transform: `translateX(${this.ItemLength})`
+            }
         },
-        LeftMovement () {
-            this.Card.transform = translateX(-this.ItemLength)
-            //Code for moving the carousel items left (Needs Reworking)
+        Left () { //Code for moving the carousel items left (Needs Reworking)
+            this.Movement = {
+                transform: `translateX(-${this.ItemLength})`
+            }
         },
     },
 }
@@ -61,22 +67,20 @@ export default {
     height: 100px;
 }
 .left-btn {
+    size: 2rem;
     float: left;
     margin-left: 5%;
-    margin-top: 10.845%;
-    color: var(--white);
     background-color: unset;
-    border: 2px solid var(--white);
+    border: 1px solid var(--white);
 }
 .right-btn {
+    size: 2rem;
     float: right;
     margin-right: 5%;
-    color: var(--white);
     background-color: unset;
-    border: 2px solid var(--white);
+    border: 1px solid var(--white);
 }
 .text {
-    color: var(--white);
     float: inline-start;
     text-align: center;
     vertical-align: middle;
@@ -88,6 +92,7 @@ export default {
     margin: 0%;
     padding: 0%;
     overflow: hidden;
+    color: var(--white);
     flex-direction: row;
 }
 .carouselitem {
