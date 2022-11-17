@@ -72,7 +72,8 @@ export default {
 .image-placeholder {
   height: 100%;
   aspect-ratio: 3/4;
-  /* object-fit: fill; */
+  /* object-fit: cover;
+  also perhaps use width and see what happens*/
 }
 
 .info-column {
