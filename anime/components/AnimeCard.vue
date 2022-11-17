@@ -1,6 +1,7 @@
 <template>
   <div class="card-container">
-    <img :src="`${img}`" alt="" />
+    <img class="anime-img" :src="`${img}`" alt="" />
+
     <div class="container-bar">
       <p id="ep">{{ episode }}</p>
       <p id="format">{{ format }}</p>
@@ -40,6 +41,10 @@ export default {
   width: 10vw;
 }
 
+.anime-img {
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
 img {
   width: 100%;
 }
@@ -59,9 +64,9 @@ img {
 }
 
 #ep {
-  background-color: #522ae2;
+  background-color: var(--primary);
   font-size: 0.8rem;
-  color: #f5f5f5;
+  color: var(--white);
   padding: 0.2rem 0.5rem;
 }
 
