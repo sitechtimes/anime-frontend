@@ -18,10 +18,7 @@ export default {
     name: "Carousel",
     data () {
         return {
-            Width: '',
-            Length: '',
-            Itemlength: '',
-            Movement: {},
+             currentElementIndex: 0,
             Cards: [
                 {
                     Title:"Title (1)",
@@ -41,21 +38,22 @@ export default {
             ]
             }
     },
+    computed: {
+        currentElement () { //Note to self: Figure out how to assign each card a number
+            return this.Cards[this.currentElementIndex];
+        }
+    },
     methods: {
-        Setup () { //Code for inputting the length of a carousel item (Needs Reworking)
-            this.Width = this.space.scrollWidth
-            this.Length = this.Cards.length 
-            this.ItemLength = `${ this.Width / this.Length }px`
+        Setup () { //Code for inputting the length of a carousel item
+
         },
-        Right () { //Code for moving the carousel items right (Needs Reworking)
-            this.Movement = {
-                transform: `translateX(${this.ItemLength})`
-            }
+        Right () { //Code for moving the carousel items right 
+        this.currentElementIndex++;
+        console.log(this.currentElementIndex)
         },
-        Left () { //Code for moving the carousel items left (Needs Reworking)
-            this.Movement = {
-                transform: `translateX(-${this.ItemLength})`
-            }
+        Left () { //Code for moving the carousel items left 
+        this.currentElementIndex--;
+        console.log(this.currentElementIndex)
         },
     },
 }
@@ -65,18 +63,19 @@ export default {
 .img {
     float: right;
     height: 100px;
+    vertical-align: middle;
 }
 .left-btn {
-    size: 2rem;
     float: left;
     margin-left: 5%;
+    color: var(--white);
     background-color: unset;
     border: 1px solid var(--white);
 }
 .right-btn {
-    size: 2rem;
     float: right;
     margin-right: 5%;
+    color: var(--white);
     background-color: unset;
     border: 1px solid var(--white);
 }
