@@ -1,5 +1,9 @@
 <template>
-<button v-if="hideSearch" @click="enterSearchMobile" class="search-btn">Search</button>
+<div v-if="hideSearch" @click="enterSearchMobile" class="search-btn"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M16.9893 9.3918C16.9893 14.1054 13.2978 17.9265 8.74414 17.9265C4.19047 17.9265 0.498989 14.1054 0.498989 9.3918C0.498989 4.67824 4.19047 0.857147 8.74414 0.857147C13.2978 0.857147 16.9893 4.67824 16.9893 9.3918ZM3.78251 9.3918C3.78251 12.2282 6.00391 14.5276 8.74414 14.5276C11.4844 14.5276 13.7058 12.2282 13.7058 9.3918C13.7058 6.55535 11.4844 4.25596 8.74414 4.25596C6.00391 4.25596 3.78251 6.55535 3.78251 9.3918Z" fill="#DBDBDB"/>
+<path d="M12.6089 15.3234C11.9005 14.5902 11.9005 13.4013 12.6089 12.6681C13.3172 11.9348 14.4658 11.9348 15.1742 12.6681L20.6177 18.3027C21.3261 19.036 21.3261 20.2248 20.6177 20.9581C19.9093 21.6914 18.7608 21.6914 18.0524 20.9581L12.6089 15.3234Z" fill="#DBDBDB"/>
+</svg>
+</div>
 <form v-else class="form">
   <input v-model="text" placeholder="Search anime..." class="input">
   <div v-for="anime in searchResult" :key="anime.text" class="box">
@@ -16,7 +20,6 @@
       </div>
     </div>
   </div>
-  <button v-if="this.screenWidth <= 568" @click="exitSearchMobile" class="back-btn">Back</button>
   </form>
 </template>
 
@@ -72,8 +75,7 @@ export default {
 <style scoped>
 .form{
   color: rgb(219, 219, 219);
-  /* margin: 5vw; */
-  width: 25vw;
+  width: 30vw;
 }
 
 .input {
@@ -96,7 +98,7 @@ export default {
   display: flex;
   flex-direction: row;
   padding: 1rem;
-  height: 10vh;
+  height: 8vh;
 }
 
 .box:nth-child(even) {
@@ -129,16 +131,16 @@ export default {
   display: flex;
   flex-direction: row;
   align-items: center;
-  font-size: var(--h5);
-  gap: 1vw;
+  font-size: 1rem;
+  gap: 2rem;
 }
 
 .age-rating {
   text-align: center;
   border: solid gray 0.15rem;
   border-radius: 5px;
-  font-size: 1rem;
-  width: 15%;
+  font-size: var(--smallText);
+  width: 10%;
 }
 
 .star-rating {
@@ -148,24 +150,10 @@ export default {
 
 .star {
   background-color: yellow;
-  height: 1vh;
+  margin-right: 0.5rem;
+  height: 1.5vh;
   aspect-ratio: 1/1;
   clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-}
-
-.search-btn, .back-btn {
-  all: unset;
-  color: rgb(216, 216, 216);
-  background-color: rgb(66, 66, 66);
-  font-size: var(--h5);
-  padding: 0.25rem 0.75rem;
-  border-radius: 10px;
-  text-align: center;
-}
-
-.back-btn {
-  width: 20vw;
-  margin: 10vh;
 }
 
 @media screen and (max-width: 1300px) {
@@ -173,13 +161,14 @@ export default {
     padding: 0.75rem;
   }
   .title {
-    font-size: 1.5rem;
+    font-size: var(--h5);
   }
   .info-row {
     font-size: 1rem;
   }
     .age-rating {
     font-size: var(--smallText);
+    width: 15%;
   }
 }
 
@@ -212,6 +201,7 @@ export default {
 @media screen and (max-width: 568px) {
   .form {
     background-color: var(--bg-primary);
+    background-color: red;
     height: 100vh;
     width: 100vw;
     z-index: 1;
@@ -227,9 +217,6 @@ export default {
   }
   .info-column {
     margin-left: 2vw;
-  }
-  .info-row {
-    gap: 3vw;
   }
   .age-rating {
     width: 10%;
