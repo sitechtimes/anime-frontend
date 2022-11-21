@@ -1,6 +1,7 @@
 <template>
   <div id="anime">
     <NavBar/>
+    <SearchBar/>
   </div>
 </template>
 
@@ -8,14 +9,15 @@
 import Vue from 'vue'
 // import ComponentVue from '../components/Component.vue'
 import NavBar from '../components/NavBar.vue'
+import SearchBar from '../components/SearchBar.vue'
 
 export default Vue.extend({
   name: 'IndexPage',
   components:{
     // ComponentVue
-    NavBar
+    NavBar,
+    SearchBar
   },
-
 })
 </script>
 <style>
