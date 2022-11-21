@@ -114,11 +114,11 @@ export default {
 }
 
 .age-rating {
-  width: 15%;
   text-align: center;
   border: solid gray 0.15rem;
   border-radius: 5px;
   font-size: 1rem;
+  width: 15%;
 }
 
 .star-rating {
@@ -131,6 +131,40 @@ export default {
   height: 1vh;
   aspect-ratio: 1/1;
   clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+@media screen and (max-width: 1300px) {
+  .title {
+    font-size: 1.5rem;
+  }
+  .age-rating {
+    font-size: 0.6rem;
+    border: solid gray 0.1rem;
+  }
+  .info-row {
+    font-size: var(--smallText);
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .form {
+    width: 30vw;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .form {
+    width: 35vw;
+  }
+  .input {
+    font-size: var(--h5);
+  }
+  .box {
+    padding: 0.75rem;
+  }
+  .title {
+    font-size: var(--h5);
+  }  
 }
 
 </style>
