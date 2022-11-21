@@ -1,5 +1,6 @@
 <template>
-<form class="form">
+<button v-if="hideSearch" @click="enterSearchMobile" class="search-btn">Search</button>
+<form v-else class="form">
   <input v-model="text" placeholder="Search anime..." class="input">
   <div v-for="anime in searchResult" :key="anime.text" class="box">
     <img class="image-placeholder" src="https://cdn.myanimelist.net/images/characters/4/457933.jpg" alt="">
@@ -15,6 +16,7 @@
       </div>
     </div>
   </div>
+  <button v-if="this.screenWidth <= 568" @click="exitSearchMobile" class="back-btn">Back</button>
   </form>
 </template>
 
@@ -23,6 +25,8 @@ export default {
   data() {
     return {
       text: "",
+      screenWidth: null,
+      hideSearch: null,
       animes: [
         {title: "One Punch Man", ageRating: "PG-13", stars: 8.50, releaseDate: "Oct 5, 2015"},
         {title: "Spy x Family", ageRating: "G", stars: 9.99, releaseDate: "Apr 9, 2022"},
@@ -37,6 +41,14 @@ export default {
         ],
     }
   },
+  methods: {
+    enterSearchMobile() {
+      this.hideSearch = false
+    },
+    exitSearchMobile() {
+      this.hideSearch = true
+    }
+  },
   computed: {
     searchResult() {
       if (this.text) {
@@ -45,6 +57,14 @@ export default {
         }).slice(0,5)
       }
     }
+  },
+  mounted() {
+    this.screenWidth = window.innerWidth
+    if (window.innerWidth <= 568) {
+      this.hideSearch = true
+    } else {
+      this.hideSearch = false
+    }
   }
 }
 </script>
@@ -52,7 +72,7 @@ export default {
 <style scoped>
 .form{
   color: rgb(219, 219, 219);
-  margin: 5vw;
+  /* margin: 5vw; */
   width: 25vw;
 }
 
@@ -68,11 +88,11 @@ export default {
 }
 
 .input:focus {
-  background-color: rgb(33, 33, 33);
+  background-color: rgb(52, 52, 52);
 }
 
 .box {
-  background-color: rgb(39, 39, 39);
+  background-color: rgb(36, 36, 36);
   display: flex;
   flex-direction: row;
   padding: 1rem;
@@ -133,15 +153,32 @@ export default {
   clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
 }
 
+.search-btn, .back-btn {
+  all: unset;
+  color: rgb(216, 216, 216);
+  background-color: rgb(66, 66, 66);
+  font-size: var(--h5);
+  padding: 0.25rem 0.75rem;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.back-btn {
+  width: 20vw;
+  margin: 10vh;
+}
+
 @media screen and (max-width: 1300px) {
+  .box {
+    padding: 0.75rem;
+  }
   .title {
     font-size: 1.5rem;
   }
-  .age-rating {
-    font-size: 0.6rem;
-    border: solid gray 0.1rem;
-  }
   .info-row {
+    font-size: 1rem;
+  }
+    .age-rating {
     font-size: var(--smallText);
   }
 }
@@ -149,6 +186,9 @@ export default {
 @media screen and (max-width: 1024px) {
   .form {
     width: 30vw;
+  }
+  .info-row {
+    font-size: var(--smallText);
   }
 }
 
@@ -159,12 +199,50 @@ export default {
   .input {
     font-size: var(--h5);
   }
-  .box {
-    padding: 0.75rem;
-  }
   .title {
-    font-size: var(--h5);
-  }  
+    font-size: 1.4rem;
+  }
+  .age-rating {
+    font-size: 0.7rem;
+    border: solid gray 0.1rem;
+    width: 20%;
+  }
+}
+
+@media screen and (max-width: 568px) {
+  .form {
+    background-color: var(--bg-primary);
+    height: 100vh;
+    width: 100vw;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .input, .box {
+    width: 80vw;
+  }
+  .input {
+    margin-top: 5vh;
+  }
+  .info-column {
+    margin-left: 2vw;
+  }
+  .info-row {
+    gap: 3vw;
+  }
+  .age-rating {
+    width: 10%;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .age-rating {
+    width: 15%;
+  }
+  .info-column {
+    margin-left: 3vw;
+  }
 }
 
 </style>
