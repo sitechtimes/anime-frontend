@@ -172,15 +172,15 @@ export default {
   border-radius: 1.5rem;
   padding-top: 4rem;
   padding-bottom: 4rem;
-  margin-left: 10rem;
-  margin-right: 10rem;
+  margin-left: 20rem;
+  margin-right: 20rem;
 }
 
 .content {
   display: flex;
   flex-wrap: wrap;
   row-gap: 1vw;
-  column-gap: 4vw;
+  column-gap: 2vw;
   justify-content: center;
 }
 
@@ -197,5 +197,6 @@ export default {
   font-size: 6rem;
   color: var(--white);
   cursor: pointer;
+  padding: 2rem;
 }
 </style>
