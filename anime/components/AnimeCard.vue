@@ -3,20 +3,18 @@
     <img class="anime-img" :src="`${img}`" alt="" />
 
     <div class="container-bar">
-      <p id="ep">
         <svg
           width="50"
           height="16"
           viewBox="0 0 46 14"
-          fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
             d="M0 1C0 0.447715 0.447715 0 1 0H44.6975C45.3548 0 45.8333 0.623321 45.6635 1.25833L42.4886 13.1313C42.3717 13.5688 41.9754 13.873 41.5226 13.873H1C0.447717 13.873 0 13.4253 0 12.873V1Z"
             fill="#FF645A"
           />
+           <text x="5" y="11" class="ep">{{ episode }}</text>
         </svg>
-      </p>
       <p id="format">{{ format }}</p>
     </div>
     <h5 class="title">{{ title }}</h5>
@@ -78,7 +76,7 @@ img {
   font-size: var(--h5);
 }
 
-#ep {
+.ep {
   width: 1.5rem;
   font-size: var(--h6);
   color: var(--white);
