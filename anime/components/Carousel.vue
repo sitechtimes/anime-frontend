@@ -18,7 +18,8 @@ export default {
     name: "Carousel",
     data () {
         return {
-             currentElementIndex: 0,
+            Inner: {},
+            Length: '',
             Cards: [
                 {
                     Title:"Title (1)",
@@ -38,22 +39,24 @@ export default {
             ]
             }
     },
-    computed: {
-        currentElement () { //Note to self: Figure out how to assign each card a number
-            return this.Cards[this.currentElementIndex];
-        }
+    mounted () {
+        this.Setup()
     },
     methods: {
         Setup () { //Code for inputting the length of a carousel item
-
+            const Width = this.space.scrollWidth
+            const CardLength = this.Cards.length
+            this.Length = `${ Width / CardLength }px`
         },
         Right () { //Code for moving the carousel items right 
-        this.currentElementIndex++;
-        console.log(this.currentElementIndex)
+        this.moveRight ()
+        },
+        moveRight () {
+            this.Inner = {
+                transform: `translateX(${this.Length})`
+            }
         },
         Left () { //Code for moving the carousel items left 
-        this.currentElementIndex--;
-        console.log(this.currentElementIndex)
         },
     },
 }
