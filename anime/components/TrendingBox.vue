@@ -134,7 +134,7 @@ export default {
         {
           id: 11,
           img: 'https://cdn.myanimelist.net/images/anime/5/87048.jpg',
-          episode: 12,
+          episode: 9999,
           format: 'TV',
           title: 'Kaguya-sama wa Kokurasetai: Tensai-tachi no Renai Zunousen',
         },
@@ -171,9 +171,11 @@ export default {
   background-color: var(--tertiary);
   border-radius: 1.5rem;
   padding-top: 4rem;
-  padding-bottom: 4rem;
+  padding-bottom: 8rem;
   margin-left: 20rem;
   margin-right: 20rem;
+  margin-top: 100rem;
+  margin-bottom: 100rem;
 }
 
 .content {

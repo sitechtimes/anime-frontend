@@ -13,7 +13,7 @@
             d="M0 1C0 0.447715 0.447715 0 1 0H44.6975C45.3548 0 45.8333 0.623321 45.6635 1.25833L42.4886 13.1313C42.3717 13.5688 41.9754 13.873 41.5226 13.873H1C0.447717 13.873 0 13.4253 0 12.873V1Z"
             fill="#FF645A"
           />
-           <text x="6" y="10.5" fill="white" class="ep">{{ episode }}</text>
+           <text id="ep" x="6" y="10.5" fill="white">{{ episode }}</text>
         </svg>
       <p id="format">{{ format }}</p>
     </div>
@@ -49,7 +49,7 @@ export default {
 .card-container {
   display: flex;
   flex-direction: column;
-  width: 10vw;
+  width: 9vw;
 }
 
 .anime-img {
@@ -66,25 +66,29 @@ img {
   justify-content: space-between;
   align-items: center;
   background-color: var(--bg-primary);
-  padding: 0.5rem;
+  padding: 0.15rem;
+  padding-left: 0.5rem;
   border-radius: 0 0 0.5rem 0.5rem;
 }
 
 .title {
   width: 100%;
   color: var(--white);
-  font-size: var(--h5);
+  font-size: var(--h6);
+  font-weight: var(--fw-semi);
 }
 
-.ep {
+#ep {
   width: 1.5rem;
-  font-size: var(--h6);
+  font-size: var(--h7);
   color: var(--white);
+  font-weight: var(--fw-reg);
 }
 
 #format {
   color: #f5f5f5;
-  font-size: var(--h6);
+  font-size: var(--h7);
   padding: 0.2rem 0.5rem;
+  font-weight: var(--fw-reg);
 }
 </style>
