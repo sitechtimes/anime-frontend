@@ -18,8 +18,6 @@ export default {
     name: "Carousel",
     data () {
         return {
-            Inner: {},
-            Length: '',
             Cards: [
                 {
                     Title:"Title (1)",
@@ -39,26 +37,6 @@ export default {
             ]
             }
     },
-    mounted () {
-        this.Setup()
-    },
-    methods: {
-        Setup () { //Code for inputting the length of a carousel item
-            const Width = this.space.scrollWidth
-            const CardLength = this.Cards.length
-            this.Length = `${ Width / CardLength }px`
-        },
-        Right () { //Code for moving the carousel items right 
-        this.moveRight ()
-        },
-        moveRight () {
-            this.Inner = {
-                transform: `translateX(${this.Length})`
-            }
-        },
-        Left () { //Code for moving the carousel items left 
-        },
-    },
 }
 </script>
 
@@ -70,14 +48,14 @@ export default {
 }
 .left-btn {
     float: left;
-    margin-left: 5%;
+    margin: 5%;
     color: var(--white);
     background-color: unset;
     border: 1px solid var(--white);
 }
 .right-btn {
     float: right;
-    margin-right: 5%;
+    margin: 5%;
     color: var(--white);
     background-color: unset;
     border: 1px solid var(--white);
@@ -91,11 +69,12 @@ export default {
     white-space: nowrap;
 }
 .carousel {
-    margin: 0%;
+    margin: 3%;
     padding: 0%;
     overflow: hidden;
     color: var(--white);
     flex-direction: row;
+    background-color: var(--tertiary);
 }
 .carouselitem {
     width: 65%;
