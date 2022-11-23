@@ -4,8 +4,10 @@
 <path d="M12.6089 15.3234C11.9005 14.5902 11.9005 13.4013 12.6089 12.6681C13.3172 11.9348 14.4658 11.9348 15.1742 12.6681L20.6177 18.3027C21.3261 19.036 21.3261 20.2248 20.6177 20.9581C19.9093 21.6914 18.7608 21.6914 18.0524 20.9581L12.6089 15.3234Z" fill="#DBDBDB"/>
 </svg>
 </div>
-<form v-else class="form">
+<div v-else @click="exitSearchMobile" class="search-bar">
+<form>
   <input v-model="text" placeholder="Search anime..." class="input">
+  </form>
   <div v-for="anime in searchResult" :key="anime.text" class="box">
     <img class="image-placeholder" src="https://cdn.myanimelist.net/images/characters/4/457933.jpg" alt="">
     <div class="info-column">
@@ -20,7 +22,7 @@
       </div>
     </div>
   </div>
-  </form>
+</div>
 </template>
 
 <script>
@@ -49,6 +51,7 @@ export default {
       this.hideSearch = false
     },
     exitSearchMobile() {
+      // if ()
       this.hideSearch = true
     }
   },
@@ -73,7 +76,7 @@ export default {
 </script>
 
 <style scoped>
-.form{
+.search-bar{
   color: rgb(219, 219, 219);
   width: 30vw;
 }
@@ -113,7 +116,7 @@ export default {
 
 .info-column {
   margin-left: 1vw;
-  width: 75%;
+  width: 80%;
   display: flex;
   flex-direction: column;
   gap: 0.5vh;
@@ -173,7 +176,7 @@ export default {
 }
 
 @media screen and (max-width: 1024px) {
-  .form {
+  .search-bar {
     width: 30vw;
   }
   .info-row {
@@ -182,7 +185,7 @@ export default {
 }
 
 @media screen and (max-width: 768px) {
-  .form {
+  .search-bar {
     width: 35vw;
   }
   .input {
@@ -199,7 +202,7 @@ export default {
 }
 
 @media screen and (max-width: 568px) {
-  .form {
+  .search-bar {
     background-color: var(--bg-primary);
     background-color: red;
     height: 100vh;
