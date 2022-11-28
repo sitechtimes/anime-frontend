@@ -49,7 +49,7 @@ export default {
 .card-container {
   display: flex;
   flex-direction: column;
-  width: 9vw;
+  width: 8vw;
 }
 
 .anime-img {
@@ -75,7 +75,8 @@ img {
   width: 100%;
   color: var(--white);
   font-size: var(--h6);
-  font-weight: var(--fw-semi);
+  font-weight: var(--fw-reg);
+  padding: 0.5rem;
 }
 
 #ep {
