@@ -15,8 +15,10 @@
       <div class="info-row">
         <p class="age-rating">{{anime.ageRating}}</p>
         <div class="star-rating">
-          <div class="star"></div>
-          <p>{{anime.stars}}</p>
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" class="star" xmlns="http://www.w3.org/2000/svg">
+<path d="M14.0946 1.60341C14.6868 -0.25269 17.3132 -0.252693 17.9054 1.60341L20.2772 9.03723C20.5418 9.86642 21.3122 10.4293 22.1826 10.4293H29.9343C31.8629 10.4293 32.6743 12.89 31.1239 14.0371L24.7903 18.7232C24.1021 19.2324 23.8143 20.1232 24.0745 20.9389L26.4789 28.4746C27.0689 30.3237 24.9442 31.8447 23.384 30.6903L17.1896 26.1072C16.4827 25.5842 15.5173 25.5842 14.8104 26.1072L8.61604 30.6903C7.0558 31.8447 4.93115 30.3237 5.5211 28.4746L7.92546 20.9389C8.1857 20.1232 7.89791 19.2324 7.20966 18.7232L0.87612 14.0371C-0.674271 12.89 0.137065 10.4293 2.06569 10.4293H9.81743C10.6878 10.4293 11.4582 9.86642 11.7228 9.03723L14.0946 1.60341Z" fill="#FFEB34"/>
+</svg>
+          <p>{{anime.stars.toFixed(2)}}</p>
         </div>
         <p>{{anime.releaseDate}}</p>
       </div>
@@ -50,9 +52,10 @@ export default {
     enterSearchMobile() {
       this.hideSearch = false
     },
-    exitSearchMobile() {
-      // if ()
-      this.hideSearch = true
+    exitSearchMobile(e) {
+      if (this.screenWidth <=568 && e.target.className === "search-bar") {
+        this.hideSearch = true
+      }
     }
   },
   computed: {
@@ -93,7 +96,7 @@ export default {
 }
 
 .input:focus {
-  background-color: rgb(52, 52, 52);
+  background-color: rgb(40, 40, 40);
 }
 
 .box {
@@ -101,7 +104,7 @@ export default {
   display: flex;
   flex-direction: row;
   padding: 1rem;
-  height: 8vh;
+  height: 9vh;
 }
 
 .box:nth-child(even) {
@@ -140,7 +143,7 @@ export default {
 
 .age-rating {
   text-align: center;
-  border: solid gray 0.15rem;
+  border: solid gray 0.1rem;
   border-radius: 5px;
   font-size: var(--smallText);
   width: 10%;
@@ -152,11 +155,9 @@ export default {
 }
 
 .star {
-  background-color: yellow;
+  height: 1rem;
+  width: 1rem;
   margin-right: 0.5rem;
-  height: 1.5vh;
-  aspect-ratio: 1/1;
-  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
 }
 
 @media screen and (max-width: 1300px) {
@@ -167,10 +168,9 @@ export default {
     font-size: var(--h5);
   }
   .info-row {
-    font-size: 1rem;
+    font-size: var(--smallText);
   }
     .age-rating {
-    font-size: var(--smallText);
     width: 15%;
   }
 }
@@ -178,9 +178,6 @@ export default {
 @media screen and (max-width: 1024px) {
   .search-bar {
     width: 30vw;
-  }
-  .info-row {
-    font-size: var(--smallText);
   }
 }
 
@@ -191,12 +188,11 @@ export default {
   .input {
     font-size: var(--h5);
   }
-  .title {
-    font-size: 1.4rem;
+  .box {
+    padding: 0.5rem;
+    height: 10vh;
   }
   .age-rating {
-    font-size: 0.7rem;
-    border: solid gray 0.1rem;
     width: 20%;
   }
 }
@@ -204,7 +200,6 @@ export default {
 @media screen and (max-width: 568px) {
   .search-bar {
     background-color: var(--bg-primary);
-    background-color: red;
     height: 100vh;
     width: 100vw;
     z-index: 1;
