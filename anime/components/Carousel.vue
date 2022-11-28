@@ -6,13 +6,13 @@
         <div class="carousel-item" v-for="APart in AParts" :key="APart">
             <h1 class="text"> {{APart.Title}} </h1>
             <h3 class="text"> {{APart.Description}} </h3>
-            <img class="img" :src="APart.ImgLink" alt="TBD"/>
+            <img class="img" :src="APart.ImgLink" alt="TBD1"/>
         </div>
         <div class="controls">
-            <label for="item-3" class="left-item">
+            <label for="item-3" class="left">
                 <span>&#8249;</span>
             </label>
-            <label for="item-2" class="right-item">
+            <label for="item-2" class="right">
                 <span>&#8250;</span>
             </label>
         </div>
@@ -22,13 +22,13 @@
         <div class="carousel-item" v-for="BPart in BParts" :key="BPart">
             <h1 class="text"> {{BPart.Title}} </h1>
             <h3 class="text"> {{BPart.Description}} </h3>
-            <img class="img" :src="BPart.ImgLink" alt="TBD"/>
+            <img class="img" :src="BPart.ImgLink" alt="TBD2"/>
         </div>
         <div class="controls">
-            <label for="item-1" class="left-item">
+            <label for="item-1" class="left">
                 <span>&#8249;</span>
             </label>
-            <label for="item-3" class="right-item">
+            <label for="item-3" class="right">
                 <span>&#8250;</span>
             </label>
         </div>
@@ -38,13 +38,13 @@
         <div class="carousel-item" v-for="CPart in CParts" :key="CPart">
             <h1 class="text"> {{CPart.Title}} </h1>
             <h3 class="text"> {{CPart.Description}} </h3>
-            <img class="img" :src="CPart.ImgLink" alt="TBD"/>
+            <img class="img" :src="CPart.ImgLink" alt="TBD3"/>
         </div>
         <div class="controls">
-            <label for="item-2" class="left-item">
+            <label for="item-2" class="left">
                 <span>&#8249;</span>
             </label>
-            <label for="item-1" class="right-item">
+            <label for="item-1" class="right">
                 <span>&#8250;</span>
             </label>
         </div>
@@ -59,27 +59,25 @@ export default {
     name: "Carousel",
     data () {
         return {
-            AParts: [
+            AParts: 
                 {
                     Title:"Title (1)",
                     Description:"(Synopsis)",
                     ImgLink:"https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg",
                 },
-            ],
-            BParts: [
+            BParts: 
                 {
                     Title:"Title (2)",
                     Description:"(Synopsis)",
                     ImgLink:"https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg",
                 },
-            ],
-            CParts: [
+            
+            CParts: 
                 {
                     Title:"Title (3)",
                     Description:"(Synopsis)",
                     ImgLink:"https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg",
                 },
-            ],
             }
     },
 }
@@ -88,10 +86,11 @@ export default {
 <style scoped>
 .img {
     float: right;
-    height: 100px;
+    height: 15%;
     vertical-align: middle;
 }
 .text {
+    color: var(--white);
     float: inline-start;
     text-align: center;
     vertical-align: middle;
@@ -102,28 +101,27 @@ input {
 .controls label{
     display: none;
     position: absolute;
+    margin: 3%;
     padding: 0;
-    opacity: 0;
-}
-.controls label:hover {
     opacity: 1;
+    font-size: 3rem;
 }
-.controls .left-item {
+.controls .left {
     text-align: left;
     left: 0;
 }
-.controls .right-item {
+.controls .right {
     text-align: right;
     right: 0;
 }
 .carousel {
     margin: 3%;
     padding: 0%;
-    color: var(--white);
+    overflow: hidden;
     flex-direction: row;
-    background-color: var(--tertiary);
 }
 .carousel-item {
+    opacity: 1;
     width: 65%;
     height: 50%;
     margin: 25px;
@@ -131,14 +129,17 @@ input {
     position: absolute;
 }
 .carousel-slide {
-    margin: 0;
-    padding: 0;
-    display: block;
-    overflow: hidden;
-    position: absolute;
     white-space: nowrap;
 }
 .carousel-display {
+    display: block;
+}
+input:checked + .carousel-display .carousel-item {
+    opacity: 1;
+    transform: scale(1);
+    transition: 1s ease-in-out;
+}
+input:checked + .carousel-display .controls label {
     display: block;
 }
 </style>
