@@ -1,13 +1,8 @@
 <template>
-<div v-if="hideSearch" @click="enterSearchMobile" class="search-btn"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M16.9893 9.3918C16.9893 14.1054 13.2978 17.9265 8.74414 17.9265C4.19047 17.9265 0.498989 14.1054 0.498989 9.3918C0.498989 4.67824 4.19047 0.857147 8.74414 0.857147C13.2978 0.857147 16.9893 4.67824 16.9893 9.3918ZM3.78251 9.3918C3.78251 12.2282 6.00391 14.5276 8.74414 14.5276C11.4844 14.5276 13.7058 12.2282 13.7058 9.3918C13.7058 6.55535 11.4844 4.25596 8.74414 4.25596C6.00391 4.25596 3.78251 6.55535 3.78251 9.3918Z" fill="#DBDBDB"/>
-<path d="M12.6089 15.3234C11.9005 14.5902 11.9005 13.4013 12.6089 12.6681C13.3172 11.9348 14.4658 11.9348 15.1742 12.6681L20.6177 18.3027C21.3261 19.036 21.3261 20.2248 20.6177 20.9581C19.9093 21.6914 18.7608 21.6914 18.0524 20.9581L12.6089 15.3234Z" fill="#DBDBDB"/>
-</svg>
-</div>
-<div v-else @click="exitSearchMobile" class="search-bar">
-<form>
+<div id="searchBar">
+  <button v-if="hideSearch" @click="enterSearchMobile" class="search-btn">Search</button>
+<form v-else class="form">
   <input v-model="text" placeholder="Search anime..." class="input">
-  </form>
   <div v-for="anime in searchResult" :key="anime.text" class="box">
     <img class="image-placeholder" src="https://cdn.myanimelist.net/images/characters/4/457933.jpg" alt="">
     <div class="info-column">
@@ -15,15 +10,15 @@
       <div class="info-row">
         <p class="age-rating">{{anime.ageRating}}</p>
         <div class="star-rating">
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" class="star" xmlns="http://www.w3.org/2000/svg">
-<path d="M14.0946 1.60341C14.6868 -0.25269 17.3132 -0.252693 17.9054 1.60341L20.2772 9.03723C20.5418 9.86642 21.3122 10.4293 22.1826 10.4293H29.9343C31.8629 10.4293 32.6743 12.89 31.1239 14.0371L24.7903 18.7232C24.1021 19.2324 23.8143 20.1232 24.0745 20.9389L26.4789 28.4746C27.0689 30.3237 24.9442 31.8447 23.384 30.6903L17.1896 26.1072C16.4827 25.5842 15.5173 25.5842 14.8104 26.1072L8.61604 30.6903C7.0558 31.8447 4.93115 30.3237 5.5211 28.4746L7.92546 20.9389C8.1857 20.1232 7.89791 19.2324 7.20966 18.7232L0.87612 14.0371C-0.674271 12.89 0.137065 10.4293 2.06569 10.4293H9.81743C10.6878 10.4293 11.4582 9.86642 11.7228 9.03723L14.0946 1.60341Z" fill="#FFEB34"/>
-</svg>
-          <p>{{anime.stars.toFixed(2)}}</p>
+          <div class="star"></div>
+          <p>{{anime.stars}}</p>
         </div>
         <p>{{anime.releaseDate}}</p>
       </div>
     </div>
   </div>
+  <button v-if="this.screenWidth <= 568" @click="exitSearchMobile" class="back-btn">Back</button>
+  </form>
 </div>
 </template>
 
@@ -52,10 +47,8 @@ export default {
     enterSearchMobile() {
       this.hideSearch = false
     },
-    exitSearchMobile(e) {
-      if (this.screenWidth <=568 && e.target.className === "search-bar") {
-        this.hideSearch = true
-      }
+    exitSearchMobile() {
+      this.hideSearch = true
     }
   },
   computed: {
@@ -79,9 +72,14 @@ export default {
 </script>
 
 <style scoped>
-.search-bar{
+#searchBar{
+  width:25vw;
+}
+.form{
   color: rgb(219, 219, 219);
-  width: 30vw;
+  /* margin: 5vw; */
+  width: 25vw;
+  position: fixed;
 }
 
 .input {
@@ -93,10 +91,11 @@ export default {
   outline: none;
   padding: 1rem 2rem;
   width: 100%;
+  z-index:1000;
 }
 
 .input:focus {
-  background-color: rgb(40, 40, 40);
+  background-color: rgb(52, 52, 52);
 }
 
 .box {
@@ -104,7 +103,7 @@ export default {
   display: flex;
   flex-direction: row;
   padding: 1rem;
-  height: 9vh;
+  height: 10vh;
 }
 
 .box:nth-child(even) {
@@ -119,7 +118,7 @@ export default {
 
 .info-column {
   margin-left: 1vw;
-  width: 80%;
+  width: 75%;
   display: flex;
   flex-direction: column;
   gap: 0.5vh;
@@ -137,16 +136,16 @@ export default {
   display: flex;
   flex-direction: row;
   align-items: center;
-  font-size: 1rem;
-  gap: 2rem;
+  font-size: var(--h5);
+  gap: 1vw;
 }
 
 .age-rating {
   text-align: center;
-  border: solid gray 0.1rem;
+  border: solid gray 0.15rem;
   border-radius: 5px;
-  font-size: var(--smallText);
-  width: 10%;
+  font-size: 1rem;
+  width: 15%;
 }
 
 .star-rating {
@@ -155,9 +154,25 @@ export default {
 }
 
 .star {
-  height: 1rem;
-  width: 1rem;
-  margin-right: 0.5rem;
+  background-color: yellow;
+  height: 1vh;
+  aspect-ratio: 1/1;
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+.search-btn, .back-btn {
+  all: unset;
+  color: rgb(216, 216, 216);
+  background-color: rgb(66, 66, 66);
+  font-size: var(--h5);
+  padding: 0.25rem 0.75rem;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.back-btn {
+  width: 20vw;
+  margin: 10vh;
 }
 
 @media screen and (max-width: 1300px) {
@@ -165,40 +180,44 @@ export default {
     padding: 0.75rem;
   }
   .title {
-    font-size: var(--h5);
+    font-size: 1.5rem;
   }
   .info-row {
-    font-size: var(--smallText);
+    font-size: 1rem;
   }
     .age-rating {
-    width: 15%;
+    font-size: var(--smallText);
   }
 }
 
 @media screen and (max-width: 1024px) {
-  .search-bar {
+  .form {
     width: 30vw;
+  }
+  .info-row {
+    font-size: var(--smallText);
   }
 }
 
 @media screen and (max-width: 768px) {
-  .search-bar {
+  .form {
     width: 35vw;
   }
   .input {
     font-size: var(--h5);
   }
-  .box {
-    padding: 0.5rem;
-    height: 10vh;
+  .title {
+    font-size: 1.4rem;
   }
   .age-rating {
+    font-size: 0.7rem;
+    border: solid gray 0.1rem;
     width: 20%;
   }
 }
 
 @media screen and (max-width: 568px) {
-  .search-bar {
+  .form {
     background-color: var(--bg-primary);
     height: 100vh;
     width: 100vw;
@@ -215,6 +234,9 @@ export default {
   }
   .info-column {
     margin-left: 2vw;
+  }
+  .info-row {
+    gap: 3vw;
   }
   .age-rating {
     width: 10%;

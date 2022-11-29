@@ -1,10 +1,8 @@
 <template>
     <section id="nav" class="nav">
         <nav class="navigation" :class="{ 'is-hidden': !showHeader }">
-            <h1 id="logo"><a href="/">Technime</a></h1>
-                <div class="index">
-                    <SearchBar/>
-                </div>
+            <h1 id="logo"><a href="/">Technime</a></h1>       
+                <SearchBar/>
             <ul class="routers">
                 <li class="link">
                     <a href="awards" class="link-href">Awards</a>
@@ -63,7 +61,7 @@ import SearchBar from '../components/SearchBar.vue'
     height:9vh;
     display:flex;
     justify-content:space-evenly;
-    /* align-items:center; */
+    align-items:center;
     align-self: stretch;
     margin:0 auto;
     position:fixed;
