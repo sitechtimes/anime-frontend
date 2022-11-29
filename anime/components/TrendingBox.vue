@@ -7,7 +7,7 @@
           <button class="page-button">
             <svg
               width="15"
-              height="30"
+              height="25"
               viewBox="0 0 20 34"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -23,7 +23,7 @@
           <button class="page-button">
             <svg
               width="15"
-              height="30"
+              height="25"
               viewBox="0 0 20 34"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -49,7 +49,14 @@
         />
       </div>
     </div>
-    <div class="top_charts"></div>
+    <div class="top_charts">
+      <div>
+        <div class="header">
+          <h2 class="header-title">Top Charts</h2>
+          <div></div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -134,6 +141,20 @@ export default {
           format: 'TV',
           title: 'Kaguya-sama wa Kokurasetai: Tensai-tachi no Renai Zunousen',
         },
+        {
+          id: 11,
+          img: 'https://cdn.myanimelist.net/images/anime/5/87048.jpg',
+          episode: 12,
+          format: 'TV',
+          title: 'Kaguya-sama wa Kokurasetai: Tensai-tachi no Renai Zunousen',
+        },
+        {
+          id: 12,
+          img: 'https://cdn.myanimelist.net/images/anime/5/87048.jpg',
+          episode: 12,
+          format: 'TV',
+          title: 'Kaguya-sama wa Kokurasetai: Tensai-tachi no Renai Zunousen',
+        },
       ],
     }
   },
@@ -143,32 +164,46 @@ export default {
 <style scoped>
 .trending_top {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   width: 100%;
   height: 100%;
   border-radius: 10px;
+  column-gap: 9rem;
+  margin-top: 50rem;
+  margin-bottom: 50rem;
+}
+
+.top_charts {
+  background-color: var(--secondary);
+  border-radius: 1.5rem;
+  width: 25vw;
+  margin-right: 10rem;
+  margin-top: 10rem;
+}
+
+.box-container {
+  background-color: var(--tertiary);
+  border-radius: 1.5rem;
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+  width: 75vw;
+  margin-left: 10rem;
+  margin-top: 10rem;
 }
 
 .header {
+  height: 8rem;
   display: flex;
   justify-content: space-between;
-  margin-left: 3vw;
+  margin-left: 4vw;
   margin-right: 3vw;
+  align-items: center;
 }
 
 .header-title {
   font-size: var(--h3);
   font-weight: var(--fw-bold);
   color: var(--white);
-}
-
-.box-container {
-  background-color: var(--tertiary);
-  border-radius: 1.5rem;
-  padding-top: 3rem;
-  width: 55vw;
-  margin-left: 10rem;
-  margin-top: 10rem;
 }
 
 .content {
@@ -182,26 +217,16 @@ export default {
 }
 
 .header-pages {
-  height: 3rem;
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  column-gap: 1rem;
 }
 
 .page-button {
   background-color: transparent;
   border: none;
-  font-size: 6rem;
   color: var(--white);
   cursor: pointer;
-  padding: 1.5rem;
-}
-
-.top_charts {
-  background-color: var(--secondary);
-  border-radius: 1.5rem;
-  width: 30vw;
-  margin-right: 10rem;
-  margin-top: 10rem;
 }
 </style>
