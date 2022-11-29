@@ -1,12 +1,12 @@
 <template>
 <div class="carousel">
     <div class="carousel-slide">
-    <input type="radio" name="btn" id="item-1" checked />
+    <input type="radio" name="btn" id="item-1" />
     <div class="carousel-display">
-        <div class="carousel-item" v-for="APart in AParts" :key="APart">
-            <h1 class="text"> {{APart.Title}} </h1>
-            <h3 class="text"> {{APart.Description}} </h3>
-            <img class="img" :src="APart.ImgLink" alt="TBD1"/>
+        <div class="carousel-item">
+            <h1 class="text">Title (1)</h1>
+            <h3 class="text">Synopsis</h3>
+            <img class="img" src="https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg" alt="TBD1"/>
         </div>
         <div class="controls">
             <label for="item-3" class="left">
@@ -17,12 +17,12 @@
             </label>
         </div>
     </div>
-    <input type="radio" name="btn" id="item-2"/>
+    <input type="radio" name="btn" id="item-2" checked/>
     <div class="carousel-display">
-        <div class="carousel-item" v-for="BPart in BParts" :key="BPart">
-            <h1 class="text"> {{BPart.Title}} </h1>
-            <h3 class="text"> {{BPart.Description}} </h3>
-            <img class="img" :src="BPart.ImgLink" alt="TBD2"/>
+        <div class="carousel-item">
+            <h1 class="text">Title (2)</h1>
+            <h3 class="text">Synopsis</h3>
+            <img class="img" src="https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg" alt="TBD2"/>
         </div>
         <div class="controls">
             <label for="item-1" class="left">
@@ -35,10 +35,10 @@
     </div>
     <input type="radio" name="btn" id="item-3"/>
     <div class="carousel-display">
-        <div class="carousel-item" v-for="CPart in CParts" :key="CPart">
-            <h1 class="text"> {{CPart.Title}} </h1>
-            <h3 class="text"> {{CPart.Description}} </h3>
-            <img class="img" :src="CPart.ImgLink" alt="TBD3"/>
+        <div class="carousel-item">
+            <h1 class="text">Title (3)</h1>
+            <h3 class="text">Synopsis</h3>
+            <img class="img" src="https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg" alt="TBD3"/>
         </div>
         <div class="controls">
             <label for="item-2" class="left">
@@ -58,27 +58,7 @@
 export default {
     name: "Carousel",
     data () {
-        return {
-            AParts: 
-                {
-                    Title:"Title (1)",
-                    Description:"(Synopsis)",
-                    ImgLink:"https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg",
-                },
-            BParts: 
-                {
-                    Title:"Title (2)",
-                    Description:"(Synopsis)",
-                    ImgLink:"https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg",
-                },
-            
-            CParts: 
-                {
-                    Title:"Title (3)",
-                    Description:"(Synopsis)",
-                    ImgLink:"https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg",
-                },
-            }
+        return {}
     },
 }
 </script>
@@ -86,14 +66,13 @@ export default {
 <style scoped>
 .img {
     float: right;
-    height: 15%;
+    height: 25%;
     vertical-align: middle;
 }
 .text {
     color: var(--white);
     float: inline-start;
     text-align: center;
-    vertical-align: middle;
 }
 input {
     display: none;
@@ -103,8 +82,9 @@ input {
     position: absolute;
     margin: 3%;
     padding: 0;
-    opacity: 1;
     font-size: 3rem;
+    cursor: pointer;
+    color: var(--white);
 }
 .controls .left {
     text-align: left;
@@ -119,14 +99,17 @@ input {
     padding: 0%;
     overflow: hidden;
     flex-direction: row;
+    
 }
 .carousel-item {
-    opacity: 1;
+    opacity: 0;
     width: 65%;
     height: 50%;
-    margin: 25px;
     display: block;
     position: absolute;
+    transition: all .7s ease-in-out;
+    background-color: tomato;
+    width:80vw;
 }
 .carousel-slide {
     white-space: nowrap;
