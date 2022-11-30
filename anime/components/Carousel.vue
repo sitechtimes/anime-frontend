@@ -65,6 +65,7 @@ export default {
 
 <style scoped>
 .img {
+    margin: 5%;
     float: right;
     height: 25%;
     vertical-align: middle;
@@ -73,6 +74,7 @@ export default {
     color: var(--white);
     float: inline-start;
     text-align: center;
+    vertical-align: middle;
 }
 input {
     display: none;
@@ -109,7 +111,7 @@ input {
     position: absolute;
     transition: all .7s ease-in-out;
     background-color: tomato;
-    width:80vw;
+    width:95vw;
 }
 .carousel-slide {
     white-space: nowrap;
