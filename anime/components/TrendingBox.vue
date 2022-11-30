@@ -169,7 +169,7 @@ export default {
   height: 100%;
   border-radius: 10px;
   column-gap: 9rem;
-  margin-top: 50rem;
+  margin-top: 20rem;
   margin-bottom: 50rem;
 }
 
@@ -217,8 +217,8 @@ export default {
 }
 
 .header-pages {
-  display: flex;
   justify-content: flex-end;
+  display: flex;
   align-items: center;
   column-gap: 1rem;
 }
