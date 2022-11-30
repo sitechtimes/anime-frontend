@@ -7,9 +7,9 @@
     </div>
     <div v-else @click="exitSearchMobile" class="search-bar">
       <form>
-        <input v-model="text" placeholder="Search anime..." class="input">
+        <input v-model="text" @focus="searchActive" @focusout="searchInactive" placeholder="Search anime..." class="input">
       </form>
-      <div v-for="anime in searchResult" :key="anime.text" class="box">
+      <div v-if="showAnime" v-for="anime in searchResult" :key="anime.text" class="box">
         <img class="image-placeholder" src="https://cdn.myanimelist.net/images/characters/4/457933.jpg" alt="">
         <div class="info-column">
           <h1 class="title">{{anime.title}}</h1>
@@ -37,6 +37,7 @@ export default {
       text: "",
       screenWidth: null,
       hideSearch: null,
+      showAnime: false,
       animes: [
         {title: "One Punch Man", ageRating: "PG-13", stars: 8.50, releaseDate: "Oct 5, 2015"},
         {title: "Spy x Family", ageRating: "G", stars: 9.99, releaseDate: "Apr 9, 2022"},
@@ -60,6 +61,12 @@ export default {
         this.hideSearch = true
       }
     },
+    searchActive() {
+      this.showAnime = true
+    },
+    searchInactive() {
+      this.showAnime = false
+    },
   },
   computed: {
     searchResult() {
@@ -82,6 +89,7 @@ export default {
 </script>
 
 <style scoped>
+
 .search-bar{
   color: rgb(219, 219, 219);
   width: 30vw;
