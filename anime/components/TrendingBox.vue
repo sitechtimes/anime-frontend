@@ -50,10 +50,16 @@
       </div>
     </div>
     <div class="top_charts">
-      <div>
-        <div class="header">
+        <div class="charts-header">
           <h2 class="header-title">Top Charts</h2>
-          <div></div>
+          <TopCharts
+            v-for="charts in top"
+            :key="charts.id"
+            :img="charts.img"
+            :episode="charts.episode"
+            :votes="charts.votes"
+            :title="charts.title"
+          />
         </div>
       </div>
     </div>
@@ -62,14 +68,81 @@
 
 <script lang="ts">
 import AnimeCard from './AnimeCard.vue'
+import TopCharts from './TopCharts.vue'
 
 export default {
   name: 'TrendingBox',
   components: {
     AnimeCard,
+    TopCharts,
   },
   data() {
     return {
+      top: [
+        {
+          id: 1,
+          img: 'https://i.imgur.com/1Z1Z1Z1.jpg',
+          episode: 12,
+          votes: 100,
+          title: 'One Piece',
+        },
+        {
+          id: 2,
+          img: 'https://i.imgur.com/1Z1Z1Z1.jpg',
+          episode: 12,
+          votes: 100,
+          title: 'One Piece',
+        },
+        {
+          id: 3,
+          img: 'https://i.imgur.com/1Z1Z1Z1.jpg',
+          episode: 12,
+          votes: 100,
+          title: 'One Piece',
+        },
+        {
+          id: 4,
+          img: 'https://i.imgur.com/1Z1Z1Z1.jpg',
+          episode: 12,
+          votes: 100,
+          title: 'One Piece',
+        },
+        {
+          id: 5,
+          img: 'https://i.imgur.com/1Z1Z1Z1.jpg',
+          episode: 12,
+          votes: 100,
+          title: 'One Piece',
+        },
+        {
+          id: 6,
+          img: 'https://i.imgur.com/1Z1Z1Z1.jpg',
+          episode: 12,
+          votes: 100,
+          title: 'One Piece',
+        },
+        {
+          id: 7,
+          img: 'https://i.imgur.com/1Z1Z1Z1.jpg',
+          episode: 12,
+          votes: 100,
+          title: 'One Piece',
+        },
+        {
+          id: 8,
+          img: 'https://i.imgur.com/1Z1Z1Z1.jpg',
+          episode: 12,
+          votes: 100,
+          title: 'One Piece',
+        },
+        {
+          id: 9,
+          img: 'https://i.imgur.com/1Z1Z1Z1.jpg',
+          episode: 12,
+          votes: 100,
+          title: 'One Piece',
+        },
+      ],
       posts: [
         {
           id: 1,
@@ -198,6 +271,14 @@ export default {
   margin-left: 4vw;
   margin-right: 3vw;
   align-items: center;
+}
+
+.charts-header {
+  display: flex;
+  flex-direction: column;
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--primary);
 }
 
 .header-title {
