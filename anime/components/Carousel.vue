@@ -66,52 +66,52 @@ export default {
 <style scoped>
 .img {
     margin: 5%;
-    float: right;
     height: 25%;
+    float: right;
     vertical-align: middle;
 }
 .text {
+    text-align: center;
     color: var(--white);
     float: inline-start;
-    text-align: center;
     vertical-align: middle;
 }
 input {
     display: none;
 }
 .controls label{
-    display: none;
-    position: absolute;
     margin: 3%;
     padding: 0;
-    font-size: 3rem;
+    display: none;
     cursor: pointer;
+    font-size: 4rem;
+    position: absolute;
     color: var(--white);
 }
 .controls .left {
-    text-align: left;
     left: 0;
+    text-align: left;
 }
 .controls .right {
-    text-align: right;
     right: 0;
+    text-align: right;
 }
 .carousel {
     margin: 3%;
     padding: 0%;
     overflow: hidden;
     flex-direction: row;
-    
 }
 .carousel-item {
     opacity: 0;
-    width: 65%;
+    width:80vw;
     height: 50%;
     display: block;
+    margin-left: 5%;
+    margin-right: 5%;
     position: absolute;
     transition: all .7s ease-in-out;
-    background-color: tomato;
-    width:95vw;
+    background-color: darkslategrey;
 }
 .carousel-slide {
     white-space: nowrap;
@@ -125,6 +125,9 @@ input:checked + .carousel-display .carousel-item {
     transition: 1s ease-in-out;
 }
 input:checked + .carousel-display .controls label {
+    display: block;
+}
+input:checked + .carousel-display .nav label {
     display: block;
 }
 </style>
