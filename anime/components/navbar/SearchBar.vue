@@ -1,0 +1,236 @@
+<template>
+    <div id="searchBar">
+      <button v-if="hideSearch" @click="enterSearchMobile" class="search-btn">Search</button>
+    <form v-else class="form">
+      <input v-model="text" placeholder="Search anime..." class="input">
+      <div v-for="anime in searchResult" :key="anime.text" class="box">
+        <img class="image-placeholder" src="https://cdn.myanimelist.net/images/characters/4/457933.jpg" alt="">
+        <div class="info-column">
+          <h1 class="title">{{anime.title}}</h1>
+          <div class="info-row">
+            <p class="age-rating">{{anime.ageRating}}</p>
+            <div class="star-rating">
+              <div class="star"></div>
+              <p>{{anime.stars}}</p>
+            </div>
+            <p>{{anime.releaseDate}}</p>
+          </div>
+        </div>
+      </div>
+      <button v-if="this.screenWidth <= 568" @click="exitSearchMobile" class="back-btn">Back</button>
+      </form>
+    </div>
+    </template>
+    
+    <script>
+    export default {
+      data() {
+        return {
+          text: "",
+          screenWidth: null,
+          hideSearch: null,
+          animes: [
+            {title: "One Punch Man", ageRating: "PG-13", stars: 8.50, releaseDate: "Oct 5, 2015"},
+            {title: "Spy x Family", ageRating: "G", stars: 9.99, releaseDate: "Apr 9, 2022"},
+            {title: "Chainsaw Man", ageRating: "PG-13", stars: 8.24, releaseDate: "Oct 11, 2022"},
+            {title: "Summertime Render", ageRating: "PG-13", stars: 9.61, releaseDate: "Apr 15, 2022"},
+            {title: "Is It Wrong To Try To Pick Up Girls In A Dungeon?", ageRating: "E", stars: 7.69, releaseDate: "Apr 4, 2015"},
+            {title: "I Spent Hours of my Life Doing Spiral Abyss and all I got was an Extra 50 Primogems", ageRating: "E", stars: 9.89, releaseDate: "June 9, 2022"},
+            {title: "Some Mid Isekai Anime", ageRating: "G", stars: 2.56, releaseDate: "Aug 19, 2021"},
+            {title: "I went on a Field Trip Where I Touched Grass For the First Time in Years", ageRating: "PG-13", stars: 7.86, releaseDate: "Jan 17, 2012"},
+            {title: "The Pi in the Sky", ageRating: "G", stars: 9.90, releaseDate: "Mar 14, 1592"},
+            {title: "Genshin Impact The Anime", ageRating: "R", stars: 9.27, releaseDate: "TBA"},
+            ],
+        }
+      },
+      methods: {
+        enterSearchMobile() {
+          this.hideSearch = false
+        },
+        exitSearchMobile() {
+          this.hideSearch = true
+        }
+      },
+      computed: {
+        searchResult() {
+          if (this.text) {
+            return this.animes.filter((anime) => {
+              return this.text.toLowerCase().split().every(search => anime.title.toLowerCase().includes(search))
+            }).slice(0,5)
+          }
+        }
+      },
+      mounted() {
+        this.screenWidth = window.innerWidth
+        if (window.innerWidth <= 568) {
+          this.hideSearch = true
+        } else {
+          this.hideSearch = false
+        }
+      }
+    }
+    </script>
+    
+    <style scoped>
+    #searchBar{
+      width:25vw;
+    }
+    .form{
+      color: rgb(219, 219, 219);
+      /* margin: 5vw; */
+      width: 25vw;
+      position: fixed;
+    }
+    .input {
+      background: rgb(66, 66, 66);
+      font-size: var(--h4);
+      color: rgb(219, 219, 219);
+      border: none;
+      border-radius: 10px;
+      outline: none;
+      padding: 1rem 2rem;
+      width: 100%;
+      z-index:1000;
+    }
+    .input:focus {
+      background-color: rgb(52, 52, 52);
+    }
+    .box {
+      background-color: rgb(36, 36, 36);
+      display: flex;
+      flex-direction: row;
+      padding: 1rem;
+      height: 10vh;
+    }
+    .box:nth-child(even) {
+      background-color: rgb(62, 62, 62);
+    }
+    .image-placeholder {
+      height: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+    }
+    .info-column {
+      margin-left: 1vw;
+      width: 75%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5vh;
+    }
+    .title {
+      font-size: var(--h4);
+      white-space: nowrap;
+      overflow: hidden;
+      display: block;
+      text-overflow: ellipsis;
+    }
+    .info-row {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      font-size: var(--h5);
+      gap: 1vw;
+    }
+    .age-rating {
+      text-align: center;
+      border: solid gray 0.15rem;
+      border-radius: 5px;
+      font-size: 1rem;
+      width: 15%;
+    }
+    .star-rating {
+      display: flex;
+      align-items: center;
+    }
+    .star {
+      background-color: yellow;
+      height: 1vh;
+      aspect-ratio: 1/1;
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    }
+    .search-btn, .back-btn {
+      all: unset;
+      color: rgb(216, 216, 216);
+      background-color: rgb(66, 66, 66);
+      font-size: var(--h5);
+      padding: 0.25rem 0.75rem;
+      border-radius: 10px;
+      text-align: center;
+    }
+    .back-btn {
+      width: 20vw;
+      margin: 10vh;
+    }
+    @media screen and (max-width: 1300px) {
+      .box {
+        padding: 0.75rem;
+      }
+      .title {
+        font-size: 1.5rem;
+      }
+      .info-row {
+        font-size: 1rem;
+      }
+        .age-rating {
+        font-size: var(--smallText);
+      }
+    }
+    @media screen and (max-width: 1024px) {
+      .form {
+        width: 30vw;
+      }
+      .info-row {
+        font-size: var(--smallText);
+      }
+    }
+    @media screen and (max-width: 768px) {
+      .form {
+        width: 35vw;
+      }
+      .input {
+        font-size: var(--h5);
+      }
+      .title {
+        font-size: 1.4rem;
+      }
+      .age-rating {
+        font-size: 0.7rem;
+        border: solid gray 0.1rem;
+        width: 20%;
+      }
+    }
+    @media screen and (max-width: 568px) {
+      .form {
+        background-color: var(--bg-primary);
+        height: 100vh;
+        width: 100vw;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .input, .box {
+        width: 80vw;
+      }
+      .input {
+        margin-top: 5vh;
+      }
+      .info-column {
+        margin-left: 2vw;
+      }
+      .info-row {
+        gap: 3vw;
+      }
+      .age-rating {
+        width: 10%;
+      }
+    }
+    @media screen and (max-width: 425px) {
+      .age-rating {
+        width: 15%;
+      }
+      .info-column {
+        margin-left: 3vw;
+      }
+    }
+    </style>
