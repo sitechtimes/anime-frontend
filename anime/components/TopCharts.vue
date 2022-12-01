@@ -4,7 +4,7 @@
     <img class="charts-img" :src="`${img}`" alt="" />
     <div class="charts-info">
       <h3 class="charts-title">{{ title }}</h3>
-      <div>
+      <div class="charts-details">
         <h4 class="charts-ep">{{ episode }}</h4>
         <h4 class="charts-votes">{{ votes }}</h4>
       </div>
@@ -12,7 +12,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   name: 'TopCharts',
   props: {
@@ -74,7 +74,7 @@ export default {
 
 .charts-info {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   margin-left: 0.5rem;
   width: 100%;
@@ -85,6 +85,14 @@ export default {
   color: var(--white);
   font-size: var(--h6);
   font-weight: var(--fw-reg);
+  padding: 0.5rem;
+}
+
+.charts-details {
+  display: flex;
+  flex-direction: row;  
+  align-items: center;
+  width: 100%;
   padding: 0.5rem;
 }
 

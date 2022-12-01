@@ -50,17 +50,17 @@
       </div>
     </div>
     <div class="top_charts">
-        <div class="charts-header">
-          <h2 class="header-title">Top Charts</h2>
-          <TopCharts
-            v-for="charts in top"
-            :key="charts.id"
-            :img="charts.img"
-            :episode="charts.episode"
-            :votes="charts.votes"
-            :title="charts.title"
-          />
-        </div>
+      <div class="charts-header">
+        <h2 class="header-title">Top Charts</h2>
+        <TopCharts
+          v-for="charts in top"
+          :key="charts.id"
+          :img="charts.img"
+          :episode="charts.episode"
+          :votes="charts.votes"
+          :title="charts.title"
+          :rank="charts.rank"
+        />
       </div>
     </div>
   </div>
@@ -85,6 +85,7 @@ export default {
           episode: 12,
           votes: 100,
           title: 'One Piece',
+          rank: 1,
         },
         {
           id: 2,
@@ -92,6 +93,7 @@ export default {
           episode: 12,
           votes: 100,
           title: 'One Piece',
+          rank: 2,
         },
         {
           id: 3,
@@ -99,6 +101,7 @@ export default {
           episode: 12,
           votes: 100,
           title: 'One Piece',
+          rank: 3,
         },
         {
           id: 4,
@@ -106,6 +109,7 @@ export default {
           episode: 12,
           votes: 100,
           title: 'One Piece',
+          rank: 4,
         },
         {
           id: 5,
@@ -113,6 +117,7 @@ export default {
           episode: 12,
           votes: 100,
           title: 'One Piece',
+          rank: 5,
         },
         {
           id: 6,
@@ -120,6 +125,7 @@ export default {
           episode: 12,
           votes: 100,
           title: 'One Piece',
+          rank: 6,
         },
         {
           id: 7,
@@ -127,6 +133,7 @@ export default {
           episode: 12,
           votes: 100,
           title: 'One Piece',
+          rank: 7,
         },
         {
           id: 8,
@@ -134,6 +141,7 @@ export default {
           episode: 12,
           votes: 100,
           title: 'One Piece',
+          rank: 8,
         },
         {
           id: 9,
@@ -141,6 +149,7 @@ export default {
           episode: 12,
           votes: 100,
           title: 'One Piece',
+          rank: 9,
         },
       ],
       posts: [
@@ -269,7 +278,7 @@ export default {
   display: flex;
   justify-content: space-between;
   margin-left: 4vw;
-  margin-right: 3vw;
+  margin-right: 4vw;
   align-items: center;
 }
 
@@ -307,7 +316,15 @@ export default {
 .page-button {
   background-color: transparent;
   border: none;
+  justify-content: center;
   color: var(--white);
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+}
+
+.svg-button {
+  display: block;
+  margin: auto;
 }
 </style>
