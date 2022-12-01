@@ -5,7 +5,7 @@
     <div class="carousel-display">
         <div class="carousel-item">
             <h1 class="text">Title (1)</h1>
-            <h3 class="text">Synopsis</h3>
+            <h2 class="text">Synopsis</h2>
             <img class="img" src="https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg" alt="TBD1"/>
         </div>
         <div class="controls">
@@ -21,7 +21,7 @@
     <div class="carousel-display">
         <div class="carousel-item">
             <h1 class="text">Title (2)</h1>
-            <h3 class="text">Synopsis</h3>
+            <h2 class="text">Synopsis</h2>
             <img class="img" src="https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg" alt="TBD2"/>
         </div>
         <div class="controls">
@@ -37,7 +37,7 @@
     <div class="carousel-display">
         <div class="carousel-item">
             <h1 class="text">Title (3)</h1>
-            <h3 class="text">Synopsis</h3>
+            <h2 class="text">Synopsis</h2>
             <img class="img" src="https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg" alt="TBD3"/>
         </div>
         <div class="controls">
@@ -64,9 +64,12 @@ export default {
 </script>
 
 <style scoped>
+h1 {
+    margin-top: 2%;
+}
 .img {
-    margin: 5%;
-    height: 25%;
+    margin: 4%;
+    height: 30%;
     float: right;
     vertical-align: middle;
 }
@@ -74,7 +77,6 @@ export default {
     text-align: center;
     color: var(--white);
     float: inline-start;
-    vertical-align: middle;
 }
 input {
     display: none;
@@ -104,14 +106,14 @@ input {
 }
 .carousel-item {
     opacity: 0;
-    width:80vw;
+    width: 80vw;
     height: 50%;
     display: block;
     margin-left: 5%;
     margin-right: 5%;
     position: absolute;
-    transition: all .7s ease-in-out;
-    background-color: darkslategrey;
+    transition: all .75s ease-in-out;
+    background-color: var(--tertiary);
 }
 .carousel-slide {
     white-space: nowrap;
@@ -122,7 +124,7 @@ input {
 input:checked + .carousel-display .carousel-item {
     opacity: 1;
     transform: scale(1);
-    transition: 1s ease-in-out;
+    transition: 1.11s ease-in-out;
 }
 input:checked + .carousel-display .controls label {
     display: block;
@@ -130,5 +132,9 @@ input:checked + .carousel-display .controls label {
 input:checked + .carousel-display .nav label {
     display: block;
 }
+/* @keyframes test {
+    from {}
+    to {}
+} */
 </style>
 
