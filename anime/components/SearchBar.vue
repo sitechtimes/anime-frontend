@@ -96,7 +96,7 @@ export default {
 }
 
 .input {
-  background: rgb(66, 66, 66);
+  background: rgb(68, 68, 68);
   font-size: var(--h4);
   color: rgb(219, 219, 219);
   border: none;
@@ -106,12 +106,8 @@ export default {
   width: 100%;
 }
 
-.input:focus {
-  background-color: rgb(40, 40, 40);
-}
-
 .box {
-  background-color: rgb(36, 36, 36);
+  background-color: rgb(68, 68, 68);
   display: flex;
   flex-direction: row;
   padding: 1rem;
@@ -119,7 +115,7 @@ export default {
 }
 
 .box:nth-child(even) {
-  background-color: rgb(62, 62, 62);
+  background-color: rgb(39, 39, 39);
 }
 
 .image-placeholder {
