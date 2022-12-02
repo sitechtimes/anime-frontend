@@ -4,8 +4,8 @@
     <input type="radio" name="btn" id="item-1" />
     <div class="carousel-display">
         <div class="carousel-item">
-            <h1 class="text">Title (1)</h1>
-            <h2 class="text">Synopsis</h2>
+            <h2 class="text">Title (1)</h2>
+            <h3 class="text">Synopsis</h3>
             <img class="img" src="https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg" alt="TBD1"/>
         </div>
         <div class="controls">
@@ -20,8 +20,8 @@
     <input type="radio" name="btn" id="item-2" checked/>
     <div class="carousel-display">
         <div class="carousel-item">
-            <h1 class="text">Title (2)</h1>
-            <h2 class="text">Synopsis</h2>
+            <h2 class="text">Title (2)</h2>
+            <h3 class="text">Synopsis</h3>
             <img class="img" src="https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg" alt="TBD2"/>
         </div>
         <div class="controls">
@@ -33,11 +33,11 @@
             </label>
         </div>
     </div>
-    <input type="radio" name="btn" id="item-3"/>
+    <input type="radio" name="btn" id="item-3"/> 
     <div class="carousel-display">
         <div class="carousel-item">
-            <h1 class="text">Title (3)</h1>
-            <h2 class="text">Synopsis</h2>
+            <h2 class="text">Title (3)</h2>
+            <h3 class="text">Synopsis</h3>
             <img class="img" src="https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg" alt="TBD3"/>
         </div>
         <div class="controls">
@@ -64,25 +64,34 @@ export default {
 </script>
 
 <style scoped>
-h1 {
+h2 {
     margin-top: 2%;
+    font-size: var(--h2);
+}
+h3 {
+    font-size: var(--h3);
 }
 .img {
-    margin: 4%;
-    height: 30%;
+    height: 40%;
     float: right;
+    margin-right: 6%;
+    margin-bottom: 6%;
     vertical-align: middle;
 }
 .text {
-    text-align: center;
+    clear: right;
+    margin-left: 20%;
+    text-align: left;
+    word-wrap: normal;
     color: var(--white);
     float: inline-start;
+    overflow-wrap: break-word;
 }
 input {
     display: none;
 }
-.controls label{
-    margin: 3%;
+.controls label{ 
+    margin: 9% 3.5% 9% 3.5%;
     padding: 0;
     display: none;
     cursor: pointer;
@@ -106,8 +115,8 @@ input {
 }
 .carousel-item {
     opacity: 0;
-    width: 80vw;
-    height: 50%;
+    width: 83.5vw;
+    height: 52%;
     display: block;
     margin-left: 5%;
     margin-right: 5%;
@@ -132,9 +141,5 @@ input:checked + .carousel-display .controls label {
 input:checked + .carousel-display .nav label {
     display: block;
 }
-/* @keyframes test {
-    from {}
-    to {}
-} */
 </style>
 
