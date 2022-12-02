@@ -7,9 +7,9 @@
     </div>
     <div v-else @click="exitSearchMobile" class="search-bar">
       <form>
-        <input v-model="text" @focus="searchActive" @focusout="searchInactive" placeholder="Search anime..." class="input">
+        <input v-model="text" @focus="searchActive" @focusout="searchInactive" placeholder="Search anime..." spellcheck="false" class="input">
       </form>
-      <div v-if="showAnime" v-for="anime in searchResult" :key="anime.text" class="box">
+      <div v-show="showAnime" v-for="anime in searchResult" :key="anime.text" class="box">
         <img class="image-placeholder" src="https://cdn.myanimelist.net/images/characters/4/457933.jpg" alt="">
         <div class="info-column">
           <h1 class="title">{{anime.title}}</h1>
