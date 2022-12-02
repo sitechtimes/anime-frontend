@@ -1,7 +1,7 @@
 <template>
     <section id="nav" class="nav">
         <nav class="navigation" :class="{ 'is-hidden': !showHeader }">
-            <h1 id="logo"><a href="">Technime</a></h1>       
+            <h1 id="logo"><a href="/home">Technime</a></h1>       
                 <SearchBar/>
             <ul class="routers">
                 <li class="link">
