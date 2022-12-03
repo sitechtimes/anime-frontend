@@ -9,5 +9,10 @@
   },
   "devDependencies": {
     "nuxt": "3.0.0"
+  },
+  "dependencies": {
+    "axios": "^1.2.0",
+    "vue": "^3.2.45",
+    "vue3-google-login": "^2.0.12"
   }
 }

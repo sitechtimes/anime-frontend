@@ -13,7 +13,10 @@
                 <li class="link">
                     <a href="history" class="link-href">History</a>
                 </li>
-                <button class="log-in button">Log In</button>
+                <GoogleLogin :callback="callback" popup-type="TOKEN">
+                    <button class="log-in button">Log In</button>
+                </GoogleLogin>
+               
             </ul>
         </nav>
 
@@ -21,7 +24,9 @@
 </template>
 <script lang="ts">
 import SearchBar from './SearchBar.vue'
-    export default ({
+import axios from "axios"
+
+  export default ({
     name: 'NavBar',
     components:{
         SearchBar
@@ -50,6 +55,10 @@ import SearchBar from './SearchBar.vue'
       this.showHeader = window.pageYOffset < this.lastScrollPosition
       this.lastScrollPosition = window.pageYOffset
     },
+    callback(res: Response) {
+        console.log(res.access_token,res.code)
+        
+    }
 }
     })
 </script>
