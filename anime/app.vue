@@ -2,23 +2,17 @@
     <div>
       <NuxtLayout>
         <NavBar/>
-      <NuxtPage/>
+        <NuxtPage/>
     </NuxtLayout>
     </div>
   </template>
   
   <script lang="ts">
-  //import Vue from 'vue'
-  //import ComponentVue from '../components/Component.vue'
   import NavBar from './components/navbar/NavBar.vue'
-
   export default ({
     name: 'IndexPage',
     components:{
-      // ComponentVue
       NavBar,
-     
-      
     },
   })
   </script>

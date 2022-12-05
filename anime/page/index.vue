@@ -1,6 +1,7 @@
   <template>
     <div id="home">
       <TrendingBox/>
+      <h1>AHHAHAHAHHA</h1>
     </div>
   </template>
   
@@ -8,18 +9,15 @@
   import TrendingBox from '../components/homepage/TrendingBox.vue'
 
   export default ({
-    name: 'home',
+    name: 'IndexPage',
     components:{
      TrendingBox
-      
     },
   })
   </script>
   <style scoped>
-  .ex{
-    background-color: var(--primary);
-  }
-  h1{
-    font-size:var(--h1)
-  }
+ h1{
+  color:white;
+  font-size: 50rem;
+ }
   </style>
