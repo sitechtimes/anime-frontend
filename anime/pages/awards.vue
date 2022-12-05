@@ -5,11 +5,10 @@
   </template>
   
   <script lang="ts">
-  import NavBar from '../components/navbar/NavBar.vue'
   export default({
-    name: 'AwardsPage',
+    name: 'awards',
     components:{
-      NavBar
+  
     }
   })
   </script>

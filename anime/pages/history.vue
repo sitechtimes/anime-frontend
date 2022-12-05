@@ -5,7 +5,7 @@
 
 <script lang="ts">
 export default ({
-  name: 'HistoryPage',
+  name: 'history',
   components:{
     
   }

@@ -1,46 +1,25 @@
-<template>
-  <div id="home">
-  </div>
-</template>
-
-<script lang="ts">
-export default ({
-  name: 'HistoryPage',
-  components:{
-    
-  }
-})
-</script>
-<style>
-
-</style>
-<!-- <template>
+  <template>
     <div id="home">
-      
+      <TrendingBox/>
     </div>
   </template>
   
   <script lang="ts">
-
-  import NavBar from '../components/navbar/NavBar.vue'
   import TrendingBox from '../components/homepage/TrendingBox.vue'
 
   export default ({
-    name: 'HomePage',
+    name: 'home',
     components:{
-      // ComponentVue
-      NavBar,
      TrendingBox
       
     },
   })
   </script>
-  <style>
-  @import url("./assets/global.css");
+  <style scoped>
   .ex{
     background-color: var(--primary);
   }
   h1{
     font-size:var(--h1)
   }
-  </style> -->
+  </style>
