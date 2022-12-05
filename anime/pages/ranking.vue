@@ -1,6 +1,6 @@
 <template>
   <div id="rankings">
-   
+   <h1>HELLOLOLOLOL</h1>
   </div>
 </template>
 
@@ -12,6 +12,8 @@ export default ({
   }
 })
 </script>
-<style scoped></style>
-
+<style scoped>
+#id{
+  color:white;
+}
 </style>

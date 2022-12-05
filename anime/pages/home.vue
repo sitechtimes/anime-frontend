@@ -1,4 +1,20 @@
 <template>
+  <div id="home">
+  </div>
+</template>
+
+<script lang="ts">
+export default ({
+  name: 'HistoryPage',
+  components:{
+    
+  }
+})
+</script>
+<style>
+
+</style>
+<!-- <template>
     <div id="home">
       
     </div>
@@ -27,4 +43,4 @@
   h1{
     font-size:var(--h1)
   }
-  </style>
+  </style> -->
