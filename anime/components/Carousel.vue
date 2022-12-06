@@ -4,7 +4,7 @@
     <input type="radio" name="btn" id="item-1" />
     <div class="carousel-display">
         <div class="carousel-item">
-            <h2 class="text">Title of Anime(1)</h2>
+            <h2 class="text">Title of Anime (1)</h2>
             <h3 class="text">Synopsis</h3>
             <img class="img" src="https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg" alt="TBD1"/>
         </div>
@@ -20,7 +20,7 @@
     <input type="radio" name="btn" id="item-2" checked/>
     <div class="carousel-display">
         <div class="carousel-item">
-            <h2 class="text">Title of Anime(2)</h2>
+            <h2 class="text">Title of Anime (2)</h2>
             <h3 class="text">Synopsis</h3>
             <img class="img" src="https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg" alt="TBD2"/>
         </div>
@@ -36,7 +36,7 @@
     <input type="radio" name="btn" id="item-3"/> 
     <div class="carousel-display">
         <div class="carousel-item">
-            <h2 class="text">Title of Anime(3)</h2>
+            <h2 class="text">Title of Anime (3)</h2>
             <h3 class="text">Synopsis</h3>
             <img class="img" src="https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg" alt="TBD3"/>
         </div>
@@ -70,15 +70,17 @@ h2 {
 }
 h3 {
     font-size: var(--h3);
+    word-break: break-all;
 }
 .img {
-    height: 42%;
+    height: 50%;
     float: right;
     margin-right: 6%;
     margin-bottom: 6%;
     vertical-align: middle;
 }
 .text {
+    max-width: 45vw;
     margin-left: 20%;
     text-align: left;
     color: var(--white);
@@ -95,7 +97,7 @@ input {
     font-size: 3.8rem;
     position: absolute;
     color: var(--white);
-    margin: 9% 3.5% 9% 3.5%;
+    margin: 9.5% 3.5% 9.5% 3.5%;
 }
 .controls label:hover {
     opacity: 1;
@@ -117,7 +119,7 @@ input {
 .carousel-item {
     opacity: 0;
     width: 85vw;
-    height: 52%;
+    height: 55%;
     display: block;
     margin-left: 5%;
     margin-right: 5%;
@@ -134,7 +136,7 @@ input {
 input:checked + .carousel-display .carousel-item {
     opacity: 1;
     transform: scale(1);
-    transition: 1.11s ease-in-out;
+    transition: 1.54s ease-in-out;
 }
 input:checked + .carousel-display .controls label {
     display: block;
