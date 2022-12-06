@@ -1,9 +1,14 @@
 <template>
     <div id="searchBar">
-      <button v-if="hideSearch" @click="enterSearchMobile" class="search-btn">Search</button>
+      <div v-if="hideSearch" @click="enterSearchMobile" class="search-btn"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M16.9893 9.3918C16.9893 14.1054 13.2978 17.9265 8.74414 17.9265C4.19047 17.9265 0.498989 14.1054 0.498989 9.3918C0.498989 4.67824 4.19047 0.857147 8.74414 0.857147C13.2978 0.857147 16.9893 4.67824 16.9893 9.3918ZM3.78251 9.3918C3.78251 12.2282 6.00391 14.5276 8.74414 14.5276C11.4844 14.5276 13.7058 12.2282 13.7058 9.3918C13.7058 6.55535 11.4844 4.25596 8.74414 4.25596C6.00391 4.25596 3.78251 6.55535 3.78251 9.3918Z" fill="#DBDBDB"/>
+      <path d="M12.6089 15.3234C11.9005 14.5902 11.9005 13.4013 12.6089 12.6681C13.3172 11.9348 14.4658 11.9348 15.1742 12.6681L20.6177 18.3027C21.3261 19.036 21.3261 20.2248 20.6177 20.9581C19.9093 21.6914 18.7608 21.6914 18.0524 20.9581L12.6089 15.3234Z" fill="#DBDBDB"/>
+      </svg>
+    </div>
     <form v-else class="form">
       <input v-model="text" placeholder="Search anime..." class="input">
-      <div v-for="anime in searchResult" :key="anime.text" class="box">
+      <div class="biggerBox">
+        <div v-for="anime in searchResult" :key="anime.text" class="box">
         <img class="image-placeholder" src="https://cdn.myanimelist.net/images/characters/4/457933.jpg" alt="">
         <div class="info-column">
           <h1 class="title">{{anime.title}}</h1>
@@ -16,6 +21,7 @@
             <p>{{anime.releaseDate}}</p>
           </div>
         </div>
+      </div>
       </div>
       <button v-if="this.screenWidth <= 568" @click="exitSearchMobile" class="back-btn">Back</button>
       </form>
@@ -75,10 +81,18 @@
     #searchBar{
       width:25vw;
     }
+    .biggerBox{
+      position:fixed;
+      width: inherit;
+    }
     .form{
       color: rgb(219, 219, 219);
       /* margin: 5vw; */
       width: 25vw;
+    }
+
+    .form:focus {
+      position: fixed;
     }
     .input {
       background: rgb(66, 66, 66);
