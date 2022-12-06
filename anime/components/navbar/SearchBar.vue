@@ -91,9 +91,6 @@
       width: 25vw;
     }
 
-    .form:focus {
-      position: fixed;
-    }
     .input {
       background: rgb(66, 66, 66);
       font-size: var(--h4);
