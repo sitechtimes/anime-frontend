@@ -1,17 +1,18 @@
 <template>
     <section id="nav" class="nav">
         <nav class="navigation" :class="{ 'is-hidden': !showHeader }">
-            <h1 id="logo"><a href="/">Technime</a></h1>       
+            <h1 id="logo">
+                <NuxtLink to="/">Technime</NuxtLink></h1>       
                 <SearchBar/>
             <ul class="routers">
                 <li class="link">
-                    <a href="awards" class="link-href">Awards</a>
+                    <NuxtLink to="/awards" class="link-href">Awards</NuxtLink>
                 </li>
                 <li class="link">
-                    <a href="ranking" class="link-href">Rankings</a>
+                    <NuxtLink to="/ranking" class="link-href">Rankings</NuxtLink>
                 </li>
                 <li class="link">
-                    <a href="history" class="link-href">History</a>
+                    <NuxtLink to="/history" class="link-href">History</NuxtLink>
                 </li>
                 <button class="log-in button">Log In</button>
             </ul>
