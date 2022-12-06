@@ -56,9 +56,9 @@ import axios from "axios"
       this.showHeader = window.pageYOffset < this.lastScrollPosition
       this.lastScrollPosition = window.pageYOffset
     },
-    callback(res: Response) {
+    callback(res: any) {
         console.log(res.access_token)
-        axios.post("http://localhost:8000/social-login/google/", {access_token: res.access_token})
+        // axios.post("http://localhost:8000/social-login/google/", {access_token: res.access_token})
         
     }
 }
