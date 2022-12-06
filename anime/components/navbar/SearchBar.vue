@@ -79,7 +79,6 @@
       color: rgb(219, 219, 219);
       /* margin: 5vw; */
       width: 25vw;
-      position: fixed;
     }
     .input {
       background: rgb(66, 66, 66);

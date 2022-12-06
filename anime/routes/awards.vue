@@ -1,6 +1,5 @@
 <template>
     <div id="awards">
-      <NavBar/>
       <h1>please</h1>
     </div>
   </template>
