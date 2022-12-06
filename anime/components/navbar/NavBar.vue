@@ -56,7 +56,8 @@ import axios from "axios"
       this.lastScrollPosition = window.pageYOffset
     },
     callback(res: Response) {
-        console.log(res.access_token,res.code)
+        console.log(res.access_token)
+        axios.post("http://localhost:8000/social-login/google/", {access_token: res.access_token})
         
     }
 }

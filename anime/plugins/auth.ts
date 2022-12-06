@@ -5,3 +5,4 @@ export default defineNuxtPlugin(nuxtApp =>  {
         clientId: "533107689780-kmlp9v2avfkpqiqm424b6f324vhlt1uu.apps.googleusercontent.com"
     })
 })
+
