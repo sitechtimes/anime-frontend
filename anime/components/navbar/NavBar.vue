@@ -58,7 +58,11 @@ import axios from "axios"
     },
     callback(res: any) {
         console.log(res.access_token)
-        // axios.post("http://localhost:8000/social-login/google/", {access_token: res.access_token})
+        axios.post("http://localhost:8000/social-login/google/", {access_token: res.access_token}).then((res) => {
+            console.log(res)
+            axios.get('http://127.0.0.1:8000/auth/user/', {headers:{"Authorization": `Bearer ${res.data.access_token}`}}).then((res)=>
+            {console.log(res.data)})
+        })
         
     }
 }
