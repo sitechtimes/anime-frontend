@@ -107,7 +107,8 @@ import SearchBar from './SearchBar.vue';
     .link:hover{
         color:var(--tertiary); 
     }
-    .button{
+    .button,
+    .log-in{
         background: var(--primary);
         border-radius: 25px;
         font-style: normal;
@@ -117,7 +118,8 @@ import SearchBar from './SearchBar.vue';
         color: var(--dark-text);
         border:0;
         padding:1rem 3rem;
-        transition: background 1s ease-in-out;-webkit-transition: background 1s ease-in-out;
+        transition: 2s ease-in-out;
+        -webkit-transition: 2s ease-in-out;
 	    cursor: pointer;
     }
     .button:hover{
