@@ -91,165 +91,155 @@ export default {
 </script>
     
 <style scoped>
-#searchBar{
+.search-bar{
   width:25vw;
   color: rgb(219, 219, 219);
 }
 .biggerBox{
   position:fixed;
-  width: inherit;
+  width: 25vw;
 }
 
-    .input {
-      background: rgb(66, 66, 66);
-      font-size: var(--h4);
-      color: rgb(219, 219, 219);
-      border: none;
-      border-radius: 10px;
-      outline: none;
-      padding: 1rem 2rem;
-      width: 100%;
-      z-index:1000;
-    }
-    .input:focus {
-      background-color: rgb(52, 52, 52);
-    }
-    .box {
-      background-color: rgb(36, 36, 36);
-      display: flex;
-      flex-direction: row;
-      padding: 1rem;
-      height: 10vh;
-    }
-    .box:nth-child(even) {
-      background-color: rgb(62, 62, 62);
-    }
-    .image-placeholder {
-      height: 100%;
-      aspect-ratio: 3/4;
-      object-fit: cover;
-    }
-    .info-column {
-      margin-left: 1vw;
-      width: 75%;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5vh;
-    }
-    .title {
-      font-size: var(--h4);
-      white-space: nowrap;
-      overflow: hidden;
-      display: block;
-      text-overflow: ellipsis;
-    }
-    .info-row {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      font-size: var(--h5);
-      gap: 1vw;
-    }
-    .age-rating {
-      text-align: center;
-      border: solid gray 0.15rem;
-      border-radius: 5px;
-      font-size: 1rem;
-      width: 15%;
-    }
-    .star-rating {
-      display: flex;
-      align-items: center;
-    }
-    .star {
-      background-color: yellow;
-      height: 1vh;
-      aspect-ratio: 1/1;
-      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-    }
-    .search-btn, .back-btn {
-      all: unset;
-      color: rgb(216, 216, 216);
-      background-color: rgb(66, 66, 66);
-      font-size: var(--h5);
-      padding: 0.25rem 0.75rem;
-      border-radius: 10px;
-      text-align: center;
-    }
-    .back-btn {
-      width: 20vw;
-      margin: 10vh;
-    }
-    @media screen and (max-width: 1300px) {
-      .box {
-        padding: 0.75rem;
-      }
-      .title {
-        font-size: 1.5rem;
-      }
-      .info-row {
-        font-size: 1rem;
-      }
-        .age-rating {
-        font-size: var(--smallText);
-      }
-    }
-    @media screen and (max-width: 1024px) {
-      .form {
-        width: 30vw;
-      }
-      .info-row {
-        font-size: var(--smallText);
-      }
-    }
-    @media screen and (max-width: 768px) {
-      .form {
-        width: 35vw;
-      }
-      .input {
-        font-size: var(--h5);
-      }
-      .title {
-        font-size: 1.4rem;
-      }
-      .age-rating {
-        font-size: 0.7rem;
-        border: solid gray 0.1rem;
-        width: 20%;
-      }
-    }
-    @media screen and (max-width: 568px) {
-      .form {
-        background-color: var(--bg-primary);
-        height: 100vh;
-        width: 100vw;
-        z-index: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-      .input, .box {
-        width: 80vw;
-      }
-      .input {
-        margin-top: 5vh;
-      }
-      .info-column {
-        margin-left: 2vw;
-      }
-      .info-row {
-        gap: 3vw;
-      }
-      .age-rating {
-        width: 10%;
-      }
-    }
-    @media screen and (max-width: 425px) {
-      .age-rating {
-        width: 15%;
-      }
-      .info-column {
-        margin-left: 3vw;
-      }
-    }
+.input {
+  background: rgb(68, 68, 68);
+  font-size: var(--h4);
+  color: rgb(219, 219, 219);
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  padding: 1rem 2rem;
+  width: 100%;
+  z-index:5;
+}
+.input:focus {
+  background-color: rgb(52, 52, 52);
+}
+.box {
+  background-color: rgb(68, 68, 68);
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+  height: 9vh;
+}
+.box:nth-child(even) {
+  background-color: rgb(39, 39, 39);
+}
+.image-placeholder {
+  height: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+}
+.info-column {
+  margin-left: 1vw;
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5vh;
+}
+.title {
+  font-size: var(--h4);
+  white-space: nowrap;
+  overflow: hidden;
+  display: block;
+  text-overflow: ellipsis;
+}
+.info-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: var(--h7);
+  gap: 2rem;
+}
+.age-rating {
+  text-align: center;
+  border: solid gray 0.1rem;
+  border-radius: 5px;
+  font-size: var(--smallText);
+  width: 10%;
+}
+.star-rating {
+  display: flex;
+  align-items: center;
+}
+.star {
+  height: 1rem;
+  width: 1rem;
+  margin-right: 0.5rem;
+}
+
+@media screen and (max-width: 1300px) {
+  .box {
+    padding: 0.75rem;
+  }
+  .title {
+    font-size: var(--h5);
+  }
+  .info-row {
+    font-size: var(--smallText);
+  }
+  .age-rating {
+    width: 15%;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .search-bar {
+    width: 30vw;
+  }
+  .biggerBox {
+    width: 30vw
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .search-bar {
+    width: 35vw;
+  }
+  .biggerBox {
+    width: 35vw
+  }
+  .input {
+    font-size: var(--h5);
+  }
+  .box {
+    padding: 0.5rem;
+    height: 10vh;
+  }
+  .age-rating {
+    width: 20%;
+  }
+}
+
+@media screen and (max-width: 568px) {
+  .search-bar {
+    background-color: var(--bg-primary);
+    height: 100vh;
+    width: 100vw;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .input, .box {
+    width: 80vw;
+  }
+  .input {
+    margin-top: 5vh;
+  }
+  .info-column {
+    margin-left: 2vw;
+  }
+  .age-rating {
+    width: 10%;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .age-rating {
+    width: 15%;
+  }
+  .info-column {
+    margin-left: 3vw;
+  }
+}
     </style>
