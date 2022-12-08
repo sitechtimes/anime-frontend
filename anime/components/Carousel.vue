@@ -69,38 +69,25 @@ h2 {
     font-size: var(--h2);
 }
 h3 {
+    max-width: 40vw;
     font-size: var(--h3);
     word-break: break-all;
 }
 .img {
     height: 50%;
     float: right;
-    margin-right: 6%;
-    margin-bottom: 6%;
+    margin-left: 1%;
+    margin-right: 16%;
     vertical-align: middle;
 }
 .text {
-    max-width: 45vw;
     margin-left: 20%;
+    margin-right: 1%;
     text-align: left;
     color: var(--white);
-    float: inline-start;
 }
 input {
     display: none;
-}
-.controls label{ 
-    padding: 0;
-    opacity: 0.5;
-    display: none;
-    cursor: pointer;
-    font-size: 3.8rem;
-    position: absolute;
-    color: var(--white);
-    margin: 9.5% 3.5% 9.5% 3.5%;
-}
-.controls label:hover {
-    opacity: 1;
 }
 .controls .left {
     left: 0;
@@ -109,6 +96,19 @@ input {
 .controls .right {
     right: 0;
     text-align: right;
+}
+.controls label { 
+    opacity: 0.45;
+    display: none;
+    cursor: pointer;
+    padding: 0 2rem;
+    font-size: 3.85rem;
+    position: absolute;
+    color: var(--white);
+    margin: 9.5% 3.5% 9.5% 3.5%;
+}
+.controls label:hover {
+    opacity: 1;
 }
 .carousel {
     margin: 3%;
@@ -119,7 +119,7 @@ input {
 .carousel-item {
     opacity: 0;
     width: 85vw;
-    height: 55%;
+    height: 58%;
     display: block;
     margin-left: 5%;
     margin-right: 5%;
@@ -127,22 +127,50 @@ input {
     transition: all .75s ease-in-out;
     background-color: var(--tertiary);
 }
-.carousel-display {
-    display: block;
-}
 .carousel-slides {
     white-space: nowrap;
 }
-input:checked + .carousel-display .carousel-item {
-    opacity: 1;
-    transform: scale(1);
-    transition: 1.54s ease-in-out;
-}
-input:checked + .carousel-display .controls label {
+.carousel-display {
     display: block;
 }
 input:checked + .carousel-display .nav label {
     display: block;
 }
+input:checked + .carousel-display .controls label {
+    display: block;
+}
+input:checked + .carousel-display .carousel-item {
+    opacity: 1;
+    transform: scale(1);
+    transition: 1.55s ease-in-out;
+}
+
+/* .carousel-display > carousel-item{
+
+} */
+
+/* keyframes animating carosal */
+/* @keyframes display {
+  0% {
+    transform: translateX(200px);
+    opacity: 0;
+  }
+  10% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  20% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  30% {
+    transform: translateX(-200px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(-200px);
+    opacity: 0;
+  } 
+ } */
 </style>
 
