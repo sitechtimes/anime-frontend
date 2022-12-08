@@ -109,7 +109,6 @@ export default {
   outline: none;
   padding: 1rem 2rem;
   width: 100%;
-  z-index:5;
 }
 .input:focus {
   background-color: rgb(52, 52, 52);
@@ -215,13 +214,17 @@ export default {
     background-color: var(--bg-primary);
     height: 100vh;
     width: 100vw;
-    z-index: 10;
+    z-index: 5;
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
   }
-  .input, .box {
+  .input, .biggerBox {
     width: 80vw;
+    position: relative;
   }
   .input {
     margin-top: 5vh;
