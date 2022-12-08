@@ -108,7 +108,8 @@ import SearchBar from './SearchBar.vue';
         color:var(--tertiary); 
     }
     .button,
-    .log-in{
+    .log-in,
+    button{
         background: var(--primary);
         border-radius: 25px;
         font-style: normal;
@@ -122,7 +123,8 @@ import SearchBar from './SearchBar.vue';
         -webkit-transition: 2s ease-in-out;
 	    cursor: pointer;
     }
-    .button:hover{
+    .button:hover,
+    .log-in:hover{
         background: linear-gradient(84.66deg, var(--primary) 2.58%, var(--alt-linear) 97.55%);
     }
     .navigation {
