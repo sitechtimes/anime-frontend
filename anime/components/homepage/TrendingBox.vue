@@ -252,6 +252,10 @@
     column-gap: 9rem;
     /* margin-top: 20rem; */
     margin-bottom: 50rem;
+    background-image: url(https://c4.wallpaperflare.com/wallpaper/531/951/621/digital-digital-art-artwork-illustration-minimalism-hd-wallpaper-preview.jpg);  
+    align-items: center;
+    justify-content: center;
+    background-size: cover; 
   }
   .top_charts {
     background-color: var(--secondary);
@@ -261,14 +265,28 @@
     margin-top: 10rem;
   }
   .box-container {
-    background-color: var(--tertiary);
+    /* background-color: var(--tertiary);  */
+    background-position: ;
     border-radius: 1.5rem;
     padding-top: 2rem;
     padding-bottom: 4rem;
     width: 75vw;
     margin-left: 10rem;
     margin-top: 10rem;
+    position: relative;
+    z-index: 1;
   }
+
+  .box-container:before{
+    position: absolute;
+    content: '';
+    filter: blur(10px);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
   .header {
     height: 8rem;
     display: flex;
