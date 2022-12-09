@@ -3,7 +3,7 @@
     <div class="slides">
     <input type="radio" name="btn" id="item-1" />
     <div class="display">
-        <div class="carousel-item">
+        <div class="carousel-item slide-01">
             <h2 class="text"> Title of Anime (1) </h2>
             <h3 class="text"> Synopsis </h3>
             <img class="img" src="https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg" alt="TBD1"/>
@@ -19,7 +19,7 @@
     </div>
     <input type="radio" name="btn" id="item-2" checked/>
     <div class="display">
-        <div class="carousel-item">
+        <div class="carousel-item slide-02">
             <h2 class="text"> Title of Anime (2) </h2>
             <h3 class="text"> Synopsis </h3>
             <img class="img" src="https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg" alt="TBD2"/>
@@ -35,7 +35,7 @@
     </div>
     <input type="radio" name="btn" id="item-3"/> 
     <div class="display">
-        <div class="carousel-item">
+        <div class="carousel-item slide-03">
             <h2 class="text"> Title of Anime (3) </h2>
             <h3 class="text"> Synopsis </h3>
             <img class="img" src="https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg" alt="TBD3"/>
@@ -66,7 +66,7 @@ export default {
 <style scoped>
 h2 {
     font-size: var(--h2);
-    display: inline-block;
+    display: block;
 }
 h3 {
     display: block;
@@ -101,6 +101,7 @@ input {
     text-align: right;
 }
 .controls label { 
+    z-index: 1;
     opacity: 0.45;
     display: none;
     cursor: pointer;
@@ -142,8 +143,32 @@ input:checked + .display .controls label {
 }
 input:checked + .display .carousel-item {
     opacity: 1;
+    z-index: 0;
     transform: scale(1);
     transition: 1.55s ease-in-out;
 }
+@keyframes test {
+    0% {
+        z-index: 0;
+        opacity: 0;
+    }
+    50% {
+        z-index: 1;
+        opacity: 1;
+    }
+    100% {
+        z-index: 0;
+        opacity: 0;
+    }
+}
+/* .slide-01 {
+    animation-name: test;
+}
+.slide-02 {
+    animation-name: test;
+}
+.slide-03 {
+    animation-name: test;
+} */
 </style>
 
