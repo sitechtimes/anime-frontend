@@ -12,9 +12,9 @@
                     <NuxtLink to="/ranking" class="link-href">Rankings</NuxtLink>
                 </li>
                 <li class="link">
-                    <NuxtLink to="/history" class="link-href">{{ user }}</NuxtLink>
+                    <NuxtLink to="/history" class="link-href">{{userStore.userData}}</NuxtLink>
                 </li>
-                <GoogleLogin :callback="callback" popup-type="TOKEN">
+                <GoogleLogin :callback="userStore.login" popup-type="TOKEN">
                     <button class="log-in button">Log In</button>
                 </GoogleLogin>
                
@@ -26,12 +26,20 @@
 <script lang="ts">
 import SearchBar from './SearchBar.vue'
 import axios from "axios"
+import { useUserStore } from '../../stores/userStore'
 
   export default ({
     name: 'NavBar',
     components:{
         SearchBar
     },   
+    setup(){
+        const userStore = useUserStore()
+
+        return{
+            userStore,
+        }
+    },
 //     data: () => ({
 //     showHeader: true,
 //     lastScrollPosition: 0,
@@ -40,10 +48,10 @@ import axios from "axios"
 //   }),
   data(){
       return{
-    showHeader: true,
-    lastScrollPosition: 0,
-    scrollOffset: 40,
-    user: null
+        showHeader: true,
+        lastScrollPosition: 0,
+        scrollOffset: 40,
+        user: null
       }
   },
   mounted() {
@@ -71,8 +79,13 @@ import axios from "axios"
         axios.post("http://localhost:8000/social-login/google/", {access_token: res.access_token}).then((res) => {
             console.log(res)
             axios.get('http://127.0.0.1:8000/auth/user/', {headers:{"Authorization": `Bearer ${res.data.access_token}`}}).then((res)=>
-            {console.log(res.data)})
-            this.user = res.data.user.first_name
+            {
+                console.log(res.data.first_name)
+                // this.user = res.data.first_name
+                this.user = res.data
+            }
+            )
+            
         })
         
     }
