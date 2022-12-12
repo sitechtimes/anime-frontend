@@ -41,12 +41,13 @@
   </script>
   
   <style scoped>
+  
   .charts-container {
     display: flex;
     flex-direction: row;
     align-items: center;
     width: 100%;
-    height: 5rem;
+    height: 6rem;
     margin-bottom: 0.5rem;
     background-color: var(--bg-primary);
     border-radius: 0.5rem;
