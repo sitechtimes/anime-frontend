@@ -1,10 +1,10 @@
 <template>
 <div class="carousel">
     <div class="slides">
-    <input type="radio" name="btn" id="item-1" />
+    <input type="radio" name="btn" id="item-1" checked/>
     <div class="display">
         <div class="carousel-item slide-01">
-            <h2 class="text"> Title of Anime (1) </h2>
+            <h2 class="text"> Blue Lock </h2>
             <h3 class="text"> Synopsis </h3>
             <img class="img" src="https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg" alt="TBD1"/>
         </div>
@@ -17,10 +17,10 @@
             </label>
         </div>
     </div>
-    <input type="radio" name="btn" id="item-2" checked/>
+    <input type="radio" name="btn" id="item-2"/>
     <div class="display">
         <div class="carousel-item slide-02">
-            <h2 class="text"> Title of Anime (2) </h2>
+            <h2 class="text"> Jujutsu Kaisen </h2>
             <h3 class="text"> Synopsis </h3>
             <img class="img" src="https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg" alt="TBD2"/>
         </div>
@@ -36,7 +36,7 @@
     <input type="radio" name="btn" id="item-3"/> 
     <div class="display">
         <div class="carousel-item slide-03">
-            <h2 class="text"> Title of Anime (3) </h2>
+            <h2 class="text"> Burning Kabaddi </h2>
             <h3 class="text"> Synopsis </h3>
             <img class="img" src="https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg" alt="TBD3"/>
         </div>
@@ -89,6 +89,9 @@ h3 {
 input {
     display: none;
 }
+.slides {
+    white-space: nowrap;
+}
 .display {
     display: block;
 }
@@ -101,7 +104,7 @@ input {
     text-align: right;
 }
 .controls label { 
-    z-index: 1;
+    z-index: 4;
     opacity: 0.45;
     display: none;
     cursor: pointer;
@@ -122,6 +125,7 @@ input {
 }
 .carousel-item {
     opacity: 0;
+    z-index: 0;
     width: 85vw;
     height: 58%;
     padding: 1%;
@@ -132,9 +136,6 @@ input {
     transition: all .75s ease-in-out;
     background-color: var(--tertiary);
 }
-.slides {
-    white-space: nowrap;
-}
 input:checked + .display .nav label {
     display: block;
 }
@@ -143,17 +144,16 @@ input:checked + .display .controls label {
 }
 input:checked + .display .carousel-item {
     opacity: 1;
-    z-index: 0;
-    transform: scale(1);
-    transition: 1.55s ease-in-out;
+    z-index: 1;
+    transition: 0.25s linear;
 }
-@keyframes test {
+@keyframes auto {
     0% {
         z-index: 0;
         opacity: 0;
     }
-    50% {
-        z-index: 1;
+    2%, 95% {
+        z-index: 2;
         opacity: 1;
     }
     100% {
@@ -161,14 +161,14 @@ input:checked + .display .carousel-item {
         opacity: 0;
     }
 }
-/* .slide-01 {
-    animation-name: test;
+/* animation: name duration timing-function delay iteration-count direction fill-mode play-state; */
+.slide-01 {
+    animation: auto 5s linear 0s 1 normal none running;
 }
 .slide-02 {
-    animation-name: test;
+    animation: auto 5s linear 4s 1 normal none running;
 }
 .slide-03 {
-    animation-name: test;
-} */
+    animation: auto 5s linear 8s 1 normal none running;
+}
 </style>
-
