@@ -2,9 +2,9 @@
   <div id="login">
     <form action="" class="login-form">
       <h1 class="title">Technime</h1>
-      <input type="text" class="input-box">
+      <input type="text" placeholder="Email" class="input-box">
       <div class="password">
-        <input type="password" class="input-box">
+        <input type="password" placeholder="Password" class="input-box">
         <p class="redirect">Forget your password?</p>
       </div>
       <div class="submit">
@@ -59,9 +59,25 @@ export default {
   background: var(--secondary);
   color: var(--white);
 }
+::placeholder {
+  color: white;
+}
 .redirect {
   font-size: var(--h5);
+  margin-top: 0.5rem;
 }
-/* .submit {
-} */
+.submit {
+  text-align: center;
+}
+.submit-btn{
+    background: var(--secondary);
+    border-radius: 25px;
+    font-style: normal;
+    color: var(--white) ;
+    font-weight: var(--fw-semi);
+    font-size: var(--h4);
+    padding: 1rem 3rem;
+    border: 0;
+    width: 10vw
+};
 </style>
