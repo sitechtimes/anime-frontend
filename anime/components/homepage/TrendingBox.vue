@@ -1,9 +1,9 @@
 <template>
-	<div class="trending_top">
-		<div class="box-container">
-			<div class="header">
-				<h2 class="header-title">Trending</h2>
-				<div class="header-pages">
+	<div class="home-body">
+		<div class="trending-box">
+			<div class="trending-header">
+				<h2 class="trending-title">Trending</h2>
+				<div class="trending-pages">
 					<button class="page-button">
 						<svg
 							width="15"
@@ -38,7 +38,7 @@
 					</button>
 				</div>
 			</div>
-			<div class="content">
+			<div class="trending-content">
 				<AnimeCard
 					v-for="anime in posts"
 					:key="anime.id"
@@ -49,9 +49,8 @@
 				/>
 			</div>
 		</div>
-		<div class="charts-header"></div>
-		<div class="top_charts">
-			<h2 class="header-title">Top Charts</h2>
+		<div class="top-box">
+			<h2 class="top-title">Top Charts</h2>
 			<TopCharts
 				v-for="charts in top"
 				:key="charts.id"
@@ -116,46 +115,6 @@ export default {
 					votes: 100,
 					title: "One Piece",
 					rank: 5,
-				},
-				{
-					id: 6,
-					img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-					episode: 12,
-					votes: 100,
-					title: "One Piece",
-					rank: 6,
-				},
-				{
-					id: 7,
-					img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-					episode: 12,
-					votes: 100,
-					title: "One Piece",
-					rank: 7,
-				},
-				{
-					id: 8,
-					img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-					episode: 12,
-					votes: 100,
-					title: "One Piece",
-					rank: 8,
-				},
-				{
-					id: 9,
-					img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-					episode: 12,
-					votes: 100,
-					title: "One Piece",
-					rank: 9,
-				},
-				{
-					id: 10,
-					img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-					episode: 12,
-					votes: 100,
-					title: "One Piece",
-					rank: 10,
 				},
 			],
 			posts: [
@@ -250,19 +209,16 @@ export default {
 </script>
 
 <style scoped>
-.trending_top {
+.home-body {
 	display: flex;
 	flex-direction: row;
 	width: 100%;
-	height: 100%;
 	border-radius: 10px;
 	column-gap: 9rem;
-	margin-bottom: 50rem;
 	align-items: flex-start;
-	justify-content: top;
 	background-size: cover;
 }
-.top_charts {
+.top-box {
 	background-color: var(--secondary);
 	border-radius: 1.5rem;
 	width: 25vw;
@@ -273,9 +229,8 @@ export default {
 	flex-direction: column;
 	padding-top: 2rem;
 }
-.box-container {
+.trending-box {
 	background-color: var(--tertiary);
-	background-position: ;
 	border-radius: 1.5rem;
 	padding-top: 2rem;
 	padding-bottom: 2rem;
@@ -283,7 +238,7 @@ export default {
 	margin-left: 10rem;
 	margin-top: 10rem;
 }
-.header {
+.trending-header {
 	height: 6rem;
 	display: flex;
 	justify-content: space-between;
@@ -291,13 +246,19 @@ export default {
 	margin-right: 3.5vw;
 	align-items: center;
 }
-.header-title {
+.trending-title {
 	font-size: var(--h3);
 	font-weight: var(--fw-bold);
 	color: var(--white);
 	height: 6rem;
 }
-.content {
+.top-title {
+	font-size: var(--h3);
+	font-weight: var(--fw-bold);
+	color: var(--white);
+	height: 6rem;
+}
+.trending-content {
 	display: flex;
 	flex-wrap: wrap;
 	column-gap: 2rem;
@@ -306,7 +267,7 @@ export default {
 	row-gap: 2rem;
 	column-gap: 3rem;
 }
-.header-pages {
+.trending-pages {
 	justify-content: flex-end;
 	display: flex;
 	align-items: center;
