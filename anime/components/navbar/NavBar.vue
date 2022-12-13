@@ -35,9 +35,12 @@ import { useUserStore } from '../../stores/userStore'
     },   
     setup(){
         const userStore = useUserStore()
+        // userStore.$persist()
+        console.log(userStore.userData)
 
         return{
             userStore,
+            
         }
     },
 //     data: () => ({
@@ -74,21 +77,21 @@ import { useUserStore } from '../../stores/userStore'
       this.showHeader = window.pageYOffset < this.lastScrollPosition
       this.lastScrollPosition = window.pageYOffset
     },
-    callback(res: any) {
-        console.log(res.access_token)
-        axios.post("http://localhost:8000/social-login/google/", {access_token: res.access_token}).then((res) => {
-            console.log(res)
-            axios.get('http://127.0.0.1:8000/auth/user/', {headers:{"Authorization": `Bearer ${res.data.access_token}`}}).then((res)=>
-            {
-                console.log(res.data.first_name)
-                // this.user = res.data.first_name
-                this.user = res.data
-            }
-            )
+    // callback(res: any) {
+    //     console.log(res.access_token)
+    //     axios.post("http://localhost:8000/social-login/google/", {access_token: res.access_token}).then((res) => {
+    //         console.log(res)
+    //         axios.get('http://127.0.0.1:8000/auth/user/', {headers:{"Authorization": `Bearer ${res.data.access_token}`}}).then((res)=>
+    //         {
+    //             console.log(res.data.first_name)
+    //             // this.user = res.data.first_name
+    //             this.user = res.data
+    //         }
+    //         )
             
-        })
+    //     })
         
-    }
+    // }
 }
     })
 </script>
