@@ -2,14 +2,14 @@
   <div id="login">
     <form action="" class="login-form">
       <h1 class="title">Technime</h1>
-      <input type="text">
-      <div>
-        <input type="text">
-        <p>Forget your password?</p>
+      <input type="text" class="input-box">
+      <div class="password">
+        <input type="password" class="input-box">
+        <p class="redirect">Forget your password?</p>
       </div>
-      <div>
-        <button>Login</button>
-        <p>Need to register?</p>
+      <div class="submit">
+        <button type="submit" class="submit-btn">Login</button>
+        <p class="redirect">Need to register?</p>
       </div>
     </form>
   </div>
@@ -34,7 +34,7 @@ export default {
     align-items: center;
     height: 70vh;
     width: 30vw;
-    gap: 2vh;
+    gap: 3vh;
 
     border-radius: 30px;
     position: absolute;
@@ -44,11 +44,24 @@ export default {
 .title {
   font-size: var(--h1);
 }
-input {
-  font-size: var(--h5);
-  border: none;
-  border-radius: 10px;
-  outline: none;
-  padding: 1rem;
+.password {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
+.input-box {
+  font-size: var(--h4);
+  border: none;
+  border-radius: 15px;
+  outline: none;
+  padding: 1.5rem 2rem;
+  width: 23vw;
+  background: var(--secondary);
+  color: var(--white);
+}
+.redirect {
+  font-size: var(--h5);
+}
+/* .submit {
+} */
 </style>
