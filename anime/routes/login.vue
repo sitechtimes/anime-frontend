@@ -2,7 +2,7 @@
   <div id="login">
     <form action="" class="login-form">
       <h1 class="title">Technime</h1>
-      <input type="text" placeholder="Email" class="input-box">
+      <input type="text" placeholder="Email" spellcheck="false" class="input-box">
       <div class="password">
         <input type="password" placeholder="Password" class="input-box">
         <p class="redirect">Forget your password?</p>
@@ -61,10 +61,17 @@ export default {
 }
 ::placeholder {
   color: white;
+  opacity: 85%;
+}
+.input-box:focus, .submit-btn:hover {
+  background: var(--secondary-dark);
 }
 .redirect {
   font-size: var(--h5);
   margin-top: 0.5rem;
+}
+.redirect:hover {
+  filter: brightness(90%);
 }
 .submit {
   text-align: center;
