@@ -11,7 +11,7 @@
         <input v-model="text" @focus="searchActive" @focusout="searchInactive" placeholder="Search anime..." spellcheck="false" class="input">
       </form>
       <div v-show="showAnime" class="biggerBox">
-        <div v-for="anime in searchResult" :key="anime.text" class="box">
+        <div v-for="anime in searchResult" :key="anime.title" class="box">
           <img class="image-placeholder" src="https://cdn.myanimelist.net/images/characters/4/457933.jpg" alt="">
           <div class="info-column">
             <h1 class="title">{{anime.title}}</h1>
@@ -32,28 +32,26 @@
   </div>
 </template>
     
-<script>
-export default {
-  data() {
-    return {
-      text: "",
-      screenWidth: null,
-      hideSearch: null,
-      showAnime: false,
-      animes: [
-        {title: "One Punch Man", ageRating: "PG-13", stars: 8.50, releaseDate: "Oct 5, 2015"},
-        {title: "Spy x Family", ageRating: "G", stars: 9.99, releaseDate: "Apr 9, 2022"},
-        {title: "Chainsaw Man", ageRating: "PG-13", stars: 8.24, releaseDate: "Oct 11, 2022"},
-        {title: "Summertime Render", ageRating: "PG-13", stars: 9.61, releaseDate: "Apr 15, 2022"},
-        {title: "Is It Wrong To Try To Pick Up Girls In A Dungeon?", ageRating: "E", stars: 7.69, releaseDate: "Apr 4, 2015"},
-        {title: "I Spent Hours of my Life Doing Spiral Abyss and all I got was an Extra 50 Primogems", ageRating: "E", stars: 9.89, releaseDate: "June 9, 2022"},
-        {title: "Some Mid Isekai Anime", ageRating: "G", stars: 2.56, releaseDate: "Aug 19, 2021"},
-        {title: "I went on a Field Trip Where I Touched Grass For the First Time in Years", ageRating: "PG-13", stars: 7.86, releaseDate: "Jan 17, 2012"},
-        {title: "The Pi in the Sky", ageRating: "G", stars: 9.90, releaseDate: "Mar 14, 1592"},
-        {title: "Genshin Impact The Anime", ageRating: "R", stars: 9.27, releaseDate: "TBA"},
-        ],
-    }
-  },
+<script lang="ts">
+export default ({
+  data: () => ({
+    text: "",
+    screenWidth: 0,
+    hideSearch: false,
+    showAnime: false,
+    animes: [
+      {title: "One Punch Man", ageRating: "PG-13", stars: 8.50, releaseDate: "Oct 5, 2015"},
+      {title: "Spy x Family", ageRating: "G", stars: 9.99, releaseDate: "Apr 9, 2022"},
+      {title: "Chainsaw Man", ageRating: "PG-13", stars: 8.24, releaseDate: "Oct 11, 2022"},
+      {title: "Summertime Render", ageRating: "PG-13", stars: 9.61, releaseDate: "Apr 15, 2022"},
+      {title: "Is It Wrong To Try To Pick Up Girls In A Dungeon?", ageRating: "E", stars: 7.69, releaseDate: "Apr 4, 2015"},
+      {title: "I Spent Hours of my Life Doing Spiral Abyss and all I got was an Extra 50 Primogems", ageRating: "E", stars: 9.89, releaseDate: "June 9, 2022"},
+      {title: "Some Mid Isekai Anime", ageRating: "G", stars: 2.56, releaseDate: "Aug 19, 2021"},
+      {title: "I went on a Field Trip Where I Touched Grass For the First Time in Years", ageRating: "PG-13", stars: 7.86, releaseDate: "Jan 17, 2012"},
+      {title: "The Pi in the Sky", ageRating: "G", stars: 9.90, releaseDate: "Mar 14, 1592"},
+      {title: "Genshin Impact The Anime", ageRating: "R", stars: 9.27, releaseDate: "TBA"},
+      ],
+  }),
   methods: {
     enterSearchMobile() {
       this.hideSearch = false
@@ -86,8 +84,8 @@ export default {
     } else {
       this.hideSearch = false
     }
-  }
-}
+  },
+})
 </script>
     
 <style scoped>
