@@ -14,7 +14,7 @@
 
 <script lang="ts">
 export default {
-	name: "TopCharts",
+	name: "EpisodeCard",
 	props: {
 		rank: {
 			type: Number,
@@ -46,8 +46,9 @@ export default {
 	flex-direction: row;
 	align-items: center;
 	width: 100%;
-	height: 10rem;
+	height: 9rem;
 	background-color: var(--bg-primary);
+	margin-top: 1rem;
 }
 .charts-rank {
 	display: flex;

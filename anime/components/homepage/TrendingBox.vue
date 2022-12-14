@@ -21,20 +21,7 @@
 						</svg>
 					</button>
 					<button class="page-button">
-						<svg
-							width="15"
-							height="25"
-							viewBox="0 0 20 34"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<path
-								fill-rule="evenodd"
-								clip-rule="evenodd"
-								d="M6.11144e-05 31.2102L2.1327 33.3093C2.52631 33.6967 3.16448 33.6967 3.55809 33.3093L19.5987 17.5212C19.9923 17.1338 19.9924 16.5056 19.5987 16.1182L3.55809 0.330086C3.16448 -0.0573273 2.52632 -0.0573273 2.1327 0.330086L6.10352e-05 2.42916L14.6208 16.8197L6.11144e-05 31.2102Z"
-								fill="#D9D9D9"
-							/>
-						</svg>
+						<RightPageButton />
 					</button>
 				</div>
 			</div>
@@ -67,11 +54,13 @@
 <script lang="ts">
 import AnimeCard from "./AnimeCard.vue";
 import TopCharts from "./TopCharts.vue";
+import RightPageButton from "../assets/RightPageButton.svg";
 export default {
 	name: "TrendingBox",
 	components: {
 		AnimeCard,
 		TopCharts,
+		RightPageButton,
 	},
 	data() {
 		return {
@@ -115,6 +104,22 @@ export default {
 					votes: 100,
 					title: "One Piece",
 					rank: 5,
+				},
+				{
+					id: 6,
+					img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
+					episode: 12,
+					votes: 100,
+					title: "One Piece",
+					rank: 6,
+				},
+				{
+					id: 7,
+					img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
+					episode: 12,
+					votes: 100,
+					title: "One Piece",
+					rank: 7,
 				},
 			],
 			posts: [
@@ -219,7 +224,7 @@ export default {
 	background-size: cover;
 }
 .top-box {
-	background-color: var(--secondary);
+	background-color: var(--tertiary);
 	border-radius: 1.5rem;
 	width: 25vw;
 	margin-right: 10rem;
@@ -257,6 +262,7 @@ export default {
 	font-weight: var(--fw-bold);
 	color: var(--white);
 	height: 6rem;
+	margin-left: 4rem;
 }
 .trending-content {
 	display: flex;
