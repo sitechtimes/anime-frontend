@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts">
-	export default {
-		name: "RightPageButton",
-	};
+export default {
+	name: "RightPageButton",
+};
 </script>
