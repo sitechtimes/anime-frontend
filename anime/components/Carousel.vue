@@ -5,9 +5,9 @@
     <div class="display">
         <div class="carousel-slide slide-01">
             <h2 class="text"> Blue Lock </h2>
-            <h3 class="text"> Synopsis of Anime</h3>    
+            <h3 class="text"> Soccer Anime </h3>    
 <!-- No Img Avaliable Link: https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg -->
-            <img class="img" src="https://th.bing.com/th/id/R.e4651a3a9eed4e1e43044e638b076e1f?rik=KXg2eMKBaDhnOQ&pid=ImgRaw&r=0" alt="TBD1"/>
+            <img class="img" src="https://th.bing.com/th/id/R.e4651a3a9eed4e1e43044e638b076e1f?rik=KXg2eMKBaDhnOQ&pid=ImgRaw&r=0" alt="Img of Blue Lock"/>
         </div>
         <div class="controls">
             <label for="item-3" class="left">
@@ -22,8 +22,8 @@
     <div class="display">
         <div class="carousel-slide slide-02">
             <h2 class="text"> Jujutsu Kaisen </h2>
-            <h3 class="text"> Synopsis of Anime </h3>
-            <img class="img" src="https://th.bing.com/th/id/OIP.mblZRlAplxkavD9u4ZgS2AHaD5?pid=ImgDet&rs=1" alt="TBD2"/>
+            <h3 class="text"> Supernatural Anime </h3>
+            <img class="img" src="https://th.bing.com/th/id/OIP.mblZRlAplxkavD9u4ZgS2AHaD5?pid=ImgDet&rs=1" alt="Img of Jujutsu Kaisen"/>
         </div>
         <div class="controls">
             <label for="item-1" class="left">
@@ -38,8 +38,8 @@
     <div class="display">
         <div class="carousel-slide slide-03">
             <h2 class="text"> Burning Kabaddi </h2>
-            <h3 class="text"> Synopsis of Anime </h3>
-            <img class="img" src="https://th.bing.com/th/id/OIP.pNP5th6ouY4RBF-LEKpskAHaJE?pid=ImgDet&rs=1" alt="TBD3"/>
+            <h3 class="text"> Kabaddi Anime (The sport exists irl) </h3>
+            <img class="img" src="https://th.bing.com/th/id/OIP.pNP5th6ouY4RBF-LEKpskAHaJE?pid=ImgDet&rs=1" alt="Img of Burning Kabaddi"/>
         </div>
         <div class="controls">
             <label for="item-2" class="left">
@@ -77,11 +77,11 @@ h3 {
     overflow-wrap: break-word;
 }
 .img {
-    height: 77%;
+    width: 50%;
     float: right;
-    max-width: 50%;
     display: inline;
-    margin-right: 4%;
+    max-height: 77%;
+    margin-right: 3%;
 }
 .text {
     clear: none;
@@ -107,18 +107,18 @@ input {
 }
 .controls label { 
     z-index: 4;
-    opacity: 0.45;
+    opacity: 0;
     display: none;
     padding: 0 2rem;
-    cursor: pointer;
+    /* cursor: pointer; */
     font-size: 3.75rem;
     position: absolute;
     color: var(--white);
     margin: 11.5% 3.5% 11.5% 3.5%;
 }
-.controls label:hover {
+/* .controls label:hover {
     opacity: 1;
-}
+} */
 .carousel {
     margin: 2.5%;
     padding: 0%;
@@ -128,12 +128,12 @@ input {
 .carousel-slide {
     opacity: 0;
     z-index: 0;
-    height: 60%;
+    height: 63%;
     width: 91.5%;
-    padding: 0.45%;
+    padding: 0.5%;
     display: block;
-    margin-left: 1.85%;
-    margin-right: 1.85%;
+    margin-left: 1.8%;
+    margin-right: 1.8%;
     position: absolute;
     transition: all .75s ease-in-out;
     background-color: var(--tertiary);
@@ -149,7 +149,7 @@ input:checked + .display .carousel-slide {
     z-index: 1;
     transition: 1.11s ease-in-out;
 }
-@keyframes auto {
+/* @keyframes test {
     0% {
         z-index: 0;
         opacity: 0;
@@ -162,15 +162,29 @@ input:checked + .display .carousel-slide {
         z-index: 0;
         opacity: 0;
     }
+} */
+@keyframes auto {
+    0%, 32% {
+        z-index: 2;
+        opacity: 1;
+    }
+    33%, 84% {
+        z-index: 0;
+        opacity: 0;
+    }
+    85%, 100% {
+        z-index: 2;
+        opacity: 1;
+    }
 }
 /* animation: name duration timing-function delay iteration-count direction fill-mode play-state; */
 .slide-01 {
-    animation: auto 8s ease-in-out 0s 1 normal none running;
+    animation: auto 15s linear 0s infinite normal none running;
 }
 .slide-02 {
-    animation: auto 8s ease-in-out 7s 1 normal none running;
+    animation: auto 15s linear 4s infinite normal none running;
 }
 .slide-03 {
-    animation: auto 7s ease-in-out 14s 1 normal none running;
+    animation: auto 15s linear 8s infinite normal none running;
 }
 </style>
