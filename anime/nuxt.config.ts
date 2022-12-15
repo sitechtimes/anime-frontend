@@ -2,16 +2,17 @@
 export default defineNuxtConfig({
     plugins:[
         "~/plugins/auth.ts",
-        "~/plugins/pinia.ts"
+        // "~/plugins/pinia.ts"
     ],
+    // buildModules: [],
     dir: {
         // Rename `pages` directory to `routes`
         pages: 'routes'
       },
       modules: [
         // ...
-        // '@pinia-plugin-persistedstate/nuxt',
-        // '@pinia/nuxt',
+        '@pinia/nuxt',
+        '@pinia-plugin-persistedstate/nuxt',
       ],
 
 })

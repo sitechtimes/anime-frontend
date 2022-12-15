@@ -12,11 +12,12 @@
                     <NuxtLink to="/ranking" class="link-href">Rankings</NuxtLink>
                 </li>
                 <li class="link">
-                    <NuxtLink to="/history" class="link-href">{{userStore.userData}}</NuxtLink>
+                    <NuxtLink to="/history" class="link-href">{{ userStore.userData}}</NuxtLink>
                 </li>
-                <GoogleLogin :callback="userStore.login" popup-type="TOKEN">
+                <GoogleLogin v-if="userStore.isAuthenticated == false" :callback="userStore.login" popup-type="TOKEN">
                     <button class="log-in button">Log In</button>
                 </GoogleLogin>
+                <button @click="userStore.logout" v-if="userStore.isAuthenticated == true" class=" log-in button"> Logout</button>
                
             </ul>
         </nav>
@@ -54,13 +55,13 @@ import { useUserStore } from '../../stores/userStore'
         showHeader: true,
         lastScrollPosition: 0,
         scrollOffset: 40,
-        user: null
+        // user: null
       }
   },
   mounted() {
     this.lastScrollPosition = window.pageYOffset
     window.addEventListener('scroll', this.onScroll)
-    console.log(this.user)
+    // console.log(this.user)
   },
   beforeDestroy() {
     window.removeEventListener('scroll', this.onScroll)

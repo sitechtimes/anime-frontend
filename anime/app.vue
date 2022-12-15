@@ -9,11 +9,24 @@
   
   <script lang="ts">
   import NavBar from './components/navbar/NavBar.vue'
+  import { useUserStore } from "./stores/userStore"
   export default ({
     name: 'IndexPage',
     components:{
       NavBar,
     },
+    // setup(){
+    //   const userStore = useUserStore()
+    //   const localStorage = window.localStorage
+    //   return {
+    //     userStore,
+    //     localStorage
+    //   }
+    // },
+    // mounted() {
+    //   this.userStore.getToken
+    //   console.log(this.userStore.getToken, this.userStore.getUser)
+    // }
   })
   </script>
 
