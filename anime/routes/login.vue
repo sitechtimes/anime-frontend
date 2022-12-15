@@ -1,5 +1,6 @@
 <template>
   <div id="login">
+    <img src="" alt="" class="img">
     <form action="" class="login-form">
       <h1 class="title">Technime</h1>
       <input type="text" placeholder="Email" spellcheck="false" class="input-box">
@@ -25,6 +26,11 @@ export default {
 </script>
 
 <style scoped>
+#login {
+  padding-top: 9vh;
+  display: flex;
+  flex-direction: row;
+}
 .login-form {
     color: var(--white);
     background: var(--primary);
@@ -35,11 +41,8 @@ export default {
     height: 70vh;
     width: 30vw;
     gap: 3vh;
-
     border-radius: 30px;
-    position: absolute;
-    top: 18vh;
-    left: 55vw;
+    box-shadow: inset 0 0 15px black;
 }
 .title {
   font-size: var(--h1);
@@ -77,14 +80,14 @@ export default {
   text-align: center;
 }
 .submit-btn{
-    background: var(--secondary);
-    border-radius: 25px;
-    font-style: normal;
-    color: var(--white) ;
-    font-weight: var(--fw-semi);
-    font-size: var(--h4);
-    padding: 1rem 3rem;
-    border: 0;
-    width: 10vw
+  background: var(--secondary);
+  transition: 0.25s;
+  border-radius: 25px;
+  color: var(--white) ;
+  font-weight: var(--fw-semi);
+  font-size: var(--h4);
+  padding: 1rem 3rem;
+  border: 0;
+  width: 10vw
 };
 </style>

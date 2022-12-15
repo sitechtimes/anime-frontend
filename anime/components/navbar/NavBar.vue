@@ -10,12 +10,11 @@
                 </li>
                 <li class="link">
                     <NuxtLink to="/ranking" class="link-href">Rankings</NuxtLink>
-                    <!-- change back to history when done -->
                 </li>
                 <li class="link">
-                    <NuxtLink to="/login" class="link-href">History</NuxtLink>
+                    <NuxtLink to="/history" class="link-href">History</NuxtLink>
                 </li>
-                <button class="log-in button">Log In</button>
+                <NuxtLink to="/login" class="link-href"> <button class="log-in button">Log In</button></NuxtLink>
             </ul>
         </nav>
 
