@@ -5,7 +5,7 @@
 		<div class="charts-info">
 			<h3 class="charts-title">{{ title }}</h3>
 			<div class="charts-details">
-				<h4 class="charts-ep">{{ episode }}</h4>
+				<EpisodeSVG :episode="episode" />
 				<h4 class="charts-votes">{{ votes }}</h4>
 			</div>
 		</div>
@@ -13,8 +13,13 @@
 </template>
 
 <script lang="ts">
+import EpisodeSVG from "../episodeSvg.vue";
+
 export default {
 	name: "EpisodeCard",
+	components: {
+		EpisodeSVG,
+	},
 	props: {
 		rank: {
 			type: Number,
@@ -59,7 +64,7 @@ export default {
 	background-color: var(--secondary);
 	color: var(--white);
 	font-size: var(--h3);
-	font-weight: var(--fw-bold);
+	font-weight: var(--fw-semi);
 }
 .charts-img {
 	height: 100%;
@@ -69,13 +74,14 @@ export default {
 	flex-direction: column;
 	justify-content: space-between;
 	width: 100%;
+	padding-left: 1rem;
 }
 .charts-title {
 	width: 100%;
 	color: var(--white);
-	font-size: var(--h6);
+	font-size: var(--h5);
 	font-weight: var(--fw-reg);
-	padding: 0.5rem;
+	margin-left: 0.5rem;
 }
 .charts-details {
 	display: flex;

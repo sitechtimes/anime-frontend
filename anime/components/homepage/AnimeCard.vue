@@ -2,7 +2,7 @@
 	<div class="card-container">
 		<img class="anime-img" :src="`${img}`" alt="" />
 		<div class="container-bar">
-			<EpisodeCard :episode="episode" />
+			<EpisodeSVG :episode="episode" />
 			<p id="format">{{ format }}</p>
 		</div>
 		<h5 class="title">{{ title }}</h5>
@@ -10,11 +10,12 @@
 </template>
 
 <script lang="ts">
-import EpisodeCard from "../episodeSvg.vue";
+import EpisodeSVG from "../episodeSvg.vue";
+
 export default {
 	name: "AnimeCard",
 	components: {
-		EpisodeCard,
+		EpisodeSVG,
 	},
 	props: {
 		img: {
