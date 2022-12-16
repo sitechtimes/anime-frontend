@@ -5,8 +5,7 @@
     <div class="display">
         <div class="carousel-slide slide-01">
             <h2 class="text"> Blue Lock </h2>
-            <h3 class="text"> Soccer Anime </h3>    
-<!-- No Img Avaliable Link: https://t3.ftcdn.net/jpg/04/34/72/82/360_F_434728286_OWQQvAFoXZLdGHlObozsolNeuSxhpr84.jpg -->
+            <h4 class="text"> Synopsis </h4>    
             <img class="img" src="https://th.bing.com/th/id/R.e4651a3a9eed4e1e43044e638b076e1f?rik=KXg2eMKBaDhnOQ&pid=ImgRaw&r=0" alt="Img of Blue Lock"/>
         </div>
         <div class="controls">
@@ -22,7 +21,7 @@
     <div class="display">
         <div class="carousel-slide slide-02">
             <h2 class="text"> Jujutsu Kaisen </h2>
-            <h3 class="text"> Supernatural Anime </h3>
+            <h4 class="text"> Synopsis </h4>
             <img class="img" src="https://th.bing.com/th/id/OIP.mblZRlAplxkavD9u4ZgS2AHaD5?pid=ImgDet&rs=1" alt="Img of Jujutsu Kaisen"/>
         </div>
         <div class="controls">
@@ -38,7 +37,7 @@
     <div class="display">
         <div class="carousel-slide slide-03">
             <h2 class="text"> Burning Kabaddi </h2>
-            <h3 class="text"> Kabaddi Anime (The sport exists irl) </h3>
+            <h4 class="text"> Synopsis </h4>
             <img class="img" src="https://th.bing.com/th/id/OIP.pNP5th6ouY4RBF-LEKpskAHaJE?pid=ImgDet&rs=1" alt="Img of Burning Kabaddi"/>
         </div>
         <div class="controls">
@@ -69,23 +68,23 @@ h2 {
     display: block;
     font-size: var(--h2);
 }
-h3 {
+h4 {
     max-width: 48%;
     white-space: normal;
-    font-size: var(--h3);
+    font-size: var(--h4);
     display: inline-block;
     overflow-wrap: break-word;
 }
 .img {
-    width: 50%;
+    width: 45%;
     float: right;
     display: inline;
     max-height: 77%;
-    margin-right: 3%;
+    margin-right: 2%;
 }
 .text {
     clear: none;
-    margin-left: 4%;
+    margin-left: 2%;
     color: var(--white);
 }
 input {
@@ -109,8 +108,7 @@ input {
     z-index: 4;
     opacity: 0;
     display: none;
-    padding: 0 2rem;
-    /* cursor: pointer; */
+    padding: 0 0.5rem;
     font-size: 3.75rem;
     position: absolute;
     color: var(--white);
@@ -128,9 +126,9 @@ input {
 .carousel-slide {
     opacity: 0;
     z-index: 0;
-    height: 63%;
-    width: 91.5%;
-    padding: 0.5%;
+    height: 60%;
+    width: 90.5%;
+    padding: 0.4%;
     display: block;
     margin-left: 1.8%;
     margin-right: 1.8%;
@@ -145,34 +143,20 @@ input:checked + .display .controls label {
     display: block;
 }
 input:checked + .display .carousel-slide {
-    opacity: 1;
+    /* opacity: 1; */
     z-index: 1;
     transition: 1.11s ease-in-out;
 }
-/* @keyframes test {
-    0% {
-        z-index: 0;
-        opacity: 0;
-    }
-    2%, 95% {
-        z-index: 2;
-        opacity: 1;
-    }
-    100% {
-        z-index: 0;
-        opacity: 0;
-    }
-} */
 @keyframes auto {
-    0%, 32% {
+    0%, 33% {
         z-index: 2;
         opacity: 1;
     }
-    33%, 84% {
+    34%, 85% {
         z-index: 0;
         opacity: 0;
     }
-    85%, 100% {
+    86%, 100% {
         z-index: 2;
         opacity: 1;
     }
