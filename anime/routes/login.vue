@@ -38,17 +38,17 @@ export default {
   height: 70vh;
 }
 .login-form {
-    color: var(--white);
-    background: var(--primary);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 70vh;
-    width: 30vw;
-    gap: 3vh;
-    border-radius: 30px;
-    box-shadow: inset 0 0 15px black;
+  color: var(--white);
+  background: var(--primary);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+  width: 30vw;
+  gap: 3vh;
+  border-radius: 30px;
+  box-shadow: inset 0 0 60px var(--secondary-dark);
 }
 .title {
   font-size: var(--h1);
@@ -96,4 +96,7 @@ export default {
   border: 0;
   width: 10vw
 };
+
+@media screen and (max-width: 1440px) {
+}
 </style>
