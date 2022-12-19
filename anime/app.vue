@@ -60,7 +60,7 @@
    
   }
   @media screen and (min-width: 768px) {
-    .navigation-icon,
+    .nav-mobile,
     .menu{
       display: none;
     }

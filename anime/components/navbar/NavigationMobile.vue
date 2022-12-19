@@ -2,23 +2,29 @@
 <div id="mobile">
     <div class="menu" v-class="{close: isClose}">
           <ul class="mq-routers">
-                <li class="link">
+                <li class="link" v-on:click="toggleOn()">
                     <NuxtLink to="/awards" class="link-href">Awards</NuxtLink>
                 </li>
-                <li class="link">
+                <li class="link" v-on:click="toggleOn()">
                     <NuxtLink to="/ranking" class="link-href">Rankings</NuxtLink>
                 </li>
-                <li class="link">
+                <li class="link" v-on:click="toggleOn()">
                     <NuxtLink to="/history" class="link-href">History</NuxtLink>
                 </li>
-                <button class="log-in button">Log In</button>
+                <button class="log-in button" v-on:click="toggleOn()">Log In</button>
             </ul>
         </div>
-        <div class="navigation-icon" v-on:click="toggleOn()">
+        <div class="nav-mobile">
+           <div class="navigation-icon" v-on:click="toggleOn()">
           <div class="burger1 change"></div>
           <div class="burger2 change"></div>
           <div class="burger3 change"></div>
         </div>
+          <h1 id="logo">
+          <NuxtLink to="/">Technime</NuxtLink></h1>
+          <button class="log-in button">Log In</button>
+        </div>
+       
 </div>
 </template>
 
@@ -43,6 +49,18 @@ export default {
 </script>
 
 <style>
+.nav-mobile{
+    background-color:var(--tertiary);
+    width:100%;
+    height:9vh;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    align-self: stretch;
+}
+.log-in{
+  margin-right:2rem;
+}
  .burger1,
   .burger2,
   .burger3{
@@ -54,6 +72,11 @@ export default {
   z-index:2000;
 
   }
+  #logo{
+        font-size: var(--h3);
+        color:var(--white);
+        transition: all 1s ease-in-out;-webkit-transition: all 1s ease-in-out;
+    }
   .change{
     z-index:2000;
   }
@@ -74,6 +97,7 @@ export default {
   }
   .navigation-icon{
     cursor:pointer;
+    margin-left:2rem;
   }
   .menu{
     background-color: var(--bg-primary);
@@ -89,10 +113,12 @@ export default {
   .mq-routers{
     display:flex;
     height:50%;
+    width:80%;
     flex-direction: column;
     color: var(--white);
     font-size:var(--h3);
     justify-content: center;
     align-items: center;
+
   }
 </style>
