@@ -1,6 +1,7 @@
 import { defineStore } from "pinia"
 import axios from "axios"
 import { createPersistedState } from "pinia-plugin-persistedstate"
+import { googleLogout } from "vue3-google-login"
 
 
 export const useUserStore = defineStore("user", {
@@ -54,9 +55,14 @@ export const useUserStore = defineStore("user", {
             localStorage.removeItem("token")
             location.reload()
             this.isAuthenticated = false
+            googleLogout()
         }
     },
 
-    persist: true
+    persist: {
+        storage: persistedState.cookiesWithOptions({
+          sameSite: 'strict',
+        }),
+      },
 
 })

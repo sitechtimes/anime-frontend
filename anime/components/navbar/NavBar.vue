@@ -29,6 +29,7 @@ import SearchBar from './SearchBar.vue'
 import axios from "axios"
 import { useUserStore } from '../../stores/userStore'
 
+ 
   export default ({
     name: 'NavBar',
     components:{
