@@ -19,6 +19,7 @@
                 </GoogleLogin>
                 <button @click="userStore.logout" v-if="userStore.isAuthenticated == true" class=" log-in button"> Logout</button>
                
+                <NuxtLink to="/login" class="link-href"> <button class="log-in button">Log In</button></NuxtLink>
             </ul>
         </nav>
 
@@ -150,7 +151,9 @@ import { useUserStore } from '../../stores/userStore'
     .link:hover{
         color:var(--tertiary); 
     }
-    .button{
+    .button,
+    .log-in,
+    button{
         background: var(--primary);
         border-radius: 25px;
         font-style: normal;
@@ -160,10 +163,12 @@ import { useUserStore } from '../../stores/userStore'
         color: var(--dark-text);
         border:0;
         padding:1rem 3rem;
-        transition: background 1s ease-in-out;-webkit-transition: background 1s ease-in-out;
+        transition: 2s ease-in-out;
+        -webkit-transition: 2s ease-in-out;
 	    cursor: pointer;
     }
-    .button:hover{
+    .button:hover,
+    .log-in:hover{
         background: linear-gradient(84.66deg, var(--primary) 2.58%, var(--alt-linear) 97.55%);
     }
     .navigation {
