@@ -1,21 +1,21 @@
 <template>
 <div class="carousel">
     <div class="slides">
-    <input type="radio" name="btn" id="item-1" checked/>
+    <input type="radio" name="btn" id="item-1"/>
     <div class="display">
         <div class="carousel-slide slide-01">
             <h2 class="text"> Blue Lock </h2>
             <h4 class="text"> Synopsis </h4>    
             <img class="img" src="https://th.bing.com/th/id/R.e4651a3a9eed4e1e43044e638b076e1f?rik=KXg2eMKBaDhnOQ&pid=ImgRaw&r=0" alt="Img of Blue Lock"/>
         </div>
-        <div class="controls">
+        <!-- <div class="controls">
             <label for="item-3" class="left">
                 <span> &#8249; </span>
             </label>
             <label for="item-2" class="right">
                 <span> &#8250; </span>
             </label>
-        </div>
+        </div> -->
     </div>
     <input type="radio" name="btn" id="item-2"/>
     <div class="display">
@@ -24,14 +24,14 @@
             <h4 class="text"> Synopsis </h4>
             <img class="img" src="https://th.bing.com/th/id/OIP.mblZRlAplxkavD9u4ZgS2AHaD5?pid=ImgDet&rs=1" alt="Img of Jujutsu Kaisen"/>
         </div>
-        <div class="controls">
+        <!-- <div class="controls">
             <label for="item-1" class="left">
                 <span> &#8249; </span>
             </label>
             <label for="item-3" class="right">
                 <span> &#8250; </span>
             </label>
-        </div>
+        </div> -->
     </div>
     <input type="radio" name="btn" id="item-3"/> 
     <div class="display">
@@ -40,14 +40,14 @@
             <h4 class="text"> Synopsis </h4>
             <img class="img" src="https://th.bing.com/th/id/OIP.pNP5th6ouY4RBF-LEKpskAHaJE?pid=ImgDet&rs=1" alt="Img of Burning Kabaddi"/>
         </div>
-        <div class="controls">
+        <!-- <div class="controls">
             <label for="item-2" class="left">
                 <span> &#8249; </span>
             </label>
             <label for="item-1" class="right">
                 <span> &#8250; </span>
             </label>
-        </div>
+        </div> -->
     </div>
 </div>
 </div>
@@ -76,10 +76,10 @@ h4 {
     overflow-wrap: break-word;
 }
 .img {
-    width: 45%;
+    width: 44%;
     float: right;
     display: inline;
-    max-height: 77%;
+    max-height: 80%;
     margin-right: 2%;
 }
 .text {
@@ -96,7 +96,7 @@ input {
 .display {
     display: block;
 }
-.controls .left {
+/* .controls .left {
     left: 0;
     text-align: left;
 }
@@ -107,68 +107,53 @@ input {
 .controls label { 
     z-index: 4;
     opacity: 0;
+    padding: 0;
     display: none;
-    padding: 0 0.5rem;
     font-size: 3.75rem;
     position: absolute;
     color: var(--white);
-    margin: 11.5% 3.5% 11.5% 3.5%;
+    margin: 11.5% 4.5% 11.5% 4.5%;
 }
-/* .controls label:hover {
+.controls label:hover {
     opacity: 1;
 } */
 .carousel {
-    margin: 2.5%;
     padding: 0%;
+    margin: 2.25%;
     overflow: hidden;
     flex-direction: row;
 }
 .carousel-slide {
     opacity: 0;
     z-index: 0;
+    width: 92%;
     height: 60%;
-    width: 90.5%;
-    padding: 0.4%;
+    padding: 0.35%;
     display: block;
-    margin-left: 1.8%;
-    margin-right: 1.8%;
     position: absolute;
+    margin-left: 1.75%;
+    margin-right: 1.75%;
     transition: all .75s ease-in-out;
     background-color: var(--tertiary);
-}
-input:checked + .display .nav label {
-    display: block;
-}
-input:checked + .display .controls label {
-    display: block;
-}
-input:checked + .display .carousel-slide {
-    /* opacity: 1; */
-    z-index: 1;
-    transition: 1.11s ease-in-out;
 }
 @keyframes auto {
     0%, 33% {
         z-index: 2;
         opacity: 1;
     }
-    34%, 85% {
+    34%, 100% {
         z-index: 0;
         opacity: 0;
-    }
-    86%, 100% {
-        z-index: 2;
-        opacity: 1;
     }
 }
 /* animation: name duration timing-function delay iteration-count direction fill-mode play-state; */
 .slide-01 {
-    animation: auto 15s linear 0s infinite normal none running;
+    animation: auto 18s ease-in-out 0s infinite normal none running;
 }
 .slide-02 {
-    animation: auto 15s linear 4s infinite normal none running;
+    animation: auto 18s ease-in-out 6s infinite normal none running;
 }
 .slide-03 {
-    animation: auto 15s linear 8s infinite normal none running;
+    animation: auto 18s ease-in-out 12s infinite normal none running;
 }
 </style>
