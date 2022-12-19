@@ -74,6 +74,15 @@ export const useUserStore = defineStore("user", {
       this.isAuthenticated = false;
       googleLogout();
     },
+    // logout() {
+    //     this.userData = null;
+    //     this.token = null;
+    //     localStorage.removeItem("user");
+    //     localStorage.removeItem("token");
+    //     location.reload();
+    //     this.isAuthenticated = false;
+    //     gapi.auth2.
+    //   },
   },
 
   // persist: {

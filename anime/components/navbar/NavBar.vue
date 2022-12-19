@@ -44,6 +44,7 @@ import { useUserStore } from '../../stores/userStore'
             
         }
     },
+
 //     data: () => ({
 //     showHeader: true,
 //     lastScrollPosition: 0,
@@ -78,6 +79,12 @@ import { useUserStore } from '../../stores/userStore'
       this.showHeader = window.pageYOffset < this.lastScrollPosition
       this.lastScrollPosition = window.pageYOffset
     },
+    // signOut() {
+    //     const auth2 = gapi.auth2.getAuthInstance()
+    //     auth2.signOut().then(() => {
+    //       console.log("user is signed out")
+    //     })
+    // },
     // callback(res: any) {
     //     console.log(res.access_token)
     //     axios.post("http://localhost:8000/social-login/google/", {access_token: res.access_token}).then((res) => {

@@ -20,8 +20,9 @@
   </div>
 </template>
 
-<script>
+<script >
 import { useUserStore } from '~~/stores/userStore';
+import { CallbackTypes } from 'vue3-google-login';
 
 export default {
   name: 'login',
@@ -38,6 +39,14 @@ export default {
             
         }
     },
+    methods: {
+      signOut() {
+        const auth2 = gapi.auth2.getAuthInstance()
+        auth2.signOut().then(() => {
+          console.log("user is signed out")
+        })
+      }
+    }
 }
 </script>
 
