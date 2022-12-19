@@ -12,14 +12,12 @@
                     <NuxtLink to="/ranking" class="link-href">Rankings</NuxtLink>
                 </li>
                 <li class="link">
-                    <NuxtLink to="/history" class="link-href">{{ userStore.userData}}</NuxtLink>
+                    <NuxtLink to="/history" class="link-href">History</NuxtLink>
                 </li>
-                <GoogleLogin v-if="userStore.isAuthenticated == false" :callback="userStore.login" popup-type="TOKEN">
-                    <button class="log-in button">Log In</button>
-                </GoogleLogin>
-                <button @click="userStore.logout" v-if="userStore.isAuthenticated == true" class=" log-in button"> Logout</button>
+
                
-                <NuxtLink to="/login" class="link-href"> <button class="log-in button">Log In</button></NuxtLink>
+                <NuxtLink v-if="userStore.isAuthenticated == false" to="/login" class="link-href"> <button class="log-in button">Log In</button></NuxtLink>
+                <button @click="userStore.logout" v-if="userStore.isAuthenticated == true" class=" log-in button"> Logout</button>
             </ul>
         </nav>
 
