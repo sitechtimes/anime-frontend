@@ -4,10 +4,10 @@
 			<div class="trending-header">
 				<h2 class="trending-title">Trending</h2>
 				<div class="trending-pages">
-					<button class="page-button">
+					<button class="page-button" v-on:click="previous">
 						<LeftPageButton />
 					</button>
-					<button class="page-button">
+					<button class="page-button" v-on:click="next">
 						<RightPageButton />
 					</button>
 				</div>
@@ -54,6 +54,14 @@ export default {
 	},
 	data() {
 		return {
+			methods: {
+				next: function () {
+					console.log("next");
+				},
+				previous: function () {
+					console.log("previous");
+				},
+			},
 			top: [
 				{
 					id: 1,
@@ -214,7 +222,7 @@ export default {
 	background-size: cover;
 }
 .top-box {
-	background-color: var(--tertiary);
+	background-color: var(--bg-tertiary);
 	border-radius: 1.5rem;
 	width: 25vw;
 	margin-right: 10rem;
@@ -222,7 +230,6 @@ export default {
 	height: 100%;
 	display: flex;
 	flex-direction: column;
-	padding-top: 2rem;
 }
 .trending-box {
 	background-color: var(--tertiary);
@@ -251,8 +258,14 @@ export default {
 	font-size: var(--h3);
 	font-weight: var(--fw-bold);
 	color: var(--white);
-	height: 6rem;
-	margin-left: 4rem;
+	height: 7rem;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	padding-left: 3rem;
+	background-color: var(--tertiary);
+	border-radius: 0.75rem;
+	margin-bottom: 2rem;
 }
 .trending-content {
 	display: flex;

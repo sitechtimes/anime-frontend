@@ -52,8 +52,9 @@ export default {
 	align-items: center;
 	width: 100%;
 	height: 9rem;
-	background-color: var(--bg-primary);
+	background-color: var(--tertiary);
 	margin-top: 1rem;
+	border-radius: 0.75rem;
 }
 .charts-rank {
 	display: flex;
@@ -65,6 +66,7 @@ export default {
 	color: var(--white);
 	font-size: var(--h3);
 	font-weight: var(--fw-semi);
+	border-radius: 0.75rem 0 0 0.75rem;
 }
 .charts-img {
 	height: 100%;
