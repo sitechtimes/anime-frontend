@@ -87,7 +87,7 @@ export const useUserStore = defineStore("user", {
         this.email = null
         this.isAuthenticated = false;
         this.token = null
-        googleLogout();
+        // googleLogout();
       } catch(error){
         console.error(error)
       }
