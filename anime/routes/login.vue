@@ -23,6 +23,7 @@
 <script >
 import { useUserStore } from '~~/stores/userStore';
 import { CallbackTypes } from 'vue3-google-login';
+// const router = useRouter()
 
 export default {
   name: 'login',
@@ -36,7 +37,6 @@ export default {
 
         return{
             userStore,
-            
         }
     },
     methods: {

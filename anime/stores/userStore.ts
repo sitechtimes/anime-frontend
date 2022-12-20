@@ -2,13 +2,16 @@ import { defineStore } from "pinia";
 import axios from "axios";
 import { createPersistedState } from "pinia-plugin-persistedstate";
 import { googleLogout } from "vue3-google-login";
+// const router = useRouter()
 
 export const useUserStore = defineStore("user", {
   state: () => ({
-    // first_name: null,
-    // last_name: null,
-    // email: null
-    userData: null,
+    username: null,
+    first_name: null,
+    last_name: null,
+    email: null,
+    redirect: false,
+    // userData: null,
     token: null,
     isAuthenticated: false,
     // userData: JSON.parse(localStorage.getItem("user")),
@@ -44,9 +47,15 @@ export const useUserStore = defineStore("user", {
                 // localStorage.setItem("user", res.data.first_name)
                 // this.userData = localStorage.getItem("user")
                 // this.user = res.data.first_name
-                this.userData = res.data;
+                this.username = res.data.username
+                // this.userData = res.data;
+                this.first_name = res.data.first_name
+                this.last_name = res.data.last_name
+                this.email = res.data.email
                 this.isAuthenticated = true;
+                this.redirect = true
                 return navigateTo("/");
+                // router.push({ path: "/"})
               });
           });
       } catch (error) {
@@ -66,13 +75,23 @@ export const useUserStore = defineStore("user", {
       }
     },
     logout() {
-      this.userData = null;
-      this.token = null;
-      localStorage.removeItem("user");
-      localStorage.removeItem("token");
-      location.reload();
-      this.isAuthenticated = false;
-      googleLogout();
+      try{
+        // let user = useCookie('user')
+        // user = null
+        localStorage.removeItem("token");
+        location.reload();
+        this.username = null
+        // this.userData = res.data;
+        this.first_name = null
+        this.last_name = null
+        this.email = null
+        this.isAuthenticated = false;
+        this.token = null
+        googleLogout();
+      } catch(error){
+        console.error(error)
+      }
+
     },
     // logout() {
     //     this.userData = null;

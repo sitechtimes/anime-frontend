@@ -12,7 +12,7 @@
                     <NuxtLink to="/ranking" class="link-href">Rankings</NuxtLink>
                 </li>
                 <li class="link">
-                    <NuxtLink to="/history" class="link-href">History</NuxtLink>
+                    <NuxtLink to="/history" class="link-href">{{ userStore.first_name }}</NuxtLink>
                 </li>
 
                
@@ -28,6 +28,7 @@ import SearchBar from './SearchBar.vue'
 import axios from "axios"
 import { useUserStore } from '../../stores/userStore'
 
+
  
   export default ({
     name: 'NavBar',
@@ -37,7 +38,7 @@ import { useUserStore } from '../../stores/userStore'
     setup(){
         const userStore = useUserStore()
         // userStore.$persist()
-        console.log(userStore.userData)
+        // console.log(userStore.userData)
 
         return{
             userStore,
@@ -56,7 +57,6 @@ import { useUserStore } from '../../stores/userStore'
         showHeader: true,
         lastScrollPosition: 0,
         scrollOffset: 40,
-        // user: null
       }
   },
   mounted() {
