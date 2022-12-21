@@ -218,6 +218,8 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        /* messing up what I am working on rn */
+        display:none;
       }
       .input, .box {
         width: 80vw;
