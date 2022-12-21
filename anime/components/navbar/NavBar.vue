@@ -70,6 +70,11 @@ import SearchBar from './SearchBar.vue';
     transform: translate3d(0, 0, 0);
     transition: 0.1s all ease-out;
 }
+.routers{
+        width:40%;
+        display:flex;
+        justify-content:space-between;
+    }
 .navbar.navbar--hidden {
   box-shadow: none;
   transform: translate3d(0, -100%, 0);
@@ -79,50 +84,16 @@ import SearchBar from './SearchBar.vue';
         color:var(--white);
         transition: all 1s ease-in-out;-webkit-transition: all 1s ease-in-out;
     }
-    .routers{
-        width:40%;
-        display:flex;
-        justify-content:space-between;
-    }
-   ul, li, a{
-        text-decoration: none;
-        list-style-type: none;
-        color:var(--white);
-        transition: background 1s ease-in-out;-webkit-transition: background 1s ease-in-out;
-    }
+
     .link{
         font-size: var(--h4);
     }
-    /* #logo:hover{
-        text-shadow:
-    0 0 7px var(--tertiary),
-    0 0 7px var(--tertiary),
-    0 0 11px var(--tertiary),
-    0 0 22px var(--primary),
-    0 0 32px var(--primary),
-    0 0 42px var(--primary),
-    0 0 82px var(--primary),
-    0 0 92px var(--primary);
-    } */
+
     .link:hover{
         color:var(--tertiary); 
     }
-    .button{
-        background: var(--primary);
-        border-radius: 25px;
-        font-style: normal;
-        font-weight: var(--fw-bold);
-        font-size: var(--h4);
-        text-align: center;
-        color: var(--dark-text);
-        border:0;
-        padding:1rem 3rem;
-        transition: background 1s ease-in-out;-webkit-transition: background 1s ease-in-out;
-	    cursor: pointer;
-    }
-    .button:hover{
-        background: linear-gradient(84.66deg, var(--primary) 2.58%, var(--alt-linear) 97.55%);
-    }
+
+
     .navigation {
         transform: translateY(0);
         transition: transform 300ms linear;
@@ -130,5 +101,5 @@ import SearchBar from './SearchBar.vue';
     .navigation.is-hidden {
         transform: translateY(-100%);
     }
-        
+
 </style>
