@@ -54,14 +54,6 @@ export default {
 	},
 	data() {
 		return {
-			methods: {
-				next: function () {
-					console.log("next");
-				},
-				previous: function () {
-					console.log("previous");
-				},
-			},
 			top: [
 				{
 					id: 1,
