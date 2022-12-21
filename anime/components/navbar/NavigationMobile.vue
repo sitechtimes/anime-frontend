@@ -113,7 +113,7 @@ export default {
   .mq-routers{
     display:flex;
     height:50%;
-    width:80%;
+    width:90%;
     flex-direction: column;
     color: var(--white);
     font-size:var(--h3);
