@@ -8,14 +8,6 @@
             <h4 class="text"> Synopsis </h4>    
             <img class="img" src="https://th.bing.com/th/id/R.e4651a3a9eed4e1e43044e638b076e1f?rik=KXg2eMKBaDhnOQ&pid=ImgRaw&r=0" alt="Img of Blue Lock"/>
         </div>
-        <!-- <div class="controls">
-            <label for="item-3" class="left">
-                <span> &#8249; </span>
-            </label>
-            <label for="item-2" class="right">
-                <span> &#8250; </span>
-            </label>
-        </div> -->
     </div>
     <input type="radio" name="btn" id="item-2"/>
     <div class="display">
@@ -24,14 +16,6 @@
             <h4 class="text"> Synopsis </h4>
             <img class="img" src="https://th.bing.com/th/id/OIP.mblZRlAplxkavD9u4ZgS2AHaD5?pid=ImgDet&rs=1" alt="Img of Jujutsu Kaisen"/>
         </div>
-        <!-- <div class="controls">
-            <label for="item-1" class="left">
-                <span> &#8249; </span>
-            </label>
-            <label for="item-3" class="right">
-                <span> &#8250; </span>
-            </label>
-        </div> -->
     </div>
     <input type="radio" name="btn" id="item-3"/> 
     <div class="display">
@@ -40,14 +24,11 @@
             <h4 class="text"> Synopsis </h4>
             <img class="img" src="https://th.bing.com/th/id/OIP.pNP5th6ouY4RBF-LEKpskAHaJE?pid=ImgDet&rs=1" alt="Img of Burning Kabaddi"/>
         </div>
-        <!-- <div class="controls">
-            <label for="item-2" class="left">
-                <span> &#8249; </span>
-            </label>
-            <label for="item-1" class="right">
-                <span> &#8250; </span>
-            </label>
-        </div> -->
+    <div class="dots">
+        <label for="item-01" class="dot dot-01" ></label>
+        <label for="item-02" class="dot dot-02" ></label>
+        <label for="item-03" class="dot dot-03" ></label>
+    </div>
     </div>
 </div>
 </div>
@@ -79,8 +60,25 @@ h4 {
     width: 44%;
     float: right;
     display: inline;
-    max-height: 80%;
+    max-height: 75%;
     margin-right: 2%;
+}
+.dots {
+    left: 0;
+    right: 0;
+    z-index: 5;
+    bottom: 30rem;
+    position: absolute;
+    text-align: center;
+}
+.dots .dot {
+    width: 2.5rem;
+    opacity: 0.5;
+    height: 2.5rem;
+    margin: 0.5rem;
+    border-radius: 50%; 
+    display: inline-block;
+    background-color: var(--white);
 }
 .text {
     clear: none;
@@ -96,27 +94,6 @@ input {
 .display {
     display: block;
 }
-/* .controls .left {
-    left: 0;
-    text-align: left;
-}
-.controls .right {
-    right: 0;
-    text-align: right;
-}
-.controls label { 
-    z-index: 4;
-    opacity: 0;
-    padding: 0;
-    display: none;
-    font-size: 3.75rem;
-    position: absolute;
-    color: var(--white);
-    margin: 11.5% 4.5% 11.5% 4.5%;
-}
-.controls label:hover {
-    opacity: 1;
-} */
 .carousel {
     padding: 0%;
     margin: 2.25%;
@@ -127,7 +104,7 @@ input {
     opacity: 0;
     z-index: 0;
     width: 92%;
-    height: 60%;
+    height: 65%;
     padding: 0.35%;
     display: block;
     position: absolute;
@@ -146,6 +123,14 @@ input {
         opacity: 0;
     }
 }
+@keyframes auto-dot {
+    0%, 33% {
+        opacity: 1;
+    }
+    34%, 100% {
+        opacity: 0.5;
+    }
+}
 /* animation: name duration timing-function delay iteration-count direction fill-mode play-state; */
 .slide-01 {
     animation: auto 18s ease-in-out 0s infinite normal none running;
@@ -156,4 +141,14 @@ input {
 .slide-03 {
     animation: auto 18s ease-in-out 12s infinite normal none running;
 }
+.dot-01 {
+    animation: auto-dot 18s ease-in-out 0s infinite normal none running;
+}
+.dot-02 {
+    animation: auto-dot 18s ease-in-out 6s infinite normal none running;
+}
+.dot-03 {
+    animation: auto-dot 18s ease-in-out 12s infinite normal none running;
+}
 </style>
+
