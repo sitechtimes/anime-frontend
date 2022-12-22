@@ -287,4 +287,38 @@ export default {
 	display: block;
 	margin: auto;
 }
+
+@media screen and (max-width: 1250px) {
+	.home-body {
+		flex-direction: column;
+		align-items: center;
+	}
+	.top-box {
+		width: 60vw;
+		margin-right: 0;
+		margin-top: 2rem;
+	}
+	.trending-box {
+		width: 90vw;
+		margin-left: 0;
+		margin-top: 2rem;
+	}
+	.trending-header {
+		margin-left: 2vw;
+		margin-right: 2vw;
+	}
+	.trending-title {
+		font-size: var(--h4);
+	}
+	.top-title {
+		font-size: var(--h4);
+		padding-left: 2rem;
+	}
+	.trending-content {
+		padding: 1rem;
+	}
+	.trending-pages {
+		justify-content: center;
+	}
+}
 </style>

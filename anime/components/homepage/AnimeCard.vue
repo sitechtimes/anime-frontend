@@ -64,7 +64,7 @@ img {
 	width: 100%;
 	color: var(--white);
 	font-size: var(--h6);
-	font-weight: var(--fw-reg);
+	font-weight: var(--fw-thin);
 	padding: 0.5rem;
 }
 #ep {
@@ -78,5 +78,16 @@ img {
 	font-size: var(--h7);
 	padding: 0.2rem 0.5rem;
 	font-weight: var(--fw-reg);
+}
+
+@media screen and (max-width: 1250px) {
+	.card-container {
+		display: flex;
+		flex-direction: column;
+		width: 11vw;
+	}
+	.title {
+		font-size: var(--h7);
+	}
 }
 </style>
