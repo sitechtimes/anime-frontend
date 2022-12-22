@@ -17,6 +17,7 @@ export default Vue.extend({
   }
 })
 </script>
+
 <style>
 @import url("../assets/global.css");
 .ex{

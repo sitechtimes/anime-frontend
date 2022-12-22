@@ -25,9 +25,9 @@
             <img class="img" src="https://th.bing.com/th/id/OIP.pNP5th6ouY4RBF-LEKpskAHaJE?pid=ImgDet&rs=1" alt="Img of Burning Kabaddi"/>
         </div>
     <div class="dots">
-        <label for="item-01" class="dot dot-01" ></label>
-        <label for="item-02" class="dot dot-02" ></label>
-        <label for="item-03" class="dot dot-03" ></label>
+        <label class="dot dot-01" ></label>
+        <label class="dot dot-02" ></label>
+        <label class="dot dot-03" ></label>
     </div>
     </div>
 </div>
@@ -57,32 +57,34 @@ h4 {
     overflow-wrap: break-word;
 }
 .img {
-    width: 44%;
+    width: 45%;
+    height: 75%;
     float: right;
     display: inline;
-    max-height: 75%;
-    margin-right: 2%;
-}
-.dots {
+    margin-right: 1.5%;
+} 
+/* Note: Dots have yet to be properly vertically aligned  */
+.dots { 
     left: 0;
     right: 0;
+    top: 63.5%;
     z-index: 5;
-    bottom: 30rem;
+    /* bottom: 30rem; */
     position: absolute;
     text-align: center;
-}
+} 
 .dots .dot {
+    opacity: 0.25;
     width: 2.5rem;
-    opacity: 0.5;
     height: 2.5rem;
-    margin: 0.5rem;
+    margin: 0.75rem;
     border-radius: 50%; 
     display: inline-block;
     background-color: var(--white);
 }
 .text {
     clear: none;
-    margin-left: 2%;
+    margin-left: 1.5%;
     color: var(--white);
 }
 input {
@@ -96,7 +98,7 @@ input {
 }
 .carousel {
     padding: 0%;
-    margin: 2.25%;
+    margin: 2.55%;
     overflow: hidden;
     flex-direction: row;
 }
@@ -105,15 +107,22 @@ input {
     z-index: 0;
     width: 92%;
     height: 65%;
-    padding: 0.35%;
+    padding: 0.25%;
     display: block;
     position: absolute;
     margin-left: 1.75%;
     margin-right: 1.75%;
-    transition: all .75s ease-in-out;
     background-color: var(--tertiary);
 }
-@keyframes auto {
+@keyframes auto-dot {
+    0%, 33% {
+        opacity: 1;
+    }
+    34%, 100% {
+        opacity: 0.25;
+    }
+}
+@keyframes auto-carousel {
     0%, 33% {
         z-index: 2;
         opacity: 1;
@@ -123,24 +132,7 @@ input {
         opacity: 0;
     }
 }
-@keyframes auto-dot {
-    0%, 33% {
-        opacity: 1;
-    }
-    34%, 100% {
-        opacity: 0.5;
-    }
-}
 /* animation: name duration timing-function delay iteration-count direction fill-mode play-state; */
-.slide-01 {
-    animation: auto 18s ease-in-out 0s infinite normal none running;
-}
-.slide-02 {
-    animation: auto 18s ease-in-out 6s infinite normal none running;
-}
-.slide-03 {
-    animation: auto 18s ease-in-out 12s infinite normal none running;
-}
 .dot-01 {
     animation: auto-dot 18s ease-in-out 0s infinite normal none running;
 }
@@ -149,6 +141,15 @@ input {
 }
 .dot-03 {
     animation: auto-dot 18s ease-in-out 12s infinite normal none running;
+}
+.slide-01 {
+    animation: auto-carousel 18s ease-in-out 0s infinite normal none running;
+}
+.slide-02 {
+    animation: auto-carousel 18s ease-in-out 6s infinite normal none running;
+}
+.slide-03 {
+    animation: auto-carousel 18s ease-in-out 12s infinite normal none running;
 }
 </style>
 
