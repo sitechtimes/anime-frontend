@@ -33,7 +33,7 @@ export default {
   setup(){
         const userStore = useUserStore()
         // userStore.$persist()
-        console.log(userStore.userData)
+        // console.log(userStore.userData)
 
         return{
             userStore,

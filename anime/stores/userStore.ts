@@ -44,16 +44,17 @@ export const useUserStore = defineStore("user", {
               })
               .then((res) => {
                 console.log(res.data.first_name);
+                console.log(this.token)
                 // localStorage.setItem("user", res.data.first_name)
                 // this.userData = localStorage.getItem("user")
                 // this.user = res.data.first_name
-                this.username = res.data.username
+                this.username = res.data.username;
                 // this.userData = res.data;
-                this.first_name = res.data.first_name
-                this.last_name = res.data.last_name
-                this.email = res.data.email
+                this.first_name = res.data.first_name;
+                this.last_name = res.data.last_name;
+                this.email = res.data.email;
                 this.isAuthenticated = true;
-                this.redirect = true
+                this.redirect = true;
                 return navigateTo("/");
                 // router.push({ path: "/"})
               });
@@ -75,23 +76,22 @@ export const useUserStore = defineStore("user", {
       }
     },
     logout() {
-      try{
+      try {
         // let user = useCookie('user')
         // user = null
         localStorage.removeItem("token");
         location.reload();
-        this.username = null
+        this.username = null;
         // this.userData = res.data;
-        this.first_name = null
-        this.last_name = null
-        this.email = null
+        this.first_name = null;
+        this.last_name = null;
+        this.email = null;
         this.isAuthenticated = false;
-        this.token = null
+        this.token = null;
         // googleLogout();
-      } catch(error){
-        console.error(error)
+      } catch (error) {
+        console.error(error);
       }
-
     },
     // logout() {
     //     this.userData = null;

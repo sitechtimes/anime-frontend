@@ -12,7 +12,7 @@
                     <NuxtLink to="/ranking" class="link-href">Rankings</NuxtLink>
                 </li>
                 <li class="link">
-                    <NuxtLink to="/history" class="link-href">{{ userStore.first_name }}</NuxtLink>
+                    <NuxtLink to="/history" class="link-href">History</NuxtLink>
                 </li>
 
                
@@ -37,11 +37,13 @@ import { useUserStore } from '../../stores/userStore'
     },   
     setup(){
         const userStore = useUserStore()
+        // const router = useRoute()
         // userStore.$persist()
         // console.log(userStore.userData)
 
         return{
             userStore,
+            // router
             
         }
     },
