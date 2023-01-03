@@ -1,36 +1,27 @@
 <template>
 <div class="carousel">
     <div class="slides">
-    <input type="radio" name="btn" id="item-1"/>
-    <div class="display">
         <div class="carousel-slide slide-01">
             <h2 class="text"> Blue Lock </h2>
             <h4 class="text"> Synopsis </h4>    
-            <img class="img" src="https://th.bing.com/th/id/R.e4651a3a9eed4e1e43044e638b076e1f?rik=KXg2eMKBaDhnOQ&pid=ImgRaw&r=0" alt="Img of Blue Lock"/>
+            <img class="img" src="https://th.bing.com/th/id/R.e4651a3a9eed4e1e43044e638b076e1f?rik=KXg2eMKBaDhnOQ&pid=ImgRaw&r=0" alt="Img of Blue Lock Characters"/>
         </div>
-    </div>
-    <input type="radio" name="btn" id="item-2"/>
-    <div class="display">
         <div class="carousel-slide slide-02">
             <h2 class="text"> Jujutsu Kaisen </h2>
             <h4 class="text"> Synopsis </h4>
-            <img class="img" src="https://th.bing.com/th/id/OIP.mblZRlAplxkavD9u4ZgS2AHaD5?pid=ImgDet&rs=1" alt="Img of Jujutsu Kaisen"/>
+            <img class="img" src="https://th.bing.com/th/id/OIP.mblZRlAplxkavD9u4ZgS2AHaD5?pid=ImgDet&rs=1" alt="Img of Jujutsu Kaisen Characters"/>
         </div>
-    </div>
-    <input type="radio" name="btn" id="item-3"/> 
-    <div class="display">
         <div class="carousel-slide slide-03">
             <h2 class="text"> Burning Kabaddi </h2>
             <h4 class="text"> Synopsis </h4>
-            <img class="img" src="https://th.bing.com/th/id/OIP.pNP5th6ouY4RBF-LEKpskAHaJE?pid=ImgDet&rs=1" alt="Img of Burning Kabaddi"/>
+            <img class="img" src="https://th.bing.com/th/id/OIP.pNP5th6ouY4RBF-LEKpskAHaJE?pid=ImgDet&rs=1" alt="Img of Burning Kabaddi Characters"/>
         </div>
+</div>
     <div class="dots">
         <label class="dot dot-01" ></label>
         <label class="dot dot-02" ></label>
         <label class="dot dot-03" ></label>
     </div>
-    </div>
-</div>
 </div>
 </template>
 
@@ -64,41 +55,30 @@ h4 {
     margin-right: 1.5%;
 } 
 /* Note: Dots have yet to be properly vertically aligned  */
-.dots { 
+.dots {  
     left: 0;
+    top: 65%;
     right: 0;
-    top: 63.5%;
     z-index: 5;
-    /* bottom: 30rem; */
     position: absolute;
     text-align: center;
 } 
 .dots .dot {
-    opacity: 0.25;
-    width: 2.5rem;
-    height: 2.5rem;
-    margin: 0.75rem;
+    opacity: 0.35;
+    width: 2.6rem;
+    height: 2.6rem;
+    margin: 0.85rem;
     border-radius: 50%; 
     display: inline-block;
     background-color: var(--white);
 }
 .text {
-    clear: none;
     margin-left: 1.5%;
     color: var(--white);
 }
-input {
-    display: none;
-}
-.slides {
-    white-space: nowrap;
-}
-.display {
-    display: block;
-}
 .carousel {
     padding: 0%;
-    margin: 2.55%;
+    margin: 2.5%;
     overflow: hidden;
     flex-direction: row;
 }
@@ -106,8 +86,8 @@ input {
     opacity: 0;
     z-index: 0;
     width: 92%;
-    height: 65%;
-    padding: 0.25%;
+    height: 66%;
+    padding: 0.15%;
     display: block;
     position: absolute;
     margin-left: 1.75%;
@@ -119,7 +99,7 @@ input {
         opacity: 1;
     }
     34%, 100% {
-        opacity: 0.25;
+        opacity: 0.35;
     }
 }
 @keyframes auto-carousel {
@@ -152,4 +132,3 @@ input {
     animation: auto-carousel 18s ease-in-out 12s infinite normal none running;
 }
 </style>
-
