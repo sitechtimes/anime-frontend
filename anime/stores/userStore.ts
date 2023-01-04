@@ -36,7 +36,7 @@ export const useUserStore = defineStore("user", {
             access_token: res.access_token,
           })
           .then((res) => {
-            // console.log(res.data)
+            console.log(res.data)
             this.token = res.data.access_token;
             // localStorage.setItem('token', JSON.stringify(this.token))
             axios
@@ -44,8 +44,19 @@ export const useUserStore = defineStore("user", {
                 headers: { Authorization: `Bearer ${res.data.access_token}` },
               })
               .then((res) => {
-                console.log(res.data.first_name);
+                console.log(res.data);
                 console.log(this.token)
+                let index = res.data.email.indexOf("@")
+                console.log(res.data.email.slice(index + 1))
+                console.log(index)
+
+                let account = res.data.email.slice(index + 1)
+
+                if (account != "nycstudents.net") {
+                  return alert("Need to login with your nycstudents.net")
+                  
+                }
+
                 // localStorage.setItem("user", res.data.first_name)
                 // this.userData = localStorage.getItem("user")
                 // this.user = res.data.first_name
