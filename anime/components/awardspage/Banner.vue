@@ -7,8 +7,8 @@
             <h2 class="trending-text">#trending</h2>
             <h1 class="title-banner">vote for your <br>faves anytime</h1>
             <p class="voting-description">Mission Statement and more writing yeah</p>
-            <!-- <img src="" alt="Anya"> -->
         </div>
+        <img src="@/assets/media/award-anya.png" alt="Anya falling with icecream" class="banner-image">
     </div>
     <div class="banner-season">
       <h2 class="season-text">Anime of the Season</h2>
@@ -65,6 +65,12 @@ export default {
   flex-direction: column;
   background-color: var(--secondary);
   border-radius: 25px;
+  position: relative;
+}
+.banner-image{
+  width:20%;
+  margin-left:22%;
+  position:absolute;
 }
 .title-banner,
 .trending-text,
