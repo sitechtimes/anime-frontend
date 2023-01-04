@@ -1,8 +1,15 @@
 <template>
     <div id="awards">
       <div class="seasonal">
-        <div v-for="award in awards" :key="award.category" class="award-box">
-          <h1>{{award.category}}</h1>
+        <div class="award-container">
+          <div v-for="award in awards" :key="award.category" class="award-box">
+            <h1>{{award.category}}</h1>
+          </div>
+        </div>
+        <div class="nominee-container">
+          <div class="nominee-box">
+            <h1>hduehd</h1>
+          </div>
         </div>
       </div>
     </div>
@@ -16,12 +23,14 @@
     },
     data: () => ({
       awards: [
-        {category: "A"},
+        {category: "A", animes: [{title: "1"}, {title: "1"}, {title: "1"}]},
         {category: "B"},
         {category: "C"},
-        {category: "C"},
-        {category: "C"},
-        {category: "C"},
+        {category: "D"},
+        {category: "E"},
+        {category: "F"},
+        {category: "G"},
+        {category: "H"},
       ]
     })
   })
@@ -30,16 +39,22 @@
   #awards {
     padding-top: 9vh;
   }
-  .seasonal {
+  .award-container {
     display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 10rem 15rem;
   }
   .award-box {
     background: red;
     color: white;
-    height: 10vh;
-    width: 10vw;
+    height: 15vh;
+    width: 15vw;
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+  .nominee-box {
+    color: white;
   }
   </style>
