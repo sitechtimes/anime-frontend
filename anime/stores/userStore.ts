@@ -11,7 +11,7 @@ export const useUserStore = defineStore("user", {
     last_name: null,
     email: null,
     redirect: false,
-    // userData: null,
+    userData: null,
     token: null,
     isAuthenticated: false,
     // userData: JSON.parse(localStorage.getItem("user")),
@@ -36,6 +36,7 @@ export const useUserStore = defineStore("user", {
             access_token: res.access_token,
           })
           .then((res) => {
+            // console.log(res.data)
             this.token = res.data.access_token;
             // localStorage.setItem('token', JSON.stringify(this.token))
             axios
