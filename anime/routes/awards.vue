@@ -2,12 +2,12 @@
     <div id="awards">
       <div class="seasonal">
         <div class="award-container">
-          <div v-for="award in awards" :key="award.category" class="award-box">
+          <div v-for="award in awards" :key="award.category" @click="showNominees" class="award-box">
             <h1>{{award.category}}</h1>
           </div>
         </div>
         <div class="nominee-container">
-          <div class="nominee-box">
+          <div v-for="award in awards" :key="award.category" class="nominee-box">
             <h1>hduehd</h1>
           </div>
         </div>
@@ -31,19 +31,30 @@
         {category: "F"},
         {category: "G"},
         {category: "H"},
-      ]
-    })
+      ],
+    }),
+    methods: {
+      showNominees() {
+        console.log("f")
+      }
+    },
   })
   </script>
   <style>
   #awards {
     padding-top: 9vh;
   }
+  .seasonal {
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+  }
   .award-container {
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
-    gap: 10rem 15rem;
+    gap: 6rem 8rem;
   }
   .award-box {
     background: red;
@@ -54,7 +65,17 @@
     justify-content: center;
     align-items: center;
   }
+  .nominee-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   .nominee-box {
     color: white;
+    background: blue;
+    text-align: center;
+    padding: 1rem;
+    margin-bottom: 2vh;
+    width: 50%;
   }
   </style>
