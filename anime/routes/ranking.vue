@@ -33,7 +33,7 @@ export default {
 					rank: 1,
 					title: "One Piece",
 					studio: "Toei Animation",
-					stars: 5,
+					stars: 7.91,
 					img: "https://sportshub.cbsistatic.com/i/2021/03/18/fc9eba90-ae7a-4e45-bef9-037145add04d/one-piece-wano-arc-1232360.jpg",
 				},
 				{
@@ -41,7 +41,7 @@ export default {
 					rank: 2,
 					title: "One Piece",
 					studio: "Toei Animation",
-					stars: 5,
+					stars: 7.91,
 					img: "https://sportshub.cbsistatic.com/i/2021/03/18/fc9eba90-ae7a-4e45-bef9-037145add04d/one-piece-wano-arc-1232360.jpg",
 				},
 				{
@@ -49,7 +49,7 @@ export default {
 					rank: 3,
 					title: "One Piece",
 					studio: "Toei Animation",
-					stars: 5,
+					stars: 7.91,
 					img: "https://sportshub.cbsistatic.com/i/2021/03/18/fc9eba90-ae7a-4e45-bef9-037145add04d/one-piece-wano-arc-1232360.jpg",
 				},
 				{
@@ -57,7 +57,7 @@ export default {
 					rank: 4,
 					title: "One Piece",
 					studio: "Toei Animation",
-					stars: 5,
+					stars: 7.91,
 					img: "https://sportshub.cbsistatic.com/i/2021/03/18/fc9eba90-ae7a-4e45-bef9-037145add04d/one-piece-wano-arc-1232360.jpg",
 				},
 				{
@@ -65,7 +65,7 @@ export default {
 					rank: 5,
 					title: "One Piece",
 					studio: "Toei Animation",
-					stars: 5,
+					stars: 7.91,
 					img: "https://sportshub.cbsistatic.com/i/2021/03/18/fc9eba90-ae7a-4e45-bef9-037145add04d/one-piece-wano-arc-1232360.jpg",
 				},
 				{
@@ -73,7 +73,7 @@ export default {
 					rank: 6,
 					title: "One Piece",
 					studio: "Toei Animation",
-					stars: 5,
+					stars: 7.91,
 					img: "https://sportshub.cbsistatic.com/i/2021/03/18/fc9eba90-ae7a-4e45-bef9-037145add04d/one-piece-wano-arc-1232360.jpg",
 				},
 				{
@@ -81,7 +81,7 @@ export default {
 					rank: 7,
 					title: "One Piece",
 					studio: "Toei Animation",
-					stars: 5,
+					stars: 7.91,
 					img: "https://sportshub.cbsistatic.com/i/2021/03/18/fc9eba90-ae7a-4e45-bef9-037145add04d/one-piece-wano-arc-1232360.jpg",
 				},
 				{
@@ -89,7 +89,7 @@ export default {
 					rank: 8,
 					title: "One Piece",
 					studio: "Toei Animation",
-					stars: 5,
+					stars: 7.91,
 					img: "https://sportshub.cbsistatic.com/i/2021/03/18/fc9eba90-ae7a-4e45-bef9-037145add04d/one-piece-wano-arc-1232360.jpg",
 				},
 				{
@@ -97,7 +97,7 @@ export default {
 					rank: 9,
 					title: "One Piece",
 					studio: "Toei Animation",
-					stars: 5,
+					stars: 7.91,
 					img: "https://sportshub.cbsistatic.com/i/2021/03/18/fc9eba90-ae7a-4e45-bef9-037145add04d/one-piece-wano-arc-1232360.jpg",
 				},
 				{
@@ -105,7 +105,7 @@ export default {
 					rank: 10,
 					title: "One Piece",
 					studio: "Toei Animation",
-					stars: 5,
+					stars: 7.91,
 					img: "https://sportshub.cbsistatic.com/i/2021/03/18/fc9eba90-ae7a-4e45-bef9-037145add04d/one-piece-wano-arc-1232360.jpg",
 				},
 			],
@@ -122,8 +122,10 @@ export default {
 }
 #rankings-title {
 	color: #fff;
-	font-size: 2rem;
-	font-weight: 700;
-	margin-bottom: 1rem;
+	font-size: var(--h2);
+	font-weight: var(--fw-semi);
+	margin-top: 4rem;
+	margin-bottom: 6rem;
+	margin-left: 14.5%;
 }
 </style>
