@@ -7,9 +7,9 @@
           </div>
         </div>
         <div class="nominee-container">
-          <div v-for="award in awards" :key="award.category" class="nominee-box">
-            <h1>hduehd</h1>
-          </div>
+          <!-- <div v-for="n in nominees" :key="n.text" class="nominee-box">
+            <h1>{{n.animes}}</h1>
+          </div> -->
         </div>
       </div>
     </div>
@@ -23,7 +23,7 @@
     },
     data: () => ({
       awards: [
-        {category: "A", animes: [{title: "1"}, {title: "1"}, {title: "1"}]},
+        {category: "A"},
         {category: "B"},
         {category: "C"},
         {category: "D"},
@@ -32,10 +32,20 @@
         {category: "G"},
         {category: "H"},
       ],
+      nominees: [
+        {animes: ["A1", "A2", "A3"]},
+        {animes: [{title: "B1"}, {title: "B2"}, {title: "B3"}]},
+        {animes: [{title: "C1"}, {title: "C2"}, {title: "C3"}]},
+        {animes: [{title: "D1"}, {title: "D2"}, {title: "D3"}]},
+        {animes: [{title: "E1"}, {title: "E2"}, {title: "E3"}]},
+        {animes: [{title: "F1"}, {title: "F2"}, {title: "F3"}]},
+        {animes: [{title: "G1"}, {title: "G2"}, {title: "G3"}]},
+        {animes: [{title: "H1"}, {title: "H2"}, {title: "H3"}]},
+      ]
     }),
     methods: {
       showNominees() {
-        console.log("f")
+        console.log(this.awards)
       }
     },
   })
