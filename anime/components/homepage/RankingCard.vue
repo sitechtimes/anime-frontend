@@ -1,6 +1,6 @@
 <template>
 	<div class="rankingCard">
-		<div class="rc-rank">{{ rank }}</div>
+		<div class="rc-rank" :id="`rank${rank}`">{{ rank }}</div>
 		<div class="rc-info">
 			<div class="rc-title">{{ title }}</div>
 			<div class="rc-sub">
@@ -62,17 +62,26 @@ export default {
 	padding-left: 1.5%;
 }
 .rc-rank {
-	font-size: 1.5rem;
-	font-weight: 600;
+	font-family: "LIBRARY 3 AM", sans-serif;
 	color: var(--white);
-	background-color: var(--secondary);
+	/* background-color: var(--secondary); */
+	background-color: #87000B;
 	height: 100%;
 	width: 7rem;
 	align-items: center;
 	justify-content: center;
 	display: flex;
-	font-size: var(--h3);
-	font-weight: var(--fw-reg);
+	font-size: var(--h1);
+	font-weight: var(--fw-med);
+}
+#rank1 {
+	color: rgb(255, 183, 0);
+}
+#rank2 {
+	color: rgb(0, 195, 255);
+}
+#rank3 {
+	color: #04ff9f;
 }
 .rc-info {
 	display: flex;
@@ -93,7 +102,6 @@ export default {
 	column-gap: 4rem;
 	justify-content: space-between;
 	width: 90%;
-	
 }
 .rc-studio {
 	font-size: var(--h5);
