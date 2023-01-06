@@ -41,35 +41,35 @@ h2 {
     font-size: var(--h2);
 }
 h5 {
-    max-width: 45%;
+    max-width: 40%;
     display: block;
     white-space: normal;
     font-size: var(--h5);
     overflow-wrap: break-word;
 }
 .img {
-    margin: 1%;
-    width: 50%;
-    height: 95%;
+    margin: 1% 1.5% 1% 1.5%;
+    width: 52%;
+    height: 86%;
     float: right;
     display: block;
-    border-radius: 6%;
+    border-radius: 6.5%;
 } 
 .dots {  
     left: 0;
     right: 0;
-    top: 65.5%;
+    top: 56%;
     z-index: 5;
     position: absolute;
     text-align: center;
 } 
 .dots .dot {
-    opacity: 0.25;
-    width: 2.5rem;
-    height: 2.5rem;
+    opacity: 0.15;
+    width: 1.7rem;
+    height: 1.7rem;
     border-radius: 50%; 
     display: inline-block;
-    margin: 0.65% 0.75% 0% 0.75%;
+    margin: 0.75% 0.45% 0% 0.45%;
     background-color: var(--white);
 }
 .text {
@@ -78,19 +78,19 @@ h5 {
 }
 .carousel {
     padding: 0%;
-    margin: 2.5%;
     overflow: hidden;
+    margin-top: 2.5%;
     flex-direction: row;
 }
 .carousel-slide {
     opacity: 0;
     z-index: 0;
-    width: 92%;
-    height: 66%;
-    display: block;
-    position: absolute;
-    margin-left: 1.75%;
-    margin-right: 1.75%;
+    width: 97%;
+    height: 56%;
+    display: block;   
+    position: absolute;  
+    margin-left: 1.5%;
+    margin-right: 1.5%;
     background-color: var(--tertiary);
 }
 @keyframes auto-dot {
@@ -98,10 +98,9 @@ h5 {
         opacity: 1;
     }
     35%, 100% {
-        opacity: 0.25;
+        opacity: 0.15;
     }
 }
-/* Carousel Slide Animation -> Fade  */
 @keyframes auto-slide {
     0%, 27% {
         z-index: 2;
@@ -140,7 +139,6 @@ h5 {
         opacity: 0.99;
     }
 }
-/* animation: name duration timing-function delay iteration-count direction fill-mode play-state; */
 .dot-01 {
     animation: auto-dot 9s ease-in-out 0s infinite normal none running;
 }
