@@ -2,6 +2,7 @@ import { defineStore } from "pinia";
 import axios from "axios";
 import { createPersistedState } from "pinia-plugin-persistedstate";
 import { googleLogout } from "vue3-google-login";
+import { useRouter } from "nuxt/app";
 // const router = useRouter()
 
 export const useUserStore = defineStore("user", {
@@ -53,7 +54,7 @@ export const useUserStore = defineStore("user", {
                 let account = res.data.email.slice(index + 1)
 
                 if (account != "nycstudents.net") {
-                  return alert("Need to login with your nycstudents.net")
+                  return alert("Need to login with your nycstudents.net account")
                   
                 }
 
@@ -91,7 +92,7 @@ export const useUserStore = defineStore("user", {
       try {
         // let user = useCookie('user')
         // user = null
-        localStorage.removeItem("token");
+        // localStorage.removeItem("token");
         location.reload();
         this.username = null;
         // this.userData = res.data;
