@@ -1,27 +1,35 @@
 <template>
 <div class="carousel">
-    <div class="slides">
         <div class="carousel-slide slide-01">
             <img class="img" src="https://th.bing.com/th/id/R.e4651a3a9eed4e1e43044e638b076e1f?rik=KXg2eMKBaDhnOQ&pid=ImgRaw&r=0" alt="Img of Blue Lock Characters"/>
             <h2 class="text"> Blue Lock </h2>  
             <h5 class="text"> Synopsis </h5>    
+            <div class="dots">
+                <label class="dot dot-01" ></label>
+                <label class="dot dot-02" ></label>
+                <label class="dot dot-03" ></label>
+            </div>
         </div>
         <div class="carousel-slide slide-02">
             <img class="img" src="https://th.bing.com/th/id/OIP.mblZRlAplxkavD9u4ZgS2AHaD5?pid=ImgDet&rs=1" alt="Img of Jujutsu Kaisen Characters"/>
             <h2 class="text"> Jujutsu Kaisen </h2>
             <h5 class="text"> Synopsis </h5>
+            <div class="dots">
+                <label class="dot dot-01" ></label>
+                <label class="dot dot-02" ></label>
+                <label class="dot dot-03" ></label>
+            </div>
         </div>
         <div class="carousel-slide slide-03">
             <img class="img" src="https://th.bing.com/th/id/OIP.frbPaUGvaphnnZ8AWM-T8gHaKf?pid=ImgDet&rs=1" alt="Img of Burning Kabaddi Characters"/>
             <h2 class="text"> Burning Kabaddi </h2>
             <h5 class="text"> Synopsis </h5>
+            <div class="dots">
+                <label class="dot dot-01" ></label>
+                <label class="dot dot-02" ></label>
+                <label class="dot dot-03" ></label>
+            </div>
         </div>
-    </div>
-    <div class="dots">
-        <label class="dot dot-01" ></label>
-        <label class="dot dot-02" ></label>
-        <label class="dot dot-03" ></label>
-    </div>
 </div>
 </template>
 
@@ -38,6 +46,7 @@ export default {
 <style scoped>
 h2 {
     display: block;
+    margin-top: 0.45%;
     font-size: var(--h2);
 }
 h5 {
@@ -48,17 +57,17 @@ h5 {
     overflow-wrap: break-word;
 }
 .img {
-    margin: 1% 1.5% 1% 1.5%;
     width: 52%;
-    height: 86%;
+    height: 88%;
     float: right;
     display: block;
     border-radius: 6.5%;
+    margin: 0.75% 1.5% 0% 1.5%;
 } 
 .dots {  
     left: 0;
     right: 0;
-    top: 56%;
+    top: 90.5%;
     z-index: 5;
     position: absolute;
     text-align: center;
@@ -73,24 +82,24 @@ h5 {
     background-color: var(--white);
 }
 .text {
-    margin-left: 1%;
+    margin-left: 1.5%;
     color: var(--white);
 }
 .carousel {
     padding: 0%;
     overflow: hidden;
-    margin-top: 2.5%;
+    margin-top: 1.5%;
     flex-direction: row;
 }
 .carousel-slide {
     opacity: 0;
     z-index: 0;
     width: 97%;
-    height: 56%;
+    height: 57%;
     display: block;   
-    position: absolute;  
     margin-left: 1.5%;
     margin-right: 1.5%;
+    position: absolute;  
     background-color: var(--tertiary);
 }
 @keyframes auto-dot {
