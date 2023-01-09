@@ -90,16 +90,21 @@ export const useUserStore = defineStore("user", {
     },
     async checkCookie() {
       try {
-        const res = axios.get("http://127.0.0.1:8000/auth/user/", {
+        // let user = useCookie("user")
+        // console.log(user)
+        const res = await axios.get("http://127.0.0.1:8000/auth/user/", {
                 headers: { Authorization: `Bearer ${this.token}` },
+              }).then((res) => {
+
               })
-        console.log((await res).status)
+        // console.log((await res).status)
       } catch (error) {
         // alert(error)
         if (error = "AxiosError: Request failed with status code 401") {
           // console.log("erfref")
           alert("Your session has expired. Please login again!")
           this.logout()
+          return navigateTo("/login")
 
           //add router.push
         }
