@@ -99,8 +99,10 @@ export const useUserStore = defineStore("user", {
               })
         // console.log((await res).status)
       } catch (error) {
-        // alert(error)
-        if (error = "AxiosError: Request failed with status code 401") {
+        if (!this.token) {
+          return
+        }
+        else if (error = "AxiosError: Request failed with status code 401") {
           // console.log("erfref")
           alert("Your session has expired. Please login again!")
           this.logout()
