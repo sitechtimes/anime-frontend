@@ -15,12 +15,18 @@
     components:{
       NavBar,
     },
-    // setup(){
-    //   const userStore = useUserStore()
-    //   const localStorage = window.localStorage
-    //   return {
-    //     userStore,
-    //     localStorage
+    setup(){
+      const userStore = useUserStore()
+      return {
+        userStore,
+      }
+    },
+    beforeCreate() {
+        this.userStore.checkCookie()
+      }
+    // methods: {
+    //   onBeforeMount() {
+    //     this.userStore.checkCookie()
     //   }
     // },
     // mounted() {
@@ -29,7 +35,6 @@
     // }
   })
   </script>
-
   <style>
   @import url("./assets/global.css");
 

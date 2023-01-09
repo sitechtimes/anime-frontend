@@ -88,12 +88,29 @@ export const useUserStore = defineStore("user", {
         // return false;
       }
     },
+    async checkCookie() {
+      try {
+        const res = axios.get("http://127.0.0.1:8000/auth/user/", {
+                headers: { Authorization: `Bearer ${this.token}` },
+              })
+        console.log((await res).status)
+      } catch (error) {
+        // alert(error)
+        if (error = "AxiosError: Request failed with status code 401") {
+          // console.log("erfref")
+          alert("Your session has expired. Please login again!")
+          this.logout()
+
+          //add router.push
+        }
+      }
+    },
     logout() {
       try {
         // let user = useCookie('user')
         // user = null
         // localStorage.removeItem("token");
-        location.reload();
+        // location.reload();
         this.username = null;
         // this.userData = res.data;
         this.first_name = null;
