@@ -12,7 +12,8 @@
     </div>
     <div class="banner-season">
       <h2 class="season-text">Anime of the Season</h2>
-      <div v-for="anime in animes" :key="anime.title" class="bestAnime">
+     <ul class="anime-list">
+      <li v-for="anime in animes" :key="anime.animeID" class="bestAnime">
           <img class="anime-pfp" src="https://cdn.myanimelist.net/images/characters/4/457933.jpg" alt="">
           <div class="info-column">
             <h1 class="title">{{anime.title}}</h1>
@@ -24,8 +25,9 @@
               </div>
               <p>{{anime.genre}}</p>
             </div>
-        </div>
+          </li>
 
+     </ul>
 
     </div>
   </div>
@@ -36,18 +38,13 @@
 export default {
   data: ()=> ({
     animes: [
-      {title: "One Punch Man", stars: 8.50, releaseDate: "Oct 5, 2015"},
-      {title: "Spy x Family", stars: 9.99, releaseDate: "Apr 9, 2022"},
-      {title: "Chainsaw Man", stars: 8.24, releaseDate: "Oct 11, 2022"},
-      {title: "Summertime Render", stars: 9.61, releaseDate: "Apr 15, 2022"},
-      {title: "Is It Wrong To Try To Pick Up Girls In A Dungeon?", stars: 7.69, releaseDate: "Apr 4, 2015"},
-      {title: "I Spent Hours of my Life Doing Spiral Abyss and all I got was an Extra 50 Primogems", stars: 9.89, releaseDate: "June 9, 2022"},
-      {title: "Some Mid Isekai Anime", stars: 2.56, releaseDate: "Aug 19, 2021"},
-      {title: "I went on a Field Trip Where I Touched Grass For the First Time in Years", stars: 7.86, releaseDate: "Jan 17, 2012"},
-      {title: "The Pi in the Sky", stars: 9.90, releaseDate: "Mar 14, 1592"},
-      {title: "Genshin Impact The Anime", stars: 9.27, releaseDate: "TBA"},
+      {animeID:1, title: "One Punch Man", stars: 8.50, releaseDate: "Oct 5, 2015"},
+      {animeID:2,title: "Spy x Family", stars: 9.99, releaseDate: "Apr 9, 2022"},
+      {animeID:3,title: "Chainsaw Man", stars: 8.24, releaseDate: "Oct 11, 2022"},
+      {animeID:4,title: "Summertime Render", stars: 9.61, releaseDate: "Apr 15, 2022"},
+      {animeID:5,title: "Is It Wrong To Try To Pick Up Girls In A Dungeon?", stars: 7.69, releaseDate: "Apr 4, 2015"},
       ],
-  })
+  }),
 }
 </script>
 
@@ -79,15 +76,29 @@ export default {
     height:100%;
     border-radius: 25px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     color:var(--white);
+}
+.anime-pfp{
+  border-radius: 50%;
+-moz-border-radius: 50%;
+-webkit-border-radius: 50%;
+-o-border-radius: 50%;
+width:5rem;
+height:5rem;
 }
 .season-text{
   font-size: var(--h3);
   margin:0 auto;
 }
-
+.title{
+  font-size: var(--h5);
+}
+svg{
+  width:1rem;
+}
 .banner-text{
   width:55%;
   height:90%;
@@ -128,7 +139,14 @@ export default {
   font-weight: var(--fw-reg);
   margin-top:4%;
 }
-
+.anime-list{
+  display: flex;
+  flex-direction: column;
+}
+.bestAnime{
+  display: flex;
+  flex-direction: row;
+}
 .underNav{
   width:100vw;
   height:15rem;
