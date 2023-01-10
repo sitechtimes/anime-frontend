@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<h2>Vue.js and D3 Line Chart</h2>
-		<svg></svg>
+		<svg id="chart"></svg>
 	</div>
 </template>
 <script>
@@ -31,7 +31,7 @@ export default {
 			{ date: "10-May-07", amount: 107.34 },
 		];
 
-		const svg = d3.select("svgk").attr("width", width).attr("height", height);
+		const svg = d3.select("#chart").attr("width", width).attr("height", height);
 		const g = svg.append("g");
 
 		//2. Parse the dates
