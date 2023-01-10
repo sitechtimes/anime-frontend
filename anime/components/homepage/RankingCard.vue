@@ -22,7 +22,9 @@ import starSVG from "@/components/starSVG.vue";
 
 export default {
 	name: "RankingCard",
-	components: {},
+	components: {
+		starSVG
+	},
 	props: {
 		rank: {
 			type: Number,
