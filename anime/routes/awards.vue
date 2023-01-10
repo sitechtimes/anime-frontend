@@ -6,8 +6,8 @@
             <h1>{{award.category}}</h1>
           </div>
         </div>
-        <div v-for="award in awards" :key="award.category" class="nominee-container">
-          <div v-for="s in award.nominees" :key="s.title" class="nominee-box">{{s.title}}</div>
+        <div v-for="award in awards[index].nominees" :key="award.title" class="nominee-container">
+          <div class="nominee-box">{{award.title}}</div>
         </div>
       </div>
     </div>
@@ -29,7 +29,8 @@
         // {category: "F"},
         // {category: "G"},
         // {category: "H"},
-      ]
+      ],
+      index: 0,
     }),
     methods: {
       showNominees() {
