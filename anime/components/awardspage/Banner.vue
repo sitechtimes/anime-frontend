@@ -14,15 +14,18 @@
       <h2 class="season-text">Anime of the Season</h2>
      <ul class="anime-list">
       <li v-for="anime in animes" :key="anime.animeID" class="bestAnime">
+         <div class="picture-column">
+          <h2 class="rank-number">{{ anime.animeID }}</h2>
           <img class="anime-pfp" src="https://cdn.myanimelist.net/images/characters/4/457933.jpg" alt="">
+         </div>
           <div class="info-column">
             <h1 class="animeTitle">{{anime.title}}</h1>
               <div class="star-rating">
                 <starSVG />
                 <p>{{anime.stars.toFixed(2)}}</p>
               </div>
-              <p>{{anime.genre}}</p>
             </div>
+            <span class="genre-text">{{anime.genre}}</span>
           </li>
 
      </ul>
@@ -40,17 +43,17 @@ export default {
 	},
   data: ()=> ({
     animes: [
-      {animeID:1, title: "One Punch Man", stars: 8.50, releaseDate: "Oct 5, 2015"},
-      {animeID:2,title: "Spy x Family", stars: 9.99, releaseDate: "Apr 9, 2022"},
-      {animeID:3,title: "Chainsaw Man", stars: 8.24, releaseDate: "Oct 11, 2022"},
-      {animeID:4,title: "Summertime Render", stars: 9.61, releaseDate: "Apr 15, 2022"},
-      {animeID:5,title: "Is It Wrong To Try To Pick Up Girls In A Dungeon?", stars: 7.69, releaseDate: "Apr 4, 2015"},
+      {animeID:1, title: "One Punch Man", stars: 8.50, releaseDate: "Oct 5, 2015", genre:"Adventure"},
+      {animeID:2,title: "Spy x Family", stars: 9.99, releaseDate: "Apr 9, 2022", genre:"Comedy"},
+      {animeID:3,title: "Chainsaw Man", stars: 8.24, releaseDate: "Oct 11, 2022", genre:"Graphic"},
+      {animeID:4,title: "Summertime Render", stars: 9.61, releaseDate: "Apr 15, 2022", genre:"School Life"},
+      {animeID:5,title: "Is It Wrong To Try To Pick Up Girls In A Dungeon?", stars: 7.69, releaseDate: "Apr 4, 2015", genre:"Fantasy"},
       ],
   }),
 }
 </script>
 
-<style>
+<style scoped>
 #banner{
   width:100vw;
   height:100vh;
@@ -85,22 +88,41 @@ export default {
 }
 .anime-pfp{
   border-radius: 50%;
--moz-border-radius: 50%;
--webkit-border-radius: 50%;
--o-border-radius: 50%;
-width:5rem;
-height:5rem;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -o-border-radius: 50%;
+  width:5rem;
+  height:5rem;
+  margin-left:1rem;
 }
 .season-text{
   font-size: var(--h3);
   margin:0 auto;
 }
-.title{
-  font-size: var(--h5);
+.animeTitle{
+  font-size: var(--h4);
+  overflow: hidden;
+  white-space: nowrap;
+  display: block;
+  text-overflow: ellipsis;
 }
-/* star */
-svg{
-  width:1.5rem;
+.genre-text{
+  background-color: var(--primary);
+  width:20%;
+  height: 35%;
+  display: flex;
+  justify-content: center;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+.info-column{
+  width:40%;
+}
+.picture-column{
+  width:20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 /* flex for primary section */
 .banner-text{
