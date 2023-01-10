@@ -46,7 +46,7 @@ export default {
 <style scoped>
 h2 {
     display: block;
-    margin-top: 0.45%;
+    margin-top: 0.5%;
     font-size: var(--h2);
 }
 h5 {
@@ -61,28 +61,28 @@ h5 {
     height: 88%;
     float: right;
     display: block;
-    border-radius: 6.5%;
-    margin: 0.75% 1.5% 0% 1.5%;
+    border-radius: 5.5%;
+    margin: 0.75% 1.3% 0% 1.3%;
 } 
 .dots {  
     left: 0;
     right: 0;
-    top: 90.5%;
     z-index: 5;
+    top: 91.25%;
     position: absolute;
     text-align: center;
 } 
 .dots .dot {
     opacity: 0.15;
-    width: 1.7rem;
-    height: 1.7rem;
+    width: 1.75rem;
+    height: 1.75rem;
     border-radius: 50%; 
     display: inline-block;
     margin: 0.75% 0.45% 0% 0.45%;
     background-color: var(--white);
 }
 .text {
-    margin-left: 1.5%;
+    margin-left: 1.75%;
     color: var(--white);
 }
 .carousel {
@@ -97,54 +97,54 @@ h5 {
     width: 97%;
     height: 57%;
     display: block;   
-    margin-left: 1.5%;
-    margin-right: 1.5%;
+    margin-left: 1%;
+    margin-right: 1%;
     position: absolute;  
     background-color: var(--tertiary);
 }
 @keyframes auto-dot {
-    0%, 34% {
+    0%, 33% {
         opacity: 1;
     }
-    35%, 100% {
+    34%, 100% {
         opacity: 0.15;
     }
 }
 @keyframes auto-slide {
-    0%, 27% {
-        z-index: 2;
+    0%, 26% {
+        z-index: 4;
         opacity: 1;
     }
-    28% {
-        z-index: 2;
+    27% {
+        z-index: 4;
         opacity: 0.8;
     }
-    30% {
-        z-index: 2;
+    29% {
+        z-index: 4;
         opacity: 0.6;
     }
-    32% {
-        z-index: 2;
+    31% {
+        z-index: 4;
         opacity: 0.4;
     }
-    34% {
-        z-index: 2;
+    33% {
+        z-index: 4;
         opacity: 0.2;
     }
-    35%, 95% {
+    34%, 95% {
         z-index: 0;
         opacity: 0;
     }
     96% {
-        z-index: 1;
+        z-index: 3;
         opacity: 0.33;
     }
     98% {
-        z-index: 1;
+        z-index: 3;
         opacity: 0.66;
     }
     100% {
-        z-index: 1;
+        z-index: 3;
         opacity: 0.99;
     }
 }
@@ -161,9 +161,13 @@ h5 {
     animation: auto-slide 9s ease-in-out 0s infinite normal none running;
 }
 .slide-02 {
+    z-index: 2;
+    opacity: 0.5;
     animation: auto-slide 9s ease-in-out 3s infinite normal none running;
 }
 .slide-03 {
+    z-index: 1;
+    opacity: 0.5;
     animation: auto-slide 9s ease-in-out 6s infinite normal none running;
 }
 </style>
