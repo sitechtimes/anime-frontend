@@ -14,5 +14,7 @@ export default defineNuxtConfig({
         '@pinia/nuxt',
         '@pinia-plugin-persistedstate/nuxt',
       ],
-
+      runtimeConfig: {
+        client: process.env.CLIENT_ID
+      }
 })

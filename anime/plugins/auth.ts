@@ -1,6 +1,7 @@
 import vue3GoogleLogin from "vue3-google-login"
 import dotenv from "dotenv"
 // dotenv.config()
+// const runtimeConfig = useRuntimeConfig()
 
 export default defineNuxtPlugin(nuxtApp =>  {
     nuxtApp.vueApp.use(vue3GoogleLogin, {

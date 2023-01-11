@@ -53,8 +53,8 @@ export const useUserStore = defineStore("user", {
 
                 let account = res.data.email.slice(index + 1)
 
-                if (account != "nycstudents.net") {
-                  return alert("Need to login with your nycstudents.net account")
+                if (account != "nycstudents.net" || "schools.nyc.gov") {
+                  return alert("Need to login with your school account (i.e. nycstudents.net)")
                   
                 }
 
