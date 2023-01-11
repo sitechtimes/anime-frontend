@@ -103,13 +103,12 @@ h5 {
 .carousel-slide {
     opacity: 0;
     z-index: 0;
-    width: 98%;
+    width: 70%;
     height: 52%;
-    display: block;   
+    display: flex;   
     margin-left: 1%;
     margin-right: 1%;
     position: absolute; 
-    background-color: var(--tertiary);
 }
 @keyframes auto-dot {
     0%, 33% {
