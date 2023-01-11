@@ -1,14 +1,15 @@
 <template>
     <div id="awards">
-      <h1>please</h1>
+      <Banner/>
     </div>
   </template>
   
   <script lang="ts">
+   import Banner from '../components/awardspage/Banner.vue'
   export default({
     name: 'awards',
     components:{
-  
+      Banner
     }
   })
   </script>
