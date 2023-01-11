@@ -31,6 +31,7 @@ export const useUserStore = defineStore("user", {
   },
   actions: {
     async login(res: any) {
+      console.log(res.code)
       try {
         axios
           .post("http://localhost:8000/social-login/google/", {
