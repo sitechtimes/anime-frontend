@@ -8,10 +8,13 @@
           </div>
         </div>
         <div v-else>
-          <div v-for="award in awards[index].nominees" :key="award.title" class="nominee-container">
-            <div class="nominee-box">{{award.title}}</div>
+          <div class="nominee-container">
+            <h1 v-for="award in awards[index].nominees" :key="award.title" class="nominee-box">{{award.title}}</h1>
           </div>
-          <button @click="back">Back</button>
+          <div>
+            <button @click="back">Back</button>
+            <button>Vote</button>
+          </div>
         </div>
       </div>
     </div>
@@ -75,16 +78,18 @@
   }
   .nominee-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    justify-content: space-evenly;
   }
   .nominee-box {
     color: white;
     background: blue;
+    font-size: var(--h4);
     text-align: center;
     padding: 1rem;
     margin-bottom: 2vh;
-    width: 50%;
+    width: 20vw;
+    height: 20vh;
   }
   .hide {
     display: none;
