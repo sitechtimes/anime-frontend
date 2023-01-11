@@ -34,7 +34,7 @@ export const useUserStore = defineStore("user", {
       try {
         axios
           .post("http://localhost:8000/social-login/google/", {
-            access_token: res.access_token,
+            code: res.code,
           })
           .then((res) => {
             console.log(res.data)
@@ -52,8 +52,9 @@ export const useUserStore = defineStore("user", {
                 console.log(index)
 
                 let account = res.data.email.slice(index + 1)
-
-                if (account != "nycstudents.net" || "schools.nyc.gov") {
+                
+                //add teacher later
+                if (account != "nycstudents.net") {
                   return alert("Need to login with your school account (i.e. nycstudents.net)")
                   
                 }

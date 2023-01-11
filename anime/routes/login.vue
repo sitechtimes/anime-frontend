@@ -8,7 +8,7 @@
         <input type="password" placeholder="Password" class="input-box">
         <p class="redirect">Forget your password?</p>
       </div>
-      <GoogleLogin v-if="userStore.isAuthenticated == false" :callback="userStore.login" popup-type="TOKEN" class="login-with-google-btn">
+      <GoogleLogin v-if="userStore.isAuthenticated == false" :callback="userStore.login"  class="login-with-google-btn">
                     <!-- <button>Sign in with Google</button> -->
         <p class="login-header">Sign in with Google</p>
       </GoogleLogin>
