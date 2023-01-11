@@ -11,8 +11,9 @@
         <img src="@/assets/media/award-anya.png" alt="Anya falling with icecream" class="banner-image">
     </div>
     <div class="banner-season">
-      <h2 class="season-text">Anime of the Season</h2>
+      
      <ul class="anime-list">
+      <h2 class="season-text">Anime of the Season</h2>
       <li v-for="anime in animes" :key="anime.animeID" class="bestAnime">
          <div class="picture-column">
           <h2 class="rank-number">{{ anime.animeID }}</h2>
@@ -75,15 +76,13 @@ export default {
     align-items: center;
     color:var(--white);
 }
+/* top anime section */
 .banner-season{
     background-color: var(--tertiary);
     width:35%;
     height:100%;
     border-radius: 25px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    margin: 0 auto;
     color:var(--white);
 }
 .anime-pfp{
@@ -97,7 +96,8 @@ export default {
 }
 .season-text{
   font-size: var(--h3);
-  margin:0 auto;
+  margin:2.7vw 0 0 0 ;
+  text-align:center;
 }
 .animeTitle{
   font-size: var(--h4);
@@ -113,13 +113,14 @@ export default {
   display: flex;
   justify-content: center;
   border-radius: 1rem;
+  margin-top: 1vw;
   overflow: hidden;
 }
 .info-column{
-  width:40%;
+  width:45%;
 }
 .picture-column{
-  width:20%;
+  width:22%;
   display: flex;
   align-items: center;
   justify-content: center;
