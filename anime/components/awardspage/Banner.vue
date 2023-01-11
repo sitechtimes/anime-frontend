@@ -44,11 +44,11 @@ export default {
 	},
   data: ()=> ({
     animes: [
-      {animeID:1, title: "One Punch Man", stars: 8.50, releaseDate: "Oct 5, 2015", genre:"Adventure"},
-      {animeID:2,title: "Spy x Family", stars: 9.99, releaseDate: "Apr 9, 2022", genre:"Comedy"},
-      {animeID:3,title: "Chainsaw Man", stars: 8.24, releaseDate: "Oct 11, 2022", genre:"Graphic"},
-      {animeID:4,title: "Summertime Render", stars: 9.61, releaseDate: "Apr 15, 2022", genre:"School Life"},
-      {animeID:5,title: "Is It Wrong To Try To Pick Up Girls In A Dungeon?", stars: 7.69, releaseDate: "Apr 4, 2015", genre:"Fantasy"},
+      {animeID:"01", title: "One Punch Man", stars: 8.50, releaseDate: "Oct 5, 2015", genre:"Adventure"},
+      {animeID:'02',title: "Spy x Family", stars: 9.99, releaseDate: "Apr 9, 2022", genre:"Comedy"},
+      {animeID:'03',title: "Chainsaw Man", stars: 8.24, releaseDate: "Oct 11, 2022", genre:"Graphic"},
+      {animeID:'04',title: "Summertime Render", stars: 9.61, releaseDate: "Apr 15, 2022", genre:"School Life"},
+      {animeID:'05',title: "Is It Wrong To Try To Pick Up Girls In A Dungeon?", stars: 7.69, releaseDate: "Apr 4, 2015", genre:"Fantasy"},
       ],
   }),
 }
