@@ -1,15 +1,18 @@
   <template>
     <div id="home">
-      <TrendingBox/>
+      <Carosaul/>
+      <!-- <TrendingBox/> -->
     </div>
   </template>
   
   <script lang="ts">
-  import TrendingBox from '../components/homepage/TrendingBox.vue'
+  import TrendingBox from '../components/homepage/TrendingBox.vue';
+  import Carosaul from '../components/homepage/Carosaul.vue';
 
   export default ({
     name: 'IndexPage',
     components:{
+      Carosaul,
      TrendingBox
     },
   })
