@@ -53,12 +53,12 @@ export const useUserStore = defineStore("user", {
                 console.log(index)
 
                 let account = res.data.email.slice(index + 1)
-                
+                console.log(account)
                 //add teacher later
-                // if (account != "nycstudents.net" || "schools.nyc.gov") {
-                //   return alert("Need to login with your school account (i.e. nycstudents.net)")
+                if (account != ("nycstudents.net" || "schools.nyc.gov")) {
+                  return alert("Need to login with your school account (i.e. nycstudents.net)")
                   
-                // }
+                }
 
                 // localStorage.setItem("user", res.data.first_name)
                 // this.userData = localStorage.getItem("user")
