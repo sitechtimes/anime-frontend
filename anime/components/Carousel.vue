@@ -53,7 +53,7 @@ export default {
 </script>
 
 <style scoped>
-h2 {
+h2 {   
     display: block;
     margin-top: 0.35%;
     font-size: var(--h2);
@@ -67,7 +67,7 @@ h5 {
 }
 .img {
     height: 89%;
-    width: 52.5%;
+    width: 49.5%;
     float: right;
     display: block;
     border-radius: 7.25%;
@@ -109,6 +109,7 @@ h5 {
     margin-left: 1%;
     margin-right: 1%;
     position: absolute; 
+    background-color: var(--bg-primary);
 }
 @keyframes auto-dot {
     0%, 33% {
