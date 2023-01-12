@@ -8,12 +8,12 @@
           </div>
         </div>
         <div v-else>
+          <h1 v-for="award in awards[index].category" :key="award.string" class="award-name">{{award}}</h1>
           <div class="nominee-container">
             <h1 v-for="award in awards[index].nominees" :key="award.title" class="nominee-box">{{award.title}}</h1>
           </div>
           <div>
             <button @click="back">Back</button>
-            <button>Vote</button>
           </div>
         </div>
       </div>
