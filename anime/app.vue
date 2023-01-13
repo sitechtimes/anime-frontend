@@ -10,6 +10,7 @@
   
   <script lang="ts">
   import NavBar from './components/navbar/NavBar.vue'
+  import { useUserStore } from "./stores/userStore"
   import NavigationMobile from './components/navbar/NavigationMobile.vue'
   export default ({
     name: 'IndexPage',
@@ -18,11 +19,28 @@
       NavBar,
       NavigationMobile
     },
-    
+    setup(){
+      const userStore = useUserStore()
+      return {
+        userStore,
+      }
+    },
+    beforeCreate() {
+        this.userStore.checkCookie()
+      }
+    // methods: {
+    //   onBeforeMount() {
+    //     this.userStore.checkCookie()
+    //   }
+    // },
+    // mounted() {
+    //   this.userStore.getToken
+    //   console.log(this.userStore.getToken, this.userStore.getUser)
+    // }
+
   })
 
   </script>
-
   <style>
   @import url("./assets/global.css");
 
