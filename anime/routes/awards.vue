@@ -8,7 +8,7 @@
           </div>
         </div>
         <div v-else>
-          <h1 v-for="award in awards[index].category" :key="award.string" class="award-name">{{award}}</h1>
+          <h1 v-for="award in awards[index]" :key="award.category" class="award-name">{{award}}</h1>
           <div class="nominee-container">
             <h1 v-for="award in awards[index].nominees" :key="award.title" class="nominee-box">{{award.title}}</h1>
           </div>
@@ -28,7 +28,7 @@
     },
     data: () => ({
       awards: [
-        {category: "A", nominees: [{title: "A1"}, {title: "A2"}, {title: "A3"}]},
+        {category: "Best Anime", nominees: [{title: "A1"}, {title: "A2"}, {title: "A3"}]},
         {category: "B", nominees: [{title: "B1"}, {title: "B2"}, {title: "B3"}]},
         {category: "C", nominees: [{title: "C1"}, {title: "C2"}, {title: "C3"}]},
         {category: "D", nominees: [{title: "D1"}, {title: "D2"}, {title: "D3"}]},
@@ -75,6 +75,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+  .award-name {
+    color: white;
+    background: green;
+    font-size: var(--h1);
+    text-align: center;
   }
   .nominee-container {
     display: flex;
