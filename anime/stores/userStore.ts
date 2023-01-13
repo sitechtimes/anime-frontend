@@ -94,7 +94,7 @@ export const useUserStore = defineStore("user", {
     async checkCookie() {
       try {
         // let user = useCookie("user")
-        // console.log(user)
+        console.log(this.token)
         const res = await axios.get("http://127.0.0.1:8000/auth/user/", {
                 headers: { Authorization: `Bearer ${this.token}` },
               }).then((res) => {
