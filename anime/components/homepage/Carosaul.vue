@@ -188,8 +188,8 @@
     }
     /* undernavigation  */
 .underNav{
-  width:20vw;
-  height:75vh;
+  width:100vw;
+  height:60vh;
   display:block;
 }
     </style>

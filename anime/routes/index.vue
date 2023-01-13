@@ -1,7 +1,7 @@
   <template>
     <div id="home">
       <Carosaul/>
-      <!-- <TrendingBox/> -->
+      <TrendingBox/>
     </div>
   </template>
   
