@@ -56,6 +56,7 @@ export const useUserStore = defineStore("user", {
                 console.log(account)
                 //add teacher later
                 if (account != ("nycstudents.net" || "schools.nyc.gov")) {
+                  this.token = null
                   return alert("Need to login with your school account (i.e. nycstudents.net)")
                   
                 }
