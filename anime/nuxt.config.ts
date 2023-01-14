@@ -7,9 +7,9 @@ export default defineNuxtConfig({
 
     runtimeConfig: {
 
- public: {
+
   clientID: process.env.CLIENT_ID,
- }
+ 
       
     
     },
