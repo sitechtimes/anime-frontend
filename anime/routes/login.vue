@@ -97,6 +97,35 @@ export default {
   width: 10vw
 };
 
-@media screen and (max-width: 1440px) {
+@media screen and (max-width: 820px) {
+.img {
+  display: none;
+}
+.login-form {
+  width: 85vw;
+  height: 80vh;
+}
+.input-box {
+  width: 55vw;
+}
+.submit-btn{
+  width: 25vw;
+}
+}
+
+@media screen and (max-width: 415px) {
+.img {
+  display: none;
+}
+.login-form {
+  width: 90vw;
+  height: 65vh;
+}
+.input-box {
+  width: 65vw;
+}
+.submit-btn{
+  width: 30vw;
+}
 }
 </style>
