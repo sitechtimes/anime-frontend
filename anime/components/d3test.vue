@@ -1,256 +1,317 @@
 <template>
 	<div>
 		<h2>Vue.js and D3 Line Chart</h2>
+		<button @click="checkForm">Start</button>
 		<svg id="d3chart"></svg>
 	</div>
 </template>
 <script lang="ts">
 import * as d3 from "d3";
-import categorybrands from "@/assets/category-brands.csv";
-
-data = categorybrands;
-
-const svg = d3.create("#d3chart").attr("viewBox", [0, 0, width, height]);
-
-const updateBars = bars(svg);
-const updateAxis = axis(svg);
-const updateLabels = labels(svg);
-const updateTicker = ticker(svg);
-
-yield svg.node();
-
-for (const keyframe of keyframes) {
-	const transition = svg.transition().duration(duration).ease(d3.easeLinear);
-
-	// Extract the top bar’s value.
-	x.domain([0, keyframe[1][0].value]);
-
-	updateAxis(keyframe, transition);
-	updateBars(keyframe, transition);
-	updateLabels(keyframe, transition);
-	updateTicker(keyframe, transition);
-
-	invalidation.then(() => svg.interrupt());
-	await transition.end();
-}
-
-d3.group(data, d => d.name);
-
-n = 12;
-
-names = new Set(data.map(d => d.name));
-
-datevalues = Array.from(
-	d3.rollup(
-		data,
-		([d]) => d.value,
-		d => +d.date,
-		d => d.name
-	)
-)
-	.map(([date, data]) => [new Date(date), data])
-	.sort(([a], [b]) => d3.ascending(a, b));
-
-function rank(value) {
-	const data = Array.from(names, name => ({ name, value: value(name) }));
-	data.sort((a, b) => d3.descending(a.value, b.value));
-	for (let i = 0; i < data.length; ++i) data[i].rank = Math.min(n, i);
-	return data;
-}
-
-rank(name => datevalues[0][1].get(name));
-
-k = 10;
-
-const keyframes = [];
-let ka, a, kb, b;
-for ([[ka, a], [kb, b]] of d3.pairs(datevalues)) {
-	for (let i = 0; i < k; ++i) {
-		const t = i / k;
-		keyframes.push([
-			new Date(ka * (1 - t) + kb * t),
-			rank(name => (a.get(name) || 0) * (1 - t) + (b.get(name) || 0) * t),
-		]);
-	}
-}
-keyframes.push([new Date(kb), rank(name => b.get(name) || 0)]);
-
-nameframes = d3.groups(
-	keyframes.flatMap(([, data]) => data),
-	d => d.name
-);
-
-prev = new Map(nameframes.flatMap(([, data]) => d3.pairs(data, (a, b) => [b, a])));
-next = new Map(nameframes.flatMap(([, data]) => d3.pairs(data)));
-
-function bars(svg) {
-	let bar = svg.append("g").attr("fill-opacity", 0.6).selectAll("rect");
-
-	return ([date, data], transition) =>
-		(bar = bar
-			.data(data.slice(0, n), d => d.name)
-			.join(
-				enter =>
-					enter
-						.append("rect")
-						.attr("fill", color)
-						.attr("height", y.bandwidth())
-						.attr("x", x(0))
-						.attr("y", d => y((prev.get(d) || d).rank))
-						.attr("width", d => x((prev.get(d) || d).value) - x(0)),
-				update => update,
-				exit =>
-					exit
-						.transition(transition)
-						.remove()
-						.attr("y", d => y((next.get(d) || d).rank))
-						.attr("width", d => x((next.get(d) || d).value) - x(0))
-			)
-			.call(bar =>
-				bar
-					.transition(transition)
-					.attr("y", d => y(d.rank))
-					.attr("width", d => x(d.value) - x(0))
-			));
-}
-
-function labels(svg) {
-	let label = svg
-		.append("g")
-		.style("font", "bold 12px var(--sans-serif)")
-		.style("font-variant-numeric", "tabular-nums")
-		.attr("text-anchor", "end")
-		.selectAll("text");
-
-	return ([date, data], transition) =>
-		(label = label
-			.data(data.slice(0, n), d => d.name)
-			.join(
-				enter =>
-					enter
-						.append("text")
-						.attr(
-							"transform",
-							d =>
-								`translate(${x((prev.get(d) || d).value)},${y(
-									(prev.get(d) || d).rank
-								)})`
-						)
-						.attr("y", y.bandwidth() / 2)
-						.attr("x", -6)
-						.attr("dy", "-0.25em")
-						.text(d => d.name)
-						.call(text =>
-							text
-								.append("tspan")
-								.attr("fill-opacity", 0.7)
-								.attr("font-weight", "normal")
-								.attr("x", -6)
-								.attr("dy", "1.15em")
-						),
-				update => update,
-				exit =>
-					exit
-						.transition(transition)
-						.remove()
-						.attr(
-							"transform",
-							d =>
-								`translate(${x((next.get(d) || d).value)},${y(
-									(next.get(d) || d).rank
-								)})`
-						)
-						.call(g =>
-							g
-								.select("tspan")
-								.tween("text", d => textTween(d.value, (next.get(d) || d).value))
-						)
-			)
-			.call(bar =>
-				bar
-					.transition(transition)
-					.attr("transform", d => `translate(${x(d.value)},${y(d.rank)})`)
-					.call(g =>
-						g
-							.select("tspan")
-							.tween("text", d => textTween((prev.get(d) || d).value, d.value))
-					)
-			));
-}
-
-function textTween(a, b) {
-	const i = d3.interpolateNumber(a, b);
-	return function (t) {
-		this.textContent = formatNumber(i(t));
-	};
-}
-
-formatNumber = d3.format(",d");
-
-function axis(svg) {
-	const g = svg.append("g").attr("transform", `translate(0,${margin.top})`);
-
-	const axis = d3
-		.axisTop(x)
-		.ticks(width / 160)
-		.tickSizeOuter(0)
-		.tickSizeInner(-barSize * (n + y.padding()));
-
-	return (_, transition) => {
-		g.transition(transition).call(axis);
-		g.select(".tick:first-of-type text").remove();
-		g.selectAll(".tick:not(:first-of-type) line").attr("stroke", "white");
-		g.select(".domain").remove();
-	};
-}
-
-function ticker(svg) {
-	const now = svg
-		.append("text")
-		.style("font", `bold ${barSize}px var(--sans-serif)`)
-		.style("font-variant-numeric", "tabular-nums")
-		.attr("text-anchor", "end")
-		.attr("x", width - 6)
-		.attr("y", margin.top + barSize * (n - 0.45))
-		.attr("dy", "0.32em")
-		.text(formatDate(keyframes[0][0]));
-
-	return ([date], transition) => {
-		transition.end().then(() => now.text(formatDate(date)));
-	};
-}
-
-formatDate = d3.utcFormat("%Y");
-
-function colors() {
-	const scale = d3.scaleOrdinal(d3.schemeTableau10);
-	if (data.some(d => d.category !== undefined)) {
-		const categoryByName = new Map(data.map(d => [d.name, d.category]));
-		scale.domain(Array.from(categoryByName.values()));
-		return d => scale(categoryByName.get(d.name));
-	}
-	return d => scale(d.name);
-}
-
-color = colors();
-
-x = d3.scaleLinear([0, 1], [margin.left, width - margin.right]);
-
-y = d3
-	.scaleBand()
-	.domain(d3.range(n + 1))
-	.rangeRound([margin.top, margin.top + barSize * (n + 1 + 0.1)])
-	.padding(0.1);
-
-height = margin.top + barSize * n + margin.bottom;
-
-barSize = 48;
-
-margin = { top: 16, right: 6, bottom: 6, left: 0 };
-
-d3 = require("d3@6");
 
 export default {
 	name: "d3test",
 };
+
+function createBarChartRace(data, top_n, tickDuration) {
+	var data = data;
+	let chartDiv = document.getElementById("chartDiv");
+	chartDiv.textContent = "";
+	let width = chartDiv.clientWidth;
+	let height = chartDiv.clientHeight - 50;
+
+	let svg = d3.select(chartDiv).append("svg").attr("width", width).attr("height", height);
+
+	let timeline_svg = d3.select(chartDiv).append("svg").attr("width", width).attr("height", 50);
+
+	const margin = {
+		top: 20,
+		right: 80,
+		bottom: 0,
+		left: 0,
+	};
+
+	const marginTimeAxis = 30;
+
+	let barPadding = (height - (margin.bottom + margin.top)) / (top_n * 5);
+
+	function getRowData(data, column_names, row_index) {
+		const row = data[row_index];
+		let new_data = column_names.map(name => {
+			return { name: name, value: row[name] };
+		});
+		new_data = new_data.sort((a, b) => b.value - a.value).slice(0, top_n);
+		new_data.forEach((d, i) => {
+			d.rank = i;
+			d.lastValue = row_index > 0 ? data[row_index - 1][d.name] : d.value;
+		});
+		return [row[d3.keys(row)[0]], new_data];
+	}
+
+	const time_index = d3.keys(data[0])[0];
+	const column_names = d3.keys(data[0]).slice(1);
+
+	// define a random color for each column
+	const colors = {};
+	const color_scale = d3.scaleOrdinal(d3.schemeSet3);
+
+	column_names.forEach((name, i) => {
+		colors[name] = color_scale(i);
+	});
+
+	// Parse data
+	data.forEach(d => {
+		// first column : YYYY-MM-DD
+		const parseTime = d3.timeParse("%Y-%m-%d");
+		d[time_index] = parseTime(d[time_index]);
+		// convert other columns to numbers
+		column_names.forEach(k => (d[k] = Number(d[k])));
+	});
+
+	// draw the first frame
+
+	[time, row_data] = getRowData(data, column_names, 0);
+
+	start_date = d3.min(data, d => d[time_index]);
+	end_date = d3.max(data, d => d[time_index]);
+
+	let t = d3
+		.scaleTime()
+		.domain([start_date, end_date])
+		.range([margin.left + marginTimeAxis, width - margin.right]);
+
+	let timeAxis = d3.axisBottom().ticks(5).scale(t);
+
+	let x = d3
+		.scaleLinear()
+		.domain([0, d3.max(row_data, d => d.value)])
+		.range([margin.left, width - margin.right]);
+
+	let y = d3
+		.scaleLinear()
+		.domain([top_n, 0])
+		.range([height - margin.bottom, margin.top]);
+
+	let xAxis = d3
+		.axisTop()
+		.scale(x)
+		.ticks(5)
+		.tickSize(-(height - margin.top - margin.bottom))
+		.tickFormat(d => d3.format(",")(d));
+
+	svg.append("g")
+		.attr("class", "axis xAxis")
+		.attr("transform", `translate(0, ${margin.top})`)
+		.call(xAxis)
+		.selectAll(".tick line")
+		.classed("origin", d => d === 0);
+
+	svg.selectAll("rect.bar")
+		.data(row_data, d => d.name)
+		.enter()
+		.append("rect")
+		.attr("class", "bar")
+		.attr("x", x(0) + 1)
+		.attr("width", d => x(d.value) - x(0))
+		.attr("y", d => y(d.rank) + barPadding / 2)
+		.attr("height", y(1) - y(0) - barPadding)
+		.style("fill", d => colors[d.name]);
+
+	svg.selectAll("text.label")
+		.data(row_data, d => d.name)
+		.enter()
+		.append("text")
+		.attr("class", "label")
+		.attr("x", d => x(d.value) - 8)
+		.attr("y", d => y(d.rank) + (y(1) - y(0)) / 2 + 1)
+		.style("text-anchor", "end")
+		.html(d => d.name);
+
+	svg.selectAll("text.valueLabel")
+		.data(row_data, d => d.name)
+		.enter()
+		.append("text")
+		.attr("class", "valueLabel")
+		.attr("x", d => x(d.value) + 5)
+		.attr("y", d => y(d.rank) + (y(1) - y(0)) / 2 + 1)
+		.text(d => d3.format(",.0f")(d.lastValue));
+
+	// svg.append('rect')
+	//     .attr('y', height - margin.bottom)
+	//     .attr('width', width)
+	//     .attr('height', margin.bottom)
+	//     .style('fill', '#ffffff')
+
+	timeline_svg
+		.append("g")
+		.attr("class", "axis tAxis")
+		.attr("transform", `translate(0, 20)`)
+		.call(timeAxis);
+
+	timeline_svg
+		.append("rect")
+		.attr("class", "progressBar")
+		.attr("transform", `translate(${marginTimeAxis}, 20)`)
+		.attr("height", 2)
+		.attr("width", 0);
+
+	let timeText = svg
+		.append("text")
+		.attr("class", "timeText")
+		.attr("x", width - margin.right)
+		.attr("y", height - margin.bottom - 5)
+		.style("text-anchor", "end")
+		.html(d3.timeFormat("%B %d, %Y")(time));
+
+	// draw the updated graph with transitions
+	function drawGraph() {
+		// update xAxis with new domain
+		x.domain([0, d3.max(row_data, d => d.value)]);
+		svg.select(".xAxis").transition().duration(tickDuration).ease(d3.easeLinear).call(xAxis);
+
+		// update bars
+		let bars = svg.selectAll(".bar").data(row_data, d => d.name);
+
+		bars.enter()
+			.append("rect")
+			.attr("class", "bar")
+			.attr("x", x(0) + 1)
+			.attr("width", d => x(d.value) - x(0))
+			//enter from out of screen
+			.attr("y", d => y(top_n + 1) + 0)
+			.attr("height", y(1) - y(0) - barPadding)
+			.style("fill", d => colors[d.name])
+			.transition()
+			.duration(tickDuration)
+			.ease(d3.easeLinear)
+			.attr("y", d => y(d.rank) + barPadding / 2);
+
+		bars.transition()
+			.duration(tickDuration)
+			.ease(d3.easeLinear)
+			.attr("width", d => x(d.value) - x(0))
+			.attr("y", d => y(d.rank) + barPadding / 2);
+
+		bars.exit()
+			.transition()
+			.duration(tickDuration)
+			.ease(d3.easeLinear)
+			.attr("width", d => x(d.value) - x(0))
+			.attr("y", d => y(top_n + 1) + barPadding / 2)
+			.remove();
+
+		// update labels
+		let labels = svg.selectAll(".label").data(row_data, d => d.name);
+
+		labels
+			.enter()
+			.append("text")
+			.attr("class", "label")
+			.attr("x", d => x(d.value) - 8)
+			.attr("y", d => y(top_n + 1) + (y(1) - y(0)) / 2)
+			.style("text-anchor", "end")
+			.html(d => d.name)
+			.transition()
+			.duration(tickDuration)
+			.ease(d3.easeLinear)
+			.attr("y", d => y(d.rank) + (y(1) - y(0)) / 2 + 1);
+
+		labels
+			.transition()
+			.duration(tickDuration)
+			.ease(d3.easeLinear)
+			.attr("x", d => x(d.value) - 8)
+			.attr("y", d => y(d.rank) + (y(1) - y(0)) / 2 + 1);
+
+		labels
+			.exit()
+			.transition()
+			.duration(tickDuration)
+			.ease(d3.easeLinear)
+			.attr("x", d => x(d.value) - 8)
+			.attr("y", d => y(top_n + 1))
+			.remove();
+
+		// update value labels
+
+		let valueLabels = svg.selectAll(".valueLabel").data(row_data, d => d.name);
+
+		valueLabels
+			.enter()
+			.append("text")
+			.attr("class", "valueLabel")
+			.attr("x", d => x(d.value) + 5)
+			.attr("y", d => y(top_n + 1))
+			.text(d => d3.format(",.0f")(d.lastValue))
+			.transition()
+			.duration(tickDuration)
+			.ease(d3.easeLinear)
+			.attr("y", d => y(d.rank) + (y(1) - y(0)) / 2 + 1);
+
+		valueLabels
+			.transition()
+			.duration(tickDuration)
+			.ease(d3.easeLinear)
+			.attr("x", d => x(d.value) + 5)
+			.attr("y", d => y(d.rank) + (y(1) - y(0)) / 2 + 1)
+			.tween("text", function (d) {
+				let i = d3.interpolateNumber(d.lastValue, d.value);
+				return function (t) {
+					this.textContent = d3.format(",.0f")(i(t));
+				};
+			});
+
+		valueLabels
+			.exit()
+			.transition()
+			.duration(tickDuration)
+			.ease(d3.easeLinear)
+			.attr("x", d => x(d.value) + 5)
+			.attr("y", d => y(top_n + 1))
+			.remove();
+
+		// update time label and progress bar
+		d3.select(".progressBar")
+			.transition()
+			.duration(tickDuration)
+			.ease(d3.easeLinear)
+			.attr("width", t(time) - marginTimeAxis);
+		// .on('end', () => {
+		//     d3.select('.timeText').html(d3.timeFormat("%B %d, %Y")(time))
+		// timeText.html(d3.timeFormat("%B %d, %Y")(time))
+		// })
+		timeText.html(d3.timeFormat("%B %d, %Y")(time));
+	}
+
+	// loop
+	let i = 1;
+	let interval = d3.interval(e => {
+		[time, row_data] = getRowData(data, column_names, i);
+		drawGraph();
+		// increment loop
+		i += 1;
+		if (i == data.length) interval.stop();
+	}, tickDuration);
+	return interval;
+}
+
+function checkForm(e) {
+	var self = this;
+	if (self.interval !== null) {
+		self.interval.stop();
+	}
+	if (!this.csv_data) {
+		return;
+	}
+	if (self.tickDuration && self.top_n) {
+		e.preventDefault();
+		this.top_n = parseInt(self.top_n);
+		this.duration = parseInt(self.duration);
+		this.tickDuration = (self.duration / self.csv_data.length) * 1000;
+		let chartDiv = document.getElementById("chartDiv");
+		var data = JSON.parse(JSON.stringify(self.csv_data));
+		self.interval = createBarChartRace(data, self.top_n, self.tickDuration);
+	}
+
+	self.errors = [];
+}
 </script>
