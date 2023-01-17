@@ -11,10 +11,6 @@
           <h1 id="award-name">Award Name</h1>
           <div class="nominee-container">
             <div v-for="award in awards[index].nominees" :key="award.title" class="nominee-box">
-              <label class="checkbox">
-                <input type="radio" name="nominee">
-                <span class="checkmark"></span>
-              </label>
               <img class="image-placeholder" src="https://cdn.myanimelist.net/images/characters/4/457933.jpg" alt="">
               <h3>{{award.title}}</h3>
             </div>
@@ -65,6 +61,7 @@
       },
       vote() {
         this.selecting = false
+        // make this actually work
       },
       cancel() {
         this.selecting = true
@@ -100,7 +97,6 @@
     height: 15vh;
     width: 15vw;
     border-radius: 20px;
-    /* everything below should be removed when better design is established */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -129,39 +125,23 @@
     color: var(--white);
     background: var(--primary);
     font-size: var(--h4);
-    padding: 1rem;
-    width: 35vw;
-    height: 20vh;
+    padding: 2rem;
+    width: 15vw;
+    height: 40vh;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 1.5rem;
   }
-  .checkbox {
-    align-self: center;
-    height: 15px;
-    width: 15px;
-    border: 2px solid #751717;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 0.5rem;
+  .award-box:hover, .nominee-box:hover {
+    background: #b4372e;
+    /* find better color */
   }
-  .checkmark {
-    height: 100%;
-    width: 100%;
-    border-radius: 50%;
-    background-color: #751717;
-    display: none;
-  }
-  input {
-    display: none;
-  }
-  .checkbox input:checked + .checkmark{
-    display: inline-block;
+  .nominee-box:active {
+    background: black;
+    /* find way to focus on div */
   }
   .image-placeholder {
-  height: 100%;
+  height: 70%;
   aspect-ratio: 3/4;
   object-fit: cover;
   }
