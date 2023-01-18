@@ -97,7 +97,7 @@ export default {
   width: 10vw
 };
 
-@media screen and (max-width: 820px) {
+@media screen and (max-width: 825px) {
 .img {
   display: none;
 }
