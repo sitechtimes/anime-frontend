@@ -1,5 +1,6 @@
   <template>
     <div id="home">
+      <span class="underNav"></span>
       <Carosaul/>
       <TrendingBox/>
     </div>
@@ -18,5 +19,10 @@
   })
   </script>
   <style scoped>
-
+    /* undernavigation  */
+    .underNav{
+  width:100vw;
+  height:37vh;
+  display:block;
+}
   </style>

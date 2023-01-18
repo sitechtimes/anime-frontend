@@ -1,17 +1,21 @@
 <template>
-    <div class="carousel">
-        <span class="underNav"></span>
-            <div v-for="anime in animes" :key="anime.animeID" class="carousel-slide" :class="anime.animeID">
-                <img class="img" :src="anime.image" :alt="anime.alt"/>
-                <h2 class="carosaul-title text"> {{ anime.title }} </h2>  
-                <p class="carosaul-description text"> {{ anime.description }} </p>    
-                <div class="dots">
-                    <label class="dot dot-01" ></label>
-                    <label class="dot dot-02" ></label>
-                    <label class="dot dot-03" ></label>
+    <div id="carosaul">
+        <div class="carousel">
+                <div v-for="anime in animes" :key="anime.animeID" class="carousel-slide" :class="anime.animeID">
+                    <div class="carosaul-info">
+                        <h2 class="carosaul-title text"> {{ anime.title }} </h2>
+                        <h4 class="carosaul-date text">{{ anime.releaseDate }}</h4> 
+                        <p class="carosaul-description text"> {{ anime.description }} </p> 
+                    </div>   
+                    <img class="img" :src="anime.image" :alt="anime.alt"/>
+                    <div class="dots">
+                        <label class="dot dot-01" ></label>
+                        <label class="dot dot-02" ></label>
+                        <label class="dot dot-03" ></label>
+                    </div>
                 </div>
-            </div>
 
+        </div>
     </div>
     </template>
     <!-- https://th.bing.com/th/id/R.e4651a3a9eed4e1e43044e638b076e1f?rik=KXg2eMKBaDhnOQ&pid=ImgRaw&r=0 -->
@@ -60,17 +64,24 @@
     </script>
     
     <style scoped>
+    .carosaul-info{
+        display: flex;
+        flex-direction: column;
+        width:48.5%;
+    }
     .carosaul-title {
         display: block;
         margin-top: 0.35%;
         font-size: var(--h2);
+        font-weight: var(--fw-bold);
     }
     .carosaul-description {
-        max-width: 40%;
-        display: block;
         white-space: normal;
         font-size: var(--h5);
+        font-weight: var(--fw-light);
         overflow-wrap: break-word;
+        overflow:hidden;
+        text-overflow: ellipsis;
     }
     .img {
         height: 89%;
@@ -90,8 +101,8 @@
     } 
     .dots .dot {
         opacity: 0.15;
-        width: 1.85rem;
-        height: 1.85rem;
+        width: 1.5rem;
+        height: 1.5rem;
         border-radius: 50%; 
         display: inline-block;
         margin: 0.75% 0.45% 0% 0.45%;
@@ -107,6 +118,8 @@
         justify-content: center;
         align-items: center;
         flex-direction: row;
+        width:100vw;
+        margin-bottom:30vh;
     }
     .carousel-slide {
         opacity: 0;
@@ -186,10 +199,4 @@
         opacity: 0.5;
         animation: auto-slide 9s ease-in-out 6s infinite normal none running;
     }
-    /* undernavigation  */
-.underNav{
-  width:100vw;
-  height:60vh;
-  display:block;
-}
     </style>
