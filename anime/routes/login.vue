@@ -166,21 +166,87 @@ export default {
   }
 }
 
-
-
-@media screen and (max-width: 825px) {
+@media screen and (max-width: 915px) {
 .img {
   display: none;
+}
+#login {
+  padding-top: 3vh;
 }
 .login-form {
   width: 85vw;
   height: 80vh;
 }
 .input-box {
+  width: 60vw;
+  font-size: var(--h2);
+}
+.submit-btn{
+  width: 30vw;
+  font-size: var(--h2);
+}
+.redirect {
+  font-size: var(--h3);
+}
+.login-with-google-btn {
+  font-size: 30px;
+}
+}
+
+@media screen and (max-width: 825px) {
+.img {
+  display: none;
+}
+#login {
+  padding-top: 3vh;
+}
+.login-form {
+  width: 80vw;
+  height: 70vh;
+}
+.input-box {
   width: 55vw;
+  font-size: var(--h3);
 }
 .submit-btn{
   width: 25vw;
+  font-size: var(--h3);
+}
+.redirect {
+  font-size: var(--h4);
+}
+.login-with-google-btn {
+  font-size: 22px;
+}
+}
+
+@media screen and (max-width: 550px) {
+.img {
+  display: none;
+}
+#login {
+  padding-top: 3vh;
+}
+.title {
+  font-size: var(--h2);
+}
+.login-form {
+  width: 85vw;
+  height: 75vh;
+}
+.input-box {
+  width: 55vw;
+  font-size: var(--h5);
+}
+.submit-btn{
+  width: 25vw;
+  font-size: var(--h5);
+}
+.redirect {
+  font-size: var(--h5);
+}
+.login-with-google-btn {
+  font-size: 15px;
 }
 }
 
@@ -188,15 +254,21 @@ export default {
 .img {
   display: none;
 }
+#login {
+  padding-top: 1vh;
+}
 .login-form {
   width: 90vw;
-  height: 65vh;
+  height: 70vh;
 }
 .input-box {
   width: 65vw;
 }
 .submit-btn{
-  width: 30vw;
+  width: 32vw;
+}
+.redirect {
+  margin-top: 0.65rem;
 }
 }
 </style>
