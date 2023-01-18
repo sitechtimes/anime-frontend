@@ -122,6 +122,7 @@
         margin-bottom:30vh;
     }
     .carousel-slide {
+        overflow: hidden;
         opacity: 0;
         z-index: 0;
         width: 70%;
@@ -191,12 +192,12 @@
     }
     .slide-02 {
         z-index: 2;
-        opacity: 0.5;
+        opacity: 0;
         animation: auto-slide 9s ease-in-out 3s infinite normal none running;
     }
     .slide-03 {
         z-index: 1;
-        opacity: 0.5;
+        opacity: 0;
         animation: auto-slide 9s ease-in-out 6s infinite normal none running;
     }
     </style>
