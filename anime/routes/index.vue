@@ -1,19 +1,19 @@
   <template>
     <div id="home">
       <span class="underNav"></span>
-      <Carosaul/>
+      <Carousel/>
       <TrendingBox/>
     </div>
   </template>
   
   <script lang="ts">
   import TrendingBox from '../components/homepage/TrendingBox.vue';
-  import Carosaul from '../components/homepage/Carosaul.vue';
+  import Carousel from '../components/homepage/Carousel.vue';
 
   export default ({
     name: 'IndexPage',
     components:{
-      Carosaul,
+      Carousel,
      TrendingBox
     },
   })

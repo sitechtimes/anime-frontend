@@ -1,12 +1,12 @@
 <template>
-    <div id="carosaul">
+    <div id="carousel">
         <div class="carousel">
                 <div v-for="anime in animes" :key="anime.animeID" class="carousel-slide" :class="anime.animeID" :id="anime.animeID">
-                    <div class="carosaul-info">
-                        <h2 class="carosaul-title text"> {{ anime.title }} </h2>
+                    <div class="carousel-info">
+                        <h2 class="carousel-title text"> {{ anime.title }} </h2>
                         <div class="descript-box">
-                            <h4 class="carosaul-date text">{{ anime.releaseDate }}</h4> 
-                            <p class="carosaul-description text"> {{ anime.description }} </p>
+                            <h4 class="carousel-date text">{{ anime.releaseDate }}</h4> 
+                            <p class="carousel-description text"> {{ anime.description }} </p>
                         </div> 
                     </div>   
                     <img class="img" :src="anime.image" :alt="anime.alt"/>
@@ -66,12 +66,12 @@
     </script>
     
     <style scoped>
-    .carosaul-info{
+    .carousel-info{
         display: flex;
         flex-direction: column;
         width:48.5%;
     }
-    .carosaul-title {
+    .carousel-title {
         display: block;
         margin-top: 10%;
         font-size: var(--h2);
@@ -84,7 +84,7 @@
         /* display: block;
         text-overflow: ellipsis; */
     }
-    .carosaul-description {
+    .carousel-description {
         font-size: var(--h5);
         font-weight: var(--fw-light);
         color: var(--secondary);
@@ -93,7 +93,7 @@
         height: 89%;
         width: 52.5%;
         object-fit: cover;
-        object-position: top;
+        object-position: center;
         display: block;
         border-radius: 7.25%;
         margin: 0.55% 1.25% 0% 1.25%;
