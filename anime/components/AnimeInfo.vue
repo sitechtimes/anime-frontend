@@ -26,7 +26,7 @@
       <div class="info-block">
         <h2>Synopsis</h2>
         <div class="divider"></div>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae esse ex molestias dignissimos quos reiciendis voluptatem. Accusamus autem laboriosam, adipisci ipsam fuga soluta architecto illo repellat dolor, vel assumenda asperiores.</p>
+        <p class="w">Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, aliquid. Enim maiores hic facere officia minima accusamus qui consequatur minus! Porro odio, aut nulla dolor ut quibusdam adipisci exercitationem voluptates!</p>
       </div>
       <div class="info-block">
         <h2>Characters</h2>
@@ -67,9 +67,13 @@ export default {
   display: flex;
   justify-content: center;
   margin: auto;
+  height: 200vh;
 }
 .column-1 {
-  width: 15vw;
+  width: 11vw;
+  position: sticky;
+  align-self: flex-start;
+  top: 8vh;
 }
 .image-placeholder {
   height: 30vh;
@@ -85,7 +89,7 @@ export default {
 }
 .column-2 {
   width: 53vw;
-  font-size: var(--h5);
+  font-size: var(--h4);
   margin-left: 2rem;
 }
 .info-block {
