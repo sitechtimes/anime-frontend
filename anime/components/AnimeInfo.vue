@@ -3,11 +3,7 @@
     <div class="column-1">
       <img class="image-placeholder" src="https://cdn.myanimelist.net/images/characters/4/457933.jpg" alt="">
       <div class="quick-info">
-        <p class="stats">Episodes: N/A</p>
-        <p class="stats">Episodes: N/A</p>
-        <p class="stats">Episodes: N/A</p>
-        <p class="stats">Episodes: N/A</p>
-        <p class="stats">Episodes: N/A</p>
+        <p>Episodes: N/A</p>
       </div>
     </div>
     <div class="column-2">
@@ -32,13 +28,9 @@
         <h2>Characters</h2>
         <div class="divider"></div>
         <div class="character-container">
-          <div class="character">
+          <div v-for="character in anime[1].characters" :key="name" class="character">
             <img class="character-img" src="https://cdn.myanimelist.net/images/characters/4/457933.jpg" alt="">
-            <p class="character-name">Name</p>
-          </div>
-          <div class="character">
-            <img class="character-img" src="https://cdn.myanimelist.net/images/characters/4/457933.jpg" alt="">
-            <p class="character-name">Name</p>
+            <p class="character-name">{{character.name}}</p>
           </div>
         </div>
       </div>
@@ -56,7 +48,13 @@ import starSVG from '../components/starSVG.vue'
 export default {
   components:{
     starSVG
-  }
+  },
+  data: ()=> ({
+    anime: [
+    {nominees: [{title: "B1"}, {title: "B2"}, {title: "B3"}]},
+    {characters: [{name: "Alpha Red"}, {name: "Al-fuh-red"}, {name: "Alfredo"}]},
+    ],
+  }),
 }
 </script>
 
@@ -67,13 +65,12 @@ export default {
   display: flex;
   justify-content: center;
   margin: auto;
-  height: 200vh;
 }
 .column-1 {
   width: 11vw;
   position: sticky;
   align-self: flex-start;
-  top: 8vh;
+  top: 5vh;
 }
 .image-placeholder {
   height: 30vh;
@@ -122,7 +119,7 @@ export default {
   margin: 1rem 0;
 }
 .character {
-  width: 8rem;
+  width: 9rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -134,5 +131,6 @@ export default {
 .character-name {
   background-color: blue;
   text-align: center;
+  font-size: var(--h5);
 }
 </style>
