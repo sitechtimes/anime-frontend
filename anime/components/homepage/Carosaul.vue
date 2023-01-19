@@ -1,17 +1,19 @@
 <template>
     <div id="carosaul">
         <div class="carousel">
-                <div v-for="anime in animes" :key="anime.animeID" class="carousel-slide" :class="anime.animeID">
+                <div v-for="anime in animes" :key="anime.animeID" class="carousel-slide" :class="anime.animeID" :id="anime.animeID">
                     <div class="carosaul-info">
                         <h2 class="carosaul-title text"> {{ anime.title }} </h2>
-                        <h4 class="carosaul-date text">{{ anime.releaseDate }}</h4> 
-                        <p class="carosaul-description text"> {{ anime.description }} </p> 
+                        <div class="descript-box">
+                            <h4 class="carosaul-date text">{{ anime.releaseDate }}</h4> 
+                            <p class="carosaul-description text"> {{ anime.description }} </p>
+                        </div> 
                     </div>   
                     <img class="img" :src="anime.image" :alt="anime.alt"/>
                     <div class="dots">
-                        <label class="dot dot-01" ></label>
-                        <label class="dot dot-02" ></label>
-                        <label class="dot dot-03" ></label>
+                        <a href="#slide-01"><label class="dot dot-01" ></label></a>
+                        <a href="#slide-02"><label class="dot dot-02" ></label></a>
+                        <a href="#slide-03"><label class="dot dot-03" ></label></a>
                     </div>
                 </div>
 
@@ -71,22 +73,27 @@
     }
     .carosaul-title {
         display: block;
-        margin-top: 0.35%;
+        margin-top: 10%;
         font-size: var(--h2);
         font-weight: var(--fw-bold);
+        color: var(--white);
+    }
+    .descript-box{
+        height:45%;
+        overflow:hidden;
+        /* display: block;
+        text-overflow: ellipsis; */
     }
     .carosaul-description {
-        white-space: normal;
         font-size: var(--h5);
         font-weight: var(--fw-light);
-        overflow-wrap: break-word;
-        overflow:hidden;
-        text-overflow: ellipsis;
+        color: var(--secondary);
     }
     .img {
         height: 89%;
         width: 52.5%;
-        float: right;
+        object-fit: cover;
+        object-position: top;
         display: block;
         border-radius: 7.25%;
         margin: 0.55% 1.25% 0% 1.25%;
