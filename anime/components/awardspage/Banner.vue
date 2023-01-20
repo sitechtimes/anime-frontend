@@ -192,4 +192,43 @@ export default {
   height:15rem;
   display:block;
 }
+
+/* Media Queries */
+@media screen and (max-width: 1285px) {
+.title-banner {
+  font-size: var(--h4);
+}
+.banner-bg{
+  width: 52%;
+}
+.banner-flex{
+  width: 80%;
+  height: 50%;
+}
+.banner-text{
+  width: 58%;
+  height: 90%;
+  line-height: 1.3;
+}
+.banner-image{
+  width: 20%;
+  margin-left: 23%;
+}
+.banner-season{
+  width: 40%;
+  height: 101%;
+}
+}
+@media screen and (max-width: 1025px) {
+}
+@media screen and (max-width: 915px) {
+}
+@media screen and (max-width: 825px) {
+}
+@media screen and (max-width: 545px) {
+}
+@media screen and (max-width: 415px) {
+}
+@media screen and (max-width: 285px) {
+}
 </style>
