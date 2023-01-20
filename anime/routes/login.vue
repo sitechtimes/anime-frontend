@@ -234,23 +234,26 @@ export default {
 .img {
   display: none;
 }
+.title {
+  font-size: var(--h2);
+}
 .login-form {
   width: 80vw;
-  height: 70vh;
+  height: 65vh;
 }
 .input-box {
   width: 55vw;
-  font-size: var(--h3);
+  font-size: var(--h4);
 }
 .submit-btn{
   width: 25vw;
-  font-size: var(--h3);
+  font-size: var(--h4);
 }
 .redirect {
   font-size: var(--h4);
 }
 .login-with-google-btn {
-  font-size: 22px;
+  font-size: 18px;
 }
 }
 
