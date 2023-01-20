@@ -218,7 +218,6 @@ export default {
 	border-radius: 1.5rem;
 	width: 25vw;
 	margin-right: 10rem;
-	margin-top: 10rem;
 	height: 100%;
 	display: flex;
 	flex-direction: column;
@@ -230,7 +229,6 @@ export default {
 	padding-bottom: 2rem;
 	width: 75vw;
 	margin-left: 10rem;
-	margin-top: 10rem;
 }
 .trending-header {
 	height: 6rem;
