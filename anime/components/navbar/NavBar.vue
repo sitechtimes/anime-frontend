@@ -125,6 +125,7 @@ import { useUserStore } from '../../stores/userStore'
         width:40%;
         display:flex;
         justify-content:space-between;
+        align-items: center;
     }
 .navbar.navbar--hidden {
   box-shadow: none;
