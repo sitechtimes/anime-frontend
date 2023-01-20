@@ -52,7 +52,32 @@ export default {
   data: ()=> ({
     anime: [
     {nominees: [{title: "B1"}, {title: "B2"}, {title: "B3"}]},
-    {characters: [{name: "Alpha Red"}, {name: "Al-fuh-red"}, {name: "Alfredo"}]},
+    {characters: [
+      {name: "Alpha Red"},
+      {name: "Alpha Red the Most Alpha of Reds"},
+      {name: "Alpha Red"},
+      {name: "Alpha Red"},
+      {name: "Alpha Red"},
+      {name: "Alpha Red"},
+      {name: "Alpha Red"},
+      {name: "Alpha Red"},
+      {name: "Alpha Red"},
+      {name: "Alpha Red"},
+      {name: "Alpha Red"},
+      {name: "Alpha Red"},
+      {name: "Alpha Red"},
+      {name: "Alpha Red"},
+      {name: "Alpha Red"},
+      {name: "Alpha Red"},
+      {name: "Alpha Red"},
+      {name: "Alpha Red"},
+      {name: "Alpha Red"},
+      {name: "Alpha Red"},
+      {name: "Alpha Red"},
+      {name: "Alpha Red"},
+      {name: "Al-fuh-red"},
+      {name: "Alfredo"},
+      ]},
     ],
   }),
 }
@@ -117,20 +142,26 @@ export default {
   flex-direction: row;
   gap: 2rem;
   margin: 1rem 0;
+  overflow-x: auto;
+  white-space: nowrap;
 }
 .character {
-  width: 9rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 }
 .character-img {
   height: 10rem;
+  width: 9rem;
   object-fit: cover;
 }
 .character-name {
   background-color: blue;
   text-align: center;
   font-size: var(--h5);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 1rem;
+  width: 9rem;
 }
 </style>
