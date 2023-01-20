@@ -1,15 +1,35 @@
 <template>
 	<div>
-		<svg id="bar-chart"></svg>
+		<svg id="bar-chart">{{ data }}</svg>
 	</div>
 </template>
 
 <script lang="ts">
+import { categorybrand } from "@/assets/categorybrand.json";
+
 export default {
 	name: "d3test",
+	data() {
+		return {
+			data: categorybrand,
+		};
+	},
 };
 function createBarChartRace(data, top_n, tickDuration) {
-	var data = data;
+	function jsonToCsv(items) {
+		const header = Object.keys(items[0]);
+		const headerString = header.join(",");
+		// handle null or undefined values here
+		const replacer = (key, value) => value ?? "";
+		const rowItems = items.map(row =>
+			header.map(fieldName => JSON.stringify(row[fieldName], replacer)).join(",")
+		);
+		// join header and body, and break into separate lines
+		const csv = [headerString, ...rowItems].join("\r\n");
+		return csv;
+	}
+
+	var data = jsonToCvs(data);
 
 	let svg = d3.select("#bar-chart").attr("width", width).attr("height", height);
 
