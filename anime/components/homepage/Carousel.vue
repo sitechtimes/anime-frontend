@@ -11,9 +11,9 @@
                     </div>   
                     <img class="img" :src="anime.image" :alt="anime.alt"/>
                     <div class="dots">
-                        <a href="#slide-01"><label class="dot dot-01" ></label></a>
-                        <a href="#slide-02"><label class="dot dot-02" ></label></a>
-                        <a href="#slide-03"><label class="dot dot-03" ></label></a>
+                        <label class="dot dot-01" ></label>
+                        <label class="dot dot-02" ></label>
+                        <label class="dot dot-03" ></label>
                     </div>
                 </div>
 
