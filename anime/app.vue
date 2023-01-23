@@ -1,5 +1,10 @@
 <template>
     <div>
+      <Head>
+      <Title>Technime</Title>
+      <Meta name="Technime" content="Rate your favorite animes!"/>
+      <Meta name="Technime" content="Rate your favorite animes!"/>
+    </Head>
       <NuxtLayout>
         <NavigationMobile/>
         <NavBar/>
@@ -14,7 +19,6 @@
   import NavigationMobile from './components/navbar/NavigationMobile.vue'
   export default ({
     name: 'IndexPage',
-
     components:{
       NavBar,
       NavigationMobile
@@ -43,7 +47,6 @@
   </script>
   <style>
   @import url("./assets/global.css");
-
   /* buttons */
   .button,
     .log-in,
