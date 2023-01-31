@@ -199,7 +199,7 @@ export default {
   font-size: var(--h4);
 }
 .banner-bg{
-  width: 52%;
+  width: 54%;
 }
 .banner-flex{
   width: 80%;
@@ -212,7 +212,7 @@ export default {
 }
 .banner-image{
   width: 20%;
-  margin-left: 23%;
+  margin-left: 25%;
 }
 .banner-season{
   width: 40%;
@@ -228,8 +228,8 @@ export default {
   height: 60%;
 }
 .banner-image{
-  width: 22%;
-  margin-left: 25%;
+  width: 21%;
+  margin-left: 26%;
 }
 }
 @media screen and (max-width: 915px) {
@@ -243,14 +243,23 @@ export default {
 .banner-flex{
   width: 85%;
 }
+.banner-text {
+  width: 85%;
+}
 .banner-image{
-  width: 23%;
-  margin-left: 26%;
+  display: none;
+}
+.banner-season{
+  width: 48%;
+  margin-left: 3%;
+}
+.season-text{
+  font-size: var(--h3);
 }
 }
 @media screen and (max-width: 825px) {
 .banner-bg{
-  width: 54%;
+  width: 60%;
   margin-right: 1%;
 }
 .banner-flex{
@@ -263,28 +272,45 @@ export default {
   line-height: 1.3;
 }
 .banner-image{
-  width: 20%;
-  margin-left: 28%;
+  width: 18%;
+  display: block;
+  margin-left: 27%;
 }
 .banner-season{
   width: 45%;
-}
-.animeTitle{
-  font-size: var(--h5);
 }
 .season-text{
   margin-bottom: 1rem;
   font-size: var(--h4);
 }
 }
+@media screen and (max-width: 770px) {
+.banner-bg {
+  height: 110%;
+}
+.banner-text{
+  width: 88%;
+}
+.banner-image{
+  display: none;
+}
+.banner-season{
+  height: 110%;
+}
+}
 @media screen and (max-width: 545px) {
 .underNav{
-  height: 5rem;
+  height: 4rem;
 }
 .banner-bg {
   width: 55%;
   height: 49%;
   margin-bottom: 2%;
+}
+.banner-text{
+  width: 67%;
+  height: 90%;
+  line-height: 1.3;
 }
 .banner-flex{
   width: 97%;
@@ -293,11 +319,13 @@ export default {
 }
 .banner-image{
   width: 20%;
+  display: block;
   margin-left: 34%;
 }
 .banner-season{
   width: 55%;
   height: 68%;
+  margin-left: 22%;
 }
 .animeTitle{
   font-size: var(--h7);
@@ -322,7 +350,6 @@ export default {
   font-size: var(--h5);
 }
 }
-
 @media screen and (max-width: 415px) {
 .anime-pfp{
   width: 4rem;
@@ -334,15 +361,15 @@ export default {
   margin-bottom: 2%;
 }
 .banner-text {
-  width: 71%;
+  width: 92%;
 }
-.banner-image{
-  width: 22%;
-  margin-left: 56%;
+.banner-image {
+  display: none;
 }
 .banner-season{
   width: 79%;
-  height: 75%;
+  height: 70%;
+  margin-left: 10%;
 }
 .animeTitle,
 .title-banner,
@@ -371,6 +398,7 @@ export default {
 }
 .banner-season{
   height: 48%;
+  margin-left: 11%;
 }
 .animeTitle,
 .title-banner,
