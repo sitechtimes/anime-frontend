@@ -28,7 +28,7 @@
         <h2>Characters</h2>
         <div class="divider"></div>
         <div class="character-container">
-          <div v-for="character in anime[1].characters" :key="name" class="character">
+          <div v-for="character in anime[0].characters" :key="name" class="character">
             <img class="character-img" src="https://cdn.myanimelist.net/images/characters/4/457933.jpg" alt="">
             <p class="character-name">{{character.name}}</p>
           </div>
@@ -51,7 +51,6 @@ export default {
   },
   data: ()=> ({
     anime: [
-    {nominees: [{title: "B1"}, {title: "B2"}, {title: "B3"}]},
     {characters: [
       {name: "Alpha Red"},
       {name: "Alpha Red the Most Alpha of Reds"},
@@ -132,6 +131,10 @@ export default {
   font-size: var(--h5);
   padding: 0.5rem 1rem;
   margin-right: 1rem;
+  transition: 500ms;
+}
+.btn:hover {
+  background-color: rgb(255, 139, 157);
 }
 .divider {
   height: 0.2rem;
@@ -145,10 +148,14 @@ export default {
   overflow-x: auto;
   white-space: nowrap;
 }
+.character-container::-webkit-scrollbar {
+  height: 10px;
+}
 .character {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  margin-bottom: 1.5rem;
 }
 .character-img {
   height: 10rem;
