@@ -15,10 +15,10 @@
         </div>
         <div>
           <button class="btn">Heart</button>
-          <button class="btn">Add to Watchlist</button>
+          <button class="btn btn2" @click="h">Add to Watchlist</button>
           <button class="btn">Rate</button>
         </div>
-      </div>      
+      </div>
       <div class="info-block">
         <h2>Synopsis</h2>
         <div class="divider"></div>
@@ -79,6 +79,13 @@ export default {
       ]},
     ],
   }),
+  methods: {
+    h() {
+      const hi = document.getElementsByClassName("btn2")
+      hi.style.background = "black"
+      // doesnt work :(
+    }
+  }
 }
 </script>
 
@@ -131,10 +138,10 @@ export default {
   font-size: var(--h5);
   padding: 0.5rem 1rem;
   margin-right: 1rem;
-  transition: 500ms;
+  transition: 200ms all;
 }
 .btn:hover {
-  background-color: rgb(255, 139, 157);
+  background-color: rgb(255, 120, 140);
 }
 .divider {
   height: 0.2rem;
