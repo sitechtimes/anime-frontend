@@ -4,6 +4,7 @@
         <NavigationMobile/>
         <NavBar/>
         <NuxtPage/>
+        <ScrollBtn/>
     </NuxtLayout>
     </div>
   </template>
@@ -12,12 +13,14 @@
   import NavBar from './components/navbar/NavBar.vue'
   import { useUserStore } from "./stores/userStore"
   import NavigationMobile from './components/navbar/NavigationMobile.vue'
+  import ScrollBtn from './components/ScrollBtn.vue'
   export default ({
     name: 'IndexPage',
 
     components:{
       NavBar,
-      NavigationMobile
+      NavigationMobile,
+      ScrollBtn
     },
     setup(){
       const userStore = useUserStore()
