@@ -9,16 +9,26 @@
 import * as d3 from "d3";
 
 import { categorybrand } from "@/assets/categorybrand.json";
-const json = '{"result":true, "count":42}';
-const obj = JSON.parse(json);
-const test = obj.count;
+//const test = Object.values(categorybrand);
+
+
+d3.select("#bar-chart")
+
+
 
 export default {
 	name: "d3test",
 	data() {
 		return {
 			data: categorybrand,
+			test,
 		};
 	},
 };
 </script>
+
+<style scoped>
+	h1 {
+		color: rgb(255, 255, 255);
+	}
+</style>
