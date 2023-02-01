@@ -15,7 +15,7 @@
         </div>
         <div>
           <button class="btn">Heart</button>
-          <button class="btn btn2" @click="h">Add to Watchlist</button>
+          <button class="btn" id="btn2" @click="h">Add to Watchlist</button>
           <button class="btn">Rate</button>
         </div>
       </div>
@@ -81,9 +81,10 @@ export default {
   }),
   methods: {
     h() {
-      const hi = document.getElementsByClassName("btn2")
-      hi.style.background = "black"
-      // doesnt work :(
+      const hi = document.getElementById("btn2")
+      hi.innerHTML = "Added to Watchlist"
+      hi.style.background = "rgb(255, 120, 140)"
+      hi.style.filter = "opacity(80%)"
     }
   }
 }
