@@ -11,10 +11,14 @@ export default defineNuxtConfig({
       },
       modules: [
         // ...
+        'nuxt-graphql-client',
         '@pinia/nuxt',
         '@pinia-plugin-persistedstate/nuxt',
       ],
       runtimeConfig: {
-        client: process.env.CLIENT_ID
+        client: process.env.CLIENT_ID,
+        public: {
+          GQL_HOST: 'https://api.spacex.land/graphql' // overwritten by process.env.GQL_HOST
+        }
       }
 })
