@@ -210,7 +210,7 @@ export default {
   height: 90%;
   line-height: 1.3;
 }
-.banner-image {
+.banner-image { 
   width: 20%;
   margin-left: 27%;
 }
