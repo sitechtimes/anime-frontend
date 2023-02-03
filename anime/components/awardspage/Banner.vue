@@ -249,33 +249,46 @@ export default {
 }
 }
 @media screen and (max-width: 915px) {
-#banner {
-  width: 100vw;
-  height: 50vh;
-}
 .banner-bg {
-  width: 56%;
+  width: 67%;
+  height: 74%;
+  margin-bottom: 2%;
 }
 .banner-flex {
   width: 85%;
+  margin-top: 5%;
+  flex-direction: column;
 }
 .banner-text {
-  width: 85%;
+  width: 75%;
 }
 .banner-image {
-  display: none;
+  width: 18%;
+  margin-left: 40%;
 }
 .banner-season {
-  width: 48%;
-  margin-left: 3%;
+  width: 67%;
+  margin-left: 16%;
 }
 .season-text {
+  font-size: var(--h2);
+}
+.animeTitle {
   font-size: var(--h3);
+}
+.genre-text {
+  font-size: var(--h5);
+  margin-left: 2%;
+}
+.title-banner,
+.trending-text,
+.voting-description {
+  font-size: var(--h4);
 }
 }
 @media screen and (max-width: 825px) {
 .banner-bg {
-  width: 60%;
+  width: 65%;
   margin-right: 1%;
 }
 .banner-flex {
@@ -283,16 +296,20 @@ export default {
   height: 63%;
 }
 .banner-text {
-  width: 67%;
+  width: 72%;
   height: 90%;
 }
 .banner-image {
   width: 18%;
   display: block;
-  margin-left: 27%;
+  margin-left: 39%;
 }
 .banner-season {
-  width: 45%;
+  width: 65%;
+  margin-left: 17%;
+}
+.animeTitle {
+  font-size: var(--h4);
 }
 .season-text {
   margin-bottom: 1rem;
@@ -301,6 +318,7 @@ export default {
 }
 @media screen and (max-width: 770px) {
 .banner-bg {
+  width: 65%;
   height: 110%;
 }
 .banner-text {
@@ -310,11 +328,16 @@ export default {
   display: none;
 }
 .banner-season {
-  height: 110%;
+  width: 65%;
+  height: 120%;
+  margin-left: 17%;
 }
 .animeTitle {
   margin-left: 3%;
   font-size: var(--h5);
+}
+.genre-text {
+  font-size: var(--h6);
 }
 }
 @media screen and (max-width: 545px) {
@@ -351,6 +374,7 @@ export default {
 .genre-text {
   width: 25%;
   margin-left: 3%;
+  font-size: var(--smallText);
 }
 .info-column {
   width: 35%;
@@ -402,9 +426,6 @@ export default {
   width: 3rem;
   height: 3rem;
 }
-.genre-text {
-  width: 29%;
-}
 .banner-bg {
   height: 44%;
   margin-bottom: 0;
@@ -421,7 +442,6 @@ export default {
 }
 .genre-text {
   width: 27%;
-  font-size: var(--smallText);
 }
 .animeTitle,
 .title-banner,
