@@ -15,7 +15,7 @@
         </div>
         <div>
           <button class="btn">Heart</button>
-          <button class="btn" id="btn2" @click="h">Add to Watchlist</button>
+          <button class="btn" id="watch" @click="add">Add to Watchlist</button>
           <button class="btn">Rate</button>
         </div>
       </div>
@@ -50,6 +50,7 @@ export default {
     starSVG
   },
   data: ()=> ({
+    addList: false,
     anime: [
     {characters: [
       {name: "Alpha Red"},
@@ -80,13 +81,19 @@ export default {
     ],
   }),
   methods: {
-    h() {
-      const hi = document.getElementById("btn2")
-      hi.innerHTML = "Added to Watchlist"
-      hi.style.background = "rgb(255, 120, 140)"
-      hi.style.filter = "opacity(80%)"
+    add() {
+      this.addList = !this.addList
+      console.log(this.addList)
     }
-  }
+  },
+  // updated: {
+  //   if (this.addList === true) {
+  //     const hi = document.getElementById("watch")
+  //     hi.innerHTML = "Added to Watchlist"
+  //     hi.style.background = "rgb(255, 120, 140)"
+  //     hi.style.filter = "opacity(80%)"
+  //   }
+  // }
 }
 </script>
 
