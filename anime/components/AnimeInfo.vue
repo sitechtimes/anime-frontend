@@ -59,22 +59,6 @@ export default {
       {name: "Alpha Red"},
       {name: "Alpha Red"},
       {name: "Alpha Red"},
-      {name: "Alpha Red"},
-      {name: "Alpha Red"},
-      {name: "Alpha Red"},
-      {name: "Alpha Red"},
-      {name: "Alpha Red"},
-      {name: "Alpha Red"},
-      {name: "Alpha Red"},
-      {name: "Alpha Red"},
-      {name: "Alpha Red"},
-      {name: "Alpha Red"},
-      {name: "Alpha Red"},
-      {name: "Alpha Red"},
-      {name: "Alpha Red"},
-      {name: "Alpha Red"},
-      {name: "Alpha Red"},
-      {name: "Alpha Red"},
       {name: "Al-fuh-red"},
       {name: "Alfredo"},
       ]},
@@ -84,16 +68,18 @@ export default {
     add() {
       this.addList = !this.addList
       console.log(this.addList)
+      const hi = document.getElementById("watch")
+      if (this.addList == true) {
+        hi.innerHTML = "Added to Watchlist"
+        hi.style.background = "rgb(255, 120, 140)"
+        hi.style.filter = "opacity(80%)"
+      } else {
+        hi.innerHTML = "Add to watchlist"
+        hi.style.background = "lightpink"
+        hi.style.filter = "none"
+      }
     }
   },
-  // updated: {
-  //   if (this.addList === true) {
-  //     const hi = document.getElementById("watch")
-  //     hi.innerHTML = "Added to Watchlist"
-  //     hi.style.background = "rgb(255, 120, 140)"
-  //     hi.style.filter = "opacity(80%)"
-  //   }
-  // }
 }
 </script>
 
@@ -150,6 +136,9 @@ export default {
 }
 .btn:hover {
   background-color: rgb(255, 120, 140);
+}
+#watch {
+  width: 15rem;
 }
 .divider {
   height: 0.2rem;
