@@ -3,6 +3,7 @@
       <span class="underNav"></span>
       <Carousel/>
       <TrendingBox/>
+      <footer class="footer"></footer>
     </div>
   </template>
   
@@ -24,5 +25,10 @@
   width:100vw;
   height:37vh;
   display:block;
+}
+.footer{
+  width:100vw;
+  height:5vw;
+  display: block;
 }
   </style>
