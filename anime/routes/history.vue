@@ -5,11 +5,17 @@
 </template>
 
 <script setup>
+import { useUserStore } from '~~/stores/userStore';
+
+const userStore = useUserStore()
+
+console.log(userStore.token)
+
 const endpoint = "http://127.0.0.1:8000/graphql/";
 const headers = {
  "content-type": "application/json",
  Authorization:
-  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc1NDY4MDg1LCJpYXQiOjE2NzU0NjA4ODUsImp0aSI6ImZlYTk0Y2QyMzk4ZTRmYTA4MWUzZDEwZjJlYWIwYzUwIiwidXNlcl9pZCI6Mn0.p9Yg2j6LbQkfwmPb60bFLIh5kDR2c3bcB9Mp30eXGok",
+  `Bearer ${userStore.token}`
 };
 const graphqlQuery = {
  query: `query {
