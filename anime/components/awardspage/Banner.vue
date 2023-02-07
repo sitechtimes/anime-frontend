@@ -411,8 +411,8 @@ export default {
 }
 @media screen and (max-width: 415px) {
 .anime-pfp {
-  width: 4rem;
-  height: 4rem;
+  width: 3rem;
+  height: 3rem;
 }
 .banner-bg {
   width: 79%;
@@ -427,7 +427,7 @@ export default {
 }
 .banner-season {
   width: 79%;
-  height: 70%;
+  height: 68%;
   margin-left: 10%;
 }
 .animeTitle {
