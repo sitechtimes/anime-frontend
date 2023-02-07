@@ -14,9 +14,11 @@
           <p>10.00</p>
         </div>
         <div>
-          <button class="btn">Heart</button>
+          <button class="btn" id="heart" @click="like">Heart</button>
           <button class="btn" id="watch" @click="add">Add to Watchlist</button>
-          <button class="btn">Rate</button>
+          <button class="btn">Rate
+            <starSVG class="stars"/>
+          </button>
         </div>
       </div>
       <div class="info-block">
@@ -51,6 +53,7 @@ export default {
   },
   data: ()=> ({
     addList: false,
+    addLike: false,
     anime: [
     {characters: [
       {name: "Alpha Red"},
@@ -67,16 +70,24 @@ export default {
   methods: {
     add() {
       this.addList = !this.addList
-      console.log(this.addList)
-      const hi = document.getElementById("watch")
+      const watch = document.getElementById("watch")
       if (this.addList == true) {
-        hi.innerHTML = "Added to Watchlist"
-        hi.style.background = "rgb(255, 120, 140)"
-        hi.style.filter = "opacity(80%)"
+        watch.innerHTML = "Added to Watchlist"
+        watch.style.background = "rgb(255, 120, 140)"
+        watch.style.filter = "opacity(80%)"
       } else {
-        hi.innerHTML = "Add to watchlist"
-        hi.style.background = "lightpink"
-        hi.style.filter = "none"
+        watch.innerHTML = "Add to watchlist"
+        watch.style.background = "lightpink"
+        watch.style.filter = "none"
+      }
+    },
+    like() {
+      this.addLike = !this.addLike
+      const heart = document.getElementById("heart")
+      if (this.addLike == true) {
+        heart.style.background = "rgb(255, 120, 140)"
+      } else {
+        heart.style.background = "lightpink"
       }
     }
   },
@@ -134,11 +145,11 @@ export default {
   margin-right: 1rem;
   transition: 200ms all;
 }
-.btn:hover {
-  background-color: rgb(255, 120, 140);
-}
 #watch {
   width: 15rem;
+}
+.stars {
+  height: 1.5rem;
 }
 .divider {
   height: 0.2rem;
