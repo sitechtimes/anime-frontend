@@ -4,6 +4,17 @@ export default defineNuxtConfig({
         "~/plugins/auth.ts",
         // "~/plugins/pinia.ts"
     ],
+
+    runtimeConfig: {
+
+public: {
+  clientID: process.env.CLIENT_ID,
+}
+  
+ 
+      
+    
+    },
     // buildModules: [],
     dir: {
         // Rename `pages` directory to `routes`
@@ -14,7 +25,7 @@ export default defineNuxtConfig({
         '@pinia/nuxt',
         '@pinia-plugin-persistedstate/nuxt',
       ],
-      runtimeConfig: {
-        client: process.env.CLIENT_ID
-      }
+
+      
 })
+
