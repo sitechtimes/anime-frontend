@@ -17,7 +17,7 @@
           <button class="btn" id="heart" @click="like">Heart</button>
           <button class="btn" id="watch" @click="add">Add to Watchlist</button>
           <button class="btn">Rate
-            <starSVG class="stars"/>
+            <!-- <starSVG class="stars"/> -->
           </button>
         </div>
       </div>
@@ -58,6 +58,19 @@ export default {
     {characters: [
       {name: "Alpha Red"},
       {name: "Alpha Red the Most Alpha of Reds"},
+      {name: "Alpha Red"},
+      {name: "Alpha Red"},
+      {name: "Alpha Red"},
+      {name: "Alpha Red"},
+      {name: "Alpha Red"},
+      {name: "Alpha Red"},
+      {name: "Alpha Red"},
+      {name: "Alpha Red"},
+      {name: "Alpha Red"},
+      {name: "Alpha Red"},
+      {name: "Alpha Red"},
+      {name: "Alpha Red"},
+      {name: "Alpha Red"},
       {name: "Alpha Red"},
       {name: "Alpha Red"},
       {name: "Alpha Red"},
