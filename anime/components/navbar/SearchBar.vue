@@ -11,22 +11,20 @@
         <input v-model="text" @focus="searchActive" @focusout="searchInactive" placeholder="Search anime..." spellcheck="false" class="input">
       </form>
       <div v-show="showAnime" class="biggerBox">
-        <div v-for="anime in searchResult" :key="anime.title" class="box">
-          <!-- <NuxtLink to="/info"> -->
-            <img class="image-placeholder" src="https://cdn.myanimelist.net/images/characters/4/457933.jpg" alt="">
-            <div class="info-column">
-              <h1 class="title">{{anime.title}}</h1>
-              <div class="info-row">
-                <p class="age-rating">{{anime.ageRating}}</p>
-                <div class="star-rating">
-                  <starSVG class="star"/>
-                  <p>{{anime.stars.toFixed(2)}}</p>
-                </div>
-                <p>{{anime.releaseDate}}</p>
+        <NuxtLink to="/info" v-for="anime in searchResult" :key="anime.title" class="box">
+          <img class="image-placeholder" src="https://cdn.myanimelist.net/images/characters/4/457933.jpg" alt="">
+          <div class="info-column">
+            <h1 class="title">{{anime.title}}</h1>
+            <div class="info-row">
+              <p class="age-rating">{{anime.ageRating}}</p>
+              <div class="star-rating">
+                <starSVG class="star"/>
+                <p>{{anime.stars.toFixed(2)}}</p>
               </div>
+              <p>{{anime.releaseDate}}</p>
             </div>
-          <!-- </NuxtLink> -->
-        </div>
+          </div>
+        </NuxtLink>
       </div>
     </div>
   </div>
@@ -68,9 +66,9 @@ export default ({
     searchActive() {
       this.showAnime = true
     },
-    searchInactive() {
-      this.showAnime = false
-    },
+    // searchInactive() {
+    //   this.showAnime = false
+    // },
   },
   computed: {
     searchResult() {
