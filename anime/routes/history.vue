@@ -42,6 +42,7 @@ const response = await fetch(endpoint, options);
 const data = await response.json();
 const myJSON = JSON.stringify(data);
 console.log(myJSON);
+
 </script>
 <style>
 button {
