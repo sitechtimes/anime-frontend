@@ -16,8 +16,8 @@
         <div class="btns">
           <button class="btn" id="heart" @click="like">Heart</button>
           <button class="btn" id="watch" @click="add">Add to Watchlist</button>
-          <button class="btn">Rate
-            <starSVG class="stars"/>
+          <button class="btn" id="rate" >Rate
+            <!-- <starSVG class="stars"/> -->
           </button>
         </div>
       </div>
@@ -103,9 +103,6 @@ export default {
         heart.style.background = "lightpink"
       }
     },
-    rate() {
-      document.getElementById("rate-text").classList.add("hide")
-    }
   },
 }
 </script>
