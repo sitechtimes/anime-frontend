@@ -13,12 +13,15 @@
 				:img="anime.img"
 			/>
 		</div>
-		<div class="monthly-ranking-graph"></div>
+		<div class="monthly-ranking-graph">
+			<d3test />
+		</div>
 	</div>
 </template>
 
 <script lang="ts">
 import RankingCard from "@/components/homepage/RankingCard.vue";
+import d3test from "@/components/d3test.vue";
 
 export default {
 	name: "ranking",

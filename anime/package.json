@@ -19,6 +19,7 @@
     "pinia-plugin-persistedstate": "^3.0.1",
     "sass": "^1.57.0",
     "vue": "^3.2.45",
-    "vue3-google-login": "^2.0.12"
+    "vue3-google-login": "^2.0.12",
+    "d3": "^7.8.1"
   }
 }
