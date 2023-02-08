@@ -13,11 +13,11 @@
           <starSVG class="star"/>
           <p>10.00</p>
         </div>
-        <div>
+        <div class="btns">
           <button class="btn" id="heart" @click="like">Heart</button>
           <button class="btn" id="watch" @click="add">Add to Watchlist</button>
           <button class="btn">Rate
-            <!-- <starSVG class="stars"/> -->
+            <starSVG class="stars"/>
           </button>
         </div>
       </div>
@@ -102,6 +102,9 @@ export default {
       } else {
         heart.style.background = "lightpink"
       }
+    },
+    rate() {
+      document.getElementById("rate-text").classList.add("hide")
     }
   },
 }
@@ -151,6 +154,9 @@ export default {
 .star {
   height: 1.5rem;
 }
+.btns {
+  display: flex;
+}
 .btn {
   background-color: lightpink;
   font-size: var(--h5);
@@ -161,8 +167,9 @@ export default {
 #watch {
   width: 15rem;
 }
-.stars {
-  height: 1.5rem;
+#rate {
+  display: flex;
+  align-items: center;
 }
 .divider {
   height: 0.2rem;
@@ -198,5 +205,17 @@ export default {
   text-overflow: ellipsis;
   padding: 0 1rem;
   width: 9rem;
+}
+.stars {
+  display: flex;
+}
+.t {
+  background-color: red;
+  height: 1rem;
+  width: 1rem;
+  margin-right: 1rem;
+}
+.hide {
+  display: none;
 }
 </style>
