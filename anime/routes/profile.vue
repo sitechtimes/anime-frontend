@@ -6,16 +6,26 @@
     </div>
     <div class="profile-info">
         <img class="profile-img" src="https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg" alt="profile picture">
-        <div class="profile-name">Alpha-Red</div>
+        <div class="profile-name">
+            <h2 class="profile-id">Alpha-Red</h2>
+            <p class="profile-grade">Senior</p>
+            <p class="profile-grade">Date Started: 01/19/2023</p>
+        </div>
     </div>
 </div>
 <div class="profile-middle">
-    <div class="current-anime"> </div>
+    <div class="current-anime">
+        <h2 class="middle-title">My Current Animes</h2>
+    </div>
     <div class="profile-stats"></div>
 </div>
 <div class="profile-bottom">
-    <div class="favorite-anime"></div>
-    <div class="favorite-genre"></div>
+    <div class="favorite-anime">
+        <h2 class="middle-title">My Favorite Animes</h2>
+    </div>
+    <div class="favorite-genre">
+        <h2 class="middle-title">My Favorite Genres</h2>
+    </div>
 </div>
   </div>
 </template>
@@ -67,25 +77,31 @@ export default {
 }
 .current-anime{
     width:35%;
-    height:10rem;
+    height:30vh;
+    margin-right:5%;
+    margin-top:8vh;
     border-radius:1rem;
     background-color: red;
 }
 .profile-stats{
     width:25%;
-    height:10rem;
+    height:30vh;
+    margin-top:8vh;
     border-radius:1rem;
     background-color: blue;
 }
 .favorite-anime{
     width:40%;
-    height:10rem;
+    height:30vh;
+    margin-right:5%;
+    margin-top:5vh;
     border-radius:1rem;
     background-color: purple;
 }
 .favorite-genre{
     width:20%;
-    height:10rem;
+    height:30vh;
+    margin-top:5vh;
     border-radius:1rem;
     background-color: green;
 }
