@@ -7,6 +7,7 @@ import { useRouter } from "nuxt/app";
 
 export const useUserStore = defineStore("user", {
   state: () => ({
+    animeData: null,
     username: null,
     first_name: null,
     last_name: null,
@@ -30,6 +31,7 @@ export const useUserStore = defineStore("user", {
     // }
   },
   actions: {
+  
     async login(res: any) {
       console.log(res.code)
       try {

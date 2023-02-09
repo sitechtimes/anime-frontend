@@ -1,11 +1,10 @@
 <template>
- <div id="history">
-  <button>TEST</button>
- </div>
+	<div id="history"></div>
 </template>
 
 <style>
 button {
- margin: 30rem;
+	margin: 30rem;
 }
 </style>
+
