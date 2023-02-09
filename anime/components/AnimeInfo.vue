@@ -17,7 +17,7 @@
           <button class="btn" id="heart" @click="like">Heart</button>
           <button class="btn" id="watch" @click="add">Add to Watchlist</button>
           <button class="btn" id="rate" >Rate
-            <!-- <starSVG class="stars"/> -->
+            <!-- <starSVG/> -->
           </button>
         </div>
       </div>
@@ -86,11 +86,11 @@ export default {
       const watch = document.getElementById("watch")
       if (this.addList == true) {
         watch.innerHTML = "Added to Watchlist"
-        watch.style.background = "rgb(255, 120, 140)"
-        watch.style.filter = "opacity(80%)"
+        watch.style.background = "var(--info-btn-click)"
+        watch.style.filter = "opacity(90%)"
       } else {
         watch.innerHTML = "Add to watchlist"
-        watch.style.background = "lightpink"
+        watch.style.background = "var(--info-btn)"
         watch.style.filter = "none"
       }
     },
@@ -98,9 +98,9 @@ export default {
       this.addLike = !this.addLike
       const heart = document.getElementById("heart")
       if (this.addLike == true) {
-        heart.style.background = "rgb(255, 120, 140)"
+        heart.style.background = "var(--info-btn-click)"
       } else {
-        heart.style.background = "lightpink"
+        heart.style.background = "var(--info-btn)"
       }
     },
   },
@@ -114,6 +114,8 @@ export default {
   display: flex;
   justify-content: center;
   margin: auto;
+  height: 120vh;
+  /* height for testing on scroll */
 }
 .column-1 {
   width: 11vw;
@@ -127,7 +129,7 @@ export default {
   object-fit: cover;
 }
 .quick-info {
-  background: red;
+  background: var(--quaternary);
   height: 50vh;
   margin-top: 2vh;
   padding: 0.5rem 1rem;
@@ -155,7 +157,7 @@ export default {
   display: flex;
 }
 .btn {
-  background-color: lightpink;
+  background-color: var(--info-btn);
   font-size: var(--h5);
   padding: 0.5rem 1rem;
   margin-right: 1rem;
@@ -170,7 +172,7 @@ export default {
 }
 .divider {
   height: 0.2rem;
-  background-color: white;
+  background-color: var(--white);
 }
 .character-container {
   display: flex;
@@ -195,24 +197,12 @@ export default {
   object-fit: cover;
 }
 .character-name {
-  background-color: blue;
+  background-color: var(--secondary);
   text-align: center;
   font-size: var(--h5);
   overflow: hidden;
   text-overflow: ellipsis;
   padding: 0 1rem;
   width: 9rem;
-}
-.stars {
-  display: flex;
-}
-.t {
-  background-color: red;
-  height: 1rem;
-  width: 1rem;
-  margin-right: 1rem;
-}
-.hide {
-  display: none;
 }
 </style>

@@ -66,9 +66,11 @@ export default ({
     searchActive() {
       this.showAnime = true
     },
-    // searchInactive() {
-    //   this.showAnime = false
-    // },
+    searchInactive() {
+      setTimeout(() => {
+        this.showAnime = false
+      }, 100);
+    },
   },
   computed: {
     searchResult() {
@@ -94,10 +96,14 @@ export default ({
 .search-bar{
   width:25vw;
   color: rgb(219, 219, 219);
+  transition-duration: 0;
+  transition-delay: 1000ms;
 }
 .biggerBox{
   position:fixed;
   width: 25vw;
+  transition-duration: 0;
+  transition-delay: 1000ms;
 }
 
 .input {
