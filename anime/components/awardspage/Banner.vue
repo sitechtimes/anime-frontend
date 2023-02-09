@@ -259,8 +259,9 @@ export default {
 }
 .banner-bg {
   width: 67%;
-  height: 120%;
-  margin-bottom: 1%;
+  height: 90%;
+  margin-bottom: 10%;
+  box-shadow: -15px 15px var(--secondary);
 }
 .banner-flex {
   width: 85%;
@@ -268,14 +269,16 @@ export default {
   flex-direction: column;
 }
 .banner-text {
-  width: 90%;
+  width: 92%;
+  height: 90%;
+  background-color: transparent;
 }
 .banner-image {
   display: none;
 }
 .banner-season {
   width: 67%;
-  height: 110%;
+  height: 90%;
   margin-left: 16%;
 }
 .season-text {
@@ -291,10 +294,17 @@ export default {
   font-size: var(--h5);
   margin-left: 2%;
 }
-.title-banner,
-.trending-text,
+.title-banner {
+  font-size: var(--h2);
+}
+.trending-text {
+  font-size: var(--h3);
+}
+.trending-text{
+  letter-spacing: 0rem;
+}
 .voting-description {
-  font-size: var(--h4);
+  display: none;
 }
 }
 @media screen and (max-width: 825px) {
@@ -309,15 +319,6 @@ export default {
 .banner-flex {
   width: 86%;
   height: 63%;
-}
-.banner-text {
-  width: 72%;
-  height: 90%;
-}
-.banner-image {
-  width: 18%;
-  display: block;
-  margin-left: 39%;
 }
 .star-rating {
   font-size: 15px;
@@ -344,12 +345,6 @@ export default {
   width: 3.5rem;
   height: 3.5rem;
 }
-.banner-text {
-  width: 92%;
-}
-.banner-image {
-  display: none;
-}
 .banner-season {
   width: 65%;
   height: 250%;
@@ -365,8 +360,11 @@ export default {
 .star-rating {
   font-size: 13px;
 }
-.voting-description {
-  font-size: var(--h5);
+.title-banner {
+  font-size: var(--h3);
+}
+.trending-text {
+  font-size: var(--h4);
 }
 }
 @media screen and (max-width: 545px) {
@@ -380,21 +378,11 @@ export default {
 .banner-bg {
   width: 60%;
   height: 49%;
-  margin-bottom: 2%;
-}
-.banner-text {
-  width: 69%;
-  height: 90%;
 }
 .banner-flex {
   width: 97%;
   height: 55rem;
   flex-direction: column;
-}
-.banner-image {
-  width: 19%;
-  display: block;
-  margin-left: 40%;
 }
 .banner-season {
   width: 61%;
@@ -416,10 +404,14 @@ export default {
 .animeTitle {
   font-size: var(--h6);
 }
-.title-banner,
-.trending-text,
-.voting-description {
-  font-size: var(--h6);
+.title-banner {
+  font-size: var(--h3);
+}
+.trending-text {
+  font-size: var(--h4);
+}
+.trending-text{
+  letter-spacing: 0rem;
 }
 .season-text {
   font-size: var(--h5);
@@ -433,13 +425,6 @@ export default {
 .banner-bg {
   width: 79%;
   height: 55%;
-  margin-bottom: 1%;
-}
-.banner-text {
-  width: 92%;
-}
-.banner-image {
-  display: none;
 }
 .banner-season {
   width: 79%;
@@ -452,9 +437,7 @@ export default {
 .star-rating{
   font-size: 10px;
 }
-.rank-number,
-.title-banner, 
-.trending-text {
+.rank-number {
   font-size: var(--h5);
 }
 }
@@ -467,26 +450,11 @@ export default {
   margin-top: 1%;
   margin-bottom: 2%;
 }
-.banner-bg {
-  margin-bottom: 2%;
-  /* background-color: transparent; */
-}
 .season-text {
   font-size: var(--h4);
 }
 .banner-season {
   height: 75%;
-}
-.trending-text{
-  letter-spacing: 0rem;
-}
-.title-banner,
-.trending-text,
-.voting-description {
-  font-size: var(--h5);
-}
-.banner-text {
-  background-color: transparent;
 }
 }
 @media screen and (max-width: 285px) {
@@ -496,9 +464,6 @@ export default {
 }
 .banner-bg {
   height: 45%;
-}
-.banner-text {
-  width: 90%;
 }
 .banner-image {
   display: none;
@@ -515,10 +480,7 @@ export default {
   font-size: var(--smallText);
 }
 .animeTitle,
-.rank-number,
-.title-banner,
-.trending-text,
-.voting-description {
+.rank-number {
   font-size: var(--h7);
 }
 }
