@@ -225,6 +225,16 @@ export default {
   width: 4.2rem;
   height: 4.2rem;
 }
+/* .title-banner {
+  font-size: var(--h2);
+}
+.trending-text {
+  font-size: var(--h3);
+  letter-spacing: 0rem;
+}
+.voting-description {
+  display: none;
+} */
 }
 @media screen and (max-width: 1025px) {
 .banner-bg {
@@ -253,9 +263,17 @@ export default {
 }
 }
 @media screen and (max-width: 915px) {
+#banner{
+  width: 100vw;
+  height: 120vh;
+}
 .anime-pfp {
-  width: 5rem;
-  height: 5rem;
+  width: 6rem;
+  height: 6rem;
+}
+.bestAnime{
+  margin-top: 1%;
+  margin-bottom: 1%;
 }
 .banner-bg {
   width: 67%;
@@ -278,7 +296,7 @@ export default {
 }
 .banner-season {
   width: 67%;
-  height: 90%;
+  height: 95%;
   margin-left: 16%;
 }
 .season-text {
@@ -290,17 +308,18 @@ export default {
 .animeTitle {
   font-size: var(--h3);
 }
+.rank-number {
+  font-size: var(--h4);
+}
 .genre-text {
   font-size: var(--h5);
   margin-left: 2%;
 }
 .title-banner {
-  font-size: var(--h2);
+  font-size: var(--h1);
 }
 .trending-text {
-  font-size: var(--h3);
-}
-.trending-text{
+  font-size: var(--h2);
   letter-spacing: 0rem;
 }
 .voting-description {
@@ -308,12 +327,17 @@ export default {
 }
 }
 @media screen and (max-width: 825px) {
+#banner{
+  width: 100vw;
+  height: 110vh;
+}
 .anime-pfp {
   width: 4rem;
   height: 4rem;
 }
 .banner-bg {
   width: 65%;
+  height: 55%;
   margin-right: 1%;
 }
 .banner-flex {
@@ -325,7 +349,7 @@ export default {
 }
 .banner-season {
   width: 65%;
-  height: 100%;
+  height: 75%;
   margin-left: 17%;
 }
 .animeTitle {
@@ -335,8 +359,21 @@ export default {
   margin-bottom: 1rem;
   font-size: var(--h4);
 }
+.title-banner {
+  font-size: var(--h2);
+}
+.trending-text {
+  font-size: var(--h3);
+}
 }
 @media screen and (max-width: 770px) {
+#banner{
+  width: 90vw;
+  height: 120vh;
+}
+.underNav {
+  height: 7rem;
+}
 .banner-bg {
   width: 65%;
   height: 220%;
@@ -347,7 +384,7 @@ export default {
 }
 .banner-season {
   width: 65%;
-  height: 250%;
+  height: 100%;
   margin-left: 17%;
 }
 .animeTitle {
@@ -360,24 +397,18 @@ export default {
 .star-rating {
   font-size: 13px;
 }
-.title-banner {
-  font-size: var(--h3);
-}
-.trending-text {
-  font-size: var(--h4);
-}
 }
 @media screen and (max-width: 545px) {
+#banner{
+  width: 100vw;
+  height: 100vh;
+}
 .underNav {
   height: 4rem;
 }
-.anime-pfp {
-  width: 4rem;
-  height: 4rem;
-}
 .banner-bg {
-  width: 60%;
-  height: 49%;
+  width: 58%;
+  height: 50%;
 }
 .banner-flex {
   width: 97%;
@@ -385,9 +416,9 @@ export default {
   flex-direction: column;
 }
 .banner-season {
-  width: 61%;
+  width: 58%;
   height: 54%;
-  margin-left: 19%;
+  margin-left: 20%;
 }
 .genre-text {
   width: 25%;
@@ -410,25 +441,18 @@ export default {
 .trending-text {
   font-size: var(--h4);
 }
-.trending-text{
-  letter-spacing: 0rem;
-}
 .season-text {
   font-size: var(--h5);
 }
 }
 @media screen and (max-width: 415px) {
-.anime-pfp {
-  width: 3.5rem;
-  height: 3.5rem;
-}
 .banner-bg {
   width: 79%;
   height: 55%;
 }
 .banner-season {
   width: 79%;
-  height: 65%;
+  height: 70%;
   margin-left: 10%;
 }
 .animeTitle {
@@ -446,10 +470,6 @@ export default {
   width: 4rem;
   height: 4rem;
 }
-.bestAnime{
-  margin-top: 1%;
-  margin-bottom: 2%;
-}
 .season-text {
   font-size: var(--h4);
 }
@@ -465,14 +485,11 @@ export default {
 .banner-bg {
   height: 45%;
 }
-.banner-image {
-  display: none;
-}
 .season-text {
   font-size: var(--h5);
 }
 .banner-season {
-  height: 45%;
+  height: 50%;
   margin-left: 11%;
 }
 .genre-text {
