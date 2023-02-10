@@ -49,6 +49,7 @@ body {
 	color: var(--text-primary);
 	margin: 0;
 	font-family: var(--body-font);
+	scroll-behavior: smooth;
 }
 :root {
 	/* fonts */
