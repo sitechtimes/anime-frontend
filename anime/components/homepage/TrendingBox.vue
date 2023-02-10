@@ -14,7 +14,7 @@
 			</div>
 			<div class="trending-content">
 				<AnimeCard
-					v-for="anime in posts"
+					v-for="anime in trending"
 					:key="anime.id"
 					:img="anime.img"
 					:episode="anime.episode"
@@ -52,7 +52,7 @@ const headers = {
 };
 const graphqlQuery = {
 	query: `query {
-			 allAnime(limit: 6){
+			 allAnime(first: 12){
 			 edges{
 			   node{
 				 id,
@@ -151,7 +151,7 @@ export default {
 					rank: 7,
 				},
 			],
-			posts: [
+			trending: [
 				{
 					id: 1,
 					img: "https://cdn.myanimelist.net/images/anime/5/87048.jpg",
