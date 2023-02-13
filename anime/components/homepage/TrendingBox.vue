@@ -52,16 +52,16 @@ const headers = {
 };
 const graphqlQuery = {
 	query: `query {
-			 allAnime(first: 12){
-			 edges{
-			   node{
-				 id,
-				 animeName,
-				 episodes,
+				 allAnime(first: 12){
+				 edges{
+				   node{
+					 id,
+					 animeName,
+					 episodes,
+				   }
+				 }
 			   }
-			 }
-		   }
-		  }`,
+			  }`,
 	variables: {},
 };
 
@@ -74,7 +74,11 @@ const options = {
 const response = await fetch(endpoint, options);
 const data = await response.json();
 const myJSON = JSON.stringify(data);
+
 console.log(myJSON);
+
+
+
 </script>
 
 <script lang="ts">
@@ -82,6 +86,9 @@ import AnimeCard from "./AnimeCard.vue";
 import TopCharts from "./TopCharts.vue";
 import RightPageButton from "../RightPageButtonSvg.vue";
 import LeftPageButton from "../LeftPageButtonSvg.vue";
+import { useUserStore } from "~~/stores/userStore";
+
+console.log(myJSON);
 
 export default {
 	name: "TrendingBox",
