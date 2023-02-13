@@ -1,31 +1,55 @@
 <template>
     <div>
+      <Head>
+      <Title>Technime</Title>
+      <Meta name="Technime" content="Rate your favorite animes!"/>
+      <Meta name="Technime" content="Rate your favorite animes!"/>
+    </Head>
       <NuxtLayout>
         <NavigationMobile/>
         <NavBar/>
         <NuxtPage/>
+        <ScrollBtn/>
     </NuxtLayout>
     </div>
   </template>
   
   <script lang="ts">
   import NavBar from './components/navbar/NavBar.vue'
+  import { useUserStore } from "./stores/userStore"
   import NavigationMobile from './components/navbar/NavigationMobile.vue'
+  import ScrollBtn from './components/ScrollBtn.vue'
   export default ({
     name: 'IndexPage',
-
     components:{
       NavBar,
-      NavigationMobile
+      NavigationMobile,
+      ScrollBtn
     },
-    
+    setup(){
+      const userStore = useUserStore()
+      return {
+        userStore,
+      }
+    },
+    beforeCreate() {
+        this.userStore.checkCookie()
+      }
+    // methods: {
+    //   onBeforeMount() {
+    //     this.userStore.checkCookie()
+    //   }
+    // },
+    // mounted() {
+    //   this.userStore.getToken
+    //   console.log(this.userStore.getToken, this.userStore.getUser)
+    // }
+
   })
 
   </script>
-
   <style>
   @import url("./assets/global.css");
-
   /* buttons */
   .button,
     .log-in,

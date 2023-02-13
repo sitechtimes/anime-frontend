@@ -1,16 +1,15 @@
 <template>
     <div id="awards">
-      <AwardVoting/>
-  </div>
-</template>
+      <Banner/>
+    </div>
+  </template>
   
-<script lang="ts">
-  import AwardVoting from '../components/AwardVoting.vue'
-
-  export default ({
+  <script lang="ts">
+   import Banner from '../components/awardspage/Banner.vue'
+  export default({
     name: 'awards',
     components:{
-      AwardVoting
+      Banner
     }
   })
 </script>
