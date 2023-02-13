@@ -72,9 +72,10 @@
     }
   })
   </script>
+  
   <style scoped>
   #award-voting {
-    padding-top: 9vh;
+    padding-bottom: 50vh;
   }
   .seasonal {
     width: 80vw;
