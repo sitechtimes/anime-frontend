@@ -106,51 +106,50 @@ import { useUserStore } from '../../stores/userStore'
     })
 </script>
 <style scoped>
+.log-in {
+    width: 90%;
+    font-size: 19.99px;
+}
 .navigation{
-    background-color:var(--tertiary);
-    width:100%;
-    height:9vh;
-    display:flex;
-    justify-content:space-evenly;
-    align-items:center;
+    width: 100%;
+    height: 9vh;
+    z-index: 100;
+    padding: 1rem;
+    display: flex;
+    margin: 0 auto;
+    position: fixed;
+    align-items: center;
     align-self: stretch;
-    margin:0 auto;
-    position:fixed;
-    z-index:100;
-    padding:1rem;
-    transform: translate3d(0, 0, 0);
+    justify-content: space-evenly;
     transition: 0.1s all ease-out;
+    transform: translate3d(0, 0, 0);
+    background-color: var(--tertiary);
 }
-.routers{
-        width:40%;
-        display:flex;
-        justify-content:space-between;
-    }
+.routers {
+    width: 40%;
+    display: flex;
+    justify-content: space-between;
+}
 .navbar.navbar--hidden {
-  box-shadow: none;
-  transform: translate3d(0, -100%, 0);
+    box-shadow: none;
+    transform: translate3d(0, -100%, 0);
 }
-    #logo{
-        font-size: var(--h2);
-        color:var(--white);
-        transition: all 1s ease-in-out;-webkit-transition: all 1s ease-in-out;
-    }
-
-    .link{
-        font-size: var(--h4);
-    }
-
-    .link:hover{
-        color:var(--tertiary); 
-    }
-
-
-    .navigation {
-        transform: translateY(0);
-        transition: transform 300ms linear;
-    }
-    .navigation.is-hidden {
-        transform: translateY(-100%);
-    }
-
+#logo {
+    color: var(--white);
+    font-size: var(--h2);
+    transition: all 1s ease-in-out;-webkit-transition: all 1s ease-in-out;
+}
+.link {
+    font-size: var(--h4);
+}
+.link:hover {
+    color:var(--tertiary); 
+}
+.navigation {
+    transform: translateY(0);
+    transition: transform 300ms linear;
+}
+.navigation.is-hidden {
+    transform: translateY(-100%);
+}
 </style>

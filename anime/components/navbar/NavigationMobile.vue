@@ -62,9 +62,6 @@ export default {
   width: 25%;
   margin-right: 2rem;
 }
-/* .link-href {
-  margin: 5%
-} */
 .burger1,
 .burger2,
 .burger3 {
@@ -80,9 +77,6 @@ export default {
   font-size: var(--h3); 
   transition: all 1s ease-in-out;        
   -webkit-transition: all 1s ease-in-out;
-}
-.link-href {
-  margin-top: 5%;
 }
 .change {
   z-index: 2000;
@@ -121,9 +115,9 @@ div .close {
   width: 90%;
   height: 50%;
   display: flex;
-  align-items: left;
-  margin-left: 22%;
-  /* align-items: center; */
+  margin-top: 4%;
+  margin-bottom: 4%;
+  align-items: center;
   color: var(--white);
   font-size: var(--h3);
   flex-direction: column;
