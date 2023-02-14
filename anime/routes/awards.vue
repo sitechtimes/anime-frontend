@@ -2,7 +2,6 @@
     <div id="awards">
       <Banner/>
       <AwardVoting/>
-      <NuxtLink to="/awards/child">Child</NuxtLink>
     </div>
   </template>
   

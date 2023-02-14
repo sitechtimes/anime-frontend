@@ -11,5 +11,8 @@ export default ({
 </script>
 
 <style scoped>
-
+#child {
+  height: 10rem;
+  background: red;
+}
 </style>
