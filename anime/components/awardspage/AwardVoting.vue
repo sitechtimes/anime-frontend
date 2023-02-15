@@ -1,11 +1,10 @@
 <template>
   <div id="award-voting">
     <div class="award-container">
-      <NuxtLink to="/awards/vote" v-for="award in awards" :key="award.category" class="award-box">
+      <NuxtLink to="/vote" v-for="award in awards" :key="award.category" class="award-box">
         <h1>{{award.category}}</h1>
       </NuxtLink>
     </div>
-    <NuxtPage/>
   </div>
 </template>
   
