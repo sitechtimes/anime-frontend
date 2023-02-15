@@ -2,13 +2,13 @@
   <div id="profile">
     <span class="underNav"></span>
     <div class="profile-top">
-        <div class="banner">
+        <div class="banner"><img class="banner" src="https://i.pinimg.com/originals/e8/56/45/e856453f7f9b8c29bd73e51fc71813db.jpg" alt="">
     </div>
     <div class="profile-info">
-        <img class="profile-img" src="https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg" alt="profile picture">
+        <img class="profile-img" src="https://th.bing.com/th/id/OIP.5Xv2gQmaNhcCJVB0E6zuwgHaEK?pid=ImgDet&rs=1" alt="profile picture">
         <div class="profile-name">
-            <h2 class="profile-id">Alpha-Red</h2>
-            <p class="profile-grade">Senior</p>
+            <h3 class="profile-id">Alpha-Red</h3>
+            <p class="profile-grade">Senior Class of 2023</p>
             <p class="profile-grade">Date Started: 01/19/2023</p>
         </div>
     </div>
@@ -16,12 +16,32 @@
 <div class="profile-middle">
     <div class="current-anime">
         <h2 class="middle-title">My Current Animes</h2>
+        <li v-for="currentAnime in currentAnimes" :key="currentAnime.animeID" class="bestAnime">
+         <div class="picture-column">
+          <img class="anime-pfp" src="https://cdn.myanimelist.net/images/characters/4/457933.jpg" alt="">
+         </div>
+          <div class="info-column">
+            <h1 class="animeTitle">{{currentAnime.title}}</h1>
+            </div>
+            <span class="genre-text">{{currentAnime.genre}}</span>
+          </li>
+        
     </div>
     <div class="profile-stats"></div>
 </div>
 <div class="profile-bottom">
     <div class="favorite-anime">
         <h2 class="middle-title">My Favorite Animes</h2>
+        <li v-for="currentAnime in currentAnimes" :key="currentAnime.animeID" class="bestAnime">
+         <div class="picture-column">
+            <h2 class="rank-number">{{ currentAnime.animeID }}</h2>
+          <img class="anime-pfp" src="https://cdn.myanimelist.net/images/characters/4/457933.jpg" alt="">
+         </div>
+          <div class="info-column">
+            <h1 class="animeTitle">{{currentAnime.title}}</h1>
+            </div>
+            <span class="genre-text">{{currentAnime.genre}}</span>
+          </li>
     </div>
     <div class="favorite-genre">
         <h2 class="middle-title">My Favorite Genres</h2>
@@ -32,7 +52,14 @@
 
 <script lang="ts">
 export default {
-
+    data: ()=> ({
+    currentAnimes: [
+      {animeID:"01", title: "One Punch Man", stars: 8.50, releaseDate: "Oct 5, 2015", genre:"Adventure"},
+      {animeID:'02',title: "Spy x Family", stars: 9.99, releaseDate: "Apr 9, 2022", genre:"Comedy"},
+      {animeID:'03',title: "Chainsaw Man", stars: 8.24, releaseDate: "Oct 11, 2022", genre:"Graphic"},
+      {animeID:'04',title: "Blue Lock", stars: 8.24, releaseDate: "Oct 11, 2022", genre:"Sports"},
+      ],
+  }),
 }
 </script>
 
@@ -44,15 +71,30 @@ export default {
     height:100%;
     display: flex;
     justify-content: center;
+    color: var(--white);
 }
-
+.profile-middle .current-anime,
+.profile-middle .profile-stats,
+.profile-bottom .favorite-anime,
+.profile-bottom .favorite-genre{
+    background-color:var(--secondary);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 .banner{
-    background-color: blue;
+    object-fit: cover;
+    object-position: bottom;
     width:80vw;
     height: 25vh;
     position: absolute;
     margin: 0 auto;
     border-radius: 1rem;
+}
+.profile-grade{
+    color:rgb(219, 219, 219);
+    font-size: var(--h5);
+    font-weight: var(--fw-light);
 }
 .profile-info{
     display: flex;
@@ -81,14 +123,12 @@ export default {
     margin-right:5%;
     margin-top:8vh;
     border-radius:1rem;
-    background-color: red;
 }
 .profile-stats{
     width:25%;
     height:30vh;
     margin-top:8vh;
     border-radius:1rem;
-    background-color: blue;
 }
 .favorite-anime{
     width:40%;
@@ -96,14 +136,61 @@ export default {
     margin-right:5%;
     margin-top:5vh;
     border-radius:1rem;
-    background-color: purple;
+
 }
 .favorite-genre{
     width:20%;
     height:30vh;
     margin-top:5vh;
     border-radius:1rem;
-    background-color: green;
+}
+.middle-title{
+    margin-bottom:2.5%;
+    margin-left:5%;
+    font-size: var(--h4);
+}
+
+/* overall best anime (gray section) */
+.bestAnime{
+  display: flex;
+  flex-direction: row;
+}
+
+.anime-pfp{
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -o-border-radius: 50%;
+  width:5rem;
+  height:5rem;
+  margin-left:1rem;
+}
+.animeTitle{
+  font-size: var(--h4);
+  overflow: hidden;
+  white-space: nowrap;
+  display: block;
+  text-overflow: ellipsis;
+}
+.genre-text{
+  background-color: var(--primary);
+  width:20%;
+  height: 35%;
+  display: flex;
+  justify-content: center;
+  border-radius: 1rem;
+  margin-top: 1vw;
+  overflow: hidden;
+}
+.info-column{
+  width:45%;
+}
+
+.picture-column{
+  width:22%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .underNav{
     width:100vw;
