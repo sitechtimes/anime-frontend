@@ -17,7 +17,7 @@
 
                
                 <NuxtLink v-if="userStore.isAuthenticated == false" to="/login" class="link-href"> <button class="log-in button">Log In</button></NuxtLink>
-                <NuxtLink to="/profile" class="link-href"><button v-if="userStore.isAuthenticated == true" class="profile-btn"></button></NuxtLink>
+                <NuxtLink v-if="userStore.isAuthenticated == true" to="/profile" class="link-href"><img src="https://th.bing.com/th/id/R.945f33b643f2ceffcdae90fb57c61854?rik=Ox1dcxb6rfOngw&riu=http%3a%2f%2fgetdrawings.com%2ffree-icon-bw%2ffree-avatars-icons-25.png&ehk=i8VrSYUn0ZsIdAnnI51DInJ0WdIXd3ukvat6kwZC%2f3c%3d&risl=&pid=ImgRaw&r=0" alt="" class="profile-button"></NuxtLink>
                 <button @click="userStore.logout" v-if="userStore.isAuthenticated == true" class=" log-in button"> Logout</button>
             </ul>
         </nav>
@@ -130,6 +130,9 @@ import { useUserStore } from '../../stores/userStore'
 .navbar.navbar--hidden {
   box-shadow: none;
   transform: translate3d(0, -100%, 0);
+}
+.profile-button{
+    width:4rem;
 }
     #logo{
         font-size: var(--h2);

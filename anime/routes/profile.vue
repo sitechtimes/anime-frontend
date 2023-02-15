@@ -15,7 +15,7 @@
 </div>
 <div class="profile-middle">
     <div class="current-anime">
-        <h2 class="middle-title">My Current Animes</h2>
+        <h2 class="middle-title">Watch List</h2>
         <li v-for="currentAnime in currentAnimes" :key="currentAnime.animeID" class="bestAnime">
          <div class="picture-column">
           <img class="anime-pfp" src="https://cdn.myanimelist.net/images/characters/4/457933.jpg" alt="">
@@ -32,6 +32,11 @@
 <div class="profile-bottom">
     <div class="favorite-anime">
         <h2 class="middle-title">My Favorite Animes</h2>
+        <div class="anime-info-labels">
+            <h3 class="labels rank">Rank</h3>
+            <h3 class="labels title">Title</h3>
+            <h3 class="labels genre">Genre</h3>
+        </div>
         <li v-for="currentAnime in currentAnimes" :key="currentAnime.animeID" class="bestAnime">
          <div class="picture-column">
             <h2 class="rank-number">{{ currentAnime.animeID }}</h2>
@@ -124,6 +129,10 @@ export default {
     margin-top:8vh;
     border-radius:1rem;
 }
+.anime-info-labels{
+    display: flex;
+    justify-content: center;
+}
 .profile-stats{
     width:25%;
     height:30vh;
@@ -137,6 +146,18 @@ export default {
     margin-top:5vh;
     border-radius:1rem;
 
+}
+.labels{
+    color: rgb(219, 219, 219);
+}
+.rank{
+    width: 20%;
+}
+.title{
+    width:45%;
+}
+.genre{
+    width: 20%;
 }
 .favorite-genre{
     width:20%;
