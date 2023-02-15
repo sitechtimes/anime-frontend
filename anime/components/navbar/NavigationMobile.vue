@@ -3,15 +3,15 @@
     <div class="menu" v-class="{ close: isClose }">
           <ul class="mq-routers">
                 <li class="link" v-on:click="toggleOn()">
-                    <NuxtLink to="/awards" class="link-href">Awards</NuxtLink>
+                    <NuxtLink to="/awards" class="mobile-link-href">Awards</NuxtLink>
                 </li>
                 <li class="link" v-on:click="toggleOn()">
-                    <NuxtLink to="/ranking" class="link-href">Rankings</NuxtLink>
+                    <NuxtLink to="/ranking" class="mobile-link-href">Rankings</NuxtLink>
                 </li>
                 <li class="link" v-on:click="toggleOn()">
-                    <NuxtLink to="/history" class="link-href">History</NuxtLink>
+                    <NuxtLink to="/history" class="mobile-link-href">History</NuxtLink>
                 </li>
-                <button class="log-in button" v-on:click="toggleOn()">Log In</button>
+                <NuxtLink to="/login"><button class="mobile-log-in button" v-on:click="toggleOn()">Log In</button></NuxtLink>
             </ul>
         </div>
         <div class="nav-mobile">
@@ -21,10 +21,9 @@
           <div class="burger3 change"></div>
         </div>
           <h1 id="logo">
-          <NuxtLink to="/">Technime</NuxtLink></h1>
-          <button class="log-in button">Log In</button>
-        </div>
-       
+          <NuxtLink to="/" class="mobile-home-link">Technime</NuxtLink></h1>
+          <NuxtLink to="/login"><button class="log-in button">Log In</button></NuxtLink>
+    </div>       
 </div>
 </template>
 
@@ -49,6 +48,33 @@ export default {
 </script>
 
 <style>
+#logo {
+  color: var(--white);
+  font-size: var(--h3); 
+  transition: all 1s ease-in-out;        
+  -webkit-transition: all 1s ease-in-out;
+}
+.menu {
+  z-index: -1;
+  left: -110%;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  transition: .5s;
+  overflow: hidden;
+  color: var(--white);
+  background-color: var(--bg-primary);
+}
+.burger1,
+.burger2,
+.burger3 {
+  z-index: 3;
+  width: 35px;
+  height: 5px;
+  margin: 6px 0;
+  transition: .25s;
+  background-color: white;
+}
 .nav-mobile {
   width: 100%;
   height: 9vh;
@@ -58,28 +84,25 @@ export default {
   justify-content: space-between;
   background-color: var(--tertiary);
 }
-.log-in {
-  width: 25%;
-  margin-right: 2rem;
-}
-.burger1,
-.burger2,
-.burger3 {
-  width: 35px;
-  height: 5px;
-  margin: 6px 0;
-  z-index: 2000;
-  transition: .25s;
-  background-color: white;
-}
-#logo {
+.mq-routers{
+  width: 90%;
+  height: 50%;
+  display: flex;
+  align-items: center;
   color: var(--white);
-  font-size: var(--h3); 
-  transition: all 1s ease-in-out;        
-  -webkit-transition: all 1s ease-in-out;
+  font-size: var(--h3);
+  flex-direction: column;
+  justify-content: center;
+}
+.mobile-log-in {
+  width: 13rem;
+  margin-top: 3%;
+}
+.mobile-home-link {
+  font-size: var(--h4);
 }
 .change {
-  z-index: 2000;
+  z-index: 3;
 }
 .change .burger1 {
   position: relative;
@@ -93,34 +116,15 @@ export default {
   transform: translate(0, -11px) rotate(45deg);
 }
 div .close {
-  z-index: 1999;
+  z-index: 2;
   transform: translateX(110%);
 }
 .navigation-icon {
   cursor: pointer;
   margin-left: 2rem;
 }
-.menu {
-  z-index: -1;
-  left: -110%;
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  transition: .5s;
-  overflow: hidden;
-  color: var(--white);
-  background-color: var(--bg-primary);
-}
-  .mq-routers{
-  width: 90%;
-  height: 50%;
-  display: flex;
-  margin-top: 4%;
-  margin-bottom: 4%;
-  align-items: center;
-  color: var(--white);
-  font-size: var(--h3);
-  flex-direction: column;
-  justify-content: center;
+.mobile-link-href {
+  margin-top: 3%;
+  margin-bottom: 3%;
 }
 </style>
