@@ -14,12 +14,13 @@
 			</div>
 			<div class="trending-content">
 				<AnimeCard
-					v-for="anime in trending"
+					ref="trendingAnime"
+					v-for="anime in myJSON.data"
 					:key="anime.id"
-					:img="anime.img"
-					:episode="anime.episode"
-					:format="anime.format"
-					:title="anime.title"
+					:episodes="anime.episodes"
+					:animeName="anime.anime_name"
+					:imageUrl="anime.imageUrl"
+					:mediaType="anime.mediaType"
 				/>
 			</div>
 		</div>
@@ -40,6 +41,7 @@
 
 <script setup lang="ts">
 import { useUserStore } from "~~/stores/userStore";
+import { ref } from "vue";
 
 const userStore = useUserStore();
 
@@ -58,6 +60,8 @@ const graphqlQuery = {
 					 id,
 					 animeName,
 					 episodes,
+					 mediaType,
+					 imageUrl
 				   }
 				 }
 			   }
@@ -75,10 +79,8 @@ const response = await fetch(endpoint, options);
 const data = await response.json();
 const myJSON = JSON.stringify(data);
 
-console.log(myJSON);
-
-
-
+const trendingAnime = ref(myJSON.value.allAnime.edges);
+console.log(trendingAnime);
 </script>
 
 <script lang="ts">
@@ -87,8 +89,6 @@ import TopCharts from "./TopCharts.vue";
 import RightPageButton from "../RightPageButtonSvg.vue";
 import LeftPageButton from "../LeftPageButtonSvg.vue";
 import { useUserStore } from "~~/stores/userStore";
-
-console.log(myJSON);
 
 export default {
 	name: "TrendingBox",

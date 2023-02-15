@@ -1,11 +1,11 @@
 <template>
 	<div class="card-container">
-		<img class="anime-img" :src="`${img}`" alt="" />
+		<img class="anime-img" :src="`${imageUrl}`" alt="" />
 		<div class="container-bar">
 			<EpisodeSVG :episode="episode" />
-			<p id="format">{{ format }}</p>
+			<p id="format">{{ mediaType }}</p>
 		</div>
-		<h5 class="title">{{ title }}</h5>
+		<h5 class="title">{{ animeName }}</h5>
 	</div>
 </template>
 
@@ -18,19 +18,19 @@ export default {
 		EpisodeSVG,
 	},
 	props: {
-		img: {
+		imageUrl: {
 			type: String,
 			required: true,
 		},
-		episode: {
+		episodes: {
 			type: Number,
 			required: true,
 		},
-		format: {
+		mediaType: {
 			type: String,
 			required: true,
 		},
-		title: {
+		animeName: {
 			type: String,
 			required: true,
 		},
