@@ -8,6 +8,15 @@ html {
 	line-height: 1.15; /* 1 */
 	-webkit-text-size-adjust: 100%; /* 2 */
 }
+@keyframes fadeIn {
+    from { 
+    opacity: 0; 
+    }
+    to  { 
+    opacity: 1; 
+    }
+}
+    /* animation: fadeIn 750ms linear forwards; */
 *,
 *::before,
 *::after {
@@ -58,10 +67,10 @@ body {
 	/* colors */
 	--primary: #ff645a;
 	--secondary: #ca3d3d;
-	--tertiary: #272727;
+	--tertiary: #101010;
 	--white: #fff;
 	--dark-text: #24201e;
-	--bg-primary: #101010;
+	--bg-primary:#272727 ;
 	--alt-linear: #7926ff;
 
 	/* font weight */

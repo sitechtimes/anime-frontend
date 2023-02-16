@@ -82,7 +82,7 @@ export default {
 .profile-middle .profile-stats,
 .profile-bottom .favorite-anime,
 .profile-bottom .favorite-genre{
-    background-color:var(--secondary);
+    background-color:var(--tertiary);
     display: flex;
     flex-direction: column;
     justify-content: center;
