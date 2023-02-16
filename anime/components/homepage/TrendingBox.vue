@@ -15,12 +15,12 @@
 			<div class="trending-content">
 				<AnimeCard
 					ref="trendingAnime"
-					v-for="anime in trending"
+					v-for="anime in trendingAnime"
 					:key="anime.id"
-					:episode="anime.episode"
-					:animeName="anime.title"
-					:imageUrl="anime.img"
-					:mediaType="anime.format"
+					:episode="anime.episodes"
+					:animeName="anime.animeName"
+					:imageUrl="anime.imageUrl"
+					:mediaType="anime.mediaType"
 				/>
 			</div>
 		</div>
@@ -30,7 +30,7 @@
 				v-for="charts in top"
 				:key="charts.id"
 				:img="charts.img"
-				:episode="charts.episode"
+				:episodes="charts.episode"
 				:votes="charts.votes"
 				:title="charts.title"
 				:rank="charts.rank"
@@ -77,11 +77,16 @@ const options = {
 
 const response = await fetch(endpoint, options);
 const data = await response.json();
-const myJSON = JSON.stringify(data);
 
-const trendingAnime = ref(myJSON);
+const trendingAnime = [];
 
-console.log(trendingAnime.value);
+const myJSON = JSON.stringify(
+	data.data.allAnime.edges.forEach((anime: any) => {
+		trendingAnime.push(anime.node);
+	})
+);
+
+console.log(trendingAnime);
 </script>
 
 <script lang="ts">
@@ -157,92 +162,6 @@ export default {
 					votes: 100,
 					title: "One Piece",
 					rank: 7,
-				},
-			],
-			trending: [
-				{
-					id: 1,
-					img: "https://cdn.myanimelist.net/images/anime/5/87048.jpg",
-					episode: 12,
-					format: "TV",
-					title: "Kaguya-sama wa Kokurasetai: Tensai-tachi no Renai Zunousen",
-				},
-				{
-					id: 2,
-					img: "https://cdn.myanimelist.net/images/anime/5/87048.jpg",
-					episode: 12,
-					format: "TV",
-					title: "Kaguya-sama wa Kokurasetai: Tensai-tachi no Renai Zunousen",
-				},
-				{
-					id: 3,
-					img: "https://cdn.myanimelist.net/images/anime/5/87048.jpg",
-					episode: 12,
-					format: "TV",
-					title: "Kaguya-sama wa Kokurasetai: Tensai-tachi no Renai Zunousen",
-				},
-				{
-					id: 4,
-					img: "https://cdn.myanimelist.net/images/anime/5/87048.jpg",
-					episode: 12,
-					format: "TV",
-					title: "Kaguya-sama wa Kokurasetai: Tensai-tachi no Renai Zunousen",
-				},
-				{
-					id: 5,
-					img: "https://cdn.myanimelist.net/images/anime/5/87048.jpg",
-					episode: 12,
-					format: "TV",
-					title: "Kaguya-sama wa Kokurasetai: Tensai-tachi no Renai Zunousen",
-				},
-				{
-					id: 6,
-					img: "https://cdn.myanimelist.net/images/anime/5/87048.jpg",
-					episode: 12,
-					format: "TV",
-					title: "Kaguya-sama wa Kokurasetai: Tensai-tachi no Renai Zunousen",
-				},
-				{
-					id: 7,
-					img: "https://cdn.myanimelist.net/images/anime/5/87048.jpg",
-					episode: 12,
-					format: "TV",
-					title: "Kaguya-sama wa Kokurasetai: Tensai-tachi no Renai Zunousen",
-				},
-				{
-					id: 8,
-					img: "https://cdn.myanimelist.net/images/anime/5/87048.jpg",
-					episode: 12,
-					format: "TV",
-					title: "Kaguya-sama wa Kokurasetai: Tensai-tachi no Renai Zunousen",
-				},
-				{
-					id: 9,
-					img: "https://cdn.myanimelist.net/images/anime/5/87048.jpg",
-					episode: 12,
-					format: "TV",
-					title: "Kaguya-sama wa Kokurasetai: Tensai-tachi no Renai Zunousen",
-				},
-				{
-					id: 10,
-					img: "https://cdn.myanimelist.net/images/anime/5/87048.jpg",
-					episode: 12,
-					format: "TV",
-					title: "Kaguya-sama wa Kokurasetai: Tensai-tachi no Renai Zunousen",
-				},
-				{
-					id: 11,
-					img: "https://cdn.myanimelist.net/images/anime/5/87048.jpg",
-					episode: 12,
-					format: "TV",
-					title: "Kaguya-sama wa Kokurasetai: Tensai-tachi no Renai Zunousen",
-				},
-				{
-					id: 12,
-					img: "https://cdn.myanimelist.net/images/anime/5/87048.jpg",
-					episode: 12,
-					format: "TV",
-					title: "Kaguya-sama wa Kokurasetai: Tensai-tachi no Renai Zunousen",
 				},
 			],
 		};
