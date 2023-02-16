@@ -1,8 +1,9 @@
 <template>
   <div id="award-voting">
     <div class="award-container">
-      <NuxtLink to="/vote" v-for="award in awards" :key="award.category" class="award-box">
+      <NuxtLink to="/vote" @click="showNominees" v-for="(award, index) in awards" :key="award.category" class="award-box">
         <h1>{{award.category}}</h1>
+        <p class="hide">{{index}}</p>
       </NuxtLink>
     </div>
   </div>
@@ -21,7 +22,15 @@ export default ({
       {category: "G", nominees: [{title: "G1"}, {title: "G2"}, {title: "G3"}]},
       {category: "H", nominees: [{title: "H1"}, {title: "H2"}, {title: "H3"}]},
     ],
+    index: 0,
   }),
+  methods: {
+    showNominees(selected) {
+      this.index = selected.target.lastElementChild.innerHTML
+      let f = this.awards[this.index]
+      console.log(f)
+    }
+  }
 })
 </script>
   
@@ -46,5 +55,12 @@ export default ({
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: 0s;
+}
+.award-box:hover {
+  background: #b4372e;
+}
+.hide {
+  display: none;
 }
 </style>
