@@ -11,7 +11,7 @@
                 <li class="link" v-on:click="toggleOn()">
                     <NuxtLink to="/history" class="mobile-link-href">History</NuxtLink>
                 </li>
-                <NuxtLink to="/login"><button class="mobile-log-in button" v-on:click="toggleOn()">Log In</button></NuxtLink>
+                <NuxtLink to="/login"><button class="mobile-log-in" v-on:click="toggleOn()">Log In</button></NuxtLink>
             </ul>
         </div>
         <div class="nav-mobile">
@@ -20,15 +20,20 @@
           <div class="burger2 change"></div>
           <div class="burger3 change"></div>
         </div>
-          <h1 id="logo">
+          <h1 id="logo2">
           <NuxtLink to="/" class="mobile-home-link">Technime</NuxtLink></h1>
-          <NuxtLink to="/login"><button class="log-in button">Log In</button></NuxtLink>
+          <!-- <SearchBar/> -->
+          <NuxtLink to="/login"><button class="log-in">Log In</button></NuxtLink>
     </div>       
 </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import SearchBar from './SearchBar.vue'
+export default { 
+    components:{
+        SearchBar
+    },
     data(){
       return{
         isClose: true,
@@ -48,7 +53,7 @@ export default {
 </script>
 
 <style>
-#logo {
+#logo2 {
   color: var(--white);
   font-size: var(--h3); 
   transition: all 1s ease-in-out;        
@@ -64,6 +69,10 @@ export default {
   overflow: hidden;
   color: var(--white);
   background-color: var(--bg-primary);
+}
+.log-in {
+  width: 12rem;
+  font-size: var(--h5);
 }
 .burger1,
 .burger2,
@@ -85,7 +94,7 @@ export default {
   background-color: var(--tertiary);
 }
 .mq-routers{
-  width: 90%;
+  width: 50%;
   height: 50%;
   display: flex;
   align-items: center;
@@ -97,9 +106,10 @@ export default {
 .mobile-log-in {
   width: 13rem;
   margin-top: 3%;
+  font-size: var(--h4);
 }
 .mobile-home-link {
-  font-size: var(--h4);
+  font-size: var(--h3);
 }
 .change {
   z-index: 3;

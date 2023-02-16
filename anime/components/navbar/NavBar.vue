@@ -17,7 +17,7 @@
 
                
                 <NuxtLink v-if="userStore.isAuthenticated == false" to="/login" class="link-href"> <button class="log-in button">Log In</button></NuxtLink>
-                <button @click="userStore.logout" v-if="userStore.isAuthenticated == true" class=" log-in button"> Logout</button>
+                <button @click="userStore.logout" v-if="userStore.isAuthenticated == true" class="log-in button"> Logout</button>
             </ul>
         </nav>
 
@@ -108,7 +108,6 @@ import { useUserStore } from '../../stores/userStore'
 <style scoped>
 .log-in {
     width: 90%;
-    font-size: 19.99px;
 }
 .navigation{
     width: 100%;
