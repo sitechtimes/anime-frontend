@@ -15,12 +15,12 @@
 			<div class="trending-content">
 				<AnimeCard
 					ref="trendingAnime"
-					v-for="anime in myJSON.data"
+					v-for="anime in trending"
 					:key="anime.id"
-					:episodes="anime.episodes"
-					:animeName="anime.anime_name"
-					:imageUrl="anime.imageUrl"
-					:mediaType="anime.mediaType"
+					:episode="anime.episode"
+					:animeName="anime.title"
+					:imageUrl="anime.img"
+					:mediaType="anime.format"
 				/>
 			</div>
 		</div>
@@ -41,7 +41,7 @@
 
 <script setup lang="ts">
 import { useUserStore } from "~~/stores/userStore";
-import { ref } from "vue";
+//import { ref } from "vue";
 
 const userStore = useUserStore();
 
@@ -79,8 +79,9 @@ const response = await fetch(endpoint, options);
 const data = await response.json();
 const myJSON = JSON.stringify(data);
 
-const trendingAnime = ref(myJSON.value.allAnime.edges);
-console.log(trendingAnime);
+const trendingAnime = ref(myJSON);
+
+console.log(trendingAnime.value);
 </script>
 
 <script lang="ts">

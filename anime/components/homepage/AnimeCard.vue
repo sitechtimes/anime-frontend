@@ -22,7 +22,7 @@ export default {
 			type: String,
 			required: true,
 		},
-		episodes: {
+		episode: {
 			type: Number,
 			required: true,
 		},
