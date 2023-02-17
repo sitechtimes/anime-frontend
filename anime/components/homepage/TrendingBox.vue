@@ -14,8 +14,7 @@
 			</div>
 			<div class="trending-content">
 				<AnimeCard
-					ref="trendingAnime"
-					v-for="anime in trendingAnime"
+					v-for="anime in trendingAnime.slice(start, end)"
 					:key="anime.id"
 					:episode="anime.episodes"
 					:animeName="anime.animeName"
@@ -51,21 +50,26 @@ const headers = {
 	Authorization: `Bearer ${userStore.token}`,
 };
 
-const variable = ref({ offset: 24 });
+const start = ref(0);
+const end = ref(12);
 
 function next() {
-	variable.value.offset += 12;
-	console.log(variable.value.offset);
+	if (end.value < trendingAnime.length) {
+		start.value += 11;
+		end.value += 11;
+	}
 }
 
 function previous() {
-	variable.value.offset -= 12;
-	console.log(variable.value.offset);
+	if (start.value > 0) {
+		start.value -= 11;
+		end.value -= 11;
+	}
 }
 
 const graphqlQuery = {
-	query: `query($offset: Int!) {
-			  allAnime(first: 12, offset: $offset) {
+	query: `query {
+			  allAnime {
 			    edges {
 				  node {
 					id
@@ -78,7 +82,7 @@ const graphqlQuery = {
 			  }
 			},
 		  `,
-	variables: variable.value,
+	variables: {},
 };
 
 const options = {
@@ -97,6 +101,8 @@ const myJSON = JSON.stringify(
 		trendingAnime.push(anime.node);
 	})
 );
+
+console.log(trendingAnime);
 </script>
 
 <script lang="ts">
