@@ -55,8 +55,6 @@
 	</div>
 </template>
 
-
-
 <script lang="ts">
 import starSVG from "../components/starSVG.vue";
 export default {

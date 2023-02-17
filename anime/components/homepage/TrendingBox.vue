@@ -41,7 +41,7 @@
 
 <script setup lang="ts">
 import { useUserStore } from "~~/stores/userStore";
-//import { ref } from "vue";
+import { ref } from "vue";
 
 const userStore = useUserStore();
 
@@ -50,21 +50,35 @@ const headers = {
 	"content-type": "application/json",
 	Authorization: `Bearer ${userStore.token}`,
 };
+
+const variable = ref({ offset: 24 });
+
+function next() {
+	variable.value.offset += 12;
+	console.log(variable.value.offset);
+}
+
+function previous() {
+	variable.value.offset -= 12;
+	console.log(variable.value.offset);
+}
+
 const graphqlQuery = {
-	query: `query {
-				 allAnime(first: 12, offset: 12){
-				 edges{
-				   node{
-					 id,
-					 animeName,
-					 episodes,
-					 mediaType,
-					 imageUrl
-				   }
-				 }
-			   }
-			  }`,
-	variables: {},
+	query: `query($offset: Int!) {
+			  allAnime(first: 12, offset: $offset) {
+			    edges {
+				  node {
+					id
+					animeName
+					episodes
+					mediaType
+					imageUrl
+				  }
+				}
+			  }
+			},
+		  `,
+	variables: variable.value,
 };
 
 const options = {
@@ -83,8 +97,6 @@ const myJSON = JSON.stringify(
 		trendingAnime.push(anime.node);
 	})
 );
-
-console.log(trendingAnime);
 </script>
 
 <script lang="ts">
@@ -257,7 +269,8 @@ export default {
 .page-button {
 	background-color: transparent;
 	border: none;
-	padding-left: 1rem;
+	padding: 0;
+	margin-left: 1rem;
 	padding-right: 0;
 	color: var(--white);
 	cursor: pointer;
@@ -266,6 +279,5 @@ export default {
 }
 .svg-button {
 	display: block;
-	margin: auto;
 }
 </style>
