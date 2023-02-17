@@ -50,7 +50,6 @@ export default {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	width: 100%;
 	height: 9rem;
 	background-color: var(--tertiary);
 	margin-top: 1rem;
@@ -60,12 +59,12 @@ export default {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 10rem;
+	width: 5.5rem;
 	height: 100%;
 	background-color: var(--secondary);
 	color: var(--white);
-	font-size: var(--h3);
-	font-weight: var(--fw-semi);
+	font-size: var(--h2);
+	font-weight: var(--fw-reg);
 	border-radius: 0.75rem 0 0 0.75rem;
 }
 .charts-img {
@@ -75,22 +74,24 @@ export default {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	width: 100%;
+	width: 55%;
 	padding-left: 1rem;
 }
 .charts-title {
+	display: block;
+	white-space: nowrap;
 	width: 100%;
-	color: var(--white);
+	color: var(--light-text);
 	font-size: var(--h5);
 	font-weight: var(--fw-reg);
-	margin-left: 0.5rem;
+	text-overflow: ellipsis;
+	overflow: hidden;
 }
 .charts-details {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	width: 100%;
-	padding: 0.5rem;
 }
 .charts-ep {
 	color: var(--white);
@@ -99,9 +100,9 @@ export default {
 	padding: 0.5rem;
 }
 .charts-votes {
-	color: var(--white);
+	color: var(--light-text);
 	font-size: var(--h6);
 	font-weight: var(--fw-reg);
-	padding: 0.5rem;
+	padding-left: 1rem;
 }
 </style>

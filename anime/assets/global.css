@@ -59,6 +59,7 @@ body {
 	--secondary: #ca3d3d;
 	--tertiary: #272727;
 	--white: #fff;
+	--light-text: #b4b4b4;
 	--dark-text: #24201e;
 	--bg-primary: #101010;
 	--alt-linear: #7926ff;
@@ -76,9 +77,9 @@ body {
 	--h2: 3.998rem;
 	--h3: 2.827rem;
 	--h4: 1.999rem;
-	--h5: 1.414rem;
-	--h6: 1.2rem;
-	--h7: 1rem;
+	--h5: 1.6rem;
+	--h6: 1.414rem;
+	--h7: 1.2rem;
+	--h8: 1rem;
 	--smallText: 0.8rem;
 }
-

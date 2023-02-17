@@ -23,7 +23,6 @@ export default {
 			required: true,
 		},
 		episode: {
-			type: Number,
 			required: true,
 		},
 		mediaType: {
@@ -35,6 +34,14 @@ export default {
 			required: true,
 		},
 	},
+	computed: {
+		trimTitle() {
+			if (this.animeName.length <= 28) {
+				return this.animeName;
+			}
+			return this.animeName.slice(0, 28) + "...";
+		},
+	},
 };
 </script>
 
@@ -42,13 +49,28 @@ export default {
 .card-container {
 	display: flex;
 	flex-direction: column;
-	width: 8vw;
+	width: 10.5vw;
+	margin-bottom: 2rem;
+}
+.card-container:hover {
+	transform: translateY(-0.5rem);
+	transition: 0.3s;
+}
+.card-container:hover > img {
+	opacity: 30%;
+	transition: 0.3s;
+}
+.card-container:not(hover) > img {
+	opacity: 100%;
+	transition: 0.5s;
 }
 .anime-img {
 	border-radius: 0.5rem 0.5rem 0 0;
 }
 img {
 	width: 100%;
+	object-fit: cover;
+	aspect-ratio: 225/350;
 }
 .container-bar {
 	display: flex;
@@ -56,27 +78,27 @@ img {
 	justify-content: space-between;
 	align-items: center;
 	background-color: var(--bg-primary);
-	padding: 0.15rem;
+	padding: 0.2rem;
 	padding-left: 0.5rem;
+	padding-right: 0.75rem;
 	border-radius: 0 0 0.5rem 0.5rem;
 }
 .title {
 	width: 100%;
-	color: var(--white);
-	font-size: var(--h6);
-	font-weight: var(--fw-reg);
-	padding: 0.5rem;
-}
-#ep {
-	width: 1.5rem;
-	font-size: var(--h7);
-	color: var(--white);
-	font-weight: var(--fw-reg);
+	color: var(--light-text);
+	font-size: var(--h5);
+	font-weight: var(--fw-light);
+	padding-top: 0.5rem;
+	white-space: wrap;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
 }
 #format {
-	color: #f5f5f5;
-	font-size: var(--h7);
-	padding: 0.2rem 0.5rem;
+	color: var(--light-text);
+	font-size: var(--h6);
 	font-weight: var(--fw-reg);
 }
 </style>
