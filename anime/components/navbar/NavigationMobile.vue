@@ -22,8 +22,8 @@
         </div>
           <h1 id="logo2">
           <NuxtLink to="/" class="mobile-home-link">Technime</NuxtLink></h1>
-          <!-- <SearchBar/> -->
-          <NuxtLink to="/login"><button class="log-in">Log In</button></NuxtLink>
+          <SearchBar/>
+          <NuxtLink to="/login"><button class="log-in-2">Log In</button></NuxtLink>
     </div>       
 </div>
 </template>
@@ -70,9 +70,8 @@ export default {
   color: var(--white);
   background-color: var(--bg-primary);
 }
-.log-in {
-  width: 12rem;
-  font-size: var(--h5);
+.change {
+  z-index: 3;
 }
 .burger1,
 .burger2,
@@ -84,6 +83,12 @@ export default {
   transition: .25s;
   background-color: white;
 }
+.log-in-2 {
+  width: 8.5rem;
+  padding: 0.5rem;
+  margin-right: 0.2rem;
+  font-size: var(--h5);
+}
 .nav-mobile {
   width: 100%;
   height: 9vh;
@@ -94,7 +99,7 @@ export default {
   background-color: var(--tertiary);
 }
 .mq-routers{
-  width: 50%;
+  width: 90%;
   height: 50%;
   display: flex;
   align-items: center;
@@ -110,9 +115,6 @@ export default {
 }
 .mobile-home-link {
   font-size: var(--h3);
-}
-.change {
-  z-index: 3;
 }
 .change .burger1 {
   position: relative;
@@ -136,5 +138,25 @@ div .close {
 .mobile-link-href {
   margin-top: 3%;
   margin-bottom: 3%;
+} 
+@media screen and (max-width: 395px) { 
+.burger1,
+.burger2,
+.burger3 {
+  width: 25px;
+  height: 3px;
+  margin: 5px 0;
+}
+.mobile-home-link {
+  font-size: var(--h4);
+}
+.change .burger1 {
+  position: relative;
+  transform: translate(0, 6px) rotate(-45deg);
+}
+.change .burger3 {
+  position: absolute;
+  transform: translate(0, -15px) rotate(45deg);
+}
 }
 </style>

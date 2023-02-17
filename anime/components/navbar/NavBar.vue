@@ -2,7 +2,7 @@
     <section id="nav" class="nav">
         <nav class="navigation" :class="{ 'is-hidden': !showHeader }">
             <h1 id="logo">
-                <NuxtLink to="/">Technime</NuxtLink></h1>       
+                <NuxtLink to="/" class="home-link">Technime</NuxtLink></h1>       
                 <SearchBar/>
             <ul class="routers">
                 <li class="link">
@@ -107,7 +107,7 @@ import { useUserStore } from '../../stores/userStore'
 </script>
 <style scoped>
 .log-in {
-    width: 90%;
+    width: 100%;
 }
 .navigation{
     width: 100%;
@@ -150,5 +150,48 @@ import { useUserStore } from '../../stores/userStore'
 }
 .navigation.is-hidden {
     transform: translateY(-100%);
+}
+@media screen and (max-width: 1025px) {
+.log-in {
+    width: 11rem;
+    padding: 0.6rem;
+    font-size: var(--h4);
+}
+.home-link {
+    font-size: var(--h3);
+}
+.link-href {
+    margin: 2px 5px;
+}
+}
+@media screen and (max-width: 915px) {
+.log-in {
+    margin-right: 2rem;
+}
+.home-link {
+    padding: 0rem;
+    font-size: var(--h2);
+}
+.link-href {
+    font-size: var(--h4);
+}
+}
+@media screen and (max-width: 825px) {
+.log-in {
+    margin-right: 5rem;
+}
+.home-link {
+    font-size: var(--h3);
+}
+}
+@media screen and (max-width: 770px) {
+.log-in {
+    width: 7rem;
+    font-size: 1.65rem;
+}
+.link-href {
+    margin: 2px 5px;
+    font-size: var(--h4);
+}
 }
 </style>
