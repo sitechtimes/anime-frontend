@@ -31,7 +31,7 @@ export default ({
   background: var(--secondary);
   font-size: var(--h1);
   text-align: center;
-  margin-top: 3rem;
+  margin-top: 7rem;
 }
 .nominee-container {
   margin-top: 5vh;
@@ -40,18 +40,19 @@ export default ({
   justify-content: space-between;
 }
 .nominee-box {
-  padding: 1rem;
+  padding: 0rem;
   width: 33vw;
   height: 15vh;
   color: white;
   display: flex;
   flex-direction: row;
-  outline: solid 2px gray;
-  background: var(--tertiary);
+  background: #252525;
   margin-bottom: 3rem;
+  transition: 100ms;
 }
 .nominee-box:hover {
-  background: red;
+  /* background: var(--primary); */
+  outline: solid 4px var(--primary);
 }
 .image-placeholder {
   height: 100%;
@@ -60,6 +61,6 @@ export default ({
 }
 .anime-title {
   font-size: var(--h3);
-  margin-left: 1rem;
+  margin: 1rem 2rem;
 }
 </style>
