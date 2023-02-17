@@ -13,50 +13,20 @@
         </div>
     </div>
 </div>
-<div class="profile-middle">
-    <div class="current-anime">
-        <h2 class="middle-title">Watch List</h2>
-        <li v-for="currentAnime in currentAnimes" :key="currentAnime.animeID" class="bestAnime">
-         <div class="picture-column">
-          <img class="anime-pfp" src="https://cdn.myanimelist.net/images/characters/4/457933.jpg" alt="">
-         </div>
-          <div class="info-column">
-            <h1 class="animeTitle">{{currentAnime.title}}</h1>
-            </div>
-            <span class="genre-text">{{currentAnime.genre}}</span>
-          </li>
+    <div class="tabs-class">
         
     </div>
-    <div class="profile-stats"></div>
-</div>
-<div class="profile-bottom">
-    <div class="favorite-anime">
-        <h2 class="middle-title">My Favorite Animes</h2>
-        <div class="anime-info-labels">
-            <h3 class="labels rank">Rank</h3>
-            <h3 class="labels title">Title</h3>
-            <h3 class="labels genre">Genre</h3>
-        </div>
-        <li v-for="currentAnime in currentAnimes" :key="currentAnime.animeID" class="bestAnime">
-         <div class="picture-column">
-            <h2 class="rank-number">{{ currentAnime.animeID }}</h2>
-          <img class="anime-pfp" src="https://cdn.myanimelist.net/images/characters/4/457933.jpg" alt="">
-         </div>
-          <div class="info-column">
-            <h1 class="animeTitle">{{currentAnime.title}}</h1>
-            </div>
-            <span class="genre-text">{{currentAnime.genre}}</span>
-          </li>
-    </div>
-    <div class="favorite-genre">
-        <h2 class="middle-title">My Favorite Genres</h2>
-    </div>
-</div>
   </div>
 </template>
 
 <script lang="ts">
+    import Tab from '../components/profile/Tab.vue'
+    import Tabs from '../components/profile/Tabs.vue'
 export default {
+    components: {
+      Tab,
+      Tabs
+    },
     data: ()=> ({
     currentAnimes: [
       {animeID:"01", title: "One Punch Man", stars: 8.50, releaseDate: "Oct 5, 2015", genre:"Adventure"},
