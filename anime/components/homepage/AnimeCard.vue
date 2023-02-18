@@ -1,9 +1,15 @@
 <template>
 	<div class="card-container">
-		<img class="anime-img" :src="`${imageUrl}`" alt="" />
-		<div class="container-bar">
-			<EpisodeSVG :episode="episode" />
-			<p id="format">{{ mediaType }}</p>
+		<div class="card-cover">
+			<img class="anime-img" :src="`${imageUrl}`" alt="" />
+			<div class="container-bar">
+				<div id="episodeBox">
+					<div id="ep" v-if="episode">{{ episode }}</div>
+					<div id="ep" v-if="!episode">N/A</div>
+					<EpisodeSVG :episode="episode" />
+				</div>
+				<p id="format">{{ mediaType }}</p>
+			</div>
 		</div>
 		<h5 class="title">{{ animeName }}</h5>
 	</div>
@@ -46,28 +52,38 @@ export default {
 </script>
 
 <style scoped>
+#episodeBox {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+#ep {
+	line-height: 2rem;
+	color: var(--light-text);
+	font-size: var(--h6);
+	font-weight: var(--fw-reg);
+	background-color: var(--secondary);
+	padding-left: 0.6rem;
+	border-radius: 0.2rem 0 0 0.2rem;
+}
 .card-container {
 	display: flex;
 	flex-direction: column;
-	width: 10.5vw;
+	width: 11vw;
 	margin-bottom: 2rem;
 }
-.card-container:hover {
-	transform: translateY(-0.5rem);
-	transition: 0.3s;
-}
-.card-container:hover > img {
-	opacity: 30%;
-	transition: 0.3s;
-}
-.card-container:not(hover) > img {
+.card-cover:not(hover) > img {
 	opacity: 100%;
-	transition: 0.5s;
+	transition: 0.3s;
+}
+.card-cover:hover > img {
+	opacity: 25%;
+	transition: 0.3s;
 }
 .anime-img {
 	border-radius: 0.5rem 0.5rem 0 0;
 }
-img {
+.anime-img {
 	width: 100%;
 	object-fit: cover;
 	aspect-ratio: 225/350;
@@ -77,9 +93,9 @@ img {
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-	background-color: var(--bg-primary);
+	background-color: var(--bg-secondary);
 	padding: 0.2rem;
-	padding-left: 0.5rem;
+	padding-left: 0.6rem;
 	padding-right: 0.75rem;
 	border-radius: 0 0 0.5rem 0.5rem;
 }
@@ -95,6 +111,14 @@ img {
 	-webkit-line-clamp: 2;
 	-webkit-box-orient: vertical;
 	overflow: hidden;
+}
+.title:hover {
+	color: var(--primary);
+	transition: 0.2s;
+}
+.title:not(hover) {
+	color: var(--light-text);
+	transition: 0.2s;
 }
 #format {
 	color: var(--light-text);

@@ -203,7 +203,6 @@ export default {
 
 <style scoped>
 .home-body {
-	padding-top: 20rem;
 	display: flex;
 	flex-direction: row;
 	width: 100%;
@@ -213,7 +212,7 @@ export default {
 	background-size: cover;
 }
 .top-box {
-	background-color: var(--bg-tertiary);
+	background-color: var(--bg-primary);
 	border-radius: 1.5rem;
 	margin-right: 2rem;
 	margin-top: 10rem;
@@ -223,7 +222,7 @@ export default {
 	flex-direction: column;
 }
 .trending-box {
-	background-color: var(--tertiary);
+	background-color: var(--bg-primary);
 	border-radius: 1.5rem;
 	padding: 3rem;
 	width: 100vw;

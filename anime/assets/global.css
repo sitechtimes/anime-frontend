@@ -55,13 +55,15 @@ body {
 	--body-font: "Merriweather Sans", sans-serif;
 
 	/* colors */
-	--primary: #ff645a;
-	--secondary: #ca3d3d;
+	--primary: #F8665E;
+	--secondary: #D33C3C;
 	--tertiary: #272727;
 	--white: #fff;
 	--light-text: #b4b4b4;
+	--shaded-text: #7a7a7a;
 	--dark-text: #24201e;
-	--bg-primary: #101010;
+	--bg-primary: #1b1b1b;
+	--bg-secondary: #2f2f2f;
 	--alt-linear: #7926ff;
 
 	/* font weight */
