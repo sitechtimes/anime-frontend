@@ -72,6 +72,15 @@ export default {
 	width: 11vw;
 	margin-bottom: 2rem;
 }
+.card-cover {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	width: 100%;
+	border-radius: 0.5rem;
+	overflow: hidden;
+}
 .card-cover:not(hover) > img {
 	opacity: 100%;
 	transition: 0.3s;
@@ -114,11 +123,11 @@ export default {
 }
 .title:hover {
 	color: var(--primary);
-	transition: 0.2s;
+	transition: 0.4s;
 }
 .title:not(hover) {
 	color: var(--light-text);
-	transition: 0.2s;
+	transition: 0.4s;
 }
 #format {
 	color: var(--light-text);

@@ -1,12 +1,5 @@
 <template>
-	<svg
-		id="leftPageButton"
-		width="10"
-		height="20"
-		viewBox="0 0 20 34"
-		fill="none"
-		xmlns="http://www.w3.org/2000/svg"
-	>
+	<svg id="leftPageButton" viewBox="0 0 20 34" fill="none" xmlns="http://www.w3.org/2000/svg">
 		<path
 			fill-rule="evenodd"
 			clip-rule="evenodd"
@@ -24,12 +17,12 @@ export default {
 <style scoped>
 #leftPageButton {
 	width: 2rem;
-	height: 2rem;
+	height: 1.5rem;
 }
 #leftPageButton path {
-	fill: var(--shaded-text);
+	fill: var(--light-text);
 }
 #leftPageButton:hover > path {
-	fill: var(--light-text);
+	fill: var(--white);
 }
 </style>

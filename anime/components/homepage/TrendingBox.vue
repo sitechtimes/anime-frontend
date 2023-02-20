@@ -4,12 +4,18 @@
 			<div class="trending-header">
 				<h2 class="trending-title">Trending</h2>
 				<div class="trending-pages">
-					<button class="page-button" v-on:click="previous">
-						<LeftPageButton />
-					</button>
-					<button class="page-button" v-on:click="next">
-						<RightPageButton />
-					</button>
+					<div class="trendingPageNumberBox">
+						<p class="trendingPageNumber">Page</p>
+						<p class="trendingPageNumberVar">{{ pageNumber }}</p>
+					</div>
+					<div class="trendingPageButtonBox">
+						<button class="page-button" v-on:click="previous">
+							<LeftPageButton />
+						</button>
+						<button class="page-button" v-on:click="next">
+							<RightPageButton />
+						</button>
+					</div>
 				</div>
 			</div>
 			<div class="trending-content">
@@ -52,11 +58,13 @@ const headers = {
 
 const start = ref(0);
 const end = ref(12);
+const pageNumber = ref(1);
 
 function next() {
 	if (end.value < trendingAnime.length) {
 		start.value += 11;
 		end.value += 11;
+		pageNumber.value += 1;
 	}
 }
 
@@ -64,6 +72,7 @@ function previous() {
 	if (start.value > 0) {
 		start.value -= 11;
 		end.value -= 11;
+		pageNumber.value -= 1;
 	}
 }
 
@@ -275,12 +284,35 @@ export default {
 	background-color: transparent;
 	border: none;
 	padding: 0;
-	margin-left: 1rem;
 	padding-right: 0;
-	color: var(--white);
 	cursor: pointer;
 	display: flex;
 	justify-content: center;
+}
+.trendingPageNumber {
+	font-size: var(--h5);
+	font-weight: var(--fw-semi-bold);
+	color: var(--light-text);
+	margin-right: 2.5rem;
+}
+.trendingPageNumberVar {
+	font-size: var(--h5);
+	font-weight: var(--fw-semi-bold);
+	color: var(--light-text);
+	position: absolute;
+	margin-left: 3.2rem;
+}
+.trendingPageNumberBox {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.trendingPageButtonBox {
+	background-color: transparent;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	column-gap: 1rem;
 }
 .svg-button {
 	display: block;
