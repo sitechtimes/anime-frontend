@@ -59,8 +59,8 @@ export default {
 }
 #ep {
 	line-height: 2rem;
-	color: var(--light-text);
-	font-size: var(--h6);
+	color: var(--off-white);
+	font-size: var(--h7);
 	font-weight: var(--fw-reg);
 	background-color: var(--secondary);
 	padding-left: 0.6rem;

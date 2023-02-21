@@ -10,10 +10,10 @@
 					</div>
 					<div class="trendingPageButtonBox">
 						<button class="page-button" v-on:click="previous">
-							<LeftPageButton />
+							<LeftPageButton :pageExist="pageExistLeft" />
 						</button>
 						<button class="page-button" v-on:click="next">
-							<RightPageButton />
+							<RightPageButton :pageExist="pageExistRight" />
 						</button>
 					</div>
 				</div>
@@ -59,20 +59,29 @@ const headers = {
 const start = ref(0);
 const end = ref(12);
 const pageNumber = ref(1);
+const pageExistLeft = ref(false);
+const pageExistRight = ref(true);
 
 function next() {
 	if (end.value < trendingAnime.length) {
 		start.value += 11;
 		end.value += 11;
 		pageNumber.value += 1;
+		pageExistLeft.value = true;
+	} else {
+		pageExistRight.value = false;
 	}
 }
 
 function previous() {
-	if (start.value > 0) {
+	if (pageNumber.value == 1) {
+		pageExistLeft.value = false;
+		pageExistRight.value = true;
+	} else {
 		start.value -= 11;
 		end.value -= 11;
 		pageNumber.value -= 1;
+		pageExistRight.value = true;
 	}
 }
 
@@ -111,7 +120,7 @@ const myJSON = JSON.stringify(
 	})
 );
 
-console.log(trendingAnime);
+//console.log(trendingAnime);
 </script>
 
 <script lang="ts">
