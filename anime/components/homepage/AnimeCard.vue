@@ -1,18 +1,20 @@
 <template>
-	<div class="card-container">
-		<div class="card-cover">
-			<img class="anime-img" :src="`${imageUrl}`" alt="" />
-			<div class="container-bar">
-				<div id="episodeBox">
-					<div id="ep" v-if="episode">{{ episode }}</div>
-					<div id="ep" v-if="!episode">N/A</div>
-					<EpisodeSVG :episode="episode" />
+	<NuxtLink to="/animeInfo">
+		<div class="card-container">
+			<div class="card-cover">
+				<img class="anime-img" :src="`${imageUrl}`" alt="" />
+				<div class="container-bar">
+					<div id="episodeBox">
+						<div id="ep" v-if="episode">{{ episode }}</div>
+						<div id="ep" v-if="!episode">N/A</div>
+						<EpisodeSVG />
+					</div>
+					<p id="format">{{ mediaType }}</p>
 				</div>
-				<p id="format">{{ mediaType }}</p>
 			</div>
+			<h5 class="title">{{ animeName }}</h5>
 		</div>
-		<h5 class="title">{{ animeName }}</h5>
-	</div>
+	</NuxtLink>
 </template>
 
 <script lang="ts">
@@ -70,7 +72,6 @@ export default {
 	display: flex;
 	flex-direction: column;
 	width: 11vw;
-	margin-bottom: 2rem;
 }
 .card-cover {
 	position: relative;

@@ -5,7 +5,11 @@
 		<div class="charts-info">
 			<h3 class="charts-title">{{ title }}</h3>
 			<div class="charts-details">
-				<EpisodeSVG :episode="episode" />
+				<div class="chartsEpBox">
+					<div id="ep" v-if="episode">{{ episode }}</div>
+					<div id="ep" v-if="!episode">N/A</div>
+					<EpisodeSVG />
+				</div>
 				<h4 class="charts-votes">{{ votes }}</h4>
 			</div>
 		</div>
@@ -46,6 +50,20 @@ export default {
 </script>
 
 <style scoped>
+.chartsEpBox {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+#ep {
+	line-height: 2rem;
+	color: var(--off-white);
+	font-size: var(--h7);
+	font-weight: var(--fw-reg);
+	background-color: var(--secondary);
+	padding-left: 0.6rem;
+	border-radius: 0.2rem 0 0 0.2rem;
+}
 .charts-container {
 	display: flex;
 	flex-direction: row;

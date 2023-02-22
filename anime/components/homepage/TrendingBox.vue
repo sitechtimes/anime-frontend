@@ -21,6 +21,7 @@
 			<div class="trending-content">
 				<AnimeCard
 					v-for="anime in trendingAnime.slice(start, end)"
+					:id="anime.id"
 					:key="anime.id"
 					:episode="anime.episodes"
 					:animeName="anime.animeName"
@@ -280,7 +281,7 @@ export default {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
-	row-gap: 2rem;
+	row-gap: 4rem;
 	column-gap: 1%;
 }
 .trending-pages {
@@ -325,5 +326,8 @@ export default {
 }
 .svg-button {
 	display: block;
+}
+AnimeCard:hover {
+	cursor: pointer;
 }
 </style>
