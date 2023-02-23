@@ -9,6 +9,7 @@ import { useUserStore } from "~~/stores/userStore";
 import { ref } from "vue";
 
 const userStore = useUserStore();
+console.log(userStore.animeId);
 
 const endpoint = "http://127.0.0.1:8000/graphql/";
 const headers = {
@@ -18,19 +19,24 @@ const headers = {
 
 const graphqlQuery = {
 	query: `query {
-				  allAnime {
-					edges {
-					  node {
-						id
-						animeName
-						episodes
-						mediaType
-						imageUrl
-					  }
+				anime(id: "QW5pbWVOb2RlOjE4MA==") {
+					animeName
+					episodes
+					mediaType
+					imageUrl
+					status
+					airedFrom
+					airedTo
+					summary
+					animeGenre {
+						edges {
+							node {
+							genre
+							}
+						}
 					}
-				  }
-				},
-			  `,
+				}
+			}`,
 	variables: {},
 };
 
@@ -43,16 +49,9 @@ const options = {
 const response = await fetch(endpoint, options);
 const data = await response.json();
 
-const trendingAnime = [];
+const myJSON = JSON.stringify(data.data.anime);
 
-const myJSON = JSON.stringify(
-	data.data.allAnime.edges.forEach(anime => {
-		trendingAnime.push(anime.node);
-	})
-);
-
-//console.log(trendingAnime);
-console.log(userStore.animeId);
+console.log(myJSON);
 </script>
 
 <script lang="ts">

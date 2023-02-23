@@ -8,7 +8,7 @@
 				<div class="chartsEpBox">
 					<div id="ep" v-if="episode">{{ episode }}</div>
 					<div id="ep" v-if="!episode">N/A</div>
-					<EpisodeSVG />
+					<EpisodeSVG :episode="episode" />
 				</div>
 				<h4 class="charts-votes">{{ votes }}</h4>
 			</div>

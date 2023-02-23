@@ -32,6 +32,9 @@ export const useUserStore = defineStore("user", {
 		// }
 	},
 	actions: {
+		storeAnimeId(id: any) {
+			this.animeId = id;
+		},
 		async login(res: any) {
 			console.log(res.code);
 			try {

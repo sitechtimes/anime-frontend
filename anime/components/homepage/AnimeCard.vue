@@ -1,14 +1,10 @@
 <template>
 	<NuxtLink to="/animeInfo">
-		<div class="card-container">
+		<div class="card-container" @click="$emit('saveAnimeID')">
 			<div class="card-cover">
 				<img class="anime-img" :src="`${imageUrl}`" alt="" />
 				<div class="container-bar">
-					<div id="episodeBox">
-						<div id="ep" v-if="episode">{{ episode }}</div>
-						<div id="ep" v-if="!episode">N/A</div>
-						<EpisodeSVG />
-					</div>
+					<EpisodeSVG :episode="episode" />
 					<p id="format">{{ mediaType }}</p>
 				</div>
 			</div>
@@ -54,20 +50,6 @@ export default {
 </script>
 
 <style scoped>
-#episodeBox {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-}
-#ep {
-	line-height: 2rem;
-	color: var(--off-white);
-	font-size: var(--h7);
-	font-weight: var(--fw-reg);
-	background-color: var(--secondary);
-	padding-left: 0.6rem;
-	border-radius: 0.2rem 0 0 0.2rem;
-}
 .card-container {
 	display: flex;
 	flex-direction: column;

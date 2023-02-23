@@ -20,6 +20,7 @@
 			</div>
 			<div class="trending-content">
 				<AnimeCard
+					@saveAnimeID="saveAnimeID(anime.id)"
 					v-for="anime in trendingAnime.slice(start, end)"
 					:id="anime.id"
 					:key="anime.id"
@@ -50,6 +51,7 @@ import { useUserStore } from "~~/stores/userStore";
 import { ref } from "vue";
 
 const userStore = useUserStore();
+userStore.storeAnimeId(null);
 
 const endpoint = "http://127.0.0.1:8000/graphql/";
 const headers = {
@@ -120,6 +122,11 @@ const myJSON = JSON.stringify(
 		trendingAnime.push(anime.node);
 	})
 );
+
+function saveAnimeID(id) {
+	userStore.storeAnimeId(id);
+	console.log(id);
+}
 
 //console.log(trendingAnime);
 </script>

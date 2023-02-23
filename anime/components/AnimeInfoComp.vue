@@ -1,18 +1,14 @@
 <template>
 	<div id="anime-info">
 		<div class="column-1">
-			<img
-				class="image-placeholder"
-				src="https://cdn.myanimelist.net/images/characters/4/457933.jpg"
-				alt=""
-			/>
+			<img class="image-placeholder" :src="`$animeCoverUrl`" alt="" />
 			<div class="quick-info">
-				<p>Episodes: N/A</p>
+				<p>Episodes: animeEpisodes</p>
 			</div>
 		</div>
 		<div class="column-2">
 			<div class="info-block">
-				<h1>Anime Name</h1>
+				<h1>animeTitle</h1>
 				<div class="star-rating">
 					<starSVG class="star" />
 					<p>10.00</p>
@@ -26,25 +22,7 @@
 			<div class="info-block">
 				<h2>Synopsis</h2>
 				<div class="divider"></div>
-				<p class="w">
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, aliquid. Enim
-					maiores hic facere officia minima accusamus qui consequatur minus! Porro odio,
-					aut nulla dolor ut quibusdam adipisci exercitationem voluptates!
-				</p>
-			</div>
-			<div class="info-block">
-				<h2>Characters</h2>
-				<div class="divider"></div>
-				<div class="character-container">
-					<div v-for="character in anime[0].characters" :key="name" class="character">
-						<img
-							class="character-img"
-							src="https://cdn.myanimelist.net/images/characters/4/457933.jpg"
-							alt=""
-						/>
-						<p class="character-name">{{ character.name }}</p>
-					</div>
-				</div>
+				<p class="w">animeSynopsis</p>
 			</div>
 			<div class="info-block">
 				<h2>Rating Distribution</h2>
@@ -57,26 +35,13 @@
 
 <script lang="ts">
 import starSVG from "../components/starSVG.vue";
+
 export default {
 	components: {
 		starSVG,
 	},
 	data: () => ({
 		addList: false,
-		anime: [
-			{
-				characters: [
-					{ name: "Alpha Red" },
-					{ name: "Alpha Red the Most Alpha of Reds" },
-					{ name: "Alpha Red" },
-					{ name: "Alpha Red" },
-					{ name: "Alpha Red" },
-					{ name: "Alpha Red" },
-					{ name: "Al-fuh-red" },
-					{ name: "Alfredo" },
-				],
-			},
-		],
 	}),
 	methods: {
 		add() {
