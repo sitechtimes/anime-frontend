@@ -20,7 +20,6 @@ export default {
 	name: "EpisodeSVG",
 	props: {
 		episode: {
-			type: Number,
 			required: true,
 		},
 	},

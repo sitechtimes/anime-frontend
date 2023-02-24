@@ -1,14 +1,20 @@
 <template>
 	<div id="anime-info">
 		<div class="column-1">
-			<img class="image-placeholder" :src="`$animeCoverUrl`" alt="" />
+			<img class="image-placeholder" :src="`${imageUrl}`" alt="" />
 			<div class="quick-info">
-				<p>Episodes: animeEpisodes</p>
+				<p>Episodes: {{ episodes }}</p>
+				<p>Media Type: {{ mediaType }}</p>
+				<p>Status: {{ status }}</p>
+				<p>{{ airedFrom }}</p>
+				<p>{{ airedTo }}</p>
+				<p>Genres:</p>
+				<p v-for="genre in genres">{{ genre }}</p>
 			</div>
 		</div>
 		<div class="column-2">
 			<div class="info-block">
-				<h1>animeTitle</h1>
+				<h1>{{ name }}</h1>
 				<div class="star-rating">
 					<starSVG class="star" />
 					<p>10.00</p>
@@ -22,12 +28,27 @@
 			<div class="info-block">
 				<h2>Synopsis</h2>
 				<div class="divider"></div>
-				<p class="w">animeSynopsis</p>
+				<p class="w">{{ synopsis }}</p>
 			</div>
 			<div class="info-block">
-				<h2>Rating Distribution</h2>
+				<h2>Characters</h2>
 				<div class="divider"></div>
-				<p>Insert D3 Bar Graph Here</p>
+				<div class="character-container">
+					<div v-for="character in characters" :key="character.name" class="character">
+						<img
+							class="character-img"
+							src="https://cdn.myanimelist.net/images/characters/4/457933.jpg"
+							alt=""
+						/>
+						<p class="character-name">{{ character.name }}</p>
+					</div>
+				</div>
+				<div class="divider"></div>
+				<div class="info-block">
+					<h2>Rating Distribution</h2>
+					<div class="divider"></div>
+					<p>Insert D3 Bar Graph Here</p>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -37,11 +58,33 @@
 import starSVG from "../components/starSVG.vue";
 
 export default {
+	name: "AnimeInfoComp",
 	components: {
 		starSVG,
 	},
+	props: {
+		name: { String, required: true },
+		episodes: { String, required: true },
+		mediaType: { String, required: true },
+		genres: { Array, required: true },
+		status: { String, required: true },
+		synopsis: { String, required: true },
+		imageUrl: { String, required: true },
+		airedFrom: { String, required: true },
+		airedTo: { String, required: true },
+	},
 	data: () => ({
 		addList: false,
+		characters: [
+			{ name: "Alpha Red1" },
+			{ name: "Alpha Red the Most Alpha of Reds" },
+			{ name: "Alpha Red2" },
+			{ name: "Alpha Red3" },
+			{ name: "Alpha Red4" },
+			{ name: "Alpha Red5" },
+			{ name: "Al-fuh-red" },
+			{ name: "Alfredo" },
+		],
 	}),
 	methods: {
 		add() {

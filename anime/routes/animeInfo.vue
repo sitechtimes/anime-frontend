@@ -1,6 +1,16 @@
 <template>
 	<div id="animeinfo">
-		<AnimeInfo />
+		<AnimeInfo
+			:name="animeInfo.animeName"
+			:episodes="animeInfo.episodes"
+			:mediaType="animeInfo.mediaType"
+			:status="animeInfo.status"
+			:airedFrom="animeInfo.airedFrom"
+			:airedTo="animeInfo.airedTo"
+			:genres="animeInfo.animeGenre"
+			:synopsis="animeInfo.summary"
+			:imageUrl="animeInfo.imageUrl"
+		/>
 	</div>
 </template>
 
@@ -9,7 +19,7 @@ import { useUserStore } from "~~/stores/userStore";
 import { ref } from "vue";
 
 const userStore = useUserStore();
-console.log(userStore.animeId);
+console.log("store recvied", userStore.animeId);
 
 const endpoint = "http://127.0.0.1:8000/graphql/";
 const headers = {
@@ -19,7 +29,7 @@ const headers = {
 
 const graphqlQuery = {
 	query: `query {
-				anime(id: "QW5pbWVOb2RlOjE4MA==") {
+				anime(id: "${userStore.animeId}") {
 					animeName
 					episodes
 					mediaType
@@ -51,7 +61,21 @@ const data = await response.json();
 
 const myJSON = JSON.stringify(data.data.anime);
 
-console.log(myJSON);
+const animeInfo = {
+	animeName: data.data.anime.animeName,
+	episodes: String(data.data.anime.episodes),
+	mediaType: data.data.anime.mediaType,
+	imageUrl: data.data.anime.imageUrl,
+	status: data.data.anime.status,
+	airedFrom: data.data.anime.airedFrom,
+	airedTo: data.data.anime.airedTo,
+	summary: data.data.anime.summary,
+	animeGenre: data.data.anime.animeGenre.edges.map(edge => {
+		return edge.node.genre;
+	}),
+};
+
+console.log(animeInfo);
 </script>
 
 <script lang="ts">

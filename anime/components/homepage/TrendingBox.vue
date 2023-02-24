@@ -2,7 +2,7 @@
 	<div class="home-body">
 		<div class="trending-box">
 			<div class="trending-header">
-				<h2 class="trending-title">Trending</h2>
+				<h2 class="trending-title">Popular</h2>
 				<div class="trending-pages">
 					<div class="trendingPageNumberBox">
 						<p class="trendingPageNumber">Page</p>
@@ -52,6 +52,7 @@ import { ref } from "vue";
 
 const userStore = useUserStore();
 userStore.storeAnimeId(null);
+console.log("cleared", userStore.animeId);
 
 const endpoint = "http://127.0.0.1:8000/graphql/";
 const headers = {
@@ -90,19 +91,18 @@ function previous() {
 
 const graphqlQuery = {
 	query: `query {
-			  allAnime {
-			    edges {
-				  node {
-					id
-					animeName
-					episodes
-					mediaType
-					imageUrl
-				  }
-				}
-			  }
-			},
-		  `,
+				allAnime {
+			    	edges {
+						node {
+							id
+							animeName
+							episodes
+							mediaType
+							imageUrl
+				  		}
+					}
+			  	}
+			}`,
 	variables: {},
 };
 
@@ -125,10 +125,8 @@ const myJSON = JSON.stringify(
 
 function saveAnimeID(id) {
 	userStore.storeAnimeId(id);
-	console.log(id);
+	console.log("saved", id);
 }
-
-//console.log(trendingAnime);
 </script>
 
 <script lang="ts">
@@ -333,8 +331,5 @@ export default {
 }
 .svg-button {
 	display: block;
-}
-AnimeCard:hover {
-	cursor: pointer;
 }
 </style>
