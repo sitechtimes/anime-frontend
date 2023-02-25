@@ -6,8 +6,6 @@
 			<h3 class="charts-title">{{ title }}</h3>
 			<div class="charts-details">
 				<div class="chartsEpBox">
-					<div id="ep" v-if="episode">{{ episode }}</div>
-					<div id="ep" v-if="!episode">N/A</div>
 					<EpisodeSVG :episode="episode" />
 				</div>
 				<h4 class="charts-votes">{{ votes }}</h4>

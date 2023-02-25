@@ -148,7 +148,7 @@ export default {
 				{
 					id: 1,
 					img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-					episode: 12,
+					episode: 126,
 					votes: 100,
 					title: "One Piecesd dflkjasdfk ldkflksdjkldfalsdknflasnflds",
 					rank: 1,
@@ -156,7 +156,7 @@ export default {
 				{
 					id: 2,
 					img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-					episode: 12,
+					episode: 1252,
 					votes: 100,
 					title: "One Piecesd dflkjasdfk ldkflksdjkldfalsdknflasnflds",
 					rank: 2,
@@ -164,7 +164,7 @@ export default {
 				{
 					id: 3,
 					img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-					episode: 12,
+					episode: 129,
 					votes: 100,
 					title: "nsdlfnsflksdnflknslfsdlnfldsnfls",
 					rank: 3,
@@ -172,7 +172,7 @@ export default {
 				{
 					id: 4,
 					img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-					episode: 12,
+					episode: 125,
 					votes: 100,
 					title: "One Piece",
 					rank: 4,
@@ -180,7 +180,7 @@ export default {
 				{
 					id: 5,
 					img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-					episode: 12,
+					episode: 121,
 					votes: 100,
 					title: "One Piece",
 					rank: 5,
@@ -188,7 +188,7 @@ export default {
 				{
 					id: 6,
 					img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-					episode: 12,
+					episode: 123,
 					votes: 100,
 					title: "One Piece",
 					rank: 6,
@@ -196,7 +196,7 @@ export default {
 				{
 					id: 7,
 					img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-					episode: 12,
+					episode: 123,
 					votes: 100,
 					title: "One Piece",
 					rank: 7,
@@ -204,7 +204,7 @@ export default {
 				{
 					id: 8,
 					img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-					episode: 12,
+					episode: 120,
 					votes: 100,
 					title: "One Piece",
 					rank: 8,
@@ -212,7 +212,7 @@ export default {
 				{
 					id: 9,
 					img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-					episode: 12,
+					episode: 121,
 					votes: 100,
 					title: "One Piece",
 					rank: 9,
