@@ -3,13 +3,18 @@
 		<div class="column-1">
 			<img class="animeImage" :src="`${imageUrl}`" alt="" />
 			<div class="quick-info">
+				<div>
+					<h4>Information</h4>
+					<div class="divider"></div>
+				</div>
+				<p>Type: {{ mediaType }}</p>
 				<p>Episodes: {{ episodes }}</p>
-				<p>Media Type: {{ mediaType }}</p>
 				<p>Status: {{ status }}</p>
-				<p>{{ airedFrom }}</p>
-				<p>{{ airedTo }}</p>
-				<p>Genres:</p>
-				<p v-for="genre in genres">{{ genre }}</p>
+				<p>Aired: {{ aired }}</p>
+				<div class="quick-info-genre">
+					<p>Genres:</p>
+					<p v-for="genre in genres">{{ genre }}</p>
+				</div>
 			</div>
 		</div>
 		<div class="column-2">
@@ -70,8 +75,7 @@ export default {
 		status: { String, required: true },
 		synopsis: { String, required: true },
 		imageUrl: { String, required: true },
-		airedFrom: { String, required: true },
-		airedTo: { String, required: true },
+		aired: { String, required: true },
 	},
 	data: () => ({
 		addList: false,
@@ -114,22 +118,35 @@ export default {
 	margin: auto;
 }
 .column-1 {
-	width: 11vw;
+	width: 15vw;
 	position: sticky;
 	align-self: flex-start;
 	top: 5vh;
 }
 .animeImage {
-	height: 50vh;
-	width: 100%;
+	width: 15vw;
 	object-fit: cover;
 }
 .quick-info {
-	background: rgb(81, 0, 255);
-	height: 50vh;
+	background: var(--bg-secondary);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	row-gap: 1.5rem;
+	width: 15vw;
 	margin-top: 2vh;
 	padding: 0.5rem 1rem;
 	font-size: var(--h5);
+	padding: 2rem;
+	padding-bottom: 4rem;
+}
+.quick-info p {
+	font-size: var(--h6);
+}
+.quick-info-genre {
+	display: flex;
+	flex-wrap: wrap;
+	column-gap: 0.5rem;
 }
 .column-2 {
 	width: 53vw;
@@ -137,7 +154,17 @@ export default {
 	margin-left: 2rem;
 }
 .info-block {
-	margin-bottom: 2rem;
+	margin-bottom: 5rem;
+}
+.info-block h1 {
+	font-size: 3.5rem;
+	font-weight: var(--fw-med);
+	margin-bottom: 1rem;
+}
+.info-block h2 {
+	font-size: var(--h3);
+	font-weight: var(--fw-med);
+	margin-bottom: 1rem;
 }
 .star-rating {
 	display: flex;
@@ -148,6 +175,12 @@ export default {
 }
 .star {
 	height: 1.5rem;
+}
+.w {
+	font-size: var(--h5);
+	font-weight: var(--fw-light);
+	line-height: 3.5rem;
+	word-spacing: 0.2rem;
 }
 .btn {
 	background-color: lightpink;
