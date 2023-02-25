@@ -1,6 +1,6 @@
 <template>
-	<div id="animeinfo">
-		<AnimeInfo
+	<div id="animeInfo">
+		<AnimeInfoComp
 			:name="animeInfo.animeName"
 			:episodes="animeInfo.episodes"
 			:mediaType="animeInfo.mediaType"
@@ -16,10 +16,8 @@
 
 <script setup lang="ts">
 import { useUserStore } from "~~/stores/userStore";
-import { ref } from "vue";
 
 const userStore = useUserStore();
-console.log("store recvied", userStore.animeId);
 
 const endpoint = "http://127.0.0.1:8000/graphql/";
 const headers = {
@@ -74,18 +72,15 @@ const animeInfo = {
 		return edge.node.genre;
 	}),
 };
-
-console.log(animeInfo);
 </script>
 
 <script lang="ts">
-import AnimeInfo from "../components/animeInfoComp.vue";
-import { useUserStore } from "~~/stores/userStore";
+import AnimeInfoComp from "../components/animeInfoComp.vue";
 
 export default {
 	name: "anime",
 	components: {
-		AnimeInfo,
+		AnimeInfoComp,
 	},
 };
 </script>
