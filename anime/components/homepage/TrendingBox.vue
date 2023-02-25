@@ -52,7 +52,6 @@ import { ref } from "vue";
 
 const userStore = useUserStore();
 userStore.storeAnimeId(null);
-console.log("cleared", userStore.animeId);
 
 const endpoint = "http://127.0.0.1:8000/graphql/";
 const headers = {
@@ -125,7 +124,6 @@ const myJSON = JSON.stringify(
 
 function saveAnimeID(id) {
 	userStore.storeAnimeId(id);
-	console.log("saved", id);
 }
 </script>
 

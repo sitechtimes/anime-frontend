@@ -1,7 +1,7 @@
 <template>
 	<div id="anime-info">
 		<div class="column-1">
-			<img class="image-placeholder" :src="`${imageUrl}`" alt="" />
+			<img class="animeImage" :src="`${imageUrl}`" alt="" />
 			<div class="quick-info">
 				<p>Episodes: {{ episodes }}</p>
 				<p>Media Type: {{ mediaType }}</p>
@@ -107,7 +107,7 @@ export default {
 
 <style scoped>
 #anime-info {
-	color: white;
+	color: rgb(255, 255, 255);
 	padding-top: 13vh;
 	display: flex;
 	justify-content: center;
@@ -119,13 +119,13 @@ export default {
 	align-self: flex-start;
 	top: 5vh;
 }
-.image-placeholder {
-	height: 30vh;
+.animeImage {
+	height: 50vh;
 	width: 100%;
 	object-fit: cover;
 }
 .quick-info {
-	background: red;
+	background: rgb(81, 0, 255);
 	height: 50vh;
 	margin-top: 2vh;
 	padding: 0.5rem 1rem;

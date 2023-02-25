@@ -1,6 +1,6 @@
 <template>
 	<div id="animeInfo">
-		<AnimeInfoComp
+		<InfoComp
 			:name="animeInfo.animeName"
 			:episodes="animeInfo.episodes"
 			:mediaType="animeInfo.mediaType"
@@ -28,6 +28,7 @@ const headers = {
 const graphqlQuery = {
 	query: `query {
 				anime(id: "${userStore.animeId}") {
+					malId
 					animeName
 					episodes
 					mediaType
@@ -75,14 +76,14 @@ const animeInfo = {
 </script>
 
 <script lang="ts">
-import AnimeInfoComp from "../components/animeInfoComp.vue";
+import InfoComp from "../components/InfoComp.vue";
 
 export default {
 	name: "anime",
 	components: {
-		AnimeInfoComp,
+		InfoComp,
 	},
 };
 </script>
 
-<style></style>
+<style scoped></style>
