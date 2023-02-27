@@ -7,8 +7,8 @@
         <h1 class="anime-title">Anime Title {{r1}}</h1>
       </div>
     </div>
-    <NuxtLink to="/awards">Back</NuxtLink>
-    <button>Vote</button>
+    <NuxtLink to="/awards"><button class="btn">Back</button></NuxtLink>
+    <button class="btn">Vote</button>
   </div>
 </template>
   
@@ -54,7 +54,7 @@ export default ({
 .nominee-box {
   padding: 0rem;
   width: 33vw;
-  height: 15vh;
+  height: 12vh;
   color: white;
   display: flex;
   flex-direction: row;
@@ -73,5 +73,13 @@ export default ({
 .anime-title {
   font-size: var(--h3);
   margin: 1rem 2rem;
+}
+.btn {
+  font-size: var(--h3);
+  /* color: white;
+  background: none;
+  border: 0.5rem solid var(--primary);
+  border-radius: 0;
+  transition: none; */
 }
 </style>
