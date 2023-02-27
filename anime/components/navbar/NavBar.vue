@@ -109,10 +109,10 @@ import { useUserStore } from '../../stores/userStore'
 .log-in {
     width: 100%;
 }
-.navigation{
+.navigation {
+    z-index: 5;
     width: 100%;
     height: 9vh;
-    z-index: 100;
     padding: 1rem;
     display: flex;
     margin: 0 auto;
@@ -151,9 +151,9 @@ import { useUserStore } from '../../stores/userStore'
 .navigation.is-hidden {
     transform: translateY(-100%);
 }
-@media screen and (max-width: 1025px) {
+@media screen and (max-width: 1285px) {
 .log-in {
-    width: 11rem;
+    width: 10rem;
     padding: 0.6rem;
     font-size: var(--h4);
 }
@@ -162,36 +162,53 @@ import { useUserStore } from '../../stores/userStore'
 }
 .link-href {
     margin: 2px 5px;
+    font-size: var(--h4);
+}
+}
+@media screen and (max-width: 1025px) {
+.log-in {
+    width: 7rem;
+    font-size: var(--h5);
+}
+.link-href {
+    font-size: var(--h5);
 }
 }
 @media screen and (max-width: 915px) {
 .log-in {
-    margin-right: 2rem;
+    width: 7.8rem;
 }
 .home-link {
     padding: 0rem;
-    font-size: var(--h2);
+    font-size: var(--h3);
 }
 .link-href {
+    margin: 1px 5px;
     font-size: var(--h4);
 }
 }
 @media screen and (max-width: 825px) {
 .log-in {
+    width: 8.2rem;
+    font-size: 1.65rem;
     margin-right: 5rem;
 }
 .home-link {
     font-size: var(--h3);
 }
+.link-href {
+    margin: 1px 5px;
+    font-size: 1.7rem;
+}
 }
 @media screen and (max-width: 770px) {
 .log-in {
     width: 7rem;
-    font-size: 1.65rem;
+    font-size: 1.5rem;
 }
 .link-href {
     margin: 2px 5px;
-    font-size: var(--h4);
+    font-size: var(--h5);
 }
 }
 </style>
