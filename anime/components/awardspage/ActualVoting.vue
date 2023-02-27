@@ -7,11 +7,13 @@
         <h1 class="anime-title">Anime Title {{r1}}</h1>
       </div>
     </div>
-    <NuxtLink to="/awards"><button class="btn">Back</button></NuxtLink>
-    <button class="btn">Vote</button>
+    <div class="btn-container">
+      <NuxtLink to="/awards"><button class="btn">Back</button></NuxtLink>
+      <button class="btn">Vote</button>
+    </div>
   </div>
 </template>
-  
+
 <script lang="ts">
 export default ({
   data: () => ({
@@ -74,12 +76,23 @@ export default ({
   font-size: var(--h3);
   margin: 1rem 2rem;
 }
+.btn-container {
+  display: flex;
+  justify-content: space-between;
+  width: 20vw;
+  margin: auto;
+}
 .btn {
   font-size: var(--h3);
-  /* color: white;
+  color: white;
   background: none;
-  border: 0.5rem solid var(--primary);
+  border: 0.3rem solid var(--primary);
   border-radius: 0;
-  transition: none; */
+  width: 8vw;
+  padding: 0.5rem 0;
+  transition: 300ms;
+}
+.btn:hover {
+  background: var(--primary);
 }
 </style>
