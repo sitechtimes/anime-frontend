@@ -2,7 +2,7 @@
   <div id="actual-voting">
     <h1 class="award-name">Award Name</h1>
     <div class="nominee-container">
-      <div v-for="r1 in r" class="nominee-box">
+      <div v-for="r1 in r" class="nominee-box" @click="f">
         <img class="image-placeholder" src="https://cdn.myanimelist.net/images/characters/4/457933.jpg" alt="">
         <h1 class="anime-title">Anime Title {{r1}}</h1>
       </div>
@@ -16,7 +16,19 @@
 export default ({
   data: () => ({
     r: [1,2,3,4,5,6]
-  })
+  }),
+  methods: {
+    f(e) {
+      let click = e.target
+      if (click.className == "nominee-box") {
+        const boxes = Array.from(document.getElementsByClassName("nominee-box") as HTMLCollectionOf<HTMLElement>)
+        boxes.forEach(box => {
+          box.style.background = "#252525"
+        });
+        click.style.background = "var(--primary)"
+      }
+    }
+  }
 })
 </script>
   
@@ -51,7 +63,6 @@ export default ({
   transition: 100ms;
 }
 .nominee-box:hover {
-  /* background: var(--primary); */
   outline: solid 4px var(--primary);
 }
 .image-placeholder {
