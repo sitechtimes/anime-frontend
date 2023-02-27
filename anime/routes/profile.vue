@@ -14,18 +14,23 @@
     </div>
 </div>
     <div class="tabs-class">
-        
+        <TabsWrapper>
+            <Tab title="Tab 1">Tab 1</Tab>
+            <Tab title="Tab 2">Tab 2</Tab>
+        </TabsWrapper>
     </div>
   </div>
 </template>
 
 <script lang="ts">
     import Tab from '../components/profile/Tab.vue'
-    import Tabs from '../components/profile/Tabs.vue'
+    import TabsWrapper from '../components/profile/TabsWrapper.vue'
+    // import Tabs from '../components/profile/Tabs.vue'
 export default {
     components: {
       Tab,
-      Tabs
+      TabsWrapper
+    //   Tabs
     },
     data: ()=> ({
     currentAnimes: [
