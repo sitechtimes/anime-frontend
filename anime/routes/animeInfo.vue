@@ -18,10 +18,9 @@ import { useUserStore } from "~~/stores/userStore";
 
 const userStore = useUserStore();
 
-const endpoint = "http://127.0.0.1:8000/graphql/";
+const endpoint = "http://127.0.0.1:8000/anime/";
 const headers = {
 	"content-type": "application/json",
-	Authorization: `Bearer ${userStore.token}`,
 };
 
 const graphqlQuery = {

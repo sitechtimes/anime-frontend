@@ -51,9 +51,9 @@ import { useUserStore } from "~~/stores/userStore";
 import { ref } from "vue";
 
 const userStore = useUserStore();
-userStore.storeAnimeId(null);
+//userStore.storeAnimeId(null);
 
-const endpoint = "http://127.0.0.1:8000/graphql/";
+const endpoint = "http://127.0.0.1:8000/anime/";
 const headers = {
 	"content-type": "application/json",
 	Authorization: `Bearer ${userStore.token}`,

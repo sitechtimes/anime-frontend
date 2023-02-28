@@ -7,7 +7,7 @@ import { useRouter } from "nuxt/app";
 
 export const useUserStore = defineStore("user", {
 	state: () => ({
-		animeData: null,
+		allAnime: null,
 		animeId: null,
 		username: null,
 		first_name: null,
@@ -34,6 +34,57 @@ export const useUserStore = defineStore("user", {
 	actions: {
 		storeAnimeId(id: any) {
 			this.animeId = id;
+		},
+		async getAllAnime() {
+			try {
+				const endpoint = "http://127.0.0.1:8000/anime/";
+				const headers = {
+					"content-type": "application/json",
+				};
+
+				const graphqlQuery = {
+					query: `query {
+				anime(id: "${userStore.animeId}") {
+					malId
+					animeName
+					episodes
+					mediaType
+					imageUrl
+					status
+					airedFrom
+					airedTo
+					summary
+					animeGenre {
+						edges {
+							node {
+							genre
+							}
+						}
+					}
+				}
+			}`,
+					variables: {},
+				};
+
+				const options = {
+					method: "POST",
+					headers: headers,
+					body: JSON.stringify(graphqlQuery),
+				};
+
+				const response = await fetch(endpoint, options);
+				const data = await response.json();
+
+				const trendingAnime = [];
+
+				const myJSON = JSON.stringify(
+					data.data.allAnime.edges.forEach(anime => {
+						trendingAnime.push(anime.node);
+					})
+				);
+			} catch (error) {
+				console.log(error);
+			}
 		},
 		async login(res: any) {
 			console.log(res.code);
