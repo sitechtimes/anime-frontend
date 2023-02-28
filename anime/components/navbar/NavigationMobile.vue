@@ -84,7 +84,7 @@ export default {
   background-color: white;
 }
 .log-in-2 {
-  width: 8.5rem;
+  width: 7.5rem;
   padding: 0.5rem;
   margin-right: 0.2rem;
   font-size: var(--h5);
@@ -95,7 +95,7 @@ export default {
   display: flex;
   align-items: center;
   align-self: stretch;
-  justify-content: space-between;
+  justify-content: space-around;
   background-color: var(--tertiary);
 }
 .mq-routers{
@@ -146,6 +146,9 @@ div .close {
   width: 25px;
   height: 3px;
   margin: 5px 0;
+}
+.log-in-2 {
+  width: 7rem;
 }
 .mobile-home-link {
   font-size: var(--h4);
