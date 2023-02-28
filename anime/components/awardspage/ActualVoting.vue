@@ -2,14 +2,14 @@
   <div id="actual-voting">
     <h1 class="award-name">Award Name</h1>
     <div class="nominee-container">
-      <div v-for="r1 in r" class="nominee-box" @click="f">
+      <div v-for="r1 in r" class="nominee-box" @click="select">
         <img class="image-placeholder" src="https://cdn.myanimelist.net/images/characters/4/457933.jpg" alt="">
         <h1 class="anime-title">Anime Title {{r1}}</h1>
       </div>
     </div>
     <div class="btn-container">
       <NuxtLink to="/awards"><button class="btn">Back</button></NuxtLink>
-      <button class="btn">Vote</button>
+      <button class="btn" @click="vote">Vote</button>
     </div>
   </div>
 </template>
@@ -20,8 +20,9 @@ export default ({
     r: [1,2,3,4,5,6]
   }),
   methods: {
-    f(e) {
-      let click = e.target
+    select(nominee) {
+      console.log("huaif")
+      let click = nominee.target
       if (click.className == "nominee-box") {
         const boxes = Array.from(document.getElementsByClassName("nominee-box") as HTMLCollectionOf<HTMLElement>)
         boxes.forEach(box => {
@@ -29,6 +30,9 @@ export default ({
         });
         click.style.background = "var(--primary)"
       }
+    },
+    vote() {
+      console.log("hdskufgsfi")
     }
   }
 })
