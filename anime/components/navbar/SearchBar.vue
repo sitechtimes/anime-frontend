@@ -11,29 +11,31 @@
         <input v-model="text" @focus="searchActive" @focusout="searchInactive" placeholder="Search anime..." spellcheck="false" class="input">
       </form>
       <div v-show="showAnime" class="biggerBox">
-        <div v-for="anime in searchResult" :key="anime.title" class="box">
+        <NuxtLink to="/info" v-for="anime in searchResult" :key="anime.title" class="box">
           <img class="image-placeholder" src="https://cdn.myanimelist.net/images/characters/4/457933.jpg" alt="">
           <div class="info-column">
             <h1 class="title">{{anime.title}}</h1>
             <div class="info-row">
               <p class="age-rating">{{anime.ageRating}}</p>
               <div class="star-rating">
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" class="star" xmlns="http://www.w3.org/2000/svg">
-                <path d="M14.0946 1.60341C14.6868 -0.25269 17.3132 -0.252693 17.9054 1.60341L20.2772 9.03723C20.5418 9.86642 21.3122 10.4293 22.1826 10.4293H29.9343C31.8629 10.4293 32.6743 12.89 31.1239 14.0371L24.7903 18.7232C24.1021 19.2324 23.8143 20.1232 24.0745 20.9389L26.4789 28.4746C27.0689 30.3237 24.9442 31.8447 23.384 30.6903L17.1896 26.1072C16.4827 25.5842 15.5173 25.5842 14.8104 26.1072L8.61604 30.6903C7.0558 31.8447 4.93115 30.3237 5.5211 28.4746L7.92546 20.9389C8.1857 20.1232 7.89791 19.2324 7.20966 18.7232L0.87612 14.0371C-0.674271 12.89 0.137065 10.4293 2.06569 10.4293H9.81743C10.6878 10.4293 11.4582 9.86642 11.7228 9.03723L14.0946 1.60341Z" fill="#FFEB34"/>
-                </svg>
+                <starSVG class="star"/>
                 <p>{{anime.stars.toFixed(2)}}</p>
               </div>
               <p>{{anime.releaseDate}}</p>
             </div>
           </div>
-        </div>
+        </NuxtLink>
       </div>
     </div>
   </div>
 </template>
     
 <script lang="ts">
+import starSVG from "@/components/starSVG.vue";
 export default ({
+  components:{
+    starSVG
+  },
   data: () => ({
     text: "",
     screenWidth: 0,
@@ -65,7 +67,9 @@ export default ({
       this.showAnime = true
     },
     searchInactive() {
-      this.showAnime = false
+      setTimeout(() => {
+        this.showAnime = false
+      }, 100);
     },
   },
   computed: {
@@ -92,10 +96,14 @@ export default ({
 .search-bar{
   width:25vw;
   color: rgb(219, 219, 219);
+  transition-duration: 0;
+  transition-delay: 1000ms;
 }
 .biggerBox{
   position:fixed;
   width: 25vw;
+  transition-duration: 0;
+  transition-delay: 1000ms;
 }
 
 .input {

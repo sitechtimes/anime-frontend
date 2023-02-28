@@ -1,4 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import { defineNuxtConfig } from 'nuxt/config'
+
+
 export default defineNuxtConfig({
     plugins:[
         "~/plugins/auth.ts",
@@ -11,10 +14,9 @@ export default defineNuxtConfig({
       },
       modules: [
         // ...
+        'nuxt-graphql-client',
         '@pinia/nuxt',
         '@pinia-plugin-persistedstate/nuxt',
       ],
-      runtimeConfig: {
-        client: process.env.CLIENT_ID
-      }
+     
 })
