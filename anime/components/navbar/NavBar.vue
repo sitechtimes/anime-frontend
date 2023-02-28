@@ -124,15 +124,10 @@ import { useUserStore } from '../../stores/userStore'
     transform: translate3d(0, 0, 0);
     background-color: var(--tertiary);
 }
-.routers {
-    width: 40%;
-    display: flex;
-    justify-content: space-between;
-}
 .routers{
         width:40%;
         display:flex;
-        justify-content:space-between;
+        justify-content:space-around;
         align-items: center;
     }
 .navbar.navbar--hidden {
