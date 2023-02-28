@@ -9,7 +9,7 @@
     </div>
 </template>
 <script lang="ts">
-import { ref } from 'vue'
+import { ref, provide } from 'vue'
     export default {
         setup (props, {slots}){
             const tabTitles = ref(slots.default().map((tab)=> tab.props.title))
