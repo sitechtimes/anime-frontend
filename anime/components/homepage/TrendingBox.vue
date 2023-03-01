@@ -6,7 +6,7 @@
 				<div class="trending-pages">
 					<div class="trendingPageNumberBox">
 						<p class="trendingPageNumber">Page</p>
-						<p class="trendingPageNumberVar">{{ pageNumber }}</p>
+						<p class="trendingPageNumberVar">{{ userStore.pageNumber }}</p>
 					</div>
 					<div class="trendingPageButtonBox">
 						<button class="page-button" v-on:click="previous">
@@ -21,13 +21,13 @@
 			<div class="trending-content">
 				<AnimeCard
 					@saveAnimeID="saveAnimeID(anime.id)"
-					v-for="anime in trendingAnime.slice(start, end)"
-					:id="anime.id"
-					:key="anime.id"
+					v-for="anime in userStore.pagePopularAnime"
+					:id="anime.malId"
+					:key="anime.malId"
 					:episode="anime.episodes"
-					:animeName="anime.animeName"
-					:imageUrl="anime.imageUrl"
-					:mediaType="anime.mediaType"
+					:animeName="anime.anime_name"
+					:imageUrl="anime.large_image_url"
+					:mediaType="anime.media_type"
 				/>
 			</div>
 		</div>
@@ -51,76 +51,69 @@ import { useUserStore } from "~~/stores/userStore";
 import { ref } from "vue";
 
 const userStore = useUserStore();
-//userStore.storeAnimeId(null);
+userStore.storeAnimeId(null);
 
-const endpoint = "http://127.0.0.1:8000/anime/";
-const headers = {
-	"content-type": "application/json",
-	Authorization: `Bearer ${userStore.token}`,
-};
-
-const start = ref(0);
-const end = ref(12);
-const pageNumber = ref(1);
 const pageExistLeft = ref(false);
 const pageExistRight = ref(true);
 
+onMounted(() => {
+	userStore.getAllAnime().then(data => {
+		const refineData = data.filter(function (anime) {
+			delete anime.small_image_url;
+			delete anime.image_url;
+			delete anime.trailer_youtube_url;
+			delete anime.status;
+			delete anime.aired_from;
+			delete anime.aired_to;
+			delete anime.summary;
+			delete anime.anime_studio;
+			delete anime.anime_genre;
+			delete anime.number_rating;
+
+			return true;
+		});
+		console.log(refineData);
+
+		userStore.allAnime = refineData;
+		userStore.pagePopularAnime = userStore.allAnime.slice(
+			userStore.startPageIndex,
+			userStore.endPageIndex
+		);
+	});
+});
+
 function next() {
-	if (end.value < trendingAnime.length) {
-		start.value += 11;
-		end.value += 11;
-		pageNumber.value += 1;
+	if (userStore.endPageIndex < userStore.allAnime.length) {
+		userStore.startPageIndex += 11;
+		userStore.endPageIndex += 11;
+		userStore.pageNumber += 1;
 		pageExistLeft.value = true;
+		userStore.pagePopularAnime = userStore.allAnime.slice(
+			userStore.startPageIndex,
+			userStore.endPageIndex
+		);
+		console.log(userStore.startPageIndex, userStore.endPageIndex);
 	} else {
 		pageExistRight.value = false;
 	}
 }
 
 function previous() {
-	if (pageNumber.value == 1) {
+	if (userStore.pageNumber == 1) {
 		pageExistLeft.value = false;
 		pageExistRight.value = true;
 	} else {
-		start.value -= 11;
-		end.value -= 11;
-		pageNumber.value -= 1;
+		userStore.startPageIndex -= 11;
+		userStore.endPageIndex -= 11;
+		userStore.pageNumber -= 1;
 		pageExistRight.value = true;
+		userStore.pagePopularAnime = userStore.allAnime.slice(
+			userStore.startPageIndex,
+			userStore.endPageIndex
+		);
+		console.log(userStore.startPageIndex, userStore.endPageIndex);
 	}
 }
-
-const graphqlQuery = {
-	query: `query {
-				allAnime {
-			    	edges {
-						node {
-							id
-							animeName
-							episodes
-							mediaType
-							imageUrl
-				  		}
-					}
-			  	}
-			}`,
-	variables: {},
-};
-
-const options = {
-	method: "POST",
-	headers: headers,
-	body: JSON.stringify(graphqlQuery),
-};
-
-const response = await fetch(endpoint, options);
-const data = await response.json();
-
-const trendingAnime = [];
-
-const myJSON = JSON.stringify(
-	data.data.allAnime.edges.forEach(anime => {
-		trendingAnime.push(anime.node);
-	})
-);
 
 function saveAnimeID(id) {
 	userStore.storeAnimeId(id);

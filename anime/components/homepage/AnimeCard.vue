@@ -30,7 +30,6 @@ export default {
 			required: true,
 		},
 		mediaType: {
-			type: String,
 			required: true,
 		},
 		animeName: {

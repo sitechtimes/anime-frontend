@@ -8,6 +8,9 @@ import { useRouter } from "nuxt/app";
 export const useUserStore = defineStore("user", {
 	state: () => ({
 		allAnime: null,
+		startPageIndex: 0,
+		endPageIndex: 11,
+		pageNumber: 1,
 		animeId: null,
 		username: null,
 		first_name: null,
@@ -40,52 +43,62 @@ export const useUserStore = defineStore("user", {
 				const endpoint = "http://127.0.0.1:8000/anime/";
 				const headers = {
 					"content-type": "application/json",
+					Authorization: `Bearer ${this.token}`,
 				};
-
 				const graphqlQuery = {
-					query: `query {
-				anime(id: "${userStore.animeId}") {
-					malId
-					animeName
-					episodes
-					mediaType
-					imageUrl
-					status
-					airedFrom
-					airedTo
-					summary
-					animeGenre {
-						edges {
+					query: `{
+						allAnime {
+						  edges {
 							node {
-							genre
+							  id
+							  animeName
+							  episodes
+							  malId
+							  mediaType
+							  imageUrl
+							  smallImageUrl
+							  largeImageUrl
+							  trailerYoutubeUrl
+							  airedFrom
+							  airedTo
+								animeStudio{
+								edges {
+								 node {
+								  studio
+								}
+								}
+							  }
+									 animeGenre{
+								edges {
+								 node {
+								  genre
+								}
+								}
+							  }
+							  summary
+							  status
 							}
-						}
-					}
-				}
-			}`,
+					  `,
 					variables: {},
 				};
 
 				const options = {
-					method: "POST",
+					//body: JSON.stringify(graphqlQuery),
+					method: "GET",
 					headers: headers,
-					body: JSON.stringify(graphqlQuery),
 				};
 
 				const response = await fetch(endpoint, options);
 				const data = await response.json();
 
-				const trendingAnime = [];
+				this.allAnime = data;
 
-				const myJSON = JSON.stringify(
-					data.data.allAnime.edges.forEach(anime => {
-						trendingAnime.push(anime.node);
-					})
-				);
+				return data;
 			} catch (error) {
 				console.log(error);
 			}
 		},
+
 		async login(res: any) {
 			console.log(res.code);
 			try {
