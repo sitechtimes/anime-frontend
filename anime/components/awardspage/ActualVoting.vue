@@ -2,14 +2,21 @@
   <div id="actual-voting">
     <h1 class="award-name">Award Name</h1>
     <div class="nominee-container">
+      <!-- <div v-for="r1 in r" class="nominee-box" @click="select">
+        <img class="image-placeholder" src="https://cdn.myanimelist.net/images/characters/4/457933.jpg" alt="">
+        <h1 class="anime-title">Anime Title {{r1}}</h1>
+      </div> -->
       <div v-for="r1 in r" class="nominee-box" @click="select">
+        <label for="">
+          <input type="radio" name="nominee">
+        </label>
         <img class="image-placeholder" src="https://cdn.myanimelist.net/images/characters/4/457933.jpg" alt="">
         <h1 class="anime-title">Anime Title {{r1}}</h1>
       </div>
     </div>
     <div class="btn-container">
       <NuxtLink to="/awards"><button class="btn">Back</button></NuxtLink>
-      <button class="btn" @click="vote">Vote</button>
+      <button class="btn" @click="vote" id="vote-btn">Vote</button>
     </div>
   </div>
 </template>
@@ -32,7 +39,8 @@ export default ({
       }
     },
     vote() {
-      console.log("hdskufgsfi")
+      const vote = document.getElementById("vote-btn")
+      vote.style.background = "red"
     }
   }
 })
