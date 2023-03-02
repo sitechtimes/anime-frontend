@@ -15,7 +15,7 @@
 </div>
     <div class="tabs-class">
         <TabsWrapper>
-            <Tab title="Tab 1">Tab 1</Tab>
+            <Tab title="Tab 1">Tab 1 ahhhh</Tab>
             <Tab title="Tab 2">Tab 2</Tab>
         </TabsWrapper>
     </div>
