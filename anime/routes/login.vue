@@ -166,8 +166,174 @@ export default {
   }
 }
 
+@media screen and (max-width: 1285px) {
+.login-form {
+  width: 35vw;
+  height: 72vh;
+}
+.input-box {
+  width: 25vw;
+}
+.submit-btn{
+  width: 10vw;
+}
+.login-with-google-btn {
+  font-size: 17px;
+}
+}
 
+@media screen and (max-width: 1025px) {
+.title {
+  font-size: var(--h2);
+}
+.login-form {
+  width: 40vw;
+  height: 75vh;
+}
+.input-box {
+  width: 25vw;
+  font-size: var(--h5);
+}
+.submit-btn{
+  width: 10vw;
+  font-size: var(--h5);
+}
+.login-with-google-btn {
+  font-size: 13px;
+}
+}
 
-@media screen and (max-width: 1440px) {
+@media screen and (max-width: 915px) {
+.img {
+  display: none;
+}
+.title {
+  font-size: 7rem;
+}
+.login-form {
+  width: 85vw;
+  height: 70vh;
+}
+.input-box {
+  width: 60vw;
+  font-size: var(--h2);
+}
+.submit-btn{
+  width: 30vw;
+  font-size: var(--h2);
+}
+.redirect {
+  font-size: var(--h3);
+}
+.login-with-google-btn {
+  font-size: 30px;
+}
+}
+
+@media screen and (max-width: 825px) {
+.img {
+  display: none;
+}
+.title {
+  font-size: var(--h2);
+}
+.login-form {
+  width: 80vw;
+  height: 65vh;
+}
+.input-box {
+  width: 55vw;
+  font-size: var(--h4);
+}
+.submit-btn{
+  width: 25vw;
+  font-size: var(--h4);
+}
+.redirect {
+  font-size: var(--h4);
+}
+.login-with-google-btn {
+  font-size: 18px;
+}
+}
+
+@media screen and (max-width: 550px) {
+.img {
+  display: none;
+}
+.title {
+  font-size: var(--h1);
+}
+.login-form {
+  width: 85vw;
+  height: 75vh;
+}
+.input-box {
+  width: 50vw;
+  font-size: var(--h4);
+  padding: 1.2rem 1.5rem;
+}
+.submit-btn{
+  width: 22vw;
+  font-size: var(--h4);
+}
+.redirect {
+  font-size: var(--h5);
+}
+.login-with-google-btn {
+  font-size: 14px;
+}
+}
+
+@media screen and (max-width: 415px) {
+.img {
+  display: none;
+}
+.title {
+  font-size: var(--h2);
+}
+.login-form {
+  width: 90vw;
+  height: 66vh;
+}
+.input-box {
+  width: 65vw;
+  font-size: var(--h4);
+}
+.submit-btn{
+  width: 32vw;
+  font-size: var(--h4);
+}
+.login-with-google-btn {
+  font-size: 16px;
+}
+}
+
+@media screen and (max-width: 285px) {
+.img {
+  display: none;
+}
+.title {
+  font-size: var(--h2);
+}
+.login-form {
+  width: 88vw;
+  height: 67vh;
+}
+.input-box {
+  width: 65vw;
+  font-size: var(--h5);
+}
+.submit-btn{
+  width: 34vw;
+  font-size: var(--h5);
+}
+.redirect {
+  font-size: var(--h5);
+  margin-top: 0.25rem;
+}
+.login-with-google-btn {
+  font-size: 11px;
+}
 }
 </style>
