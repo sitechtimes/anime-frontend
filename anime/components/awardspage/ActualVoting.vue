@@ -17,11 +17,12 @@
 <script lang="ts">
 export default ({
   data: () => ({
-    r: [1,2,3,4,5,6]
+    r: [1,2,3,4,5,6],
+    selected: false,
   }),
   methods: {
     select(nominee) {
-      console.log("huaif")
+      this.selected = true
       let click = nominee.target
       if (click.className == "nominee-box") {
         const boxes = Array.from(document.getElementsByClassName("nominee-box") as HTMLCollectionOf<HTMLElement>)
@@ -29,18 +30,25 @@ export default ({
           box.style.background = "#252525"
         });
         click.style.background = "var(--primary)"
+      } else {
+        //make it work
       }
     },
     vote() {
-      const vote = document.getElementById("vote-btn")
-      vote.style.background = "var(--primary)"
-      const boxes = Array.from(document.getElementsByClassName("nominee-box") as HTMLCollectionOf<HTMLElement>)
+      if (this.selected === true) {
+        //create popup
+        const vote = document.getElementById("vote-btn")
+        vote.style.background = "var(--primary)"
+        vote.innerHTML = "Voted"
+        vote.style.opacity = "50%"
+        const boxes = Array.from(document.getElementsByClassName("nominee-box") as HTMLCollectionOf<HTMLElement>)
         boxes.forEach(box => {
           box.style.pointerEvents = "none"
-          if (box.style.background === "#252525") {
+          if (box.style.background == "rgb(37, 37, 37)") {
             box.style.opacity = "50%"
           }
         });
+      }
     }
   }
 })
