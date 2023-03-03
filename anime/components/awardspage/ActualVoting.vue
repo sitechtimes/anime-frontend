@@ -32,11 +32,14 @@ export default ({
       }
     },
     vote() {
-      // const vote = document.getElementById("vote-btn")
-      // vote.style.background = "var(--primary)"
+      const vote = document.getElementById("vote-btn")
+      vote.style.background = "var(--primary)"
       const boxes = Array.from(document.getElementsByClassName("nominee-box") as HTMLCollectionOf<HTMLElement>)
         boxes.forEach(box => {
           box.style.pointerEvents = "none"
+          if (box.style.background === "#252525") {
+            box.style.opacity = "50%"
+          }
         });
     }
   }
