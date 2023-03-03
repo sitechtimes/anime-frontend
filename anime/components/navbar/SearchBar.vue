@@ -57,6 +57,8 @@ export default ({
       this.hideSearch = false
     },
     exitSearchMobile(e) {
+      console.log(e.target.className)
+      console.log(this.screenWidth)
       if (this.screenWidth <=568 && e.target.className === "search-bar") {
         this.hideSearch = true
       }

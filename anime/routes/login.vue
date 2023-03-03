@@ -57,9 +57,9 @@ export default {
   padding-top: 9vh;
   height: 100vh;
   display: flex;
+  align-items: center;
   flex-direction: row;
   justify-content: space-evenly;
-  align-items: center;
 }
 .img {
   height: 70vh;
@@ -260,6 +260,10 @@ export default {
 @media screen and (max-width: 550px) {
 .img {
   display: none;
+}
+#login {
+  height: auto;
+  padding-top: 5vh;
 }
 .title {
   font-size: var(--h1);

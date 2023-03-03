@@ -65,89 +65,89 @@
     }
     </script>
     
-    <style scoped>
-    .carousel-info{
-        display: flex;
-        flex-direction: column;
-        width:48.5%;
-    }
-    .carousel-title {
-        display: block;
-        margin-top: 10%;
-        font-size: var(--h2);
-        font-weight: var(--fw-bold);
-        color: var(--white);
-    }
-    .descript-box{
-        height:45%;
-        overflow:hidden;
-        /* display: block;
-        text-overflow: ellipsis; */
-    }
-    .carousel-description {
-        font-size: var(--h5);
-        font-weight: var(--fw-light);
-        color: var(--secondary);
-    }
-    .img {
-        height: 89%;
-        width: 52.5%;
-        object-fit: cover;
-        object-position: center;
-        display: block;
-        border-radius: 7.25%;
-        margin: 0.55% 1.25% 0% 1.25%;
-    } 
-    .dots {   
-        left: 0;
-        right: 0;
-        top: 91%;
-        z-index: 5;
-        position: absolute;
-        text-align: center;
-    } 
-    .dots .dot {
-        opacity: 0.15;
-        width: 1.5rem;
-        height: 1.5rem;
-        border-radius: 50%; 
-        display: inline-block;
-        margin: 0.75% 0.45% 0% 0.45%;
-        background-color: var(--white);
-    }
-    .text {
-        margin-left: 1.75%;
-        color: var(--white);
-    }
-    .carousel {
-        overflow: hidden;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: row;
-        width:100vw;
-        margin-bottom:30vh;
-    }
-    .carousel-slide {
-        overflow: hidden;
-        opacity: 0;
-        z-index: 0;
-        width: 70%;
-        height: 52%;
-        display: flex;   
-        margin-left: 1%;
-        margin-right: 1%;
-        position: absolute; 
-    }
-    @keyframes auto-dot {
+<style scoped>
+.carousel-info{
+    display: flex;
+    flex-direction: column;
+    width: 48.5%;
+}
+.carousel-title {
+    display: block;
+    margin-top: 10%;
+    font-size: var(--h2);
+    font-weight: var(--fw-bold);
+    color: var(--white);
+}
+.descript-box{
+    height:45%;
+    overflow:hidden;
+    /* display: block;
+    text-overflow: ellipsis; */
+}
+.carousel-description {
+    font-size: var(--h5);
+    font-weight: var(--fw-light);
+    color: var(--secondary);
+}
+.img {
+    height: 89%;
+    width: 52.5%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    border-radius: 7.25%;
+    margin: 0.55% 1.25% 0% 1.25%;
+} 
+.dots {   
+    left: 0;
+    right: 0;
+    top: 91%;
+    z-index: 5;
+    position: absolute;
+    text-align: center;
+} 
+.dots .dot {
+    opacity: 0.15;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%; 
+    display: inline-block;
+    margin: 0.75% 0.45% 0% 0.45%;
+    background-color: var(--white);
+}
+.text {
+    margin-left: 1.75%;
+    color: var(--white);
+}
+.carousel {
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width:100vw;
+    margin-bottom:30vh;
+}
+.carousel-slide {
+    overflow: hidden;
+    opacity: 0;
+    z-index: 0;
+    width: 70%;
+    height: 52%;
+    display: flex;   
+    margin-left: 1%;
+    margin-right: 1%;
+    position: absolute; 
+}
+@keyframes auto-dot {
         0%, 33% {
             opacity: 1;
         }
         34%, 100% {
             opacity: 0.15;
         }
-    }
-    @keyframes auto-slide {
+}
+@keyframes auto-slide {
         0%, 26% {
             z-index: 4;
             opacity: 1;
@@ -184,27 +184,27 @@
             z-index: 3;
             opacity: 1;
         }
-    }
-    .dot-01 {
-        animation: auto-dot 9s ease-in-out 0s infinite normal none running;
-    }
-    .dot-02 {
-        animation: auto-dot 9s ease-in-out 3s infinite normal none running;
-    }
-    .dot-03 {
-        animation: auto-dot 9s ease-in-out 6s infinite normal none running;
-    }
-    .slide-01 {
-        animation: auto-slide 9s ease-in-out 0s infinite normal none running;
-    }
-    .slide-02 {
-        z-index: 2;
-        opacity: 0;
-        animation: auto-slide 9s ease-in-out 3s infinite normal none running;
-    }
-    .slide-03 {
-        z-index: 1;
-        opacity: 0;
-        animation: auto-slide 9s ease-in-out 6s infinite normal none running;
-    }
-    </style>
+}
+.dot-01 {
+    animation: auto-dot 9s ease-in-out 0s infinite normal none running;
+}
+.dot-02 {
+    animation: auto-dot 9s ease-in-out 3s infinite normal none running;
+}
+.dot-03 {
+    animation: auto-dot 9s ease-in-out 6s infinite normal none running;
+}
+.slide-01 {
+    animation: auto-slide 9s ease-in-out 0s infinite normal none running;
+}
+.slide-02 {
+    z-index: 2;
+    opacity: 0;
+    animation: auto-slide 9s ease-in-out 3s infinite normal none running;
+}
+.slide-03 {
+    z-index: 1;
+    opacity: 0;
+    animation: auto-slide 9s ease-in-out 6s infinite normal none running;
+}
+</style>

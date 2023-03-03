@@ -22,7 +22,7 @@
         </div>
           <h1 id="logo2">
           <NuxtLink to="/" class="mobile-home-link">Technime</NuxtLink></h1>
-          <SearchBar/>
+          <!-- <SearchBar/> -->
           <NuxtLink to="/login"><button class="log-in-2">Log In</button></NuxtLink>
     </div>       
 </div>
