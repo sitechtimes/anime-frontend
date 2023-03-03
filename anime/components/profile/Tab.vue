@@ -8,11 +8,13 @@
     export default{
         props:['title'],
         setup (){
-            const selectedTitle = inject("selectedTitle")
-
+            const selectedTitle = inject("selectedTitle", () =>{})
             return{
                 selectedTitle
             }
-        }
+        },
+        created() {
+    console.log(this.title) // injected value
+  }
     }
 </script>

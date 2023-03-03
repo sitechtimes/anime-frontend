@@ -14,10 +14,12 @@ import { ref, provide } from 'vue'
         setup (props, {slots}){
             const tabTitles = ref(slots.default().map((tab)=> tab.props.title))
             const selectedTitle = ref(tabTitles.value[0])
+            provide('selectedTitle', selectedTitle)
             return{
                 tabTitles,
                 selectedTitle
             }
         },
+        
     }
 </script>
