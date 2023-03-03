@@ -20,10 +20,10 @@
 			</div>
 			<div class="trending-content">
 				<AnimeCard
-					@saveAnimeID="saveAnimeID(anime.id)"
+					@saveAnimeID="saveAnimeID(anime.mal_id)"
 					v-for="anime in userStore.pagePopularAnime"
-					:id="anime.malId"
-					:key="anime.malId"
+					:id="anime.mal_id"
+					:key="anime.mal_id"
 					:episode="anime.episodes"
 					:animeName="anime.anime_name"
 					:imageUrl="anime.large_image_url"
@@ -51,12 +51,16 @@ import { useUserStore } from "~~/stores/userStore";
 import { ref } from "vue";
 
 const userStore = useUserStore();
-userStore.storeAnimeId(null);
 
 const pageExistLeft = ref(false);
 const pageExistRight = ref(true);
 
 onMounted(() => {
+	userStore.animeID = null;
+	userStore.startPageIndex = 0;
+	userStore.endPageIndex = 12;
+	userStore.animeInfo = null;
+
 	userStore.getAllAnime().then(data => {
 		const refineData = data.filter(function (anime) {
 			delete anime.small_image_url;
@@ -72,7 +76,6 @@ onMounted(() => {
 
 			return true;
 		});
-		console.log(refineData);
 
 		userStore.allAnime = refineData;
 		userStore.pagePopularAnime = userStore.allAnime.slice(
@@ -92,7 +95,6 @@ function next() {
 			userStore.startPageIndex,
 			userStore.endPageIndex
 		);
-		console.log(userStore.startPageIndex, userStore.endPageIndex);
 	} else {
 		pageExistRight.value = false;
 	}
@@ -111,7 +113,6 @@ function previous() {
 			userStore.startPageIndex,
 			userStore.endPageIndex
 		);
-		console.log(userStore.startPageIndex, userStore.endPageIndex);
 	}
 }
 
@@ -229,29 +230,28 @@ export default {
 .top-box {
 	background-color: var(--bg-primary);
 	border-radius: 1.5rem;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
 	margin-right: 2rem;
 	margin-top: 10rem;
-	height: 100%;
-	display: flex;
 	width: 20vw;
-	flex-direction: column;
 }
 .trending-box {
 	background-color: var(--bg-primary);
 	border-radius: 1.5rem;
-	padding: 3rem;
-	width: 100vw;
-	padding-top: 1.5rem;
+	margin-bottom: 3rem;
 	margin-left: 2rem;
 	margin-top: 10rem;
-	margin-bottom: 3rem;
+	padding: 1.5rem 3rem 3rem;
+	width: 100vw;
 }
 .trending-header {
-	height: 6rem;
+	align-items: center;
 	display: flex;
+	height: 6rem;
 	justify-content: space-between;
 	margin-bottom: 0.5rem;
-	align-items: center;
 }
 .trending-title {
 	font-size: var(--h3);

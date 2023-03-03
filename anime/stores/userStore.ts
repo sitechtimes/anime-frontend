@@ -8,8 +8,9 @@ import { useRouter } from "nuxt/app";
 export const useUserStore = defineStore("user", {
 	state: () => ({
 		allAnime: null,
+		animeInfo: null,
 		startPageIndex: 0,
-		endPageIndex: 11,
+		endPageIndex: 12,
 		pageNumber: 1,
 		animeId: null,
 		username: null,
@@ -45,45 +46,8 @@ export const useUserStore = defineStore("user", {
 					"content-type": "application/json",
 					Authorization: `Bearer ${this.token}`,
 				};
-				const graphqlQuery = {
-					query: `{
-						allAnime {
-						  edges {
-							node {
-							  id
-							  animeName
-							  episodes
-							  malId
-							  mediaType
-							  imageUrl
-							  smallImageUrl
-							  largeImageUrl
-							  trailerYoutubeUrl
-							  airedFrom
-							  airedTo
-								animeStudio{
-								edges {
-								 node {
-								  studio
-								}
-								}
-							  }
-									 animeGenre{
-								edges {
-								 node {
-								  genre
-								}
-								}
-							  }
-							  summary
-							  status
-							}
-					  `,
-					variables: {},
-				};
 
 				const options = {
-					//body: JSON.stringify(graphqlQuery),
 					method: "GET",
 					headers: headers,
 				};
@@ -91,9 +55,92 @@ export const useUserStore = defineStore("user", {
 				const response = await fetch(endpoint, options);
 				const data = await response.json();
 
-				this.allAnime = data;
-
 				return data;
+			} catch (error) {
+				console.log(error);
+			}
+		},
+		async getOneAnime() {
+			try {
+				const endpoint = "http://127.0.0.1:8000/graphql/";
+				const headers = {
+					"content-type": "application/json",
+					Authorization: `Bearer ${this.token}`,
+				};
+
+				const graphqlQuery = {
+					query: `
+						{
+							allAnime(malId: ${this.animeId}) {
+							  edges {
+								node {
+								  animeName
+								  episodes
+								  mediaType
+								  largeImageUrl
+								  trailerYoutubeUrl
+								  status
+								  airedFrom
+								  airedTo
+								  summary
+								  animeAwards {
+									edges {
+									  node {
+										awardName
+										date
+									  }
+									}
+								  }
+								  animeGenre {
+									edges {
+									  node {
+										genre
+									  }
+									}
+								  }
+								  animeStudio {
+									edges {
+									  node {
+										studio
+									  }
+									}
+								  }
+								}
+							  }
+							}
+						  }
+					  `,
+					variables: {},
+				};
+
+				const options = {
+					method: "POST",
+					headers: headers,
+					body: JSON.stringify(graphqlQuery),
+				};
+
+				const response = await fetch(endpoint, options);
+				console.log("response", response);
+				const animeData = await response.json();
+				console.log("animeData", animeData);
+
+				const refinedAnimeData = animeData.data.allAnime.edges[0].node;
+				console.log("refinedAnimeData", refinedAnimeData);
+
+				refinedAnimeData.animeAwards = refinedAnimeData.animeAwards.edges.map(
+					(award: any) => {
+						return award.node.awardName;
+					}
+				);
+				refinedAnimeData.animeGenre = refinedAnimeData.animeGenre.edges.map(
+					(genre: any) => {
+						return genre.node.genre;
+					}
+				);
+
+				refinedAnimeData.animeStudio = refinedAnimeData.animeStudio.edges[0].node.studio;
+
+				return refinedAnimeData;
 			} catch (error) {
 				console.log(error);
 			}

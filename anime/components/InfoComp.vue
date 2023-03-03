@@ -11,9 +11,13 @@
 				<p>Episodes: {{ episodes }}</p>
 				<p>Status: {{ status }}</p>
 				<p>Aired: {{ aired }}</p>
+				<p>Studio: {{ studio }}</p>
 				<div class="quick-info-genre">
 					<p>Genres:</p>
-					<p v-for="genre in genres">{{ genre }}</p>
+					<div v-for="(genre, index) in genres">
+						<!-- <p v-if="index != genres.length - 1">{{ genre }},</p>
+						<p v-if="index == genres.length - 1">{{ genre }}</p> -->
+					</div>
 				</div>
 			</div>
 		</div>
@@ -76,6 +80,7 @@ export default {
 		synopsis: { String, required: true },
 		imageUrl: { String, required: true },
 		aired: { String, required: true },
+		studio: { String, required: true },
 	},
 	data: () => ({
 		addList: false,
