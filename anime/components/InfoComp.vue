@@ -15,8 +15,8 @@
 				<div class="quick-info-genre">
 					<p>Genres:</p>
 					<div v-for="(genre, index) in genres">
-						<!-- <p v-if="index != genres.length - 1">{{ genre }},</p>
-						<p v-if="index == genres.length - 1">{{ genre }}</p> -->
+						<p>{{ genre }},</p>
+						<!-- <p v-if="index == genres.length - 1">{{ genre }}</p> -->
 					</div>
 				</div>
 			</div>

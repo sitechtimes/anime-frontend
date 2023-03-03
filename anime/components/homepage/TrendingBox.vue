@@ -20,7 +20,7 @@
 			</div>
 			<div class="trending-content">
 				<AnimeCard
-					@saveAnimeID="saveAnimeID(anime.mal_id)"
+					@saveAnimeID="saveClickedAnimeID(anime.mal_id)"
 					v-for="anime in userStore.pagePopularAnime"
 					:id="anime.mal_id"
 					:key="anime.mal_id"
@@ -116,7 +116,7 @@ function previous() {
 	}
 }
 
-function saveAnimeID(id) {
+function saveClickedAnimeID(id) {
 	userStore.storeAnimeId(id);
 }
 </script>

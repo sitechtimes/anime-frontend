@@ -62,6 +62,7 @@ export const useUserStore = defineStore("user", {
 		},
 		async getOneAnime() {
 			try {
+				console.log("getting one anime");
 				const endpoint = "http://127.0.0.1:8000/graphql/";
 				const headers = {
 					"content-type": "application/json",
@@ -69,47 +70,43 @@ export const useUserStore = defineStore("user", {
 				};
 
 				const graphqlQuery = {
-					query: `
-						{
-							allAnime(malId: ${this.animeId}) {
-							  edges {
-								node {
-								  animeName
-								  episodes
-								  mediaType
-								  largeImageUrl
-								  trailerYoutubeUrl
-								  status
-								  airedFrom
-								  airedTo
-								  summary
-								  animeAwards {
-									edges {
-									  node {
-										awardName
-										date
-									  }
-									}
+					query: `{
+						allAnime(malId: 21) {
+						  edges {
+							node {
+							  malId
+							  animeName
+							  episodes
+							  mediaType
+							  largeImageUrl
+							  numberRating
+							  airedTo
+							  airedFrom
+							  animeGenre {
+								edges {
+								  node {
+									genre
 								  }
-								  animeGenre {
-									edges {
-									  node {
-										genre
-									  }
-									}
+								}
+							  }
+							  animeStudio {
+								edges {
+								  node {
+									studio
 								  }
-								  animeStudio {
-									edges {
-									  node {
-										studio
-									  }
-									}
+								}
+							  }
+							  animeAwards {
+								edges {
+								  node {
+									id
 								  }
 								}
 							  }
 							}
 						  }
-					  `,
+						}
+					  }`,
 					variables: {},
 				};
 
@@ -120,25 +117,21 @@ export const useUserStore = defineStore("user", {
 				};
 
 				const response = await fetch(endpoint, options);
-				console.log("response", response);
 				const animeData = await response.json();
-				console.log("animeData", animeData);
 
 				const refinedAnimeData = animeData.data.allAnime.edges[0].node;
-				console.log("refinedAnimeData", refinedAnimeData);
 
-				refinedAnimeData.animeAwards = refinedAnimeData.animeAwards.edges.map(
-					(award: any) => {
-						return award.node.awardName;
-					}
-				);
-				refinedAnimeData.animeGenre = refinedAnimeData.animeGenre.edges.map(
-					(genre: any) => {
-						return genre.node.genre;
-					}
-				);
+				refinedAnimeData.animeGenre = refinedAnimeData.animeGenre.edges.map((edge: any) => {
+					return edge.node.genre;
+				});
 
 				refinedAnimeData.animeStudio = refinedAnimeData.animeStudio.edges[0].node.studio;
+
+				refinedAnimeData.animeAwards = refinedAnimeData.animeAwards.edges.map(
+					(edge: any) => {
+						return edge.node.id;
+					}
+				);
 
 				return refinedAnimeData;
 			} catch (error) {
