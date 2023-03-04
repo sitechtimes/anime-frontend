@@ -1,7 +1,7 @@
 <template>
 	<div id="anime-info">
 		<div class="column-1">
-			<img class="animeImage" :src="`${imageUrl}`" alt="" />
+			<img class="animeImage" :src="`${imageUrl}`" alt="Anime Cover" />
 			<div class="quick-info">
 				<div>
 					<h4>Information</h4>
@@ -67,20 +67,47 @@
 import starSVG from "../components/starSVG.vue";
 
 export default {
-	name: "AnimeInfoComp",
+	name: "AnimeInfo",
 	components: {
 		starSVG,
 	},
 	props: {
-		name: { String, required: true },
-		episodes: { String, required: true },
-		mediaType: { String, required: true },
-		genres: { Array, required: true },
-		status: { String, required: true },
-		synopsis: { String, required: true },
-		imageUrl: { String, required: true },
-		aired: { String, required: true },
-		studio: { String, required: true },
+		name: {
+			type: String,
+			required: true,
+		},
+		imageUrl: {
+			type: String,
+			required: true,
+		},
+		mediaType: {
+			type: String,
+			required: true,
+		},
+		episodes: {
+			type: Number,
+			required: true,
+		},
+		status: {
+			type: String,
+			required: true,
+		},
+		aired: {
+			type: String,
+			required: true,
+		},
+		studio: {
+			type: String,
+			required: true,
+		},
+		genres: {
+			type: Array,
+			required: true,
+		},
+		synopsis: {
+			type: String,
+			required: true,
+		},
 	},
 	data: () => ({
 		addList: false,
@@ -115,7 +142,7 @@ export default {
 </script>
 
 <style scoped>
-#anime-info {
+#anime-infoComp {
 	color: rgb(255, 255, 255);
 	padding-top: 13vh;
 	display: flex;

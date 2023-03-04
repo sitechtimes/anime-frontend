@@ -59,7 +59,6 @@ onMounted(() => {
 	userStore.animeID = null;
 	userStore.startPageIndex = 0;
 	userStore.endPageIndex = 12;
-	userStore.animeInfo = null;
 
 	userStore.getAllAnime().then(data => {
 		const refineData = data.filter(function (anime) {

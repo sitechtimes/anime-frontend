@@ -62,7 +62,6 @@ export const useUserStore = defineStore("user", {
 		},
 		async getOneAnime() {
 			try {
-				console.log("getting one anime");
 				const endpoint = "http://127.0.0.1:8000/graphql/";
 				const headers = {
 					"content-type": "application/json",
@@ -71,13 +70,15 @@ export const useUserStore = defineStore("user", {
 
 				const graphqlQuery = {
 					query: `{
-						allAnime(malId: 21) {
+						allAnime(malId: ${this.animeId}) {
 						  edges {
 							node {
 							  malId
 							  animeName
 							  episodes
 							  mediaType
+							  status
+							  summary
 							  largeImageUrl
 							  numberRating
 							  airedTo
@@ -138,7 +139,6 @@ export const useUserStore = defineStore("user", {
 				console.log(error);
 			}
 		},
-
 		async login(res: any) {
 			console.log(res.code);
 			try {
@@ -204,7 +204,7 @@ export const useUserStore = defineStore("user", {
 		async checkCookie() {
 			try {
 				// let user = useCookie("user")
-				console.log(this.token);
+				//console.log(this.token);
 				const res = await axios
 					.get("http://127.0.0.1:8000/auth/user/", {
 						headers: { Authorization: `Bearer ${this.token}` },
