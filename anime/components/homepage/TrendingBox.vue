@@ -6,7 +6,19 @@
 				<div class="trending-pages">
 					<div class="trendingPageNumberBox">
 						<p class="trendingPageNumber">Page</p>
-						<p class="trendingPageNumberVar">{{ userStore.pageNumber }}</p>
+						<div>
+							<!-- <p class="trendingPageNumberVar">{{ userStore.pageNumber }}</p> -->
+							<form @submit.prevent="selectPage(userStore.pageNumber)">
+								<input
+									class="trendingPageNumberVar"
+									type="number"
+									v-model="userStore.pageNumber"
+									min="1"
+									max="999"
+									@change="selectPage(userStore.pageNumber)"
+								/>
+							</form>
+						</div>
 					</div>
 					<div class="trendingPageButtonBox">
 						<button class="page-button" v-on:click="previous">
@@ -61,6 +73,7 @@ if (userStore.startPageIndex != 0) {
 
 onMounted(() => {
 	userStore.animeInfo = null;
+	userStore.animeId = null;
 
 	if (userStore.allAnime != null) {
 		userStore.pagePopularAnime = userStore.allAnime.slice(
@@ -93,6 +106,7 @@ onMounted(() => {
 				});
 
 				userStore.allAnime = refineData;
+
 				userStore.pagePopularAnime = userStore.allAnime.slice(
 					userStore.startPageIndex,
 					userStore.endPageIndex
@@ -137,6 +151,16 @@ function previous() {
 
 function saveClickedAnimeID(id) {
 	userStore.storeAnimeId(id);
+}
+
+function selectPage(num) {
+	userStore.startPageIndex = num * 11 - 11;
+	userStore.endPageIndex = num * 11 + 1;
+
+	userStore.pagePopularAnime = userStore.allAnime.slice(
+		userStore.startPageIndex,
+		userStore.endPageIndex
+	);
 }
 </script>
 
@@ -318,19 +342,32 @@ export default {
 	font-size: var(--h5);
 	font-weight: var(--fw-semi-bold);
 	color: var(--light-text);
-	margin-right: 2.5rem;
+}
+
+.trendingPageNumberVar::-webkit-outer-spin-button,
+.trendingPageNumberVar::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
 }
 .trendingPageNumberVar {
+	min-width: 4.5rem;
 	font-size: var(--h5);
-	font-weight: var(--fw-semi-bold);
+	font-weight: var(--fw-med);
 	color: var(--light-text);
-	position: absolute;
-	margin-left: 3.2rem;
+	background-color: var(--bg-secondary);
+	border: none;
+	border-radius: 0.5rem;
+	padding: 0.5rem 1rem;
+	text-align: center;
+}
+.trendingPageNumberVar:focus {
+	outline: none;
 }
 .trendingPageNumberBox {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	column-gap: 0.8rem;
 }
 .trendingPageButtonBox {
 	background-color: transparent;
