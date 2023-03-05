@@ -1,7 +1,6 @@
 <template>
-	<div id="animeInfo">
+	<div>
 		<InfoComp
-			id="animeInfoData.malId"
 			:name="animeInfoData.animeName"
 			:episodes="animeInfoData.episodes"
 			:mediaType="animeInfoData.mediaType"
@@ -17,7 +16,7 @@
 
 <script setup lang="ts">
 import { useUserStore } from "~~/stores/userStore";
-import { ref } from "vue";
+import { ref, watch } from "vue";
 
 const userStore = useUserStore();
 const animeInfoData = ref({});
@@ -25,7 +24,7 @@ const animeInfoData = ref({});
 onMounted(() => {
 	userStore.getOneAnime().then(data => {
 		animeInfoData.value = data;
-		console.log(data);
+		//console.log(data);
 	});
 });
 
@@ -73,11 +72,8 @@ function aired(airTimeStart, airTimeEnd) {
 import InfoComp from "../components/InfoComp.vue";
 
 export default {
-	name: "anime",
 	components: {
 		InfoComp,
 	},
 };
 </script>
-
-<style></style>

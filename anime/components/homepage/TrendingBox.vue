@@ -55,33 +55,53 @@ const userStore = useUserStore();
 const pageExistLeft = ref(false);
 const pageExistRight = ref(true);
 
+if (userStore.startPageIndex != 0) {
+	pageExistLeft.value = true;
+}
+
 onMounted(() => {
-	userStore.animeID = null;
-	userStore.startPageIndex = 0;
-	userStore.endPageIndex = 12;
+	userStore.animeInfo = null;
 
-	userStore.getAllAnime().then(data => {
-		const refineData = data.filter(function (anime) {
-			delete anime.small_image_url;
-			delete anime.image_url;
-			delete anime.trailer_youtube_url;
-			delete anime.status;
-			delete anime.aired_from;
-			delete anime.aired_to;
-			delete anime.summary;
-			delete anime.anime_studio;
-			delete anime.anime_genre;
-			delete anime.number_rating;
-
-			return true;
-		});
-
-		userStore.allAnime = refineData;
+	if (userStore.allAnime != null) {
 		userStore.pagePopularAnime = userStore.allAnime.slice(
 			userStore.startPageIndex,
 			userStore.endPageIndex
 		);
-	});
+	} else {
+		userStore.startPageIndex = 0;
+		userStore.endPageIndex = 12;
+		userStore.pageNumber = 1;
+		shouldRun.value = false;
+		console.log("shouldRun: ", shouldRun.value);
+
+		userStore
+			.getAllAnime()
+			.then(data => {
+				const refineData = data.filter(function (anime) {
+					delete anime.small_image_url;
+					delete anime.image_url;
+					delete anime.trailer_youtube_url;
+					delete anime.status;
+					delete anime.aired_from;
+					delete anime.aired_to;
+					delete anime.summary;
+					delete anime.anime_studio;
+					delete anime.anime_genre;
+					delete anime.number_rating;
+
+					return true;
+				});
+
+				userStore.allAnime = refineData;
+				userStore.pagePopularAnime = userStore.allAnime.slice(
+					userStore.startPageIndex,
+					userStore.endPageIndex
+				);
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	}
 });
 
 function next() {

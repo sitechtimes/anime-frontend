@@ -72,42 +72,15 @@ export default {
 		starSVG,
 	},
 	props: {
-		name: {
-			type: String,
-			required: true,
-		},
-		imageUrl: {
-			type: String,
-			required: true,
-		},
-		mediaType: {
-			type: String,
-			required: true,
-		},
-		episodes: {
-			type: Number,
-			required: true,
-		},
-		status: {
-			type: String,
-			required: true,
-		},
-		aired: {
-			type: String,
-			required: true,
-		},
-		studio: {
-			type: String,
-			required: true,
-		},
-		genres: {
-			type: Array,
-			required: true,
-		},
-		synopsis: {
-			type: String,
-			required: true,
-		},
+		imageUrl: String,
+		mediaType: String,
+		episodes: Number,
+		status: String,
+		aired: String,
+		studio: String,
+		genres: Array,
+		name: String,
+		synopsis: String,
 	},
 	data: () => ({
 		addList: false,
@@ -142,7 +115,7 @@ export default {
 </script>
 
 <style scoped>
-#anime-infoComp {
+#anime-info {
 	color: rgb(255, 255, 255);
 	padding-top: 13vh;
 	display: flex;
@@ -213,6 +186,7 @@ export default {
 	font-weight: var(--fw-light);
 	line-height: 3.5rem;
 	word-spacing: 0.2rem;
+	color: white;
 }
 .btn {
 	background-color: lightpink;

@@ -3,6 +3,7 @@ import axios from "axios";
 import { createPersistedState } from "pinia-plugin-persistedstate";
 import { googleLogout } from "vue3-google-login";
 import { useRouter } from "nuxt/app";
+import { createPinia } from "pinia";
 // const router = useRouter()
 
 export const useUserStore = defineStore("user", {
@@ -24,6 +25,11 @@ export const useUserStore = defineStore("user", {
 		// userData: JSON.parse(localStorage.getItem("user")),
 		// token: JSON.parse(localStorage.getItem("token"))
 	}),
+	persist: [
+		{
+			storage: persistedState.sessionStorage,
+		},
+	],
 	getters: {
 		// getToken() {
 		//     const token = localStorage.getItem("token")
@@ -70,44 +76,44 @@ export const useUserStore = defineStore("user", {
 
 				const graphqlQuery = {
 					query: `{
-						allAnime(malId: ${this.animeId}) {
-						  edges {
-							node {
-							  malId
-							  animeName
-							  episodes
-							  mediaType
-							  status
-							  summary
-							  largeImageUrl
-							  numberRating
-							  airedTo
-							  airedFrom
-							  animeGenre {
+								allAnime(malId: ${this.animeId}) {
 								edges {
-								  node {
-									genre
-								  }
+									node {
+									malId
+									animeName
+									episodes
+									mediaType
+									status
+									summary
+									largeImageUrl
+									numberRating
+									airedTo
+									airedFrom
+									animeGenre {
+										edges {
+										node {
+											genre
+										}
+										}
+									}
+									animeStudio {
+										edges {
+										node {
+											studio
+										}
+										}
+									}
+									animeAwards {
+										edges {
+										node {
+											id
+										}
+										}
+									}
+									}
 								}
-							  }
-							  animeStudio {
-								edges {
-								  node {
-									studio
-								  }
 								}
-							  }
-							  animeAwards {
-								edges {
-								  node {
-									id
-								  }
-								}
-							  }
-							}
-						  }
-						}
-					  }`,
+							}`,
 					variables: {},
 				};
 
@@ -134,20 +140,22 @@ export const useUserStore = defineStore("user", {
 					}
 				);
 
+				this.animeInfo = refinedAnimeData;
+
 				return refinedAnimeData;
 			} catch (error) {
 				console.log(error);
 			}
 		},
 		async login(res: any) {
-			console.log(res.code);
+			//console.log(res.code);
 			try {
 				axios
 					.post("http://localhost:8000/social-login/google/", {
 						code: res.code,
 					})
 					.then(res => {
-						console.log(res.data);
+						//console.log(res.data);
 						this.token = res.data.access_token;
 						// localStorage.setItem('token', JSON.stringify(this.token))
 						axios
@@ -155,14 +163,14 @@ export const useUserStore = defineStore("user", {
 								headers: { Authorization: `Bearer ${res.data.access_token}` },
 							})
 							.then(res => {
-								console.log(res.data);
-								console.log(this.token);
+								//console.log(res.data);
+								//console.log(this.token);
 								let index = res.data.email.indexOf("@");
-								console.log(res.data.email.slice(index + 1));
-								console.log(index);
+								//console.log(res.data.email.slice(index + 1));
+								//console.log(index);
 
 								let account = res.data.email.slice(index + 1);
-								console.log(account);
+								//console.log(account);
 								//add teacher later
 								if (account != ("nycstudents.net" || "schools.nyc.gov")) {
 									this.token = null;
@@ -258,5 +266,4 @@ export const useUserStore = defineStore("user", {
 	//       sameSite: 'strict',
 	//     }),
 	//   },
-	persist: true,
 });
