@@ -11,6 +11,10 @@
       <NuxtLink to="/awards"><button class="btn">Back</button></NuxtLink>
       <button class="btn" @click="vote" id="vote-btn">Vote</button>
     </div>
+    <div class="popup">
+      <span>&times</span>
+      <h1>You voted already.</h1>
+    </div>
   </div>
 </template>
 
@@ -24,14 +28,14 @@ export default ({
     select(nominee) {
       this.selected = true
       let click = nominee.target
-      if (click.className == "nominee-box") {
-        const boxes = Array.from(document.getElementsByClassName("nominee-box") as HTMLCollectionOf<HTMLElement>)
+      const boxes = Array.from(document.getElementsByClassName("nominee-box") as HTMLCollectionOf<HTMLElement>)
         boxes.forEach(box => {
           box.style.background = "#252525"
         });
+      if (click.className == "nominee-box") {
         click.style.background = "var(--primary)"
       } else {
-        //make it work
+        click.parentElement.style.background = "var(--primary)"
       }
     },
     vote() {
@@ -59,9 +63,9 @@ export default ({
   padding-top: 9vh;
   width: 70vw;
   margin: auto;
+  color: var(--white);
 }
 .award-name {
-  color: var(--white);
   background: var(--secondary);
   font-size: var(--h1);
   text-align: center;
@@ -77,7 +81,6 @@ export default ({
   padding: 0rem;
   width: 33vw;
   height: 12vh;
-  color: white;
   display: flex;
   flex-direction: row;
   background: #252525;
@@ -103,8 +106,8 @@ export default ({
   margin: auto;
 }
 .btn {
+  color: var(--white);
   font-size: var(--h3);
-  color: white;
   background: none;
   border: 0.3rem solid var(--primary);
   border-radius: 0;
@@ -114,5 +117,10 @@ export default ({
 }
 .btn:hover {
   background: var(--primary);
+}
+.popup {
+  background: var(--primary);
+  height: 10vh;
+  width: 15vw;
 }
 </style>
