@@ -16,15 +16,14 @@
                         <label class="dot dot-03" ></label>
                     </div>
                 </div>
-
         </div>
     </div>
     </template>
     <!-- https://th.bing.com/th/id/R.e4651a3a9eed4e1e43044e638b076e1f?rik=KXg2eMKBaDhnOQ&pid=ImgRaw&r=0 -->
-    <script>
-    export default {
-        name: "Carousel",
-        data: ()=> ({
+<script>
+export default {
+    name: "Carousel",
+    data: ()=> ({
             animes: [
             {animeID:"slide-01", 
             title: "Blue Lock", 
@@ -126,7 +125,7 @@
     align-items: center;
     flex-direction: row;
     width:100vw;
-    margin-bottom:30vh;
+    margin-bottom: 30vh;
 }
 .carousel-slide {
     overflow: hidden;
@@ -206,5 +205,35 @@
     z-index: 1;
     opacity: 0;
     animation: auto-slide 9s ease-in-out 6s infinite normal none running;
+}
+@media screen and (max-width: 550px) {
+.img {
+    width: 85%;
+    height: 80%;
+    margin-top: 0%;
+}
+.dots {
+    top: 98%;
+}
+.carousel {
+    width: 120vw;
+    margin-bottom: 40vh;
+}
+.dots .dot {
+    width: 1rem;
+    height: 1rem;
+}
+.descript-box {
+    display: none;
+}
+.carousel-slide {
+    height: 50%;
+    flex-direction: column-reverse;
+}
+.carousel-title {
+    margin-top: 0%;
+    text-align: center;
+    font-size: var(--h4);
+}
 }
 </style>
