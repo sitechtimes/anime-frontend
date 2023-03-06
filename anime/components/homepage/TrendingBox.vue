@@ -2,7 +2,7 @@
 	<div class="home-body">
 		<div class="trending-box">
 			<div class="trending-header">
-				<h2 class="trending-title">Popular</h2>
+				<h2 class="trending-title">Currently Airing</h2>
 				<div class="trending-pages">
 					<div class="trendingPageNumberBox">
 						<p class="trendingPageNumber">Page</p>
@@ -84,8 +84,6 @@ onMounted(() => {
 		userStore.startPageIndex = 0;
 		userStore.endPageIndex = 12;
 		userStore.pageNumber = 1;
-		shouldRun.value = false;
-		console.log("shouldRun: ", shouldRun.value);
 
 		userStore
 			.getAllAnime()
@@ -94,7 +92,6 @@ onMounted(() => {
 					delete anime.small_image_url;
 					delete anime.image_url;
 					delete anime.trailer_youtube_url;
-					delete anime.status;
 					delete anime.aired_from;
 					delete anime.aired_to;
 					delete anime.summary;
@@ -105,7 +102,15 @@ onMounted(() => {
 					return true;
 				});
 
-				userStore.allAnime = refineData;
+				const airingAnime = [];
+
+				refineData.filter(function (anime) {
+					if (anime.status == "Currently Airing") {
+						airingAnime.push(anime);
+					}
+				});
+
+				userStore.allAnime = airingAnime;
 
 				userStore.pagePopularAnime = userStore.allAnime.slice(
 					userStore.startPageIndex,

@@ -140,8 +140,6 @@ export const useUserStore = defineStore("user", {
 					}
 				);
 
-				this.animeInfo = refinedAnimeData;
-
 				return refinedAnimeData;
 			} catch (error) {
 				console.log(error);
