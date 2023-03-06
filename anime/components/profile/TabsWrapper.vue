@@ -23,3 +23,23 @@ import { ref, provide } from 'vue'
         
     }
 </script>
+<style scoped>
+    .tabs{
+        width:70vw;
+    }
+    .tabs-header{
+        display:flex;
+        flex-direction: column;
+        margin-bottom: 5rem;
+        padding: 0;
+        width: 20%;
+    }
+    .tabs-header li{
+        font-size: var(--h2);
+        text-align: center;
+        padding: .5rem 1rem;
+        margin-bottom:5rem;
+        background-color: #525151;
+        border-radius: .5rem;
+    }
+</style>

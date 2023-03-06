@@ -15,8 +15,12 @@
 </div>
     <div class="tabs-class">
         <TabsWrapper>
-            <Tab title="Tab 1">Tab 1 ahhhh</Tab>
-            <Tab title="Tab 2">Tab 2</Tab>
+            <Tab title="Watchlist">
+                <div class="tab">
+                    <h1>tab yeah</h1>
+                </div>
+            </Tab>
+            <Tab title="Favorites">Tab 2</Tab>
         </TabsWrapper>
     </div>
   </div>
@@ -45,18 +49,14 @@ export default {
 
 <style scoped>
 .profile-top,
-.profile-middle,
-.profile-bottom{
+.tabs-class{
     width: 100%;
     height:100%;
     display: flex;
     justify-content: center;
     color: var(--white);
 }
-.profile-middle .current-anime,
-.profile-middle .profile-stats,
-.profile-bottom .favorite-anime,
-.profile-bottom .favorite-genre{
+.tabs-class .tab{
     background-color:var(--tertiary);
     display: flex;
     flex-direction: column;

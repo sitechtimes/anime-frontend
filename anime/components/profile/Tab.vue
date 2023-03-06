@@ -13,8 +13,6 @@
                 selectedTitle
             }
         },
-        created() {
-    console.log(this.title) // injected value
-  }
+
     }
 </script>
