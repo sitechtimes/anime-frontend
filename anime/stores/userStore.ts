@@ -77,41 +77,42 @@ export const useUserStore = defineStore("user", {
 				const graphqlQuery = {
 					query: `{
 								allAnime(malId: ${this.animeId}) {
-								edges {
-									node {
-									malId
-									animeName
-									episodes
-									mediaType
-									status
-									summary
-									largeImageUrl
-									numberRating
-									airedTo
-									airedFrom
-									animeGenre {
-										edges {
+									edges {
 										node {
-											genre
-										}
+											malId
+											animeName
+											episodes
+											mediaType
+											status
+											summary
+											largeImageUrl
+											numberRating
+											airedTo
+											airedFrom
+											animeGenre {
+												edges {
+													node {
+														genre
+													}
+												}
+											}
+											animeStudio {
+												edges {
+													node {
+														studio
+													}
+												}
+											}
+											animeAwards {
+												edges {
+													node {
+														awardName
+														date
+													}
+												}
+											}
 										}
 									}
-									animeStudio {
-										edges {
-										node {
-											studio
-										}
-										}
-									}
-									animeAwards {
-										edges {
-										node {
-											id
-										}
-										}
-									}
-									}
-								}
 								}
 							}`,
 					variables: {},
