@@ -25,21 +25,28 @@ import { ref, provide } from 'vue'
 </script>
 <style scoped>
     .tabs{
-        width:70vw;
+        display: flex;
+        height:50vh;
     }
     .tabs-header{
         display:flex;
         flex-direction: column;
+        justify-content: space-around;
+        align-items: space-around;
         margin-bottom: 5rem;
-        padding: 0;
-        width: 20%;
+        padding: 0; 
+        width:7vw;
+        height:51%;
+        background-color: var(--secondary);
+        margin-left: 4rem;
+        position: absolute;
+        box-shadow: 0 4px 8px 0 var(--bg-primary);
     }
     .tabs-header li{
-        font-size: var(--h2);
+        font-size: var(--h4);
         text-align: center;
         padding: .5rem 1rem;
         margin-bottom:5rem;
-        background-color: #525151;
         border-radius: .5rem;
     }
 </style>

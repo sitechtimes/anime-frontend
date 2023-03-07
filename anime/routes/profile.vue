@@ -16,11 +16,13 @@
     <div class="tabs-class">
         <TabsWrapper>
             <Tab title="Watchlist">
-                <div class="tab">
+                <div class="tabShow">
                     <h1>tab yeah</h1>
                 </div>
             </Tab>
             <Tab title="Favorites">Tab 2</Tab>
+            <Tab title="Example">Tab 2</Tab>
+            <Tab title="Example 2">Tab 2</Tab>
         </TabsWrapper>
     </div>
   </div>
@@ -55,12 +57,16 @@ export default {
     display: flex;
     justify-content: center;
     color: var(--white);
+    margin-bottom:5%;
 }
 .tabs-class .tab{
     background-color:var(--tertiary);
+    width:50vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px 0 var(--tertiary);
 }
 .banner{
     object-fit: cover;
