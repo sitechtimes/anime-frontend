@@ -12,8 +12,10 @@
       <button class="btn" @click="vote" id="vote-btn">Vote</button>
     </div>
     <div class="popup">
-      <span>&times</span>
-      <h1>You voted already.</h1>
+      <span class="close">&times</span>
+      <div class="popup-content">
+        <h1>You voted already.</h1>
+      </div>
     </div>
   </div>
 </template>
@@ -120,7 +122,17 @@ export default ({
 }
 .popup {
   background: var(--primary);
-  height: 10vh;
-  width: 15vw;
+  z-index: 1;
+  height: 30vh;
+  width: 30vw;
+  margin-bottom: 50rem;
+}
+.popup-content {
+  align-self: flex-end;
+}
+.close {
+  font-size: var(--h1);
+  top: 50%;
+  left: 50%;
 }
 </style>
