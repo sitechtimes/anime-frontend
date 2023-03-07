@@ -230,7 +230,7 @@ export default {
 				{
 					id: 6,
 					img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-					episode: 123,
+					episode: 125,
 					votes: 100,
 					title: "One Piece",
 					rank: 6,
@@ -238,7 +238,7 @@ export default {
 				{
 					id: 7,
 					img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-					episode: 123,
+					episode: 125,
 					votes: 100,
 					title: "One Piece",
 					rank: 7,
@@ -246,7 +246,7 @@ export default {
 				{
 					id: 8,
 					img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-					episode: 120,
+					episode: 125,
 					votes: 100,
 					title: "One Piece",
 					rank: 8,
@@ -254,11 +254,20 @@ export default {
 				{
 					id: 9,
 					img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-					episode: 121,
+					episode: 125,
 					votes: 100,
 					title: "One Piece",
 					rank: 9,
 				},
+				{
+					id: 10,
+					img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
+					episode: 125,
+					votes: 100,
+					title: "One Piece",
+					rank: 10,
+				},
+				
 			],
 		};
 	},
@@ -324,9 +333,9 @@ export default {
 .trending-content {
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-between;
+	justify-content: flex-start;
 	row-gap: 4rem;
-	column-gap: 1%;
+	column-gap: 1.8%;
 }
 .trending-pages {
 	justify-content: flex-end;

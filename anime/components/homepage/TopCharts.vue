@@ -66,7 +66,7 @@ export default {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	height: 9rem;
+	height: 7.7rem;
 	background-color: var(--tertiary);
 	margin-top: 1rem;
 	border-radius: 0.75rem;
@@ -75,11 +75,11 @@ export default {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 5.5rem;
+	width: 4.5rem;
 	height: 100%;
 	background-color: var(--secondary);
 	color: var(--white);
-	font-size: var(--h2);
+	font-size: var(--h3);
 	font-weight: var(--fw-reg);
 	border-radius: 0.75rem 0 0 0.75rem;
 }
@@ -102,6 +102,7 @@ export default {
 	font-weight: var(--fw-reg);
 	text-overflow: ellipsis;
 	overflow: hidden;
+
 }
 .charts-details {
 	display: flex;
