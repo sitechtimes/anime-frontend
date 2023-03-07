@@ -73,9 +73,9 @@ export default {
 .carousel-title {
     display: block;
     margin-top: 10%;
+    color: var(--white);
     font-size: var(--h2);
     font-weight: var(--fw-bold);
-    color: var(--white);
 }
 .descript-box{
     height:45%;
@@ -208,32 +208,56 @@ export default {
 }
 @media screen and (max-width: 550px) {
 .img {
-    width: 85%;
-    height: 80%;
+    width: 90%;
+    height: 54%;
     margin-top: 0%;
 }
 .dots {
-    top: 98%;
+    top: 94%;
+    width: 90%;
+    text-align: right;
 }
 .carousel {
     width: 120vw;
-    margin-bottom: 40vh;
+    margin-bottom: 50vh;
 }
 .dots .dot {
-    width: 1rem;
-    height: 1rem;
+    margin: 1%;
+    width: 1.2rem;
+    height: 1.2rem;
 }
 .descript-box {
     display: none;
 }
 .carousel-slide {
-    height: 50%;
+    width: 80%;
+    height: 65%;
     flex-direction: column-reverse;
 }
 .carousel-title {
     margin-top: 0%;
+    margin-left: 0%;
     text-align: center;
     font-size: var(--h4);
+}
+}
+@media screen and (max-width: 415px) {
+.img {
+    height: 50%;
+    margin-top: 0%;
+}
+.dots {
+    top: 96%;
+    width: 90%;
+    text-align: right;
+}
+.dots .dot {
+    width: 1rem;
+    height: 1rem;
+}
+.carousel-title {
+    text-align: left;
+    font-size: 1.45rem;
 }
 }
 </style>

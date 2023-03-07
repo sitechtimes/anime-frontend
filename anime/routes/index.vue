@@ -2,7 +2,7 @@
     <div id="home">
       <span class="underNav"></span>
       <Carousel/>
-      <TrendingBox/>
+      <!-- <TrendingBox/> -->
       <footer class="footer"></footer>
     </div>
   </template>
@@ -21,14 +21,19 @@
   </script>
   <style scoped>
     /* undernavigation  */
-    .underNav{
-  width:100vw;
-  height:37vh;
-  display:block;
+.underNav{
+  width: 100vw;
+  height: 37vh;
+  display: block;
 }
 .footer{
-  width:100vw;
-  height:5vw;
+  width: 100vw;
+  height: 5vh;
   display: block;
+}
+@media screen and (max-width: 550px) {
+.underNav {
+  height: 18vh;
+}
 }
   </style>
