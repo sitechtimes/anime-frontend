@@ -12,7 +12,7 @@
       <button class="btn" @click="vote" id="vote-btn">Vote</button>
     </div>
     <div class="popup">
-      <span class="close">&times</span>
+      <span class="popup-close">&times</span>
       <div class="popup-content">
         <h1>You voted already.</h1>
       </div>
@@ -25,6 +25,7 @@ export default ({
   data: () => ({
     r: [1,2,3,4,5,6],
     selected: false,
+    voted: true,
   }),
   methods: {
     select(nominee) {
@@ -41,8 +42,10 @@ export default ({
       }
     },
     vote() {
-      if (this.selected === true) {
-        //create popup
+      if (this.voted === true) {
+        console.log("gfyi")
+      }
+      else if (this.selected === true) {
         const vote = document.getElementById("vote-btn")
         vote.style.background = "var(--primary)"
         vote.innerHTML = "Voted"
@@ -122,17 +125,19 @@ export default ({
 }
 .popup {
   background: var(--primary);
-  z-index: 1;
-  height: 30vh;
-  width: 30vw;
-  margin-bottom: 50rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  height: 20vh;
+  width: 20vw;
+  display: none;
+}
+.popup-close {
+  font-size: var(--h2);
+  margin-right: 1rem;
 }
 .popup-content {
-  align-self: flex-end;
-}
-.close {
-  font-size: var(--h1);
-  top: 50%;
-  left: 50%;
+  width: 100%;
+  text-align: center;
 }
 </style>
