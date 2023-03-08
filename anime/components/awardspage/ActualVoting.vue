@@ -44,11 +44,10 @@ export default ({
       }
     },
     vote() {
-      // if (this.voted === true) {
-      //   const msg = document.getElementById("popup")
-      //   msg.style.display = "flex"
-      // } else
-      if (this.selected === true) {
+      if (this.voted === true) {
+        const msg = document.getElementById("popup")
+        msg.style.display = "flex"
+      } else if (this.selected === true) {
         const vote = document.getElementById("vote-btn")
         vote.style.background = "var(--primary)"
         vote.innerHTML = "Voted"
@@ -130,6 +129,16 @@ export default ({
 .btn:hover {
   background: var(--primary);
 }
+#popup {
+  background: rgb(0,0,0,0.6);
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: none;
+}
 .popup-content {
   background: var(--primary);
   flex-direction: column;
@@ -137,10 +146,7 @@ export default ({
   height: 20vh;
   width: 20vw;
   display: flex;
-  position: fixed;
-  z-index: 1;
-  top: 42%;
-  left: 40%;
+  margin: auto;
 }
 .popup-close {
   font-size: var(--h2);
