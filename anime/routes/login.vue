@@ -256,7 +256,6 @@ export default {
   font-size: 18px;
 }
 }
-
 @media screen and (max-width: 550px) {
 .img {
   display: none;

@@ -206,14 +206,57 @@ export default {
     opacity: 0;
     animation: auto-slide 9s ease-in-out 6s infinite normal none running;
 }
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 1025px) {
+.dots {
+    top: 92%;
+}
+.carousel-title {
+    font-size: var(--h3);
+}
+}
+@media screen and (max-width: 915px) {
+.img {
+    height: 70%;
+}
+.dots {
+    top: 72%;
+}
+.dots .dot {
+    margin: 2%;
+    width: 2rem;
+    height: 2rem;
+}
+.carousel-date {
+    font-size: var(--h4);
+}
+.carousel-title {
+    font-size: var(--h2);
+}
+.carousel-description {
+    font-size: var(--h4);
+}
+}
+@media screen and (max-width: 825px) {
+.dots .dot {
+    margin: 1.5%;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+.carousel-date {
+    font-size: var(--h5);
+}
+.carousel-title {
+    font-size: var(--h3);
+}
+}
+@media screen and (max-width: 580px) {
 .img {
     width: 90%;
     height: 54%;
     margin-top: 0%;
 }
 .dots {
-    top: 94%;
+    top: 93.5%;
     width: 90%;
     text-align: right;
 }
@@ -232,6 +275,7 @@ export default {
 .carousel-slide {
     width: 80%;
     height: 65%;
+    margin-right: 13%;
     flex-direction: column-reverse;
 }
 .carousel-title {
@@ -244,12 +288,9 @@ export default {
 @media screen and (max-width: 415px) {
 .img {
     height: 50%;
-    margin-top: 0%;
 }
 .dots {
     top: 96%;
-    width: 90%;
-    text-align: right;
 }
 .dots .dot {
     width: 1rem;
@@ -257,7 +298,47 @@ export default {
 }
 .carousel-title {
     text-align: left;
-    font-size: 1.45rem;
+    font-size: 1.65rem;
+}
+}
+@media screen and (max-width: 395px) {
+.dots {
+    top: 95.8%;
+}
+.carousel-title {
+    font-size: 1.5rem;
+}
+}
+@media screen and (max-width: 380px) {
+.dots {
+    top: 95.5%;
+}
+.carousel-title {
+    font-size: 1.5rem;
+}
+}
+@media screen and (max-width: 325px) {
+.dots {
+    top: 96%;
+}
+.dots .dot {
+    width: 0.7rem;
+    height: 0.7rem;
+}
+.carousel-title {
+    font-size: 1.3rem;
+}
+}
+@media screen and (max-width: 285px) {
+.dots {
+    top: 95.9%;
+}
+.dots .dot {
+    width: 0.6rem;
+    height: 0.6rem;
+}
+.carousel-title {
+    font-size: 1rem;
 }
 }
 </style>

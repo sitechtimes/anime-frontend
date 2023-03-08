@@ -33,7 +33,12 @@
 }
 @media screen and (max-width: 550px) {
 .underNav {
-  height: 18vh;
+  height: 12vh;
+}
+}
+@media screen and (max-width: 415px) {
+.underNav {
+  height: 8vh;
 }
 }
   </style>
