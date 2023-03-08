@@ -11,10 +11,12 @@
       <NuxtLink to="/awards"><button class="btn">Back</button></NuxtLink>
       <button class="btn" @click="vote" id="vote-btn">Vote</button>
     </div>
-    <div class="popup">
-      <span class="popup-close">&times</span>
+    <div id="popup">
       <div class="popup-content">
-        <h1>You voted already.</h1>
+        <span class="popup-close" @click="close">&times</span>
+        <div class="popup-msg">
+          <h1>You voted already.</h1>
+        </div>
       </div>
     </div>
   </div>
@@ -42,10 +44,11 @@ export default ({
       }
     },
     vote() {
-      if (this.voted === true) {
-        console.log("gfyi")
-      }
-      else if (this.selected === true) {
+      // if (this.voted === true) {
+      //   const msg = document.getElementById("popup")
+      //   msg.style.display = "flex"
+      // } else
+      if (this.selected === true) {
         const vote = document.getElementById("vote-btn")
         vote.style.background = "var(--primary)"
         vote.innerHTML = "Voted"
@@ -58,6 +61,10 @@ export default ({
           }
         });
       }
+    },
+    close() {
+      const msg = document.getElementById("popup")
+      msg.style.display = "none"
     }
   }
 })
@@ -123,20 +130,23 @@ export default ({
 .btn:hover {
   background: var(--primary);
 }
-.popup {
+.popup-content {
   background: var(--primary);
-  display: flex;
   flex-direction: column;
   align-items: flex-end;
   height: 20vh;
   width: 20vw;
-  display: none;
+  display: flex;
+  position: fixed;
+  z-index: 1;
+  top: 42%;
+  left: 40%;
 }
 .popup-close {
   font-size: var(--h2);
   margin-right: 1rem;
 }
-.popup-content {
+.popup-msg {
   width: 100%;
   text-align: center;
 }
