@@ -17,12 +17,52 @@
         <TabsWrapper>
             <Tab title="Watchlist">
                 <div class="tabShow">
-                    <h1>tab yeah</h1>
+                    <div class="tab-logo">
+                        <h3 class="tab-detail">Technime</h3>
+                    </div>
+                    <div class="tab-bottom">
+                        <h3 class="tab-title">
+                            Watchlist
+                        </h3>
+                    </div>
                 </div>
             </Tab>
-            <Tab title="Favorites">Tab 2</Tab>
-            <Tab title="Example">Tab 2</Tab>
-            <Tab title="Example 2">Tab 2</Tab>
+            <Tab title="Favorites">
+                <div class="tabShow">
+                    <div class="tab-logo">
+                        <h3 class="tab-detail">Technime</h3>
+                    </div>
+                    <div class="tab-bottom">
+                        <h3 class="tab-title">
+                            Favorites
+                        </h3>
+                    </div>
+                </div>
+            </Tab>
+            <Tab title="Example">
+                <div class="tabShow">
+                    <div class="tab-logo">
+                        <h3 class="tab-detail">Technime</h3>
+                    </div>
+                    <div class="tab-bottom">
+                        <h3 class="tab-title">
+                            Example
+                        </h3>
+                    </div>
+                </div>
+            </Tab>
+            <Tab title="Example 2">
+                <div class="tabShow">
+                    <div class="tab-logo">
+                        <h3 class="tab-detail">Technime</h3>
+                    </div>
+                    <div class="tab-bottom">
+                        <h3 class="tab-title">
+                            Example 2
+                        </h3>
+                    </div>
+                </div>
+            </Tab>
         </TabsWrapper>
     </div>
   </div>
@@ -61,7 +101,7 @@ export default {
 }
 .tabs-class .tab{
     background-color:var(--tertiary);
-    width:50vw;
+    width:70vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -193,6 +233,26 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* actual (inside each) tab css */
+.tabShow{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    justify-content: center;
+}
+.tab-logo{
+    display: flex;
+    justify-content: flex-end;
+    font-size: var(--h3);
+    color: var(--primary);
+    text-transform:lowercase;
+}
+.tab-title{
+    font-size: var(--h3);
+    color: var(--white);
+    font-weight: var(--fw-light);
 }
 .underNav{
     width:100vw;
