@@ -75,8 +75,8 @@ onMounted(() => {
 	userStore.animeInfo = null;
 	userStore.animeId = null;
 
-	if (userStore.allAnime != null) {
-		userStore.pagePopularAnime = userStore.allAnime.slice(
+	if (userStore.currentAnime != null) {
+		userStore.pagePopularAnime = userStore.currentAnime.slice(
 			userStore.startPageIndex,
 			userStore.endPageIndex
 		);
@@ -110,9 +110,9 @@ onMounted(() => {
 					}
 				});
 
-				userStore.allAnime = airingAnime;
+				userStore.currentAnime = airingAnime;
 
-				userStore.pagePopularAnime = userStore.allAnime.slice(
+				userStore.pagePopularAnime = userStore.currentAnime.slice(
 					userStore.startPageIndex,
 					userStore.endPageIndex
 				);
@@ -124,12 +124,12 @@ onMounted(() => {
 });
 
 function next() {
-	if (userStore.endPageIndex < userStore.allAnime.length) {
+	if (userStore.endPageIndex < userStore.currentAnime.length) {
 		userStore.startPageIndex += 11;
 		userStore.endPageIndex += 11;
 		userStore.pageNumber += 1;
 		pageExistLeft.value = true;
-		userStore.pagePopularAnime = userStore.allAnime.slice(
+		userStore.pagePopularAnime = userStore.currentAnime.slice(
 			userStore.startPageIndex,
 			userStore.endPageIndex
 		);
@@ -147,7 +147,7 @@ function previous() {
 		userStore.endPageIndex -= 11;
 		userStore.pageNumber -= 1;
 		pageExistRight.value = true;
-		userStore.pagePopularAnime = userStore.allAnime.slice(
+		userStore.pagePopularAnime = userStore.currentAnime.slice(
 			userStore.startPageIndex,
 			userStore.endPageIndex
 		);
@@ -162,7 +162,7 @@ function selectPage(num) {
 	userStore.startPageIndex = num * 11 - 11;
 	userStore.endPageIndex = num * 11 + 1;
 
-	userStore.pagePopularAnime = userStore.allAnime.slice(
+	userStore.pagePopularAnime = userStore.currentAnime.slice(
 		userStore.startPageIndex,
 		userStore.endPageIndex
 	);
