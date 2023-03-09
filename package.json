@@ -1,5 +1,0 @@
-{
-  "dependencies": {
-    "nuxt-graphql-client": "^0.2.25"
-  }
-}

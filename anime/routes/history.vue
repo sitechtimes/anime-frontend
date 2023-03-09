@@ -6,7 +6,8 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
+
+<style scoped>
 button{
   margin: 20rem;
 }
