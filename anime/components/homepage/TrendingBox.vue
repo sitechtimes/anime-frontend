@@ -7,7 +7,6 @@
 					<div class="trendingPageNumberBox">
 						<p class="trendingPageNumber">Page</p>
 						<div>
-							<!-- <p class="trendingPageNumberVar">{{ userStore.pageNumber }}</p> -->
 							<form @submit.prevent="selectPage(userStore.pageNumber)">
 								<input
 									class="trendingPageNumberVar"
@@ -71,16 +70,17 @@ if (userStore.startPageIndex != 0) {
 	pageExistLeft.value = true;
 }
 
-onMounted(() => {
-	userStore.animeInfo = null;
-	userStore.animeId = null;
+onMounted(
+	() => {
+		userStore.animeInfo = null;
+		userStore.animeId = null;
 
-	if (userStore.currentAnime != null) {
-		userStore.pagePopularAnime = userStore.currentAnime.slice(
-			userStore.startPageIndex,
-			userStore.endPageIndex
-		);
-	} else {
+		// if (userStore.currentAnime != null) {
+		// 	userStore.pagePopularAnime = userStore.currentAnime.slice(
+		// 		userStore.startPageIndex,
+		// 		userStore.endPageIndex
+		// 	);
+		// } else {
 		userStore.startPageIndex = 0;
 		userStore.endPageIndex = 12;
 		userStore.pageNumber = 1;
@@ -102,6 +102,7 @@ onMounted(() => {
 					return true;
 				});
 
+				const allAnime = [];
 				const airingAnime = [];
 
 				refineData.filter(function (anime) {
@@ -110,6 +111,11 @@ onMounted(() => {
 					}
 				});
 
+				data.forEach(anime => {
+					allAnime.push(anime);
+				});
+
+				userStore.allAnime = allAnime;
 				userStore.currentAnime = airingAnime;
 
 				userStore.pagePopularAnime = userStore.currentAnime.slice(
@@ -121,7 +127,8 @@ onMounted(() => {
 				console.log(err);
 			});
 	}
-});
+	//}
+);
 
 function next() {
 	if (userStore.endPageIndex < userStore.currentAnime.length) {
@@ -174,7 +181,6 @@ import AnimeCard from "./AnimeCard.vue";
 import TopCharts from "./TopCharts.vue";
 import RightPageButton from "../RightPageButtonSvg.vue";
 import LeftPageButton from "../LeftPageButtonSvg.vue";
-import { useUserStore } from "~~/stores/userStore";
 
 export default {
 	name: "TrendingBox",
@@ -267,7 +273,6 @@ export default {
 					title: "One Piece",
 					rank: 10,
 				},
-				
 			],
 		};
 	},

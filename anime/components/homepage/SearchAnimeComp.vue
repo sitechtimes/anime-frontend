@@ -1,50 +1,51 @@
 <template>
-	<div>
-		<div class="allAnime-header">
-			<h2 class="allAnime-title">Currently Airing</h2>
-			<div class="allAnime-pages">
-				<div class="allAnimePageNumberBox">
-					<p class="allAnimePageNumber">Page</p>
-					<div>
-						<!-- <p class="allAnimePageNumberVar">{{ userStore.pageNumber }}</p> -->
-						<form @submit.prevent="selectPage(userStore.pageNumber)">
-							<input
-								class="allAnimePageNumberVar"
-								type="number"
-								v-model="userStore.pageNumber"
-								min="1"
-								max="999"
-								@change="selectPage(userStore.pageNumber)"
-							/>
-						</form>
+	<div class="home-body">
+		<div class="allAnime-box">
+			<div class="allAnime-header">
+				<h2 class="allAnime-title">Currently Airing</h2>
+				<div class="allAnime-pages">
+					<div class="allAnimePageNumberBox">
+						<p class="allAnimePageNumber">Page</p>
+						<div>
+							<form @submit.prevent="selectPage(userStore.pageNumber)">
+								<input
+									class="allAnimePageNumberVar"
+									type="number"
+									v-model="userStore.pageNumber"
+									min="1"
+									max="999"
+									@change="selectPage(userStore.pageNumber)"
+								/>
+							</form>
+						</div>
+					</div>
+					<div class="allAnimePageButtonBox">
+						<button class="page-button" v-on:click="previous">
+							<LeftPageButton :pageExist="pageExistLeft" />
+						</button>
+						<button class="page-button" v-on:click="next">
+							<RightPageButton :pageExist="pageExistRight" />
+						</button>
 					</div>
 				</div>
-				<div class="allAnimePageButtonBox">
-					<button class="page-button" v-on:click="previous">
-						<LeftPageButton :pageExist="pageExistLeft" />
-					</button>
-					<button class="page-button" v-on:click="next">
-						<RightPageButton :pageExist="pageExistRight" />
-					</button>
-				</div>
 			</div>
-		</div>
-		<div class="trending-content">
-			<AnimeCard
-				@saveAnimeID="saveClickedAnimeID(anime.mal_id)"
-				v-for="anime in userStore.pageFilteredAnime"
-				:id="anime.mal_id"
-				:key="anime.mal_id"
-				:episode="anime.episodes"
-				:animeName="anime.anime_name"
-				:imageUrl="anime.large_image_url"
-				:mediaType="anime.media_type"
-			/>
+			<div class="allAnime-content">
+				<AnimeCard
+					@saveAnimeID="saveClickedAnimeID(anime.mal_id)"
+					v-for="anime in userStore.pageFilteredAnime"
+					:id="anime.mal_id"
+					:key="anime.mal_id"
+					:episode="anime.episodes"
+					:animeName="anime.anime_name"
+					:imageUrl="anime.large_image_url"
+					:mediaType="anime.media_type"
+				/>
+			</div>
 		</div>
 	</div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useUserStore } from "~~/stores/userStore";
 import { ref } from "vue";
 
@@ -61,30 +62,30 @@ onMounted(() => {
 	userStore.animeInfo = null;
 	userStore.animeId = null;
 
-	if (userStore.currentAnime != null) {
-		userStore.pageFilteredAnime = userStore.allAnime.slice(
-			userStore.startPageIndex,
-			userStore.endPageIndex
-		);
-	} else {
-		userStore.startPageIndex = 0;
-		userStore.endPageIndex = 12;
-		userStore.pageNumber = 1;
+	userStore.startPageIndex = 0;
+	userStore.endPageIndex = 12;
+	userStore.pageNumber = 1;
 
-		userStore
-			.getAllAnime()
-			.then(data => {
-				userStore.allAnime = data;
+	userStore
+		.getAllAnime()
+		.then(data => {
+			const allAnime = [];
 
-				userStore.pageFilteredAnime = userStore.allAnime.slice(
-					userStore.startPageIndex,
-					userStore.endPageIndex
-				);
-			})
-			.catch(err => {
-				console.log(err);
+			data.forEach(anime => {
+				allAnime.push(anime);
 			});
-	}
+
+			userStore.allAnime = allAnime;
+
+			userStore.pagePopularAnime = userStore.allAnime.slice(
+				userStore.startPageIndex,
+				userStore.endPageIndex
+			);
+			console.log(userStore.pagePopularAnime);
+		})
+		.catch(err => {
+			console.log(err);
+		});
 });
 
 function next() {
@@ -132,3 +133,132 @@ function selectPage(num) {
 	);
 }
 </script>
+
+<script lang="ts">
+import AnimeCard from "./AnimeCard.vue";
+import TopCharts from "./TopCharts.vue";
+import RightPageButton from "../RightPageButtonSvg.vue";
+import LeftPageButton from "../LeftPageButtonSvg.vue";
+
+export default {
+	name: "allAnime",
+	components: {
+		AnimeCard,
+		TopCharts,
+		RightPageButton,
+		LeftPageButton,
+	},
+};
+</script>
+
+<style>
+.home-body {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	border-radius: 10px;
+	column-gap: 2rem;
+	align-items: flex-start;
+	background-size: cover;
+}
+.allAnime-box {
+	background-color: var(--bg-primary);
+	border-radius: 1.5rem;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	margin-right: 2rem;
+	margin-top: 10rem;
+	width: 20vw;
+}
+.allAnime-header {
+	align-items: center;
+	display: flex;
+	height: 6rem;
+	justify-content: space-between;
+	margin-bottom: 0.5rem;
+}
+.allAnime-title {
+	font-size: var(--h3);
+	font-weight: var(--fw-semi-bold);
+	color: var(--light-text);
+	height: 6rem;
+	padding: 0;
+}
+.allAnime-title {
+	font-size: var(--h3);
+	font-weight: var(--fw-semi-bold);
+	color: var(--light-text);
+	height: 7rem;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	padding-left: 2rem;
+	background-color: var(--tertiary);
+	border-radius: 0.75rem;
+	margin-bottom: 0.5rem;
+}
+.allAnime-content {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	row-gap: 4rem;
+	column-gap: 1.8%;
+}
+.allAnime-pages {
+	justify-content: flex-end;
+	display: flex;
+	align-items: center;
+	column-gap: 1rem;
+}
+.page-button {
+	background-color: transparent;
+	border: none;
+	padding: 0;
+	padding-right: 0;
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+}
+.trendingPageNumber {
+	font-size: var(--h5);
+	font-weight: var(--fw-semi-bold);
+	color: var(--light-text);
+}
+
+.allAnimePageNumberVar::-webkit-outer-spin-button,
+.allAnimePageNumberVar::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+.trendingPageNumberVar {
+	min-width: 4.5rem;
+	font-size: var(--h5);
+	font-weight: var(--fw-med);
+	color: var(--light-text);
+	background-color: var(--bg-secondary);
+	border: none;
+	border-radius: 0.5rem;
+	padding: 0.5rem 1rem;
+	text-align: center;
+}
+.allAnimePageNumberVar:focus {
+	outline: none;
+}
+.allAnimePageNumberBox {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	column-gap: 0.8rem;
+}
+.allAnimePageButtonBox {
+	background-color: transparent;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	column-gap: 1rem;
+}
+.svg-button {
+	display: block;
+}
+</style>
