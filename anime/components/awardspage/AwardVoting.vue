@@ -1,9 +1,11 @@
 <template>
   <div id="award-voting">
     <div class="award-container">
-      <NuxtLink to="/vote" @click="showNominees" v-for="(award, index) in awards" :key="award.category" class="award-box">
-        <h1>{{award.category}}</h1>
-        <p class="hide">{{index}}</p>
+      <NuxtLink to="/vote" v-for="award in awards" :key="award.category">
+        <div class="award-box">
+          <img src="https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg" alt="" class="img">
+          <h1 class="award-name">{{award.category}}</h1>
+        </div>
       </NuxtLink>
     </div>
   </div>
@@ -13,24 +15,23 @@
 export default ({
   data: () => ({
     awards: [
-      {category: "Best Anime", nominees: [{title: "A1"}, {title: "A2"}, {title: "A3"}, {title: "A4"}]},
-      {category: "B", nominees: [{title: "B1"}, {title: "B2"}, {title: "B3"}]},
-      {category: "C", nominees: [{title: "C1"}, {title: "C2"}, {title: "C3"}]},
-      {category: "D", nominees: [{title: "D1"}, {title: "D2"}, {title: "D3"}]},
-      {category: "E", nominees: [{title: "E1"}, {title: "E2"}, {title: "E3"}]},
-      {category: "F", nominees: [{title: "F1"}, {title: "F2"}, {title: "F3"}]},
-      {category: "G", nominees: [{title: "G1"}, {title: "G2"}, {title: "G3"}]},
-      {category: "H", nominees: [{title: "H1"}, {title: "H2"}, {title: "H3"}]},
+      {category: "Best Anime"},
+      {category: "Best Character Design"},
+      {category: "Best Animation"},
+      {category: "Best New Series"},
+      {category: "Best Continuing Series"},
+      {category: "Best Opening Sequence"},
+      {category: "Best Ending Sequence"},
+      {category: "Best Main Character"},
+      {category: "Best Supporting Character"},
+      {category: "Best Action"},
+      {category: "Best Comedy"},
+      {category: "Best Drama"},
+      {category: "Best Fantasy"},
+      {category: "Best Romance"},
+      {category: "Best Anime Song"},
     ],
-    index: 0,
   }),
-  methods: {
-    showNominees(selected) {
-      this.index = selected.target.lastElementChild.innerHTML
-      let f = this.awards[this.index]
-      console.log(f)
-    }
-  }
 })
 </script>
   
@@ -42,25 +43,24 @@ export default ({
 }
 .award-container {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   flex-wrap: wrap;
   gap: 6rem 8rem;
 }
 .award-box {
-  background: var(--primary);
   color: var(--white);
-  height: 15vh;
-  width: 15vw;
-  border-radius: 20px;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: 0s;
+  flex-direction: column;
 }
-.award-box:hover {
-  background: #b4372e;
+.img {
+  height: 20rem;
+  width: 30rem;
+  border-radius: 20px;
+  object-fit: cover;
 }
-.hide {
-  display: none;
+.img:hover {
+}
+.award-name {
+  text-align: center;
 }
 </style>
