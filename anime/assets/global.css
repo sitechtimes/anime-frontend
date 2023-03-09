@@ -59,10 +59,13 @@ body {
 	--primary: #ff645a;
 	--secondary: #ca3d3d;
 	--tertiary: #272727;
+	--quaternary: #fb5549;
 	--white: #fff;
 	--dark-text: #24201e;
 	--bg-primary: #101010;
 	--alt-linear: #7926ff;
+	--info-btn: #ffb6c1;
+	--info-btn-click: #ff788c;
 
 	/* font weight */
 	--fw-light: 300;

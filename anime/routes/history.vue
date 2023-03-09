@@ -6,6 +6,7 @@
   </div>
 </template>
 
+
 <style scoped>
 button{
   margin: 20rem;
