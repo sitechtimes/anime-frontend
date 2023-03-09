@@ -290,7 +290,7 @@ export default {
     height: 50%;
 }
 .dots {
-    top: 96%;
+    top: 95.8%;
 }
 .dots .dot {
     width: 1rem;
@@ -311,7 +311,7 @@ export default {
 }
 @media screen and (max-width: 380px) {
 .dots {
-    top: 95.5%;
+    top: 95%;
 }
 .carousel-title {
     font-size: 1.5rem;

@@ -15,7 +15,7 @@
             </ul>
         </div>
         <div class="nav-mobile">
-           <div class="navigation-icon" v-on:click="toggleOn()">
+          <div class="navigation-icon" v-on:click="toggleOn()">
           <div class="burger1 change"></div>
           <div class="burger2 change"></div>
           <div class="burger3 change"></div>
