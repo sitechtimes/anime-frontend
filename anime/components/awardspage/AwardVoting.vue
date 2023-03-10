@@ -42,25 +42,29 @@ export default ({
   margin-bottom: 30vh;
 }
 .award-container {
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  gap: 6rem 8rem;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  row-gap: 6rem;
 }
 .award-box {
   color: var(--white);
   display: flex;
   flex-direction: column;
+  width: 15vw;
+  border-radius: 10px;
 }
 .img {
-  height: 20rem;
-  width: 30rem;
-  border-radius: 20px;
+  height: 20vh;
+  border-radius: 10px;
   object-fit: cover;
 }
-.img:hover {
+.award-box:hover {
+  outline: solid 4px var(--primary);
+  background: var(--primary);
+
 }
 .award-name {
   text-align: center;
+  font-size: var(--h4);
 }
 </style>
