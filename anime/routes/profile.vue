@@ -24,6 +24,9 @@
                         <h3 class="tab-title">
                             Watchlist
                         </h3>
+                        <div class="profile-slide">
+                            
+                        </div>
                     </div>
                 </div>
             </Tab>
