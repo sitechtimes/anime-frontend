@@ -5,6 +5,7 @@
         <div class="award-box">
           <img src="https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg" alt="" class="img">
           <h1 class="award-name">{{award.category}}</h1>
+          <div class="fake-vote-btn">Vote</div>
         </div>
       </NuxtLink>
     </div>
@@ -38,33 +39,36 @@ export default ({
 <style scoped>
 #award-voting {
   margin: auto;
-  width: 80vw;
+  width: 75vw;
   margin-bottom: 30vh;
 }
 .award-container {
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: 15vw 15vw 15vw 15vw;
+  column-gap: 5vw;
   row-gap: 6rem;
 }
 .award-box {
   color: var(--white);
   display: flex;
   flex-direction: column;
-  width: 15vw;
   border-radius: 10px;
+}
+.award-box:hover {
+  outline: solid 5px var(--primary);
+  background: var(--primary);
 }
 .img {
   height: 20vh;
   border-radius: 10px;
   object-fit: cover;
 }
-.award-box:hover {
-  outline: solid 4px var(--primary);
-  background: var(--primary);
-
-}
 .award-name {
   text-align: center;
   font-size: var(--h4);
+}
+.fake-vote-btn {
+  background: var(--primary);
+  border-radius: 20px;
 }
 </style>
