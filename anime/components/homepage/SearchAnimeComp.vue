@@ -32,7 +32,7 @@
 			<div class="allAnime-content">
 				<AnimeCard
 					@saveAnimeID="saveClickedAnimeID(anime.mal_id)"
-					v-for="anime in userStore.pageFilteredAnime"
+					v-for="anime in userStore.pageAllAnime"
 					:id="anime.mal_id"
 					:key="anime.mal_id"
 					:episode="anime.episodes"
@@ -63,7 +63,7 @@ onMounted(() => {
 	userStore.animeId = null;
 
 	userStore.startPageIndex = 0;
-	userStore.endPageIndex = 12;
+	userStore.endPageIndex = 35;
 	userStore.pageNumber = 1;
 
 	userStore
@@ -77,21 +77,29 @@ onMounted(() => {
 
 			userStore.allAnime = allAnime;
 
-			userStore.pagePopularAnime = userStore.allAnime.slice(
+			userStore.pageAllAnime = userStore.allAnime.slice(
 				userStore.startPageIndex,
 				userStore.endPageIndex
 			);
-			console.log(userStore.pagePopularAnime);
+			//console.log(userStore.pageAllAnime);
 		})
 		.catch(err => {
 			console.log(err);
 		});
+
+	window.addEventListener("scroll", console.log("scrolling"));
 });
+
+function loadMoreAnime() {
+	if (window.innerHeight - window.pageYOffset == 100) {
+		console.log("load more anime");
+	}
+}
 
 function next() {
 	if (userStore.endPageIndex < userStore.allAnime.length) {
-		userStore.startPageIndex += 11;
-		userStore.endPageIndex += 11;
+		userStore.startPageIndex += 35;
+		userStore.endPageIndex += 35;
 		userStore.pageNumber += 1;
 		pageExistLeft.value = true;
 		userStore.pageFilteredAnime = userStore.allAnime.slice(
@@ -108,8 +116,8 @@ function previous() {
 		pageExistLeft.value = false;
 		pageExistRight.value = true;
 	} else {
-		userStore.startPageIndex -= 11;
-		userStore.endPageIndex -= 11;
+		userStore.startPageIndex -= 35;
+		userStore.endPageIndex -= 35;
 		userStore.pageNumber -= 1;
 		pageExistRight.value = true;
 		userStore.pageFilteredAnime = userStore.allAnime.slice(
@@ -124,8 +132,8 @@ function saveClickedAnimeID(id) {
 }
 
 function selectPage(num) {
-	userStore.startPageIndex = num * 11 - 11;
-	userStore.endPageIndex = num * 11 + 1;
+	userStore.startPageIndex = num * 35 - 35;
+	userStore.endPageIndex = num * 35 + 1;
 
 	userStore.pageFilteredAnime = userStore.allAnime.slice(
 		userStore.startPageIndex,
@@ -148,6 +156,7 @@ export default {
 		RightPageButton,
 		LeftPageButton,
 	},
+	methods: {},
 };
 </script>
 
@@ -168,8 +177,9 @@ export default {
 	flex-direction: column;
 	height: 100%;
 	margin-right: 2rem;
+	margin-left: 2rem;
 	margin-top: 10rem;
-	width: 20vw;
+	width: 90vw;
 }
 .allAnime-header {
 	align-items: center;
@@ -220,7 +230,7 @@ export default {
 	display: flex;
 	justify-content: center;
 }
-.trendingPageNumber {
+.allAnimePageNumber {
 	font-size: var(--h5);
 	font-weight: var(--fw-semi-bold);
 	color: var(--light-text);
@@ -231,7 +241,7 @@ export default {
 	-webkit-appearance: none;
 	margin: 0;
 }
-.trendingPageNumberVar {
+.allAnimePageNumberVar {
 	min-width: 4.5rem;
 	font-size: var(--h5);
 	font-weight: var(--fw-med);
