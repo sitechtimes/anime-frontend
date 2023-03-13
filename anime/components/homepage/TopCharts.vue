@@ -1,14 +1,14 @@
 <template>
-	<div class="charts-container">
-		<div class="charts-rank">{{ rank }}</div>
-		<img class="charts-img" :src="`${img}`" alt="" />
-		<div class="charts-info">
-			<h3 class="charts-title">{{ title }}</h3>
-			<div class="charts-details">
-				<div class="chartsEpBox">
+	<div class="topChartsComp-container">
+		<div class="topChartsComp-rank">{{ rank }}</div>
+		<img class="topChartsComp-image" :src="`${img}`" alt="" />
+		<div class="topChartsComp-info">
+			<h3 class="topChartsComp-title">{{ title }}</h3>
+			<div class="topChartsComp-details">
+				<div class="topChartsComp-episode">
 					<EpisodeSVG :episode="episode" />
 				</div>
-				<h4 class="charts-votes">{{ votes }}</h4>
+				<h4 class="topChartsComp-votes">{{ votes }}</h4>
 			</div>
 		</div>
 	</div>
@@ -48,21 +48,7 @@ export default {
 </script>
 
 <style scoped>
-.chartsEpBox {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-}
-#ep {
-	line-height: 2rem;
-	color: var(--off-white);
-	font-size: var(--h7);
-	font-weight: var(--fw-reg);
-	background-color: var(--secondary);
-	padding-left: 0.6rem;
-	border-radius: 0.2rem 0 0 0.2rem;
-}
-.charts-container {
+.topChartsComp-container {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -71,7 +57,7 @@ export default {
 	margin-top: 1rem;
 	border-radius: 0.75rem;
 }
-.charts-rank {
+.topChartsComp-rank {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -83,17 +69,17 @@ export default {
 	font-weight: var(--fw-reg);
 	border-radius: 0.75rem 0 0 0.75rem;
 }
-.charts-img {
+.topChartsComp-image {
 	height: 100%;
 }
-.charts-info {
+.topChartsComp-info {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	width: 55%;
 	padding-left: 1rem;
 }
-.charts-title {
+.topChartsComp-title {
 	display: block;
 	white-space: nowrap;
 	width: 100%;
@@ -104,19 +90,19 @@ export default {
 	overflow: hidden;
 
 }
-.charts-details {
+.topChartsComp-details {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	width: 100%;
 }
-.charts-ep {
+.topChartsComp-episode {
 	color: var(--white);
 	font-size: var(--h6);
 	font-weight: var(--fw-reg);
 	padding: 0.5rem;
 }
-.charts-votes {
+.topChartsComp-votes {
 	color: var(--light-text);
 	font-size: var(--h6);
 	font-weight: var(--fw-reg);

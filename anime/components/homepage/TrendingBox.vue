@@ -1,25 +1,23 @@
 <template>
 	<div class="home-body">
-		<div class="trending-box">
-			<div class="trending-header">
-				<h2 class="trending-title">Currently Airing</h2>
-				<div class="trending-pages">
-					<div class="trendingPageNumberBox">
-						<p class="trendingPageNumber">Page</p>
-						<div>
-							<form @submit.prevent="selectPage(userStore.pageNumber)">
-								<input
-									class="trendingPageNumberVar"
-									type="number"
-									v-model="userStore.pageNumber"
-									min="1"
-									max="999"
-									@change="selectPage(userStore.pageNumber)"
-								/>
-							</form>
-						</div>
+		<div class="airing-container">
+			<div class="airing-header">
+				<h2 class="airing-title">Currently Airing</h2>
+				<div class="page-container">
+					<div class="page-number">
+						<p class="page-text">Page</p>
+						<form @submit.prevent="selectPage(userStore.pageNumber)">
+							<input
+								class="page-input"
+								type="number"
+								v-model="userStore.pageNumber"
+								min="1"
+								max="999"
+								@change="selectPage(userStore.pageNumber)"
+							/>
+						</form>
 					</div>
-					<div class="trendingPageButtonBox">
+					<div class="page-buttonBox">
 						<button class="page-button" v-on:click="previous">
 							<LeftPageButton :pageExist="pageExistLeft" />
 						</button>
@@ -29,11 +27,11 @@
 					</div>
 				</div>
 			</div>
-			<div class="trending-content">
-				<div class="trending-content" v-if="loading">
+			<div class="airing-content">
+				<div class="airing-content" v-if="loading">
 					<AnimeCardLoading v-for="anime in loadingAnimeHome" />
 				</div>
-				<div class="trending-content" v-else>
+				<div class="airing-content" v-else>
 					<AnimeCard
 						@saveAnimeID="saveClickedAnimeID(anime.mal_id)"
 						v-for="anime in userStore.pagePopularAnime"
@@ -47,8 +45,8 @@
 				</div>
 			</div>
 		</div>
-		<div class="top-box">
-			<h2 class="top-title">Top Charts</h2>
+		<div class="topCharts-container">
+			<h2 class="topCharts-title">Top Charts</h2>
 			<TopCharts
 				v-for="charts in top"
 				:key="charts.id"
@@ -301,7 +299,7 @@ export default {
 	align-items: flex-start;
 	background-size: cover;
 }
-.top-box {
+.topCharts-container {
 	background-color: var(--bg-primary);
 	border-radius: 1.5rem;
 	display: flex;
@@ -311,7 +309,7 @@ export default {
 	margin-top: 10rem;
 	width: 20vw;
 }
-.trending-box {
+.airing-container {
 	background-color: var(--bg-primary);
 	border-radius: 1.5rem;
 	margin-bottom: 3rem;
@@ -320,21 +318,21 @@ export default {
 	padding: 1.5rem 3rem 3rem;
 	width: 100vw;
 }
-.trending-header {
+.airing-header {
 	align-items: center;
 	display: flex;
 	height: 6rem;
 	justify-content: space-between;
 	margin-bottom: 0.5rem;
 }
-.trending-title {
+.airing-title {
 	font-size: var(--h3);
 	font-weight: var(--fw-semi-bold);
 	color: var(--light-text);
 	height: 6rem;
 	padding: 0;
 }
-.top-title {
+.topCharts-title {
 	font-size: var(--h3);
 	font-weight: var(--fw-semi-bold);
 	color: var(--light-text);
@@ -347,14 +345,14 @@ export default {
 	border-radius: 0.75rem;
 	margin-bottom: 0.5rem;
 }
-.trending-content {
+.airing-content {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: flex-start;
 	row-gap: 4rem;
 	column-gap: 1.8%;
 }
-.trending-pages {
+.page-container {
 	justify-content: flex-end;
 	display: flex;
 	align-items: center;
@@ -369,18 +367,18 @@ export default {
 	display: flex;
 	justify-content: center;
 }
-.trendingPageNumber {
+.page-text {
 	font-size: var(--h5);
 	font-weight: var(--fw-semi-bold);
 	color: var(--light-text);
 }
 
-.trendingPageNumberVar::-webkit-outer-spin-button,
-.trendingPageNumberVar::-webkit-inner-spin-button {
+.page-input::-webkit-outer-spin-button,
+.page-input::-webkit-inner-spin-button {
 	-webkit-appearance: none;
 	margin: 0;
 }
-.trendingPageNumberVar {
+.page-input {
 	min-width: 4.5rem;
 	font-size: var(--h5);
 	font-weight: var(--fw-med);
@@ -391,16 +389,16 @@ export default {
 	padding: 0.5rem 1rem;
 	text-align: center;
 }
-.trendingPageNumberVar:focus {
+.page-input:focus {
 	outline: none;
 }
-.trendingPageNumberBox {
+.page-number {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	column-gap: 0.8rem;
 }
-.trendingPageButtonBox {
+.page-buttonBox {
 	background-color: transparent;
 	display: flex;
 	justify-content: center;

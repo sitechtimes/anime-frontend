@@ -1,7 +1,7 @@
 <template>
-	<div id="episodeBox">
-		<div id="ep" v-if="episode">{{ episode }}</div>
-		<div id="ep" v-if="!episode">N/A</div>
+	<div id="episode-box">
+		<div id="episode-text" v-if="episode">{{ episode }}</div>
+		<div id="episode-text" v-if="!episode">N/A</div>
 		<svg
 			id="epBox"
 			width="1rem"
@@ -32,7 +32,7 @@ export default {
 	flex-direction: row;
 	align-items: center;
 }
-#ep {
+#episode-text {
 	line-height: 2rem;
 	color: var(--off-white);
 	font-size: var(--h7);

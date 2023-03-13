@@ -1,14 +1,14 @@
 <template>
 	<NuxtLink to="/animeInfo">
-		<div class="card-container" @click="$emit('saveAnimeID')">
-			<div class="card-cover">
-				<img class="anime-img" :src="`${imageUrl}`" alt="" />
-				<div class="container-bar">
+		<div class="animeCardComp-container" @click="$emit('saveAnimeID')">
+			<div class="animeCardComp-cover">
+				<img class="animeCardComp-image" :src="`${imageUrl}`" alt="" />
+				<div class="animeCardComp-info">
 					<EpisodeSVG :episode="episode" />
-					<p id="format">{{ mediaType }}</p>
+					<p class="animeCardComp-media">{{ mediaType }}</p>
 				</div>
 			</div>
-			<h5 class="title">{{ animeName }}</h5>
+			<h5 class="animeCardComp-title">{{ animeName }}</h5>
 		</div>
 	</NuxtLink>
 </template>
@@ -49,12 +49,12 @@ export default {
 </script>
 
 <style scoped>
-.card-container {
+.animeCardComp-container {
 	display: flex;
 	flex-direction: column;
 	width: 11vw;
 }
-.card-cover {
+.animeCardComp-cover {
 	position: relative;
 	display: flex;
 	flex-direction: column;
@@ -63,23 +63,21 @@ export default {
 	border-radius: 0.5rem;
 	overflow: hidden;
 }
-.card-cover:not(hover) > img {
+.animeCardComp-cover:not(hover) > img {
 	opacity: 100%;
 	transition: 0.3s;
 }
-.card-cover:hover > img {
+.animeCardComp-cover:hover > img {
 	opacity: 25%;
 	transition: 0.3s;
 }
-.anime-img {
+.animeCardComp-img {
 	border-radius: 0.5rem 0.5rem 0 0;
-}
-.anime-img {
 	width: 100%;
 	object-fit: cover;
 	aspect-ratio: 225/350;
 }
-.container-bar {
+.animeCardComp-info {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
@@ -90,7 +88,7 @@ export default {
 	padding-right: 0.75rem;
 	border-radius: 0 0 0.5rem 0.5rem;
 }
-.title {
+.animeCardComp-title {
 	width: 100%;
 	color: var(--light-text);
 	font-size: var(--h5);
@@ -103,15 +101,15 @@ export default {
 	-webkit-box-orient: vertical;
 	overflow: hidden;
 }
-.title:hover {
+.animeCardComp-title:hover {
 	color: var(--primary);
 	transition: 0.4s;
 }
-.title:not(hover) {
+.animeCardComp-title:not(hover) {
 	color: var(--light-text);
 	transition: 0.4s;
 }
-#format {
+.animeCardComp-media {
 	color: var(--light-text);
 	font-size: var(--h6);
 	font-weight: var(--fw-reg);
