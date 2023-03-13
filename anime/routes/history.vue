@@ -17,6 +17,10 @@
     <img class="anime-img" src="https://th.bing.com/th/id/OIP.VVki1-MBUqwb4NXk-55pMgAAAA?pid=ImgDet&rs=1" alt="Anime"/>
     <h3 class="anime-title"> Title of Anime </h3>
     </div>
+    <div class="anime-history">
+    <img class="anime-img" src="https://th.bing.com/th/id/OIP.VVki1-MBUqwb4NXk-55pMgAAAA?pid=ImgDet&rs=1" alt="Anime"/>
+    <h3 class="anime-title"> Title of Anime </h3>
+    </div>
     </div>
     </div>
   </div>
