@@ -24,10 +24,10 @@
 </template>
 
 <script lang="ts">
-import EpisodeSVG from "../episodeSvg.vue";
+import EpisodeSVG from "../EpisodeSvg.vue";
 
 export default {
-	name: "AnimeCardLoading",
+	name: "AnimeCardLoadingComp",
 	components: {
 		EpisodeSVG,
 	},

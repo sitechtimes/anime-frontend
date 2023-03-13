@@ -32,7 +32,7 @@
 					<AnimeCardLoading v-for="anime in loadingAnimeHome" />
 				</div>
 				<div class="airing-content" v-else>
-					<AnimeCard
+					<AnimeCardComp
 						@saveAnimeID="saveClickedAnimeID(anime.mal_id)"
 						v-for="anime in userStore.pagePopularAnime"
 						:id="anime.mal_id"
@@ -185,20 +185,20 @@ function selectPage(num) {
 </script>
 
 <script lang="ts">
-import AnimeCard from "./AnimeCard.vue";
+import AnimeCardComp from "./AnimeCardComp.vue";
 import TopCharts from "./TopCharts.vue";
 import RightPageButton from "../RightPageButtonSvg.vue";
 import LeftPageButton from "../LeftPageButtonSvg.vue";
-import AnimeCardLoading from "./AnimeCardLoading.vue";
+import AnimeCardLoadingComp from "./AnimeCardLoadingComp.vue";
 
 export default {
-	name: "TrendingBox",
+	name: "HomeInfo",
 	components: {
-		AnimeCard,
+		AnimeCardComp,
 		TopCharts,
 		RightPageButton,
 		LeftPageButton,
-		AnimeCardLoading,
+		AnimeCardLoadingComp,
 	},
 	data() {
 		return {
