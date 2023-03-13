@@ -44,8 +44,8 @@ export default ({
 }
 .award-container {
   display: grid;
-  grid-template-columns: 15vw 15vw 15vw 15vw;
-  column-gap: 5vw;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  column-gap: 6rem;
   row-gap: 6rem;
 }
 .award-box {
@@ -59,7 +59,7 @@ export default ({
   background: var(--primary);
 }
 .img {
-  height: 20vh;
+  height: 20rem;
   border-radius: 10px;
   object-fit: cover;
 }
@@ -70,5 +70,21 @@ export default ({
 .fake-vote-btn {
   background: var(--primary);
   border-radius: 20px;
+  font-size: var(--h5);
+  text-align: center;
+  width: 10rem;
+  z-index: 1;
+  align-self: flex-end;
+  position: absolute;
+  margin: 0.5rem 0.5rem 0 0;
+}
+
+@media screen and (max-width: 1440px) {
+  .award-container {
+    row-gap: 4rem;
+  }
+  .img {
+    height: 15rem;
+  }
 }
 </style>
