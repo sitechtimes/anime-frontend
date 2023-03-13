@@ -17,10 +17,6 @@
     <img class="anime-img" src="https://th.bing.com/th/id/OIP.VVki1-MBUqwb4NXk-55pMgAAAA?pid=ImgDet&rs=1" alt="Anime"/>
     <h3 class="anime-title"> Title of Anime </h3>
     </div>
-    <div class="anime-history">
-    <img class="anime-img" src="https://th.bing.com/th/id/OIP.VVki1-MBUqwb4NXk-55pMgAAAA?pid=ImgDet&rs=1" alt="Anime"/>
-    <h3 class="anime-title"> Title of Anime </h3>
-    </div>
     </div>
     </div>
   </div>
@@ -45,25 +41,28 @@ export default ({
 .up-arrow {
   display: none;
 }
-/* .down-arrow {
+.down-arrow {
+  /* display: none; */
+  margin-left: 3%;
   display: inline-block;
-} */
+}
 .anime-title {
   font-size: var(--h3);
 }
 .year-history {
+  width: 100%;
+  height: 25%;
+  align-items: center;
   color: var(--white);
   white-space: nowrap;
 }
 .user-history {
-  width: 96%;
-  margin: 2%;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
 }
 .history-arrow {
-  font-size: var(--h3);
+  font-size: var(--h2);
 }
 .anime-history {
   display: flex;
@@ -73,7 +72,9 @@ export default ({
   flex-direction: column;
 }
 .title-history {
+  margin-left: 30%;
   text-align: center;
+  display: inline-block;
   font-size: var(--h1);
 }
 </style>
