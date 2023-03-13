@@ -30,16 +30,21 @@
 				</div>
 			</div>
 			<div class="trending-content">
-				<AnimeCard
-					@saveAnimeID="saveClickedAnimeID(anime.mal_id)"
-					v-for="anime in userStore.pagePopularAnime"
-					:id="anime.mal_id"
-					:key="anime.mal_id"
-					:episode="anime.episodes"
-					:animeName="anime.anime_name"
-					:imageUrl="anime.large_image_url"
-					:mediaType="anime.media_type"
-				/>
+				<div class="trending-content" v-if="loading">
+					<AnimeCardLoading v-for="anime in loadingAnimeHome" />
+				</div>
+				<div class="trending-content" v-else>
+					<AnimeCard
+						@saveAnimeID="saveClickedAnimeID(anime.mal_id)"
+						v-for="anime in userStore.pagePopularAnime"
+						:id="anime.mal_id"
+						:key="anime.mal_id"
+						:episode="anime.episodes"
+						:animeName="anime.anime_name"
+						:imageUrl="anime.large_image_url"
+						:mediaType="anime.media_type"
+					/>
+				</div>
 			</div>
 		</div>
 		<div class="top-box">
@@ -69,6 +74,9 @@ const pageExistRight = ref(true);
 if (userStore.startPageIndex != 0) {
 	pageExistLeft.value = true;
 }
+
+const loadingAnimeHome = [...Array(12).keys()];
+const loading = ref(true);
 
 onMounted(
 	() => {
@@ -122,6 +130,8 @@ onMounted(
 					userStore.startPageIndex,
 					userStore.endPageIndex
 				);
+
+				loading.value = false;
 			})
 			.catch(err => {
 				console.log(err);
@@ -181,6 +191,7 @@ import AnimeCard from "./AnimeCard.vue";
 import TopCharts from "./TopCharts.vue";
 import RightPageButton from "../RightPageButtonSvg.vue";
 import LeftPageButton from "../LeftPageButtonSvg.vue";
+import AnimeCardLoading from "./AnimeCardLoading.vue";
 
 export default {
 	name: "TrendingBox",
@@ -189,6 +200,7 @@ export default {
 		TopCharts,
 		RightPageButton,
 		LeftPageButton,
+		AnimeCardLoading,
 	},
 	data() {
 		return {

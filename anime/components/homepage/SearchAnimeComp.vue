@@ -2,7 +2,7 @@
 	<div class="home-body">
 		<div class="allAnime-box">
 			<div class="allAnime-header">
-				<h2 class="allAnime-title">Currently Airing</h2>
+				<h2 class="allAnime-title">Filter</h2>
 				<div class="allAnime-pages">
 					<div class="allAnimePageNumberBox">
 						<p class="allAnimePageNumber">Page</p>
@@ -30,16 +30,66 @@
 				</div>
 			</div>
 			<div class="allAnime-content">
-				<AnimeCard
-					@saveAnimeID="saveClickedAnimeID(anime.mal_id)"
-					v-for="anime in userStore.pageAllAnime"
-					:id="anime.mal_id"
-					:key="anime.mal_id"
-					:episode="anime.episodes"
-					:animeName="anime.anime_name"
-					:imageUrl="anime.large_image_url"
-					:mediaType="anime.media_type"
-				/>
+				<div class="content-condition" v-if="loading">
+					<AnimeCardLoading v-for="anime in loadingAnime" />
+				</div>
+				<div class="content-condition" v-else>
+					<AnimeCard
+						@saveAnimeID="saveClickedAnimeID(anime.mal_id)"
+						v-for="anime in userStore.pageAllAnime"
+						:id="anime.mal_id"
+						:key="anime.mal_id"
+						:episode="anime.episodes"
+						:animeName="anime.anime_name"
+						:imageUrl="anime.large_image_url"
+						:mediaType="anime.media_type"
+					/>
+				</div>
+			</div>
+			<div class="allAnime-pagesBot">
+				<div class="allAnimePageNumberBox">
+					<p class="allAnimePageNumber">Page</p>
+					<div>
+						<form
+							@submit.prevent="
+								selectPage(userStore.pageNumber);
+								toTop();
+							"
+						>
+							<input
+								class="allAnimePageNumberVar"
+								type="number"
+								v-model="userStore.pageNumber"
+								min="1"
+								max="999"
+								@change="
+									selectPage(userStore.pageNumber);
+									toTop();
+								"
+							/>
+						</form>
+					</div>
+				</div>
+				<div class="allAnimePageButtonBox">
+					<button
+						class="page-button"
+						v-on:click="
+							previous();
+							toTop();
+						"
+					>
+						<LeftPageButton :pageExist="pageExistLeft" />
+					</button>
+					<button
+						class="page-button"
+						v-on:click="
+							next();
+							toTop();
+						"
+					>
+						<RightPageButton :pageExist="pageExistRight" />
+					</button>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -48,6 +98,7 @@
 <script setup lang="ts">
 import { useUserStore } from "~~/stores/userStore";
 import { ref } from "vue";
+import { beforeMount, onMounted } from "vue";
 
 const userStore = useUserStore();
 
@@ -57,6 +108,9 @@ const pageExistRight = ref(true);
 if (userStore.startPageIndex != 0) {
 	pageExistLeft.value = true;
 }
+
+const loadingAnime = [...Array(14).keys()];
+const loading = ref(true);
 
 onMounted(() => {
 	userStore.animeInfo = null;
@@ -81,20 +135,12 @@ onMounted(() => {
 				userStore.startPageIndex,
 				userStore.endPageIndex
 			);
-			//console.log(userStore.pageAllAnime);
+			loading.value = false;
 		})
 		.catch(err => {
 			console.log(err);
 		});
-
-	window.addEventListener("scroll", console.log("scrolling"));
 });
-
-function loadMoreAnime() {
-	if (window.innerHeight - window.pageYOffset == 100) {
-		console.log("load more anime");
-	}
-}
 
 function next() {
 	if (userStore.endPageIndex < userStore.allAnime.length) {
@@ -102,7 +148,7 @@ function next() {
 		userStore.endPageIndex += 35;
 		userStore.pageNumber += 1;
 		pageExistLeft.value = true;
-		userStore.pageFilteredAnime = userStore.allAnime.slice(
+		userStore.pageAllAnime = userStore.allAnime.slice(
 			userStore.startPageIndex,
 			userStore.endPageIndex
 		);
@@ -120,7 +166,7 @@ function previous() {
 		userStore.endPageIndex -= 35;
 		userStore.pageNumber -= 1;
 		pageExistRight.value = true;
-		userStore.pageFilteredAnime = userStore.allAnime.slice(
+		userStore.pageAllAnime = userStore.allAnime.slice(
 			userStore.startPageIndex,
 			userStore.endPageIndex
 		);
@@ -140,13 +186,19 @@ function selectPage(num) {
 		userStore.endPageIndex
 	);
 }
+
+function toTop() {
+	window.scrollTo({ top: 0, behavior: "auto" });
+}
 </script>
 
 <script lang="ts">
+import { useUserStore } from "~~/stores/userStore";
 import AnimeCard from "./AnimeCard.vue";
 import TopCharts from "./TopCharts.vue";
 import RightPageButton from "../RightPageButtonSvg.vue";
 import LeftPageButton from "../LeftPageButtonSvg.vue";
+import AnimeCardLoading from "./AnimeCardLoading.vue";
 
 export default {
 	name: "allAnime",
@@ -155,8 +207,8 @@ export default {
 		TopCharts,
 		RightPageButton,
 		LeftPageButton,
+		AnimeCardLoading,
 	},
-	methods: {},
 };
 </script>
 
@@ -168,6 +220,7 @@ export default {
 	border-radius: 10px;
 	column-gap: 2rem;
 	align-items: flex-start;
+	justify-content: center;
 	background-size: cover;
 }
 .allAnime-box {
@@ -179,6 +232,7 @@ export default {
 	margin-right: 2rem;
 	margin-left: 2rem;
 	margin-top: 10rem;
+	margin-bottom: 10rem;
 	width: 90vw;
 }
 .allAnime-header {
@@ -186,14 +240,8 @@ export default {
 	display: flex;
 	height: 6rem;
 	justify-content: space-between;
-	margin-bottom: 0.5rem;
-}
-.allAnime-title {
-	font-size: var(--h3);
-	font-weight: var(--fw-semi-bold);
-	color: var(--light-text);
-	height: 6rem;
-	padding: 0;
+	margin-top: 2rem;
+	margin-bottom: 2rem;
 }
 .allAnime-title {
 	font-size: var(--h3);
@@ -203,23 +251,38 @@ export default {
 	width: 100%;
 	display: flex;
 	align-items: center;
-	padding-left: 2rem;
-	background-color: var(--tertiary);
 	border-radius: 0.75rem;
 	margin-bottom: 0.5rem;
+}
+.content-condition {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	row-gap: 4rem;
+	margin-bottom: 5rem;
+	column-gap: 2.3%;
 }
 .allAnime-content {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: flex-start;
 	row-gap: 4rem;
-	column-gap: 1.8%;
+	margin-bottom: 5rem;
+	column-gap: 2.3%;
 }
 .allAnime-pages {
 	justify-content: flex-end;
 	display: flex;
 	align-items: center;
 	column-gap: 1rem;
+	margin-right: 1rem;
+}
+.allAnime-pagesBot {
+	justify-content: center;
+	display: flex;
+	align-items: center;
+	column-gap: 1rem;
+	margin-right: 1rem;
 }
 .page-button {
 	background-color: transparent;
