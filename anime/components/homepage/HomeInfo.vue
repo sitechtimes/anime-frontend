@@ -29,7 +29,7 @@
 			</div>
 			<div class="airing-content">
 				<div class="airing-content" v-if="loading">
-					<AnimeCardLoading v-for="anime in loadingAnimeHome" />
+					<AnimeCardLoadingComp v-for="anime in loadingAnimeHome" :v-bind="anime"/>
 				</div>
 				<div class="airing-content" v-else>
 					<AnimeCardComp
@@ -62,7 +62,8 @@
 
 <script setup lang="ts">
 import { useUserStore } from "~~/stores/userStore";
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+
 
 const userStore = useUserStore();
 

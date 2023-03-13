@@ -10,7 +10,7 @@ import HomeInfo from "../components/homepage/HomeInfo.vue";
 export default {
 	name: "IndexPage",
 	components: {
-		TrendingBox,
+		HomeInfo,
 	},
 };
 </script>
