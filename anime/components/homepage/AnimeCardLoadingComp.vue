@@ -1,10 +1,10 @@
 <template>
-	<div class="card-container">
-		<div class="card-cover">
-			<div class="anime-imgLoad skeleton"></div>
-			<div class="container-bar skeleton">
+	<div class="cardLoading-container">
+		<div class="cardLoading-cover">
+			<div class="cardLoading-image skeleton"></div>
+			<div class="cardLoading-bar skeleton">
 				<div id="episodeBox">
-					<div id="ep">100</div>
+					<div id="episode">100</div>
 					<svg
 						id="epBox"
 						width="1rem"
@@ -16,10 +16,10 @@
 						<path d="M0 0h8.5a1.5 1.5 90 0 1 1.4 1.9L5 19a1.5 1.5 90 0 1-1.5 1H.1Z" />
 					</svg>
 				</div>
-				<p id="formatLoad" class="skeletonText"></p>
+				<p class="cardLoading-media skeletonText"></p>
 			</div>
 		</div>
-		<h5 class="titleLoad skeletonText"></h5>
+		<h5 class="cardLoading-title skeletonText"></h5>
 	</div>
 </template>
 
@@ -27,7 +27,7 @@
 import EpisodeSVG from "../EpisodeSvg.vue";
 
 export default {
-	name: "AnimeCardLoadingComp",
+	name: "cardLoading",
 	components: {
 		EpisodeSVG,
 	},

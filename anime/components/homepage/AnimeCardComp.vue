@@ -1,14 +1,14 @@
 <template>
 	<NuxtLink to="/animeInfo">
-		<div class="animeCardComp-container" @click="$emit('saveAnimeID')">
-			<div class="animeCardComp-cover">
-				<img class="animeCardComp-image" :src="`${imageUrl}`" alt="" />
-				<div class="animeCardComp-info">
+		<div class="animeCard-container" @click="$emit('saveAnimeID')">
+			<div class="animeCard-cover">
+				<img class="animeCard-image" :src="`${imageUrl}`" alt="" />
+				<div class="animeCard-bar">
 					<EpisodeSVG :episode="episode" />
-					<p class="animeCardComp-media">{{ mediaType }}</p>
+					<p class="animeCard-media">{{ mediaType }}</p>
 				</div>
 			</div>
-			<h5 class="animeCardComp-title">{{ animeName }}</h5>
+			<h5 class="animeCard-title">{{ animeName }}</h5>
 		</div>
 	</NuxtLink>
 </template>
@@ -17,7 +17,7 @@
 import EpisodeSVG from "../EpisodeSvg.vue";
 
 export default {
-	name: "AnimeCardComp",
+	name: "animeCard",
 	components: {
 		EpisodeSVG,
 	},
@@ -49,12 +49,12 @@ export default {
 </script>
 
 <style scoped>
-.animeCardComp-container {
+.animeCard-container {
 	display: flex;
 	flex-direction: column;
 	width: 11vw;
 }
-.animeCardComp-cover {
+.animeCard-cover {
 	position: relative;
 	display: flex;
 	flex-direction: column;
@@ -63,21 +63,21 @@ export default {
 	border-radius: 0.5rem;
 	overflow: hidden;
 }
-.animeCardComp-cover:not(hover) > img {
+.animeCard-cover:not(hover) > img {
 	opacity: 100%;
 	transition: 0.3s;
 }
-.animeCardComp-cover:hover > img {
+.animeCard-cover:hover > img {
 	opacity: 25%;
 	transition: 0.3s;
 }
-.animeCardComp-img {
+.animeCard-img {
 	border-radius: 0.5rem 0.5rem 0 0;
 	width: 100%;
 	object-fit: cover;
 	aspect-ratio: 225/350;
 }
-.animeCardComp-info {
+.animeCard-bar {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
@@ -88,7 +88,7 @@ export default {
 	padding-right: 0.75rem;
 	border-radius: 0 0 0.5rem 0.5rem;
 }
-.animeCardComp-title {
+.animeCard-title {
 	width: 100%;
 	color: var(--light-text);
 	font-size: var(--h5);
@@ -101,15 +101,15 @@ export default {
 	-webkit-box-orient: vertical;
 	overflow: hidden;
 }
-.animeCardComp-title:hover {
+.animeCard-title:hover {
 	color: var(--primary);
 	transition: 0.4s;
 }
-.animeCardComp-title:not(hover) {
+.animeCard-title:not(hover) {
 	color: var(--light-text);
 	transition: 0.4s;
 }
-.animeCardComp-media {
+.animeCard-media {
 	color: var(--light-text);
 	font-size: var(--h6);
 	font-weight: var(--fw-reg);
