@@ -1,36 +1,36 @@
 <template>
     <div>
-      <NuxtLayout>
-        <NavigationMobile/>
-        <NavBar/>
-        <NuxtPage class="animation"/>
-        <ScrollBtn/>
-    </NuxtLayout>
+        <NuxtLayout>
+            <NavigationMobile />
+            <NavBar />
+            <NuxtPage class="animation" />
+            <ScrollBtn />
+        </NuxtLayout>
     </div>
-  </template>
-  
-  <script lang="ts">
-  import NavBar from './components/navbar/NavBar.vue'
-  import { useUserStore } from "./stores/userStore"
-  import NavigationMobile from './components/navbar/NavigationMobile.vue'
-  import ScrollBtn from './components/ScrollBtn.vue'
-  export default ({
-    name: 'IndexPage',
+</template>
 
-    components:{
-      NavBar,
-      NavigationMobile,
-      ScrollBtn
+<script lang="ts">
+import NavBar from "./components/navbar/NavBar.vue";
+import { useUserStore } from "./stores/userStore";
+import NavigationMobile from "./components/navbar/NavigationMobile.vue";
+import ScrollBtn from "./components/ScrollBtn.vue";
+export default {
+    name: "IndexPage",
+
+    components: {
+        NavBar,
+        NavigationMobile,
+        ScrollBtn,
     },
-    setup(){
-      const userStore = useUserStore()
-      return {
-        userStore,
-      }
+    setup() {
+        const userStore = useUserStore();
+        return {
+            userStore,
+        };
     },
     beforeCreate() {
-        this.userStore.checkCookie()
-      }
+        this.userStore.checkCookie();
+    },
     // methods: {
     //   onBeforeMount() {
     //     this.userStore.checkCookie()
@@ -40,82 +40,84 @@
     //   this.userStore.getToken
     //   console.log(this.userStore.getToken, this.userStore.getUser)
     // }
-
-  })
-
-  </script>
-  <style>
-  @import url("./assets/global.css");
-  .animation{
+};
+</script>
+<style>
+@import url("./assets/global.css");
+.animation {
     animation: fadeIn 750ms linear forwards;
-  }
-  /* buttons */
-  .button,
-    .log-in,
-    button{
-        background: var(--primary);
-        border-radius: 25px;
-        font-style: normal;
-        font-weight: var(--fw-bold);
-        font-size: var(--h4);
-        text-align: center;
-        color: var(--dark-text);
-        border:0;
-        padding:1rem 3rem;
-        transition: 2s ease-in-out;
-        -webkit-transition: 2s ease-in-out;
-	    cursor: pointer;
-    }
-  .button:hover,
-    .log-in:hover{
-        background: linear-gradient(84.66deg, var(--primary) 2.58%, var(--alt-linear) 97.55%);
-    }
+}
+/* buttons */
+.button,
+.log-in,
+button {
+    background: var(--primary);
+    border-radius: 25px;
+    font-style: normal;
+    font-weight: var(--fw-bold);
+    font-size: var(--h4);
+    text-align: center;
+    color: var(--dark-text);
+    border: 0;
+    padding: 1rem 3rem;
+    transition: 2s ease-in-out;
+    -webkit-transition: 2s ease-in-out;
+    cursor: pointer;
+}
+.button:hover,
+.log-in:hover {
+    background: linear-gradient(
+        84.66deg,
+        var(--primary) 2.58%,
+        var(--alt-linear) 97.55%
+    );
+}
 
-   ul, li, a{
-        text-decoration: none;
-        list-style-type: none;
-        color:var(--white);
-        transition: background 1s ease-in-out;-webkit-transition: background 1s ease-in-out;
-    }
+ul,
+li,
+a {
+    text-decoration: none;
+    list-style-type: none;
+    color: var(--white);
+    transition: background 1s ease-in-out;
+    -webkit-transition: background 1s ease-in-out;
+}
 
-    /* media query */
-  @media screen and (max-width: 1300px) {
-   
-  }
-  @media screen and (min-width: 768px) {
+/* media query */
+@media screen and (max-width: 1300px) {
+}
+@media screen and (min-width: 768px) {
     .nav-mobile,
-    .menu{
-      display: none;
+    .menu {
+        display: none;
     }
-  }
-  @media screen and (max-width: 768px) {
-  #nav{
-    display: none;
-  }
+}
+@media screen and (max-width: 768px) {
+    #nav {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 350px) {
-  
 }
 @media screen and (max-width: 350px) {
-  .dateBar {
-    padding: 0.25rem 1rem;
-  }
-  .list {
-    column-gap: 0;
-  }
-  .sub__container {
-    display: flex;
-  }
-  #nav__span {
-    display: flex;
-  }
-  .modeIcon:first-child {
-    padding-right: 0rem;
-  }
-  .modeIcon:last-child {
-    display: none;
-  }
+    .dateBar {
+        padding: 0.25rem 1rem;
+    }
+    .list {
+        column-gap: 0;
+    }
+    .sub__container {
+        display: flex;
+    }
+    #nav__span {
+        display: flex;
+    }
+    .modeIcon:first-child {
+        padding-right: 0rem;
+    }
+    .modeIcon:last-child {
+        display: none;
+    }
 }
-
-  </style>
+</style>
