@@ -15,8 +15,57 @@
 </div>
     <div class="tabs-class">
         <TabsWrapper>
-            <Tab title="Tab 1">Tab 1</Tab>
-            <Tab title="Tab 2">Tab 2</Tab>
+            <Tab title="Watchlist">
+                <div class="tabShow">
+                    <div class="tab-logo">
+                        <h3 class="tab-detail">Technime</h3>
+                    </div>
+                    <div class="tab-bottom">
+                        <h3 class="tab-title">
+                            Watchlist
+                        </h3>
+                        <div class="profile-slide">
+                            
+                        </div>
+                    </div>
+                </div>
+            </Tab>
+            <Tab title="Favorites">
+                <div class="tabShow">
+                    <div class="tab-logo">
+                        <h3 class="tab-detail">Technime</h3>
+                    </div>
+                    <div class="tab-bottom">
+                        <h3 class="tab-title">
+                            Favorites
+                        </h3>
+                    </div>
+                </div>
+            </Tab>
+            <Tab title="Example">
+                <div class="tabShow">
+                    <div class="tab-logo">
+                        <h3 class="tab-detail">Technime</h3>
+                    </div>
+                    <div class="tab-bottom">
+                        <h3 class="tab-title">
+                            Example
+                        </h3>
+                    </div>
+                </div>
+            </Tab>
+            <Tab title="Example 2">
+                <div class="tabShow">
+                    <div class="tab-logo">
+                        <h3 class="tab-detail">Technime</h3>
+                    </div>
+                    <div class="tab-bottom">
+                        <h3 class="tab-title">
+                            Example 2
+                        </h3>
+                    </div>
+                </div>
+            </Tab>
         </TabsWrapper>
     </div>
   </div>
@@ -45,22 +94,22 @@ export default {
 
 <style scoped>
 .profile-top,
-.profile-middle,
-.profile-bottom{
+.tabs-class{
     width: 100%;
     height:100%;
     display: flex;
     justify-content: center;
     color: var(--white);
+    margin-bottom:5%;
 }
-.profile-middle .current-anime,
-.profile-middle .profile-stats,
-.profile-bottom .favorite-anime,
-.profile-bottom .favorite-genre{
+.tabs-class .tab{
     background-color:var(--tertiary);
+    width:70vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px 0 var(--tertiary);
 }
 .banner{
     object-fit: cover;
@@ -187,6 +236,26 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* actual (inside each) tab css */
+.tabShow{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    justify-content: center;
+}
+.tab-logo{
+    display: flex;
+    justify-content: flex-end;
+    font-size: var(--h3);
+    color: var(--primary);
+    text-transform:lowercase;
+}
+.tab-title{
+    font-size: var(--h3);
+    color: var(--white);
+    font-weight: var(--fw-light);
 }
 .underNav{
     width:100vw;
