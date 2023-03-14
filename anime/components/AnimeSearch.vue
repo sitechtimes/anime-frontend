@@ -6,7 +6,6 @@
 				<div class="page-container">
 					<div class="page-number">
 						<p class="page-text">Page</p>
-
 						<form @submit.prevent="selectPage(userStore.pageNumber)">
 							<input
 								class="page-input"
@@ -53,7 +52,7 @@
 						"
 					>
 						<input
-							class="page-text"
+							class="page-input"
 							type="number"
 							v-model="userStore.pageNumber"
 							min="1"
@@ -65,7 +64,7 @@
 						/>
 					</form>
 				</div>
-				<div class="allAnimePageButtonBox">
+				<div class="page-buttonBox">
 					<button
 						class="page-button"
 						v-on:click="
@@ -217,7 +216,7 @@ export default {
 	justify-content: center;
 	background-size: cover;
 }
-.allAnime-box {
+.allAnime-container {
 	background-color: var(--bg-primary);
 	border-radius: 1.5rem;
 	display: flex;
@@ -264,19 +263,11 @@ export default {
 	margin-bottom: 5rem;
 	column-gap: 2.3%;
 }
-.allAnime-pages {
+.page-container {
 	justify-content: flex-end;
 	display: flex;
 	align-items: center;
 	column-gap: 1rem;
-	margin-right: 1rem;
-}
-.allAnime-pagesBot {
-	justify-content: center;
-	display: flex;
-	align-items: center;
-	column-gap: 1rem;
-	margin-right: 1rem;
 }
 .page-button {
 	background-color: transparent;
@@ -287,18 +278,17 @@ export default {
 	display: flex;
 	justify-content: center;
 }
-.allAnimePageNumber {
+.page-text {
 	font-size: var(--h5);
 	font-weight: var(--fw-semi-bold);
 	color: var(--light-text);
 }
-
-.allAnimePageNumberVar::-webkit-outer-spin-button,
-.allAnimePageNumberVar::-webkit-inner-spin-button {
+.page-input::-webkit-outer-spin-button,
+.page-input::-webkit-inner-spin-button {
 	-webkit-appearance: none;
 	margin: 0;
 }
-.allAnimePageNumberVar {
+.page-input {
 	min-width: 4.5rem;
 	font-size: var(--h5);
 	font-weight: var(--fw-med);
@@ -309,21 +299,28 @@ export default {
 	padding: 0.5rem 1rem;
 	text-align: center;
 }
-.allAnimePageNumberVar:focus {
+.page-input:focus {
 	outline: none;
 }
-.allAnimePageNumberBox {
+.page-number {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	column-gap: 0.8rem;
 }
-.allAnimePageButtonBox {
+.page-buttonBox {
 	background-color: transparent;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	column-gap: 1rem;
+}
+.page-container-bot {
+	justify-content: center;
+	display: flex;
+	align-items: center;
+	column-gap: 1rem;
+	margin-right: 1rem;
 }
 .svg-button {
 	display: block;

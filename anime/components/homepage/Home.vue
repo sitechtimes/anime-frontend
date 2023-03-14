@@ -27,7 +27,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="airing-content" v-if="loading">
+			<div class="airing-content" v-if="!loading">
 				<AnimeCardLoading v-for="anime in loadingAnimeHome" />
 			</div>
 			<div class="airing-content" v-else>
@@ -290,6 +290,7 @@ export default {
 	column-gap: 2rem;
 	align-items: flex-start;
 	background-size: cover;
+	margin-bottom: 10rem;
 }
 .topCharts-container {
 	background-color: var(--bg-primary);

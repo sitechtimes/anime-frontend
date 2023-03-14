@@ -4,7 +4,7 @@
 			<div class="cardLoad-image skeleton"></div>
 			<div class="cardLoad-bar skeleton">
 				<div id="episode-box">
-					<div id="episode">100</div>
+					<div id="episode-text">100</div>
 					<svg
 						id="episode-svg"
 						width="1rem"
@@ -83,25 +83,26 @@ export default {
 	padding-top: 0.5rem;
 	background-color: var(--light-text);
 	margin-top: 1.5rem;
-	height: 0.5rem;
-	border-radius: 1rem;
+	height: 1rem;
+	border-radius: 0.3rem;
 	width: 60%;
+	margin-bottom: 4rem;
 }
 .cardLoad-media {
 	color: var(--light-text);
 	font-size: var(--h6);
 	font-weight: var(--fw-reg);
 	background-color: var(--light-text);
-	height: 0.5rem;
-	width: 3rem;
-	border-radius: 1rem;
+	height: 1rem;
+	width: 2.5rem;
+	border-radius: 0.3rem;
 }
 #episode-box {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 }
-#episode {
+#episode-text {
 	line-height: 2rem;
 	color: var(--secondary);
 	font-size: var(--h7);

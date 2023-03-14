@@ -45,8 +45,6 @@ export default {
 	font-size: var(--h7);
 	font-weight: var(--fw-med);
 	fill: var(--white);
-	margin-right: 0.5rem;
-	z-index: 1;
 }
 #epBox path {
 	fill: var(--secondary);
