@@ -53,6 +53,7 @@ export default ({
   display: flex;
   flex-direction: column;
   border-radius: 10px;
+  transition: 100ms ease-in;
 }
 .award-box:hover {
   outline: solid 5px var(--primary);
@@ -66,6 +67,10 @@ export default ({
 .award-name {
   text-align: center;
   font-size: var(--h4);
+  white-space: nowrap;
+  overflow: hidden;
+  display: block;
+  text-overflow: ellipsis;
 }
 .fake-vote-btn {
   background: var(--primary);
@@ -76,7 +81,7 @@ export default ({
   z-index: 1;
   align-self: flex-end;
   position: absolute;
-  margin: 0.5rem 0.5rem 0 0;
+  margin: 1rem 0.5rem 0 0;
 }
 
 @media screen and (max-width: 1440px) {
@@ -85,6 +90,40 @@ export default ({
   }
   .img {
     height: 15rem;
+  }
+  .fake-vote-btn {
+    width: 6rem;
+    font-size: var(--h6);
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .award-container {
+    column-gap: 3rem;
+    row-gap: 3rem;
+  }
+  .award-name {
+    font-size: var(--h5);
+  }
+  .img {
+    height: 12rem;
+  }
+  .fake-vote-btn {
+    width: 6rem;
+    font-size: var(--h7);
+    margin: 0.5rem 0.5rem 0 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .award-container {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media screen and (max-width: 568px) {
+  .award-container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 </style>
