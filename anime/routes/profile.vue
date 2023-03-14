@@ -32,10 +32,14 @@
                         <div class="tab-bottom">
                             <h3 class="tab-title">Watchlist</h3>
                             <div class="profile-slide">
-                                <ul>
-                                    <li>hello</li>
-                                    <li>hello</li>
-                                </ul>
+                                <div class="pf-carousel">
+                                    <AnimeList
+                                        v-for="anime in currentAnimes"
+                                        :key="anime.animeID"
+                                        :img="anime.img"
+                                        :title="anime.title"
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -47,6 +51,16 @@
                         </div>
                         <div class="tab-bottom">
                             <h3 class="tab-title">Favorites</h3>
+                            <div class="profile-slide">
+                                <div class="pf-carousel">
+                                    <AnimeList
+                                        v-for="anime in favoriteAnime"
+                                        :key="anime.animeID"
+                                        :img="anime.img"
+                                        :title="anime.title"
+                                    />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </Tab>
@@ -78,11 +92,13 @@
 <script lang="ts">
 import Tab from "../components/profile/Tab.vue";
 import TabsWrapper from "../components/profile/TabsWrapper.vue";
+import AnimeList from "../components/profile/AnimeList.vue";
 // import Tabs from '../components/profile/Tabs.vue'
 export default {
     components: {
         Tab,
         TabsWrapper,
+        AnimeList,
         //   Tabs
     },
     data: () => ({
@@ -90,30 +106,44 @@ export default {
             {
                 animeID: "01",
                 title: "One Punch Man",
-                stars: 8.5,
-                releaseDate: "Oct 5, 2015",
-                genre: "Adventure",
+                img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
             },
             {
                 animeID: "02",
                 title: "Spy x Family",
-                stars: 9.99,
-                releaseDate: "Apr 9, 2022",
-                genre: "Comedy",
+                img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
             },
             {
                 animeID: "03",
                 title: "Chainsaw Man",
-                stars: 8.24,
-                releaseDate: "Oct 11, 2022",
-                genre: "Graphic",
+                img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
             },
             {
                 animeID: "04",
                 title: "Blue Lock",
-                stars: 8.24,
-                releaseDate: "Oct 11, 2022",
-                genre: "Sports",
+                img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
+            },
+        ],
+        favoriteAnime: [
+            {
+                animeID: "01",
+                title: "One Punch Man",
+                img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
+            },
+            {
+                animeID: "02",
+                title: "Spy x Family",
+                img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
+            },
+            {
+                animeID: "03",
+                title: "Chainsaw Man",
+                img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
+            },
+            {
+                animeID: "04",
+                title: "Blue Lock",
+                img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
             },
         ],
     }),
@@ -283,6 +313,10 @@ export default {
     font-size: var(--h3);
     color: var(--white);
     font-weight: var(--fw-light);
+}
+.pf-carousel {
+    display: flex;
+    width: 70vw;
 }
 .underNav {
     width: 100vw;
