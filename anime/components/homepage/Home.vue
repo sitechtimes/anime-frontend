@@ -27,22 +27,20 @@
 					</div>
 				</div>
 			</div>
-			<div class="airing-content">
-				<div class="airing-content" v-if="loading">
-					<AnimeCardLoading v-for="anime in loadingAnimeHome" />
-				</div>
-				<div class="airing-content" v-else>
-					<AnimeCard
-						@saveAnimeID="saveClickedAnimeID(anime.mal_id)"
-						v-for="anime in userStore.pagePopularAnime"
-						:id="anime.mal_id"
-						:key="anime.mal_id"
-						:episode="anime.episodes"
-						:animeName="anime.anime_name"
-						:imageUrl="anime.large_image_url"
-						:mediaType="anime.media_type"
-					/>
-				</div>
+			<div class="airing-content" v-if="loading">
+				<AnimeCardLoading v-for="anime in loadingAnimeHome" />
+			</div>
+			<div class="airing-content" v-else>
+				<AnimeCard
+					@saveAnimeID="saveClickedAnimeID(anime.mal_id)"
+					v-for="anime in userStore.pagePopularAnime"
+					:id="anime.mal_id"
+					:key="anime.mal_id"
+					:episode="anime.episodes"
+					:animeName="anime.anime_name"
+					:imageUrl="anime.large_image_url"
+					:mediaType="anime.media_type"
+				/>
 			</div>
 		</div>
 		<div class="topCharts-container">
@@ -93,8 +91,8 @@ onMounted(
 
 		userStore
 			.getAllAnime()
-			.then(data => {
-				const refineData = data.filter(function (anime) {
+			.then((data) => {
+				const refineData = data.filter(function (anime: any) {
 					delete anime.small_image_url;
 					delete anime.image_url;
 					delete anime.trailer_youtube_url;
@@ -108,20 +106,14 @@ onMounted(
 					return true;
 				});
 
-				const allAnime = [];
 				const airingAnime = [];
 
-				refineData.filter(function (anime) {
+				refineData.filter(function (anime: any) {
 					if (anime.status == "Currently Airing") {
 						airingAnime.push(anime);
 					}
 				});
 
-				data.forEach(anime => {
-					allAnime.push(anime);
-				});
-
-				userStore.allAnime = allAnime;
 				userStore.currentAnime = airingAnime;
 
 				userStore.pagePopularAnime = userStore.currentAnime.slice(
@@ -131,7 +123,7 @@ onMounted(
 
 				loading.value = false;
 			})
-			.catch(err => {
+			.catch((err) => {
 				console.log(err);
 			});
 	}
@@ -169,11 +161,11 @@ function previous() {
 	}
 }
 
-function saveClickedAnimeID(id) {
+function saveClickedAnimeID(id: number) {
 	userStore.storeAnimeId(id);
 }
 
-function selectPage(num) {
+function selectPage(num: number) {
 	userStore.startPageIndex = num * 11 - 11;
 	userStore.endPageIndex = num * 11 + 1;
 

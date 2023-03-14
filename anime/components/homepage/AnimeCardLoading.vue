@@ -1,12 +1,12 @@
 <template>
-	<div class="card-container">
-		<div class="card-cover">
-			<div class="anime-imgLoad skeleton"></div>
-			<div class="container-bar skeleton">
-				<div id="episodeBox">
-					<div id="ep">100</div>
+	<div class="cardLoad-container">
+		<div class="cardLoad-cover">
+			<div class="cardLoad-image skeleton"></div>
+			<div class="cardLoad-bar skeleton">
+				<div id="episode-box">
+					<div id="episode">100</div>
 					<svg
-						id="epBox"
+						id="episode-svg"
 						width="1rem"
 						height="2rem"
 						viewBox="0 0 10 20"
@@ -16,15 +16,15 @@
 						<path d="M0 0h8.5a1.5 1.5 90 0 1 1.4 1.9L5 19a1.5 1.5 90 0 1-1.5 1H.1Z" />
 					</svg>
 				</div>
-				<p id="formatLoad" class="skeletonText"></p>
+				<p class="cardLoad-media skeletonText"></p>
 			</div>
 		</div>
-		<h5 class="titleLoad skeletonText"></h5>
+		<h5 class="cardLoad-title skeletonText"></h5>
 	</div>
 </template>
 
 <script lang="ts">
-import EpisodeSVG from "../episodeSvg.vue";
+import EpisodeSVG from "../EpisodeSvg.vue";
 
 export default {
 	name: "AnimeCardLoading",
@@ -35,12 +35,12 @@ export default {
 </script>
 
 <style scoped>
-.card-container {
+.cardLoad-container {
 	display: flex;
 	flex-direction: column;
 	width: 11vw;
 }
-.card-cover {
+.cardLoad-cover {
 	position: relative;
 	display: flex;
 	flex-direction: column;
@@ -49,24 +49,22 @@ export default {
 	border-radius: 0.5rem;
 	overflow: hidden;
 }
-.card-cover:not(hover) > img {
+.cardLoad-cover:not(hover) > img {
 	opacity: 100%;
 	transition: 0.3s;
 }
-.card-cover:hover > img {
+.cardLoad-cover:hover > img {
 	opacity: 25%;
 	transition: 0.3s;
 }
-.anime-img {
-	border-radius: 0.5rem 0.5rem 0 0;
-}
-.anime-imgLoad {
+.cardLoad-image {
 	width: 100%;
 	object-fit: cover;
 	aspect-ratio: 225/350;
 	background-color: var(--tertiary);
+	border-radius: 0.5rem 0.5rem 0 0;
 }
-.container-bar {
+.cardLoad-bar {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
@@ -77,7 +75,7 @@ export default {
 	padding-right: 0.75rem;
 	border-radius: 0 0 0.5rem 0.5rem;
 }
-.titleLoad {
+.cardLoad-title {
 	width: 100%;
 	color: var(--light-text);
 	font-size: var(--h5);
@@ -89,7 +87,7 @@ export default {
 	border-radius: 1rem;
 	width: 60%;
 }
-#formatLoad {
+.cardLoad-media {
 	color: var(--light-text);
 	font-size: var(--h6);
 	font-weight: var(--fw-reg);
@@ -98,12 +96,12 @@ export default {
 	width: 3rem;
 	border-radius: 1rem;
 }
-#episodeBox {
+#episode-box {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 }
-#ep {
+#episode {
 	line-height: 2rem;
 	color: var(--secondary);
 	font-size: var(--h7);
@@ -112,12 +110,12 @@ export default {
 	padding-left: 0.6rem;
 	border-radius: 0.2rem 0 0 0.2rem;
 }
-#epBox {
+#episode-svg {
 	font-size: var(--h7);
 	font-weight: var(--fw-med);
 	fill: var(--white);
 }
-#epBox path {
+#episode-svg path {
 	fill: var(--secondary);
 }
 .skeleton {

@@ -1,25 +1,24 @@
 <template>
 	<div class="home-body">
-		<div class="allAnime-box">
+		<div class="allAnime-container">
 			<div class="allAnime-header">
 				<h2 class="allAnime-title">Filter</h2>
-				<div class="allAnime-pages">
-					<div class="allAnimePageNumberBox">
-						<p class="allAnimePageNumber">Page</p>
-						<div>
-							<form @submit.prevent="selectPage(userStore.pageNumber)">
-								<input
-									class="allAnimePageNumberVar"
-									type="number"
-									v-model="userStore.pageNumber"
-									min="1"
-									max="999"
-									@change="selectPage(userStore.pageNumber)"
-								/>
-							</form>
-						</div>
+				<div class="page-container">
+					<div class="page-number">
+						<p class="page-text">Page</p>
+
+						<form @submit.prevent="selectPage(userStore.pageNumber)">
+							<input
+								class="page-input"
+								type="number"
+								v-model="userStore.pageNumber"
+								min="1"
+								max="999"
+								@change="selectPage(userStore.pageNumber)"
+							/>
+						</form>
 					</div>
-					<div class="allAnimePageButtonBox">
+					<div class="page-buttonBox">
 						<button class="page-button" v-on:click="previous">
 							<LeftPageButton :pageExist="pageExistLeft" />
 						</button>
@@ -29,46 +28,42 @@
 					</div>
 				</div>
 			</div>
-			<div class="allAnime-content">
-				<div class="content-condition" v-if="loading">
-					<AnimeCardLoading v-for="anime in loadingAnime" />
-				</div>
-				<div class="content-condition" v-else>
-					<AnimeCard
-						@saveAnimeID="saveClickedAnimeID(anime.mal_id)"
-						v-for="anime in userStore.pageAllAnime"
-						:id="anime.mal_id"
-						:key="anime.mal_id"
-						:episode="anime.episodes"
-						:animeName="anime.anime_name"
-						:imageUrl="anime.large_image_url"
-						:mediaType="anime.media_type"
-					/>
-				</div>
+			<div class="content-condition" v-if="loading">
+				<AnimeCardLoading v-for="anime in loadingAnime" />
 			</div>
-			<div class="allAnime-pagesBot">
-				<div class="allAnimePageNumberBox">
-					<p class="allAnimePageNumber">Page</p>
-					<div>
-						<form
-							@submit.prevent="
+			<div class="content-condition" v-else>
+				<AnimeCard
+					@saveAnimeID="saveClickedAnimeID(anime.mal_id)"
+					v-for="anime in userStore.pageFilteredAnime"
+					:id="anime.mal_id"
+					:key="anime.mal_id"
+					:episode="anime.episodes"
+					:animeName="anime.anime_name"
+					:imageUrl="anime.large_image_url"
+					:mediaType="anime.media_type"
+				/>
+			</div>
+			<div class="page-container-bot">
+				<div class="page-number">
+					<p class="page-text">Page</p>
+					<form
+						@submit.prevent="
+							selectPage(userStore.pageNumber);
+							toTop();
+						"
+					>
+						<input
+							class="page-text"
+							type="number"
+							v-model="userStore.pageNumber"
+							min="1"
+							max="999"
+							@change="
 								selectPage(userStore.pageNumber);
 								toTop();
 							"
-						>
-							<input
-								class="allAnimePageNumberVar"
-								type="number"
-								v-model="userStore.pageNumber"
-								min="1"
-								max="999"
-								@change="
-									selectPage(userStore.pageNumber);
-									toTop();
-								"
-							/>
-						</form>
-					</div>
+						/>
+					</form>
 				</div>
 				<div class="allAnimePageButtonBox">
 					<button
@@ -98,7 +93,7 @@
 <script setup lang="ts">
 import { useUserStore } from "~~/stores/userStore";
 import { ref } from "vue";
-import { beforeMount, onMounted } from "vue";
+import { onMounted } from "vue";
 
 const userStore = useUserStore();
 
@@ -122,22 +117,22 @@ onMounted(() => {
 
 	userStore
 		.getAllAnime()
-		.then(data => {
+		.then((data) => {
 			const allAnime = [];
 
-			data.forEach(anime => {
+			data.forEach((anime: any) => {
 				allAnime.push(anime);
 			});
 
 			userStore.allAnime = allAnime;
 
-			userStore.pageAllAnime = userStore.allAnime.slice(
+			userStore.pageFilteredAnime = userStore.allAnime.slice(
 				userStore.startPageIndex,
 				userStore.endPageIndex
 			);
 			loading.value = false;
 		})
-		.catch(err => {
+		.catch((err) => {
 			console.log(err);
 		});
 });
@@ -148,7 +143,7 @@ function next() {
 		userStore.endPageIndex += 35;
 		userStore.pageNumber += 1;
 		pageExistLeft.value = true;
-		userStore.pageAllAnime = userStore.allAnime.slice(
+		userStore.pageFilteredAnime = userStore.allAnime.slice(
 			userStore.startPageIndex,
 			userStore.endPageIndex
 		);
@@ -166,18 +161,18 @@ function previous() {
 		userStore.endPageIndex -= 35;
 		userStore.pageNumber -= 1;
 		pageExistRight.value = true;
-		userStore.pageAllAnime = userStore.allAnime.slice(
+		userStore.pageFilteredAnime = userStore.allAnime.slice(
 			userStore.startPageIndex,
 			userStore.endPageIndex
 		);
 	}
 }
 
-function saveClickedAnimeID(id) {
+function saveClickedAnimeID(id: number) {
 	userStore.storeAnimeId(id);
 }
 
-function selectPage(num) {
+function selectPage(num: number) {
 	userStore.startPageIndex = num * 35 - 35;
 	userStore.endPageIndex = num * 35 + 1;
 
@@ -193,12 +188,11 @@ function toTop() {
 </script>
 
 <script lang="ts">
-import { useUserStore } from "~~/stores/userStore";
-import AnimeCard from "./AnimeCard.vue";
-import TopCharts from "./TopCharts.vue";
-import RightPageButton from "../RightPageButtonSvg.vue";
-import LeftPageButton from "../LeftPageButtonSvg.vue";
-import AnimeCardLoading from "./AnimeCardLoading.vue";
+import AnimeCard from "./homepage/AnimeCard.vue";
+import TopCharts from "./homepage/TopCharts.vue";
+import RightPageButton from "./RightPageButtonSvg.vue";
+import LeftPageButton from "./LeftPageButtonSvg.vue";
+import AnimeCardLoading from "./homepage/AnimeCardLoading.vue";
 
 export default {
 	name: "allAnime",

@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts">
-import RankingCard from "@/components/homepage/RankingCard.vue";
+import RankingCard from "~~/components/ranking/RankingCard.vue";
 
 export default {
 	name: "ranking",

@@ -1,16 +1,16 @@
 <template>
 	<div id="animeSearch">
-		<searchAnimeComp />
+		<AnimeSearch />
 	</div>
 </template>
 
 <script lang="ts">
-import searchAnimeComp from "@/components/homepage/SearchAnimeComp.vue";
+import AnimeSearch from "~~/components/AnimeSearch.vue";
 
 export default {
 	name: "animeSearch",
 	components: {
-		searchAnimeComp,
+		AnimeSearch,
 	},
 };
 </script>

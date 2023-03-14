@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import TrendingBox from "../components/homepage/TrendingBox.vue";
+import TrendingBox from "../components/homepage/Home.vue";
 
 export default {
 	name: "IndexPage",
