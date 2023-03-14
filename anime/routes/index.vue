@@ -1,11 +1,11 @@
 <template>
 	<div id="home">
-		<HomeInfo />
+		<TrendingBox />
 	</div>
 </template>
 
 <script lang="ts">
-import HomeInfo from "../components/homepage/HomeInfo.vue";
+import TrendingBox from "../components/homepage/TrendingBox.vue";
 
 export default {
 	name: "IndexPage",

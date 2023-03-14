@@ -1,9 +1,9 @@
 <template>
-	<div id="episodeSvg-box">
-		<div id="episodeSvg-text" v-if="episode">{{ episode }}</div>
-		<div id="episodeSvg-text" v-if="!episode">N/A</div>
+	<div id="episode-box">
+		<div id="episode-text" v-if="episode">{{ episode }}</div>
+		<div id="episode-text" v-if="!episode">N/A</div>
 		<svg
-			id="episodeSvg-svg"
+			id="epBox"
 			width="1rem"
 			height="2rem"
 			viewBox="0 0 10 20"
@@ -27,12 +27,12 @@ export default {
 </script>
 
 <style scoped>
-#episodeSvg-box {
+#episodeBox {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 }
-#episodeSvg-text {
+#episode-text {
 	line-height: 2rem;
 	color: var(--off-white);
 	font-size: var(--h7);
@@ -41,12 +41,12 @@ export default {
 	padding-left: 0.6rem;
 	border-radius: 0.2rem 0 0 0.2rem;
 }
-#episodeSvg-svg {
+#epBox {
 	font-size: var(--h7);
 	font-weight: var(--fw-med);
 	fill: var(--white);
 }
-#episodeSvg-svg path {
+#epBox path {
 	fill: var(--secondary);
 }
 </style>
