@@ -27,7 +27,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="airing-content" v-if="!loading">
+			<div class="airing-content" v-if="loading">
 				<AnimeCardLoading v-for="anime in loadingAnimeHome" />
 			</div>
 			<div class="airing-content" v-else>
