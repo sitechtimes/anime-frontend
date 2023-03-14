@@ -29,10 +29,10 @@
 			</div>
 			<div class="airing-content">
 				<div class="airing-content" v-if="loading">
-					<cardLoading v-for="anime in loadingAnimeHome" :v-bind="anime"/>
+					<AnimeCardLoadingComp v-for="anime in loadingAnimeHome" :v-bind="anime"/>
 				</div>
 				<div class="airing-content" v-else>
-					<animeCard
+					<AnimeCardComp
 						@saveAnimeID="saveClickedAnimeID(anime.mal_id)"
 						v-for="anime in userStore.pagePopularAnime"
 						:id="anime.mal_id"
@@ -186,20 +186,20 @@ function selectPage(num) {
 </script>
 
 <script lang="ts">
-import animeCard from "./animeCard.vue";
+import AnimeCardComp from "./AnimeCardComp.vue";
 import TopCharts from "./TopCharts.vue";
 import RightPageButton from "../RightPageButtonSvg.vue";
 import LeftPageButton from "../LeftPageButtonSvg.vue";
-import cardLoading from "./cardLoading.vue";
+import AnimeCardLoadingComp from "./AnimeCardLoadingComp.vue";
 
 export default {
 	name: "HomeInfo",
 	components: {
-		animeCard,
+		AnimeCardComp,
 		TopCharts,
 		RightPageButton,
 		LeftPageButton,
-		cardLoading,
+		AnimeCardLoadingComp,
 	},
 	data() {
 		return {

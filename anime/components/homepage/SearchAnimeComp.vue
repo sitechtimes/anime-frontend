@@ -31,10 +31,10 @@
 			</div>
 			<div class="allAnime-content">
 				<div class="content-condition" v-if="loading">
-					<cardLoading v-for="anime in loadingAnime" />
+					<AnimeCardLoadingComp v-for="anime in loadingAnime" />
 				</div>
 				<div class="content-condition" v-else>
-					<animeCard
+					<AnimeCardComp
 						@saveAnimeID="saveClickedAnimeID(anime.mal_id)"
 						v-for="anime in userStore.pageAllAnime"
 						:id="anime.mal_id"
@@ -194,20 +194,20 @@ function toTop() {
 
 <script lang="ts">
 import { useUserStore } from "~~/stores/userStore";
-import animeCard from "./animeCard.vue";
+import AnimeCardComp from "./AnimeCardComp.vue";
 import TopCharts from "./TopCharts.vue";
 import RightPageButton from "../RightPageButtonSvg.vue";
 import LeftPageButton from "../LeftPageButtonSvg.vue";
-import cardLoading from "./cardLoading.vue";
+import AnimeCardLoadingComp from "./AnimeCardLoadingComp.vue";
 
 export default {
 	name: "AnimeSearch",
 	components: {
-		animeCard,
+		AnimeCardComp,
 		TopCharts,
 		RightPageButton,
 		LeftPageButton,
-		cardLoading,
+		AnimeCardLoadingComp,
 	},
 };
 </script>
