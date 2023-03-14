@@ -17,7 +17,7 @@
 		</div>
 		<div v-if="pageExist">
 			<svg
-				id="rightPageButtonSvg"
+				id="rightPageButton"
 				viewBox="0 0 29 49"
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
@@ -45,18 +45,18 @@ export default {
 </script>
 
 <style scoped>
-#rightPageButtonSvg {
+#rightPageButton {
 	width: 2.5rem;
 	height: 2rem;
 }
-#rightPageButtonSvg path {
+#rightPageButton path {
 	fill: var(--light-text);
 }
-#rightPageButtonSvg:hover > path {
+#rightPageButton:hover > path {
 	fill: var(--white);
 	transition: 0.2s;
 }
-#rightPageButtonSvg:not(hover) > path {
+#rightPageButton:not(hover) > path {
 	fill: var(--light-text);
 	transition: 0.2s;
 }
