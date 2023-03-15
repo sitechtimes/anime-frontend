@@ -74,6 +74,7 @@ export default ({
   padding-top: 9vh;
   width: 70vw;
   margin: auto;
+  margin-bottom: 10vh;
   color: var(--white);
 }
 .award-name {
@@ -143,8 +144,8 @@ export default ({
   background: var(--primary);
   flex-direction: column;
   align-items: flex-end;
-  height: 20vh;
-  width: 20vw;
+  height: 20rem;
+  width: 40rem;
   display: flex;
   margin: auto;
 }
@@ -155,5 +156,31 @@ export default ({
 .popup-msg {
   width: 100%;
   text-align: center;
+}
+
+@media screen and (max-width: 1024px) {
+  .award-name {
+    margin-top: 5rem;
+    font-size: var(--h2);
+  }
+  .nominee-box {
+    height: 10rem;
+  }
+  .anime-title {
+    font-size: var(--h4);
+  }
+  .btn-container {
+    width: 30vw;
+  }
+  .btn {
+    width: 12vw;
+    font-size: var(--h4);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .nominee-box {
+    width: 100%;
+  }
 }
 </style>
