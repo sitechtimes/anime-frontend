@@ -182,5 +182,30 @@ export default ({
   .nominee-box {
     width: 100%;
   }
+  .btn-container {
+    width: 40vw;
+  }
+  .btn {
+    width: 15vw;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  #actual-voting {
+    padding-top: 0;
+    width: 80vw;
+  }
+  .nominee-box {
+    height: 8rem;
+  }
+  .btn-container {
+    width: 80%;
+  }
+  .btn {
+    width: 30vw;
+  }
+  .popup-content {
+    width: 30rem;
+  }
 }
 </style>
