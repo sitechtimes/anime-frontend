@@ -126,4 +126,23 @@ export default ({
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+@media screen and (max-width: 425px) {
+  #award-voting {
+    width: 70vw;
+  }
+  .award-container {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+  .img {
+    height: 16rem;
+  }
+  .award-name {
+    font-size: var(--h4);
+  }
+  .fake-vote-btn {
+    font-size: var(--h5);
+    width: 10rem;
+  }
+}
 </style>
