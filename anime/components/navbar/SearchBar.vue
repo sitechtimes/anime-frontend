@@ -152,13 +152,17 @@ export default {
 </script>
 
 <style scoped>
-.search-bar {
-	width: 25vw;
-	color: rgb(219, 219, 219);
+.search-bar{
+  width:25vw;
+  color: rgb(219, 219, 219);
+  transition-duration: 0;
+  transition-delay: 1000ms;
 }
-.biggerBox {
-	position: fixed;
-	width: 25vw;
+.biggerBox{
+  position:fixed;
+  width: 25vw;
+  transition-duration: 0;
+  transition-delay: 1000ms;
 }
 
 .input {

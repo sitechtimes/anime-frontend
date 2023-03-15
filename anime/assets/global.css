@@ -49,6 +49,7 @@ body {
 	color: var(--text-primary);
 	margin: 0;
 	font-family: var(--body-font);
+	scroll-behavior: smooth;
 }
 :root {
 	/* fonts */
@@ -58,6 +59,7 @@ body {
 	--primary: #f8665e;
 	--secondary: #d33c3c;
 	--tertiary: #272727;
+	--quaternary: #fb5549;
 	--white: #fff;
 	--off-white: #f0f0f0;
 	--light-text: #b4b4b4;
@@ -66,6 +68,8 @@ body {
 	--bg-primary: #1b1b1b;
 	--bg-secondary: #2f2f2f;
 	--alt-linear: #7926ff;
+	--info-btn: #ffb6c1;
+	--info-btn-click: #ff788c;
 
 	/* font weight */
 	--fw-light: 300;
