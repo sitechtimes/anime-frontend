@@ -1,42 +1,7 @@
 <template>
-  <div>
-    <h2>Starlink Launches</h2>
-    <button @click="api">click</button>
-
-  </div>
+    <div></div>
 </template>
 
+<style scoped></style>
 
-<style scoped>
-button{
-  margin: 20rem;
-}
-</style>
-
-<script lang="ts" setup>
-import axios from 'axios';
-
-const query = `
-
-  launches {
-    id
-    launch_year
-    mission_name
-  }
-
-`
-const api = ()=>{
-  console.log('button')
-  axios({
-  url:'https://api.myanimelist.net/v2',
-  method:'get',
-  headers:{
-    'Content-Type':'application/json',
-  },
-  data:{
-    query:query
-  }
-}).then((res)=>{
-  console.log(res.data)
-})}
-</script>
+<script lang="ts" setup></script>

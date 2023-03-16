@@ -56,13 +56,17 @@ body {
 	--body-font: "Merriweather Sans", sans-serif;
 
 	/* colors */
-	--primary: #ff645a;
-	--secondary: #ca3d3d;
+	--primary: #f8665e;
+	--secondary: #d33c3c;
 	--tertiary: #272727;
 	--quaternary: #fb5549;
 	--white: #fff;
+	--off-white: #f0f0f0;
+	--light-text: #b4b4b4;
+	--shaded-text: #7a7a7a;
 	--dark-text: #24201e;
-	--bg-primary: #101010;
+	--bg-primary: #1b1b1b;
+	--bg-secondary: #2f2f2f;
 	--alt-linear: #7926ff;
 	--info-btn: #ffb6c1;
 	--info-btn-click: #ff788c;
@@ -80,9 +84,9 @@ body {
 	--h2: 3.998rem;
 	--h3: 2.827rem;
 	--h4: 1.999rem;
-	--h5: 1.414rem;
-	--h6: 1.2rem;
-	--h7: 1rem;
+	--h5: 1.6rem;
+	--h6: 1.414rem;
+	--h7: 1.2rem;
+	--h8: 1rem;
 	--smallText: 0.8rem;
 }
-

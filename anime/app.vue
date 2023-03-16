@@ -19,22 +19,21 @@
   import { useUserStore } from "./stores/userStore"
   import NavigationMobile from './components/navbar/NavigationMobile.vue'
   import ScrollBtn from './components/ScrollBtn.vue'
-  export default ({
-    name: 'IndexPage',
-    components:{
+  export default {
+    name: "IndexPage",
+    components: {
       NavBar,
       NavigationMobile,
-      ScrollBtn
     },
-    setup(){
-      const userStore = useUserStore()
+    setup() {
+      const userStore = useUserStore();
       return {
         userStore,
-      }
+      };
     },
     beforeCreate() {
-        this.userStore.checkCookie()
-      }
+      this.userStore.checkCookie();
+    },
     // methods: {
     //   onBeforeMount() {
     //     this.userStore.checkCookie()
@@ -44,11 +43,9 @@
     //   this.userStore.getToken
     //   console.log(this.userStore.getToken, this.userStore.getUser)
     // }
-
-  })
-
-  </script>
-  <style>
+  };
+</script>
+<style>
   @import url("./assets/global.css");
   /* buttons */
   .button,
@@ -96,27 +93,25 @@
 }
 
 @media screen and (max-width: 350px) {
-  
 }
 @media screen and (max-width: 350px) {
-  .dateBar {
-    padding: 0.25rem 1rem;
-  }
-  .list {
-    column-gap: 0;
-  }
-  .sub__container {
-    display: flex;
-  }
-  #nav__span {
-    display: flex;
-  }
-  .modeIcon:first-child {
-    padding-right: 0rem;
-  }
-  .modeIcon:last-child {
-    display: none;
-  }
+	.dateBar {
+		padding: 0.25rem 1rem;
+	}
+	.list {
+		column-gap: 0;
+	}
+	.sub__container {
+		display: flex;
+	}
+	#nav__span {
+		display: flex;
+	}
+	.modeIcon:first-child {
+		padding-right: 0rem;
+	}
+	.modeIcon:last-child {
+		display: none;
+	}
 }
-
-  </style>
+</style>

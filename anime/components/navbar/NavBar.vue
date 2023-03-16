@@ -14,8 +14,6 @@
                 <li class="link">
                     <NuxtLink to="/history" class="link-href">History</NuxtLink>
                 </li>
-
-               
                 <NuxtLink v-if="userStore.isAuthenticated == false" to="/login" class="link-href"> <button class="log-in button">Log In</button></NuxtLink>
                 <button @click="userStore.logout" v-if="userStore.isAuthenticated == true" class="log-in button"> Logout</button>
             </ul>
@@ -24,86 +22,86 @@
     </section>
 </template>
 <script lang="ts">
-import SearchBar from './SearchBar.vue'
-import axios from "axios"
-import { useUserStore } from '../../stores/userStore'
+import SearchBar from "./SearchBar.vue";
+import axios from "axios";
+import { useUserStore } from "../../stores/userStore";
 
+export default {
+	name: "NavBar",
+	components: {
+		SearchBar,
+	},
+	setup() {
+		const userStore = useUserStore();
+		// const router = useRoute()
+		// userStore.$persist()
+		// console.log(userStore.userData)
 
- 
-  export default ({
-    name: 'NavBar',
-    components:{
-        SearchBar
-    },   
-    setup(){
-        const userStore = useUserStore()
-        // const router = useRoute()
-        // userStore.$persist()
-        // console.log(userStore.userData)
+		return {
+			userStore,
+			// router
+		};
+	},
 
-        return{
-            userStore,
-            // router
-            
-        }
-    },
+	//     data: () => ({
+	//     showHeader: true,
+	//     lastScrollPosition: 0,
+	//     scrollOffset: 40,
+	//     user: null
+	//   }),
+	data() {
+		return {
+			showHeader: true,
+			lastScrollPosition: 0,
+			scrollOffset: 40,
+		};
+	},
+	mounted() {
+		this.lastScrollPosition = window.pageYOffset;
+		window.addEventListener("scroll", this.onScroll);
 
-//     data: () => ({
-//     showHeader: true,
-//     lastScrollPosition: 0,
-//     scrollOffset: 40,
-//     user: null
-//   }),
-  data(){
-      return{
-        showHeader: true,
-        lastScrollPosition: 0,
-        scrollOffset: 40,
-      }
-  },
-  mounted() {
-    this.lastScrollPosition = window.pageYOffset
-    window.addEventListener('scroll', this.onScroll)
-    // console.log(this.user)
-  },
-  beforeDestroy() {
-    window.removeEventListener('scroll', this.onScroll)
-  },
-  methods: {
-    // Toggle if navigation is shown or hidden
-    onScroll() {
-      if (window.pageYOffset < 0) {
-        return
-      }
-      if (Math.abs(window.pageYOffset - this.lastScrollPosition) < this.scrollOffset) {
-        return
-      }
-      this.showHeader = window.pageYOffset < this.lastScrollPosition
-      this.lastScrollPosition = window.pageYOffset
-    },
-    // signOut() {
-    //     const auth2 = gapi.auth2.getAuthInstance()
-    //     auth2.signOut().then(() => {
-    //       console.log("user is signed out")
-    //     })
-    // },
-    // callback(res: any) {
-    //     console.log(res.access_token)
-    //     axios.post("http://localhost:8000/social-login/google/", {access_token: res.access_token}).then((res) => {
-    //         console.log(res)
-    //         axios.get('http://127.0.0.1:8000/auth/user/', {headers:{"Authorization": `Bearer ${res.data.access_token}`}}).then((res)=>
-    //         {
-    //             console.log(res.data.first_name)
-    //             // this.user = res.data.first_name
-    //             this.user = res.data
-    //         }
-    //         )
-            
-    //     })
-        
-    // }
-}
-    })
+		// console.log(this.user)
+	},
+
+	beforeDestroy() {
+		window.removeEventListener("scroll", this.onScroll);
+	},
+	methods: {
+		test() {},
+		// Toggle if navigation is shown or hidden
+		onScroll() {
+			if (window.pageYOffset < 0) {
+				return;
+			}
+			if (Math.abs(window.pageYOffset - this.lastScrollPosition) < this.scrollOffset) {
+				return;
+			}
+			this.showHeader = window.pageYOffset < this.lastScrollPosition;
+			this.lastScrollPosition = window.pageYOffset;
+		},
+		// signOut() {
+		//     const auth2 = gapi.auth2.getAuthInstance()
+		//     auth2.signOut().then(() => {
+		//       console.log("user is signed out")
+		//     })
+		// },
+		// callback(res: any) {
+		//     console.log(res.access_token)
+		//     axios.post("http://localhost:8000/social-login/google/", {access_token: res.access_token}).then((res) => {
+		//         console.log(res)
+		//         axios.get('http://127.0.0.1:8000/auth/user/', {headers:{"Authorization": `Bearer ${res.data.access_token}`}}).then((res)=>
+		//         {
+		//             console.log(res.data.first_name)
+		//             // this.user = res.data.first_name
+		//             this.user = res.data
+		//         }
+		//         )
+
+		//     })
+
+		// }
+	},
+};
 </script>
 <style scoped>
 .log-in {

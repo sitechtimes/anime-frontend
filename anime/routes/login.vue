@@ -55,7 +55,7 @@ export default {
 
 #login {
   padding-top: 9vh;
-  height: 100vh;
+  height: 200vh;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;

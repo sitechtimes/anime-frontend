@@ -1,11 +1,18 @@
 <template>
-	<svg width="50" height="16" viewBox="0 0 46 14" xmlns="http://www.w3.org/2000/svg">
-		<path
-			d="M0 1C0 0.447715 0.447715 0 1 0H44.6975C45.3548 0 45.8333 0.623321 45.6635 1.25833L42.4886 13.1313C42.3717 13.5688 41.9754 13.873 41.5226 13.873H1C0.447717 13.873 0 13.4253 0 12.873V1Z"
-			fill="var(--primary)"
-		/>
-		<text id="ep" x="6" y="10.5" fill="var(--white)">{{ episode }}</text>
-	</svg>
+	<div id="episode-box">
+		<div id="episode-text" v-if="episode">{{ episode }}</div>
+		<div id="episode-text" v-if="!episode">N/A</div>
+		<svg
+			id="epBox"
+			width="1rem"
+			height="2rem"
+			viewBox="0 0 10 20"
+			fill="none"
+			xmlns="http://www.w3.org/2000/svg"
+		>
+			<path d="M0 0h8.5a1.5 1.5 90 0 1 1.4 1.9L5 19a1.5 1.5 90 0 1-1.5 1H.1Z" />
+		</svg>
+	</div>
 </template>
 
 <script lang="ts">
@@ -13,7 +20,6 @@ export default {
 	name: "EpisodeSVG",
 	props: {
 		episode: {
-			type: Number,
 			required: true,
 		},
 	},
@@ -21,10 +27,26 @@ export default {
 </script>
 
 <style scoped>
-#ep {
-	width: 1.5rem;
+#episode-box {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+#episode-text {
+	line-height: 2rem;
+	color: var(--off-white);
 	font-size: var(--h7);
-	color: var(--white);
 	font-weight: var(--fw-reg);
+	background-color: var(--secondary);
+	padding-left: 0.6rem;
+	border-radius: 0.2rem 0 0 0.2rem;
+}
+#epBox {
+	font-size: var(--h7);
+	font-weight: var(--fw-med);
+	fill: var(--white);
+}
+#epBox path {
+	fill: var(--secondary);
 }
 </style>

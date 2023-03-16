@@ -1,19 +1,21 @@
 <template>
-	<div class="charts-container">
-		<div class="charts-rank">{{ rank }}</div>
-		<img class="charts-img" :src="`${img}`" alt="" />
-		<div class="charts-info">
-			<h3 class="charts-title">{{ title }}</h3>
-			<div class="charts-details">
-				<EpisodeSVG :episode="episode" />
-				<h4 class="charts-votes">{{ votes }}</h4>
+	<div class="topChartsComp-container">
+		<div class="topChartsComp-rank">{{ rank }}</div>
+		<img class="topChartsComp-image" :src="`${img}`" alt="" />
+		<div class="topChartsComp-info">
+			<h3 class="topChartsComp-title">{{ title }}</h3>
+			<div class="topChartsComp-details">
+				<div class="topChartsComp-episode">
+					<EpisodeSVG :episode="episode" />
+				</div>
+				<h4 class="topChartsComp-votes">{{ votes }}</h4>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script lang="ts">
-import EpisodeSVG from "../episodeSvg.vue";
+import EpisodeSVG from "../EpisodeSvg.vue";
 
 export default {
 	name: "EpisodeCard",
@@ -46,62 +48,64 @@ export default {
 </script>
 
 <style scoped>
-.charts-container {
+.topChartsComp-container {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	width: 100%;
-	height: 9rem;
+	height: 7.7rem;
 	background-color: var(--tertiary);
 	margin-top: 1rem;
 	border-radius: 0.75rem;
 }
-.charts-rank {
+.topChartsComp-rank {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 10rem;
+	width: 4.5rem;
 	height: 100%;
 	background-color: var(--secondary);
 	color: var(--white);
 	font-size: var(--h3);
-	font-weight: var(--fw-semi);
+	font-weight: var(--fw-reg);
 	border-radius: 0.75rem 0 0 0.75rem;
 }
-.charts-img {
+.topChartsComp-image {
 	height: 100%;
 }
-.charts-info {
+.topChartsComp-info {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	width: 100%;
+	width: 55%;
 	padding-left: 1rem;
 }
-.charts-title {
+.topChartsComp-title {
+	display: block;
+	white-space: nowrap;
 	width: 100%;
-	color: var(--white);
+	color: var(--light-text);
 	font-size: var(--h5);
 	font-weight: var(--fw-reg);
-	margin-left: 0.5rem;
+	text-overflow: ellipsis;
+	overflow: hidden;
+
 }
-.charts-details {
+.topChartsComp-details {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	width: 100%;
-	padding: 0.5rem;
 }
-.charts-ep {
+.topChartsComp-episode {
 	color: var(--white);
 	font-size: var(--h6);
 	font-weight: var(--fw-reg);
 	padding: 0.5rem;
 }
-.charts-votes {
-	color: var(--white);
+.topChartsComp-votes {
+	color: var(--light-text);
 	font-size: var(--h6);
 	font-weight: var(--fw-reg);
-	padding: 0.5rem;
+	padding-left: 1rem;
 }
 </style>
