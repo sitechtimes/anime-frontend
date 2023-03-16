@@ -2,20 +2,20 @@
     <div id="home">
         <span class="underNav"></span>
         <Carousel />
-        <TrendingBox />
+        <Home />
         <footer class="footer"></footer>
     </div>
 </template>
 
 <script lang="ts">
-import TrendingBox from "../components/homepage/TrendingBox.vue";
+import Home from "../components/homepage/Home.vue";
 import Carousel from "../components/homepage/Carousel.vue";
 
 export default {
     name: "IndexPage",
     components: {
         Carousel,
-        TrendingBox,
+        Home,
     },
 };
 </script>
