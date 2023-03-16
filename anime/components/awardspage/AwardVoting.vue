@@ -58,6 +58,7 @@ export default ({
 .award-box:hover {
   outline: solid 5px var(--primary);
   background: var(--primary);
+  transform: translate(0, -5%);
 }
 .img {
   height: 20rem;
@@ -117,22 +118,20 @@ export default ({
 
 @media screen and (max-width: 768px) {
   .award-container {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 6rem;
   }
 }
 
 @media screen and (max-width: 568px) {
   .award-container {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(1, minmax(0, 1fr));
   }
 }
 
 @media screen and (max-width: 425px) {
   #award-voting {
     width: 70vw;
-  }
-  .award-container {
-    grid-template-columns: repeat(1, minmax(0, 1fr));
   }
   .img {
     height: 16rem;
