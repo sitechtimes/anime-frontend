@@ -91,12 +91,11 @@ export default {
 
 <style scoped>
 #banner{
-  width: 100vw;
-  height: 100vh;
+  margin-bottom: 15vh;
 }
 .banner-flex{
   width: 80%;
-  height: 45%;
+  height: 45vh;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -128,6 +127,7 @@ export default {
   width: 5rem;
   height: 5rem;
   margin-left: 1rem;
+  object-fit: cover;
 }
 .season-text{
   font-size: var(--h3);
