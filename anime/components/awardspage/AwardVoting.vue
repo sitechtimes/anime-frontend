@@ -1,11 +1,11 @@
 <template>
   <div id="award-voting">
     <div class="text-box">
-      <h1 class="text-head">hfioedshfhfoe</h1>
+      <h1 class="text-head">Vote Here Vote Here Vote Here</h1>
       <div class="text-sub">
-        <h2>Seasonal</h2>
-        <h2>Year</h2>
-        <h2>Past Winners</h2>
+        <h2 class="text-tab e">Seasonal</h2>
+        <h2 class="text-tab">Year</h2>
+        <h2 class="text-tab">Past Winners</h2>
       </div>
     </div>
     <div class="award-container">
@@ -51,6 +51,23 @@ export default ({
   margin-bottom: 30vh;
   color: var(--white);
 }
+.text-box {
+  margin-bottom: 4rem;
+}
+.text-head {
+  font-size: var(--h1);
+}
+.text-sub {
+  font-size: var(--h6);
+  display: flex;
+}
+.text-tab {
+  margin-right: 3rem;
+}
+.e {
+  color: var(--primary);
+  text-decoration: underline;
+}
 .award-container {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -66,7 +83,7 @@ export default ({
 .award-box:hover {
   outline: solid 5px var(--primary);
   background: var(--primary);
-  transform: translate(0, -5%);
+  transform: translate(0, -8px);
 }
 .img {
   height: 20rem;
