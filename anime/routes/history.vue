@@ -16,6 +16,22 @@
       <button class="history-arrow" v-on:click="ShoworHide"> &#11165; </button>
     </div>
     </div>
+    <div class="year-history">
+    <div v-if="Show">
+     <h1 class="title-history"> History for #### </h1>
+     <button class="history-arrow" v-on:click="ShoworHide"> &#11167; </button>
+     <div class="user-history">
+       <div class="anime-history" v-for="anime in animes" :key="anime.title">
+       <img class="anime-img" :src="anime.img" :alt="anime.alt"/>
+       <h3 class="anime-title"> {{ anime.title}} </h3>
+       </div>
+    </div>
+    </div>
+    <div v-else>
+      <h1 class="title-history"> History for #### </h1>
+      <button class="history-arrow" v-on:click="ShoworHide"> &#11165; </button>
+    </div>
+    </div>
   </div>
 </template>
 
@@ -25,6 +41,26 @@ export default ({
   data: ()=> ({
       Show: true,
       animes: [
+        {
+          title: "Title of Anime",
+          alt: "Image of Anime",
+          img: `https://th.bing.com/th/id/OIP.VVki1-MBUqwb4NXk-55pMgAAAA?pid=ImgDet&rs=1`,
+        },
+        {
+          title: "Title of Anime",
+          alt: "Image of Anime",
+          img: `https://th.bing.com/th/id/OIP.VVki1-MBUqwb4NXk-55pMgAAAA?pid=ImgDet&rs=1`,
+        },
+        {
+          title: "Title of Anime",
+          alt: "Image of Anime",
+          img: `https://th.bing.com/th/id/OIP.VVki1-MBUqwb4NXk-55pMgAAAA?pid=ImgDet&rs=1`,
+        },
+        {
+          title: "Title of Anime",
+          alt: "Image of Anime",
+          img: `https://th.bing.com/th/id/OIP.VVki1-MBUqwb4NXk-55pMgAAAA?pid=ImgDet&rs=1`,
+        },
         {
           title: "Title of Anime",
           alt: "Image of Anime",
@@ -66,13 +102,21 @@ export default ({
 }
 .anime-img {
   width: 45%;
-  height: 55%;
+  height: 65%;
 }
 .anime-title {
   font-size: var(--h3);
 }
+.user-history {
+  padding: 2%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
 .year-history {
   width: 96%;
+  margin-top: 1%;
   margin-left: 2%;
   margin-right: 2%;
   margin-bottom: 1.5%;
@@ -80,22 +124,6 @@ export default ({
   color: var(--white);
   white-space: nowrap;
   background-color: rgb(37, 37, 37);
-}
-.user-history {
-  padding: 2%;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-items: center;
-}
-.history-arrow {
-  margin-top: 0%;
-  margin-left: 7%;
-  color: var(--white);
-  font-size: var(--h2);
-  justify-self: center;
-  display: inline-block;
-  background-color: unset; 
 }
 .anime-history {
   margin: 0.5%;
@@ -108,5 +136,14 @@ export default ({
   text-align: center;
   font-size: var(--h1);
   display: inline-block;
+}
+.history-arrow {
+  margin-top: 0%;
+  margin-left: 7%;
+  color: var(--white);
+  font-size: var(--h2);
+  justify-self: center;
+  display: inline-block;
+  background-color: unset; 
 }
 </style>
