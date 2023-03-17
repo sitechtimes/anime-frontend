@@ -1,5 +1,13 @@
 <template>
   <div id="award-voting">
+    <div class="text-box">
+      <h1 class="text-head">hfioedshfhfoe</h1>
+      <div class="text-sub">
+        <h2>Seasonal</h2>
+        <h2>Year</h2>
+        <h2>Past Winners</h2>
+      </div>
+    </div>
     <div class="award-container">
       <NuxtLink to="/vote" v-for="award in awards" :key="award.category">
         <div class="award-box">
@@ -41,6 +49,7 @@ export default ({
   margin: auto;
   width: 75vw;
   margin-bottom: 30vh;
+  color: var(--white);
 }
 .award-container {
   display: grid;
@@ -49,7 +58,6 @@ export default ({
   row-gap: 6rem;
 }
 .award-box {
-  color: var(--white);
   display: flex;
   flex-direction: column;
   border-radius: 10px;
