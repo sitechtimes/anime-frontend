@@ -1,11 +1,11 @@
 <template>
   <div id="award-voting">
     <div class="text-box">
-      <h1 class="text-head">Vote Here Vote Here Vote Here</h1>
+      <h1 class="text-head">#Vote Here in the Boxes Below</h1>
       <div class="text-sub">
-        <h2 class="text-tab e">Seasonal</h2>
+        <h2 class="text-tab">Seasonal</h2>
         <h2 class="text-tab">Year</h2>
-        <h2 class="text-tab">Past Winners</h2>
+        <NuxtLink to="/history"><h2 class="text-tab">Past Winners</h2></NuxtLink>
       </div>
     </div>
     <div class="award-container">
@@ -55,7 +55,7 @@ export default ({
   margin-bottom: 4rem;
 }
 .text-head {
-  font-size: var(--h1);
+  font-size: var(--h2);
 }
 .text-sub {
   font-size: var(--h6);
@@ -64,7 +64,7 @@ export default ({
 .text-tab {
   margin-right: 3rem;
 }
-.e {
+.text-tab:hover {
   color: var(--primary);
   text-decoration: underline;
 }
