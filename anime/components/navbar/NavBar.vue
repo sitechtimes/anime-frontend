@@ -2,11 +2,7 @@
     <section id="nav" class="nav">
         <nav class="navigation" :class="{ 'is-hidden': !showHeader }">
             <h1 id="logo">
-                <<<<<<< HEAD
-                <NuxtLink to="/">Technime</NuxtLink>
-                =======
                 <NuxtLink to="/" class="home-link">Technime</NuxtLink>
-                >>>>>>> dev2
             </h1>
             <SearchBar />
             <ul class="routers">
@@ -21,7 +17,6 @@
                 <li class="link">
                     <NuxtLink to="/history" class="link-href">History</NuxtLink>
                 </li>
-                <<<<<<< HEAD ======= >>>>>>> dev2
                 <NuxtLink
                     v-if="userStore.isAuthenticated == false"
                     to="/login"
@@ -29,7 +24,6 @@
                 >
                     <button class="log-in button">Log In</button></NuxtLink
                 >
-                <<<<<<< HEAD
                 <NuxtLink
                     v-if="userStore.isAuthenticated == true"
                     to="/profile"
@@ -39,7 +33,6 @@
                         alt=""
                         class="profile-button"
                 /></NuxtLink>
-                ======= >>>>>>> dev2
                 <button
                     @click="userStore.logout"
                     v-if="userStore.isAuthenticated == true"
@@ -175,6 +168,9 @@ export default {
     font-size: var(--h2);
     transition: all 1s ease-in-out;
     -webkit-transition: all 1s ease-in-out;
+}
+.profile-button {
+    width: 4rem;
 }
 .link {
     font-size: var(--h4);

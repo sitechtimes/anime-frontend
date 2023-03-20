@@ -1,5 +1,4 @@
 <template>
-    <<<<<<< HEAD
     <div id="banner">
         <span class="underNav"></span>
         <div class="banner-flex">
@@ -48,59 +47,9 @@
             </div>
         </div>
     </div>
-    =======
-    <div id="banner">
-        <span class="underNav"></span>
-        <div class="banner-flex">
-            <div class="banner-bg">
-                <div class="banner-text">
-                    <h2 class="trending-text">#trending</h2>
-                    <h1 class="title-banner">
-                        vote for your <br />faves anytime
-                    </h1>
-                    <p class="voting-description">
-                        Mission Statement and more writing yeah
-                    </p>
-                </div>
-                <img
-                    src="@/assets/media/award-anya.png"
-                    alt="Anya falling with icecream"
-                    class="banner-image"
-                />
-            </div>
-            <div class="banner-season">
-                <ul class="anime-list">
-                    <h2 class="season-text">Anime of the Season</h2>
-                    <li
-                        v-for="anime in animes"
-                        :key="anime.animeID"
-                        class="bestAnime"
-                    >
-                        <div class="picture-column">
-                            <h2 class="rank-number">{{ anime.animeID }}</h2>
-                            <img
-                                class="anime-pfp"
-                                src="https://cdn.myanimelist.net/images/characters/4/457933.jpg"
-                                alt=""
-                            />
-                        </div>
-                        <div class="info-column">
-                            <h1 class="animeTitle">{{ anime.title }}</h1>
-                            <div class="star-rating">
-                                <starSVG />
-                                <p>{{ anime.stars.toFixed(2) }}</p>
-                            </div>
-                        </div>
-                        <span class="genre-text">{{ anime.genre }}</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    >>>>>>> dev2
 </template>
 
-<script>
+<script lang="ts">
 import starSVG from "@/components/starSVG.vue";
 export default {
     components: {
