@@ -2,33 +2,33 @@
   <div id="history">
     <div class="year-history">
     <div v-if="Show">
-     <h1 class="title-history"> History for #### </h1>
+     <h1 class="title-history"> History of #### </h1>
      <button class="history-arrow" v-on:click="ShoworHide"> &#11167; </button>
      <div class="user-history">
        <div class="anime-history" v-for="anime in animes" :key="anime.title">
        <img class="anime-img" :src="anime.img" :alt="anime.alt"/>
-       <h3 class="anime-title"> {{ anime.title}} </h3>
+       <h3 class="anime-title"> {{ anime.title }} </h3>
        </div>
     </div>
     </div>
     <div v-else>
-      <h1 class="title-history"> History for #### </h1>
+      <h1 class="title-history"> History of #### </h1>
       <button class="history-arrow" v-on:click="ShoworHide"> &#11165; </button>
     </div>
     </div>
     <div class="year-history">
     <div v-if="Show">
-     <h1 class="title-history"> History for #### </h1>
+     <h1 class="title-history"> History of #### </h1>
      <button class="history-arrow" v-on:click="ShoworHide"> &#11167; </button>
      <div class="user-history">
        <div class="anime-history" v-for="anime in animes" :key="anime.title">
        <img class="anime-img" :src="anime.img" :alt="anime.alt"/>
-       <h3 class="anime-title"> {{ anime.title}} </h3>
+       <h3 class="anime-title"> {{ anime.title }} </h3>
        </div>
     </div>
     </div>
     <div v-else>
-      <h1 class="title-history"> History for #### </h1>
+      <h1 class="title-history"> History of #### </h1>
       <button class="history-arrow" v-on:click="ShoworHide"> &#11165; </button>
     </div>
     </div>
@@ -98,21 +98,21 @@ export default ({
 
 <style>
 #history {
-  padding-top: 10vh;
+  padding-top: 12vh;
 }
 .anime-img {
-  width: 45%;
-  height: 65%;
+  width: 50%;
+  height: 67%;
 }
 .anime-title {
+  text-align: left;
   font-size: var(--h3);
 }
 .user-history {
-  padding: 2%;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 .year-history {
   width: 96%;
@@ -123,11 +123,13 @@ export default ({
   align-items: center;
   color: var(--white);
   white-space: nowrap;
-  background-color: rgb(37, 37, 37);
+  background-color: rgb(36, 36, 36);
 }
 .anime-history {
-  margin: 0.5%;
+  width: 20%;
+  margin: 0.2%;
   display: flex;
+  overflow: hidden;
   align-items: center;
   flex-direction: column;
 }
@@ -139,7 +141,7 @@ export default ({
 }
 .history-arrow {
   margin-top: 0%;
-  margin-left: 7%;
+  margin-left: 8%;
   color: var(--white);
   font-size: var(--h2);
   justify-self: center;
