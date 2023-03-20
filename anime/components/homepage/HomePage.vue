@@ -78,13 +78,6 @@ onMounted(
 	() => {
 		userStore.animeInfo = null;
 		userStore.animeId = null;
-
-		// if (userStore.currentAnime != null) {
-		// 	userStore.pagePopularAnime = userStore.currentAnime.slice(
-		// 		userStore.startPageIndex,
-		// 		userStore.endPageIndex
-		// 	);
-		// } else {
 		userStore.startPageIndex = 0;
 		userStore.endPageIndex = 12;
 		userStore.pageNumber = 1;
