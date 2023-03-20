@@ -64,13 +64,13 @@
                         </div>
                     </div>
                 </Tab>
-                <Tab title="Example">
+                <Tab title="Rated">
                     <div class="tabShow">
                         <div class="tab-logo">
                             <h3 class="tab-detail">Technime</h3>
                         </div>
                         <div class="tab-bottom">
-                            <h3 class="tab-title">Example</h3>
+                            <h3 class="tab-title">Rated</h3>
                         </div>
                     </div>
                 </Tab>
