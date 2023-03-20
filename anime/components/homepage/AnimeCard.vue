@@ -1,16 +1,20 @@
 <template>
-	<div class="card-container">
-		<img class="anime-img" :src="`${img}`" alt="" />
-		<div class="container-bar">
-			<EpisodeSVG :episode="episode" />
-			<p id="format">{{ format }}</p>
+	<NuxtLink to="/animeInfo">
+		<div class="card-container" @click="$emit('saveAnimeID')">
+			<div class="card-cover">
+				<img class="card-image" :src="`${imageUrl}`" alt="" />
+				<div class="card-info">
+					<EpisodeSVG :episode="episode" />
+					<p class="card-media">{{ mediaType }}</p>
+				</div>
+			</div>
+			<h5 class="card-title">{{ animeName }}</h5>
 		</div>
-		<h5 class="title">{{ title }}</h5>
-	</div>
+	</NuxtLink>
 </template>
 
 <script lang="ts">
-import EpisodeSVG from "../episodeSvg.vue";
+import EpisodeSVG from "../EpisodeSvg.vue";
 
 export default {
 	name: "AnimeCard",
@@ -18,21 +22,27 @@ export default {
 		EpisodeSVG,
 	},
 	props: {
-		img: {
+		imageUrl: {
 			type: String,
 			required: true,
 		},
 		episode: {
-			type: Number,
 			required: true,
 		},
-		format: {
+		mediaType: {
+			required: true,
+		},
+		animeName: {
 			type: String,
 			required: true,
 		},
-		title: {
-			type: String,
-			required: true,
+	},
+	computed: {
+		trimTitle() {
+			if (this.animeName.length <= 28) {
+				return this.animeName;
+			}
+			return this.animeName.slice(0, 28) + "...";
 		},
 	},
 };
@@ -42,41 +52,66 @@ export default {
 .card-container {
 	display: flex;
 	flex-direction: column;
-	width: 8vw;
+	width: 11vw;
 }
-.anime-img {
-	border-radius: 0.5rem 0.5rem 0 0;
-}
-img {
+.card-cover {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
 	width: 100%;
+	border-radius: 0.5rem;
+	overflow: hidden;
 }
-.container-bar {
+.card-cover:not(hover) > img {
+	opacity: 100%;
+	transition: 0.3s;
+}
+.card-cover:hover > img {
+	opacity: 25%;
+	transition: 0.3s;
+}
+.card-image {
+	border-radius: 0.5rem 0.5rem 0 0;
+	width: 100%;
+	object-fit: cover;
+	aspect-ratio: 225/350;
+}
+.card-info {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-	background-color: var(--bg-primary);
-	padding: 0.15rem;
-	padding-left: 0.5rem;
+	background-color: var(--bg-secondary);
+	padding: 0.2rem;
+	padding-left: 0.6rem;
+	padding-right: 0.75rem;
 	border-radius: 0 0 0.5rem 0.5rem;
 }
-.title {
+.card-title {
 	width: 100%;
-	color: var(--white);
+	color: var(--light-text);
+	font-size: var(--h5);
+	font-weight: var(--fw-light);
+	padding-top: 0.5rem;
+	white-space: wrap;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+.card-title:hover {
+	color: var(--primary);
+	transition: 0.4s;
+}
+.card-title:not(hover) {
+	color: var(--light-text);
+	transition: 0.4s;
+}
+.card-media {
+	color: var(--light-text);
 	font-size: var(--h6);
-	font-weight: var(--fw-reg);
-	padding: 0.5rem;
-}
-#ep {
-	width: 1.5rem;
-	font-size: var(--h7);
-	color: var(--white);
-	font-weight: var(--fw-reg);
-}
-#format {
-	color: #f5f5f5;
-	font-size: var(--h7);
-	padding: 0.2rem 0.5rem;
 	font-weight: var(--fw-reg);
 }
 </style>

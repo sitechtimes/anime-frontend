@@ -23,7 +23,7 @@ import starSVG from "@/components/starSVG.vue";
 export default {
 	name: "RankingCard",
 	components: {
-		starSVG
+		starSVG,
 	},
 	props: {
 		rank: {
@@ -67,7 +67,7 @@ export default {
 	font-family: "LIBRARY 3 AM", sans-serif;
 	color: var(--white);
 	/* background-color: var(--secondary); */
-	background-color: #87000B;
+	background-color: #87000b;
 	height: 100%;
 	width: 7rem;
 	align-items: center;

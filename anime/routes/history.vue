@@ -1,16 +1,7 @@
 <template>
-  <div id="history">
-  </div>
+    <div></div>
 </template>
 
-<script lang="ts">
-export default ({
-  name: 'history',
-  components:{
-    
-  }
-})
-</script>
-<style>
+<style scoped></style>
 
-</style>
+<script lang="ts" setup></script>

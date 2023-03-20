@@ -1,5 +1,10 @@
 <template>
     <div>
+        <Head>
+            <Title>Technime</Title>
+            <Meta name="Technime" content="Rate your favorite animes!" />
+            <Meta name="Technime" content="Rate your favorite animes!" />
+        </Head>
         <NuxtLayout>
             <NavigationMobile />
             <NavBar />
@@ -16,7 +21,6 @@ import NavigationMobile from "./components/navbar/NavigationMobile.vue";
 import ScrollBtn from "./components/ScrollBtn.vue";
 export default {
     name: "IndexPage",
-
     components: {
         NavBar,
         NavigationMobile,
@@ -92,7 +96,7 @@ a {
         display: none;
     }
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
     #nav {
         display: none;
     }

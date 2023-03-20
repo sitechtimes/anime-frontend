@@ -2,7 +2,11 @@
     <section id="nav" class="nav">
         <nav class="navigation" :class="{ 'is-hidden': !showHeader }">
             <h1 id="logo">
+                <<<<<<< HEAD
                 <NuxtLink to="/">Technime</NuxtLink>
+                =======
+                <NuxtLink to="/" class="home-link">Technime</NuxtLink>
+                >>>>>>> dev2
             </h1>
             <SearchBar />
             <ul class="routers">
@@ -17,7 +21,7 @@
                 <li class="link">
                     <NuxtLink to="/history" class="link-href">History</NuxtLink>
                 </li>
-
+                <<<<<<< HEAD ======= >>>>>>> dev2
                 <NuxtLink
                     v-if="userStore.isAuthenticated == false"
                     to="/login"
@@ -25,6 +29,7 @@
                 >
                     <button class="log-in button">Log In</button></NuxtLink
                 >
+                <<<<<<< HEAD
                 <NuxtLink
                     v-if="userStore.isAuthenticated == true"
                     to="/profile"
@@ -34,6 +39,7 @@
                         alt=""
                         class="profile-button"
                 /></NuxtLink>
+                ======= >>>>>>> dev2
                 <button
                     @click="userStore.logout"
                     v-if="userStore.isAuthenticated == true"
@@ -83,12 +89,15 @@ export default {
     mounted() {
         this.lastScrollPosition = window.pageYOffset;
         window.addEventListener("scroll", this.onScroll);
+
         // console.log(this.user)
     },
+
     beforeDestroy() {
         window.removeEventListener("scroll", this.onScroll);
     },
     methods: {
+        test() {},
         // Toggle if navigation is shown or hidden
         onScroll() {
             if (window.pageYOffset < 0) {
@@ -128,53 +137,116 @@ export default {
 };
 </script>
 <style scoped>
+/* .log-in {
+    width: 100%;
+} */
 .navigation {
-    background-color: var(--tertiary);
+    z-index: 5;
     width: 100%;
     height: 9vh;
+    padding: 1rem;
     display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    align-self: stretch;
     margin: 0 auto;
     position: fixed;
-    z-index: 100;
-    padding: 1rem;
-    transform: translate3d(0, 0, 0);
+    align-items: center;
+    align-self: stretch;
+    justify-content: space-evenly;
     transition: 0.1s all ease-out;
+    transform: translate3d(0, 0, 0);
+    background-color: var(--tertiary);
 }
 .routers {
     width: 40%;
     display: flex;
     justify-content: space-between;
 }
+.routers {
+    width: 40%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 .navbar.navbar--hidden {
     box-shadow: none;
     transform: translate3d(0, -100%, 0);
 }
-.profile-button {
-    width: 4rem;
-}
 #logo {
-    font-size: var(--h2);
     color: var(--white);
+    font-size: var(--h2);
     transition: all 1s ease-in-out;
     -webkit-transition: all 1s ease-in-out;
 }
-
 .link {
     font-size: var(--h4);
 }
-
 .link:hover {
     color: var(--tertiary);
 }
-
 .navigation {
     transform: translateY(0);
     transition: transform 300ms linear;
 }
 .navigation.is-hidden {
     transform: translateY(-100%);
+}
+@media screen and (max-width: 1285px) {
+    .log-in {
+        width: 10rem;
+        padding: 0.6rem;
+        font-size: var(--h4);
+    }
+    .home-link {
+        font-size: var(--h3);
+    }
+    .link-href {
+        margin: 2px 5px;
+        font-size: var(--h4);
+    }
+}
+@media screen and (max-width: 1025px) {
+    .log-in {
+        width: 7rem;
+        font-size: var(--h5);
+    }
+    .link-href {
+        font-size: var(--h5);
+    }
+}
+@media screen and (max-width: 915px) {
+    .log-in {
+        width: 7.8rem;
+    }
+    .home-link {
+        padding: 0rem;
+        font-size: var(--h3);
+    }
+    .link-href {
+        margin: 1px 5px;
+        font-size: var(--h4);
+    }
+}
+@media screen and (max-width: 825px) {
+    .log-in {
+        width: 8.2rem;
+        font-size: 1.65rem;
+        margin-right: 5rem;
+    }
+    .home-link {
+        font-size: var(--h3);
+    }
+    .link-href {
+        margin: 1px 5px;
+        font-size: 1.7rem;
+    }
+}
+@media screen and (max-width: 770px) {
+    .log-in {
+        width: 7rem;
+        font-size: 1.5rem;
+    }
+    .link-href {
+        margin: 2px 5px;
+        font-size: var(--h5);
+    }
 }
 </style>
