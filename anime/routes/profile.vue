@@ -158,15 +158,18 @@ export default {
     display: flex;
     justify-content: center;
     color: var(--white);
-    margin-bottom: 5%;
+    margin-bottom: 8%;
 }
 .tabs-class .tab {
     background-color: var(--tertiary);
     width: 70vw;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
+    border-radius: 5px;
     box-shadow: 0 4px 8px 0 var(--tertiary);
 }
 .banner {
@@ -308,6 +311,9 @@ export default {
     font-size: var(--h3);
     color: var(--primary);
     text-transform: lowercase;
+    right: 5%;
+    top: 10%;
+    position: absolute;
 }
 .tab-title {
     font-size: var(--h3);

@@ -30,6 +30,7 @@ export default {
 .tabs {
     display: flex;
     height: 50vh;
+    position: relative;
 }
 .tabs-header {
     display: flex;
@@ -39,11 +40,14 @@ export default {
     margin-bottom: 5rem;
     padding: 0;
     width: 7vw;
-    height: 51%;
+    height: 120%;
+    top: -10%;
+    z-index: 3;
     background-color: var(--secondary);
     margin-left: 4rem;
     position: absolute;
-    box-shadow: 0 4px 8px 0 var(--bg-primary);
+    box-shadow: 0 4px 8px 0 var(--tertiary);
+    border-radius: 5px;
 }
 .tabs-header li {
     font-size: var(--h4);
