@@ -99,7 +99,7 @@ onMounted(
 					return true;
 				});
 
-				const airingAnime = [];
+				const airingAnime = [] as any;
 
 				refineData.filter(function (anime: any) {
 					if (anime.status == "Currently Airing") {
