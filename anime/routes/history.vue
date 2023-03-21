@@ -1,6 +1,6 @@
 <template>
   <div id="history">
-    <div class="year-history">
+    <div class="yearly-history">
     <div v-if="Show">
      <h1 class="title-history"> History of #### </h1>
      <button class="history-arrow" v-on:click="ShoworHide"> &#11167; </button>
@@ -16,7 +16,7 @@
       <button class="history-arrow" v-on:click="ShoworHide"> &#11165; </button>
     </div>
     </div>
-    <div class="year-history">
+    <div class="yearly-history">
     <div v-if="Show">
      <h1 class="title-history"> History of #### </h1>
      <button class="history-arrow" v-on:click="ShoworHide"> &#11167; </button>
@@ -101,10 +101,12 @@ export default ({
   padding-top: 12vh;
 }
 .anime-img {
-  width: 50%;
-  height: 67%;
+  width: 58%;
+  height: 68%;
 }
 .anime-title {
+  max-width: 75%;
+  overflow: hidden;
   text-align: left;
   font-size: var(--h3);
 }
@@ -114,37 +116,33 @@ export default ({
   flex-direction: row;
   justify-content: space-between;
 }
-.year-history {
-  width: 96%;
-  margin-top: 1%;
-  margin-left: 2%;
-  margin-right: 2%;
-  margin-bottom: 1.5%;
-  align-items: center;
-  color: var(--white);
-  white-space: nowrap;
-  background-color: rgb(36, 36, 36);
-}
 .anime-history {
   width: 20%;
-  margin: 0.2%;
+  padding: 0%;
+  margin: 0.5%;
   display: flex;
-  overflow: hidden;
   align-items: center;
   flex-direction: column;
 }
 .title-history {
-  margin-left: 30%;
+  margin-left: 28%;
   text-align: center;
   font-size: var(--h1);
   display: inline-block;
 }
+.yearly-history {
+  width: 96%;
+  align-items: center;
+  color: var(--white);
+  white-space: nowrap;
+  margin: 1% 2% 1.5% 2%;
+  background-color: rgb(36, 36, 36);
+}
 .history-arrow {
   margin-top: 0%;
-  margin-left: 8%;
+  margin-left: 6%;
   color: var(--white);
   font-size: var(--h2);
-  justify-self: center;
   display: inline-block;
   background-color: unset; 
 }
