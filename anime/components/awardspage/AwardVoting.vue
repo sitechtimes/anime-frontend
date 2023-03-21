@@ -63,6 +63,7 @@ export default ({
 }
 .text-tab {
   margin-right: 3rem;
+  transition: 200ms ease-in-out;
 }
 .text-tab:hover {
   color: var(--primary);
