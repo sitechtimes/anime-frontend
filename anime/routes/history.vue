@@ -81,6 +81,16 @@ export default ({
           alt: "Image of Anime",
           img: `https://th.bing.com/th/id/OIP.VVki1-MBUqwb4NXk-55pMgAAAA?pid=ImgDet&rs=1`,
         },
+        {
+          title: "Title of Anime",
+          alt: "Image of Anime",
+          img: `https://th.bing.com/th/id/OIP.VVki1-MBUqwb4NXk-55pMgAAAA?pid=ImgDet&rs=1`,
+        },
+        {
+          title: "Title of Animeeeeeeeeeeeeeeeeeeeeeeeee",
+          alt: "Image of Anime",
+          img: `https://th.bing.com/th/id/OIP.VVki1-MBUqwb4NXk-55pMgAAAA?pid=ImgDet&rs=1`,
+        },
       ],
   }),
   components:{},
@@ -89,7 +99,7 @@ export default ({
       if (this.Show === false) {
         this.Show = true;
       } else {
-        this.Show = false;
+        this.Show = false;e
       }
     },
   },
@@ -98,49 +108,62 @@ export default ({
 
 <style>
 #history {
+  height: 100%;
   padding-top: 12vh;
+  padding-bottom: 55vh;
+  background-color: black;
 }
 .anime-img {
-  width: 58%;
-  height: 68%;
+  width: 52%;
+  height: 78%;
 }
 .anime-title {
-  max-width: 75%;
-  overflow: hidden;
+  left: 6rem;
+  padding: 1%;
+  bottom: 1rem;
+  max-width: 45%;
+  max-height: 17%;
+  text-overflow: ellipsis;
   text-align: left;
-  font-size: var(--h3);
+  position: absolute;
+  font-size: var(--h5);
+  background-color: #0A2854;
+  box-shadow: 0.3rem 0.5rem #000000;
 }
 .user-history {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  justify-content: space-between;
 }
 .anime-history {
-  width: 20%;
+  width: 18%;
+  height: 15%;
   padding: 0%;
-  margin: 0.5%;
   display: flex;
+  position: relative;
   align-items: center;
   flex-direction: column;
+  margin: 1% 0.5% 1% 0.5%;
 }
 .title-history {
-  margin-left: 28%;
+  margin-left: 30%;
   text-align: center;
   font-size: var(--h1);
   display: inline-block;
 }
 .yearly-history {
   width: 96%;
+  padding: 0.5%;
   align-items: center;
   color: var(--white);
   white-space: nowrap;
   margin: 1% 2% 1.5% 2%;
-  background-color: rgb(36, 36, 36);
+  background-color: rgb(15, 78, 171, 0.34);
+  /* background-color: rgb(36, 36, 36); */
 }
 .history-arrow {
   margin-top: 0%;
-  margin-left: 6%;
+  margin-left: 5%;
   color: var(--white);
   font-size: var(--h2);
   display: inline-block;
