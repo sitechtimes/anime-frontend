@@ -127,7 +127,7 @@ export default {
 .navigation {
     z-index: 5;
     width: 100%;
-    height: 9vh;
+    height: 8rem;
     padding: 1rem;
     display: flex;
     margin: 0 auto;
