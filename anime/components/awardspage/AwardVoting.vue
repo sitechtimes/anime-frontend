@@ -9,10 +9,10 @@
       </div>
     </div>
     <div class="award-container">
-      <NuxtLink to="/vote" v-for="award in awards" :key="award.category">
+      <NuxtLink to="/vote" v-for="award in awards" :key="award">
         <div class="award-box">
           <img src="https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg" alt="" class="img">
-          <h1 class="award-name">{{award.category}}</h1>
+          <h1 class="award-name">{{award}}</h1>
           <div class="fake-vote-btn">Vote</div>
         </div>
       </NuxtLink>
@@ -24,21 +24,21 @@
 export default ({
   data: () => ({
     awards: [
-      {category: "Best Anime"},
-      {category: "Best Character Design"},
-      {category: "Best Animation"},
-      {category: "Best New Series"},
-      {category: "Best Continuing Series"},
-      {category: "Best Opening Sequence"},
-      {category: "Best Ending Sequence"},
-      {category: "Best Main Character"},
-      {category: "Best Supporting Character"},
-      {category: "Best Action"},
-      {category: "Best Comedy"},
-      {category: "Best Drama"},
-      {category: "Best Fantasy"},
-      {category: "Best Romance"},
-      {category: "Best Anime Song"},
+      "Best Anime",
+      "Best Character Design",
+      "Best Animation",
+      "Best New Series",
+      "Best Continuing Series",
+      "Best Opening Sequence",
+      "Best Ending Sequence",
+      "Best Main Character",
+      "Best Supporting Character",
+      "Best Action",
+      "Best Comedy",
+      "Best Drama",
+      "Best Fantasy",
+      "Best Romance",
+      "Best Anime Song",
     ],
   }),
 })
