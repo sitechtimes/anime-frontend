@@ -38,7 +38,7 @@
 					:key="anime.mal_id"
 					:episode="anime.episodes"
 					:animeName="anime.anime_name"
-					:imageUrl="anime.image_url"
+					:imageUrl="anime.large_image_url"
 					:mediaType="anime.media_type"
 				/>
 			</div>
@@ -86,8 +86,9 @@ onMounted(
 			.getAllAnime()
 			.then((data) => {
 				const refineData = data.filter(function (anime: any) {
-					delete anime.large_image_url;
+					//delete anime.large_image_url;
 					delete anime.small_image_url;
+					delete anime.image_url;
 					delete anime.trailer_youtube_url;
 					delete anime.aired_from;
 					delete anime.aired_to;
@@ -113,8 +114,6 @@ onMounted(
 					userStore.startPageIndex,
 					userStore.endPageIndex
 				);
-
-				console.log(pagePopularAnime.value);
 
 				loading.value = false;
 			})

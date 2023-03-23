@@ -2,7 +2,7 @@
 	<NuxtLink to="/animeInfo">
 		<div class="card-container" @click="$emit('saveAnimeID')">
 			<div class="card-cover">
-				<img class="card-image" :src="`${imageUrl}`" alt="" />
+				<img class="card-image" :src="`${imageUrl}`" alt="" format="webP"/>
 				<div class="card-info">
 					<EpisodeSVG :episode="episode" />
 					<p class="card-media">{{ mediaType }}</p>
