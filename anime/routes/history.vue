@@ -1,9 +1,9 @@
 <template>
   <div id="history">
     <div class="yearly-history">
-    <div v-if="Show">
+    <div v-if="Show1">
      <h1 class="title-history"> History of #### </h1>
-     <button class="history-arrow" v-on:click="ShoworHide"> &#11167; </button>
+     <button class="history-arrow" v-on:click="ShoworHide1"> &#11167; </button>
      <div class="user-history">
        <div class="anime-history" v-for="anime in animes" :key="anime.title">
        <img class="anime-img" :src="anime.img" :alt="anime.alt"/>
@@ -13,13 +13,13 @@
     </div>
     <div v-else>
       <h1 class="title-history"> History of #### </h1>
-      <button class="history-arrow" v-on:click="ShoworHide"> &#11165; </button>
+      <button class="history-arrow" v-on:click="ShoworHide1"> &#11165; </button>
     </div>
     </div>
     <div class="yearly-history">
-    <div v-if="Show">
+    <div v-if="Show2">
      <h1 class="title-history"> History of #### </h1>
-     <button class="history-arrow" v-on:click="ShoworHide"> &#11167; </button>
+     <button class="history-arrow" v-on:click="ShoworHide2"> &#11167; </button>
      <div class="user-history">
        <div class="anime-history" v-for="anime in animes" :key="anime.title">
        <img class="anime-img" :src="anime.img" :alt="anime.alt"/>
@@ -29,7 +29,7 @@
     </div>
     <div v-else>
       <h1 class="title-history"> History of #### </h1>
-      <button class="history-arrow" v-on:click="ShoworHide"> &#11165; </button>
+      <button class="history-arrow" v-on:click="ShoworHide2"> &#11165; </button>
     </div>
     </div>
   </div>
@@ -39,7 +39,8 @@
 export default ({
   name: 'history',
   data: ()=> ({
-      Show: true,
+      Show1: true,
+      Show2: true,
       animes: [
         {
           title: "Title of Anime",
@@ -84,22 +85,29 @@ export default ({
         {
           title: "Title of Anime",
           alt: "Image of Anime",
-          img: `https://th.bing.com/th/id/OIP.VVki1-MBUqwb4NXk-55pMgAAAA?pid=ImgDet&rs=1`,
+          img: `https://wallpapercave.com/wp/wp4445507.jpg`,
         },
         {
-          title: "Title of Animeeeeeeeeeeeeeeeeeeeeeeeee",
+          title: "Title of Anime",
           alt: "Image of Anime",
-          img: `https://th.bing.com/th/id/OIP.VVki1-MBUqwb4NXk-55pMgAAAA?pid=ImgDet&rs=1`,
+          img: `https://th.bing.com/th/id/OIP.frbPaUGvaphnnZ8AWM-T8gHaKf?pid=ImgDet&rs=1`,
         },
       ],
   }),
   components:{},
   methods: {
-    ShoworHide: function () {
-      if (this.Show === false) {
-        this.Show = true;
+    ShoworHide1: function () {
+      if (this.Show1 === false) {
+        this.Show1 = true;
       } else {
-        this.Show = false;e
+        this.Show1 = false;
+      }
+    },
+    ShoworHide2: function () {
+      if (this.Show2 === false) {
+        this.Show2 = true;
+      } else {
+        this.Show2 = false;
       }
     },
   },
@@ -108,32 +116,40 @@ export default ({
 
 <style>
 #history {
-  height: 100%;
-  padding-top: 12vh;
-  padding-bottom: 55vh;
-  background-color: black;
+  padding-top: 12rem;
+  padding-bottom: 65rem;
+  /* background-color: black; */
 }
 .anime-img {
-  width: 52%;
-  height: 78%;
+  width: 16rem;
+  height: 20rem;
+  object-fit: cover;
 }
 .anime-title {
-  left: 6rem;
   padding: 1%;
   bottom: 1rem;
+  left: 5.85rem;
   max-width: 45%;
-  max-height: 17%;
-  text-overflow: ellipsis;
+  max-height: 18%;
+  overflow: hidden;
   text-align: left;
   position: absolute;
-  font-size: var(--h5);
+  font-size: var(--h6);
   background-color: #0A2854;
-  box-shadow: 0.3rem 0.5rem #000000;
+  box-shadow: 0.38rem 0.65rem #000000;
 }
 .user-history {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
+}
+.history-arrow {
+  margin-top: 0%;
+  margin-left: 4%;
+  color: var(--white);
+  font-size: var(--h2);
+  display: inline-block;
+  background-color: unset; 
 }
 .anime-history {
   width: 18%;
@@ -143,30 +159,21 @@ export default ({
   position: relative;
   align-items: center;
   flex-direction: column;
-  margin: 1% 0.5% 1% 0.5%;
+  margin: 1.5% 0.5% 1.5% 0.5%;
 }
 .title-history {
-  margin-left: 30%;
+  margin-left: 33%;
   text-align: center;
   font-size: var(--h1);
   display: inline-block;
 }
 .yearly-history {
   width: 96%;
-  padding: 0.5%;
+  padding: 0.75%;
   align-items: center;
   color: var(--white);
   white-space: nowrap;
   margin: 1% 2% 1.5% 2%;
   background-color: rgb(15, 78, 171, 0.34);
-  /* background-color: rgb(36, 36, 36); */
-}
-.history-arrow {
-  margin-top: 0%;
-  margin-left: 5%;
-  color: var(--white);
-  font-size: var(--h2);
-  display: inline-block;
-  background-color: unset; 
 }
 </style>
