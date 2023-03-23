@@ -101,13 +101,13 @@ export default {
 			console.log(this.addList);
 			const hi = document.getElementById("watch");
 			if (this.addList == true) {
-				hi.innerHTML = "Added to Watchlist";
-				hi.style.background = "rgb(255, 120, 140)";
-				hi.style.filter = "opacity(80%)";
+				hi!.innerHTML = "Added to Watchlist";
+				hi!.style.background = "rgb(255, 120, 140)";
+				hi!.style.filter = "opacity(80%)";
 			} else {
-				hi.innerHTML = "Add to watchlist";
-				hi.style.background = "lightpink";
-				hi.style.filter = "none";
+				hi!.innerHTML = "Add to watchlist";
+				hi!.style.background = "lightpink";
+				hi!.style.filter = "none";
 			}
 		},
 	},

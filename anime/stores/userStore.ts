@@ -8,9 +8,8 @@ import { createPinia } from "pinia";
 
 export const useUserStore = defineStore("user", {
 	state: () => ({
-		allAnime: null,
-		currentAnime: null,
-		animeInfo: null,
+		allAnime: [] as any,
+		currentAnime: [] as any,
 		startPageIndex: 0,
 		endPageIndex: 12,
 		pageNumber: 1,

@@ -114,7 +114,7 @@ export default {
 		enterSearchMobile() {
 			this.hideSearch = false;
 		},
-		exitSearchMobile(e) {
+		exitSearchMobile(e: any) {
 			if (this.screenWidth <= 568 && e.target.className === "search-bar") {
 				this.hideSearch = true;
 			}
@@ -130,11 +130,11 @@ export default {
 		searchResult() {
 			if (this.text) {
 				return this.animes
-					.filter(anime => {
+					.filter((anime) => {
 						return this.text
 							.toLowerCase()
-							.split()
-							.every(search => anime.title.toLowerCase().includes(search));
+							.split(" ")
+							.every((search) => anime.title.toLowerCase().includes(search));
 					})
 					.slice(0, 5);
 			}
