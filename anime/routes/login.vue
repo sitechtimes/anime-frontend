@@ -1,6 +1,6 @@
 <template>
   <div id="login">
-    <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/5e5896a5-4a79-496a-bea4-81f26cfa2650/de910q8-18db91c0-990c-420a-8a95-b78f7a57eccd.png/v1/fill/w_1280,h_2391,strp/klee_genshin_impact_character_render_by_deg5270_de910q8-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MjM5MSIsInBhdGgiOiJcL2ZcLzVlNTg5NmE1LTRhNzktNDk2YS1iZWE0LTgxZjI2Y2ZhMjY1MFwvZGU5MTBxOC0xOGRiOTFjMC05OTBjLTQyMGEtOGE5NS1iNzhmN2E1N2VjY2QucG5nIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.L8L6CqwfET7ty7Q-sHFupjSZalDiteazo-x6n61e6v4" alt="" class="img">
+    <img class="img" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/5e5896a5-4a79-496a-bea4-81f26cfa2650/de910q8-18db91c0-990c-420a-8a95-b78f7a57eccd.png/v1/fill/w_1280,h_2391,strp/klee_genshin_impact_character_render_by_deg5270_de910q8-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MjM5MSIsInBhdGgiOiJcL2ZcLzVlNTg5NmE1LTRhNzktNDk2YS1iZWE0LTgxZjI2Y2ZhMjY1MFwvZGU5MTBxOC0xOGRiOTFjMC05OTBjLTQyMGEtOGE5NS1iNzhmN2E1N2VjY2QucG5nIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.L8L6CqwfET7ty7Q-sHFupjSZalDiteazo-x6n61e6v4" alt="">
     <form action="" class="login-form">
       <div class="login-content">
         <h1 class="title">Technime</h1>
@@ -9,6 +9,7 @@
                       <!-- <button>Sign in with Google</button> -->
           <p class="login-header">Sign in with Google</p>
         </GoogleLogin>
+        <img class="gif" src="https://www.icegif.com/wp-content/uploads/icegif-2013.gif" alt="">
       </div>
     </form>
   </div>
@@ -80,12 +81,16 @@ export default {
 }
 .login-msg {
   font-size: var(--h4);
-  margin: 1rem 0  4rem 0;
+}
+.gif {
+  object-fit: cover;
+  height: 50%;
 }
 .login-with-google-btn {
   cursor: pointer;
   transition: background-color .3s, box-shadow .3s;
-    
+  
+  margin: 3rem 0;
   padding: 12px 16px 12px 42px;
   border: none;
   border-radius: 3px;
@@ -127,14 +132,8 @@ export default {
 
 @media screen and (max-width: 1285px) {
 .login-form {
-  width: 35vw;
+  width: 40vw;
   height: 72vh;
-}
-.input-box {
-  width: 25vw;
-}
-.submit-btn{
-  width: 10vw;
 }
 .login-with-google-btn {
   font-size: 17px;
@@ -148,14 +147,6 @@ export default {
 .login-form {
   width: 40vw;
   height: 75vh;
-}
-.input-box {
-  width: 25vw;
-  font-size: var(--h5);
-}
-.submit-btn{
-  width: 10vw;
-  font-size: var(--h5);
 }
 .login-with-google-btn {
   font-size: 13px;
@@ -173,17 +164,6 @@ export default {
   width: 85vw;
   height: 70vh;
 }
-.input-box {
-  width: 60vw;
-  font-size: var(--h2);
-}
-.submit-btn{
-  width: 30vw;
-  font-size: var(--h2);
-}
-.redirect {
-  font-size: var(--h3);
-}
 .login-with-google-btn {
   font-size: 30px;
 }
@@ -196,17 +176,6 @@ export default {
 .login-form {
   width: 80vw;
   height: 70vh;
-}
-.input-box {
-  width: 55vw;
-  font-size: var(--h3);
-}
-.submit-btn{
-  width: 25vw;
-  font-size: var(--h3);
-}
-.redirect {
-  font-size: var(--h4);
 }
 .login-with-google-btn {
   font-size: 22px;
@@ -224,18 +193,6 @@ export default {
   width: 85vw;
   height: 75vh;
 }
-.input-box {
-  width: 50vw;
-  font-size: var(--h4);
-  padding: 1.2rem 1.5rem;
-}
-.submit-btn{
-  width: 22vw;
-  font-size: var(--h4);
-}
-.redirect {
-  font-size: var(--h5);
-}
 .login-with-google-btn {
   font-size: 14px;
 }
@@ -252,14 +209,6 @@ export default {
   width: 90vw;
   height: 66vh;
 }
-.input-box {
-  width: 65vw;
-  font-size: var(--h4);
-}
-.submit-btn{
-  width: 32vw;
-  font-size: var(--h4);
-}
 .login-with-google-btn {
   font-size: 16px;
 }
@@ -275,18 +224,6 @@ export default {
 .login-form {
   width: 88vw;
   height: 67vh;
-}
-.input-box {
-  width: 65vw;
-  font-size: var(--h5);
-}
-.submit-btn{
-  width: 34vw;
-  font-size: var(--h5);
-}
-.redirect {
-  font-size: var(--h5);
-  margin-top: 0.25rem;
 }
 .login-with-google-btn {
   font-size: 11px;
