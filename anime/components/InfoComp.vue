@@ -57,6 +57,7 @@
 					<h2>Rating Distribution</h2>
 					<div class="divider"></div>
 					<p>Insert D3 Bar Graph Here</p>
+					<LineChart :chartData="chartData" :chartOptions="chartOptions" />
 				</div>
 			</div>
 		</div>
@@ -65,11 +66,13 @@
 
 <script lang="ts">
 import starSVG from "../components/starSVG.vue";
+import LineChart from "../components/LineChart.vue";
 
 export default {
 	name: "AnimeInfo",
 	components: {
 		starSVG,
+		LineChart,
 	},
 	props: {
 		imageUrl: String,
@@ -94,6 +97,21 @@ export default {
 			{ name: "Al-fuh-red" },
 			{ name: "Alfredo" },
 		],
+		chartData: {
+			labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+			datasets: [
+				{
+					label: "Rating Distribution",
+					data: [5, 7, 5, 6, 3, 3, 4, 2, 2, 3],
+					fill: "start",
+					borderColor: "rgb(75, 192, 192)",
+					backgroundColor: "rgba(75, 192, 192, 0.2)",
+					tension: 0.5,
+					pointStyle: false,
+				},
+			],
+		},
+		chartOptions: {},
 	}),
 	methods: {
 		add() {
