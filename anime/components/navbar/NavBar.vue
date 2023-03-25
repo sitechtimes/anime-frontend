@@ -18,15 +18,17 @@
 
 				<button @click="test">TEST</button>
 				<NuxtLink v-if="userStore.isAuthenticated == false" to="/login" class="link-href">
-					<button class="log-in button">Log In</button></NuxtLink
+					<button class="log-in button">Log In</button>
+				</NuxtLink>
+				<NuxtLink to="/" class="link-href"
+					><button
+						@click="userStore.logout"
+						v-if="userStore.isAuthenticated == true"
+						class="log-in button"
+					>
+						Logout
+					</button></NuxtLink
 				>
-				<button
-					@click="userStore.logout"
-					v-if="userStore.isAuthenticated == true"
-					class="log-in button"
-				>
-					Logout
-				</button>
 			</ul>
 		</nav>
 	</section>

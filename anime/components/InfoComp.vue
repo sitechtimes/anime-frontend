@@ -56,7 +56,6 @@
 				<div class="info-block">
 					<h2>Rating Distribution</h2>
 					<div class="divider"></div>
-					<p>Insert D3 Bar Graph Here</p>
 					<LineChart :chartData="chartData" :chartOptions="chartOptions" />
 				</div>
 			</div>
@@ -102,16 +101,60 @@ export default {
 			datasets: [
 				{
 					label: "Rating Distribution",
-					data: [5, 7, 5, 6, 3, 3, 4, 2, 2, 3],
+					data: Array.from({ length: 10 }, () => Math.floor(Math.random() * 100)),
 					fill: "start",
 					borderColor: "rgb(75, 192, 192)",
 					backgroundColor: "rgba(75, 192, 192, 0.2)",
-					tension: 0.5,
 					pointStyle: false,
 				},
 			],
 		},
-		chartOptions: {},
+		chartOptions: {
+			scales: {
+				y: {
+					type: "linear",
+					min: 0,
+					beginAtZero: true,
+					drawticks: false,
+					grid: {
+						display: false,
+					},
+					display: false,
+					grace: "5%",
+				},
+				x: {
+					grid: {
+						display: false,
+					},
+					font: {
+						size: 30,
+					},
+				},
+			},
+			plugins: {
+				legend: false,
+				title: {
+					display: true,
+					text: "Rating Distribution",
+					padding: {
+						top: 10,
+						bottom: 30,
+					},
+					font: {
+						size: 20,
+					},
+				},
+			},
+			interaction: {
+				mode: "point",
+				intersect: false,
+			},
+			elements: {
+				line: {
+					cubicInterpolationMode: "monotone",
+				},
+			},
+		},
 	}),
 	methods: {
 		add() {

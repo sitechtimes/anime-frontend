@@ -14,6 +14,7 @@ import {
 	LinearScale,
 	CategoryScale,
 	Filler,
+    LineController
 } from "chart.js";
 
 ChartJS.register(
@@ -24,7 +25,8 @@ ChartJS.register(
 	LineElement,
 	LinearScale,
 	CategoryScale,
-	Filler
+	Filler,
+    LineController
 );
 
 export default {
@@ -47,6 +49,6 @@ export default {
 
 <style>
 .lineChart {
-	height: 25rem;
+	height: 10rem;
 }
 </style>
