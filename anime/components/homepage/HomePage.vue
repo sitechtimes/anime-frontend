@@ -96,6 +96,11 @@ onMounted(
 					delete anime.anime_studio;
 					delete anime.anime_genre;
 					delete anime.number_rating;
+					delete anime.anime_characters;
+					delete anime.anime_awards;
+					delete anime.season;
+					delete anime.avg_rating;
+					delete anime.id;
 
 					return true;
 				});
@@ -108,6 +113,7 @@ onMounted(
 					}
 				});
 
+				userStore.allAnime = refineData;
 				userStore.currentAnime = airingAnime;
 
 				pagePopularAnime.value = userStore.currentAnime.slice(
