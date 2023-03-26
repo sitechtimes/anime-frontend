@@ -10,6 +10,7 @@ export const useUserStore = defineStore("user", {
 	state: () => ({
 		allAnime: [] as any,
 		currentAnime: [] as any,
+		filterAnime: [] as any,
 		startPageIndex: 0,
 		endPageIndex: 12,
 		pageNumber: 1,

@@ -19,7 +19,7 @@
 			</svg>
 		</div>
 		<div v-else @click="exitSearchMobile" class="search-bar">
-			<form @submit.prevent="">
+			<form @submit.prevent="goToSeachAnime()">
 				<input
 					v-model="text"
 					placeholder="Search anime..."
@@ -34,7 +34,7 @@
 					<SearchResultComp
 						@saveAnimeID="saveClickedAnimeID(anime.mal_id)"
 						@click="reload()"
-						v-for="anime in searchResult.slice(0, 5)"
+						v-for="anime in animeResults.slice(0, 5)"
 						:id="anime.mal_id"
 						:key="anime.mal_id"
 						:animeName="anime.anime_name"
@@ -50,23 +50,25 @@
 <script setup lang="ts">
 import { useUserStore } from "~~/stores/userStore";
 import { ref } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 
-const router = useRoute();
+const route = useRoute();
+const router = useRouter();
 const userStore = useUserStore();
-const searchResult = ref([] as any);
 const showAnimeResults = ref(false);
+const animeResults = ref([] as any);
 const text = ref("");
 
 function searchAnime(text: string) {
-	searchResult.value = [];
-	if (text.length > 1) {
+	const searchResult = [] as any;
+	if (text.length > 0) {
 		userStore.allAnime.filter((anime: any) => {
 			if (anime.anime_name.toLowerCase().includes(text.toLowerCase())) {
-				searchResult.value.push(anime);
+				searchResult.push(anime);
 			}
 		});
 	}
+	animeResults.value = searchResult;
 }
 
 function saveClickedAnimeID(id: number) {
@@ -74,7 +76,7 @@ function saveClickedAnimeID(id: number) {
 }
 
 function reload() {
-	if (router.name === "animeInfo") {
+	if (route.name === "animeInfo") {
 		window.location.reload();
 	}
 }
@@ -82,12 +84,22 @@ function reload() {
 function showAnime() {
 	showAnimeResults.value = true;
 }
+
 function clearSearch() {
 	setTimeout(() => {
 		showAnimeResults.value = false;
 		text.value = "";
-		searchResult.value = [];
+		animeResults.value = [];
 	}, 100);
+}
+
+function goToSeachAnime() {
+	userStore.filterAnime = animeResults.value;
+	router.push({ path: "/animeSearch" });
+	if (route.name === "animeSearch") {
+		window.location.reload();
+	}
+	showAnimeResults.value = false;
 }
 </script>
 
