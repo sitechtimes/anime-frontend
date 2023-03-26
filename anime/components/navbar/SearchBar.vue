@@ -50,10 +50,9 @@
 <script setup lang="ts">
 import { useUserStore } from "~~/stores/userStore";
 import { ref } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { useRoute } from "vue-router";
 
 const route = useRoute();
-const router = useRouter();
 const userStore = useUserStore();
 const showAnimeResults = ref(false);
 const animeResults = ref([] as any);
@@ -95,7 +94,7 @@ function clearSearch() {
 
 function goToSeachAnime() {
 	userStore.filterAnime = animeResults.value;
-	router.push({ path: "/animeSearch" });
+	navigateTo("animeSearch");
 	if (route.name === "animeSearch") {
 		window.location.reload();
 	}
