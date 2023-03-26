@@ -30,6 +30,7 @@
 					@focusout="clearSearch()"
 				/>
 				<div class="biggerBox" v-if="showAnimeResults">
+					<p class="biggerBox-text">Anime</p>
 					<SearchResultComp
 						@saveAnimeID="saveClickedAnimeID(anime.mal_id)"
 						@click="reload()"
@@ -86,7 +87,7 @@ function clearSearch() {
 		showAnimeResults.value = false;
 		text.value = "";
 		searchResult.value = [];
-	}, 200);
+	}, 100);
 }
 </script>
 
@@ -130,7 +131,19 @@ export default {
 }
 .biggerBox {
 	position: fixed;
+	z-index: -1;
 	width: 25vw;
+	top: 50%;
+	padding-top: 4rem;
+	padding-bottom: 3rem;
+	border-radius: 10px;
+	background-color: rgb(52, 52, 52);
+}
+.biggerBox-text {
+	font-size: var(--h7);
+	color: var(--light-text);
+	margin-bottom: 1rem;
+	margin-left: 1rem;
 }
 .input {
 	background: rgb(68, 68, 68);
