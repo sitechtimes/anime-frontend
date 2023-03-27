@@ -8,9 +8,9 @@ import { createPinia } from "pinia";
 
 export const useUserStore = defineStore("user", {
 	state: () => ({
-		allAnime: null,
-		currentAnime: null,
-		animeInfo: null,
+		allAnime: [] as any,
+		currentAnime: [] as any,
+		filterAnime: [] as any,
 		startPageIndex: 0,
 		endPageIndex: 12,
 		pageNumber: 1,
@@ -50,7 +50,7 @@ export const useUserStore = defineStore("user", {
 			try {
 				const endpoint = "http://127.0.0.1:8000/anime/";
 				const headers = {
-					"content-type": "application/json",
+					"Content-Type": "application/json",
 					Authorization: `Bearer ${this.token}`,
 				};
 
@@ -154,7 +154,7 @@ export const useUserStore = defineStore("user", {
 					.post("http://localhost:8000/social-login/google/", {
 						code: res.code,
 					})
-					.then(res => {
+					.then((res) => {
 						//console.log(res.data);
 						this.token = res.data.access_token;
 						// localStorage.setItem('token', JSON.stringify(this.token))
@@ -162,7 +162,7 @@ export const useUserStore = defineStore("user", {
 							.get("http://127.0.0.1:8000/auth/user/", {
 								headers: { Authorization: `Bearer ${res.data.access_token}` },
 							})
-							.then(res => {
+							.then((res) => {
 								//console.log(res.data);
 								//console.log(this.token);
 								let index = res.data.email.indexOf("@");
@@ -217,7 +217,7 @@ export const useUserStore = defineStore("user", {
 					.get("http://127.0.0.1:8000/auth/user/", {
 						headers: { Authorization: `Bearer ${this.token}` },
 					})
-					.then(res => {});
+					.then((res) => {});
 				// console.log((await res).status)
 			} catch (error) {
 				if (!this.token) {
