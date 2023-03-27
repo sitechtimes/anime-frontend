@@ -71,6 +71,7 @@ export default {
 }
 .topChartsComp-image {
 	height: 100%;
+	aspect-ratio: 225/350;
 }
 .topChartsComp-info {
 	display: flex;

@@ -56,7 +56,7 @@
 				<div class="info-block">
 					<h2>Rating Distribution</h2>
 					<div class="divider"></div>
-					<p>Insert D3 Bar Graph Here</p>
+					<LineChart :chartData="chartData" :chartOptions="chartOptions" />
 				</div>
 			</div>
 		</div>
@@ -65,11 +65,13 @@
 
 <script lang="ts">
 import starSVG from "../components/starSVG.vue";
+import LineChart from "../components/LineChart.vue";
 
 export default {
 	name: "AnimeInfo",
 	components: {
 		starSVG,
+		LineChart,
 	},
 	props: {
 		imageUrl: String,
@@ -94,6 +96,65 @@ export default {
 			{ name: "Al-fuh-red" },
 			{ name: "Alfredo" },
 		],
+		chartData: {
+			labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+			datasets: [
+				{
+					label: "Rating Distribution",
+					data: Array.from({ length: 10 }, () => Math.floor(Math.random() * 100)),
+					fill: "start",
+					borderColor: "rgb(75, 192, 192)",
+					backgroundColor: "rgba(75, 192, 192, 0.2)",
+					pointStyle: false,
+				},
+			],
+		},
+		chartOptions: {
+			scales: {
+				y: {
+					type: "linear",
+					min: 0,
+					beginAtZero: true,
+					drawticks: false,
+					grid: {
+						display: false,
+					},
+					display: false,
+					grace: "5%",
+				},
+				x: {
+					grid: {
+						display: false,
+					},
+					font: {
+						size: 30,
+					},
+				},
+			},
+			plugins: {
+				legend: false,
+				title: {
+					display: true,
+					text: "Rating Distribution",
+					padding: {
+						top: 10,
+						bottom: 30,
+					},
+					font: {
+						size: 20,
+					},
+				},
+			},
+			interaction: {
+				mode: "point",
+				intersect: false,
+			},
+			elements: {
+				line: {
+					cubicInterpolationMode: "monotone",
+				},
+			},
+		},
 	}),
 	methods: {
 		add() {
@@ -101,13 +162,13 @@ export default {
 			console.log(this.addList);
 			const hi = document.getElementById("watch");
 			if (this.addList == true) {
-				hi.innerHTML = "Added to Watchlist";
-				hi.style.background = "rgb(255, 120, 140)";
-				hi.style.filter = "opacity(80%)";
+				hi!.innerHTML = "Added to Watchlist";
+				hi!.style.background = "rgb(255, 120, 140)";
+				hi!.style.filter = "opacity(80%)";
 			} else {
-				hi.innerHTML = "Add to watchlist";
-				hi.style.background = "lightpink";
-				hi.style.filter = "none";
+				hi!.innerHTML = "Add to watchlist";
+				hi!.style.background = "lightpink";
+				hi!.style.filter = "none";
 			}
 		},
 	},
