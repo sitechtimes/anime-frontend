@@ -148,12 +148,12 @@ onMounted(() => {
 });
 
 function next() {
-	if (userStore.endPageIndex < userStore.allAnime.length) {
+	if (userStore.endPageIndex < userStore.filterAnime.length) {
 		userStore.startPageIndex += 35;
 		userStore.endPageIndex += 35;
 		userStore.pageNumber += 1;
 		pageExistLeft.value = true;
-		pageFilteredAnime.value = userStore.allAnime.slice(
+		pageFilteredAnime.value = userStore.filterAnime.slice(
 			userStore.startPageIndex,
 			userStore.endPageIndex
 		);
@@ -171,7 +171,7 @@ function previous() {
 		userStore.endPageIndex -= 35;
 		userStore.pageNumber -= 1;
 		pageExistRight.value = true;
-		pageFilteredAnime.value = userStore.allAnime.slice(
+		pageFilteredAnime.value = userStore.filterAnime.slice(
 			userStore.startPageIndex,
 			userStore.endPageIndex
 		);

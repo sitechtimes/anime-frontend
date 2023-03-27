@@ -60,10 +60,36 @@ const text = ref("");
 
 function searchAnime(text: string) {
 	const searchResult = [] as any;
+
 	if (text.length > 0) {
 		userStore.allAnime.filter((anime: any) => {
-			if (anime.anime_name.toLowerCase().includes(text.toLowerCase())) {
-				searchResult.push(anime);
+			const animeWords = anime.anime_name.toLowerCase().split(" ");
+			if (text.slice(-1) == " ") {
+				text = text.slice(0, -1);
+			}
+			const textResults = text.toLocaleLowerCase().split(" ");
+
+			for (let i = 0; i < animeWords.length; i++) {
+				if (animeWords[i].startsWith(textResults[0])) {
+					if (textResults.length == 1) {
+						searchResult.push(anime);
+					} else {
+						const animeWordsSlice = animeWords
+							.slice(i, animeWords.length)
+							.join("")
+							.replace(/[^a-zA-Z ]/, "")
+							.replace(/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/, "");
+
+						const textResultsSlice = textResults
+							.join("")
+							.replace(/[^a-zA-Z ]/, "")
+							.replace(/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/, "");
+
+						if (animeWordsSlice.startsWith(textResultsSlice)) {
+							searchResult.push(anime);
+						}
+					}
+				}
 			}
 		});
 	}
