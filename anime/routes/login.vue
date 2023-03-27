@@ -68,9 +68,9 @@ export default {
   box-shadow: inset 0 0 60px var(--secondary-dark);
   display: flex;
   justify-content: center;
+  padding: 4rem 1rem;
 }
 .login-content {
-  margin-top: 10%;
   width: 80%;
   display: flex;
   flex-direction: column;
@@ -161,11 +161,10 @@ export default {
   font-size: 7rem;
 }
 .login-form {
-  width: 85vw;
-  height: 70vh;
+  width: 80%;
 }
 .login-with-google-btn {
-  font-size: 30px;
+  font-size: var(--h5);
 }
 }
 
@@ -177,8 +176,12 @@ export default {
   width: 80vw;
   height: 70vh;
 }
-.login-with-google-btn {
-  font-size: 22px;
+}
+
+@media screen and (max-width: 767px) {
+#login {
+  padding: 0;
+  height: 85vh;
 }
 }
 

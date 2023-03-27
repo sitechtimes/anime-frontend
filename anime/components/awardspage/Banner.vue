@@ -235,6 +235,7 @@ export default {
 }
 .banner-bg {
   width: 57%;
+  height: 40vh;
 }
 .banner-flex {
   width: 80%;
