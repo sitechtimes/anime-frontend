@@ -78,17 +78,17 @@ export default ({
           img: `https://th.bing.com/th/id/OIP.VVki1-MBUqwb4NXk-55pMgAAAA?pid=ImgDet&rs=1`,
         },
         {
-          title: "Title of Anime",
+          title: "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS",
           alt: "Image of Anime",
           img: `https://th.bing.com/th/id/OIP.VVki1-MBUqwb4NXk-55pMgAAAA?pid=ImgDet&rs=1`,
         },
         {
-          title: "Title of Anime",
+          title: "Kimetsu no Yaiba",
           alt: "Image of Anime",
           img: `https://wallpapercave.com/wp/wp4445507.jpg`,
         },
         {
-          title: "Title of Anime",
+          title: "Burning Kabaddi",
           alt: "Image of Anime",
           img: `https://th.bing.com/th/id/OIP.frbPaUGvaphnnZ8AWM-T8gHaKf?pid=ImgDet&rs=1`,
         },
@@ -96,14 +96,14 @@ export default ({
   }),
   components:{},
   methods: {
-    ShoworHide1: function () {
+    ShoworHide1 () {
       if (this.Show1 === false) {
         this.Show1 = true;
       } else {
         this.Show1 = false;
       }
     },
-    ShoworHide2: function () {
+    ShoworHide2 () {
       if (this.Show2 === false) {
         this.Show2 = true;
       } else {
@@ -118,25 +118,25 @@ export default ({
 #history {
   padding-top: 12rem;
   padding-bottom: 65rem;
-  /* background-color: black; */
+  background-color: black;
 }
 .anime-img {
-  width: 16rem;
-  height: 20rem;
+  width: 17rem;
+  height: 22rem;
   object-fit: cover;
 }
 .anime-title {
-  padding: 1%;
   bottom: 1rem;
   left: 5.85rem;
-  max-width: 45%;
-  max-height: 18%;
+  padding: 1.5%;
+  max-width: 46%;
+  max-height: 20%;
   overflow: hidden;
   text-align: left;
   position: absolute;
   font-size: var(--h6);
   background-color: #0A2854;
-  box-shadow: 0.38rem 0.65rem #000000;
+  box-shadow: 0.39rem 0.65rem #000000;
 }
 .user-history {
   display: flex;
@@ -162,7 +162,7 @@ export default ({
   margin: 1.5% 0.5% 1.5% 0.5%;
 }
 .title-history {
-  margin-left: 33%;
+  margin-left: 34%;
   text-align: center;
   font-size: var(--h1);
   display: inline-block;
