@@ -260,7 +260,7 @@ export default {
 	background-color: rgb(255, 120, 140);
 }
 #watch {
-	width: 15rem;
+	width: 18rem;
 }
 .divider {
 	height: 0.2rem;

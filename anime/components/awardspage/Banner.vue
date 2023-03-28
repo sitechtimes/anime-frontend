@@ -223,7 +223,6 @@ export default {
 }
 /* undernavigation  */
 .underNav{
-  width: 100vw;
   height: 15rem;
   display: block;
 }
@@ -427,7 +426,6 @@ export default {
 }
 @media screen and (max-width: 545px) {
 #banner{
-  width: 100vw;
   height: 100vh;
 }
 .underNav {
