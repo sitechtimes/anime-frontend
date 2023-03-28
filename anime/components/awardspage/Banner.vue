@@ -99,7 +99,7 @@ export default {
 
 <style scoped>
 #banner {
-    margin-bottom: 15vh;
+    margin-bottom: 7vh;
 }
 .banner-flex {
     width: 80%;
@@ -243,6 +243,7 @@ export default {
     }
     .banner-bg {
         width: 57%;
+        height: 40vh;
     }
     .banner-flex {
         width: 80%;

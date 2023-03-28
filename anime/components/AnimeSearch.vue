@@ -33,7 +33,7 @@
 			<div class="content-condition" v-else>
 				<AnimeCard
 					@saveAnimeID="saveClickedAnimeID(anime.mal_id)"
-					v-for="anime in userStore.pageFilteredAnime"
+					v-for="anime in pageFilteredAnime"
 					:id="anime.mal_id"
 					:key="anime.mal_id"
 					:episode="anime.episodes"
@@ -98,6 +98,7 @@ const userStore = useUserStore();
 
 const pageExistLeft = ref(false);
 const pageExistRight = ref(true);
+const pageFilteredAnime = ref([] as any);
 
 if (userStore.startPageIndex != 0) {
 	pageExistLeft.value = true;
@@ -107,42 +108,52 @@ const loadingAnime = [...Array(14).keys()];
 const loading = ref(true);
 
 onMounted(() => {
-	userStore.animeInfo = null;
 	userStore.animeId = null;
-
 	userStore.startPageIndex = 0;
 	userStore.endPageIndex = 35;
 	userStore.pageNumber = 1;
 
-	userStore
-		.getAllAnime()
-		.then((data) => {
-			const allAnime = [];
+	// userStore
+	// 	.getAllAnime()
+	// 	.then((data) => {
+	// 		const allAnime = [] as any;
 
-			data.forEach((anime: any) => {
-				allAnime.push(anime);
-			});
+	// 		data.forEach((anime: any) => {
+	// 			allAnime.push(anime);
+	// 		});
 
-			userStore.allAnime = allAnime;
+	// 		userStore.allAnime = allAnime;
 
-			userStore.pageFilteredAnime = userStore.allAnime.slice(
-				userStore.startPageIndex,
-				userStore.endPageIndex
-			);
-			loading.value = false;
-		})
-		.catch((err) => {
-			console.log(err);
-		});
+	// 		pageFilteredAnime.value = userStore.allAnime.slice(
+	// 			userStore.startPageIndex,
+	// 			userStore.endPageIndex
+	// 		);
+	// 		loading.value = false;
+	// 	})
+	// 	.catch((err) => {
+	// 		console.log(err);
+	// 	});
+
+	const filterAnime = [] as any;
+
+	userStore.filterAnime.forEach((anime: any) => {
+		filterAnime.push(anime);
+	});
+
+	pageFilteredAnime.value = userStore.filterAnime.slice(
+		userStore.startPageIndex,
+		userStore.endPageIndex
+	);
+	loading.value = false;
 });
 
 function next() {
-	if (userStore.endPageIndex < userStore.allAnime.length) {
+	if (userStore.endPageIndex < userStore.filterAnime.length) {
 		userStore.startPageIndex += 35;
 		userStore.endPageIndex += 35;
 		userStore.pageNumber += 1;
 		pageExistLeft.value = true;
-		userStore.pageFilteredAnime = userStore.allAnime.slice(
+		pageFilteredAnime.value = userStore.filterAnime.slice(
 			userStore.startPageIndex,
 			userStore.endPageIndex
 		);
@@ -160,7 +171,7 @@ function previous() {
 		userStore.endPageIndex -= 35;
 		userStore.pageNumber -= 1;
 		pageExistRight.value = true;
-		userStore.pageFilteredAnime = userStore.allAnime.slice(
+		pageFilteredAnime.value = userStore.filterAnime.slice(
 			userStore.startPageIndex,
 			userStore.endPageIndex
 		);
@@ -175,7 +186,7 @@ function selectPage(num: number) {
 	userStore.startPageIndex = num * 35 - 35;
 	userStore.endPageIndex = num * 35 + 1;
 
-	userStore.pageFilteredAnime = userStore.allAnime.slice(
+	pageFilteredAnime.value = userStore.allAnime.slice(
 		userStore.startPageIndex,
 		userStore.endPageIndex
 	);

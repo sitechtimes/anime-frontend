@@ -1,10 +1,18 @@
 <template>
   <div id="award-voting">
+    <div class="text-box">
+      <h1 class="text-head">#Vote Here in the Boxes Below</h1>
+      <div class="text-sub">
+        <h2 class="text-tab">Seasonal</h2>
+        <h2 class="text-tab">Year</h2>
+        <NuxtLink to="/history"><h2 class="text-tab">Past Winners</h2></NuxtLink>
+      </div>
+    </div>
     <div class="award-container">
-      <NuxtLink to="/vote" v-for="award in awards" :key="award.category">
+      <NuxtLink to="/vote" v-for="award in awards" :key="award">
         <div class="award-box">
           <img src="https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg" alt="" class="img">
-          <h1 class="award-name">{{award.category}}</h1>
+          <h1 class="award-name">{{award}}</h1>
           <div class="fake-vote-btn">Vote</div>
         </div>
       </NuxtLink>
@@ -16,21 +24,21 @@
 export default ({
   data: () => ({
     awards: [
-      {category: "Best Anime"},
-      {category: "Best Character Design"},
-      {category: "Best Animation"},
-      {category: "Best New Series"},
-      {category: "Best Continuing Series"},
-      {category: "Best Opening Sequence"},
-      {category: "Best Ending Sequence"},
-      {category: "Best Main Character"},
-      {category: "Best Supporting Character"},
-      {category: "Best Action"},
-      {category: "Best Comedy"},
-      {category: "Best Drama"},
-      {category: "Best Fantasy"},
-      {category: "Best Romance"},
-      {category: "Best Anime Song"},
+      "Best Anime",
+      "Best Character Design",
+      "Best Animation",
+      "Best New Series",
+      "Best Continuing Series",
+      "Best Opening Sequence",
+      "Best Ending Sequence",
+      "Best Main Character",
+      "Best Supporting Character",
+      "Best Action",
+      "Best Comedy",
+      "Best Drama",
+      "Best Fantasy",
+      "Best Romance",
+      "Best Anime Song",
     ],
   }),
 })
@@ -41,6 +49,25 @@ export default ({
   margin: auto;
   width: 75vw;
   margin-bottom: 30vh;
+  color: var(--white);
+}
+.text-box {
+  margin-bottom: 4rem;
+}
+.text-head {
+  font-size: var(--h2);
+}
+.text-sub {
+  font-size: var(--h6);
+  display: flex;
+}
+.text-tab {
+  margin-right: 3rem;
+  transition: 200ms ease-in-out;
+}
+.text-tab:hover {
+  color: var(--primary);
+  text-decoration: underline;
 }
 .award-container {
   display: grid;
@@ -49,7 +76,6 @@ export default ({
   row-gap: 6rem;
 }
 .award-box {
-  color: var(--white);
   display: flex;
   flex-direction: column;
   border-radius: 10px;
@@ -58,7 +84,7 @@ export default ({
 .award-box:hover {
   outline: solid 5px var(--primary);
   background: var(--primary);
-  transform: translate(0, -5%);
+  transform: translate(0, -8px);
 }
 .img {
   height: 20rem;

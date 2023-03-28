@@ -33,7 +33,7 @@
 			<div class="airing-content" v-else>
 				<AnimeCard
 					@saveAnimeID="saveClickedAnimeID(anime.mal_id)"
-					v-for="anime in userStore.pagePopularAnime"
+					v-for="anime in pagePopularAnime"
 					:id="anime.mal_id"
 					:key="anime.mal_id"
 					:episode="anime.episodes"
@@ -66,6 +66,7 @@ const userStore = useUserStore();
 
 const pageExistLeft = ref(false);
 const pageExistRight = ref(true);
+const pagePopularAnime = ref([] as any);
 
 if (userStore.startPageIndex != 0) {
 	pageExistLeft.value = true;
@@ -76,15 +77,7 @@ const loading = ref(true);
 
 onMounted(
 	() => {
-		userStore.animeInfo = null;
 		userStore.animeId = null;
-
-		// if (userStore.currentAnime != null) {
-		// 	userStore.pagePopularAnime = userStore.currentAnime.slice(
-		// 		userStore.startPageIndex,
-		// 		userStore.endPageIndex
-		// 	);
-		// } else {
 		userStore.startPageIndex = 0;
 		userStore.endPageIndex = 12;
 		userStore.pageNumber = 1;
@@ -93,6 +86,7 @@ onMounted(
 			.getAllAnime()
 			.then((data) => {
 				const refineData = data.filter(function (anime: any) {
+					//delete anime.large_image_url;
 					delete anime.small_image_url;
 					delete anime.image_url;
 					delete anime.trailer_youtube_url;
@@ -102,11 +96,16 @@ onMounted(
 					delete anime.anime_studio;
 					delete anime.anime_genre;
 					delete anime.number_rating;
+					delete anime.anime_characters;
+					delete anime.anime_awards;
+					delete anime.season;
+					delete anime.avg_rating;
+					delete anime.id;
 
 					return true;
 				});
 
-				const airingAnime = [];
+				const airingAnime = [] as any;
 
 				refineData.filter(function (anime: any) {
 					if (anime.status == "Currently Airing") {
@@ -114,14 +113,16 @@ onMounted(
 					}
 				});
 
+				userStore.allAnime = refineData;
 				userStore.currentAnime = airingAnime;
 
-				userStore.pagePopularAnime = userStore.currentAnime.slice(
+				pagePopularAnime.value = userStore.currentAnime.slice(
 					userStore.startPageIndex,
 					userStore.endPageIndex
 				);
 
 				loading.value = false;
+				console.log(userStore.currentAnime)
 			})
 			.catch((err) => {
 				console.log(err);
@@ -136,7 +137,7 @@ function next() {
 		userStore.endPageIndex += 11;
 		userStore.pageNumber += 1;
 		pageExistLeft.value = true;
-		userStore.pagePopularAnime = userStore.currentAnime.slice(
+		pagePopularAnime.value = userStore.currentAnime.slice(
 			userStore.startPageIndex,
 			userStore.endPageIndex
 		);
@@ -154,7 +155,7 @@ function previous() {
 		userStore.endPageIndex -= 11;
 		userStore.pageNumber -= 1;
 		pageExistRight.value = true;
-		userStore.pagePopularAnime = userStore.currentAnime.slice(
+		pagePopularAnime.value = userStore.currentAnime.slice(
 			userStore.startPageIndex,
 			userStore.endPageIndex
 		);
@@ -169,7 +170,7 @@ function selectPage(num: number) {
 	userStore.startPageIndex = num * 11 - 11;
 	userStore.endPageIndex = num * 11 + 1;
 
-	userStore.pagePopularAnime = userStore.currentAnime.slice(
+	pagePopularAnime.value = userStore.currentAnime.slice(
 		userStore.startPageIndex,
 		userStore.endPageIndex
 	);

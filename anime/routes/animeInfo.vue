@@ -16,22 +16,21 @@
 
 <script setup lang="ts">
 import { useUserStore } from "~~/stores/userStore";
-import { ref, watch } from "vue";
+import { ref } from "vue";
 
 const userStore = useUserStore();
-const animeInfoData = ref({});
+const animeInfoData = ref({} as any);
 
 onMounted(() => {
-	userStore.getOneAnime().then(data => {
+	userStore.getOneAnime().then((data) => {
 		animeInfoData.value = data;
-		//console.log(data);
 	});
 });
 
-function aired(airTimeStart, airTimeEnd) {
+function aired(airTimeStart: string, airTimeEnd: string) {
 	if (airTimeEnd == null) return airTimeStart;
 	else {
-		function changeMonth(dMonth) {
+		function changeMonth(dMonth: string) {
 			if (dMonth == "01") return "Jan";
 			if (dMonth == "02") return "Feb";
 			if (dMonth == "03") return "Mar";
@@ -45,7 +44,7 @@ function aired(airTimeStart, airTimeEnd) {
 			if (dMonth == "11") return "Nov";
 			if (dMonth == "12") return "Dec";
 		}
-		function changeDay(dDay) {
+		function changeDay(dDay: string) {
 			if (dDay == "01") return "1";
 			if (dDay == "02") return "2";
 			if (dDay == "03") return "3";
@@ -57,7 +56,7 @@ function aired(airTimeStart, airTimeEnd) {
 			if (dDay == "09") return "9";
 			else return dDay;
 		}
-		function dat(date) {
+		function dat(date: string) {
 			const dateArr = date.split("-");
 			const month = changeMonth(dateArr[1]);
 			const day = changeDay(dateArr[2]);
