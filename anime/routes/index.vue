@@ -22,12 +22,10 @@ export default {
 <style scoped>
 /* undernavigation  */
 .underNav {
-    width: 100vw;
     height: 37vh;
     display: block;
 }
 .footer {
-    width: 100vw;
     height: 5vw;
     display: block;
 }
