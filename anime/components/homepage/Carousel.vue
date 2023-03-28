@@ -78,16 +78,18 @@
         font-weight: var(--fw-bold);
         color: var(--white);
     }
-    .descript-box{
+    /* .descript-box{
         height:45%;
         overflow:hidden;
-        /* display: block;
-        text-overflow: ellipsis; */
-    }
+        display: block;
+        text-overflow: ellipsis;
+    } */
     .carousel-description {
         font-size: var(--h5);
         font-weight: var(--fw-light);
         color: var(--secondary);
+        height: 25rem;
+        overflow: hidden;
     }
     .img {
         height: 89%;
@@ -132,7 +134,7 @@
         overflow: hidden;
         opacity: 0;
         z-index: 0;
-        width: 70%;
+        /* width: 70%; */
         height: 52%;
         display: flex;   
         margin-left: 1%;
