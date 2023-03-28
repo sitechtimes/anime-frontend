@@ -22,7 +22,7 @@ export default {
 <style scoped>
 /* undernavigation  */
 .underNav {
-    height: 37vh;
+    height: 45vh;
     display: block;
 }
 .footer {
