@@ -92,16 +92,12 @@ export default {
     font-weight: var(--fw-bold);
     color: var(--white);
 }
-.descript-box {
-    height: 45%;
-    overflow: hidden;
-    /* display: block;
-        text-overflow: ellipsis; */
-}
 .carousel-description {
     font-size: var(--h5);
     font-weight: var(--fw-light);
     color: var(--secondary);
+    height: 20rem;
+    overflow: hidden;
 }
 .img {
     height: 89%;
@@ -146,7 +142,8 @@ export default {
     overflow: hidden;
     opacity: 0;
     z-index: 0;
-    width: 70%;
+    /* width: 70%; */
+    width: 90%;
     height: 52%;
     display: flex;
     margin-left: 1%;
