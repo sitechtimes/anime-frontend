@@ -16,9 +16,10 @@
                     alt="profile picture"
                 />
                 <div class="profile-name">
-                    <h3 class="profile-id">Alpha-Red</h3>
-                    <p class="profile-grade">Senior Class of 2023</p>
-                    <p class="profile-grade">Date Started: 01/19/2023</p>
+                    <h3 class="profile-id">{{ firstName }} {{ lastName }}</h3>
+                    <p class="profile-grade">{{ emailDOE }}</p>
+                    <!-- <p class="profile-grade">Senior Class of 2023</p> -->
+                    <!-- <p class="profile-grade">Date Started: 01/19/2023</p> -->
                 </div>
             </div>
         </div>
@@ -88,6 +89,16 @@
         </div>
     </div>
 </template>
+
+<script setup lang="ts">
+import { useUserStore } from "~~/stores/userStore";
+
+const userStore = useUserStore();
+
+const firstName = userStore.first_name;
+const lastName = userStore.last_name;
+const emailDOE = userStore.email;
+</script>
 
 <script lang="ts">
 import Tab from "../components/profile/Tab.vue";
