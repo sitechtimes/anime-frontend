@@ -90,8 +90,8 @@ export default {
 </script>
 
 <style scoped>
-#banner{
-  margin-bottom: 15vh;
+#banner {
+  margin-bottom: 7vh;
 }
 .banner-flex{
   width: 80%;
@@ -235,6 +235,7 @@ export default {
 }
 .banner-bg {
   width: 57%;
+  height: 40vh;
 }
 .banner-flex {
   width: 80%;
