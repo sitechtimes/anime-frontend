@@ -9,6 +9,15 @@ html {
     -webkit-text-size-adjust: 100%; /* 2 */
     width: 100%;
 }
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+/* animation: fadeIn 750ms linear forwards; */
 *,
 *::before,
 *::after {
@@ -59,14 +68,14 @@ body {
     /* colors */
     --primary: #f8665e;
     --secondary: #d33c3c;
-    --tertiary: #272727;
+    --tertiary: #101010;
     --quaternary: #fb5549;
     --white: #fff;
     --off-white: #f0f0f0;
     --light-text: #b4b4b4;
     --shaded-text: #7a7a7a;
     --dark-text: #24201e;
-    --bg-primary: #1b1b1b;
+    --bg-primary: #272727;
     --bg-secondary: #2f2f2f;
     --alt-linear: #7926ff;
     --info-btn: #ffb6c1;

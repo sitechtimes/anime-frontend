@@ -1,18 +1,20 @@
 <template>
-
     <div class="scrollup-btn">
         <a href="#" class="up__btn">
-            <img class="up-arrow" src="../assets/media/carrot up.png" alt="carrot svg">
+            <img
+                class="up-arrow"
+                src="../assets/media/carrot up.png"
+                alt="carrot svg"
+            />
         </a>
     </div>
-  
 </template>
 
 <script lang="ts">
 export default {
-    name: 'ScrollUp',
+    name: "ScrollUp",
     props: {
-        msg: String
+        msg: String,
     },
     methods: {
         // scrollUp() {
@@ -21,8 +23,8 @@ export default {
         //     document.querySelector("html").style.scrollBehavior = "unset";
         //     }, 1000);
         // },
-    }
-}
+    },
+};
 </script>
 
 <style scoped>
@@ -41,11 +43,11 @@ export default {
     box-shadow: 0 2px 4px var(--tertiary);
     transition: 250ms;
 }
-.up__btn:hover{
+.up__btn:hover {
     background-color: var(--secondary);
 }
 .up-arrow {
-    width:3rem;
+    width: 3rem;
     height: auto;
 }
 @media screen and (min-width: 568px) {
