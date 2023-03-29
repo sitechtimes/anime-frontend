@@ -99,6 +99,25 @@ export default {
 <style scoped>
 #banner {
     padding-top: 9vh;
+    margin-bottom: 100vh;
 }
-
+.banner-flex {
+    display: flex;
+    width: 80%;
+    height: 45vh;
+    margin: auto;
+    justify-content: center;
+    column-gap: 1rem;
+}
+.banner-bg {
+    background: red;
+    width: 45%;
+}
+.banner-season {
+    background: blue;
+    width: 30%;
+}
+img {
+    display: none;
+}
 </style>
