@@ -161,4 +161,110 @@ export default ({
   margin: 1% 2% 1.5% 2%;
   background-color: rgb(15, 78, 171, 0.34);
 }
+@media screen and (max-width: 1285px) {
+.anime-img {
+  width: 15rem;
+  height: 20rem;
+}
+.anime-title {
+  left: 0.2rem;
+  max-width: 50%;
+}
+}
+@media screen and (max-width: 1025px) {
+.anime-img {
+  width: 12rem;
+  height: 17rem;
+}
+.anime-title {
+  left: 0.1rem;
+  font-size: var(--h7);
+}
+.title-history {
+  font-size: var(--h2);
+}
+.history-arrow {
+  font-size: var(--h3);
+}
+}
+@media screen and (max-width: 915px) {
+.anime-img {
+  width: 26rem;
+  height: 30rem;
+}
+.anime-title {
+  left: -8rem;
+  max-width: 18rem;
+  font-size: var(--h4);
+  box-shadow: 0.55rem 0.8rem #000000;
+}
+.user-history {
+  align-items: center;
+  flex-direction: column;
+}
+.title-history {
+  font-size: var(--h1);
+  margin-left: 17%;
+}
+.history-arrow {
+  font-size: var(--h2);
+}
+}
+@media screen and (max-width: 770px) {
+.anime-title {
+  padding: 2%;
+  left: -10rem;
+  max-width: 20rem;
+  box-shadow: 0.65rem 0.85rem #000000;
+}
+}
+@media screen and (max-width: 550px) {
+#history {
+  padding-top: 5rem;
+}
+.anime-img {
+  width: 15rem;
+  height: 18rem;
+}
+.anime-title {
+  left: -5rem;
+  max-width: 11rem;
+  font-size: var(--h6);
+}
+.title-history {
+  font-size: var(--h2);
+  margin-left: 15%;
+}
+.history-arrow {
+  font-size: var(--h3);
+}
+}
+@media screen and (max-width: 425px) {
+.anime-img {
+  width: 14rem;
+  height: 17rem;
+}
+.anime-title {
+  box-shadow: 0.5rem 0.6rem #000000;
+}
+.title-history {
+  font-size: var(--h3);
+}
+.yearly-history {
+  width: 96.6%;
+  margin: 1.7%;
+}
+.history-arrow {
+  font-size: var(--h4);
+}
+}
+@media screen and (max-width: 365px) {
+.anime-title {
+  box-shadow: 0.45rem 0.55rem #000000;
+}
+.yearly-history {
+  width: 96%;
+  margin: 2%;
+}
+}
 </style>
