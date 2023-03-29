@@ -8,7 +8,7 @@
         <NuxtLayout>
             <NavigationMobile />
             <NavBar />
-            <NuxtPage />
+            <NuxtPage class="animation" />
             <ScrollBtn />
         </NuxtLayout>
     </div>
@@ -24,6 +24,7 @@ export default {
     components: {
         NavBar,
         NavigationMobile,
+        ScrollBtn,
     },
     setup() {
         const userStore = useUserStore();
@@ -47,6 +48,9 @@ export default {
 </script>
 <style>
 @import url("./assets/global.css");
+.animation {
+    animation: fadeIn 750ms linear forwards;
+}
 /* buttons */
 .button,
 .log-in,
