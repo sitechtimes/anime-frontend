@@ -51,7 +51,6 @@ export const useUserStore = defineStore("user", {
 				const endpoint = "http://127.0.0.1:8000/anime/";
 				const headers = {
 					"Content-Type": "application/json",
-					Authorization: `Bearer ${this.token}`,
 				};
 
 				const options = {
