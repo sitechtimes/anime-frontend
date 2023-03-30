@@ -99,7 +99,7 @@ export default {
 <style scoped>
 #banner {
     padding-top: 9vh;
-    margin-bottom: 100vh;
+    margin-bottom: 9vh;
 }
 .banner-flex {
     display: flex;
@@ -124,6 +124,26 @@ export default {
     background: var(--secondary);
     border-radius: 25px;
     margin-left: 5%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+}
+.trending-text, .title-banner, .voting-description {
+    margin-left: 5%;
+}
+.trending-text {
+    font-size: var(--h4);
+    font-weight: var(--fw-light);
+    text-transform: uppercase;
+    margin-top: 5%;
+}
+.title-banner {
+    font-size: var(--h2);
+    font-weight: var(--fw-bold);
+    text-transform: uppercase;
+}
+.voting-description {
+    font-size: var(--h5);
 }
 .banner-image {
     height: 40vh;
@@ -133,6 +153,9 @@ export default {
 .banner-season {
     background: var(--tertiary);
     width: 35%;
+}
+
+img {
     display: none;
 }
 </style>
