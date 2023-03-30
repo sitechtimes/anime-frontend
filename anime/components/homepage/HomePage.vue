@@ -405,4 +405,8 @@ export default {
 .svg-button {
     display: block;
 }
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
 </style>
