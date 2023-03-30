@@ -3,6 +3,77 @@
 		<div class="allAnime-container">
 			<div class="allAnime-header">
 				<h2 class="allAnime-title">Filter</h2>
+				<div>
+					<div class="allAnime-filter">
+						<div class="allAnime-filterBox">
+							<p class="allAnime-filterText">Sort by</p>
+							<select
+								class="allAnime-filterSelect"
+								v-model="userStore.genre"
+								@change="selectPage(1)"
+							>
+								<option value="media_type">Fantasy</option>
+								<option value="anime_name">Action</option>
+								<option value="anime_name">Adventure</option>
+								<option value="anime_name">Comedy</option>
+								<option value="anime_name">Drama</option>
+							</select>
+						</div>
+						<div class="allAnime-filterBox">
+							<p class="allAnime-filterText">Season</p>
+							<select
+								class="allAnime-filterSelect"
+								v-model="userStore.season"
+								@change="selectPage(1)"
+							>
+								<option value="media_type">Spring</option>
+								<option value="anime_name">Summer</option>
+								<option value="anime_name">Fall</option>
+								<option value="anime_name">Winter</option>
+							</select>
+						</div>
+						<div class="allAnime-filterBox">
+							<p class="allAnime-filterText">Year</p>
+							<select
+								class="allAnime-filterSelect"
+								v-model="userStore.year"
+								@change="selectPage(1)"
+							>
+								<option value="anime_name">2020</option>
+								<option value="anime_name">2019</option>
+								<option value="anime_name">2018</option>
+								<option value="anime_name">2017</option>
+								<option value="anime_name">2016</option>
+							</select>
+						</div>
+						<div class="allAnime-filterBox">
+							<p class="allAnime-filterText">Type</p>
+							<select
+								class="allAnime-filterSelect"
+								v-model="userStore.type"
+								@change="selectPage(1)"
+							>
+								<option value="media_type">Ongoing</option>
+								<option value="anime_name">Completed</option>
+							</select>
+						</div>
+						<div class="allAnime-filterBox">
+							<p class="allAnime-filterText">Sort</p>
+							<select
+								class="allAnime-filterSelect"
+								v-model="userStore.order"
+								@change="selectPage(1)"
+							>
+								<option value="anime_name">Dafault</option>
+								<option value="asc">Ascending</option>
+								<option value="desc">Descending</option>
+							</select>
+						</div>
+						<div>
+							<p class="allAnime-filterBox"></p>
+						</div>
+					</div>
+				</div>
 				<div class="page-container">
 					<div class="page-number">
 						<p class="page-text">Page</p>
@@ -257,6 +328,14 @@ export default {
 	align-items: center;
 	border-radius: 0.75rem;
 	margin-bottom: 0.5rem;
+}
+
+.allAnime-filter {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: flex-start;
+	column-gap: 1rem;
 }
 .content-condition {
 	display: flex;
