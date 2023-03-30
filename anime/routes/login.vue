@@ -52,9 +52,9 @@ export default {
   padding-top: 9vh;
   height: 100vh;
   display: flex;
+  align-items: center;
   flex-direction: row;
   justify-content: space-evenly;
-  align-items: center;
 }
 .img {
   height: 70vh;
