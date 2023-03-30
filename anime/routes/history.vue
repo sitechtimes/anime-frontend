@@ -188,6 +188,9 @@ export default ({
 }
 }
 @media screen and (max-width: 915px) {
+#history {
+  padding-top: 14rem;
+}
 .anime-img {
   width: 26rem;
   height: 30rem;
@@ -210,6 +213,12 @@ export default ({
   font-size: var(--h2);
 }
 }
+@media screen and (max-width: 825px) {
+.anime-title {
+  left: -11rem;
+  box-shadow: 0.75rem 0.84rem #000000;
+}
+}
 @media screen and (max-width: 770px) {
 .anime-title {
   padding: 2%;
@@ -230,12 +239,17 @@ export default ({
   left: -5rem;
   max-width: 11rem;
   font-size: var(--h6);
+  box-shadow: 0.65rem 0.6rem #000000;
+}
+.anime-history {
+  margin-bottom: 3%;
 }
 .title-history {
-  font-size: var(--h2);
   margin-left: 15%;
+  font-size: var(--h2);
 }
 .history-arrow {
+  margin-left: 3%;
   font-size: var(--h3);
 }
 }
@@ -258,6 +272,13 @@ export default ({
   font-size: var(--h4);
 }
 }
+@media screen and (max-width: 380px) {
+.yearly-history {
+  width: 96%;
+  margin: 2%;
+  margin-bottom: 2%;
+}
+}
 @media screen and (max-width: 365px) {
 .anime-title {
   box-shadow: 0.45rem 0.55rem #000000;
@@ -265,6 +286,30 @@ export default ({
 .yearly-history {
   width: 96%;
   margin: 2%;
+  margin-bottom: 3%;
+}
+}
+@media screen and (max-width: 285px) {
+#history {
+  padding-top: 2rem;
+}
+.anime-img {
+  width: 13rem;
+  height: 16rem;
+}
+.anime-title {
+  left: -7rem;
+}
+.title-history {
+  font-size: var(--h4);
+}
+.yearly-history {
+  width: 95%;
+  margin: 2.5%;
+}
+.history-arrow {
+  margin-left: -2%;
+  font-size: var(--h5);
 }
 }
 </style>
