@@ -83,7 +83,7 @@ export default {
 .carousel-info {
     display: flex;
     flex-direction: column;
-    width: 48.5%;
+    width: 35%;
 }
 .carousel-title {
     display: block;
@@ -96,12 +96,16 @@ export default {
     font-size: var(--h5);
     font-weight: var(--fw-light);
     color: var(--secondary);
-    height: 20rem;
     overflow: hidden;
+    margin-right: 5rem;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
 }
 .img {
     height: 89%;
-    width: 52.5%;
+    width: 60%;
     object-fit: cover;
     object-position: center;
     display: block;
@@ -144,7 +148,7 @@ export default {
     z-index: 0;
     /* width: 70%; */
     width: 90%;
-    height: 52%;
+    height: 60%;
     display: flex;
     margin-left: 1%;
     margin-right: 1%;

@@ -80,7 +80,7 @@ export default {
   font-size: var(--h1);
 }
 .login-msg {
-  font-size: var(--h4);
+  font-size: var(--h5);
 }
 .gif {
   object-fit: cover;

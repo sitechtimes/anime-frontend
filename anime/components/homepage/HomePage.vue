@@ -310,7 +310,6 @@ export default {
     border-radius: 1.5rem;
     margin-bottom: 3rem;
     margin-left: 2rem;
-    margin-top: 10rem;
     padding: 1.5rem 3rem 3rem;
     width: 100vw;
 }
@@ -347,7 +346,7 @@ export default {
     flex-wrap: wrap;
     justify-content: flex-start;
     row-gap: 4rem;
-    column-gap: 1.8%;
+    column-gap: 1.2%;
 }
 .page-container {
     justify-content: flex-end;
