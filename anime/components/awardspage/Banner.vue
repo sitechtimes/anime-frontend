@@ -106,18 +106,33 @@ export default {
     width: 80%;
     height: 45vh;
     margin: auto;
+    margin-top: 5vh;
     justify-content: center;
-    column-gap: 1rem;
+    column-gap: 7rem;
+    color: var(--white);
 }
 .banner-bg {
-    background: red;
-    width: 45%;
+    background: var(--primary);
+    width: 50%;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+}
+.banner-text {
+    height: 85%;
+    width: 60%;
+    background: var(--secondary);
+    border-radius: 25px;
+    margin-left: 5%;
+}
+.banner-image {
+    height: 40vh;
+    position: absolute;
+    margin-left: 20%;
 }
 .banner-season {
-    background: blue;
-    width: 30%;
-}
-img {
+    background: var(--tertiary);
+    width: 35%;
     display: none;
 }
 </style>
