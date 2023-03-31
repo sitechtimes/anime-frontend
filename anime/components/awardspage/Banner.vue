@@ -154,8 +154,11 @@ export default {
 .banner-season {
     background: var(--tertiary);
     width: 35%;
+    border-radius: 25px;
 }
-
+.anime-list {
+    
+}
 img {
     height: 1rem;
 }
