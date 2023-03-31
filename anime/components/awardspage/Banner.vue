@@ -117,6 +117,7 @@ export default {
     border-radius: 25px;
     display: flex;
     align-items: center;
+    position: relative;
 }
 .banner-text {
     height: 85%;
@@ -146,9 +147,9 @@ export default {
     font-size: var(--h5);
 }
 .banner-image {
-    height: 40vh;
+    height: 80%;
     position: absolute;
-    margin-left: 20%;
+    right: 0;
 }
 .banner-season {
     background: var(--tertiary);
@@ -156,6 +157,6 @@ export default {
 }
 
 img {
-    display: none;
+    height: 1rem;
 }
 </style>

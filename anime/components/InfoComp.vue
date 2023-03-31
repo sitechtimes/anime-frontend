@@ -30,7 +30,7 @@
 				</div>
 				<div>
 					<button class="btn">Heart</button>
-					<button class="btn" id="watch" @click="add">Add to Watchlist</button>
+					<button class="btn watch" ref="watch" @click="add">Add to Watchlist</button>
 					<button class="btn">Rate</button>
 				</div>
 			</div>
@@ -160,7 +160,7 @@ export default {
 		add() {
 			this.addList = !this.addList;
 			console.log(this.addList);
-			const hi = document.getElementById("watch");
+			const hi = this.$refs.watch;
 			if (this.addList == true) {
 				hi!.innerHTML = "Added to Watchlist";
 				hi!.style.background = "rgb(255, 120, 140)";
@@ -259,7 +259,7 @@ export default {
 .btn:hover {
 	background-color: rgb(255, 120, 140);
 }
-#watch {
+.watch {
 	width: 18rem;
 }
 .divider {
