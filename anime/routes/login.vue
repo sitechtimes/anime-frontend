@@ -45,7 +45,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 
 
 #login {
@@ -105,29 +105,29 @@ export default {
   background-color: white;
   background-repeat: no-repeat;
   background-position: 12px 15px;
+}
+
+.login-with-google-btn:hover {
+  box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 2px 4px rgba(0, 0, 0, .25);
+}
   
-  &:hover {
-    box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 2px 4px rgba(0, 0, 0, .25);
-  }
-  
-  &:active {
+.login-with-google-btn:active {
     background-color: #eeeeee;
   }
+
+.login-with-google-btn:focus {
+  outline: none;
+  box-shadow: 
+    0 -1px 0 rgba(0, 0, 0, .04),
+    0 2px 4px rgba(0, 0, 0, .25),
+    0 0 0 3px #c8dafc;
+}
   
-  &:focus {
-    outline: none;
-    box-shadow: 
-      0 -1px 0 rgba(0, 0, 0, .04),
-      0 2px 4px rgba(0, 0, 0, .25),
-      0 0 0 3px #c8dafc;
-  }
-  
-  &:disabled {
-    filter: grayscale(100%);
-    background-color: #ebebeb;
-    box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 1px 1px rgba(0, 0, 0, .25);
-    cursor: not-allowed;
-  }
+.login-with-google-btn:focus:disabled {
+  filter: grayscale(100%);
+  background-color: #ebebeb;
+  box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 1px 1px rgba(0, 0, 0, .25);
+  cursor: not-allowed;
 }
 
 @media screen and (max-width: 1285px) {

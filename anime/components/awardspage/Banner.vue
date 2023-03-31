@@ -136,7 +136,7 @@ export default {
     font-size: var(--h4);
     font-weight: var(--fw-light);
     text-transform: uppercase;
-    margin-top: 5%;
+    margin-top: 10%;
 }
 .title-banner {
     font-size: var(--h2);
