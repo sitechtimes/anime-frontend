@@ -37,6 +37,7 @@
                                     <AnimeList
                                         v-for="anime in currentAnimes"
                                         :key="anime.animeID"
+                                        class="pf-carousel-slide"
                                         :img="anime.img"
                                         :title="anime.title"
                                     />
@@ -54,12 +55,15 @@
                             <h3 class="tab-title">Favorites</h3>
                             <div class="profile-slide">
                                 <div class="pf-carousel">
+                                    <button class="favorite-arrow"> &lsaquo; </button>
                                     <AnimeList
                                         v-for="anime in favoriteAnime"
                                         :key="anime.animeID"
+                                        class="pf-carousel-slide"
                                         :img="anime.img"
                                         :title="anime.title"
                                     />
+                                    <button class="favorite-arrow"> &rsaquo; </button>
                                 </div>
                             </div>
                         </div>
@@ -331,13 +335,28 @@ export default {
     color: var(--white);
     font-weight: var(--fw-light);
 }
-.pf-carousel {
-    display: flex;
-    width: 70vw;
-}
 .underNav {
     width: 100vw;
     height: 12vh;
     display: block;
+}
+.pf-carousel {
+    width: 60vw;
+    margin: auto;
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+}
+.pf-carousel-slide {
+    width: 90%;
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+}
+.favorite-arrow {
+    color: var(--white);
+    background-color: unset;
 }
 </style>
