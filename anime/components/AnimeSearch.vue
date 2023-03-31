@@ -337,6 +337,12 @@ export default {
 	justify-content: flex-start;
 	column-gap: 1rem;
 }
+
+.allAnime-filterText {
+	font-size: var(--h6);
+	font-weight: var(--fw-reg);
+	color: var(--light-text);
+}
 .content-condition {
 	display: flex;
 	flex-wrap: wrap;
