@@ -34,9 +34,9 @@
                             />
                         </div>
                         <div class="info-column">
-                            <h1 class="animeTitle">{{ anime.title }}</h1>
+                            <h3 class="animeTitle">{{ anime.title }}</h3>
                             <div class="star-rating">
-                                <starSVG />
+                                <starSVG class="star"/>
                                 <p>{{ anime.stars.toFixed(2) }}</p>
                             </div>
                         </div>
@@ -159,10 +159,20 @@ export default {
 }
 .anime-list {
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.season-text {
+    text-align: center;
+    font-size: var(--h3);
+    margin-bottom: 2rem;
 }
 .bestAnime {
     display: flex;
     align-items: center;
+    width: 90%;
+    justify-content: space-between;
 }
 .picture-column {
     display: flex;
@@ -177,6 +187,8 @@ export default {
 }
 .info-column {
     width: 50%;
+    gap: 0;
+    margin: 0;
 }
 .animeTitle {
     font-size: var(--h4);
@@ -184,6 +196,13 @@ export default {
     white-space: nowrap;
     display: block;
     text-overflow: ellipsis;
+}
+.star-rating {
+    font-size: var(--h7);
+}
+.star {
+    height: 100%;
+    margin-right: 0.2rem;
 }
 .genre-text {
     background-color: var(--primary);
