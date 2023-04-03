@@ -8,7 +8,7 @@
 					<p class="card-media">{{ mediaType }}</p>
 				</div>
 			</div>
-			<h5 class="card-title">{{ animeName }}</h5>
+			<p class="card-title">{{ animeName }}</p>
 		</div>
 	</NuxtLink>
 </template>

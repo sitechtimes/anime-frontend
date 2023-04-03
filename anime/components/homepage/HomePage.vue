@@ -119,7 +119,6 @@ onMounted(
 				);
 
 				loading.value = false;
-				console.log(userStore.currentAnime);
 			})
 			.catch((err) => {
 				console.log(err);

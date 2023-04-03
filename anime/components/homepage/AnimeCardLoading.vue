@@ -4,7 +4,7 @@
 			<div class="cardLoad-image skeleton"></div>
 			<div class="cardLoad-bar skeleton">
 				<div id="episode-box">
-					<div id="episode-text">100</div>
+					<p id="episode-text">100</p>
 					<svg
 						id="episode-svg"
 						width="1rem"

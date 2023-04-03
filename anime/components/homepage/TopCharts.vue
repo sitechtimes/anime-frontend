@@ -1,6 +1,6 @@
 <template>
     <div class="topChartsComp-container">
-        <div class="topChartsComp-rank">{{ rank }}</div>
+        <p class="topChartsComp-rank">{{ rank }}</p>
         <img class="topChartsComp-image" :src="`${img}`" alt="" />
         <div class="topChartsComp-info">
             <h3 class="topChartsComp-title">{{ title }}</h3>

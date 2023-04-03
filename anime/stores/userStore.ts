@@ -86,7 +86,8 @@ export const useUserStore = defineStore("user", {
 											status
 											summary
 											largeImageUrl
-											numberRating
+											numRated
+        									avgRating
 											airedTo
 											airedFrom
 											animeGenre {
@@ -140,7 +141,6 @@ export const useUserStore = defineStore("user", {
 						return edge.node.id;
 					}
 				);
-
 				return refinedAnimeData;
 			} catch (error) {
 				console.log(error);

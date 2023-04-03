@@ -23,7 +23,7 @@
 		</div>
 		<div class="column-2">
 			<div class="info-block">
-				<h1>{{ name }}</h1>
+				<p>{{ animeName }}</p>
 				<div class="star-rating">
 					<starSVG class="star" />
 					<p>10.00</p>
@@ -81,7 +81,7 @@ export default {
 		aired: String,
 		studio: String,
 		genres: Array,
-		name: String,
+		animeName: String,
 		synopsis: String,
 	},
 	data: () => ({
