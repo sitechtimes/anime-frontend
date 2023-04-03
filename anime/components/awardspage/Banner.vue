@@ -155,11 +155,41 @@ export default {
     background: var(--tertiary);
     width: 35%;
     border-radius: 25px;
+    padding: 2rem;
 }
 .anime-list {
-    
+    padding: 0;
 }
-img {
-    height: 1rem;
+.bestAnime {
+    display: flex;
+    align-items: center;
+}
+.picture-column {
+    display: flex;
+    align-items: center;
+    column-gap: 1rem;
+}
+.anime-pfp {
+    height: 5rem;
+    width: 5rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.info-column {
+    width: 50%;
+}
+.animeTitle {
+    font-size: var(--h4);
+    overflow: hidden;
+    white-space: nowrap;
+    display: block;
+    text-overflow: ellipsis;
+}
+.genre-text {
+    background-color: var(--primary);
+    width: 10rem;
+    height: 2rem;
+    text-align: center;
+    border-radius: 1rem;
 }
 </style>
