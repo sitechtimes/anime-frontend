@@ -34,6 +34,7 @@
                             <h3 class="tab-title">Watchlist</h3>
                             <div class="profile-slide">
                                 <div class="pf-carousel">
+                                    <button class="carousel-arrow left-arrow"> &lsaquo; </button>
                                     <AnimeList
                                         v-for="anime in currentAnimes"
                                         :key="anime.animeID"
@@ -41,6 +42,7 @@
                                         :img="anime.img"
                                         :title="anime.title"
                                     />
+                                    <button class="carousel-arrow right-arrow"> &rsaquo; </button>
                                 </div>
                             </div>
                         </div>
@@ -55,7 +57,7 @@
                             <h3 class="tab-title">Favorites</h3>
                             <div class="profile-slide">
                                 <div class="pf-carousel">
-                                    <button class="favorite-arrow"> &lsaquo; </button>
+                                    <button class="carousel-arrow left-arrow"> &lsaquo; </button>
                                     <AnimeList
                                         v-for="anime in favoriteAnime"
                                         :key="anime.animeID"
@@ -63,7 +65,7 @@
                                         :img="anime.img"
                                         :title="anime.title"
                                     />
-                                    <button class="favorite-arrow"> &rsaquo; </button>
+                                    <button class="carousel-arrow right-arrow"> &rsaquo; </button>
                                 </div>
                             </div>
                         </div>
@@ -341,7 +343,7 @@ export default {
     display: block;
 }
 .pf-carousel {
-    width: 60vw;
+    width: 55vw;
     margin: auto;
     display: flex;
     overflow: hidden;
@@ -350,13 +352,23 @@ export default {
     justify-content: center;
 }
 .pf-carousel-slide {
-    width: 90%;
+    width: 55rem;
     display: flex;
     overflow: hidden;
+    align-items: center;
     flex-direction: column;
 }
-.favorite-arrow {
+.left-arrow {
+    left: 0;
+    text-align: left;
+}
+.right-arrow {
+    right: 0;
+    text-align: right;
+}
+.carousel-arrow {
     color: var(--white);
+    font-size: var(--h3);
     background-color: unset;
 }
 </style>
