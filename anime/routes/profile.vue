@@ -32,7 +32,6 @@
                         </div>
                         <div class="tab-bottom">
                             <h3 class="tab-title">Watchlist</h3>
-                            <div class="profile-slide">
                                 <div class="pf-carousel">
                                     <button class="carousel-arrow left-arrow"> &lsaquo; </button>
                                     <AnimeList
@@ -44,7 +43,6 @@
                                     />
                                     <button class="carousel-arrow right-arrow"> &rsaquo; </button>
                                 </div>
-                            </div>
                         </div>
                     </div>
                 </Tab>
@@ -55,9 +53,9 @@
                         </div>
                         <div class="tab-bottom">
                             <h3 class="tab-title">Favorites</h3>
-                            <div class="profile-slide">
                                 <div class="pf-carousel">
                                     <button class="carousel-arrow left-arrow"> &lsaquo; </button>
+                                    <div class="inner">
                                     <AnimeList
                                         v-for="anime in favoriteAnime"
                                         :key="anime.animeID"
@@ -65,9 +63,9 @@
                                         :img="anime.img"
                                         :title="anime.title"
                                     />
+                                    </div>
                                     <button class="carousel-arrow right-arrow"> &rsaquo; </button>
                                 </div>
-                            </div>
                         </div>
                     </div>
                 </Tab>
@@ -344,6 +342,7 @@ export default {
 }
 .pf-carousel {
     width: 55vw;
+    height: 35vh;
     margin: auto;
     display: flex;
     overflow: hidden;
@@ -354,10 +353,12 @@ export default {
 .pf-carousel-slide {
     width: 55rem;
     display: flex;
-    overflow: hidden;
     align-items: center;
     flex-direction: column;
 }
+/* .inner {
+    white-space: nowrap;
+} */
 .left-arrow {
     left: 0;
     text-align: left;
