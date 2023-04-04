@@ -64,6 +64,7 @@ export default ({
 .text-tab {
   margin-right: 3rem;
   transition: 200ms ease-in-out;
+  font-weight: var(--fw-light);
 }
 .text-tab:hover {
   color: var(--primary);
