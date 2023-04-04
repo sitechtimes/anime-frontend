@@ -34,6 +34,7 @@
                             <h3 class="tab-title">Watchlist</h3>
                                 <div class="pf-carousel">
                                     <button class="carousel-arrow left-arrow"> &lsaquo; </button>
+                                    <div class="inner">
                                     <AnimeList
                                         v-for="anime in currentAnimes"
                                         :key="anime.animeID"
@@ -41,6 +42,7 @@
                                         :img="anime.img"
                                         :title="anime.title"
                                     />
+                                    </div>
                                     <button class="carousel-arrow right-arrow"> &rsaquo; </button>
                                 </div>
                         </div>
@@ -64,7 +66,7 @@
                                         :title="anime.title"
                                     />
                                     </div>
-                                    <button class="carousel-arrow right-arrow"> &rsaquo; </button>
+                                    <button class="carousel-arrow right-arrow" v-on:click="move"> &rsaquo; </button>
                                 </div>
                         </div>
                     </div>
@@ -117,6 +119,8 @@ export default {
         //   Tabs
     },
     data: () => ({
+        tbd: {},
+        slide: '',
         currentAnimes: [
             {
                 animeID: "01",
@@ -162,6 +166,24 @@ export default {
             },
         ],
     }),
+    // mounted () {
+    //     this.test ()
+    // },
+    // methods: {
+    //     test () {
+    //         const slidewidth = this.inner.scrollWidth
+    //         const total = this.favoriteAnime.length 
+    //         this.slide = `${ slidewidth / total }px`
+    //     },
+    //     next () {
+    //         this.movetest ()
+    //     },
+    //     movetest () {
+    //         this.tbd = {
+    //             transform: `translateX(-${this.slide})`
+    //         }
+    //     },
+    // },
 };
 </script>
 
@@ -341,9 +363,8 @@ export default {
     display: block;
 }
 .pf-carousel {
-    width: 55vw;
-    height: 35vh;
-    margin: auto;
+    width: 48vw;
+    height: 25vh;
     display: flex;
     overflow: hidden;
     align-items: center;
@@ -351,14 +372,17 @@ export default {
     justify-content: center;
 }
 .pf-carousel-slide {
-    width: 55rem;
-    display: flex;
+    width: 20vw;
+    height: 20vh;
     align-items: center;
+    display: inline-flex;
     flex-direction: column;
+    justify-content: center;
 }
-/* .inner {
+.inner {
+    width: 44vw;
     white-space: nowrap;
-} */
+}
 .left-arrow {
     left: 0;
     text-align: left;
