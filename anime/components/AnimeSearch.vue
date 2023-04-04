@@ -171,6 +171,9 @@ const pageExistLeft = ref(false);
 const pageExistRight = ref(true);
 const pageFilteredAnime = ref([] as any);
 
+const genre = ref("");
+const 
+
 if (userStore.startPageIndex != 0) {
 	pageExistLeft.value = true;
 }

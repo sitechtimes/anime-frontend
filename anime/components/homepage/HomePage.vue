@@ -109,7 +109,7 @@ onMounted(
 						airingAnime.push(anime);
 					}
 				});
-
+				console.log(refineData);
 				userStore.allAnime = refineData;
 				userStore.currentAnime = airingAnime;
 
