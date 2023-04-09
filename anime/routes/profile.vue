@@ -66,7 +66,7 @@
                                         :title="anime.title"
                                     />
                                     </div>
-                                    <button class="carousel-arrow right-arrow" v-on:click="move"> &rsaquo; </button>
+                                    <button class="carousel-arrow right-arrow"> &rsaquo; </button>
                                 </div>
                         </div>
                     </div>
@@ -166,24 +166,10 @@ export default {
             },
         ],
     }),
-    // mounted () {
-    //     this.test ()
-    // },
-    // methods: {
-    //     test () {
-    //         const slidewidth = this.inner.scrollWidth
-    //         const total = this.favoriteAnime.length 
-    //         this.slide = `${ slidewidth / total }px`
-    //     },
-    //     next () {
-    //         this.movetest ()
-    //     },
-    //     movetest () {
-    //         this.tbd = {
-    //             transform: `translateX(-${this.slide})`
-    //         }
-    //     },
-    // },
+    mounted () {
+        this.test ()
+    },
+    methods: {},
 };
 </script>
 
