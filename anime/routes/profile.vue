@@ -33,7 +33,7 @@
                         <div class="tab-bottom">
                             <h3 class="tab-title">Watchlist</h3>
                                 <div class="pf-carousel">
-                                    <button class="carousel-arrow left-arrow"> &lsaquo; </button>
+                                    <button class="carousel-arrow left-arrow" v-on:click="moveLeft"> &lsaquo; </button>
                                     <div class="inner">
                                     <AnimeList
                                         v-for="anime in currentAnimes"
@@ -43,7 +43,7 @@
                                         :title="anime.title"
                                     />
                                     </div>
-                                    <button class="carousel-arrow right-arrow"> &rsaquo; </button>
+                                    <button class="carousel-arrow right-arrow" v-on:click="moveRight"> &rsaquo; </button>
                                 </div>
                         </div>
                     </div>
@@ -166,10 +166,10 @@ export default {
             },
         ],
     }),
-    mounted () {
-        this.test ()
+    methods: {
+        moveRight () {},
+        moveLeft () {},
     },
-    methods: {},
 };
 </script>
 
