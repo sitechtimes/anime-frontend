@@ -33,7 +33,7 @@
                         <div class="tab-bottom">
                             <h3 class="tab-title">Watchlist</h3>
                                 <div class="pf-carousel">
-                                    <button class="carousel-arrow left-arrow" v-on:click="moveLeft"> &lsaquo; </button>
+                                    <button class="carousel-arrow left-arrow" v-on:click="currentLeft"> &lsaquo; </button>
                                     <div class="inner">
                                     <AnimeList
                                         v-for="anime in currentAnimes"
@@ -43,7 +43,7 @@
                                         :title="anime.title"
                                     />
                                     </div>
-                                    <button class="carousel-arrow right-arrow" v-on:click="moveRight"> &rsaquo; </button>
+                                    <button class="carousel-arrow right-arrow" v-on:click="currentRight"> &rsaquo; </button>
                                 </div>
                         </div>
                     </div>
@@ -56,7 +56,7 @@
                         <div class="tab-bottom">
                             <h3 class="tab-title">Favorites</h3>
                                 <div class="pf-carousel">
-                                    <button class="carousel-arrow left-arrow"> &lsaquo; </button>
+                                    <button class="carousel-arrow left-arrow" v-on:click="favoriteLeft"> &lsaquo; </button>
                                     <div class="inner">
                                     <AnimeList
                                         v-for="anime in favoriteAnime"
@@ -66,7 +66,7 @@
                                         :title="anime.title"
                                     />
                                     </div>
-                                    <button class="carousel-arrow right-arrow"> &rsaquo; </button>
+                                    <button class="carousel-arrow right-arrow" v-on:click="favoriteRight"> &rsaquo; </button>
                                 </div>
                         </div>
                     </div>
@@ -119,8 +119,8 @@ export default {
         //   Tabs
     },
     data: () => ({
-        tbd: {},
-        slide: '',
+        currentIndex: 0,
+        favoriteIndex: 0,
         currentAnimes: [
             {
                 animeID: "01",
@@ -167,8 +167,10 @@ export default {
         ],
     }),
     methods: {
-        moveRight () {},
-        moveLeft () {},
+        currentLeft () {},
+        currentRight () {},
+        favoriteLeft () {},
+        favoriteRight () {},
     },
 };
 </script>
