@@ -167,10 +167,18 @@ export default {
         ],
     }),
     methods: {
-        currentLeft () {},
-        currentRight () {},
-        favoriteLeft () {},
-        favoriteRight () {},
+        currentLeft () {
+            this.currentIndex -=1;
+        },
+        currentRight () {
+            this.currentIndex +=1;
+        },
+        favoriteLeft () {
+            this.favoriteIndex -=1;
+        },
+        favoriteRight () {
+            this.favoriteIndex +=1;
+        },
     },
 };
 </script>
