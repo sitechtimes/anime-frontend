@@ -34,15 +34,12 @@
                             <h3 class="tab-title">Watchlist</h3>
                                 <div class="pf-carousel">
                                     <button class="carousel-arrow left-arrow" v-on:click="currentLeft"> &lsaquo; </button>
-                                    <div class="inner">
-                                    <AnimeList
-                                        v-for="anime in currentAnimes"
-                                        :key="anime.animeID"
-                                        class="pf-carousel-slide"
-                                        :img="anime.img"
-                                        :title="anime.title"
-                                    />
-                                    </div>
+                                    <transition-group name="test" tag="div">
+                                        <div v-for="i in [currentIndex]" :key="i" class="pf-carousel-slide">
+                                            <img :src="showCurrent.img" class="anime-img"/>
+                                            <h3> {{ showCurrent.title }} </h3>
+                                        </div>
+                                    </transition-group>
                                     <button class="carousel-arrow right-arrow" v-on:click="currentRight"> &rsaquo; </button>
                                 </div>
                         </div>
@@ -57,15 +54,12 @@
                             <h3 class="tab-title">Favorites</h3>
                                 <div class="pf-carousel">
                                     <button class="carousel-arrow left-arrow" v-on:click="favoriteLeft"> &lsaquo; </button>
-                                    <div class="inner">
-                                    <AnimeList
-                                        v-for="anime in favoriteAnime"
-                                        :key="anime.animeID"
-                                        class="pf-carousel-slide"
-                                        :img="anime.img"
-                                        :title="anime.title"
-                                    />
-                                    </div>
+                                    <transition-group name="test" tag="div">
+                                        <div v-for="i in [favoriteIndex]" :key="i" class="pf-carousel-slide">
+                                            <img :src="showFavorite.img" class="anime-img"/>
+                                            <h3> {{ showFavorite.title }} </h3>
+                                        </div>
+                                    </transition-group>
                                     <button class="carousel-arrow right-arrow" v-on:click="favoriteRight"> &rsaquo; </button>
                                 </div>
                         </div>
@@ -178,6 +172,14 @@ export default {
         },
         favoriteRight () {
             this.favoriteIndex +=1;
+        },
+    },
+    computed: {
+        showCurrent () {
+            return this.currentAnimes[Math.abs(this.currentIndex) % this.currentAnimes.length];
+        },
+        showFavorite () {
+            return this.favoriteAnime[Math.abs(this.favoriteIndex) % this.favoriteAnime.length];
         },
     },
 };
@@ -363,21 +365,22 @@ export default {
     height: 25vh;
     display: flex;
     overflow: hidden;
-    align-items: center;
+    align-items: left;
     flex-direction: row;
     justify-content: center;
 }
 .pf-carousel-slide {
     width: 20vw;
-    height: 20vh;
+    height: 25vh;
     align-items: center;
     display: inline-flex;
     flex-direction: column;
     justify-content: center;
+    background-color: var(--tertiary);
 }
-.inner {
-    width: 44vw;
-    white-space: nowrap;
+.anime-img {
+    width: 10vw;
+    height: 22vh;
 }
 .left-arrow {
     left: 0;
@@ -391,5 +394,11 @@ export default {
     color: var(--white);
     font-size: var(--h3);
     background-color: unset;
+}
+.test-enter-active,
+.test-leave-active {
+  width: 0%;
+  opacity: 0;
+  overflow: hidden;
 }
 </style>
