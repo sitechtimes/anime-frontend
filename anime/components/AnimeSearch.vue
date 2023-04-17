@@ -9,7 +9,7 @@
 							<p class="allAnime-filterText">Sort by</p>
 							<select
 								class="allAnime-filterSelect"
-								v-model="userStore.genre"
+								v-model="genre"
 								@change="selectPage(1)"
 							>
 								<option value="media_type">Fantasy</option>
@@ -23,7 +23,7 @@
 							<p class="allAnime-filterText">Season</p>
 							<select
 								class="allAnime-filterSelect"
-								v-model="userStore.season"
+								v-model="season"
 								@change="selectPage(1)"
 							>
 								<option value="media_type">Spring</option>
@@ -36,7 +36,7 @@
 							<p class="allAnime-filterText">Year</p>
 							<select
 								class="allAnime-filterSelect"
-								v-model="userStore.year"
+								v-model="year"
 								@change="selectPage(1)"
 							>
 								<option value="anime_name">2020</option>
@@ -50,7 +50,7 @@
 							<p class="allAnime-filterText">Type</p>
 							<select
 								class="allAnime-filterSelect"
-								v-model="userStore.type"
+								v-model="type"
 								@change="selectPage(1)"
 							>
 								<option value="media_type">Ongoing</option>
@@ -61,7 +61,7 @@
 							<p class="allAnime-filterText">Sort</p>
 							<select
 								class="allAnime-filterSelect"
-								v-model="userStore.order"
+								v-model="order"
 								@change="selectPage(1)"
 							>
 								<option value="anime_name">Dafault</option>
@@ -172,7 +172,11 @@ const pageExistRight = ref(true);
 const pageFilteredAnime = ref([] as any);
 
 const genre = ref("");
-const 
+const year = ref("");
+const type = ref("");
+const order = ref("");
+const season = ref("");
+
 
 if (userStore.startPageIndex != 0) {
 	pageExistLeft.value = true;

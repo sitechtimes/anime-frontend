@@ -8,13 +8,13 @@ import { createPinia } from "pinia";
 
 export const useUserStore = defineStore("user", {
 	state: () => ({
-		allAnime: [] as any,
-		currentAnime: [] as any,
-		filterAnime: [] as any,
+		allAnime: [],
+		currentAnime: [],
+		filterAnime: [],
 		startPageIndex: 0,
 		endPageIndex: 12,
 		pageNumber: 1,
-		animeId: null,
+		animeId: 0,
 		username: null,
 		first_name: null,
 		last_name: null,
@@ -43,7 +43,7 @@ export const useUserStore = defineStore("user", {
 		// }
 	},
 	actions: {
-		storeAnimeId(id: any) {
+		storeAnimeId(id: number) {
 			this.animeId = id;
 		},
 		async getAllAnime() {
@@ -87,7 +87,7 @@ export const useUserStore = defineStore("user", {
 											summary
 											largeImageUrl
 											numRated
-        									avgRating
+											avgRating
 											airedTo
 											airedFrom
 											animeGenre {
