@@ -1,4 +1,4 @@
-# anime
+# TECHNIME FRONTEND
 
 ## Build Setup
 
