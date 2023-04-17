@@ -61,6 +61,8 @@ export const useUserStore = defineStore("user", {
 				const response = await fetch(endpoint, options);
 				const data = await response.json();
 
+				this.allAnime = data;
+				console.log(data);
 				return data;
 			} catch (error) {
 				console.log(error);

@@ -85,32 +85,14 @@ onMounted(
 		userStore
 			.getAllAnime()
 			.then((data) => {
-				const refineData = data.filter(function (anime: any) {
-					//delete anime.large_image_url;
-					delete anime.small_image_url;
-					delete anime.image_url;
-					delete anime.trailer_youtube_url;
-					delete anime.aired_from;
-					delete anime.aired_to;
-					delete anime.summary;
-					delete anime.anime_studio;
-					delete anime.number_rating;
-					delete anime.anime_characters;
-					delete anime.anime_awards;
-					delete anime.id;
-
-					return true;
-				});
-
 				const airingAnime = [] as any;
 
-				refineData.filter(function (anime: any) {
+				data.filter(function (anime: any) {
 					if (anime.status == "Currently Airing") {
 						airingAnime.push(anime);
 					}
 				});
-				console.log(refineData);
-				userStore.allAnime = refineData;
+				//userStore.allAnime = data;
 				userStore.currentAnime = airingAnime;
 
 				pagePopularAnime.value = userStore.currentAnime.slice(
