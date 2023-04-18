@@ -35,9 +35,19 @@
                                 <div class="pf-carousel">
                                     <button class="carousel-arrow left-arrow" v-on:click="currentLeft"> &lsaquo; </button>
                                     <transition-group name="test" tag="div">
-                                        <div v-for="i in [currentIndex]" :key="i" class="pf-carousel-slide">
+                                        <div v-for="i in [currentIndex]" :key="i">
+                                            <div class="pf-carousel-slide">
                                             <img :src="showCurrent.img" class="anime-img"/>
-                                            <h3> {{ showCurrent.title }} </h3>
+                                            <h3 class="anime-title"> {{ showCurrent.title }} </h3>
+                                            </div>
+                                            <div class="pf-carousel-slide">
+                                            <img :src="secondCurrent.img" class="anime-img"/>
+                                            <h3 class="anime-title"> {{ secondCurrent.title }} </h3>
+                                            </div>
+                                            <div class="pf-carousel-slide">
+                                            <img :src="thirdCurrent.img" class="anime-img"/>
+                                            <h3 class="anime-title"> {{ thirdCurrent.title }} </h3>
+                                            </div>
                                         </div>
                                     </transition-group>
                                     <button class="carousel-arrow right-arrow" v-on:click="currentRight"> &rsaquo; </button>
@@ -55,9 +65,19 @@
                                 <div class="pf-carousel">
                                     <button class="carousel-arrow left-arrow" v-on:click="favoriteLeft"> &lsaquo; </button>
                                     <transition-group name="test" tag="div">
-                                        <div v-for="i in [favoriteIndex]" :key="i" class="pf-carousel-slide">
+                                        <div v-for="i in [favoriteIndex]" :key="i">
+                                            <div class="pf-carousel-slide">
                                             <img :src="showFavorite.img" class="anime-img"/>
-                                            <h3> {{ showFavorite.title }} </h3>
+                                            <h3 class="anime-title"> {{ showFavorite.title }} </h3>
+                                            </div>
+                                            <div class="pf-carousel-slide">
+                                            <img :src="secondFavorite.img" class="anime-img"/>
+                                            <h3 class="anime-title"> {{ secondFavorite.title }} </h3>
+                                            </div>
+                                            <div class="pf-carousel-slide">
+                                            <img :src="thirdFavorite.img" class="anime-img"/>
+                                            <h3 class="anime-title"> {{ thirdFavorite.title }} </h3>
+                                            </div>
                                         </div>
                                     </transition-group>
                                     <button class="carousel-arrow right-arrow" v-on:click="favoriteRight"> &rsaquo; </button>
@@ -178,8 +198,20 @@ export default {
         showCurrent () {
             return this.currentAnimes[Math.abs(this.currentIndex) % this.currentAnimes.length];
         },
+        secondCurrent () {
+            return this.currentAnimes[Math.abs(this.currentIndex+1) % this.currentAnimes.length];
+        },
+        thirdCurrent () {
+            return this.currentAnimes[Math.abs(this.currentIndex+2) % this.currentAnimes.length];
+        },
         showFavorite () {
             return this.favoriteAnime[Math.abs(this.favoriteIndex) % this.favoriteAnime.length];
+        },
+        secondFavorite () {
+            return this.favoriteAnime[Math.abs(this.favoriteIndex+1) % this.favoriteAnime.length];
+        },
+        thirdFavorite () {
+            return this.favoriteAnime[Math.abs(this.favoriteIndex+2) % this.favoriteAnime.length];
         },
     },
 };
@@ -305,13 +337,6 @@ export default {
     height: 5rem;
     margin-left: 1rem;
 }
-.animeTitle {
-    font-size: var(--h4);
-    overflow: hidden;
-    white-space: nowrap;
-    display: block;
-    text-overflow: ellipsis;
-}
 .genre-text {
     background-color: var(--primary);
     width: 20%;
@@ -361,26 +386,27 @@ export default {
     display: block;
 }
 .pf-carousel {
-    width: 48vw;
+    width: 55vw;
     height: 25vh;
     display: flex;
     overflow: hidden;
-    align-items: left;
     flex-direction: row;
     justify-content: center;
 }
 .pf-carousel-slide {
-    width: 20vw;
+    width: 15vw;
     height: 25vh;
     align-items: center;
     display: inline-flex;
     flex-direction: column;
-    justify-content: center;
-    background-color: var(--tertiary);
 }
 .anime-img {
     width: 10vw;
     height: 22vh;
+    object-fit: cover;
+}
+.anime-title {
+    font-size: var(--h5);
 }
 .left-arrow {
     left: 0;
