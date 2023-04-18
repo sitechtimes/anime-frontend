@@ -4,6 +4,7 @@ import { createPersistedState } from "pinia-plugin-persistedstate";
 import { googleLogout } from "vue3-google-login";
 import { useRouter } from "nuxt/app";
 import { createPinia } from "pinia";
+import { anime } from "~/types/anime";
 // const router = useRouter()
 
 export const useUserStore = defineStore("user", {
@@ -14,7 +15,7 @@ export const useUserStore = defineStore("user", {
 		startPageIndex: 0,
 		endPageIndex: 12,
 		pageNumber: 1,
-		animeId: 0,
+		animeId: null,
 		username: null,
 		first_name: null,
 		last_name: null,
@@ -43,7 +44,7 @@ export const useUserStore = defineStore("user", {
 		// }
 	},
 	actions: {
-		storeAnimeId(id: number) {
+		storeAnimeId(id: any) {
 			this.animeId = id;
 		},
 		async getAllAnime() {
@@ -60,6 +61,15 @@ export const useUserStore = defineStore("user", {
 
 				const response = await fetch(endpoint, options);
 				const data = await response.json();
+
+				data.map((anime: anime) => {
+					anime.anime_genre = anime.anime_genre.map((genre: any) => {
+						return genre.genre;
+					});
+					anime.anime_studio = anime.anime_studio.map((studio: any) => {
+						return studio.studio;
+					});
+				});
 
 				this.allAnime = data;
 				console.log(data);

@@ -3,12 +3,13 @@ interface anime {
 	aired_to: string;
 	anime_awards: [];
 	anime_characters: [];
-	anime_genre: [];
+	anime_genre: string[];
 	anime_name: string;
-	anime_studio: [];
+	anime_studio: string[];
 	avg_rating: string;
 	episodes: number;
 	id: number;
+	image_url: string;
 	large_image_url: string;
 	mal_id: number;
 	media_type: string;
@@ -19,3 +20,5 @@ interface anime {
 	summary: string;
 	trailer_url: string;
 }
+
+export { anime };
