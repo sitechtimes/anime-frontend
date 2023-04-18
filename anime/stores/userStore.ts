@@ -52,6 +52,7 @@ export const useUserStore = defineStore("user", {
 				const endpoint = "http://127.0.0.1:8000/anime/";
 				const headers = {
 					"Content-Type": "application/json",
+					"Accept-enconding": "gzip",
 				};
 
 				const options = {
