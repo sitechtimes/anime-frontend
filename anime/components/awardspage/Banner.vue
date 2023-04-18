@@ -220,7 +220,23 @@ export default {
     }
 }
 @media screen and (max-width: 1700px) {
-    .banner-image {
+    .banner-bg {
+        width: 55%;
+    }
+}
+@media screen and (max-width: 1560px) {
+    .banner-bg {
+        width: 60%;
+    }
+}
+@media screen and (max-width: 1440px) {
+    .banner-flex {
+        height: 40vh;
+    }
+}
+@media screen and (max-width: 1200px) {
+    .title-banner {
+        font-size: var(--h3);
     }
 }
 </style>
