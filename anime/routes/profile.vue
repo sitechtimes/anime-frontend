@@ -195,6 +195,13 @@ export default {
         },
     },
     computed: {
+        // showCurrent () {
+        //         return (
+        //         this.currentAnimes[Math.abs(this.currentIndex) % this.currentAnimes.length],
+        //         this.currentAnimes[Math.abs(this.currentIndex+1) % this.currentAnimes.length],
+        //         this.currentAnimes[Math.abs(this.currentIndex+2) % this.currentAnimes.length]
+        //     );
+        // },
         showCurrent () {
             return this.currentAnimes[Math.abs(this.currentIndex) % this.currentAnimes.length];
         },
@@ -423,8 +430,8 @@ export default {
 }
 .test-enter-active,
 .test-leave-active {
-  width: 0%;
-  opacity: 0;
-  overflow: hidden;
+    width: 0%;
+    opacity: 0;
+    overflow: hidden;
 }
 </style>
