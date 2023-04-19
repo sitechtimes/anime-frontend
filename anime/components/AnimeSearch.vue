@@ -186,7 +186,7 @@ const loadingAnime = [...Array(14).keys()];
 const loading = ref(true);
 
 onMounted(() => {
-	userStore.animeId = null;
+	userStore.animeId = 0;
 	userStore.startPageIndex = 0;
 	userStore.endPageIndex = 35;
 	userStore.pageNumber = 1;

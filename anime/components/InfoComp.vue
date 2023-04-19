@@ -11,12 +11,16 @@
 				<p>Episodes: {{ episodes }}</p>
 				<p>Status: {{ status }}</p>
 				<p>Aired: {{ aired }}</p>
-				<p>Studio: {{ studio }}</p>
-				<div class="quick-info-genre">
+				<div class="quick-info-sub">
+					<p>Studio:</p>
+					<div v-for="studio in studios">
+						<p>Studio: {{ studio }}</p>
+					</div>
+				</div>
+				<div class="quick-info-sub">
 					<p>Genres:</p>
-					<div v-for="(genre, index) in genres">
+					<div v-for="genre in genres">
 						<p>{{ genre }},</p>
-						<!-- <p v-if="index == genres.length - 1">{{ genre }}</p> -->
 					</div>
 				</div>
 			</div>
@@ -79,7 +83,7 @@ export default {
 		episodes: Number,
 		status: String,
 		aired: String,
-		studio: String,
+		studios: Array,
 		genres: Array,
 		animeName: String,
 		synopsis: String,
@@ -101,6 +105,7 @@ export default {
 			datasets: [
 				{
 					label: "Rating Distribution",
+					//random data
 					data: Array.from({ length: 10 }, () => Math.floor(Math.random() * 100)),
 					fill: "start",
 					borderColor: "rgb(75, 192, 192)",
@@ -209,7 +214,7 @@ export default {
 .quick-info p {
 	font-size: var(--h6);
 }
-.quick-info-genre {
+.quick-info-sub {
 	display: flex;
 	flex-wrap: wrap;
 	column-gap: 0.5rem;

@@ -4,18 +4,18 @@ import { createPersistedState } from "pinia-plugin-persistedstate";
 import { googleLogout } from "vue3-google-login";
 import { useRouter } from "nuxt/app";
 import { createPinia } from "pinia";
-import { anime } from "~/types/anime";
+import { animeRest, animeGraphql } from "~/types/anime";
 // const router = useRouter()
 
 export const useUserStore = defineStore("user", {
 	state: () => ({
-		allAnime: [],
-		currentAnime: [],
-		filterAnime: [],
+		allAnime: [] as animeRest[],
+		currentAnime: [] as animeRest[],
+		filterAnime: [] as animeRest[],
 		startPageIndex: 0,
 		endPageIndex: 12,
 		pageNumber: 1,
-		animeId: null,
+		animeId: 0,
 		username: null,
 		first_name: null,
 		last_name: null,
@@ -44,7 +44,7 @@ export const useUserStore = defineStore("user", {
 		// }
 	},
 	actions: {
-		storeAnimeId(id: any) {
+		storeAnimeId(id: number) {
 			this.animeId = id;
 		},
 		async getAllAnime() {
@@ -52,7 +52,7 @@ export const useUserStore = defineStore("user", {
 				const endpoint = "http://127.0.0.1:8000/anime/";
 				const headers = {
 					"Content-Type": "application/json",
-					"Accept-enconding": "gzip",
+					"Accept-encoding": "gzip", //does not work
 				};
 
 				const options = {
@@ -61,19 +61,10 @@ export const useUserStore = defineStore("user", {
 				};
 
 				const response = await fetch(endpoint, options);
-				const data = await response.json();
-
-				data.map((anime: anime) => {
-					anime.anime_genre = anime.anime_genre.map((genre: any) => {
-						return genre.genre;
-					});
-					anime.anime_studio = anime.anime_studio.map((studio: any) => {
-						return studio.studio;
-					});
-				});
+				const data: animeRest[] = await response.json();
 
 				this.allAnime = data;
-				console.log(data);
+
 				return data;
 			} catch (error) {
 				console.log(error);
@@ -139,22 +130,25 @@ export const useUserStore = defineStore("user", {
 				};
 
 				const response = await fetch(endpoint, options);
-				const animeData = await response.json();
+				const data = await response.json();
 
-				const refinedAnimeData = animeData.data.allAnime.edges[0].node;
+				const dataRes = data.data.allAnime.edges[0].node;
 
-				refinedAnimeData.animeGenre = refinedAnimeData.animeGenre.edges.map((edge: any) => {
+				dataRes.animeGenre = dataRes.animeGenre.edges.map((edge: any) => {
 					return edge.node.genre;
 				});
 
-				refinedAnimeData.animeStudio = refinedAnimeData.animeStudio.edges[0].node.studio;
+				dataRes.animeStudio = dataRes.animeStudio.edges.map((edge: any) => {
+					return edge.node.studio;
+				});
 
-				refinedAnimeData.animeAwards = refinedAnimeData.animeAwards.edges.map(
-					(edge: any) => {
-						return edge.node.id;
-					}
-				);
-				return refinedAnimeData;
+				dataRes.animeAwards = dataRes.animeAwards.edges.map((edge: any) => {
+					return edge.node.id;
+				});
+
+				const animeData: animeGraphql = dataRes;
+				console.log(animeData);
+				return animeData;
 			} catch (error) {
 				console.log(error);
 			}

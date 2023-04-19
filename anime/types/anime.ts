@@ -1,11 +1,11 @@
-interface anime {
+interface animeRest {
 	aired_from: string;
 	aired_to: string;
 	anime_awards: [];
 	anime_characters: [];
-	anime_genre: string[];
+	anime_genre: { genre: string }[];
 	anime_name: string;
-	anime_studio: string[];
+	anime_studio: { studio: string }[];
 	avg_rating: string;
 	episodes: number;
 	id: number;
@@ -21,4 +21,28 @@ interface anime {
 	trailer_url: string;
 }
 
-export { anime };
+interface animeGraphql {
+	malId: number;
+	animeName: string;
+	episodes: number;
+	mediaType: string;
+	status: string;
+	summary: string;
+	largeImageUrl: string;
+	numRated: number;
+	avgRating: number;
+	airedTo: string;
+	airedFrom: string;
+	animeGenre: {
+		genre: string;
+	}[];
+	animeStudio: {
+		studio: string;
+	}[];
+	animeAwards: {
+		awardName: string;
+		date: string;
+	}[];
+}
+
+export { animeRest, animeGraphql };

@@ -19,7 +19,7 @@ import { useUserStore } from "~~/stores/userStore";
 import { ref } from "vue";
 
 const userStore = useUserStore();
-const animeInfoData = ref({} as any);
+const animeInfoData = ref({} as animeGraphql);
 
 onMounted(() => {
 	userStore.getOneAnime().then((data) => {
@@ -27,41 +27,43 @@ onMounted(() => {
 	});
 });
 
-function aired(airTimeStart: string, airTimeEnd: string) {
-	if (airTimeEnd == null) return airTimeStart;
-	else {
-		function changeMonth(dMonth: string) {
-			if (dMonth == "01") return "Jan";
-			if (dMonth == "02") return "Feb";
-			if (dMonth == "03") return "Mar";
-			if (dMonth == "04") return "Apr";
-			if (dMonth == "05") return "May";
-			if (dMonth == "06") return "Jun";
-			if (dMonth == "07") return "Jul";
-			if (dMonth == "08") return "Aug";
-			if (dMonth == "09") return "Sep";
-			if (dMonth == "10") return "Oct";
-			if (dMonth == "11") return "Nov";
-			if (dMonth == "12") return "Dec";
-		}
-		function changeDay(dDay: string) {
-			if (dDay == "01") return "1";
-			if (dDay == "02") return "2";
-			if (dDay == "03") return "3";
-			if (dDay == "04") return "4";
-			if (dDay == "05") return "5";
-			if (dDay == "06") return "6";
-			if (dDay == "07") return "7";
-			if (dDay == "08") return "8";
-			if (dDay == "09") return "9";
-			else return dDay;
-		}
-		function dat(date: string) {
-			const dateArr = date.split("-");
-			const month = changeMonth(dateArr[1]);
-			const day = changeDay(dateArr[2]);
-			return month + " " + day + ", " + dateArr[0];
-		}
+function aired(airTimeStart: string, airTimeEnd: string): string {
+	function changeMonth(dMonth: string): string {
+		if (dMonth == "01") return "Jan";
+		if (dMonth == "02") return "Feb";
+		if (dMonth == "03") return "Mar";
+		if (dMonth == "04") return "Apr";
+		if (dMonth == "05") return "May";
+		if (dMonth == "06") return "Jun";
+		if (dMonth == "07") return "Jul";
+		if (dMonth == "08") return "Aug";
+		if (dMonth == "09") return "Sep";
+		if (dMonth == "10") return "Oct";
+		if (dMonth == "11") return "Nov";
+		else return "Dec";
+	}
+	function changeDay(dDay: string): string {
+		if (dDay == "01") return "1";
+		if (dDay == "02") return "2";
+		if (dDay == "03") return "3";
+		if (dDay == "04") return "4";
+		if (dDay == "05") return "5";
+		if (dDay == "06") return "6";
+		if (dDay == "07") return "7";
+		if (dDay == "08") return "8";
+		if (dDay == "09") return "9";
+		else return dDay;
+	}
+	function dat(date: string): string {
+		const dateArr = date.split("-");
+		const month = changeMonth(dateArr[1]);
+		const day = changeDay(dateArr[2]);
+		return month + " " + day + ", " + dateArr[0];
+	}
+	if (airTimeEnd == null) {
+		console.log(airTimeStart);
+		return airTimeStart;
+	} else {
 		return dat(airTimeStart) + " to " + dat(airTimeEnd);
 	}
 }
@@ -69,6 +71,7 @@ function aired(airTimeStart: string, airTimeEnd: string) {
 
 <script lang="ts">
 import InfoComp from "../components/InfoComp.vue";
+import { animeGraphql } from "~~/types/anime";
 
 export default {
 	components: {

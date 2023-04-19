@@ -33,7 +33,7 @@
 			<div class="airing-content" v-else>
 				<AnimeCard
 					@saveAnimeID="saveClickedAnimeID(anime.mal_id)"
-					v-for="anime in pagePopularAnime"
+					v-for="anime in currentAnime"
 					:id="anime.mal_id"
 					:key="anime.mal_id"
 					:episode="anime.episodes"
@@ -66,7 +66,7 @@ const userStore = useUserStore();
 
 const pageExistLeft = ref(false);
 const pageExistRight = ref(true);
-const pagePopularAnime = ref([] as any);
+const currentAnime = ref([] as any);
 
 if (userStore.startPageIndex != 0) {
 	pageExistLeft.value = true;
@@ -77,7 +77,7 @@ const loading = ref(true);
 
 onMounted(
 	() => {
-		userStore.animeId = null;
+		userStore.animeId = 0;
 		userStore.startPageIndex = 0;
 		userStore.endPageIndex = 12;
 		userStore.pageNumber = 1;
@@ -85,17 +85,17 @@ onMounted(
 		userStore
 			.getAllAnime()
 			.then((data) => {
-				const airingAnime = [] as any;
+				const airingAnime = [] as animeRest[];
 
-				data.filter(function (anime: any) {
+				data?.filter(function (anime: animeRest) {
 					if (anime.status == "Currently Airing") {
 						airingAnime.push(anime);
 					}
 				});
-				//userStore.allAnime = data;
+
 				userStore.currentAnime = airingAnime;
 
-				pagePopularAnime.value = userStore.currentAnime.slice(
+				currentAnime.value = userStore.currentAnime.slice(
 					userStore.startPageIndex,
 					userStore.endPageIndex
 				);
@@ -115,7 +115,7 @@ function next() {
 		userStore.endPageIndex += 11;
 		userStore.pageNumber += 1;
 		pageExistLeft.value = true;
-		pagePopularAnime.value = userStore.currentAnime.slice(
+		currentAnime.value = userStore.currentAnime.slice(
 			userStore.startPageIndex,
 			userStore.endPageIndex
 		);
@@ -133,7 +133,7 @@ function previous() {
 		userStore.endPageIndex -= 11;
 		userStore.pageNumber -= 1;
 		pageExistRight.value = true;
-		pagePopularAnime.value = userStore.currentAnime.slice(
+		currentAnime.value = userStore.currentAnime.slice(
 			userStore.startPageIndex,
 			userStore.endPageIndex
 		);
@@ -148,7 +148,7 @@ function selectPage(num: number) {
 	userStore.startPageIndex = num * 11 - 11;
 	userStore.endPageIndex = num * 11 + 1;
 
-	pagePopularAnime.value = userStore.currentAnime.slice(
+	currentAnime.value = userStore.currentAnime.slice(
 		userStore.startPageIndex,
 		userStore.endPageIndex
 	);
@@ -161,6 +161,7 @@ import TopCharts from "./TopCharts.vue";
 import RightPageButton from "../RightPageButtonSvg.vue";
 import LeftPageButton from "../LeftPageButtonSvg.vue";
 import AnimeCardLoading from "./AnimeCardLoading.vue";
+import { animeRest } from "~~/types/anime";
 
 export default {
 	name: "TrendingBox",
