@@ -191,27 +191,6 @@ onMounted(() => {
 	userStore.endPageIndex = 35;
 	userStore.pageNumber = 1;
 
-	// userStore
-	// 	.getAllAnime()
-	// 	.then((data) => {
-	// 		const allAnime = [] as any;
-
-	// 		data.forEach((anime: any) => {
-	// 			allAnime.push(anime);
-	// 		});
-
-	// 		userStore.allAnime = allAnime;
-
-	// 		pageFilteredAnime.value = userStore.allAnime.slice(
-	// 			userStore.startPageIndex,
-	// 			userStore.endPageIndex
-	// 		);
-	// 		loading.value = false;
-	// 	})
-	// 	.catch((err) => {
-	// 		console.log(err);
-	// 	});
-
 	const filterAnime = [] as any;
 
 	userStore.filterAnime.forEach((anime: any) => {

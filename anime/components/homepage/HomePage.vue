@@ -28,12 +28,12 @@
 				</div>
 			</div>
 			<div class="airing-content" v-if="loading">
-				<AnimeCardLoading v-for="anime in loadingAnimeHome" />
+				<AnimeCardLoading v-for="anime in loadingAnimeHome" :id="anime" />
 			</div>
 			<div class="airing-content" v-else>
 				<AnimeCard
 					@saveAnimeID="saveClickedAnimeID(anime.mal_id)"
-					v-for="anime in currentAnime"
+					v-for="anime in airingAnime"
 					:id="anime.mal_id"
 					:key="anime.mal_id"
 					:episode="anime.episodes"
@@ -59,63 +59,64 @@
 </template>
 
 <script setup lang="ts">
+import AnimeCard from "./AnimeCard.vue";
+import TopCharts from "./TopCharts.vue";
+import RightPageButton from "../RightPageButtonSvg.vue";
+import LeftPageButton from "../LeftPageButtonSvg.vue";
+import AnimeCardLoading from "./AnimeCardLoading.vue";
+import { animeRest } from "~~/types/anime";
 import { useUserStore } from "~~/stores/userStore";
 import { ref } from "vue";
 
 const userStore = useUserStore();
 
-const pageExistLeft = ref(false);
-const pageExistRight = ref(true);
-const currentAnime = ref([] as any);
+const pageExistLeft = ref<boolean>(false);
+const pageExistRight = ref<boolean>(true);
+const airingAnime = ref<animeRest[]>();
+const loading = ref<boolean>(true);
+const loadingAnimeHome: number[] = [...Array(12).keys()];
 
 if (userStore.startPageIndex != 0) {
 	pageExistLeft.value = true;
 }
+onMounted(() => {
+	userStore.animeId = 0;
+	userStore.startPageIndex = 0;
+	userStore.endPageIndex = 12;
+	userStore.pageNumber = 1;
 
-const loadingAnimeHome = [...Array(12).keys()];
-const loading = ref(true);
+	userStore
+		.getAllAnime()
+		.then((data) => {
+			const airingAnimeArr = [] as animeRest[];
 
-onMounted(
-	() => {
-		userStore.animeId = 0;
-		userStore.startPageIndex = 0;
-		userStore.endPageIndex = 12;
-		userStore.pageNumber = 1;
-
-		userStore
-			.getAllAnime()
-			.then((data) => {
-				const airingAnime = [] as animeRest[];
-
-				data?.filter(function (anime: animeRest) {
-					if (anime.status == "Currently Airing") {
-						airingAnime.push(anime);
-					}
-				});
-
-				userStore.currentAnime = airingAnime;
-
-				currentAnime.value = userStore.currentAnime.slice(
-					userStore.startPageIndex,
-					userStore.endPageIndex
-				);
-
-				loading.value = false;
-			})
-			.catch((err) => {
-				console.log(err);
+			data!.filter(function (anime: animeRest) {
+				if (anime.status == "Currently Airing") {
+					airingAnimeArr.push(anime);
+				}
 			});
-	}
-	//}
-);
 
-function next() {
-	if (userStore.endPageIndex < userStore.currentAnime.length) {
+			userStore.airingAnime = airingAnimeArr;
+
+			airingAnime.value = userStore.airingAnime.slice(
+				userStore.startPageIndex,
+				userStore.endPageIndex
+			);
+
+			loading.value = false;
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+});
+
+function next(): void {
+	if (userStore.endPageIndex < userStore.airingAnime.length) {
 		userStore.startPageIndex += 11;
 		userStore.endPageIndex += 11;
 		userStore.pageNumber += 1;
 		pageExistLeft.value = true;
-		currentAnime.value = userStore.currentAnime.slice(
+		airingAnime.value = userStore.airingAnime.slice(
 			userStore.startPageIndex,
 			userStore.endPageIndex
 		);
@@ -124,7 +125,7 @@ function next() {
 	}
 }
 
-function previous() {
+function previous(): void {
 	if (userStore.pageNumber == 1) {
 		pageExistLeft.value = false;
 		pageExistRight.value = true;
@@ -133,22 +134,22 @@ function previous() {
 		userStore.endPageIndex -= 11;
 		userStore.pageNumber -= 1;
 		pageExistRight.value = true;
-		currentAnime.value = userStore.currentAnime.slice(
+		airingAnime.value = userStore.airingAnime.slice(
 			userStore.startPageIndex,
 			userStore.endPageIndex
 		);
 	}
 }
 
-function saveClickedAnimeID(id: number) {
+function saveClickedAnimeID(id: number): void {
 	userStore.storeAnimeId(id);
 }
 
-function selectPage(num: number) {
+function selectPage(num: number): void {
 	userStore.startPageIndex = num * 11 - 11;
 	userStore.endPageIndex = num * 11 + 1;
 
-	currentAnime.value = userStore.currentAnime.slice(
+	airingAnime.value = userStore.airingAnime.slice(
 		userStore.startPageIndex,
 		userStore.endPageIndex
 	);
@@ -156,22 +157,7 @@ function selectPage(num: number) {
 </script>
 
 <script lang="ts">
-import AnimeCard from "./AnimeCard.vue";
-import TopCharts from "./TopCharts.vue";
-import RightPageButton from "../RightPageButtonSvg.vue";
-import LeftPageButton from "../LeftPageButtonSvg.vue";
-import AnimeCardLoading from "./AnimeCardLoading.vue";
-import { animeRest } from "~~/types/anime";
-
 export default {
-	name: "TrendingBox",
-	components: {
-		AnimeCard,
-		TopCharts,
-		RightPageButton,
-		LeftPageButton,
-		AnimeCardLoading,
-	},
 	data() {
 		return {
 			top: [

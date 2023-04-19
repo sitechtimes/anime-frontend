@@ -10,7 +10,7 @@ import { animeRest, animeGraphql } from "~/types/anime";
 export const useUserStore = defineStore("user", {
 	state: () => ({
 		allAnime: [] as animeRest[],
-		currentAnime: [] as animeRest[],
+		airingAnime: [] as animeRest[],
 		filterAnime: [] as animeRest[],
 		startPageIndex: 0,
 		endPageIndex: 12,

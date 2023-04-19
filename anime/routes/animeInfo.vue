@@ -1,15 +1,15 @@
 <template>
 	<div>
 		<InfoComp
-			:name="animeInfoData.animeName"
-			:episodes="animeInfoData.episodes"
-			:mediaType="animeInfoData.mediaType"
-			:status="animeInfoData.status"
-			:aired="aired(animeInfoData.airedFrom, animeInfoData.airedTo)"
-			:genres="animeInfoData.animeGenre"
-			:synopsis="animeInfoData.summary"
-			:imageUrl="animeInfoData.largeImageUrl"
-			:studio="animeInfoData.animeStudio"
+			:name="animeInfoData!.animeName"
+			:episodes="animeInfoData!.episodes"
+			:mediaType="animeInfoData!.mediaType"
+			:status="animeInfoData!.status"
+			:aired="aired(animeInfoData!.airedFrom, animeInfoData!.airedTo)"
+			:genres="animeInfoData!.animeGenre"
+			:synopsis="animeInfoData!.summary"
+			:imageUrl="animeInfoData!.largeImageUrl"
+			:studio="animeInfoData!.animeStudio"
 		/>
 	</div>
 </template>
@@ -19,7 +19,7 @@ import { useUserStore } from "~~/stores/userStore";
 import { ref } from "vue";
 
 const userStore = useUserStore();
-const animeInfoData = ref({} as animeGraphql);
+const animeInfoData = ref<animeGraphql>();
 
 onMounted(() => {
 	userStore.getOneAnime().then((data) => {
