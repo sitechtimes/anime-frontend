@@ -104,7 +104,7 @@ export default {
 .banner-flex {
     display: flex;
     width: 80%;
-    height: 45vh;
+    height: 45rem;
     margin: auto;
     margin-top: 5vh;
     justify-content: center;
@@ -147,7 +147,7 @@ export default {
     font-size: var(--h5);
 }
 .banner-image {
-    height: 80%;
+    width: 45%;
     position: absolute;
     right: 0;
 }
@@ -213,30 +213,27 @@ export default {
     text-align: center;
     border-radius: 1rem;
 }
-@media screen and (max-width: 1800px) {
+@media screen and (max-width: 1575px) {
+    .banner-flex {
+        height: 38rem;
+    }
     .banner-image {
-        height: 75%;
         right: -15px;
     }
 }
-@media screen and (max-width: 1700px) {
+@media screen and (max-width: 1440px) {
     .banner-bg {
         width: 55%;
     }
 }
-@media screen and (max-width: 1560px) {
+@media screen and (max-width: 1350px) {
     .banner-bg {
         width: 60%;
     }
 }
-@media screen and (max-width: 1440px) {
-    .banner-flex {
-        height: 40vh;
-    }
-}
-@media screen and (max-width: 1200px) {
-    .title-banner {
-        font-size: var(--h3);
+@media screen and (max-width: 915px) {
+    .banner-image {
+        display: none;
     }
 }
 </style>
