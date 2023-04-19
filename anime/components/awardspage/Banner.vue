@@ -213,6 +213,7 @@ export default {
     text-align: center;
     border-radius: 1rem;
 }
+
 @media screen and (max-width: 1575px) {
     .banner-flex {
         height: 38rem;
@@ -221,16 +222,52 @@ export default {
         right: -15px;
     }
 }
+
 @media screen and (max-width: 1440px) {
     .banner-bg {
         width: 55%;
     }
 }
+
 @media screen and (max-width: 1350px) {
+    .banner-flex {
+        height: 35rem;
+    }
     .banner-bg {
-        width: 60%;
+        width: 65%;
     }
 }
+
+@media screen and (max-width: 1285px) {
+    .banner-text {
+        padding-right: 3rem;
+    }
+    .title-banner {
+        font-size: var(--h3);
+    }
+    .banner-image {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .banner-flex {
+        height: 30rem;
+    }
+    .banner-text {
+        width: 65%;
+    }
+    .trending-text {
+        font-size: var(--h5);
+    }
+    .voting-description {
+        font-size: var(--h6);
+    }
+    .banner-image {
+        width: 45%;
+    }
+}
+
 @media screen and (max-width: 915px) {
     .banner-image {
         display: none;

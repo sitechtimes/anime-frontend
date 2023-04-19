@@ -143,6 +143,12 @@ export default ({
   }
 }
 
+@media screen and (max-width: 915px) {
+  .award-container {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
 @media screen and (max-width: 768px) {
   .award-container {
     grid-template-columns: repeat(2, minmax(0, 1fr));
