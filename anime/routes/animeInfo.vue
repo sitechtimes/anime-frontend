@@ -17,6 +17,8 @@
 <script setup lang="ts">
 import { useUserStore } from "~~/stores/userStore";
 import { ref } from "vue";
+import { animeGraphql } from "~~/types/anime";
+import InfoComp from "../components/InfoComp.vue";
 
 const userStore = useUserStore();
 const animeInfoData = ref<animeGraphql>();
@@ -67,15 +69,4 @@ function aired(airTimeStart: string, airTimeEnd: string): string {
 		return dat(airTimeStart) + " to " + dat(airTimeEnd);
 	}
 }
-</script>
-
-<script lang="ts">
-import InfoComp from "../components/InfoComp.vue";
-import { animeGraphql } from "~~/types/anime";
-
-export default {
-	components: {
-		InfoComp,
-	},
-};
 </script>

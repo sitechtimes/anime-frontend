@@ -1,6 +1,6 @@
 <template>
 <div id="mobile">
-    <div class="menu" v-class="{ close: isClose }">
+    <div class="menu" :class="{ close: isClose }">
           <ul class="mq-routers">
                 <li class="link" v-on:click="toggleOn()">
                     <NuxtLink to="/awards" class="mobile-link-href">Awards</NuxtLink>

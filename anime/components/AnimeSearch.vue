@@ -164,12 +164,18 @@
 import { useUserStore } from "~~/stores/userStore";
 import { ref } from "vue";
 import { onMounted } from "vue";
+import { animeRest } from "~~/types/anime";
+import AnimeCard from "./homepage/AnimeCard.vue";
+import TopCharts from "./homepage/TopCharts.vue";
+import RightPageButton from "./RightPageButtonSvg.vue";
+import LeftPageButton from "./LeftPageButtonSvg.vue";
+import AnimeCardLoading from "./homepage/AnimeCardLoading.vue";
 
 const userStore = useUserStore();
 
-const pageExistLeft = ref(false);
-const pageExistRight = ref(true);
-const pageFilteredAnime = ref([] as any);
+const pageExistLeft = ref<boolean>(false);
+const pageExistRight = ref<boolean>(true);
+const pageFilteredAnime = ref([] as animeRest[]);
 
 const genre = ref("");
 const year = ref("");
@@ -177,13 +183,12 @@ const type = ref("");
 const order = ref("");
 const season = ref("");
 
-
 if (userStore.startPageIndex != 0) {
 	pageExistLeft.value = true;
 }
 
-const loadingAnime = [...Array(14).keys()];
-const loading = ref(true);
+const loadingAnime: number[] = [...Array(14).keys()];
+const loading = ref<boolean>(true);
 
 onMounted(() => {
 	userStore.animeId = 0;
@@ -191,7 +196,7 @@ onMounted(() => {
 	userStore.endPageIndex = 35;
 	userStore.pageNumber = 1;
 
-	const filterAnime = [] as any;
+	const filterAnime = [] as animeRest[];
 
 	userStore.filterAnime.forEach((anime: any) => {
 		filterAnime.push(anime);
@@ -204,7 +209,7 @@ onMounted(() => {
 	loading.value = false;
 });
 
-function next() {
+function next(): void {
 	if (userStore.endPageIndex < userStore.filterAnime.length) {
 		userStore.startPageIndex += 35;
 		userStore.endPageIndex += 35;
@@ -219,7 +224,7 @@ function next() {
 	}
 }
 
-function previous() {
+function previous(): void {
 	if (userStore.pageNumber == 1) {
 		pageExistLeft.value = false;
 		pageExistRight.value = true;
@@ -235,11 +240,11 @@ function previous() {
 	}
 }
 
-function saveClickedAnimeID(id: number) {
+function saveClickedAnimeID(id: number): void {
 	userStore.storeAnimeId(id);
 }
 
-function selectPage(num: number) {
+function selectPage(num: number): void {
 	userStore.startPageIndex = num * 35 - 35;
 	userStore.endPageIndex = num * 35 + 1;
 
@@ -249,28 +254,9 @@ function selectPage(num: number) {
 	);
 }
 
-function toTop() {
+function toTop(): void {
 	window.scrollTo({ top: 0, behavior: "auto" });
 }
-</script>
-
-<script lang="ts">
-import AnimeCard from "./homepage/AnimeCard.vue";
-import TopCharts from "./homepage/TopCharts.vue";
-import RightPageButton from "./RightPageButtonSvg.vue";
-import LeftPageButton from "./LeftPageButtonSvg.vue";
-import AnimeCardLoading from "./homepage/AnimeCardLoading.vue";
-
-export default {
-	name: "allAnime",
-	components: {
-		AnimeCard,
-		TopCharts,
-		RightPageButton,
-		LeftPageButton,
-		AnimeCardLoading,
-	},
-};
 </script>
 
 <style>

@@ -90,7 +90,7 @@ onMounted(() => {
 		.then((data) => {
 			const airingAnimeArr = [] as animeRest[];
 
-			data!.filter(function (anime: animeRest) {
+			data!.filter(function (anime: animeRest): void {
 				if (anime.status == "Currently Airing") {
 					airingAnimeArr.push(anime);
 				}
@@ -148,7 +148,6 @@ function saveClickedAnimeID(id: number): void {
 function selectPage(num: number): void {
 	userStore.startPageIndex = num * 11 - 11;
 	userStore.endPageIndex = num * 11 + 1;
-
 	airingAnime.value = userStore.airingAnime.slice(
 		userStore.startPageIndex,
 		userStore.endPageIndex
