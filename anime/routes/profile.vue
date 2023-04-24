@@ -156,6 +156,16 @@ export default {
                 title: "Blue Lock",
                 img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
             },
+            {
+                animeID: "05",
+                title: "Oshi no Ko",
+                img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
+            },
+            {
+                animeID: "06",
+                title: "Jujutsu Kaisen",
+                img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
+            },
         ],
         favoriteAnime: [
             {
@@ -168,7 +178,7 @@ export default {
                 title: "Spy x Family",
                 img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
             },
-            {
+            { 
                 animeID: "03",
                 title: "Chainsaw Man",
                 img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
@@ -176,6 +186,16 @@ export default {
             {
                 animeID: "04",
                 title: "Blue Lock",
+                img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
+            },
+            {
+                animeID: "05",
+                title: "Oshi no Ko",
+                img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
+            },
+            {
+                animeID: "06",
+                title: "Jujutsu Kaisen",
                 img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
             },
         ],
@@ -195,13 +215,6 @@ export default {
         },
     },
     computed: {
-        // showCurrent () {
-        //         return (
-        //         this.currentAnimes[Math.abs(this.currentIndex) % this.currentAnimes.length],
-        //         this.currentAnimes[Math.abs(this.currentIndex+1) % this.currentAnimes.length],
-        //         this.currentAnimes[Math.abs(this.currentIndex+2) % this.currentAnimes.length]
-        //     );
-        // },
         showCurrent () {
             return this.currentAnimes[Math.abs(this.currentIndex) % this.currentAnimes.length];
         },
