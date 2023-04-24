@@ -113,7 +113,6 @@ export default {
 }
 .banner-bg {
     background: var(--primary);
-    width: 50%;
     border-radius: 25px;
     display: flex;
     align-items: center;
@@ -121,7 +120,7 @@ export default {
 }
 .banner-text {
     height: 85%;
-    width: 60%;
+    width: 38rem;
     background: var(--secondary);
     border-radius: 25px;
     margin-left: 5%;
@@ -130,7 +129,7 @@ export default {
     row-gap: 1rem;
 }
 .trending-text, .title-banner, .voting-description {
-    margin-left: 5%;
+    margin-left: 1rem;
 }
 .trending-text {
     font-size: var(--h4);
@@ -147,9 +146,7 @@ export default {
     font-size: var(--h5);
 }
 .banner-image {
-    width: 45%;
-    position: absolute;
-    right: 0;
+    height: 75%;
 }
 .banner-season {
     background: var(--tertiary);
@@ -214,7 +211,7 @@ export default {
     border-radius: 1rem;
 }
 
-@media screen and (max-width: 1575px) {
+/* @media screen and (max-width: 1575px) {
     .banner-flex {
         height: 38rem;
     }
@@ -272,5 +269,5 @@ export default {
     .banner-image {
         display: none;
     }
-}
+} */
 </style>
