@@ -116,26 +116,25 @@ export default {
     border-radius: 25px;
     display: flex;
     align-items: center;
-    position: relative;
 }
 .banner-text {
     height: 85%;
-    width: 38rem;
+    width: 42rem;
     background: var(--secondary);
     border-radius: 25px;
     margin-left: 5%;
     display: flex;
     flex-direction: column;
     row-gap: 1rem;
+    padding-top: 3rem;
 }
 .trending-text, .title-banner, .voting-description {
-    margin-left: 1rem;
+    margin: 0 2rem 0 2rem;
 }
 .trending-text {
     font-size: var(--h4);
     font-weight: var(--fw-light);
     text-transform: uppercase;
-    margin-top: 10%;
 }
 .title-banner {
     font-size: var(--h2);
@@ -211,22 +210,16 @@ export default {
     border-radius: 1rem;
 }
 
-/* @media screen and (max-width: 1575px) {
-    .banner-flex {
-        height: 38rem;
-    }
-    .banner-image {
-        right: -15px;
-    }
-}
-
 @media screen and (max-width: 1440px) {
-    .banner-bg {
-        width: 55%;
+    .banner-flex {
+        height: 40rem;
+    }
+    .title-banner {
+        font-size: var(--h3);
     }
 }
 
-@media screen and (max-width: 1350px) {
+/* @media screen and (max-width: 1350px) {
     .banner-flex {
         height: 35rem;
     }
