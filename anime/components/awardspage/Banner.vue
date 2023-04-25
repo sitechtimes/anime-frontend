@@ -168,8 +168,9 @@ export default {
 .bestAnime {
     display: flex;
     align-items: center;
-    width: 90%;
-    justify-content: space-between;
+    width: 100%;
+    justify-content: center;
+    column-gap: 1rem;
 }
 .picture-column {
     display: flex;
@@ -204,7 +205,7 @@ export default {
 }
 .genre-text {
     background-color: var(--primary);
-    width: 10rem;
+    width: 20%;
     height: 2rem;
     text-align: center;
     border-radius: 1rem;
@@ -229,6 +230,17 @@ export default {
     .voting-description {
         font-size: var(--h6);
     }
+    .anime-pfp {
+        height: 4rem;
+        width: 4rem;
+    }
+    .animeTitle {
+        font-size: var(--h5);
+    }
+    .star-rating {
+        font-size: var(--h8);
+        margin-top: -0.5rem;
+    }
 }
 
 @media screen and (max-width: 1200px) {
@@ -237,6 +249,9 @@ export default {
     }
     .banner-text {
         width: 30rem;
+    }
+    .season-text {
+        font-size: var(--h4);
     }
 }
 
