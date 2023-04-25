@@ -1,15 +1,15 @@
 <template>
 	<div>
 		<InfoComp
-			:name="animeInfoData!.animeName"
-			:episodes="animeInfoData!.episodes"
-			:mediaType="animeInfoData!.mediaType"
-			:status="animeInfoData!.status"
-			:aired="aired(animeInfoData!.airedFrom, animeInfoData!.airedTo)"
-			:genres="animeInfoData!.animeGenre"
-			:synopsis="animeInfoData!.summary"
-			:imageUrl="animeInfoData!.largeImageUrl"
-			:studio="animeInfoData!.animeStudio"
+			:name="animeInfoData.animeName"
+			:episodes="animeInfoData.episodes"
+			:mediaType="animeInfoData.mediaType"
+			:status="animeInfoData.status"
+			:aired="aired(animeInfoData.airedFrom, animeInfoData!.airedTo)"
+			:genres="animeInfoData.animeGenre"
+			:synopsis="animeInfoData.summary"
+			:imageUrl="animeInfoData.largeImageUrl"
+			:studio="animeInfoData.animeStudio"
 		/>
 	</div>
 </template>
@@ -21,11 +21,13 @@ import { animeGraphql } from "~~/types/anime";
 import InfoComp from "../components/InfoComp.vue";
 
 const userStore = useUserStore();
-const animeInfoData = ref<animeGraphql>();
+const animeInfoData = ref();
 
 onMounted(() => {
 	userStore.getOneAnime().then((data) => {
-		animeInfoData.value = data;
+		// data is undefined
+		console.log(data);
+		// animeInfoData.value = data;
 	});
 });
 

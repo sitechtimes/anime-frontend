@@ -148,6 +148,8 @@ export const useUserStore = defineStore("user", {
 
 				const animeData: animeGraphql = dataRes;
 
+				console.log(animeData);
+
 				return animeData;
 			} catch (error) {
 				console.log(error);
