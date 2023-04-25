@@ -212,31 +212,31 @@ export default {
 
 @media screen and (max-width: 1440px) {
     .banner-flex {
-        height: 40rem;
+        height: 37rem;
     }
-    .title-banner {
-        font-size: var(--h3);
-    }
-}
-
-/* @media screen and (max-width: 1350px) {
-    .banner-flex {
-        height: 35rem;
-    }
-    .banner-bg {
-        width: 65%;
-    }
-}
-
-@media screen and (max-width: 1285px) {
     .banner-text {
-        padding-right: 3rem;
-    }
-    .title-banner {
-        font-size: var(--h3);
+        width: 32rem;
     }
     .banner-image {
-        width: 50%;
+        height: 70%;
+    }
+    .title-banner {
+        font-size: var(--h3);
+    }
+    .trending-text {
+        font-size: var(--h5);
+    }
+    .voting-description {
+        font-size: var(--h6);
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .banner-flex {
+        height: 33rem;
+    }
+    .banner-text {
+        width: 30rem;
     }
 }
 
@@ -245,16 +245,10 @@ export default {
         height: 30rem;
     }
     .banner-text {
-        width: 65%;
+        width: 25rem;
     }
-    .trending-text {
-        font-size: var(--h5);
-    }
-    .voting-description {
-        font-size: var(--h6);
-    }
-    .banner-image {
-        width: 45%;
+    .title-banner {
+        font-size: var(--h4);
     }
 }
 
@@ -262,5 +256,5 @@ export default {
     .banner-image {
         display: none;
     }
-} */
+}
 </style>
