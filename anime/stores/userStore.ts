@@ -11,6 +11,7 @@ export const useUserStore = defineStore("user", {
 		allAnime: [] as any,
 		currentAnime: [] as any,
 		filterAnime: [] as any,
+		allAwards: [] as any,
 		startPageIndex: 0,
 		endPageIndex: 12,
 		pageNumber: 1,
@@ -66,6 +67,77 @@ export const useUserStore = defineStore("user", {
 				console.log(error);
 			}
 		},
+
+
+		async getAllAwards() {
+			try {
+				const endpoint = "http://127.0.0.1:8000/graphql/";
+				const headers = {
+					"content-type": "application/json",
+					Authorization: `Bearer ${this.token}`,
+				};
+
+				const graphqlQuery = {
+					query: `{
+						allAwards{
+							edges{
+							  node{
+								awardName
+							  }
+							}
+						  }
+							}`,
+					variables: {},
+				};
+
+				const options = {
+					method: "POST",
+					headers: headers,
+					body: JSON.stringify(graphqlQuery),
+				};
+
+				const response = await fetch(endpoint, options);
+				const awardData = await response.json();
+
+				// console.log(awardData.data.allAwards)
+				
+
+				
+				awardData.data.allAwards.edges.forEach(node => {
+					console.log(node.node.awardName)
+					const awardName = node.node.awardName
+					if (this.allAwards.includes(awardName)) {
+						// console.log("award exist")
+						
+					} else {
+						this.allAwards.push(node.node.awardName)
+					}
+					
+				});
+				// this.allAwards = []
+				// console.log(this.allAwards)
+				// return this.allAwards
+				// const refinedAnimeData = animeData.data.allAnime.edges[0].node;
+
+				// refinedAnimeData.animeGenre = refinedAnimeData.animeGenre.edges.map((edge: any) => {
+				// 	return edge.node.genre;
+				// });
+
+				// refinedAnimeData.animeStudio = refinedAnimeData.animeStudio.edges[0].node.studio;
+
+				// refinedAnimeData.animeAwards = refinedAnimeData.animeAwards.edges.map(
+				// 	(edge: any) => {
+				// 		return edge.node.id;
+				// 	}
+				// );
+
+				// return refinedAnimeData;
+			} catch (error) {
+				console.log(error);
+			}
+		},
+		
+
 		async getOneAnime() {
 			try {
 				const endpoint = "http://127.0.0.1:8000/graphql/";
