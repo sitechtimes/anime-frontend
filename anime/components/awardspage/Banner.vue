@@ -251,14 +251,21 @@ export default {
     .banner-text {
         width: 30rem;
     }
+    .banner-season {
+        width: 40%;
+    }
     .season-text {
         font-size: var(--h4);
+    }
+    .genre-text {
+        font-size: var(--smallText);
     }
 }
 
 @media screen and (max-width: 1024px) {
     .banner-flex {
         height: 30rem;
+        column-gap: 3rem;
     }
     .banner-text {
         width: 25rem;
