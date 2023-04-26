@@ -209,6 +209,7 @@ export default {
     height: 2rem;
     text-align: center;
     border-radius: 1rem;
+    font-size: var(--h8);
 }
 
 @media screen and (max-width: 1440px) {
