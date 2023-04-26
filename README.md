@@ -16,7 +16,7 @@ npm install
 # pnpm
 pnpm install --shamefully-hoist
 ```
-## Continuous Development
+## Change Directory
 ```bash
 cd anime
 ```
