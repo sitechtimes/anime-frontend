@@ -92,6 +92,26 @@
                         </div>
                         <div class="tab-bottom">
                             <h3 class="tab-title">Rated</h3>
+                             <div class="pf-carousel">
+                                    <button class="carousel-arrow left-arrow" v-on:click="ratedLeft"> &lsaquo; </button>
+                                    <transition-group name="test" tag="div">
+                                        <div v-for="i in [ratedIndex]" :key="i">
+                                            <div class="pf-carousel-slide">
+                                            <img :src="showRated.img" class="anime-img"/>
+                                            <h3 class="anime-title"> {{ showRated.title }} </h3>
+                                            </div>
+                                            <div class="pf-carousel-slide">
+                                            <img :src="secondRated.img" class="anime-img"/>
+                                            <h3 class="anime-title"> {{ secondRated.title }} </h3>
+                                            </div>
+                                            <div class="pf-carousel-slide">
+                                            <img :src="thirdRated.img" class="anime-img"/>
+                                            <h3 class="anime-title"> {{ thirdRated.title }} </h3>
+                                            </div>
+                                        </div>
+                                    </transition-group>
+                                    <button class="carousel-arrow right-arrow" v-on:click="ratedRight"> &rsaquo; </button>
+                                </div>
                         </div>
                     </div>
                 </Tab>
@@ -133,6 +153,7 @@ export default {
         //   Tabs
     },
     data: () => ({
+        ratedIndex: 0,
         currentIndex: 0,
         favoriteIndex: 0,
         currentAnimes: [
@@ -167,7 +188,39 @@ export default {
                 img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
             },
         ],
-        favoriteAnime: [
+        favoriteAnimes: [
+            {
+                animeID: "01",
+                title: "One Punch Man",
+                img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
+            },
+            {
+                animeID: "02",
+                title: "Spy x Family",
+                img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
+            },
+            { 
+                animeID: "03",
+                title: "Chainsaw Man",
+                img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
+            },
+            {
+                animeID: "04",
+                title: "Blue Lock",
+                img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
+            },
+            {
+                animeID: "05",
+                title: "Oshi no Ko",
+                img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
+            },
+            {
+                animeID: "06",
+                title: "Jujutsu Kaisen",
+                img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
+            },
+        ],
+        RatedAnimes: [
             {
                 animeID: "01",
                 title: "One Punch Man",
@@ -201,6 +254,12 @@ export default {
         ],
     }),
     methods: {
+        ratedLeft () {
+            this.ratedIndex -= 1;
+        },
+        ratedRight () {
+            this.ratedIndex += 1;
+        },
         currentLeft () {
             this.currentIndex -=1;
         },
@@ -215,6 +274,15 @@ export default {
         },
     },
     computed: {
+        showRated () {
+            return this.RatedAnimes[Math.abs(this.ratedIndex) % this.RatedAnimes.length];
+        },
+        secondRated () {
+            return this.RatedAnimes[Math.abs(this.ratedIndex+1) % this.RatedAnimes.length];
+        },
+        thirdRated () {
+            return this.RatedAnimes[Math.abs(this.ratedIndex+2) % this.RatedAnimes.length];
+        },
         showCurrent () {
             return this.currentAnimes[Math.abs(this.currentIndex) % this.currentAnimes.length];
         },
@@ -225,13 +293,13 @@ export default {
             return this.currentAnimes[Math.abs(this.currentIndex+2) % this.currentAnimes.length];
         },
         showFavorite () {
-            return this.favoriteAnime[Math.abs(this.favoriteIndex) % this.favoriteAnime.length];
+            return this.favoriteAnimes[Math.abs(this.favoriteIndex) % this.favoriteAnimes.length];
         },
         secondFavorite () {
-            return this.favoriteAnime[Math.abs(this.favoriteIndex+1) % this.favoriteAnime.length];
+            return this.favoriteAnimes[Math.abs(this.favoriteIndex+1) % this.favoriteAnimes.length];
         },
         thirdFavorite () {
-            return this.favoriteAnime[Math.abs(this.favoriteIndex+2) % this.favoriteAnime.length];
+            return this.favoriteAnimes[Math.abs(this.favoriteIndex+2) % this.favoriteAnimes.length];
         },
     },
 };
