@@ -206,7 +206,6 @@ export default {
 .genre-text {
     background-color: var(--primary);
     width: 20%;
-    height: 2rem;
     text-align: center;
     border-radius: 1rem;
     font-size: var(--h8);
@@ -230,6 +229,9 @@ export default {
     }
     .voting-description {
         font-size: var(--h6);
+    }
+    .anime-season {
+        padding: 2rem;
     }
     .anime-pfp {
         height: 4rem;
@@ -270,14 +272,27 @@ export default {
     .banner-text {
         width: 25rem;
     }
+    .anime-pfp {
+        height: 3rem;
+        width: 3rem;
+    }
     .title-banner {
         font-size: var(--h4);
     }
 }
 
 @media screen and (max-width: 915px) {
-    .banner-image {
-        display: none;
+    .banner-flex {
+        flex-direction: column;
+        height: auto;
+    }
+    .banner-bg {
+        margin-bottom: 3rem;
+        height: 27rem;
+        width: fit-content;
+    }
+    .banner-text {
+        margin: 2rem 0 2rem 2rem;
     }
 }
 </style>
