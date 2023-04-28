@@ -20,6 +20,7 @@ export const useUserStore = defineStore("user", {
 		first_name: null,
 		last_name: null,
 		email: null,
+		userID: null,
 		redirect: false,
 		userData: null,
 		token: null,
@@ -249,10 +250,11 @@ export const useUserStore = defineStore("user", {
 										"Need to login with your school account (i.e. nycstudents.net)"
 									);
 								}
-
+								// console.log(res.data.pk)
 								// localStorage.setItem("user", res.data.first_name)
 								// this.userData = localStorage.getItem("user")
 								// this.user = res.data.first_name
+								this.userID = res.data.pk
 								this.username = res.data.username;
 								// this.userData = res.data;
 								this.first_name = res.data.first_name;
@@ -260,6 +262,7 @@ export const useUserStore = defineStore("user", {
 								this.email = res.data.email;
 								this.isAuthenticated = true;
 								this.redirect = true;
+								console.log(this.userID)
 								return navigateTo("/");
 								// router.push({ path: "/"})
 							});
@@ -316,6 +319,7 @@ export const useUserStore = defineStore("user", {
 				this.email = null;
 				this.isAuthenticated = false;
 				this.token = null;
+				this.userID = null
 				// googleLogout();
 			} catch (error) {
 				console.error(error);

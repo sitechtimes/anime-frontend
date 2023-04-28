@@ -2,9 +2,9 @@
   <div id="actual-voting">
     <h1 class="award-name">{{ awardName }}</h1>
     <div class="nominee-container">
-      <div v-for="r1 in r" class="nominee-box" @click="select">
+      <div v-for="anime in animes" :key="anime" class="nominee-box" @click="select">
         <img class="image-placeholder" src="https://cdn.myanimelist.net/images/characters/4/457933.jpg" alt="">
-        <h1 class="anime-title">Anime Title {{r1}}</h1>
+        <h1 class="anime-title">{{anime.node.animeName}}</h1>
       </div>
     </div>
     <div class="btn-container">
@@ -23,22 +23,81 @@
 </template>
 
 <script lang="ts">
+import { useUserStore } from '~~/stores/userStore'
 export default ({
   data: () => ({
     r: [1,2,3,4,5,6],
     selected: false,
     // voted: true,
+    animes: [],
+    nominee: ""
 
   }),
+  setup() {
+    const userStore = useUserStore()
+
+    return {
+      userStore
+    }
+  },
   props: {
     awardName: {
       type: String
     }
   },
+  mounted() {
+    console.log(this.awardName)
+    if (this.awardName?.includes("Character")) {
+      console.log("character award")
+    } else {
+      console.log("anime award")
+      this.getAnimes()
+
+    }
+  },
   methods: {
+    async getAnimes() {
+      try {
+        const endpoint = "http://127.0.0.1:8000/graphql/";
+				const headers = {
+					"content-type": "application/json",
+					Authorization: `Bearer ${this.userStore.token}`,
+				};
+
+				const graphqlQuery = {
+					query: `{
+					  allAnime {
+    edges{
+      node{
+        animeName
+      }
+    }
+  }
+							}`,
+					variables: {},
+				};
+
+				const options = {
+					method: "POST",
+					headers: headers,
+					body: JSON.stringify(graphqlQuery),
+				};
+
+				const response = await fetch(endpoint, options);
+				const animeData = await response.json();
+        const animeArray = animeData.data.allAnime.edges.splice(1,6)
+        this.animes = animeArray
+        console.log(this.animes[0])
+      } catch (error) {
+        console.log(error)
+      }
+    },
     select(nominee) {
       this.selected = true
       let click = nominee.target
+      // console.log(click.outerText)
+      this.nominee = click.outerText
+      
       const boxes = Array.from(document.getElementsByClassName("nominee-box") as HTMLCollectionOf<HTMLElement>)
         boxes.forEach(box => {
           box.style.background = "#252525"
@@ -58,6 +117,7 @@ export default ({
         vote.style.background = "var(--primary)"
         vote.innerHTML = "Voted"
         vote.style.opacity = "50%"
+        
         const boxes = Array.from(document.getElementsByClassName("nominee-box") as HTMLCollectionOf<HTMLElement>)
         boxes.forEach(box => {
           box.style.pointerEvents = "none"
@@ -65,6 +125,55 @@ export default ({
             box.style.opacity = "50%"
           }
         });
+        console.log(this.nominee)
+        this.voteMutation()
+      }
+    },
+    async voteMutation() {
+      try {
+        const endpoint = "http://127.0.0.1:8000/graphql/";
+				const headers = {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${this.userStore.token}`,
+				};
+
+				const graphqlQuery = {
+					query: `mutation{
+   addAnimeVote(userData: {userId: "${this.userStore.userID}"}, animeData: {animeName: "${this.nominee}"}, awardName: "${this.awardName}") {
+       animeAward{
+           voteCount,
+           anime{
+               animeName
+           },
+           allUsers{
+               edges{
+                   node{
+                       user{
+                           username
+                       }
+                   }
+               }
+           }
+
+
+       }
+   }
+}`,
+					variables: {},
+				};
+
+				const options = {
+					method: "POST",
+					headers: headers,
+					body: JSON.stringify(graphqlQuery),
+				};
+
+				const response = await fetch(endpoint, options);
+				const voteData = await response.json();
+
+        console.log(voteData)
+      } catch (error) {
+        console.log(error)
       }
     },
     close() {
