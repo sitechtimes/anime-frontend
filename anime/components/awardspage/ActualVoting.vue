@@ -30,7 +30,8 @@ export default ({
     selected: false,
     // voted: true,
     animes: [],
-    nominee: ""
+    nominee: "",
+    error: ""
 
   }),
   setup() {
@@ -113,6 +114,7 @@ export default ({
         const msg = document.getElementById("popup")
         msg.style.display = "flex"
       } else if (this.selected === true) {
+        this.voteMutation()
         const vote = document.getElementById("vote-btn")
         vote.style.background = "var(--primary)"
         vote.innerHTML = "Voted"
@@ -126,7 +128,7 @@ export default ({
           }
         });
         console.log(this.nominee)
-        this.voteMutation()
+  
       }
     },
     async voteMutation() {
@@ -171,7 +173,11 @@ export default ({
 				const response = await fetch(endpoint, options);
 				const voteData = await response.json();
 
-        console.log(voteData)
+        console.log(voteData.errors[0].message)
+        if (voteData.errors[0].message) {
+          return alert(voteData.errors[0].message)
+         
+        }
       } catch (error) {
         console.log(error)
       }
