@@ -146,7 +146,7 @@ export const useUserStore = defineStore("user", {
 					return edge.node.id;
 				});
 
-				const animeData: animeGraphql = dataRes;
+				const animeData = dataRes;
 
 				console.log(animeData);
 

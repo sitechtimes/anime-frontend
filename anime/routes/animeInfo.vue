@@ -1,7 +1,7 @@
 <template>
 	<div>
-		<InfoComp
-			:name="animeInfoData.animeName"
+		<InfoComp 
+			:animeName="animeInfoData.animeName"
 			:episodes="animeInfoData.episodes"
 			:mediaType="animeInfoData.mediaType"
 			:status="animeInfoData.status"
@@ -25,9 +25,10 @@ const animeInfoData = ref();
 
 onMounted(() => {
 	userStore.getOneAnime().then((data) => {
-		// data is undefined
+		// data = JSON.parse(JSON.stringify(data));
 		console.log(data);
-		// animeInfoData.value = data;
+		animeInfoData.value = data;
+		console.log(animeInfoData.value);
 	});
 });
 
