@@ -1,6 +1,6 @@
 <template>
   <div id="actual-voting">
-    <h1 class="award-name">Award Name</h1>
+    <h1 class="award-name">{{ awardName }}</h1>
     <div class="nominee-container">
       <div v-for="r1 in r" class="nominee-box" @click="select">
         <img class="image-placeholder" src="https://cdn.myanimelist.net/images/characters/4/457933.jpg" alt="">
@@ -27,8 +27,14 @@ export default ({
   data: () => ({
     r: [1,2,3,4,5,6],
     selected: false,
-    voted: true,
+    // voted: true,
+
   }),
+  props: {
+    awardName: {
+      type: String
+    }
+  },
   methods: {
     select(nominee) {
       this.selected = true

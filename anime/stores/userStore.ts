@@ -104,7 +104,7 @@ export const useUserStore = defineStore("user", {
 
 				
 				awardData.data.allAwards.edges.forEach(node => {
-					console.log(node.node.awardName)
+					// console.log(node.node.awardName)
 					const awardName = node.node.awardName
 					if (this.allAwards.includes(awardName)) {
 						// console.log("award exist")

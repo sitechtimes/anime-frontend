@@ -9,7 +9,9 @@
       </div>
     </div>
     <div class="award-container">
-      <NuxtLink to="/vote" v-for="award in awards" :key="award">
+
+      <!-- this should be another compoenent -->
+      <NuxtLink :to="`/vote/` +  award" v-for="award in awards" :key="award">
         <div class="award-box">
           <img src="https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg" alt="" class="img">
           <h1 class="award-name">{{award}}</h1>
