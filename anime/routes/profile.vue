@@ -506,7 +506,7 @@ export default {
 }
 .carousel-arrow {
     color: var(--white);
-    font-size: var(--h3);
+    font-size: var(--h2);
     background-color: unset;
 }
 .test-enter-active,
@@ -514,5 +514,42 @@ export default {
     width: 0%;
     opacity: 0;
     overflow: hidden;
+}
+@media screen and (max-width: 1485px) {
+.tab-title {
+    font-size: var(--h4);
+}
+.tabs-class {
+    font-size: var(--h6);
+}
+.anime-img {
+    width: 9vw;
+    height: 18vh;
+}
+.anime-title {
+    font-size: var(--h6);
+}
+.pf-carousel {
+    height: 21vh;
+}
+.carousel-arrow {
+    font-size: var(--h3);
+}
+}
+@media screen and (max-width: 1380px) {
+.pf-carousel-slide {
+    width: 13vw;
+}
+}
+@media screen and (max-width: 1285px) {
+.anime-img {
+    height: 15vh;
+}
+.anime-title {
+    font-size: var(--h7);
+}
+.pf-carousel-slide {
+    height: 16vh;
+}
 }
 </style>

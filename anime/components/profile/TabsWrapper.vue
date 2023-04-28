@@ -56,4 +56,9 @@ export default {
     margin-bottom: 5rem;
     border-radius: 0.5rem;
 }
+@media screen and (max-width: 1485px) {
+.tabs-header li {
+    font-size: var(--h5);
+}
+}
 </style>
