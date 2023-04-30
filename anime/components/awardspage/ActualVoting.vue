@@ -1,10 +1,17 @@
 <template>
   <div id="actual-voting">
     <h1 class="award-name">{{ awardName }}</h1>
-    <div class="nominee-container">
+    <div v-if="this.animes" class="nominee-container">
       <div v-for="anime in animes" :key="anime" class="nominee-box" @click="select">
         <img class="image-placeholder" src="https://cdn.myanimelist.net/images/characters/4/457933.jpg" alt="">
         <h1 class="anime-title">{{anime.node.animeName}}</h1>
+      </div>
+    </div>
+    <!-- fix the v-ifs they are not working!!! -->
+    <div v-if="this.characters" class="nominee-container">
+      <div v-for="character in characters" :key="character" class="nominee-box" @click="select">
+        <img class="image-placeholder" src="https://cdn.myanimelist.net/images/characters/4/457933.jpg" alt="">
+        <h1 class="anime-title">{{character.node.characterName}}</h1>
       </div>
     </div>
     <div class="btn-container">
@@ -30,6 +37,7 @@ export default ({
     selected: false,
     // voted: true,
     animes: [],
+    characters: [],
     nominee: "",
     error: ""
 
@@ -50,6 +58,7 @@ export default ({
     console.log(this.awardName)
     if (this.awardName?.includes("Character")) {
       console.log("character award")
+      this.getCharacters()
     } else {
       console.log("anime award")
       this.getAnimes()
@@ -89,6 +98,42 @@ export default ({
         const animeArray = animeData.data.allAnime.edges.splice(1,6)
         this.animes = animeArray
         console.log(this.animes[0])
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    async getCharacters() {
+      try {
+        const endpoint = "http://127.0.0.1:8000/graphql/";
+				const headers = {
+					"content-type": "application/json",
+					Authorization: `Bearer ${this.userStore.token}`,
+				};
+
+				const graphqlQuery = {
+					query: ` {
+  allCharacters{
+    edges{
+      node{
+        characterName
+      }
+    }
+  }
+}`,
+					variables: {},
+				};
+
+				const options = {
+					method: "POST",
+					headers: headers,
+					body: JSON.stringify(graphqlQuery),
+				};
+
+				const response = await fetch(endpoint, options);
+				const characterData = await response.json();
+        const characterArray = characterData.data.allCharacters.edges.splice(1,6)
+        this.characters = characterArray
+        console.log(this.characters)
       } catch (error) {
         console.log(error)
       }
@@ -173,7 +218,6 @@ export default ({
 				const response = await fetch(endpoint, options);
 				const voteData = await response.json();
 
-        console.log(voteData.errors[0].message)
         if (voteData.errors[0].message) {
           return alert(voteData.errors[0].message)
          
