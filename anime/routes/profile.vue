@@ -494,6 +494,9 @@ export default {
     object-fit: cover;
 }
 .anime-title {
+    width: 11vw;
+    overflow: hidden;
+    text-align: center;
     font-size: var(--h5);
 }
 .left-arrow {
@@ -515,41 +518,81 @@ export default {
     opacity: 0;
     overflow: hidden;
 }
-@media screen and (max-width: 1485px) {
+@media screen and (max-width: 1285px) {
 .tab-title {
+    margin-bottom: 2rem;
     font-size: var(--h4);
 }
-.tabs-class {
-    font-size: var(--h6);
-}
 .anime-img {
-    width: 9vw;
-    height: 18vh;
+    height: 20vh;
 }
 .anime-title {
     font-size: var(--h6);
-}
-.pf-carousel {
-    height: 21vh;
 }
 .carousel-arrow {
     font-size: var(--h3);
 }
+.pf-carousel {
+    height: 28vh;
 }
-@media screen and (max-width: 1380px) {
 .pf-carousel-slide {
     width: 13vw;
+    height: 22vh;
+    margin: auto;
 }
 }
-@media screen and (max-width: 1285px) {
+@media screen and (max-width: 1025px) {
+.tab-title {
+    margin-left: 3rem;
+}
 .anime-img {
-    height: 15vh;
+    height: 17vh;
 }
 .anime-title {
     font-size: var(--h7);
 }
+.pf-carousel {
+    height: 22vh;
+}
 .pf-carousel-slide {
-    height: 16vh;
+    width: 13vw;
+    height: 20vh;
+    margin: auto;
+}
+}
+@media screen and (max-width: 915px) {
+.tab-title {
+    margin-left: 4rem;
+    margin-bottom: 1rem;
+}
+.anime-img {
+    height: 8vh;
+}
+.pf-carousel {
+    height: 11vh;
+    margin-left: 4rem;
+}
+.pf-carousel-slide {
+    height: 10vh;
+}
+}
+@media screen and (max-width: 825px) {
+.anime-img {
+    height: 10vh;
+}
+.pf-carousel {
+    width: 58vw;
+    height: 13vh;
+    margin-left: 4rem;
+}
+.pf-carousel-slide {
+    width: 13vw;
+    height: 12vh;
+}
+}
+@media screen and (max-width: 770px) {
+.pf-carousel {
+    margin-left: 2rem;
 }
 }
 </style>

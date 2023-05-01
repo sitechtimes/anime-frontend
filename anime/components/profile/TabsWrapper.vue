@@ -56,9 +56,32 @@ export default {
     margin-bottom: 5rem;
     border-radius: 0.5rem;
 }
-@media screen and (max-width: 1485px) {
+@media screen and (max-width: 1285px) {
 .tabs-header li {
     font-size: var(--h5);
+}
+}
+@media screen and (max-width: 1025px) {
+.tabs-header {
+    width: 8vw;
+}
+.tabs-header li {
+    margin-bottom: 2rem;
+    font-size: var(--h6);
+}
+}
+@media screen and (max-width: 915px) {
+.tabs {
+    height: 30vh;
+    margin-top: 8rem;
+}
+.tabs-header {
+    width: 9vw;
+}
+}
+@media screen and (max-width: 825px) {
+.tabs-header li {
+    font-size: var(--h7);
 }
 }
 </style>
