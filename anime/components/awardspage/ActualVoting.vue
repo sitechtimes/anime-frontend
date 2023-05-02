@@ -1,14 +1,14 @@
 <template>
   <div id="actual-voting">
     <h1 class="award-name">{{ awardName }}</h1>
-    <div v-if="this.animes" class="nominee-container">
+    <div v-if="this.isAnime" class="nominee-container">
       <div v-for="anime in animes" :key="anime" class="nominee-box" @click="select">
         <img class="image-placeholder" src="https://cdn.myanimelist.net/images/characters/4/457933.jpg" alt="">
         <h1 class="anime-title">{{anime.node.animeName}}</h1>
       </div>
     </div>
     <!-- fix the v-ifs they are not working!!! -->
-    <div v-if="this.characters" class="nominee-container">
+    <div v-if="this.isCharacter" class="nominee-container">
       <div v-for="character in characters" :key="character" class="nominee-box" @click="select">
         <img class="image-placeholder" src="https://cdn.myanimelist.net/images/characters/4/457933.jpg" alt="">
         <h1 class="anime-title">{{character.node.characterName}}</h1>
@@ -39,7 +39,9 @@ export default ({
     animes: [],
     characters: [],
     nominee: "",
-    error: ""
+    error: "",
+    isCharacter: false,
+    isAnime: false
 
   }),
   setup() {
@@ -58,9 +60,13 @@ export default ({
     console.log(this.awardName)
     if (this.awardName?.includes("Character")) {
       console.log("character award")
+      this.isCharacter = true
+      this.isAnime = false
       this.getCharacters()
     } else {
       console.log("anime award")
+      this.isCharacter = false
+      this.isAnime = true
       this.getAnimes()
 
     }
@@ -177,7 +183,8 @@ export default ({
       }
     },
     async voteMutation() {
-      try {
+      if (this.isAnime){
+        try {
         const endpoint = "http://127.0.0.1:8000/graphql/";
 				const headers = {
 					"Content-Type": "application/json",
@@ -225,10 +232,53 @@ export default ({
       } catch (error) {
         console.log(error)
       }
+      } else if(this.isCharacter) {
+        try {
+        const endpoint = "http://127.0.0.1:8000/graphql/";
+				const headers = {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${this.userStore.token}`,
+				};
+
+				const graphqlQuery = {
+					query: `mutation{
+   addCharacterVote(userData: {userId: "${this.userStore.userID}"}, characterName:"${this.nominee}", awardName: "${this.awardName}") {
+	characterAward {
+    award {
+      awardName
+    },
+    voteCount,
+    
+  }
+  },
+    
+    
+}`,
+					variables: {},
+				};
+
+				const options = {
+					method: "POST",
+					headers: headers,
+					body: JSON.stringify(graphqlQuery),
+				};
+
+				const response = await fetch(endpoint, options);
+				const voteData = await response.json();
+        
+        if (voteData.errors[0].message) {
+          return alert(voteData.errors[0].message)
+         
+        }
+      } catch (error) {
+        console.log(error)
+      }
+      }
+     
     },
     close() {
       const msg = document.getElementById("popup")
-      msg.style.display = "none"
+      msg!.style.display = "none"
     }
   }
 })
