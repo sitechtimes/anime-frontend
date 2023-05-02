@@ -508,6 +508,7 @@ export default {
     text-align: right;
 }
 .carousel-arrow {
+    padding: 0.5rem;
     color: var(--white);
     font-size: var(--h2);
     background-color: unset;
@@ -540,6 +541,9 @@ export default {
     height: 22vh;
     margin: auto;
 }
+.profile-info {
+    margin-top: 15rem;
+}
 }
 @media screen and (max-width: 1025px) {
 .tab-title {
@@ -559,6 +563,10 @@ export default {
     height: 20vh;
     margin: auto;
 }
+.profile-info {
+    margin-top: 10rem;
+    margin-bottom: 8rem;
+}
 }
 @media screen and (max-width: 915px) {
 .tab-title {
@@ -575,6 +583,10 @@ export default {
 .pf-carousel-slide {
     height: 10vh;
 }
+.profile-info {
+    margin-top: 26rem;
+    margin-bottom: 6rem;
+}
 }
 @media screen and (max-width: 825px) {
 .anime-img {
@@ -583,16 +595,78 @@ export default {
 .pf-carousel {
     width: 58vw;
     height: 13vh;
-    margin-left: 4rem;
+    margin-left: 1.5rem;
 }
 .pf-carousel-slide {
     width: 13vw;
     height: 12vh;
 }
+.profile-info {
+    margin-top: 20rem;
+    margin-bottom: 2rem;
+}
 }
 @media screen and (max-width: 770px) {
 .pf-carousel {
     margin-left: 2rem;
+}
+}
+@media screen and (max-width: 550px) {
+.tab-logo {
+    font-size: var(--h6);
+}
+.tab-title {
+    margin-left: 5.5rem;
+    font-size: var(--h6);
+}
+.anime-img {
+    height: 8vh;
+}
+.anime-title {
+    width: 11vw;
+    height: 1.5rem;
+    font-size: var(--smallText);
+}
+.pf-carousel {
+    width: 59vw;
+    height: 11vh;
+}
+.pf-carousel-slide {
+    width: 11vw;
+}
+.carousel-arrow {
+    font-size: var(--h5);
+}
+.profile-img {
+    width: 12rem;
+    height: 12rem;
+}
+.profile-info {
+    margin-top: 12rem;
+    margin-bottom: 1rem;
+}
+.underNav {
+    height: 5vh;
+}
+}
+@media screen and (max-width: 420px) {
+.tab-title {
+    margin-left: 3.5rem;
+}
+.anime-title {
+    width: 13vw;
+}
+.pf-carousel {
+    width: 58vw;
+    margin-left: 1rem;
+}
+.pf-carousel-slide {
+    width: 13vw;
+    height: 12vh;
+}
+.profile-info {
+    margin-top: 17rem;
+    margin-bottom: 2rem;
 }
 }
 </style>

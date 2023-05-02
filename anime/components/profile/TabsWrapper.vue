@@ -31,6 +31,7 @@ export default {
     display: flex;
     height: 50vh;
     position: relative;
+    margin-top: 0rem;
 }
 .tabs-header {
     display: flex;
@@ -82,6 +83,24 @@ export default {
 @media screen and (max-width: 825px) {
 .tabs-header li {
     font-size: var(--h7);
+}
+}
+@media screen and (max-width: 550px) {
+.tabs-header {
+    width: 10vw;
+}
+.tabs-header li {
+    font-size: var(--smallText);
+}
+}
+@media screen and (max-width: 420px) {
+.tabs-header {
+    width: 13vw;
+    height: 35vh;
+    margin-left: 2rem;
+}
+.tabs-header li {
+    width: 13vw;
 }
 }
 </style>
