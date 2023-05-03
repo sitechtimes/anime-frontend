@@ -348,6 +348,7 @@ export default {
     margin-top: 20rem;
     margin-right: 25vw;
     position: relative;
+    margin-bottom: 5rem;
 }
 .profile-img {
     width: 15rem;
@@ -464,6 +465,7 @@ export default {
     position: absolute;
 }
 .tab-title {
+    margin-left: 2rem;
     font-size: var(--h3);
     color: var(--white);
     font-weight: var(--fw-light);
@@ -518,6 +520,11 @@ export default {
     width: 0%;
     opacity: 0;
     overflow: hidden;
+}
+@media screen and (max-width: 1575px) {
+.profile-info {
+    margin-top: 16rem;
+}
 }
 @media screen and (max-width: 1285px) {
 .tab-title {
@@ -588,6 +595,21 @@ export default {
     margin-bottom: 6rem;
 }
 }
+@media screen and (max-width: 900px) {
+.anime-img {
+    height: 15vh;
+}
+.pf-carousel {
+    height: 18vh;
+    margin-left: 4rem;
+}
+.pf-carousel-slide {
+    height: 17vh;
+}
+.profile-info {
+    margin-top: 15rem;
+}
+}
 @media screen and (max-width: 825px) {
 .anime-img {
     height: 10vh;
@@ -606,7 +628,7 @@ export default {
     margin-bottom: 2rem;
 }
 }
-@media screen and (max-width: 770px) {
+@media screen and (max-width: 780px) {
 .pf-carousel {
     margin-left: 2rem;
 }
@@ -667,6 +689,23 @@ export default {
 .profile-info {
     margin-top: 17rem;
     margin-bottom: 2rem;
+}
+}
+@media screen and (max-width: 380px) {
+.profile-info {
+    margin-top: 11rem;
+}
+}
+@media screen and (max-width: 285px) {
+.tab-logo {
+    font-size: var(--smallText);
+}
+.tab-title {
+    font-size: var(--h7);
+}
+.anime-title {
+    height: 2rem;
+    font-size: 0.6rem;
 }
 }
 </style>

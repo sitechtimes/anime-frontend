@@ -51,15 +51,22 @@ export default {
     border-radius: 5px;
 }
 .tabs-header li {
+    width: 7vw;
+    word-break: break-all;
     font-size: var(--h4);
     text-align: center;
     padding: 0.5rem 1rem;
     margin-bottom: 5rem;
     border-radius: 0.5rem;
 }
-@media screen and (max-width: 1285px) {
+@media screen and (max-width: 1575px) {
 .tabs-header li {
     font-size: var(--h5);
+}   
+}
+@media screen and (max-width: 1285px) {
+.tabs-header li {
+    font-size: var(--h6);
 }
 }
 @media screen and (max-width: 1025px) {
@@ -68,7 +75,6 @@ export default {
 }
 .tabs-header li {
     margin-bottom: 2rem;
-    font-size: var(--h6);
 }
 }
 @media screen and (max-width: 915px) {
@@ -78,6 +84,11 @@ export default {
 }
 .tabs-header {
     width: 9vw;
+}
+}
+@media screen and (max-width: 900px) {
+.tabs {
+    height: 40vh;
 }
 }
 @media screen and (max-width: 825px) {
@@ -94,13 +105,35 @@ export default {
 }
 }
 @media screen and (max-width: 420px) {
+.tabs {
+    height: 26vh;
+}
 .tabs-header {
     width: 13vw;
-    height: 35vh;
+    height: 30vh;
     margin-left: 2rem;
 }
 .tabs-header li {
     width: 13vw;
+}
+}
+@media screen and (max-width: 400px) {
+.tabs-header {
+    padding-top: 0.5rem;
+}
+}
+@media screen and (max-width: 380px) {
+.tabs-header {
+    width: 13vw;
+}
+.tabs-header li {
+    width: 12vw;
+    padding: 0.5rem;
+}
+}
+@media screen and (max-width: 285px) {
+.tabs-header li {
+    font-size: 0.6rem;
 }
 }
 </style>
