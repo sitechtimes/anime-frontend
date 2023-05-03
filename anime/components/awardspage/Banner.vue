@@ -288,11 +288,36 @@ export default {
     .banner-image {
         display: none;
     }
+    .banner-bg {
+        background: var(--secondary);
+        height: 28rem;
+        box-shadow: var(--primary) -2rem 2rem;
+    }
     .banner-text {
         margin: 1rem;
+        background: none;
+        padding-top: 1rem;
+        width: 22rem;
     }
     .banner-season {
         width: 50%;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    #banner {
+        padding-top: 0;
+    }
+    .banner-flex {
+        flex-direction: column;
+        height: auto;
+        align-items: center;
+    }
+    .banner-bg {
+        margin-bottom: 7rem;
+    }
+    .banner-season {
+        width: 80%;
     }
 }
 </style>
