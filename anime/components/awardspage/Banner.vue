@@ -126,7 +126,7 @@ export default {
     display: flex;
     flex-direction: column;
     row-gap: 1rem;
-    padding-top: 3rem;
+    padding-top: 5rem;
 }
 .trending-text, .title-banner, .voting-description {
     margin: 0 2rem 0 2rem;
@@ -217,6 +217,7 @@ export default {
     }
     .banner-text {
         width: 32rem;
+        padding-top: 4rem;
     }
     .banner-image {
         height: 70%;
@@ -252,12 +253,14 @@ export default {
     }
     .banner-text {
         width: 30rem;
+        padding-top: 3rem;
     }
     .banner-season {
         width: 40%;
     }
     .season-text {
         font-size: var(--h4);
+        margin-bottom: 1rem;
     }
     .genre-text {
         font-size: var(--smallText);
@@ -282,17 +285,14 @@ export default {
 }
 
 @media screen and (max-width: 915px) {
-    .banner-flex {
-        flex-direction: column;
-        height: auto;
-    }
-    .banner-bg {
-        margin-bottom: 3rem;
-        height: 27rem;
-        width: fit-content;
+    .banner-image {
+        display: none;
     }
     .banner-text {
-        margin: 2rem 0 2rem 2rem;
+        margin: 1rem;
+    }
+    .banner-season {
+        width: 50%;
     }
 }
 </style>

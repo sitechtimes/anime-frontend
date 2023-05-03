@@ -101,7 +101,7 @@ export default ({
   text-overflow: ellipsis;
 }
 .fake-vote-btn {
-  background: var(--primary);
+  background: var(--secondary);
   border-radius: 20px;
   font-size: var(--h5);
   text-align: center;
