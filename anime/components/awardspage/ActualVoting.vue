@@ -1,14 +1,14 @@
 <template>
   <div id="actual-voting">
     <h1 class="award-name">{{ awardName }}</h1>
-    <div v-if="this.isAnime" class="nominee-container">
+    <div v-if="isAnime" class="nominee-container">
       <div v-for="anime in animes" :key="anime" class="nominee-box" @click="select">
         <img class="image-placeholder" src="https://cdn.myanimelist.net/images/characters/4/457933.jpg" alt="">
         <h1 class="anime-title">{{anime.node.animeName}}</h1>
       </div>
     </div>
     <!-- fix the v-ifs they are not working!!! -->
-    <div v-if="this.isCharacter" class="nominee-container">
+    <div v-if="isCharacter" class="nominee-container">
       <div v-for="character in characters" :key="character" class="nominee-box" @click="select">
         <img class="image-placeholder" src="https://cdn.myanimelist.net/images/characters/4/457933.jpg" alt="">
         <h1 class="anime-title">{{character.node.characterName}}</h1>
@@ -29,6 +29,244 @@
   </div>
 </template>
 
+
+
+<script setup lang="ts">
+import { useUserStore } from '~~/stores/userStore'
+import { ref, onMounted } from "vue"
+
+
+let selected = ref(false)
+let animes = ref([])
+let characters = ref([])
+let nominee = ref("")
+let error = ref("")
+let isCharacter = ref(false)
+let isAnime = ref(false)
+
+const userStore = useUserStore()
+
+const props = defineProps({
+  awardName: String
+})
+
+
+async function getAnimes() {
+  try {
+        const endpoint = "http://127.0.0.1:8000/graphql/";
+				const headers = {
+					"content-type": "application/json",
+					Authorization: `Bearer ${userStore.token}`,
+				};
+				const graphqlQuery = {
+					query: `{
+					  allAnime {
+    edges{
+      node{
+        animeName
+      }
+    }
+  }
+							}`,
+					variables: {},
+				};
+				const options = {
+					method: "POST",
+					headers: headers,
+					body: JSON.stringify(graphqlQuery),
+				};
+				const response = await fetch(endpoint, options);
+				const animeData = await response.json();
+        const animeArray = animeData.data.allAnime.edges.splice(1,6)
+        animes = animeArray
+        console.log(animes)
+      } catch (error) {
+        console.log(error)
+      }
+} 
+
+async function getCharacters() {
+  try {
+        const endpoint = "http://127.0.0.1:8000/graphql/";
+				const headers = {
+					"content-type": "application/json",
+					Authorization: `Bearer ${userStore.token}`,
+				};
+				const graphqlQuery = {
+					query: ` {
+  allCharacters{
+    edges{
+      node{
+        characterName
+      }
+    }
+  }
+}`,
+					variables: {},
+				};
+				const options = {
+					method: "POST",
+					headers: headers,
+					body: JSON.stringify(graphqlQuery),
+				};
+				const response = await fetch(endpoint, options);
+				const characterData = await response.json();
+        const characterArray = characterData.data.allCharacters.edges.splice(1,6)
+        characters = characterArray
+        console.log(characters)
+      } catch (error) {
+        console.log(error)
+      }
+}
+
+function select(nominee: String) {
+      // this.selected = true
+      let click = nominee.target
+      // console.log(click.outerText)
+      nominee = click.outerText
+      
+      const boxes = Array.from(document.getElementsByClassName("nominee-box") as HTMLCollectionOf<HTMLElement>)
+        boxes.forEach(box => {
+          box.style.background = "#252525"
+        });
+      if (click.className == "nominee-box") {
+        click.style.background = "var(--primary)"
+      } else {
+        click.parentElement.style.background = "var(--primary)"
+      }
+    }
+function vote() {
+      // voteMutation()
+      
+      // if (this.voted === true) {
+      //   const msg = document.getElementById("popup")
+      //   msg.style.display = "flex"
+      // } else if (this.selected === true) {
+      //   this.voteMutation()
+      //   const vote = document.getElementById("vote-btn")
+      //   vote.style.background = "var(--primary)"
+      //   vote.innerHTML = "Voted"
+      //   vote.style.opacity = "50%"
+        
+      //   const boxes = Array.from(document.getElementsByClassName("nominee-box") as HTMLCollectionOf<HTMLElement>)
+      //   boxes.forEach(box => {
+      //     box.style.pointerEvents = "none"
+      //     if (box.style.background == "rgb(37, 37, 37)") {
+      //       box.style.opacity = "50%"
+      //     }
+      //   });
+      //   console.log(this.nominee)
+  
+      // }
+    }
+async function voteMutation() {
+      if (isAnime){
+        try {
+        const endpoint = "http://127.0.0.1:8000/graphql/";
+				const headers = {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${userStore.token}`,
+				};
+				const graphqlQuery = {
+					query: `mutation{
+   addAnimeVote(userData: {userId: "${userStore.userID}"}, animeData: {animeName: "${nominee}"}, awardName: "${props.awardName}") {
+       animeAward{
+           voteCount,
+           anime{
+               animeName
+           },
+           allUsers{
+               edges{
+                   node{
+                       user{
+                           username
+                       }
+                   }
+               }
+           }
+       }
+   }
+}`,
+					variables: {},
+				};
+				const options = {
+					method: "POST",
+					headers: headers,
+					body: JSON.stringify(graphqlQuery),
+				};
+				const response = await fetch(endpoint, options);
+				const voteData = await response.json();
+        if (voteData.errors[0].message) {
+          return alert(voteData.errors[0].message)
+         
+        }
+      } catch (error) {
+        console.log(error)
+      }
+      } else if(isCharacter) {
+        try {
+        const endpoint = "http://127.0.0.1:8000/graphql/";
+				const headers = {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${userStore.token}`,
+				};
+				const graphqlQuery = {
+					query: `mutation{
+   addCharacterVote(userData: {userId: "${userStore.userID}"}, characterName:"${nominee}", awardName: "${props.awardName}") {
+	characterAward {
+    award {
+      awardName
+    },
+    voteCount,
+    
+  }
+  },
+    
+    
+}`,
+					variables: {},
+				};
+				const options = {
+					method: "POST",
+					headers: headers,
+					body: JSON.stringify(graphqlQuery),
+				};
+				const response = await fetch(endpoint, options);
+				const voteData = await response.json();
+        
+        if (voteData.errors[0].message) {
+          return alert(voteData.errors[0].message)
+         
+        }
+      } catch (error) {
+        console.log(error)
+      }
+      }
+     
+    }
+
+function close() {
+      const msg = document.getElementById("popup")
+      msg!.style.display = "none"
+    }
+
+onMounted(() => {
+  console.log(props.awardName)
+    if (props.awardName?.includes("Character")) {
+      console.log("character award")
+      isCharacter = true
+      isAnime = false
+      getCharacters()
+    } else {
+      console.log("anime award")
+      isCharacter = false
+      isAnime = true
+      getAnimes()
+    }
+})
+
+</script>
+<!-- 
 <script lang="ts">
 import { useUserStore } from '~~/stores/userStore'
 export default ({
@@ -282,7 +520,7 @@ export default ({
     }
   }
 })
-</script>
+</script> -->
   
 <style scoped>
 #actual-voting {
