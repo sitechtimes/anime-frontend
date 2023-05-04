@@ -3,7 +3,7 @@
     <div class="yearly-history">
     <div v-if="Show1">
      <h1 class="title-history"> History of #### </h1>
-     <button class="history-arrow" v-on:click="Show1 = !Show1"> &#11167; </button>
+     <button class="history-arrow" @click="Show1 = !Show1"> &#11167; </button>
      <div class="user-history">
        <div class="anime-history" v-for="anime in animes" :key="anime.title">
        <img class="anime-img" :src="anime.img" :alt="anime.alt"/>
@@ -13,13 +13,13 @@
     </div>
     <div v-else>
       <h1 class="title-history"> History of #### </h1>
-      <button class="history-arrow" v-on:click="Show1 = !Show1"> &#11165; </button>
+      <button class="history-arrow" @click="Show1 = !Show1"> &#11165; </button>
     </div>
     </div>
     <div class="yearly-history">
     <div v-if="Show2">
      <h1 class="title-history"> History of #### </h1>
-     <button class="history-arrow" v-on:click="Show2 = !Show2"> &#11167; </button>
+     <button class="history-arrow" @click="Show2 = !Show2"> &#11167; </button>
      <div class="user-history">
        <div class="anime-history" v-for="anime in animes" :key="anime.title">
        <img class="anime-img" :src="anime.img" :alt="anime.alt"/>
@@ -29,15 +29,20 @@
     </div>
     <div v-else>
       <h1 class="title-history"> History of #### </h1>
-      <button class="history-arrow" v-on:click="Show2 = !Show2"> &#11165; </button>
+      <button class="history-arrow" @click="Show2 = !Show2"> &#11165; </button>
     </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
+import YearlyHistory from "../components/YearlyHistory.vue";
+
 export default ({
   name: 'history',
+  components: {
+        YearlyHistory,
+  },
   data: ()=> ({
       Show1: true,
       Show2: true,
@@ -94,8 +99,6 @@ export default ({
         },
       ],
   }),
-  components:{},
-  methods: {},
 })
 </script>
 
