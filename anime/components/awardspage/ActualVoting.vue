@@ -243,6 +243,8 @@ async function voteMutation() {
           return alert(voteData.errors[0].message)
          
         }
+
+        return alert("You have voted")
       } catch (error) {
         console.log(error)
       }
