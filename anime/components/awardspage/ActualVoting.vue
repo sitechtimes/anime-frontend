@@ -7,7 +7,7 @@
         <h1 class="anime-title">{{anime.node.animeName}}</h1>
       </div>
     </div>
-    <!-- fix the v-ifs they are not working!!! -->
+
     <div v-if="isCharacter" class="nominee-container">
       <div v-for="character in characters" :key="character" class="nominee-box" @click="select">
         <img class="image-placeholder" src="https://cdn.myanimelist.net/images/characters/4/457933.jpg" alt="">
