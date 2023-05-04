@@ -37,8 +37,8 @@ import { ref, onMounted } from "vue"
 
 
 let selected = ref(false)
-let animes = ref([])
-let characters = ref([])
+let animes = ref([] as any)
+let characters = ref([] as any)
 let nominee = ref("")
 let error = ref("")
 let isCharacter = ref(false)
@@ -78,8 +78,8 @@ async function getAnimes() {
 				const response = await fetch(endpoint, options);
 				const animeData = await response.json();
         const animeArray = animeData.data.allAnime.edges.splice(1,6)
-        animes = animeArray
-        console.log(animes)
+        animes.value = animeArray
+        console.log(animes.value)
       } catch (error) {
         console.log(error)
       }
@@ -112,18 +112,20 @@ async function getCharacters() {
 				const response = await fetch(endpoint, options);
 				const characterData = await response.json();
         const characterArray = characterData.data.allCharacters.edges.splice(1,6)
-        characters = characterArray
-        console.log(characters)
+        characters.value = characterArray
+        console.log(characters.value)
       } catch (error) {
         console.log(error)
       }
 }
 
-function select(nominee: String) {
-      // this.selected = true
-      let click = nominee.target
-      // console.log(click.outerText)
-      nominee = click.outerText
+function select(e: String) {
+      selected.value = true
+      let click = e.target
+    console.log(nominee)
+      nominee.value = click.outerText
+      console.log(click.outerText)
+      console.log(nominee.value)
       
       const boxes = Array.from(document.getElementsByClassName("nominee-box") as HTMLCollectionOf<HTMLElement>)
         boxes.forEach(box => {
@@ -135,8 +137,10 @@ function select(nominee: String) {
         click.parentElement.style.background = "var(--primary)"
       }
     }
+
+  console.log(nominee.value)
 function vote() {
-      // voteMutation()
+      voteMutation() 
       
       // if (this.voted === true) {
       //   const msg = document.getElementById("popup")
@@ -160,7 +164,8 @@ function vote() {
       // }
     }
 async function voteMutation() {
-      if (isAnime){
+  console.log(isAnime.value, isCharacter.value)
+      if (isAnime.value){
         try {
         const endpoint = "http://127.0.0.1:8000/graphql/";
 				const headers = {
@@ -169,7 +174,7 @@ async function voteMutation() {
 				};
 				const graphqlQuery = {
 					query: `mutation{
-   addAnimeVote(userData: {userId: "${userStore.userID}"}, animeData: {animeName: "${nominee}"}, awardName: "${props.awardName}") {
+   addAnimeVote(userData: {userId: "${userStore.userID}"}, animeData: {animeName: "${nominee.value}"}, awardName: "${props.awardName}") {
        animeAward{
            voteCount,
            anime{
@@ -203,7 +208,7 @@ async function voteMutation() {
       } catch (error) {
         console.log(error)
       }
-      } else if(isCharacter) {
+      } else if(isCharacter.value) {
         try {
         const endpoint = "http://127.0.0.1:8000/graphql/";
 				const headers = {
@@ -212,7 +217,7 @@ async function voteMutation() {
 				};
 				const graphqlQuery = {
 					query: `mutation{
-   addCharacterVote(userData: {userId: "${userStore.userID}"}, characterName:"${nominee}", awardName: "${props.awardName}") {
+   addCharacterVote(userData: {userId: "${userStore.userID}"}, characterName:"${nominee.value}", awardName: "${props.awardName}") {
 	characterAward {
     award {
       awardName
@@ -252,19 +257,21 @@ function close() {
 
 onMounted(() => {
   console.log(props.awardName)
+  console.log(animes.value)
     if (props.awardName?.includes("Character")) {
       console.log("character award")
-      isCharacter = true
-      isAnime = false
+      isCharacter.value = true
+      isAnime.value = false
       getCharacters()
     } else {
       console.log("anime award")
-      isCharacter = false
-      isAnime = true
+      isCharacter.value = false
+      isAnime.value = true
+      
       getAnimes()
     }
 })
-
+console.log(isAnime.value, isCharacter.value)
 </script>
 <!-- 
 <script lang="ts">
