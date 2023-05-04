@@ -58,10 +58,10 @@ export default ({
   font-size: var(--h2);
 }
 .text-sub {
-  font-size: var(--h6);
   display: flex;
 }
 .text-tab {
+  font-size: var(--h4);
   margin-right: 3rem;
   transition: 200ms ease-in-out;
   font-weight: var(--fw-light);
@@ -164,6 +164,12 @@ export default ({
 }
 
 @media screen and (max-width: 568px) {
+  .text-head {
+    font-size: var(--h3);
+  }
+  .text-tab {
+    font-size: var(--h5);
+  }
   .award-container {
     grid-template-columns: repeat(1, minmax(0, 1fr));
     width: 90%;
@@ -180,6 +186,13 @@ export default ({
   }
   .img {
     height: 16rem;
+  }
+  .text-head {
+    font-size: var(--h4);
+  }
+  .text-tab {
+    margin-right: 1.5rem;
+    font-size: var(--h6);
   }
   .award-name {
     font-size: var(--h4);
