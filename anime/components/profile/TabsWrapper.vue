@@ -74,6 +74,7 @@ export default {
     width: 8vw;
 }
 .tabs-header li {
+    width: 8vw;
     margin-bottom: 2rem;
 }
 }
@@ -83,6 +84,9 @@ export default {
     margin-top: 8rem;
 }
 .tabs-header {
+    width: 9vw;
+}
+.tabs-header li {
     width: 9vw;
 }
 }
@@ -97,10 +101,14 @@ export default {
 }
 }
 @media screen and (max-width: 550px) {
+.tabs {
+    height: 30vh;
+}
 .tabs-header {
-    width: 10vw;
+    width: 11vw;
 }
 .tabs-header li {
+    width: 11vw;
     font-size: var(--smallText);
 }
 }

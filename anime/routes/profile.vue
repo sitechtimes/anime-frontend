@@ -632,6 +632,9 @@ export default {
 .pf-carousel {
     margin-left: 2rem;
 }
+.profile-info {
+    margin-top: 15rem;
+}
 }
 @media screen and (max-width: 550px) {
 .tab-logo {
@@ -694,6 +697,11 @@ export default {
 @media screen and (max-width: 380px) {
 .profile-info {
     margin-top: 11rem;
+}
+}
+@media screen and (max-width: 370px) {
+.profile-info {
+    margin-top: 16rem;
 }
 }
 @media screen and (max-width: 285px) {
