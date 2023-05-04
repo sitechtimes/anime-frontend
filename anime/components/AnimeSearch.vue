@@ -105,6 +105,7 @@
 				<AnimeCard
 					@saveAnimeID="saveClickedAnimeID(anime.mal_id)"
 					v-for="anime in pageFilteredAnime"
+					:mal_id="anime.mal_id"
 					:id="anime.mal_id"
 					:key="anime.mal_id"
 					:episode="anime.episodes"

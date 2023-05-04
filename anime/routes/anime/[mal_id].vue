@@ -45,7 +45,7 @@ async function getAnime() {
 				};
 				const graphqlQuery = {
 					query: ` {
- allAnime(malId: 21){
+ allAnime(malId: ${mal_id}){
   edges{
     node{
       animeName,
