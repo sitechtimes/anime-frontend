@@ -28,7 +28,7 @@
 				</div>
 			</div>
 			<div class="airing-content" v-if="loading">
-				<AnimeCardLoading v-for="anime in loadingAnimeHome" :id="anime" />
+				<AnimeCardLoading v-for="anime in loadingAnimeHome" :id="anime" :key="anime"/>
 			</div>
 			<div class="airing-content" v-else>
 				<AnimeCard
@@ -36,6 +36,7 @@
 					v-for="anime in airingAnime"
 					:id="anime.mal_id"
 					:key="anime.mal_id"
+					:mal_id="anime.mal_id"
 					:episode="anime.episodes"
 					:animeName="anime.anime_name"
 					:imageUrl="anime.large_image_url"

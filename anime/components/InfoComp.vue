@@ -13,14 +13,14 @@
 				<p>Aired: {{ aired }}</p>
 				<div class="quick-info-sub">
 					<p>Studio:</p>
-					<div v-for="studio in studios">
-						<p>Studio: {{ studio }}</p>
+					<div v-for="studio in studios" :key="studio">
+						<p>Studio: {{ studio.node.studio }}</p>
 					</div>
 				</div>
 				<div class="quick-info-sub">
 					<p>Genres:</p>
-					<div v-for="genre in genres">
-						<p>{{ genre }},</p>
+					<div v-for="genre in genres" :key="genre">
+						<p>{{ genre.node.genre }},</p>
 					</div>
 				</div>
 			</div>
