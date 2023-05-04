@@ -99,7 +99,6 @@ export default {
 <style scoped>
 #banner {
     padding-top: 9vh;
-    margin-bottom: 9vh;
 }
 .banner-flex {
     display: flex;
@@ -107,6 +106,7 @@ export default {
     height: 45rem;
     margin: auto;
     margin-top: 5vh;
+    margin-bottom: 9vh;
     justify-content: center;
     column-gap: 7rem;
     color: var(--white);
@@ -250,6 +250,7 @@ export default {
 @media screen and (max-width: 1200px) {
     .banner-flex {
         height: 33rem;
+        margin-bottom: 5vh;
     }
     .banner-text {
         width: 30rem;
@@ -302,6 +303,9 @@ export default {
     .banner-season {
         width: 50%;
     }
+    .animeTitle {
+        font-size: var(--h6);
+    }
 }
 
 @media screen and (max-width: 767px) {
@@ -314,10 +318,29 @@ export default {
         align-items: center;
     }
     .banner-bg {
-        margin-bottom: 7rem;
+        margin-bottom: 5rem;
+        width: 80%;
+        height: fit-content;
+        padding: 2rem 0;
+    }
+    .banner-text {
+        width: fit-content;
+        padding: 0;
     }
     .banner-season {
         width: 80%;
+    }
+    br {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .banner-bg {
+        width: 90%;
+    }
+    .banner-season {
+        width: 100%;
     }
 }
 </style>

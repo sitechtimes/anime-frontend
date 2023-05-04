@@ -144,6 +144,13 @@ export default ({
 }
 
 @media screen and (max-width: 915px) {
+  .text-head {
+    font-size: var(--h3);
+  }
+  .text-tab {
+    font-size: var(--h4);
+    margin-right: 2rem;
+  }
   .award-container {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -159,6 +166,11 @@ export default ({
 @media screen and (max-width: 568px) {
   .award-container {
     grid-template-columns: repeat(1, minmax(0, 1fr));
+    width: 90%;
+    margin: auto;
+  }
+  .img {
+    height: 17rem;
   }
 }
 
