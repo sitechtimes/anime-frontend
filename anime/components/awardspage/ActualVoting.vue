@@ -36,6 +36,8 @@ import { useUserStore } from '~~/stores/userStore'
 import { ref, onMounted } from "vue"
 
 
+
+
 let selected = ref(false)
 let animes = ref([] as any)
 let characters = ref([] as any)
@@ -45,6 +47,7 @@ let isCharacter = ref(false)
 let isAnime = ref(false)
 
 const userStore = useUserStore()
+console.log(userStore.userID)
 
 const props = defineProps({
   awardName: String
@@ -164,7 +167,7 @@ function vote() {
       // }
     }
 async function voteMutation() {
-  console.log(isAnime.value, isCharacter.value)
+  console.log(userStore.userID, nominee.value, props.awardName)
       if (isAnime.value){
         try {
         const endpoint = "http://127.0.0.1:8000/graphql/";

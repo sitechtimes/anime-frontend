@@ -254,6 +254,7 @@ export const useUserStore = defineStore("user", {
 								// localStorage.setItem("user", res.data.first_name)
 								// this.userData = localStorage.getItem("user")
 								// this.user = res.data.first_name
+								// console.log(res.data)
 								this.userID = res.data.pk
 								this.username = res.data.username;
 								// this.userData = res.data;
