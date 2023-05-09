@@ -59,6 +59,16 @@ export default {
     margin-bottom: 5rem;
     border-radius: 0.5rem;
 }
+@media screen and (max-width: 2565px) {
+.tabs-header li {
+    font-size: var(--h3);
+}
+}
+@media screen and (max-width: 2130px) {
+.tabs-header li {
+    font-size: var(--h4);
+}
+}
 @media screen and (max-width: 1575px) {
 .tabs-header li {
     font-size: var(--h5);
@@ -100,10 +110,12 @@ export default {
     font-size: var(--h7);
 }
 }
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 680px) {
 .tabs {
     height: 30vh;
 }
+}
+@media screen and (max-width: 550px) {
 .tabs-header {
     width: 11vw;
 }
@@ -140,6 +152,9 @@ export default {
 }
 }
 @media screen and (max-width: 285px) {
+.tabs {
+    margin-top: 0rem;
+}
 .tabs-header li {
     font-size: 0.6rem;
 }

@@ -446,7 +446,6 @@ export default {
     align-items: center;
     justify-content: center;
 }
-
 /* actual (inside each) tab css */
 .tabShow {
     display: flex;
@@ -459,7 +458,7 @@ export default {
     justify-content: flex-end;
     font-size: var(--h3);
     color: var(--primary);
-    text-transform: lowercase;
+    text-transform: lowercase; 
     right: 5%;
     top: 10%;
     position: absolute;
@@ -521,7 +520,39 @@ export default {
     opacity: 0;
     overflow: hidden;
 }
+@media screen and (max-width: 2565px) {
+.tab-title {
+    font-size: var(--h2);
+}
+.tab-logo {
+    font-size: var(--h1);
+}
+.anime-title {
+    font-size: var(--h3);
+}
+.profile-img {
+    width: 25rem;
+    height: 25rem;
+}
+.profile-info {
+    margin-top: 20rem;
+    margin-bottom: 10rem;
+}
+}
+@media screen and (max-width: 2130px) {
+.profile-img {
+    width: 23rem;
+    height: 23rem;
+}
+}
 @media screen and (max-width: 1575px) {
+.anime-title {
+    font-size: var(--h5);
+}
+.profile-img {
+    width: 20rem;
+    height: 20rem;
+}
 .profile-info {
     margin-top: 16rem;
 }
@@ -548,11 +579,21 @@ export default {
     height: 22vh;
     margin: auto;
 }
+.profile-img {
+    width: 13rem;
+    height: 13rem;
+}
 .profile-info {
     margin-top: 15rem;
 }
 }
 @media screen and (max-width: 1025px) {
+.banner {
+    height: 35vh;
+}
+.underNav {
+    height: 20vh;
+}
 .tab-title {
     margin-left: 3rem;
 }
@@ -571,8 +612,16 @@ export default {
     margin: auto;
 }
 .profile-info {
-    margin-top: 10rem;
+    margin-top: 11rem;
     margin-bottom: 8rem;
+}
+}
+@media screen and (max-width: 1010px) {
+.underNav {
+    height: 13vh;
+}
+.banner {
+    height: 25vh;
 }
 }
 @media screen and (max-width: 915px) {
@@ -591,7 +640,7 @@ export default {
     height: 10vh;
 }
 .profile-info {
-    margin-top: 26rem;
+    margin-top: 17rem;
     margin-bottom: 6rem;
 }
 }
@@ -636,6 +685,21 @@ export default {
     margin-top: 15rem;
 }
 }
+@media screen and (max-width: 680px) {
+.underNav {
+    height: 5vh;
+}
+.anime-title {
+    font-size: var(--smallText);
+}
+.profile-img {
+    width: 12rem;
+    height: 12rem;
+}
+.profile-info {
+    margin-top: 18rem;
+}
+}
 @media screen and (max-width: 550px) {
 .tab-logo {
     font-size: var(--h6);
@@ -674,6 +738,11 @@ export default {
     height: 5vh;
 }
 }
+@media screen and (max-width: 460px) {
+.profile-info {
+    margin-top: 16rem;
+}
+}
 @media screen and (max-width: 420px) {
 .tab-title {
     margin-left: 3.5rem;
@@ -696,12 +765,7 @@ export default {
 }
 @media screen and (max-width: 380px) {
 .profile-info {
-    margin-top: 11rem;
-}
-}
-@media screen and (max-width: 370px) {
-.profile-info {
-    margin-top: 16rem;
+    margin-top: 15rem;
 }
 }
 @media screen and (max-width: 285px) {
@@ -714,6 +778,14 @@ export default {
 .anime-title {
     height: 2rem;
     font-size: 0.6rem;
+}
+.profile-img {
+    width: 7rem;
+    height: 7rem;
+}
+.profile-info {
+    margin-top: 13rem;
+    margin-bottom: 0rem;
 }
 }
 </style>
