@@ -7,6 +7,10 @@ export default defineNuxtConfig({
 		"~/plugins/auth.ts",
 		// "~/plugins/pinia.ts"
 	],
+	css: [
+		// CSS file in the project
+		'~/assets/global.css',
+	],
 
 	runtimeConfig: {
 		public: {
@@ -15,8 +19,7 @@ export default defineNuxtConfig({
 	},
 	// buildModules: [],
 	dir: {
-		// Rename `pages` directory to `routes`
-		pages: "routes",
+		pages: "pages",
 	},
 	modules: [
 		// ...

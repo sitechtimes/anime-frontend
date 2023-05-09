@@ -47,7 +47,6 @@ export default {
 };
 </script>
 <style>
-@import url("./assets/global.css");
 .animation {
     animation: fadeIn 750ms linear forwards;
 }
