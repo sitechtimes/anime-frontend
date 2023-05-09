@@ -58,12 +58,13 @@ export default ({
   font-size: var(--h2);
 }
 .text-sub {
-  font-size: var(--h6);
   display: flex;
 }
 .text-tab {
+  font-size: var(--h4);
   margin-right: 3rem;
   transition: 200ms ease-in-out;
+  font-weight: var(--fw-light);
 }
 .text-tab:hover {
   color: var(--primary);
@@ -100,7 +101,7 @@ export default ({
   text-overflow: ellipsis;
 }
 .fake-vote-btn {
-  background: var(--primary);
+  background: var(--secondary);
   border-radius: 20px;
   font-size: var(--h5);
   text-align: center;
@@ -142,32 +143,58 @@ export default ({
   }
 }
 
+@media screen and (max-width: 915px) {
+  .text-head {
+    font-size: var(--h3);
+  }
+  .text-tab {
+    font-size: var(--h4);
+    margin-right: 2rem;
+  }
+  .award-container {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
 @media screen and (max-width: 768px) {
   .award-container {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: 6rem;
+    column-gap: 3rem;
   }
 }
 
 @media screen and (max-width: 568px) {
+  #award-voting {
+    width: 80vw;
+  }
+  .text-head {
+    font-size: var(--h4);
+  }
+  .text-tab {
+    font-size: var(--h6);
+  }
   .award-container {
-    grid-template-columns: repeat(1, minmax(0, 1fr));
+    width: 90%;
+    margin: auto;
+  }
+  .award-name {
+    font-size: var(--h6);
+  }
+  .img {
+    height: 13rem;
   }
 }
 
 @media screen and (max-width: 425px) {
-  #award-voting {
-    width: 70vw;
-  }
   .img {
     height: 16rem;
   }
-  .award-name {
+  .text-head {
     font-size: var(--h4);
   }
-  .fake-vote-btn {
-    font-size: var(--h5);
-    width: 10rem;
+  .text-tab {
+    margin-right: 1.5rem;
+    font-size: var(--h6);
   }
 }
 </style>

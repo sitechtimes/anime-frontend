@@ -18,7 +18,6 @@
 		"dotenv": "^16.0.3",
 		"pinia": "^2.0.28",
 		"pinia-plugin-persistedstate": "^3.1.0",
-		"sass": "^1.57.0",
 		"vue": "^3.2.45",
 		"vue-chartjs": "^5.2.0",
 		"vue3-google-login": "^2.0.12"

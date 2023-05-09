@@ -216,7 +216,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .home-body {
 	display: flex;
 	flex-direction: row;

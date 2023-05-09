@@ -2,16 +2,16 @@
   <div id="actual-voting">
     <h1 class="award-name">Award Name</h1>
     <div class="nominee-container">
-      <div v-for="r1 in r" class="nominee-box" @click="select">
+      <div v-for="r1 in r" ref="nominees" class="nominee-box" @click="select">
         <img class="image-placeholder" src="https://cdn.myanimelist.net/images/characters/4/457933.jpg" alt="">
         <h1 class="anime-title">Anime Title {{r1}}</h1>
       </div>
     </div>
     <div class="btn-container">
       <NuxtLink to="/awards"><button class="btn">Back</button></NuxtLink>
-      <button class="btn" @click="vote" id="vote-btn">Vote</button>
+      <button class="btn" @click="vote" ref="voteBtn">Vote</button>
     </div>
-    <div id="popup">
+    <div class="popup" ref="popup">
       <div class="popup-content">
         <span class="popup-close" @click="close">&times</span>
         <div class="popup-msg">
@@ -27,13 +27,13 @@ export default ({
   data: () => ({
     r: [1,2,3,4,5,6],
     selected: false,
-    voted: true,
+    voted: false,
   }),
   methods: {
     select(nominee) {
       this.selected = true
       let click = nominee.target
-      const boxes = Array.from(document.getElementsByClassName("nominee-box") as HTMLCollectionOf<HTMLElement>)
+      const boxes = this.$refs.nominees
         boxes.forEach(box => {
           box.style.background = "#252525"
         });
@@ -45,14 +45,14 @@ export default ({
     },
     vote() {
       if (this.voted === true) {
-        const msg = document.getElementById("popup")
+        const msg = this.$refs.popup
         msg.style.display = "flex"
       } else if (this.selected === true) {
-        const vote = document.getElementById("vote-btn")
+        const vote = this.$refs.voteBtn
         vote.style.background = "var(--primary)"
         vote.innerHTML = "Voted"
         vote.style.opacity = "50%"
-        const boxes = Array.from(document.getElementsByClassName("nominee-box") as HTMLCollectionOf<HTMLElement>)
+        const boxes = this.$refs.nominees
         boxes.forEach(box => {
           box.style.pointerEvents = "none"
           if (box.style.background == "rgb(37, 37, 37)") {
@@ -62,9 +62,12 @@ export default ({
       }
     },
     close() {
-      const msg = document.getElementById("popup")
+      const msg = this.$refs.popup
       msg.style.display = "none"
     }
+  },
+  mounted() {
+    console.log(this.$refs.nominees)
   }
 })
 </script>
@@ -130,7 +133,7 @@ export default ({
 .btn:hover {
   background: var(--primary);
 }
-#popup {
+.popup {
   background: rgb(0,0,0,0.6);
   position: fixed;
   z-index: 1;
