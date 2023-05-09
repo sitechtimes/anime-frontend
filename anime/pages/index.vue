@@ -1,23 +1,13 @@
 <template>
     <div id="home">
         <span class="underNav"></span>
-        <Carousel />
-        <TrendingBox />
+        <HomepageCarousel />
+        <HomepageHomePage />
         <footer class="footer"></footer>
     </div>
 </template>
 
-<script lang="ts">
-import Carousel from "../components/homepage/Carousel.vue";
-import TrendingBox from "../components/homepage/HomePage.vue";
-
-export default {
-    name: "IndexPage",
-    components: {
-        Carousel,
-        TrendingBox,
-    },
-};
+<script setup lang="ts">
 </script>
 <style scoped>
 /* undernavigation  */

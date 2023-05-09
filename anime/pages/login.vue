@@ -22,9 +22,6 @@ import { CallbackTypes } from 'vue3-google-login';
 
 export default {
   name: 'login',
-  components:{
-  
-  },
   setup(){
         const userStore = useUserStore()
         // userStore.$persist()

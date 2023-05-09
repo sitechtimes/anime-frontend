@@ -66,13 +66,3 @@ function aired(airTimeStart: string, airTimeEnd: string) {
 	}
 }
 </script>
-
-<script lang="ts">
-import InfoComp from "../components/InfoComp.vue";
-
-export default {
-	components: {
-		InfoComp,
-	},
-};
-</script>
