@@ -9,90 +9,90 @@
 							<p class="allAnime-filterText">Sort by</p>
 							<select
 								class="allAnime-filterSelect"
-								v-model="anime_genre"
+								v-model="media_genre"
 								@change="selectPage(1)"
 							>
-								<option value="anime_genre">Fantasy</option>
-								<option value="anime_genre">Action</option>
-								<option value="anime_genre">Adventure</option>
-								<option value="anime_genre">Comedy</option>
-								<option value="anime_genre">Drama</option>
-								<option value="anime_genre">Supernatural</option>
-								<option value="anime_genre">Suspense</option>
-								<option value="anime_genre">Romance</option>
-								<option value="anime_genre">Award Winning</option>
-								<option value="anime_genre">Horror</option>
-								<option value="anime_genre">Sci-Fi</option>
-								<option value="anime_genre">Echhi</option>
-								<option value="anime_genre">Mystery</option>
-								<option value="anime_genre">Sports</option>
-								<option value="anime_genre">Avant Garde</option>
-								<option value="anime_genre">Gourmet</option>
-								<option value="anime_genre">Slice of Life</option>		
+								<option value="Fantasy">Fantasy</option>
+								<option value="media_genre">Action</option>
+								<option value="media_genre">Adventure</option>
+								<option value="media_genre">Comedy</option>
+								<option value="media_genre">Drama</option>
+								<option value="media_genre">Supernatural</option>
+								<option value="media_genre">Suspense</option>
+								<option value="media_genre">Romance</option>
+								<option value="media_genre">Award Winning</option>
+								<option value="media_genre">Horror</option>
+								<option value="media_genre">Sci-Fi</option>
+								<option value="media_genre">Echhi</option>
+								<option value="media_genre">Mystery</option>
+								<option value="media_genre">Sports</option>
+								<option value="media_genre">Avant Garde</option>
+								<option value="media_genre">Gourmet</option>
+								<option value="media_genre">Slice of Life</option>
 							</select>
 						</div>
 						<div class="allAnime-filterBox">
 							<p class="allAnime-filterText">Season</p>
 							<select
 								class="allAnime-filterSelect"
-								v-model="anime_season"
+								v-model="media_season"
 								@change="selectPage(1)"
 							>
-								<option value="anime_season">Spring</option>
-								<option value="anime_season">Summer</option>
-								<option value="anime_season">Fall</option>
-								<option value="anime_season">Winter</option>
+								<option value="meida_season">Spring</option>
+								<option value="meida_season">Summer</option>
+								<option value="meida_season">Fall</option>
+								<option value="meida_season">Winter</option>
 							</select>
 						</div>
 						<div class="allAnime-filterBox">
 							<p class="allAnime-filterText">Year</p>
 							<select
 								class="allAnime-filterSelect"
-								v-model="anime_year"
+								v-model="media_year"
 								@change="selectPage(1)"
 							>
 								<option value="media_year">2023</option>
 								<option value="media_year">2022</option>
 								<option value="media_year">2021</option>
-								<option value="anime_year">2020</option>
-								<option value="anime_year">2019</option>
-								<option value="anime_year">2018</option>
-								<option value="anime_year">2017</option>
-								<option value="anime_year">2016</option>
-								<option value="anime_year">2015</option>
-								<option value="anime_year">2014</option>
-								<option value="anime_year">2013</option>
-								<option value="anime_year">2012</option>
-								<option value="anime_year">2011</option>
-								<option value="anime_year">2010</option>
-								<option value="anime_year">2009</option>
-								<option value="anime_year">2008</option>
-								<option value="anime_year">2007</option>
-								<option value="anime_year">2006</option>
-								<option value="anime_year">2005</option>
-								<option value="anime_year">2004</option>
-								<option value="anime_year">2003</option>
-								<option value="anime_year">2002</option>
-								<option value="anime_year">2001</option>
-								<option value="anime_year">2000</option>
+								<option value="media_year">2020</option>
+								<option value="media_year">2019</option>
+								<option value="media_year">2018</option>
+								<option value="media_year">2017</option>
+								<option value="media_year">2016</option>
+								<option value="media_year">2015</option>
+								<option value="media_year">2014</option>
+								<option value="media_year">2013</option>
+								<option value="media_year">2012</option>
+								<option value="media_year">2011</option>
+								<option value="media_year">2010</option>
+								<option value="media_year">2009</option>
+								<option value="media_year">2008</option>
+								<option value="media_year">2007</option>
+								<option value="media_year">2006</option>
+								<option value="media_year">2005</option>
+								<option value="media_year">2004</option>
+								<option value="media_year">2003</option>
+								<option value="media_year">2002</option>
+								<option value="media_year">2001</option>
+								<option value="media_year">2000</option>
 							</select>
 						</div>
 						<div class="allAnime-filterBox">
 							<p class="allAnime-filterText">Type</p>
 							<select
 								class="allAnime-filterSelect"
-								v-model="anime_status"
+								v-model="media_status"
 								@change="selectPage(1)"
 							>
-								<option value="anime_status">Ongoing</option>
-								<option value="anime_status">Completed</option>
+								<option value="media_status">Ongoing</option>
+								<option value="media_status">Completed</option>
 							</select>
 						</div>
 						<div class="allAnime-filterBox">
 							<p class="allAnime-filterText">Sort</p>
 							<select
 								class="allAnime-filterSelect"
-								v-model="anime_sort"
+								v-model="media_sort"
 								@change="selectPage(1)"
 							>
 								<option value="anime_sort">Dafault</option>
@@ -209,11 +209,11 @@ const pageExistLeft = ref<boolean>(false);
 const pageExistRight = ref<boolean>(true);
 const pageFilteredAnime = ref([] as animeRest[]);
 
-const anime_genre = ref("");
-const anime_year = ref("");
-const anime_season = ref("");
-const anime_status = ref("");
-const anime_sort = ref("");
+const media_genre = ref("");
+const media_year = ref("");
+const media_season = ref("");
+const media_status = ref("");
+const media_sort = ref("");
 
 if (userStore.startPageIndex != 0) {
 	pageExistLeft.value = true;
@@ -280,7 +280,16 @@ function selectPage(num: number): void {
 	userStore.startPageIndex = num * 35 - 35;
 	userStore.endPageIndex = num * 35 + 1;
 
-	pageFilteredAnime.value = userStore.allAnime.slice(
+	const newFilterAnime = [] as animeRest[];
+
+	userStore.filterAnime.forEach((anime: animeRest) => {
+		///fixing rn
+		if (anime.anime_genre.includes(Object.values(media_genre)[0])) {
+			newFilterAnime.push(anime);
+		}
+	});
+
+	pageFilteredAnime.value = newFilterAnime.slice(
 		userStore.startPageIndex,
 		userStore.endPageIndex
 	);
