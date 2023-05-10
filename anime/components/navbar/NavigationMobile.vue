@@ -37,7 +37,7 @@
             <h1 id="logo2">
                 <NuxtLink to="/" class="mobile-home-link">Technime</NuxtLink>
             </h1>
-            <SearchBar />
+            <NavbarSearchBar />
             <NuxtLink to="/login">
                 <!-- <button class="mobile-log-in" v-on:click="toggleOn()"></button> -->
                 <button class="log-in-2">Log In</button>
