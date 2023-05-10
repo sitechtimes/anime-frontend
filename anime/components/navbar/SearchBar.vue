@@ -37,6 +37,7 @@
 						v-for="anime in animeResults.slice(0, 5)"
 						:id="anime.mal_id"
 						:key="anime.mal_id"
+						:mal_id="anime.mal_id"
 						:animeName="anime.anime_name"
 						:imageUrl="anime.large_image_url"
 						:episodes="anime.episodes"
@@ -94,6 +95,7 @@ function searchAnime(text: string) {
 		});
 	}
 	animeResults.value = searchResult;
+	console.log(animeResults.value)
 }
 
 function saveClickedAnimeID(id: number) {
