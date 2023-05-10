@@ -1,8 +1,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import { defineNuxtConfig } from 'nuxt/config'
-
+import { defineNuxtConfig } from "nuxt/config";
 
 export default defineNuxtConfig({
+<<<<<<< Updated upstream
 	plugins: [
 		"~/plugins/auth.ts",
 		// "~/plugins/pinia.ts"
@@ -29,4 +29,31 @@ export default defineNuxtConfig({
 	nitro: {
 		compressPublicAssets: true,
 	},
+=======
+    // srcDir: "src/",
+    components: ["~/src/components"],
+    plugins: [
+        "~/plugins/auth.ts",
+        // "~/plugins/pinia.ts"
+    ],
+
+    runtimeConfig: {
+        public: {
+            clientID: process.env.CLIENT_ID,
+        },
+    },
+    // buildModules: [],
+    dir: {
+        // Rename `pages` directory to `routes`
+        pages: "routes",
+    },
+    modules: [
+        // ...
+        "@pinia/nuxt",
+        "@pinia-plugin-persistedstate/nuxt",
+    ],
+    nitro: {
+        compressPublicAssets: true,
+    },
+>>>>>>> Stashed changes
 });

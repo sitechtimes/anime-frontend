@@ -128,42 +128,6 @@ function goToSeachAnime() {
 }
 </script>
 
-<script lang="ts">
-import SearchResultComp from "./SeachResult.vue";
-
-export default {
-    data: () => ({
-        text: "",
-        screenWidth: 0,
-        hideSearch: false,
-    }),
-    components: {
-        SearchResultComp,
-    },
-    methods: {
-        enterSearchMobile() {
-            this.hideSearch = false;
-        },
-        exitSearchMobile(e: any) {
-            if (
-                this.screenWidth <= 568 &&
-                e.target.className === "search-bar"
-            ) {
-                this.hideSearch = true;
-            }
-        },
-    },
-    mounted() {
-        this.screenWidth = window.innerWidth;
-        if (window.innerWidth <= 568) {
-            this.hideSearch = true;
-        } else {
-            this.hideSearch = false;
-        }
-    },
-};
-</script>
-
 <style scoped>
 .search-bar {
     width: 25vw;

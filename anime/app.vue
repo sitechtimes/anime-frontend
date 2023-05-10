@@ -14,7 +14,7 @@
     </div>
 </template>
 
-<script lang="ts">
+<!-- <script lang="ts">
 import NavBar from "./components/navbar/NavBar.vue";
 import { useUserStore } from "./stores/userStore";
 import NavigationMobile from "./components/navbar/NavigationMobile.vue";
@@ -45,7 +45,7 @@ export default {
     //   console.log(this.userStore.getToken, this.userStore.getUser)
     // }
 };
-</script>
+</script> -->
 <style>
 .animation {
     animation: fadeIn 750ms linear forwards;
