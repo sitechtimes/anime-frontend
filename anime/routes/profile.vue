@@ -410,13 +410,11 @@ export default {
     margin-left: 5%;
     font-size: var(--h4);
 }
-
 /* overall best anime (gray section) */
 .bestAnime {
     display: flex;
     flex-direction: row;
 }
-
 .anime-pfp {
     border-radius: 50%;
     -moz-border-radius: 50%;
@@ -439,7 +437,6 @@ export default {
 .info-column {
     width: 45%;
 }
-
 .picture-column {
     width: 22%;
     display: flex;
@@ -471,7 +468,7 @@ export default {
 }
 .underNav {
     width: 100vw;
-    height: 12vh;
+    height: 14vh;
     display: block;
 }
 .pf-carousel {
@@ -519,31 +516,6 @@ export default {
     width: 0%;
     opacity: 0;
     overflow: hidden;
-}
-@media screen and (max-width: 2565px) {
-.tab-title {
-    font-size: var(--h2);
-}
-.tab-logo {
-    font-size: var(--h1);
-}
-.anime-title {
-    font-size: var(--h3);
-}
-.profile-img {
-    width: 25rem;
-    height: 25rem;
-}
-.profile-info {
-    margin-top: 20rem;
-    margin-bottom: 10rem;
-}
-}
-@media screen and (max-width: 2130px) {
-.profile-img {
-    width: 23rem;
-    height: 23rem;
-}
 }
 @media screen and (max-width: 1575px) {
 .anime-title {
@@ -768,7 +740,7 @@ export default {
     margin-top: 15rem;
 }
 }
-@media screen and (max-width: 285px) {
+@media screen and (max-width: 290px) {
 .tab-logo {
     font-size: var(--smallText);
 }
