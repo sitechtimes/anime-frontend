@@ -2,14 +2,14 @@
   <div id="actual-voting">
     <h1 class="award-name">{{ awardName }}</h1>
     <div v-if="isAnime" class="nominee-container">
-      <div v-for="anime in animes" :key="anime" class="nominee-box" @click="select">
+      <div v-for="anime in animes" :key="anime" ref="nomineeBox" class="nominee-box" @click="select">
         <img class="image-placeholder" src="https://cdn.myanimelist.net/images/characters/4/457933.jpg" alt="">
         <h1 class="anime-title">{{anime.node.animeName}}</h1>
       </div>
     </div>
 
     <div v-if="isCharacter" class="nominee-container">
-      <div v-for="character in characters" :key="character" class="nominee-box" @click="select">
+      <div v-for="character in characters" :key="character" ref="nomineeBox" class="nominee-box" @click="select">
         <img class="image-placeholder" src="https://cdn.myanimelist.net/images/characters/4/457933.jpg" alt="">
         <h1 class="anime-title">{{character.node.characterName}}</h1>
       </div>
@@ -45,6 +45,7 @@ let nominee = ref("")
 let error = ref("")
 let isCharacter = ref(false)
 let isAnime = ref(false)
+const nomineeBox = ref(null)
 
 const userStore = useUserStore()
 console.log(userStore.userID)
@@ -123,15 +124,19 @@ async function getCharacters() {
 }
 
 function select(e: String) {
+
       selected.value = true
       let click = e.target
-    console.log(nominee)
       nominee.value = click.outerText
-      console.log(click.outerText)
-      console.log(nominee.value)
+
       
-      const boxes = Array.from(document.getElementsByClassName("nominee-box") as HTMLCollectionOf<HTMLElement>)
-        boxes.forEach(box => {
+
+        
+      console.log(nomineeBox.value)
+
+
+        // console.log(boxes)
+        nomineeBox.value.forEach(box => {
           box.style.background = "#252525"
         });
       if (click.className == "nominee-box") {
@@ -261,8 +266,6 @@ function close() {
     }
 
 onMounted(() => {
-  console.log(props.awardName)
-  console.log(animes.value)
     if (props.awardName?.includes("Character")) {
       console.log("character award")
       isCharacter.value = true
