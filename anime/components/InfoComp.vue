@@ -47,13 +47,13 @@
 				<h2>Characters</h2>
 				<div class="divider"></div>
 				<div class="character-container">
-					<div v-for="character in characters" :key="character.name" class="character">
+					<div v-for="character in characters" :key="character.node.characterName" class="character">
 						<img
 							class="character-img"
-							src="https://cdn.myanimelist.net/images/characters/4/457933.jpg"
+							:src="character.node.imageUrl"
 							alt=""
 						/>
-						<p class="character-name">{{ character.name }}</p>
+						<p class="character-name">{{ character.node.characterName }}</p>
 					</div>
 				</div>
 				<div class="divider"></div>
@@ -87,19 +87,20 @@ export default {
 		genres: Array,
 		animeName: String,
 		synopsis: String,
+		characters: Array
 	},
 	data: () => ({
 		addList: false,
-		characters: [
-			{ name: "Alpha Red1" },
-			{ name: "Alpha Red the Most Alpha of Reds" },
-			{ name: "Alpha Red2" },
-			{ name: "Alpha Red3" },
-			{ name: "Alpha Red4" },
-			{ name: "Alpha Red5" },
-			{ name: "Al-fuh-red" },
-			{ name: "Alfredo" },
-		],
+		// characters: [
+		// 	{ name: "Alpha Red1" },
+		// 	{ name: "Alpha Red the Most Alpha of Reds" },
+		// 	{ name: "Alpha Red2" },
+		// 	{ name: "Alpha Red3" },
+		// 	{ name: "Alpha Red4" },
+		// 	{ name: "Alpha Red5" },
+		// 	{ name: "Al-fuh-red" },
+		// 	{ name: "Alfredo" },
+		// ],
 		chartData: {
 			labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
 			datasets: [

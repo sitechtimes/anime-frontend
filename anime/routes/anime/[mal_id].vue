@@ -10,6 +10,7 @@
        :synopsis="synopsis"
        :studios="studios"
        :genres="genres"
+       :characters="characters"
        />
     </div>
 </template>
@@ -35,6 +36,7 @@ import { onMounted, ref } from 'vue';
   let genres = ref([])
   let animeName = ref("")
   let synopsis = ref("")
+  let characters = ref([])
 
 async function getAnime() {
   try {
@@ -54,6 +56,14 @@ async function getAnime() {
       episodes,
       status,
       summary,
+      animeCharacters{
+          edges{
+            node{
+              characterName,
+              imageUrl
+            }
+          }
+        },
       animeStudio{
         edges{
           node{
@@ -83,6 +93,7 @@ async function getAnime() {
 				const response = await fetch(endpoint, options);
 				const animeDataNode = await response.json();
         const animeData = animeDataNode.data.allAnime.edges[0].node
+        console.log(animeData)
         
         imageURL.value = animeData.imageUrl
         mediaType.value = animeData.mediaType
@@ -93,6 +104,8 @@ async function getAnime() {
         synopsis.value = animeData.summary
         genres.value = animeData.animeGenre.edges
         studios.value = animeData.animeStudio.edges
+        characters.value = animeData.animeCharacters.edges
+        
 
 
 
