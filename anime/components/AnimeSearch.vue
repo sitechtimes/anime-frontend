@@ -13,22 +13,22 @@
 								@change="selectPage(1)"
 							>
 								<option value="Fantasy">Fantasy</option>
-								<option value="media_genre">Action</option>
-								<option value="media_genre">Adventure</option>
-								<option value="media_genre">Comedy</option>
-								<option value="media_genre">Drama</option>
-								<option value="media_genre">Supernatural</option>
-								<option value="media_genre">Suspense</option>
-								<option value="media_genre">Romance</option>
-								<option value="media_genre">Award Winning</option>
-								<option value="media_genre">Horror</option>
-								<option value="media_genre">Sci-Fi</option>
-								<option value="media_genre">Echhi</option>
-								<option value="media_genre">Mystery</option>
-								<option value="media_genre">Sports</option>
-								<option value="media_genre">Avant Garde</option>
-								<option value="media_genre">Gourmet</option>
-								<option value="media_genre">Slice of Life</option>
+								<option value="Action">Action</option>
+								<option value="Adventure">Adventure</option>
+								<option value="Comedy">Comedy</option>
+								<option value="Drama">Drama</option>
+								<option value="Supernatural">Supernatural</option>
+								<option value="Suspense">Suspense</option>
+								<option value="Romance">Romance</option>
+								<option value="Award Winning">Award Winning</option>
+								<option value="Horror">Horror</option>
+								<option value="Sci-Fi">Sci-Fi</option>
+								<option value="Ecchi">Ecchi</option>
+								<option value="Mystery">Mystery</option>
+								<option value="Sports">Sports</option>
+								<option value="Avant Garde">Avant Garde</option>
+								<option value="Gourmet">Gourmet</option>
+								<option value="Slice of Life">Slice of Life</option>
 							</select>
 						</div>
 						<div class="allAnime-filterBox">
@@ -38,10 +38,10 @@
 								v-model="media_season"
 								@change="selectPage(1)"
 							>
-								<option value="meida_season">Spring</option>
-								<option value="meida_season">Summer</option>
-								<option value="meida_season">Fall</option>
-								<option value="meida_season">Winter</option>
+								<option value="Spring">Spring</option>
+								<option value="Summer">Summer</option>
+								<option value="Fall">Fall</option>
+								<option value="Winter">Winter</option>
 							</select>
 						</div>
 						<div class="allAnime-filterBox">
@@ -51,30 +51,30 @@
 								v-model="media_year"
 								@change="selectPage(1)"
 							>
-								<option value="media_year">2023</option>
-								<option value="media_year">2022</option>
-								<option value="media_year">2021</option>
-								<option value="media_year">2020</option>
-								<option value="media_year">2019</option>
-								<option value="media_year">2018</option>
-								<option value="media_year">2017</option>
-								<option value="media_year">2016</option>
-								<option value="media_year">2015</option>
-								<option value="media_year">2014</option>
-								<option value="media_year">2013</option>
-								<option value="media_year">2012</option>
-								<option value="media_year">2011</option>
-								<option value="media_year">2010</option>
-								<option value="media_year">2009</option>
-								<option value="media_year">2008</option>
-								<option value="media_year">2007</option>
-								<option value="media_year">2006</option>
-								<option value="media_year">2005</option>
-								<option value="media_year">2004</option>
-								<option value="media_year">2003</option>
-								<option value="media_year">2002</option>
-								<option value="media_year">2001</option>
-								<option value="media_year">2000</option>
+								<option value="2023">2023</option>
+								<option value="2022">2022</option>
+								<option value="2021">2021</option>
+								<option value="2020">2020</option>
+								<option value="2019">2019</option>
+								<option value="2018">2018</option>
+								<option value="2017">2017</option>
+								<option value="2016">2016</option>
+								<option value="2015">2015</option>
+								<option value="2014">2014</option>
+								<option value="2013">2013</option>
+								<option value="2012">2012</option>
+								<option value="2011">2011</option>
+								<option value="2010">2010</option>
+								<option value="2009">2009</option>
+								<option value="2008">2008</option>
+								<option value="2007">2007</option>
+								<option value="2006">2006</option>
+								<option value="2005">2005</option>
+								<option value="2004">2004</option>
+								<option value="2003">2003</option>
+								<option value="2002">2002</option>
+								<option value="2001">2001</option>
+								<option value="2000">2000</option>
 							</select>
 						</div>
 						<div class="allAnime-filterBox">
@@ -84,8 +84,8 @@
 								v-model="media_status"
 								@change="selectPage(1)"
 							>
-								<option value="media_status">Ongoing</option>
-								<option value="media_status">Completed</option>
+								<option value="Ongoing">Ongoing</option>
+								<option value="Completed">Completed</option>
 							</select>
 						</div>
 						<div class="allAnime-filterBox">
@@ -95,9 +95,9 @@
 								v-model="media_sort"
 								@change="selectPage(1)"
 							>
-								<option value="anime_sort">Dafault</option>
-								<option value="anime_sort">Ascending</option>
-								<option value="anime_sort">Descending</option>
+								<option value="Dafault">Dafault</option>
+								<option value="Ascending">Ascending</option>
+								<option value="Descending">Descending</option>
 							</select>
 						</div>
 						<div>
@@ -283,10 +283,16 @@ function selectPage(num: number): void {
 	const newFilterAnime = [] as animeRest[];
 
 	userStore.filterAnime.forEach((anime: animeRest) => {
-		///fixing rn
-		if (anime.anime_genre.includes(Object.values(media_genre)[0])) {
-			newFilterAnime.push(anime);
-		}
+		const animeGenre = [] as string[];
+		console.log(anime)
+		anime.anime_genre.forEach((genre: { genre: string }) => {
+			animeGenre.push(genre.genre);
+		});
+		animeGenre.forEach((genre: string) => {
+			if (genre == media_genre.value) {
+				newFilterAnime.push(anime);
+			}
+		});
 	});
 
 	pageFilteredAnime.value = newFilterAnime.slice(
