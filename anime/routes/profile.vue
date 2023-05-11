@@ -252,7 +252,7 @@ export default {
                 img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
             },
         ],
-    }),
+    }), 
     methods: {
         ratedLeft () {
             this.ratedIndex -= 1;
@@ -351,8 +351,8 @@ export default {
     margin-bottom: 5rem;
 }
 .profile-img {
-    width: 15rem;
-    height: 15rem;
+    width: 16rem;
+    height: 16rem;
     border-radius: 50%;
     object-fit: cover;
 }
@@ -717,7 +717,7 @@ export default {
 }
 @media screen and (max-width: 420px) {
 .tab-title {
-    margin-left: 3.5rem;
+    margin-left: 4.5rem;
 }
 .anime-title {
     width: 13vw;
@@ -736,11 +736,23 @@ export default {
 }
 }
 @media screen and (max-width: 380px) {
+.tab-title {
+    margin-left: 3.5rem;
+}
 .profile-info {
-    margin-top: 15rem;
+    margin-top: 14rem;
 }
 }
 @media screen and (max-width: 290px) {
+.tab {
+    width: 105vw;
+}
+.banner {
+    height: 15vh;
+}
+.pf-carousel {
+    margin-left: 1.5rem;
+}
 .tab-logo {
     font-size: var(--smallText);
 }
@@ -756,7 +768,7 @@ export default {
     height: 7rem;
 }
 .profile-info {
-    margin-top: 13rem;
+    margin-top: 7rem;
     margin-bottom: 0rem;
 }
 }

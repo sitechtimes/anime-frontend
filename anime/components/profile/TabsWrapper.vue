@@ -41,7 +41,7 @@ export default {
     margin-bottom: 5rem;
     padding: 0;
     width: 7vw;
-    height: 120%;
+    height: 60vh;
     top: -10%;
     z-index: 3;
     background-color: var(--secondary);
@@ -80,11 +80,15 @@ export default {
 }
 }
 @media screen and (max-width: 1025px) {
+.tabs {
+    height: 55vh;
+}
 .tabs-header {
-    width: 8vw;
+    width: 9vw;
+    height: 65vh;
 }
 .tabs-header li {
-    width: 8vw;
+    width: 9vw;
     margin-bottom: 2rem;
 }
 }
@@ -94,10 +98,7 @@ export default {
     margin-top: 8rem;
 }
 .tabs-header {
-    width: 9vw;
-}
-.tabs-header li {
-    width: 9vw;
+    height: 35vh;
 }
 }
 @media screen and (max-width: 900px) {
@@ -106,13 +107,24 @@ export default {
 }
 }
 @media screen and (max-width: 825px) {
+.tabs {
+    height: 32vh;
+}
+.tabs-header {
+    width: 10vw;
+    height: 38vh;
+}
 .tabs-header li {
+    width: 10vw;
     font-size: var(--h7);
 }
 }
 @media screen and (max-width: 680px) {
 .tabs {
     height: 30vh;
+}
+.tabs-header {
+    height: 36vh;
 }
 }
 @media screen and (max-width: 550px) {
@@ -129,12 +141,12 @@ export default {
     height: 26vh;
 }
 .tabs-header {
-    width: 13vw;
+    width: 14vw;
     height: 30vh;
     margin-left: 2rem;
 }
 .tabs-header li {
-    width: 13vw;
+    width: 14vw;
 }
 }
 @media screen and (max-width: 400px) {
@@ -147,7 +159,7 @@ export default {
     width: 13vw;
 }
 .tabs-header li {
-    width: 12vw;
+    width: 13vw;
     padding: 0.5rem;
 }
 }
