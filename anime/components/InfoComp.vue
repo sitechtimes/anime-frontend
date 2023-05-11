@@ -35,6 +35,12 @@
 				<div>
 					<button class="btn">Heart</button>
 					<button class="btn" id="watch" @click="add">Add to Watchlist</button>
+					<select id="doughtnut-graph" v-model="watchStatus">
+							<option value="NOT_WATCHING">Not Watching</option>
+							<option value="CURRENTLY_WATCHING">Currently Watching</option>
+							<option value="WATCHLIST">Watchlist</option>
+							<option value="FINISHED_ANIME">Finished Anime</option>
+ 				 </select>
 					<button class="btn">Rate</button>
 				</div>
 			</div>
@@ -91,6 +97,7 @@ export default {
 	},
 	data: () => ({
 		addList: false,
+		watchStatus: "",
 		// characters: [
 		// 	{ name: "Alpha Red1" },
 		// 	{ name: "Alpha Red the Most Alpha of Reds" },
@@ -162,7 +169,16 @@ export default {
 			},
 		},
 	}),
+	watch: {
+		watchStatus(newValue, oldValue) {
+			console.log(this.watchStatus)
+		}
+	},
 	methods: {
+		test() {
+			console.log(this.watchStatus)
+		},
+
 		add() {
 			this.addList = !this.addList;
 			console.log(this.addList);
