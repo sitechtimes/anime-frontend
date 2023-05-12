@@ -276,6 +276,10 @@ function saveClickedAnimeID(id: number): void {
 	userStore.storeAnimeId(id);
 }
 
+function filter(): void {
+	
+}
+
 function selectPage(num: number): void {
 	userStore.startPageIndex = num * 35 - 35;
 	userStore.endPageIndex = num * 35 + 1;
@@ -284,15 +288,30 @@ function selectPage(num: number): void {
 
 	userStore.filterAnime.forEach((anime: animeRest) => {
 		const animeGenre = [] as string[];
-		console.log(anime)
+		let hasGenre = false;
+
 		anime.anime_genre.forEach((genre: { genre: string }) => {
 			animeGenre.push(genre.genre);
 		});
 		animeGenre.forEach((genre: string) => {
 			if (genre == media_genre.value) {
-				newFilterAnime.push(anime);
+				hasGenre = true;
 			}
 		});
+
+		const animeSeason = anime.season.split(" ")[0];
+		const animeYear = anime.season.split(" ")[1];
+		const animeStatus = anime.status;
+		if (
+			animeSeason == media_season.value &&
+			animeYear == media_year.value &&
+			animeStatus == media_status.value &&
+			hasGenre
+		) {
+			if (!newFilterAnime.includes(anime)) {
+				newFilterAnime.push(anime);
+			}
+		}
 	});
 
 	pageFilteredAnime.value = newFilterAnime.slice(
