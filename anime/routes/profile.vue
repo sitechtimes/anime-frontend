@@ -301,6 +301,9 @@ export default {
         thirdFavorite () {
             return this.favoriteAnimes[Math.abs(this.favoriteIndex+2) % this.favoriteAnimes.length];
         },
+        // test () {
+        //     return this.favoriteAnimes[Math.abs(this.favoriteIndex+2) % this.favoriteAnimes.length] && this.favoriteAnimes[Math.abs(this.favoriteIndex+2) % this.favoriteAnimes.length];
+        // },
     },
 };
 </script>
@@ -357,17 +360,17 @@ export default {
     object-fit: cover;
 }
 .profile-name {
+    margin-top: 5rem;
+    margin-left: 2vw;
     color: var(--white);
     font-size: var(--h4);
     font-weight: var(--fw-bold);
-    margin-top: 5rem;
-    margin-left: 2vw;
 }
 .current-anime {
     width: 35%;
     height: 30vh;
-    margin-right: 5%;
     margin-top: 8vh;
+    margin-right: 5%;
     border-radius: 1rem;
 }
 .anime-info-labels {
@@ -416,13 +419,13 @@ export default {
     flex-direction: row;
 }
 .anime-pfp {
+    width: 5rem;
+    height: 5rem;
+    margin-left: 1rem;
     border-radius: 50%;
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
     -o-border-radius: 50%;
-    width: 5rem;
-    height: 5rem;
-    margin-left: 1rem;
 }
 .genre-text {
     background-color: var(--primary);
