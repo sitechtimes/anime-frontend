@@ -28,11 +28,10 @@
 				</div>
 			</div>
 			<div class="allAnime-filter">
-				<form class="input-Box" @submit.prevent="goToSeachAnime()">
+				<form class="input-Box" @submit.prevent="selectPage(1)">
 					<input
 						v-model="text"
 						placeholder="Search anime..."
-						@keyup="searchAnime(text)"
 						spellcheck="false"
 						class="input"
 					/>
@@ -223,7 +222,6 @@ import TopCharts from "./homepage/TopCharts.vue";
 import RightPageButton from "./RightPageButtonSvg.vue";
 import LeftPageButton from "./LeftPageButtonSvg.vue";
 import AnimeCardLoading from "./homepage/AnimeCardLoading.vue";
-import { useRoute } from "vue-router";
 
 const userStore = useUserStore();
 
@@ -306,13 +304,57 @@ function saveClickedAnimeID(id: number): void {
 
 function filter(): animeRest[] {
 	const newFilterAnime = [] as animeRest[];
+	console.log(text.value);
+	userStore.search = text.value;
 
-	userStore.filterAnime.forEach((anime: animeRest) => {
+	const searchResult = [] as any;
+
+	if (text.value.length > 0) {
+		userStore.allAnime.filter((anime: any) => {
+			const animeWords = anime.anime_name.toLowerCase().split(" ");
+			if (text.value.slice(-1) == " ") {
+				text.value = text.value.slice(0, -1);
+			}
+			const textResults = text.value.toLocaleLowerCase().split(" ");
+
+			for (let i = 0; i < animeWords.length; i++) {
+				if (animeWords[i].startsWith(textResults[0])) {
+					if (textResults.length == 1) {
+						searchResult.push(anime);
+					} else {
+						const animeWordsSlice = animeWords
+							.slice(i, animeWords.length)
+							.join("")
+							.replace(/[^a-zA-Z ]/, "")
+							.replace(/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/, "");
+
+						const textResultsSlice = textResults
+							.join("")
+							.replace(/[^a-zA-Z ]/, "")
+							.replace(/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/, "");
+
+						if (animeWordsSlice.startsWith(textResultsSlice)) {
+							searchResult.push(anime);
+						}
+					}
+				}
+			}
+		});
+	} else {
+		searchResult.push(...userStore.allAnime);
+	}
+
+	searchResult.forEach((anime: animeRest) => {
 		const animeGenre = [] as string[];
 		const hasGenre = ref<boolean>(false);
 
-		const animeSeason = anime.season.split(" ")[0];
-		const animeYear = anime.season.split(" ")[1];
+		const animeSeason = ref<string>("");
+		const animeYear = ref<string>("");
+
+		if (anime.season != null) {
+			animeSeason.value = anime.season.split(" ")[0];
+			animeYear.value = anime.season.split(" ")[1];
+		}
 		const animeStatus = anime.status;
 		const animeType = anime.media_type;
 
@@ -329,8 +371,8 @@ function filter(): animeRest[] {
 		});
 
 		if (
-			(animeSeason == media_season.value || media_season.value == "") &&
-			(animeYear == media_year.value || media_year.value == "") &&
+			(animeSeason.value == media_season.value || media_season.value == "") &&
+			(animeYear.value == media_year.value || media_year.value == "") &&
 			(animeStatus == media_status.value || media_status.value == "") &&
 			(animeType == media_type.value || media_type.value == "") &&
 			(hasGenre.value || media_genre.value == "")
@@ -418,49 +460,6 @@ function clearFilter(): void {
 		userStore.startPageIndex,
 		userStore.endPageIndex
 	);
-}
-
-function searchAnime(text: string) {
-	const searchResult = [] as any;
-
-	userStore.search = text;
-
-	if (text.length > 0) {
-		userStore.allAnime.filter((anime: any) => {
-			const animeWords = anime.anime_name.toLowerCase().split(" ");
-			if (text.slice(-1) == " ") {
-				text = text.slice(0, -1);
-			}
-			const textResults = text.toLocaleLowerCase().split(" ");
-
-			for (let i = 0; i < animeWords.length; i++) {
-				if (animeWords[i].startsWith(textResults[0])) {
-					if (textResults.length == 1) {
-						searchResult.push(anime);
-					} else {
-						const animeWordsSlice = animeWords
-							.slice(i, animeWords.length)
-							.join("")
-							.replace(/[^a-zA-Z ]/, "")
-							.replace(/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/, "");
-
-						const textResultsSlice = textResults
-							.join("")
-							.replace(/[^a-zA-Z ]/, "")
-							.replace(/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/, "");
-
-						if (animeWordsSlice.startsWith(textResultsSlice)) {
-							searchResult.push(anime);
-						}
-					}
-				}
-			}
-		});
-	} else {
-		searchResult.push(...userStore.allAnime);
-	}
-	
-	animeResults.value = searchResult.slice(userStore.startPageIndex, userStore.endPageIndex);
 }
 
 function goToSeachAnime() {
