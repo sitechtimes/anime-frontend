@@ -14,7 +14,7 @@
 				<div class="quick-info-sub">
 					<p>Studio:</p>
 					<div v-for="studio in studios" :key="studio">
-						<p>Studio: {{ studio.node.studio }}</p>
+						<p>{{ studio.node.studio }}</p>
 					</div>
 				</div>
 				<div class="quick-info-sub">

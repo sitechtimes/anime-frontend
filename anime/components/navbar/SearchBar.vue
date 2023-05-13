@@ -62,6 +62,8 @@ const text = ref("");
 function searchAnime(text: string) {
 	const searchResult = [] as any;
 
+	userStore.search = text;
+
 	if (text.length > 0) {
 		userStore.allAnime.filter((anime: any) => {
 			const animeWords = anime.anime_name.toLowerCase().split(" ");
@@ -95,7 +97,6 @@ function searchAnime(text: string) {
 		});
 	}
 	animeResults.value = searchResult;
-	console.log(animeResults.value)
 }
 
 function saveClickedAnimeID(id: number) {

@@ -12,6 +12,7 @@ export const useUserStore = defineStore("user", {
 		allAnime: [] as animeRest[],
 		airingAnime: [] as animeRest[],
 		filterAnime: [] as animeRest[],
+		search: "",
 		startPageIndex: 0,
 		endPageIndex: 12,
 		pageNumber: 1,

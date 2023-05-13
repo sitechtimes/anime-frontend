@@ -3,126 +3,6 @@
 		<div class="allAnime-container">
 			<div class="allAnime-header">
 				<h2 class="allAnime-title">Filter</h2>
-				<div>
-					<div class="allAnime-filter">
-						<div class="allAnime-filterBox">
-							<p class="allAnime-filterText">Sort</p>
-							<select
-								class="allAnime-filterSelect"
-								v-model="media_genre"
-								@change="selectPage(1)"
-							>
-								<option value="" disabled selected>Select Genre</option>
-								<option value="Fantasy">Fantasy</option>
-								<option value="Action">Action</option>
-								<option value="Adventure">Adventure</option>
-								<option value="Comedy">Comedy</option>
-								<option value="Drama">Drama</option>
-								<option value="Supernatural">Supernatural</option>
-								<option value="Suspense">Suspense</option>
-								<option value="Romance">Romance</option>
-								<option value="Award Winning">Award Winning</option>
-								<option value="Horror">Horror</option>
-								<option value="Sci-Fi">Sci-Fi</option>
-								<option value="Ecchi">Ecchi</option>
-								<option value="Mystery">Mystery</option>
-								<option value="Sports">Sports</option>
-								<option value="Avant Garde">Avant Garde</option>
-								<option value="Gourmet">Gourmet</option>
-								<option value="Slice of Life">Slice of Life</option>
-							</select>
-						</div>
-						<div class="allAnime-filterBox">
-							<p class="allAnime-filterText">Season</p>
-							<select
-								class="allAnime-filterSelect"
-								v-model="media_season"
-								@change="selectPage(1)"
-							>
-								<option value="" disabled selected>Select Season</option>
-								<option value="Spring">Spring</option>
-								<option value="Summer">Summer</option>
-								<option value="Fall">Fall</option>
-								<option value="Winter">Winter</option>
-							</select>
-						</div>
-						<div class="allAnime-filterBox">
-							<p class="allAnime-filterText">Year</p>
-							<select
-								class="allAnime-filterSelect"
-								v-model="media_year"
-								@change="selectPage(1)"
-							>
-								<option value="" disabled selected>Select Year</option>
-								<option value="2023">2023</option>
-								<option value="2022">2022</option>
-								<option value="2021">2021</option>
-								<option value="2020">2020</option>
-								<option value="2019">2019</option>
-								<option value="2018">2018</option>
-								<option value="2017">2017</option>
-								<option value="2016">2016</option>
-								<option value="2015">2015</option>
-								<option value="2014">2014</option>
-								<option value="2013">2013</option>
-								<option value="2012">2012</option>
-								<option value="2011">2011</option>
-								<option value="2010">2010</option>
-								<option value="2009">2009</option>
-								<option value="2008">2008</option>
-								<option value="2007">2007</option>
-								<option value="2006">2006</option>
-								<option value="2005">2005</option>
-								<option value="2004">2004</option>
-								<option value="2003">2003</option>
-								<option value="2002">2002</option>
-								<option value="2001">2001</option>
-								<option value="2000">2000</option>
-							</select>
-						</div>
-						<div class="allAnime-filterBox">
-							<p class="allAnime-filterText">Type</p>
-							<select
-								class="allAnime-filterSelect"
-								v-model="media_type"
-								@change="selectPage(1)"
-							>
-								<option value="" disabled selected>Select Type</option>
-								<option value="TV">TV</option>
-								<option value="Movie">Movie</option>
-							</select>
-						</div>
-						<div class="allAnime-filterBox">
-							<p class="allAnime-filterText">Status</p>
-							<select
-								class="allAnime-filterSelect"
-								v-model="media_status"
-								@change="selectPage(1)"
-							>
-								<option value="" disabled selected>Select Status</option>
-								<option value="Currently Airing">Ongoing</option>
-								<option value="Finished Airing">Completed</option>
-							</select>
-						</div>
-						<div class="allAnime-filterBox">
-							<p class="allAnime-filterText">Sort</p>
-							<select
-								class="allAnime-filterSelect"
-								v-model="media_sort"
-								@change="selectPage(1)"
-							>
-								<option value="" disabled selected>Select Sort</option>
-								<option value="Release Date">Release Date</option>
-								<option value="Ascending">Name A-Z</option>
-								<option value="Most Liked">Most Liked</option>
-								<option value="Number of Episodes">Number of Episodes</option>
-							</select>
-						</div>
-						<div>
-							<p class="allAnime-filterBox"></p>
-						</div>
-					</div>
-				</div>
 				<div class="page-container">
 					<div class="page-number">
 						<p class="page-text">Page</p>
@@ -146,6 +26,129 @@
 						</button>
 					</div>
 				</div>
+			</div>
+			<div class="allAnime-filter">
+				<form class="input-Box" @submit.prevent="goToSeachAnime()">
+					<input
+						v-model="text"
+						placeholder="Search anime..."
+						@keyup="searchAnime(text)"
+						spellcheck="false"
+						class="input"
+					/>
+				</form>
+				<div class="allAnime-filterBox">
+					<select
+						class="allAnime-filterSelect"
+						v-model="media_genre"
+						@change="selectPage(1)"
+					>
+						<option value="" disabled selected>Select Genre</option>
+						<option value="Fantasy">Fantasy</option>
+						<option value="Action">Action</option>
+						<option value="Adventure">Adventure</option>
+						<option value="Comedy">Comedy</option>
+						<option value="Drama">Drama</option>
+						<option value="Supernatural">Supernatural</option>
+						<option value="Suspense">Suspense</option>
+						<option value="Romance">Romance</option>
+						<option value="Award Winning">Award Winning</option>
+						<option value="Horror">Horror</option>
+						<option value="Sci-Fi">Sci-Fi</option>
+						<option value="Ecchi">Ecchi</option>
+						<option value="Mystery">Mystery</option>
+						<option value="Sports">Sports</option>
+						<option value="Avant Garde">Avant Garde</option>
+						<option value="Gourmet">Gourmet</option>
+						<option value="Slice of Life">Slice of Life</option>
+					</select>
+				</div>
+				<div class="allAnime-filterBox">
+					<select
+						class="allAnime-filterSelect"
+						v-model="media_season"
+						@change="selectPage(1)"
+					>
+						<option value="" disabled selected>Select Season</option>
+						<option value="Spring">Spring</option>
+						<option value="Summer">Summer</option>
+						<option value="Fall">Fall</option>
+						<option value="Winter">Winter</option>
+					</select>
+				</div>
+				<div class="allAnime-filterBox">
+					<select
+						class="allAnime-filterSelect"
+						v-model="media_year"
+						@change="selectPage(1)"
+					>
+						<option value="" disabled selected>Select Year</option>
+						<option value="2023">2023</option>
+						<option value="2022">2022</option>
+						<option value="2021">2021</option>
+						<option value="2020">2020</option>
+						<option value="2019">2019</option>
+						<option value="2018">2018</option>
+						<option value="2017">2017</option>
+						<option value="2016">2016</option>
+						<option value="2015">2015</option>
+						<option value="2014">2014</option>
+						<option value="2013">2013</option>
+						<option value="2012">2012</option>
+						<option value="2011">2011</option>
+						<option value="2010">2010</option>
+						<option value="2009">2009</option>
+						<option value="2008">2008</option>
+						<option value="2007">2007</option>
+						<option value="2006">2006</option>
+						<option value="2005">2005</option>
+						<option value="2004">2004</option>
+						<option value="2003">2003</option>
+						<option value="2002">2002</option>
+						<option value="2001">2001</option>
+						<option value="2000">2000</option>
+					</select>
+				</div>
+				<div class="allAnime-filterBox">
+					<select
+						class="allAnime-filterSelect"
+						v-model="media_type"
+						@change="selectPage(1)"
+					>
+						<option value="" disabled selected>Select Type</option>
+						<option value="TV">TV</option>
+						<option value="Movie">Movie</option>
+						<option value="OVA">OVA</option>
+						<option value="ONA">ONA</option>
+						<option value="Special">Special</option>
+					</select>
+				</div>
+				<div class="allAnime-filterBox">
+					<select
+						class="allAnime-filterSelect"
+						v-model="media_status"
+						@change="selectPage(1)"
+					>
+						<option value="" disabled selected>Select Status</option>
+						<option value="Currently Airing">Ongoing</option>
+						<option value="Finished Airing">Completed</option>
+					</select>
+				</div>
+				<div class="allAnime-filterBox">
+					<select
+						class="allAnime-filterSelect"
+						v-model="media_sort"
+						@change="selectPage(1)"
+					>
+						<option value="" disabled selected>Select Sort</option>
+						<option value="Release Date">Release Date</option>
+						<option value="Name A-Z">Name A-Z</option>
+						<option value="Most Liked">Most Liked</option>
+						<option value="Number of Episodes">Number of Episodes</option>
+						<option value="Highest Rated">Highest Rated</option>
+					</select>
+				</div>
+				<button class="button-clear" @click="clearFilter">Clear All Filter</button>
 			</div>
 			<div class="content-condition" v-if="loading">
 				<AnimeCardLoading v-for="anime in loadingAnime" />
@@ -220,8 +223,12 @@ import TopCharts from "./homepage/TopCharts.vue";
 import RightPageButton from "./RightPageButtonSvg.vue";
 import LeftPageButton from "./LeftPageButtonSvg.vue";
 import AnimeCardLoading from "./homepage/AnimeCardLoading.vue";
+import { useRoute } from "vue-router";
 
 const userStore = useUserStore();
+
+const text = ref("");
+const animeResults = ref([] as animeRest[]);
 
 const pageExistLeft = ref<boolean>(false);
 const pageExistRight = ref<boolean>(true);
@@ -258,6 +265,8 @@ onMounted(() => {
 		userStore.endPageIndex
 	);
 	loading.value = false;
+
+	text.value = userStore.search;
 });
 
 function next(): void {
@@ -332,7 +341,135 @@ function filter(): animeRest[] {
 		}
 	});
 
+	if (media_sort.value == "Release Date") {
+		newFilterAnime.sort((a: animeRest, b: animeRest) => {
+			const aSeason = a.season.split(" ")[0];
+			const aYear = a.season.split(" ")[1];
+			const bSeason = b.season.split(" ")[0];
+			const bYear = b.season.split(" ")[1];
+
+			if (aYear == bYear) {
+				if (aSeason == bSeason) {
+					return 0;
+				} else if (aSeason > bSeason) {
+					return -1;
+				} else {
+					return 1;
+				}
+			} else if (aYear > bYear) {
+				return -1;
+			} else {
+				return 1;
+			}
+		});
+	}
+
+	if (media_sort.value == "Name A-Z") {
+		newFilterAnime.sort((a: animeRest, b: animeRest) => {
+			a.anime_name = a.anime_name;
+			b.anime_name = b.anime_name;
+			if (a.anime_name < b.anime_name) {
+				return -1;
+			} else if (a.anime_name > b.anime_name) {
+				return 1;
+			} else {
+				return 0;
+			}
+		});
+	}
+
+	if (media_sort.value == "Number of Episodes") {
+		newFilterAnime.sort((a: animeRest, b: animeRest) => {
+			if (a.episodes == b.episodes) {
+				return 0;
+			} else if (a.episodes > b.episodes) {
+				return -1;
+			} else {
+				return 1;
+			}
+		});
+	}
+
+	if (media_sort.value == "Highest Rated") {
+		newFilterAnime.sort((a: animeRest, b: animeRest) => {
+			if (a.avg_rating == b.avg_rating) {
+				return 0;
+			} else if (a.avg_rating > b.avg_rating) {
+				return -1;
+			} else {
+				return 1;
+			}
+		});
+	}
 	return newFilterAnime;
+}
+
+function clearFilter(): void {
+	media_season.value = "";
+	media_year.value = "";
+	media_status.value = "";
+	media_type.value = "";
+	media_genre.value = "";
+	media_sort.value = "";
+	text.value = "";
+	animeResults.value = [];
+
+	pageFilteredAnime.value = userStore.allAnime.slice(
+		userStore.startPageIndex,
+		userStore.endPageIndex
+	);
+}
+
+function searchAnime(text: string) {
+	const searchResult = [] as any;
+
+	userStore.search = text;
+
+	if (text.length > 0) {
+		userStore.allAnime.filter((anime: any) => {
+			const animeWords = anime.anime_name.toLowerCase().split(" ");
+			if (text.slice(-1) == " ") {
+				text = text.slice(0, -1);
+			}
+			const textResults = text.toLocaleLowerCase().split(" ");
+
+			for (let i = 0; i < animeWords.length; i++) {
+				if (animeWords[i].startsWith(textResults[0])) {
+					if (textResults.length == 1) {
+						searchResult.push(anime);
+					} else {
+						const animeWordsSlice = animeWords
+							.slice(i, animeWords.length)
+							.join("")
+							.replace(/[^a-zA-Z ]/, "")
+							.replace(/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/, "");
+
+						const textResultsSlice = textResults
+							.join("")
+							.replace(/[^a-zA-Z ]/, "")
+							.replace(/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/, "");
+
+						if (animeWordsSlice.startsWith(textResultsSlice)) {
+							searchResult.push(anime);
+						}
+					}
+				}
+			}
+		});
+	} else {
+		searchResult.push(...userStore.allAnime);
+	}
+	
+	animeResults.value = searchResult.slice(userStore.startPageIndex, userStore.endPageIndex);
+}
+
+function goToSeachAnime() {
+	userStore.filterAnime = animeResults.value;
+	userStore.filterAnime = filter();
+	pageFilteredAnime.value = userStore.filterAnime.slice(
+		userStore.startPageIndex,
+		userStore.endPageIndex
+	);
 }
 
 function selectPage(num: number): void {
@@ -381,7 +518,6 @@ function toTop(): void {
 	height: 6rem;
 	justify-content: space-between;
 	margin-top: 2rem;
-	margin-bottom: 2rem;
 }
 .allAnime-title {
 	font-size: var(--h3);
@@ -395,19 +531,50 @@ function toTop(): void {
 	margin-bottom: 0.5rem;
 }
 
-.allAnime-filter {
+.input-Box {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	justify-content: flex-start;
 	column-gap: 1rem;
+	margin-right: 2rem;
+	width: 30rem;
+}
+.input {
+	background-color: var(--bg-secondary);
+	border-radius: 0.75rem;
+	border: none;
+	color: var(--light-text);
+	font-size: var(--h5);
+	font-weight: var(--fw-regular);
+	padding: 0.5rem 1rem;
+	width: 100%;
+}
+.input:focus {
+	outline: none;
+}
+.allAnime-filter {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: flex-end;
+	column-gap: 1rem;
+	margin-right: 2rem;
+	width: 100%;
+	height: 8rem;
+	margin-bottom: 2rem;
 }
 
-.allAnime-filterText {
-	font-size: var(--h6);
-	font-weight: var(--fw-reg);
+.allAnime-filter .allAnime-filterSelect {
+	background-color: var(--bg-secondary);
+	border-radius: 0.75rem;
+	border: none;
 	color: var(--light-text);
+	font-size: var(--h5);
+	font-weight: var(--fw-regular);
+	padding: 0.5rem 1rem;
 }
+
 .content-condition {
 	display: flex;
 	flex-wrap: wrap;
@@ -423,6 +590,17 @@ function toTop(): void {
 	row-gap: 4rem;
 	margin-bottom: 5rem;
 	column-gap: 2.3%;
+}
+
+.button-clear {
+	width: 15rem;
+	background-color: var(--bg-secondary);
+	border-radius: 0.75rem;
+	border: none;
+	color: var(--light-text);
+	font-size: var(--h5);
+	font-weight: var(--fw-regular);
+	padding: 0.5rem 1rem;
 }
 .page-container {
 	justify-content: flex-end;
