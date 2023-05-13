@@ -11,6 +11,8 @@
        :studios="studios"
        :genres="genres"
        :characters="characters"
+       :mal_id="mal_id"
+       :avgRating="rating"
        />
     </div>
 </template>
@@ -22,7 +24,7 @@ import { onMounted, ref } from 'vue';
 
 
   const route = useRoute()
-  const mal_id = route.params.mal_id
+  let mal_id = route.params.mal_id
   console.log(route.params.mal_id)
   
   const userStore = useUserStore()
@@ -37,6 +39,7 @@ import { onMounted, ref } from 'vue';
   let animeName = ref("")
   let synopsis = ref("")
   let characters = ref([])
+  let rating = ref(0)
 
 async function getAnime() {
   try {
@@ -51,6 +54,7 @@ async function getAnime() {
   edges{
     node{
       animeName,
+      avgRating,
       imageUrl,
       mediaType,
       episodes,
@@ -105,6 +109,7 @@ async function getAnime() {
         genres.value = animeData.animeGenre.edges
         studios.value = animeData.animeStudio.edges
         characters.value = animeData.animeCharacters.edges
+        rating.value = Number(animeData.avgRating)
         
 
 

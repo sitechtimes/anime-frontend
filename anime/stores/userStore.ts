@@ -274,6 +274,7 @@ export const useUserStore = defineStore("user", {
 								this.redirect = true;
 								console.log(this.userID)
 								return navigateTo("/");
+								// this.$router.push("/")
 								// router.push({ path: "/"})
 							});
 					});
@@ -330,6 +331,7 @@ export const useUserStore = defineStore("user", {
 				this.isAuthenticated = false;
 				this.token = null;
 				this.userID = null
+				// this.$router.push("/")
 				// googleLogout();
 			} catch (error) {
 				console.error(error);

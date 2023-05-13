@@ -30,18 +30,32 @@
 				<p>{{ animeName }}</p>
 				<div class="star-rating">
 					<starSVG class="star" />
-					<p>10.00</p>
+					<p>{{ avgRating }}</p>
 				</div>
 				<div>
 					<button class="btn">Heart</button>
 					<button class="btn" id="watch" @click="add">Add to Watchlist</button>
 					<select id="doughtnut-graph" v-model="watchStatus">
-							<option value="NOT_WATCHING">Not Watching</option>
+							<option value="NOT_WATCHING" selected>Not Watching</option>
 							<option value="CURRENTLY_WATCHING">Currently Watching</option>
 							<option value="WATCHLIST">Watchlist</option>
 							<option value="FINISHED_ANIME">Finished Anime</option>
  				 </select>
-					<button class="btn">Rate</button>
+
+				 <select id="rating-form" v-model="rating">
+					<option value="0" selected>Select</option>
+					<option value="10">10</option>
+					<option value="9">9</option>
+					<option value="8">8</option>
+					<option value="7">7</option>
+					<option value="6">6</option>
+					<option value="5">5</option>
+					<option value="4">4</option>
+					<option value="3">3</option>
+					<option value="2">2</option>
+					<option value="1">1</option>
+				</select>
+					<!-- <button class="btn">Rate</button> -->
 				</div>
 			</div>
 			<div class="info-block">
@@ -76,6 +90,7 @@
 <script lang="ts">
 import starSVG from "../components/starSVG.vue";
 import LineChart from "../components/LineChart.vue";
+import { useUserStore } from "~~/stores/userStore";
 
 export default {
 	name: "AnimeInfo",
@@ -93,11 +108,22 @@ export default {
 		genres: Array,
 		animeName: String,
 		synopsis: String,
-		characters: Array
+		characters: Array,
+		mal_id: String,
+		avgRating: Number
+	},
+	setup() {
+		const userStore = useUserStore()
+
+		return {
+			userStore
+		}
 	},
 	data: () => ({
 		addList: false,
-		watchStatus: "",
+		watchStatus: "Not Watching",
+		rating: 0,
+		change:false,
 		// characters: [
 		// 	{ name: "Alpha Red1" },
 		// 	{ name: "Alpha Red the Most Alpha of Reds" },
@@ -172,6 +198,54 @@ export default {
 	watch: {
 		watchStatus(newValue, oldValue) {
 			console.log(this.watchStatus)
+		},
+		async rating(value) {
+			console.log(this.rating)
+			const endpoint = "http://127.0.0.1:8000/graphql/";
+				const headers = {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${this.userStore.token}`,
+				};
+				const graphqlQuery = {
+					query: `mutation{
+						userAnimeMutation(animeData:{animeId:"${this.mal_id}"}, userData:{userId:"${this.userStore.userID}"}, userAnimeData:{rating:${this.rating}}){
+    user{
+      user{
+        username
+      }
+    },
+    userAnime{
+      anime{
+        animeName
+      },
+      rating,
+      watchingStatus
+    },
+    anime{
+      animeName,
+      avgRating
+    }
+  }
+}`,
+					variables: {},
+				};
+				const options = {
+					method: "POST",
+					headers: headers,
+					body: JSON.stringify(graphqlQuery),
+				};
+				const response = await fetch(endpoint, options);
+				const mutationData = await response.json();
+				console.log(mutationData)
+				window.location.reload()
+
+		}
+	},
+	mounted() {
+		if (this.avgRating > 0) {
+			this.change = true
+		} else {
+			this.change = false
 		}
 	},
 	methods: {
