@@ -9,9 +9,10 @@ import { animeRest, animeGraphql } from "~/types/anime";
 
 export const useUserStore = defineStore("user", {
 	state: () => ({
-		allAnime: [] as animeRest[],
-		airingAnime: [] as animeRest[],
-		filterAnime: [] as animeRest[],
+		allAnime: [] as any,
+		currentAnime: [] as any,
+		filterAnime: [] as any,
+		allAwards: [] as any,
 		startPageIndex: 0,
 		endPageIndex: 12,
 		pageNumber: 1,
@@ -20,6 +21,7 @@ export const useUserStore = defineStore("user", {
 		first_name: null,
 		last_name: null,
 		email: null,
+		userID: null,
 		redirect: false,
 		userData: null,
 		token: null,
@@ -70,6 +72,77 @@ export const useUserStore = defineStore("user", {
 				console.log(error);
 			}
 		},
+
+
+		async getAllAwards() {
+			try {
+				const endpoint = "http://127.0.0.1:8000/graphql/";
+				const headers = {
+					"content-type": "application/json",
+					Authorization: `Bearer ${this.token}`,
+				};
+
+				const graphqlQuery = {
+					query: `{
+						allAwards{
+							edges{
+							  node{
+								awardName
+							  }
+							}
+						  }
+							}`,
+					variables: {},
+				};
+
+				const options = {
+					method: "POST",
+					headers: headers,
+					body: JSON.stringify(graphqlQuery),
+				};
+
+				const response = await fetch(endpoint, options);
+				const awardData = await response.json();
+
+				// console.log(awardData.data.allAwards)
+				
+
+				
+				awardData.data.allAwards.edges.forEach(node => {
+					// console.log(node.node.awardName)
+					const awardName = node.node.awardName
+					if (this.allAwards.includes(awardName)) {
+						// console.log("award exist")
+						
+					} else {
+						this.allAwards.push(node.node.awardName)
+					}
+					
+				});
+				// this.allAwards = []
+				// console.log(this.allAwards)
+				// return this.allAwards
+				// const refinedAnimeData = animeData.data.allAnime.edges[0].node;
+
+				// refinedAnimeData.animeGenre = refinedAnimeData.animeGenre.edges.map((edge: any) => {
+				// 	return edge.node.genre;
+				// });
+
+				// refinedAnimeData.animeStudio = refinedAnimeData.animeStudio.edges[0].node.studio;
+
+				// refinedAnimeData.animeAwards = refinedAnimeData.animeAwards.edges.map(
+				// 	(edge: any) => {
+				// 		return edge.node.id;
+				// 	}
+				// );
+
+				// return refinedAnimeData;
+			} catch (error) {
+				console.log(error);
+			}
+		},
+		
+
 		async getOneAnime() {
 			try {
 				const endpoint = "http://127.0.0.1:8000/graphql/";
@@ -186,10 +259,12 @@ export const useUserStore = defineStore("user", {
 										"Need to login with your school account (i.e. nycstudents.net)"
 									);
 								}
-
+								// console.log(res.data.pk)
 								// localStorage.setItem("user", res.data.first_name)
 								// this.userData = localStorage.getItem("user")
 								// this.user = res.data.first_name
+								// console.log(res.data)
+								this.userID = res.data.pk
 								this.username = res.data.username;
 								// this.userData = res.data;
 								this.first_name = res.data.first_name;
@@ -197,6 +272,7 @@ export const useUserStore = defineStore("user", {
 								this.email = res.data.email;
 								this.isAuthenticated = true;
 								this.redirect = true;
+								console.log(this.userID)
 								return navigateTo("/");
 								// router.push({ path: "/"})
 							});
@@ -253,6 +329,7 @@ export const useUserStore = defineStore("user", {
 				this.email = null;
 				this.isAuthenticated = false;
 				this.token = null;
+				this.userID = null
 				// googleLogout();
 			} catch (error) {
 				console.error(error);
