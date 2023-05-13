@@ -218,7 +218,6 @@ import { ref } from "vue";
 import { onMounted } from "vue";
 import { animeRest } from "~~/types/anime";
 import AnimeCard from "./homepage/AnimeCard.vue";
-import TopCharts from "./homepage/TopCharts.vue";
 import RightPageButton from "./RightPageButtonSvg.vue";
 import LeftPageButton from "./LeftPageButtonSvg.vue";
 import AnimeCardLoading from "./homepage/AnimeCardLoading.vue";
@@ -254,7 +253,7 @@ onMounted(() => {
 
 	const filterAnime = [] as animeRest[];
 
-	userStore.filterAnime.forEach((anime: any) => {
+	userStore.filterAnime.forEach((anime: animeRest) => {
 		filterAnime.push(anime);
 	});
 
@@ -304,13 +303,11 @@ function saveClickedAnimeID(id: number): void {
 
 function filter(): animeRest[] {
 	const newFilterAnime = [] as animeRest[];
-	console.log(text.value);
+	const searchResult = [] as animeRest[];
 	userStore.search = text.value;
 
-	const searchResult = [] as any;
-
 	if (text.value.length > 0) {
-		userStore.allAnime.filter((anime: any) => {
+		userStore.allAnime.filter((anime: animeRest) => {
 			const animeWords = anime.anime_name.toLowerCase().split(" ");
 			if (text.value.slice(-1) == " ") {
 				text.value = text.value.slice(0, -1);
@@ -350,13 +347,13 @@ function filter(): animeRest[] {
 
 		const animeSeason = ref<string>("");
 		const animeYear = ref<string>("");
+		const animeStatus = anime.status;
+		const animeType = anime.media_type;
 
 		if (anime.season != null) {
 			animeSeason.value = anime.season.split(" ")[0];
 			animeYear.value = anime.season.split(" ")[1];
 		}
-		const animeStatus = anime.status;
-		const animeType = anime.media_type;
 
 		anime.anime_genre.forEach((genre: { genre: string }) => {
 			animeGenre.push(genre.genre);
