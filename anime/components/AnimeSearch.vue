@@ -381,7 +381,14 @@ function filter(): animeRest[] {
 	});
 
 	if (media_sort.value == "Release Date") {
+
 		newFilterAnime.sort((a: animeRest, b: animeRest) => {
+			if (a.season == null) {
+				a.season = "0 0";
+			}
+			if (b.season == null) {
+				b.season = "0 0";
+			}
 			const aSeason = a.season.split(" ")[0];
 			const aYear = a.season.split(" ")[1];
 			const bSeason = b.season.split(" ")[0];
@@ -401,6 +408,7 @@ function filter(): animeRest[] {
 				return 1;
 			}
 		});
+		
 	}
 
 	if (media_sort.value == "Name A-Z") {
