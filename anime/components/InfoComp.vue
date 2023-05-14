@@ -43,7 +43,9 @@
  				 </select>
 
 				 <select id="rating-form" v-model="rating">
-					<option value="0" selected>Select</option>
+					<!-- <option v-if="change" value="" disabled selected>{{ userAnime.rating }}</option> -->
+					<option v-if="change" value="0" disabled selected>{{userAnime.rating}}</option>
+					<option v-else value="0" disabled selected>Select</option>
 					<option value="10">10</option>
 					<option value="9">9</option>
 					<option value="8">8</option>
@@ -124,6 +126,7 @@ export default {
 		watchStatus: "Not Watching",
 		rating: 0,
 		change:false,
+		userAnime: null,
 		// characters: [
 		// 	{ name: "Alpha Red1" },
 		// 	{ name: "Alpha Red the Most Alpha of Reds" },
@@ -242,13 +245,69 @@ export default {
 		}
 	},
 	mounted() {
-		if (this.avgRating > 0) {
+		this.getUserProfile()
+		console.log(this.change)
+
+	},
+	methods: {
+		async getUserProfile() {
+			const endpoint = "http://127.0.0.1:8000/graphql/";
+				const headers = {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${this.userStore.token}`,
+				};
+				const graphqlQuery = {
+					query: `{
+  userAnimeData(id:${this.userStore.userID}) {
+
+   userAnime{
+    edges{
+      node{
+        anime{
+          animeName,
+		  malId
+        },
+        rating,
+        watchingStatus
+      }
+    }
+  }
+}
+
+
+         
+}`,
+					variables: {},
+				};
+				const options = {
+					method: "POST",
+					headers: headers,
+					body: JSON.stringify(graphqlQuery),
+				};
+				const response = await fetch(endpoint, options);
+				const mutationData = await response.json();
+
+				console.log(mutationData.data.userAnimeData.userAnime.edges)
+				mutationData.data.userAnimeData.userAnime.edges.forEach(element => {
+					// console.log(element.node.anime.animeName)
+					if(element.node.anime.malId == this.mal_id) {
+						this.userAnime = element.node
+					}
+				});
+				// const userAnime = mutationData.data.userAnimeData.userAnime.edges.filter(node => {
+				// 	node.node.anime.animeName === "Your Lie in April"
+				// })
+				console.log(this.userAnime.rating)
+				
+
+				if (this.userAnime.rating > 0) {
 			this.change = true
 		} else {
 			this.change = false
 		}
-	},
-	methods: {
+		console.log(this.change)
+		},
+
 		test() {
 			console.log(this.watchStatus)
 		},
