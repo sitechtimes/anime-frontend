@@ -2,6 +2,17 @@
   <div id="actual-voting">
     <h1 class="award-name">{{ awardName }}</h1>
     <!-- <SearchBar/> -->
+    <form class="input-Box">
+					<input
+						v-model="text"
+						placeholder="Search anime..."
+						spellcheck="false"
+						class="input"
+            @keyup="searchAnime(text)"
+					/>
+				</form>
+
+
     <div v-if="isAnime" class="nominee-container">
       <div v-for="anime in animes" :key="anime" ref="nomineeBox" class="nominee-box" @click="select">
         <img class="image-placeholder" :src="anime.node.imageUrl" alt="">
@@ -47,6 +58,7 @@ let nominee = ref("")
 let error = ref("")
 let isCharacter = ref(false)
 let isAnime = ref(false)
+let text = ref("")
 const nomineeBox = ref(null)
 
 const userStore = useUserStore()
@@ -56,6 +68,9 @@ const props = defineProps({
   awardName: String
 })
 
+function searchAnime(text: String) {
+  console.log(text)
+}
 
 async function getAnimes() {
   try {
@@ -542,6 +557,30 @@ export default ({
 </script> -->
   
 <style scoped>
+
+.input-Box {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: flex-start;
+	column-gap: 1rem;
+	margin-right: 2rem;
+	width: 30rem;
+}
+.input {
+	background-color: var(--bg-secondary);
+	border-radius: 0.75rem;
+	border: none;
+	color: var(--light-text);
+	font-size: var(--h5);
+	font-weight: var(--fw-regular);
+	padding: 0.5rem 1rem;
+	width: 100%;
+}
+.input:focus {
+	outline: none;
+}
+
 #actual-voting {
   padding-top: 9vh;
   width: 70vw;
