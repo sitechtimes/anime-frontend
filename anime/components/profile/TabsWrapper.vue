@@ -106,6 +106,11 @@ export default {
     height: 40vh;
 }
 }
+@media screen and (max-width: 870px) {
+.tabs-header {
+    height: 47vh;
+}
+}
 @media screen and (max-width: 825px) {
 .tabs {
     height: 32vh;

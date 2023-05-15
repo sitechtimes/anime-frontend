@@ -115,16 +115,6 @@
                         </div>
                     </div>
                 </Tab>
-                <Tab title="Example 2">
-                    <div class="tabShow">
-                        <div class="tab-logo">
-                            <h3 class="tab-detail">Technime</h3>
-                        </div>
-                        <div class="tab-bottom">
-                            <h3 class="tab-title">Example 2</h3>
-                        </div>
-                    </div>
-                </Tab>
             </TabsWrapper>
         </div>
     </div>
@@ -134,7 +124,6 @@
 import { useUserStore } from "~~/stores/userStore";
 
 const userStore = useUserStore();
-
 const firstName = userStore.first_name;
 const lastName = userStore.last_name;
 const emailDOE = userStore.email;
@@ -144,13 +133,12 @@ const emailDOE = userStore.email;
 import Tab from "../components/profile/Tab.vue";
 import TabsWrapper from "../components/profile/TabsWrapper.vue";
 import AnimeList from "../components/profile/AnimeList.vue";
-// import Tabs from '../components/profile/Tabs.vue'
+
 export default {
     components: {
         Tab,
         TabsWrapper,
         AnimeList,
-        //   Tabs
     },
     data: () => ({
         ratedIndex: 0,
@@ -187,6 +175,11 @@ export default {
                 title: "Jujutsu Kaisen",
                 img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
             },
+            {
+                animeID: "07",
+                title: "Bungo Stray Dogs",
+                img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
+            },
         ],
         favoriteAnimes: [
             {
@@ -219,6 +212,11 @@ export default {
                 title: "Jujutsu Kaisen",
                 img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
             },
+            {
+                animeID: "07",
+                title: "Bungo Stray Dogs",
+                img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
+            },
         ],
         RatedAnimes: [
             {
@@ -249,6 +247,11 @@ export default {
             {
                 animeID: "06",
                 title: "Jujutsu Kaisen",
+                img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
+            },
+            {
+                animeID: "07",
+                title: "Bungo Stray Dogs",
                 img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
             },
         ],
@@ -301,9 +304,6 @@ export default {
         thirdFavorite () {
             return this.favoriteAnimes[Math.abs(this.favoriteIndex+2) % this.favoriteAnimes.length];
         },
-        // test () {
-        //     return this.favoriteAnimes[Math.abs(this.favoriteIndex+2) % this.favoriteAnimes.length] && this.favoriteAnimes[Math.abs(this.favoriteIndex+2) % this.favoriteAnimes.length];
-        // },
     },
 };
 </script>
@@ -471,7 +471,7 @@ export default {
 }
 .underNav {
     width: 100vw;
-    height: 14vh;
+    height: 15vh;
     display: block;
 }
 .pf-carousel {
