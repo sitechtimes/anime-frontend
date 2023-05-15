@@ -1,16 +1,17 @@
 <template>
   <div id="actual-voting">
     <h1 class="award-name">{{ awardName }}</h1>
+    <!-- <SearchBar/> -->
     <div v-if="isAnime" class="nominee-container">
       <div v-for="anime in animes" :key="anime" ref="nomineeBox" class="nominee-box" @click="select">
-        <img class="image-placeholder" src="https://cdn.myanimelist.net/images/characters/4/457933.jpg" alt="">
+        <img class="image-placeholder" :src="anime.node.imageUrl" alt="">
         <h1 class="anime-title">{{anime.node.animeName}}</h1>
       </div>
     </div>
 
     <div v-if="isCharacter" class="nominee-container">
       <div v-for="character in characters" :key="character" ref="nomineeBox" class="nominee-box" @click="select">
-        <img class="image-placeholder" src="https://cdn.myanimelist.net/images/characters/4/457933.jpg" alt="">
+        <img class="image-placeholder" :src="character.node.imageUrl" alt="">
         <h1 class="anime-title">{{character.node.characterName}}</h1>
       </div>
     </div>
@@ -32,6 +33,7 @@
 
 
 <script setup lang="ts">
+import SearchBar from "../navbar/SearchBar.vue";
 import { useUserStore } from '~~/stores/userStore'
 import { ref, onMounted } from "vue"
 
@@ -67,7 +69,8 @@ async function getAnimes() {
 					  allAnime {
     edges{
       node{
-        animeName
+        animeName,
+        imageUrl
       }
     }
   }
@@ -101,7 +104,8 @@ async function getCharacters() {
   allCharacters{
     edges{
       node{
-        characterName
+        characterName,
+        imageUrl
       }
     }
   }
