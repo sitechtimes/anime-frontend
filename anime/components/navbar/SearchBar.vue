@@ -19,7 +19,7 @@
             </svg>
         </div>
         <div v-else class="search-bar">
-            <div @click="exitSearchMobile">dhuodshf</div>
+            <div @click="exitSearchMobile" class="x">&times;</div>
             <form @submit.prevent="goToSeachAnime()">
                 <input
                     v-model="text"
@@ -154,6 +154,13 @@ onMounted(() => {
     transition-duration: 0;
     transition-delay: 1000ms;
 }
+
+.x {
+    display: none;
+    font-size: var(--h3);
+    align-self: flex-end;
+    margin-right: 1rem;
+}
 .biggerBox {
     position: fixed;
     z-index: -1;
@@ -240,13 +247,13 @@ onMounted(() => {
         top: 0;
         left: 0;
     }
+    .x {
+        display: block;
+    }
     .input,
     .biggerBox {
         width: 80vw;
         position: relative;
-    }
-    .input {
-        margin-top: 5vh;
     }
     .info-column {
         margin-left: 2vw;
