@@ -14,7 +14,7 @@
         <div class="quick-info-sub">
           <p>Studio:</p>
           <div v-for="studio in studios" :key="studio">
-            <p>Studio: {{ studio.node.studio }}</p>
+            <p>{{ studio.node.studio }}</p>
           </div>
         </div>
         <div class="quick-info-sub">
@@ -33,11 +33,11 @@
           <p>{{ avgRating }}</p>
         </div>
         <div>
-          <button class="btn">Heart</button>
-          <button class="btn" id="watch" @click="add">Add to Watchlist</button>
-          <select id="doughtnut-graph" v-model="watchStatus">
-            <option value="NOT_WATCHING">Not Watching</option>
-            <option value="CURRENTLY_WATCHING" selected>
+          <!-- <button class="btn">Heart</button> -->
+          <!-- <button class="btn" id="watch" @click="add">Add to Watchlist</button> -->
+          <select id="doughtnut-graph"  v-model="watchStatus">
+            <option value="NOT_WATCHING" selected>Not Watching</option>
+            <option value="CURRENTLY_WATCHING">
               Currently Watching
             </option>
             <option value="WATCHLIST">Watchlist</option>
@@ -49,7 +49,7 @@
             <option v-if="change" value="0" disabled selected>
               {{ userAnime.rating }}
             </option>
-            <option v-else value="0" disabled selected>Select</option>
+            <option v-else value="0" disabled selected>Rate</option>
             <option value="10">10</option>
             <option value="9">9</option>
             <option value="8">8</option>
@@ -60,7 +60,9 @@
             <option value="3">3</option>
             <option value="2">2</option>
             <option value="1">1</option>
+          
           </select>
+          <!-- <starSVG class="star" /> -->
           <!-- <button class="btn">Rate</button> -->
         </div>
       </div>
@@ -131,7 +133,7 @@ export default {
   },
   data: () => ({
     addList: false,
-    watchStatus: "",
+    watchStatus: "NOT_WATCHING",
     rating: 0,
     change: false,
     userAnime: null,
@@ -212,8 +214,47 @@ export default {
     },
   }),
   watch: {
-    watchStatus(newValue, oldValue) {
+    async watchStatus(newValue, oldValue) {
       console.log(this.watchStatus);
+      const endpoint = "http://127.0.0.1:8000/graphql/";
+      const headers = {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${this.userStore.token}`,
+      };
+      const graphqlQuery = {
+        query: `mutation{
+						userAnimeMutation(animeData:{animeId:"${this.mal_id}"}, userData:{userId:"${this.userStore.userID}"}, userAnimeData:{watchStatus: "${this.watchStatus}"}){
+    user{
+      user{
+        username
+      }
+    },
+    userAnime{
+      anime{
+        animeName
+      },
+      rating,
+      watchingStatus
+    },
+    anime{
+      animeName,
+      avgRating
+    }
+  }
+}`,
+        variables: {},
+      };
+      const options = {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify(graphqlQuery),
+      };
+      const response = await fetch(endpoint, options);
+      const mutationData = await response.json();
+      console.log(mutationData);
+
+
+
     },
     async rating(value) {
       console.log(this.rating);
@@ -308,8 +349,11 @@ export default {
       // const userAnime = mutationData.data.userAnimeData.userAnime.edges.filter(node => {
       // 	node.node.anime.animeName === "Your Lie in April"
       // })
-      console.log(this.userAnime.rating);
+      console.log(this.userAnime.watchingStatus);
 
+      if (this.userAnime.watchingStatus != "NOT_WATCHING") {
+        this.watchStatus = this.userAnime.watchingStatus
+      }
       if (this.userAnime.rating > 0) {
         this.change = true;
       } else {
