@@ -481,6 +481,7 @@ function selectPage(num: number): void {
 	userStore.endPageIndex = num * 35 + 1;
 
 	const filterAnimeArr = filter();
+	userStore.filterAnime = filterAnimeArr;
 
 	pageFilteredAnime.value = filterAnimeArr.slice(
 		userStore.startPageIndex,
