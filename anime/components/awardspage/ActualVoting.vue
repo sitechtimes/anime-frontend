@@ -14,9 +14,13 @@
 
 
     <div v-if="isAnime" class="nominee-container">
-      <div v-for="anime in animes" :key="anime" ref="nomineeBox" class="nominee-box" @click="select">
+      <div v-if="animeSearching" v-for="anime in animes"  ref="nomineeBox" class="nominee-box" @click="select">
         <img class="image-placeholder" :src="anime.node.imageUrl" alt="">
         <h1 class="anime-title">{{anime.node.animeName}}</h1>
+      </div>
+      <div v-else v-for="anime in filteredAnime" :key="anime" ref="nomineeBox" class="nominee-box" @click="select">
+        <img class="image-placeholder" :src="anime.image_url" alt="">
+        <h1 class="anime-title">{{anime.anime_name}}</h1>
       </div>
     </div>
 
@@ -52,6 +56,7 @@ import { ref, onMounted } from "vue"
 
 
 let selected = ref(false)
+let animeSearching = ref(true)
 let animes = ref([] as any)
 let characters = ref([] as any)
 let nominee = ref("")
@@ -59,6 +64,8 @@ let error = ref("")
 let isCharacter = ref(false)
 let isAnime = ref(false)
 let text = ref("")
+let filteredAnime = ref([] as any)
+let filteredCharacters = ref([] as any)
 const nomineeBox = ref(null)
 
 const userStore = useUserStore()
@@ -69,7 +76,17 @@ const props = defineProps({
 })
 
 function searchAnime(text: String) {
-  console.log(text)
+  console.log(isAnime.value, isCharacter.value)
+  animeSearching.value = false
+  // console.log(userStore.allAnime)
+  if(isAnime) {
+    filteredAnime.value = userStore.allAnime.filter(anime => 
+    anime.anime_name.toLowerCase().includes(text.toLowerCase())
+  ) 
+  console.log(filteredAnime.value)
+  } else if(isCharacter) {
+
+  }
 }
 
 async function getAnimes() {
@@ -101,7 +118,7 @@ async function getAnimes() {
 				const animeData = await response.json();
         const animeArray = animeData.data.allAnime.edges.splice(1,6)
         animes.value = animeArray
-        console.log(animes.value)
+        console.log(animeData)
       } catch (error) {
         console.log(error)
       }
