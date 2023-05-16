@@ -5,7 +5,7 @@
     <form class="input-Box">
 					<input
 						v-model="text"
-						placeholder="Search anime..."
+						placeholder="Search nominee..."
 						spellcheck="false"
 						class="input"
             @keyup="searchAnime(text)"
@@ -611,6 +611,7 @@ export default ({
 	font-weight: var(--fw-regular);
 	padding: 0.5rem 1rem;
 	width: 100%;
+  margin-top: 2rem;
 }
 .input:focus {
 	outline: none;
@@ -703,6 +704,10 @@ export default ({
   width: 100%;
   text-align: center;
 }
+
+/* .search-bar {
+  margin-top: 2rem;
+} */
 
 @media screen and (max-width: 1024px) {
   .award-name {
