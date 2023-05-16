@@ -52,18 +52,21 @@
 import { useUserStore } from "~~/stores/userStore";
 import { ref } from "vue";
 import { useRoute } from "vue-router";
+import { animeRest } from "~~/types/anime";
 
 const route = useRoute();
 const userStore = useUserStore();
 const showAnimeResults = ref(false);
-const animeResults = ref([] as any);
+const animeResults = ref([] as animeRest[]);
 const text = ref("");
 
 function searchAnime(text: string) {
-	const searchResult = [] as any;
+	const searchResult = [] as animeRest[];
+
+	userStore.search = text;
 
 	if (text.length > 0) {
-		userStore.allAnime.filter((anime: any) => {
+		userStore.allAnime.filter((anime: animeRest) => {
 			const animeWords = anime.anime_name.toLowerCase().split(" ");
 			if (text.slice(-1) == " ") {
 				text = text.slice(0, -1);
@@ -95,7 +98,6 @@ function searchAnime(text: string) {
 		});
 	}
 	animeResults.value = searchResult;
-	console.log(animeResults.value)
 }
 
 function saveClickedAnimeID(id: number) {
