@@ -25,9 +25,13 @@
     </div>
 
     <div v-if="isCharacter" class="nominee-container">
-      <div v-for="character in characters" :key="character" ref="nomineeBox" class="nominee-box" @click="select">
-        <img class="image-placeholder" :src="character.node.imageUrl" alt="">
-        <h1 class="anime-title">{{character.node.characterName}}</h1>
+      <div v-if="characterSearching" v-for="character in characters" ref="nomineeBox" class="nominee-box" @click="select">
+        <img class="image-placeholder" :src="character.imageUrl" alt="">
+        <h1 class="anime-title">{{character.characterName}}</h1>
+      </div>
+      <div v-else v-for="character in filteredCharacters" :key="character" ref="nomineeBox" class="nominee-box" @click="select">
+        <img class="image-placeholder" :src="character.imageUrl" alt="">
+        <h1 class="anime-title">{{character.characterName}}</h1>
       </div>
     </div>
     <div class="btn-container">
@@ -57,8 +61,10 @@ import { ref, onMounted } from "vue"
 
 let selected = ref(false)
 let animeSearching = ref(true)
+let characterSearching = ref(true)
 let animes = ref([] as any)
 let characters = ref([] as any)
+let allCharacters = ref([] as any)
 let nominee = ref("")
 let error = ref("")
 let isCharacter = ref(false)
@@ -77,15 +83,28 @@ const props = defineProps({
 
 function searchAnime(text: String) {
   console.log(isAnime.value, isCharacter.value)
-  animeSearching.value = false
+  
   // console.log(userStore.allAnime)
-  if(isAnime) {
+  if(isAnime.value) {
+    console.log("fv")
+    animeSearching.value = false
     filteredAnime.value = userStore.allAnime.filter(anime => 
     anime.anime_name.toLowerCase().includes(text.toLowerCase())
   ) 
   console.log(filteredAnime.value)
-  } else if(isCharacter) {
+  } else if(isCharacter.value) {
+    console.log(allCharacters.value)
+    characterSearching.value = false
+    const addCharactersArray = allCharacters.value.concat(characters.value)
+    console.log(addCharactersArray)
+    
+    filteredCharacters.value = addCharactersArray.filter(character => 
+      character.characterName.toLowerCase().includes(text.toLowerCase())
+      // console.log(character.characterName.toLowerCase())
+      // console.log(text)
 
+    )
+    console.log(filteredCharacters.value)
   }
 }
 
@@ -134,12 +153,8 @@ async function getCharacters() {
 				const graphqlQuery = {
 					query: ` {
   allCharacters{
-    edges{
-      node{
-        characterName,
-        imageUrl
-      }
-    }
+    characterName,
+    imageUrl
   }
 }`,
 					variables: {},
@@ -151,7 +166,10 @@ async function getCharacters() {
 				};
 				const response = await fetch(endpoint, options);
 				const characterData = await response.json();
-        const characterArray = characterData.data.allCharacters.edges.splice(1,6)
+        console.log(characterData.data.allCharacters)
+        allCharacters.value = characterData.data.allCharacters
+        const characterArray = characterData.data.allCharacters.splice(1,6)
+       
         characters.value = characterArray
         console.log(characters.value)
       } catch (error) {
