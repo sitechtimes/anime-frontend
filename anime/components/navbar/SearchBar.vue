@@ -122,7 +122,7 @@ function clearSearch() {
 
 function goToSeachAnime() {
 	userStore.filterAnime = animeResults.value;
-	navigateTo("animeSearch");
+	navigateTo("/animeSearch");
 	if (route.name === "animeSearch") {
 		window.location.reload();
 	}
