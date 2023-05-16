@@ -180,6 +180,16 @@ export default {
                 title: "Bungo Stray Dogs",
                 img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
             },
+            {
+                animeID: "08",
+                title: "Hell's Paradise",
+                img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
+            },
+            {
+                animeID: "09",
+                title: "Kimetsu no Yaiba",
+                img: "https://wallpapercave.com/wp/wp4445507.jpg",
+            },
         ],
         favoriteAnimes: [
             {
@@ -217,6 +227,16 @@ export default {
                 title: "Bungo Stray Dogs",
                 img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
             },
+            {
+                animeID: "08",
+                title: "Hell's Paradise",
+                img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
+            },
+            {
+                animeID: "09",
+                title: "Kimetsu no Yaiba",
+                img: "https://wallpapercave.com/wp/wp4445507.jpg",
+            },
         ],
         RatedAnimes: [
             {
@@ -253,6 +273,16 @@ export default {
                 animeID: "07",
                 title: "Bungo Stray Dogs",
                 img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
+            },
+            {
+                animeID: "08",
+                title: "Hell's Paradise",
+                img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
+            },
+            {
+                animeID: "09",
+                title: "Kimetsu no Yaiba",
+                img: "https://wallpapercave.com/wp/wp4445507.jpg",
             },
         ],
     }), 
