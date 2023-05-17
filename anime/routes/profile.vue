@@ -306,6 +306,9 @@ export default {
             this.favoriteIndex +=1;
         },
     },
+    // Function of the carousel seems off 
+    // Seems to start when the first function used is -= or when -= is used too much
+    // Function += gets messed up when -= function error occurs (If the number of += used = the number of -= used, no such function error occurs)
     computed: {
         showRated () {
             return this.RatedAnimes[Math.abs(this.ratedIndex) % this.RatedAnimes.length];

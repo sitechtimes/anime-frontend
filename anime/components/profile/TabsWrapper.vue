@@ -141,6 +141,18 @@ export default {
     font-size: var(--smallText);
 }
 }
+@media screen and (max-width: 460px) {
+.tabs {
+    height: 28vh;
+}
+.tabs-header {
+    width: 13vw;
+    margin-left: 3rem;
+}
+.tabs-header li {
+    width: 13vw;
+}
+}
 @media screen and (max-width: 420px) {
 .tabs {
     height: 26vh;
