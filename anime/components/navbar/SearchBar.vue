@@ -18,7 +18,8 @@
                 />
             </svg>
         </div>
-        <div v-else @click="exitSearchMobile" class="search-bar">
+        <div v-else class="search-bar">
+            <div @click="exitSearchMobile" class="x">&times;</div>
             <form @submit.prevent="goToSeachAnime()">
                 <input
                     v-model="text"
@@ -49,7 +50,7 @@
 
 <script setup lang="ts">
 import { useUserStore } from "~~/stores/userStore";
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
 
 const route = useRoute();
@@ -57,6 +58,7 @@ const userStore = useUserStore();
 const showAnimeResults = ref(false);
 const animeResults = ref([] as any);
 const text = ref("");
+const hideSearch = ref(false);
 
 function searchAnime(text: string) {
     const searchResult = [] as any;
@@ -126,6 +128,23 @@ function goToSeachAnime() {
     }
     showAnimeResults.value = false;
 }
+
+function enterSearchMobile() {
+    hideSearch.value = false;
+}
+
+function exitSearchMobile() {
+	hideSearch.value = true;
+}
+
+onMounted(() => {
+    if (window.innerWidth <= 568) {
+			hideSearch.value = true;
+		} else {
+			hideSearch.value = false;
+		}
+})
+
 </script>
 
 <style scoped>
@@ -134,6 +153,13 @@ function goToSeachAnime() {
     color: rgb(219, 219, 219);
     transition-duration: 0;
     transition-delay: 1000ms;
+}
+
+.x {
+    display: none;
+    font-size: var(--h3);
+    align-self: flex-end;
+    margin-right: 1rem;
 }
 .biggerBox {
     position: fixed;
@@ -221,13 +247,13 @@ function goToSeachAnime() {
         top: 0;
         left: 0;
     }
+    .x {
+        display: block;
+    }
     .input,
     .biggerBox {
         width: 80vw;
         position: relative;
-    }
-    .input {
-        margin-top: 5vh;
     }
     .info-column {
         margin-left: 2vw;
