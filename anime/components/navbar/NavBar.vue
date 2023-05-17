@@ -80,6 +80,7 @@ export default {
         };
     },
     mounted() {
+        console.log(this.userStore.isAuthenticated)
         this.lastScrollPosition = window.pageYOffset;
         window.addEventListener("scroll", this.onScroll);
 

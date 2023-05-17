@@ -323,6 +323,7 @@ export const useUserStore = defineStore("user", {
 		},
 		logout() {
 			try {
+				console.log("logout")
 				// let user = useCookie('user')
 				// user = null
 				// localStorage.removeItem("token");

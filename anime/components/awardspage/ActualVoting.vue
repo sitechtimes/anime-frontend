@@ -75,7 +75,7 @@ let filteredCharacters = ref([] as any)
 const nomineeBox = ref(null)
 
 const userStore = useUserStore()
-console.log(userStore.userID)
+
 
 const props = defineProps({
   awardName: String
