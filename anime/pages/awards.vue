@@ -301,6 +301,16 @@ export default {
         font-size: var(--h8);
         margin-top: -0.5rem;
     }
+    .award-container {
+        row-gap: 4rem;
+    }
+    .img {
+        height: 15rem;
+    }
+    .fake-vote-btn {
+        width: 6rem;
+        font-size: var(--h6);
+    }
 }
 
 @media screen and (max-width: 1200px) {
@@ -321,6 +331,21 @@ export default {
     }
     .genre-text {
         font-size: var(--smallText);
+    }
+    .award-container {
+        column-gap: 3rem;
+        row-gap: 3rem;
+    }
+    .award-name {
+        font-size: var(--h5);
+    }
+    .img {
+        height: 12rem;
+    }
+    .fake-vote-btn {
+        width: 6rem;
+        font-size: var(--h7);
+        margin: 0.5rem 0.5rem 0 0;
     }
 }
 
@@ -362,6 +387,16 @@ export default {
     .animeTitle {
         font-size: var(--h6);
     }
+    .text-head {
+        font-size: var(--h3);
+    }
+    .text-tab {
+        font-size: var(--h4);
+        margin-right: 2rem;
+    }
+    .award-container {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
 }
 
 @media screen and (max-width: 767px) {
@@ -389,6 +424,32 @@ export default {
     br {
         display: none;
     }
+    .award-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 3rem;
+    }
+}
+
+@media screen and (max-width: 568px) {
+    #award-voting {
+        width: 80vw;
+    }
+    .text-head {
+        font-size: var(--h4);
+    }
+    .text-tab {
+        font-size: var(--h6);
+    }
+    .award-container {
+        width: 90%;
+        margin: auto;
+    }
+    .award-name {
+        font-size: var(--h6);
+    }
+    .img {
+        height: 13rem;
+    }
 }
 
 @media screen and (max-width: 425px) {
@@ -397,6 +458,16 @@ export default {
     }
     .banner-season {
         width: 100%;
+    }
+    .img {
+        height: 16rem;
+    }
+    .text-head {
+        font-size: var(--h4);
+    }
+    .text-tab {
+        margin-right: 1.5rem;
+        font-size: var(--h6);
     }
 }
 </style>

@@ -81,7 +81,8 @@ export default {
     align-items: center;
 }
 .star {
-    height: 1.5rem;
+    height: 1.2rem;
+    width: 1.2rem;
     margin-right: 0.3rem;
 }
 
@@ -120,6 +121,10 @@ export default {
     .star-rating {
         font-size: var(--h8);
         margin-top: -0.5rem;
+    }
+    .star {
+        height: 1rem;
+        width: 1rem;
     }
 }
 
