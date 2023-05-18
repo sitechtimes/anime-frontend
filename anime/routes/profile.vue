@@ -289,26 +289,41 @@ export default {
     methods: {
         ratedLeft () {
             this.ratedIndex -= 1;
+            if ( this.ratedIndex <= -1) {
+                this.ratedIndex = this.RatedAnimes.length-1
+            }
         },
         ratedRight () {
             this.ratedIndex += 1;
+            if ( this.ratedIndex >= this.RatedAnimes.length) {
+                this.ratedIndex = 0
+            }
         },
         currentLeft () {
             this.currentIndex -=1;
+            if ( this.currentIndex <= -1) {
+                this.currentIndex = this.currentAnimes.length-1
+            }
         },
         currentRight () {
             this.currentIndex +=1;
+            if ( this.currentIndex >= this.currentAnimes.length) {
+                this.currentIndex = 0
+            }
         },
         favoriteLeft () {
             this.favoriteIndex -=1;
+            if ( this.favoriteIndex <= -1) {
+                this.favoriteIndex = this.favoriteAnimes.length-1
+            }
         },
         favoriteRight () {
             this.favoriteIndex +=1;
+            if ( this.favoriteIndex >= this.favoriteAnimes.length) {
+                this.favoriteIndex = 0
+            }
         },
     },
-    // Function of the carousel seems off 
-    // Seems to start when the first function used is -= or when -= is used too much
-    // Function += gets messed up when -= function error occurs (If the number of += used = the number of -= used, no such function error occurs)
     computed: {
         showRated () {
             return this.RatedAnimes[Math.abs(this.ratedIndex) % this.RatedAnimes.length];
