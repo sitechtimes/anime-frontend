@@ -134,6 +134,9 @@ export default {
 .voting-description {
     font-size: var(--h5);
 }
+.banner-image {
+    height: 75%;
+}
 .banner-season {
     background: var(--tertiary);
     width: 35%;
@@ -143,11 +146,9 @@ export default {
 .anime-list {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     height: 100%;
-}
-.banner-image {
-    height: 75%;
+    padding: 0;
 }
 .season-text {
     text-align: center;

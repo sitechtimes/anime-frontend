@@ -46,11 +46,6 @@ export default {
 <style scoped>
 .award-anime-display {
     display: flex;
-    margin-bottom: 1rem;
-}
-
-.bestAnime {
-    display: flex;
     align-items: center;
     width: 100%;
     justify-content: center;
@@ -83,16 +78,16 @@ export default {
     font-size: var(--h7);
     margin-top: -1rem;
     display: flex;
+    align-items: center;
 }
 .star {
-    height: 100%;
-    margin-right: 0.5rem;
+    height: 1.5rem;
+    margin-right: 0.3rem;
 }
 
 .genre-text {
     background-color: var(--primary);
     color: var(--white);
-    height: 40%;
     width: 20%;
     text-align: center;
     padding: 0.1rem;
