@@ -215,7 +215,7 @@ export default {
   }),
   watch: {
     async watchStatus(newValue, oldValue) {
-      console.log(this.watchStatus);
+      console.log(this.watchStatus, this.userStore.userID, this.mal_id);
       const endpoint = "http://127.0.0.1:8000/graphql/";
       const headers = {
         "Content-Type": "application/json",

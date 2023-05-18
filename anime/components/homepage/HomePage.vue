@@ -47,13 +47,13 @@
 		<div class="topCharts-container">
 			<h2 class="topCharts-title">Top Charts</h2>
 			<TopCharts
-				v-for="charts in top"
+				v-for="charts in sortedAnimeTop"
 				:key="charts.id"
-				:img="charts.img"
-				:episode="charts.episode"
-				:votes="charts.votes"
-				:title="charts.title"
-				:rank="charts.rank"
+				:img="charts.imageUrl"
+				:episode="charts.episodes"
+				:votes="charts.currentlyWatching"
+				:title="charts.animeName"
+				:rank="sortedAnimeTop.indexOf(charts) + 1"
 			/>
 		</div>
 	</div>
@@ -76,11 +76,17 @@ const pageExistRight = ref<boolean>(true);
 const airingAnime = ref<animeRest[]>();
 const loading = ref<boolean>(true);
 const loadingAnimeHome: number[] = [...Array(12).keys()];
+let sortedAnimeTop = ref([] as any)
 
 if (userStore.startPageIndex != 0) {
 	pageExistLeft.value = true;
 }
+
+
+
 onMounted(() => {
+	getTopChart()
+	
 	userStore.animeId = 0;
 	userStore.startPageIndex = 0;
 	userStore.endPageIndex = 12;
@@ -110,6 +116,36 @@ onMounted(() => {
 			console.log(err);
 		});
 });
+
+
+async function getTopChart() {
+	const endpoint = "http://127.0.0.1:8000/graphql/";
+      const headers = {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userStore.token}`,
+      };
+      const graphqlQuery = {
+        query: `{
+  sortedCurrentlyWatching{
+    animeName,
+    currentlyWatching,
+    imageUrl,
+    episodes,
+	malId
+  }
+}`,
+        variables: {},
+      };
+      const options = {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify(graphqlQuery),
+      };
+      const response = await fetch(endpoint, options);
+      const queryData = await response.json();
+	  console.log(queryData.data.sortedCurrentlyWatching)
+	  sortedAnimeTop.value = queryData.data.sortedCurrentlyWatching
+}
 
 function next(): void {
 	if (userStore.endPageIndex < userStore.airingAnime.length) {
