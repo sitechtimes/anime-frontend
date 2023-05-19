@@ -317,6 +317,7 @@ export default {
     .banner-flex {
         height: 33rem;
         margin-bottom: 5vh;
+        column-gap: 3rem;
     }
     .banner-text {
         width: 30rem;
@@ -352,7 +353,6 @@ export default {
 @media screen and (max-width: 1024px) {
     .banner-flex {
         height: 30rem;
-        column-gap: 3rem;
     }
     .banner-text {
         width: 25rem;
