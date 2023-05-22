@@ -45,14 +45,14 @@
                     >
                 </div>
             </div>
-            <NuxtLink to="/vote" class="award-container">
+            <div class="award-container">
                 <AwardspageAwardVoting
                     v-for="award in awards"
                     :key="award.award"
                     :award="award.award"
                     :img="award.img"
                 />
-            </NuxtLink>
+            </div>
         </section>
     </div>
 </template>
@@ -284,29 +284,8 @@ const awards = ref([
     .voting-description {
         font-size: var(--h6);
     }
-    .anime-season {
-        padding: 2rem;
-    }
-    .anime-pfp {
-        height: 4rem;
-        width: 4rem;
-    }
-    .animeTitle {
-        font-size: var(--h5);
-    }
-    .star-rating {
-        font-size: var(--h8);
-        margin-top: -0.5rem;
-    }
     .award-container {
         row-gap: 4rem;
-    }
-    .img {
-        height: 15rem;
-    }
-    .fake-vote-btn {
-        width: 6rem;
-        font-size: var(--h6);
     }
 }
 
@@ -327,23 +306,9 @@ const awards = ref([
         font-size: var(--h4);
         margin-bottom: 1rem;
     }
-    .genre-text {
-        font-size: var(--smallText);
-    }
     .award-container {
         column-gap: 3rem;
         row-gap: 3rem;
-    }
-    .award-name {
-        font-size: var(--h5);
-    }
-    .img {
-        height: 12rem;
-    }
-    .fake-vote-btn {
-        width: 6rem;
-        font-size: var(--h7);
-        margin: 0.5rem 0.5rem 0 0;
     }
 }
 
@@ -353,10 +318,6 @@ const awards = ref([
     }
     .banner-text {
         width: 25rem;
-    }
-    .anime-pfp {
-        height: 3rem;
-        width: 3rem;
     }
     .title-banner {
         font-size: var(--h4);
@@ -380,9 +341,6 @@ const awards = ref([
     }
     .banner-season {
         width: 50%;
-    }
-    .animeTitle {
-        font-size: var(--h6);
     }
     .text-head {
         font-size: var(--h3);
@@ -428,9 +386,6 @@ const awards = ref([
 }
 
 @media screen and (max-width: 568px) {
-    #award-voting {
-        width: 80vw;
-    }
     .text-head {
         font-size: var(--h4);
     }
@@ -441,12 +396,6 @@ const awards = ref([
         width: 90%;
         margin: auto;
     }
-    .award-name {
-        font-size: var(--h6);
-    }
-    .img {
-        height: 13rem;
-    }
 }
 
 @media screen and (max-width: 425px) {
@@ -456,15 +405,16 @@ const awards = ref([
     .banner-season {
         width: 100%;
     }
-    .img {
-        height: 16rem;
-    }
     .text-head {
         font-size: var(--h4);
     }
     .text-tab {
         margin-right: 1.5rem;
         font-size: var(--h6);
+    }
+    .award-container {
+        width: 100%;
+        column-gap: 2rem;
     }
 }
 </style>
