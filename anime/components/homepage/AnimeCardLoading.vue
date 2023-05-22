@@ -24,14 +24,6 @@
 </template>
 
 <script lang="ts">
-import EpisodeSVG from "../EpisodeSvg.vue";
-
-export default {
-	name: "AnimeCardLoading",
-	components: {
-		EpisodeSVG,
-	},
-};
 </script>
 
 <style scoped>

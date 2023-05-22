@@ -30,11 +30,9 @@
     </div>
 </template>
 <!-- https://th.bing.com/th/id/R.e4651a3a9eed4e1e43044e638b076e1f?rik=KXg2eMKBaDhnOQ&pid=ImgRaw&r=0 -->
-<script>
-export default {
-    name: "Carousel",
-    data: () => ({
-        animes: [
+<script setup lang="ts">
+
+         const animes = ref([
             {
                 animeID: "slide-01",
                 title: "Blue Lock",
@@ -74,9 +72,7 @@ export default {
                     then he’s approached by an athletic club looking to recruit him and gets into a friendly competition that will change the course of his high school life and
                     propel him back into sports as a kabaddi player!`,
             },
-        ],
-    }),
-};
+        ]);
 </script>
 
 <style scoped>

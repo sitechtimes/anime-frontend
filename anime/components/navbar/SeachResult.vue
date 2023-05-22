@@ -10,27 +10,12 @@
 	</NuxtLink>
 </template>
 
-<script lang="ts">
-import EpisodeSVG from "../EpisodeSvg.vue";
-export default {
-	name: "SearchResultComp",
-	components: {
-		EpisodeSVG,
-	},
-	props: {
-		imageUrl: {
-			type: String,
-			required: true,
-		},
-		animeName: {
-			type: String,
-			required: true,
-		},
-		episodes: {
-			required: true,
-		},
-	},
-};
+<script setup lang="ts">
+const props = defineProps({
+		imageUrl: String,
+		animeName: String,
+		episodes: Number,
+});
 </script>
 
 <style>

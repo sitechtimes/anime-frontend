@@ -14,38 +14,16 @@
     </div>
 </template>
 
-<script lang="ts">
-import EpisodeSVG from "../EpisodeSvg.vue";
-
-export default {
-    name: "EpisodeCard",
-    components: {
-        EpisodeSVG,
-    },
-    props: {
-        rank: {
-            type: Number,
-            required: true,
-        },
-        img: {
-            type: String,
-            required: true,
-        },
-        episode: {
-            type: Number,
-            required: true,
-        },
-        votes: {
-            type: Number,
-            required: true,
-        },
-        title: {
-            type: String,
-            required: true,
-        },
-    },
-};
+<script setup lang="ts">
+const props = defineProps({
+		rank: Number,
+		img: String,
+		episode: Number,
+        votes: Number,
+        title:String,
+});
 </script>
+
 
 <style scoped>
 .topChartsComp-container {

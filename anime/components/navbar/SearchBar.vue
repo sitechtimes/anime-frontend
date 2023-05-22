@@ -32,7 +32,7 @@
                 />
                 <div class="biggerBox" v-if="showAnimeResults">
                     <p class="biggerBox-text">Anime</p>
-                    <NavbarSearchResultComp
+                    <NavbarSearchResult
                         @saveAnimeID="saveClickedAnimeID(anime.mal_id)"
                         @click="reload()"
                         v-for="anime in animeResults.slice(0, 5)"

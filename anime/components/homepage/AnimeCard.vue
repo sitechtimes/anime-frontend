@@ -13,39 +13,24 @@
 	</NuxtLink>
 </template>
 
-<script lang="ts">
-import EpisodeSVG from "../EpisodeSvg.vue";
-
-export default {
-	name: "AnimeCard",
-	components: {
-		EpisodeSVG,
-	},
-	props: {
-		imageUrl: {
-			type: String,
-			required: true,
-		},
-		episode: {
-			required: true,
-		},
+<script setup lang="ts">
+	const animeName = ref(props.animeName);
+	const props = defineProps({
+		imageUrl: String,
+		episode: Number,
 		mediaType: {
 			required: true,
 		},
-		animeName: {
-			type: String,
-			required: true,
-		},
-	},
-	computed: {
-		trimTitle() {
-			if (this.animeName.length <= 28) {
-				return this.animeName;
-			}
-			return this.animeName.slice(0, 28) + "...";
-		},
-	},
-};
+		animeName:String,
+	});
+	// hehehe still have to wokr on computed properties
+	// const animeName = computed(()=>{
+	// 	animeName.length > 28 ? 'Yes' : 'No'
+	// 	set(newValue) {
+	// 	animeName = animeName.slice(0, 28) + "...";
+	// 	}
+	// });
+
 </script>
 
 <style scoped>
