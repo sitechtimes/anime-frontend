@@ -1,56 +1,13 @@
 <template>
     <div>
-        <Head>
-            <Title>Technime</Title>
-            <Meta name="Technime" content="Rate your favorite animes!" />
-            <Meta name="Technime" content="Rate your favorite animes!" />
-        </Head>
-        <NuxtLayout>
-            <NavigationMobile />
-            <NavBar />
-            <NuxtPage class="animation" />
-            <ScrollBtn />
-        </NuxtLayout>
+        <NavbarNavigationMobile />
+        <NavbarNavBar />
+        <slot />
+        <ScrollBtn />
     </div>
 </template>
-
-<script lang="ts">
-import NavBar from "./components/navbar/NavBar.vue";
-import { useUserStore } from "./stores/userStore";
-import NavigationMobile from "./components/navbar/NavigationMobile.vue";
-import ScrollBtn from "./components/ScrollBtn.vue";
-export default {
-    name: "IndexPage",
-    components: {
-        NavBar,
-        NavigationMobile,
-        ScrollBtn,
-    },
-    setup() {
-        const userStore = useUserStore();
-        return {
-            userStore,
-        };
-    },
-    beforeCreate() {
-        this.userStore.checkCookie();
-    },
-    // methods: {
-    //   onBeforeMount() {
-    //     this.userStore.checkCookie()
-    //   }
-    // },
-    // mounted() {
-    //   this.userStore.getToken
-    //   console.log(this.userStore.getToken, this.userStore.getUser)
-    // }
-};
-</script>
+<script lang="ts" setup></script>
 <style>
-@import url("./assets/global.css");
-.animation {
-    animation: fadeIn 750ms linear forwards;
-}
 /* buttons */
 .button,
 .log-in,

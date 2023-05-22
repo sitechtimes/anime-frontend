@@ -18,7 +18,8 @@
                 />
             </svg>
         </div>
-        <div v-else @click="exitSearchMobile" class="search-bar">
+        <div v-else class="search-bar">
+            <div @click="exitSearchMobile" class="x">&times;</div>
             <form @submit.prevent="goToSeachAnime()">
                 <input
                     v-model="text"
@@ -31,7 +32,7 @@
                 />
                 <div class="biggerBox" v-if="showAnimeResults">
                     <p class="biggerBox-text">Anime</p>
-                    <SearchResultComp
+                    <NavbarSearchResultComp
                         @saveAnimeID="saveClickedAnimeID(anime.mal_id)"
                         @click="reload()"
                         v-for="anime in animeResults.slice(0, 5)"
@@ -49,7 +50,7 @@
 
 <script setup lang="ts">
 import { useUserStore } from "~~/stores/userStore";
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
 
 const route = useRoute();
@@ -57,6 +58,7 @@ const userStore = useUserStore();
 const showAnimeResults = ref(false);
 const animeResults = ref([] as any);
 const text = ref("");
+const hideSearch = ref(false);
 
 function searchAnime(text: string) {
     const searchResult = [] as any;
@@ -126,42 +128,23 @@ function goToSeachAnime() {
     }
     showAnimeResults.value = false;
 }
-</script>
 
-<script lang="ts">
-import SearchResultComp from "./SeachResult.vue";
+function enterSearchMobile() {
+    hideSearch.value = false;
+}
 
-export default {
-    data: () => ({
-        text: "",
-        screenWidth: 0,
-        hideSearch: false,
-    }),
-    components: {
-        SearchResultComp,
-    },
-    methods: {
-        enterSearchMobile() {
-            this.hideSearch = false;
-        },
-        exitSearchMobile(e: any) {
-            if (
-                this.screenWidth <= 568 &&
-                e.target.className === "search-bar"
-            ) {
-                this.hideSearch = true;
-            }
-        },
-    },
-    mounted() {
-        this.screenWidth = window.innerWidth;
-        if (window.innerWidth <= 568) {
-            this.hideSearch = true;
-        } else {
-            this.hideSearch = false;
-        }
-    },
-};
+function exitSearchMobile() {
+	hideSearch.value = true;
+}
+
+onMounted(() => {
+    if (window.innerWidth <= 568) {
+			hideSearch.value = true;
+		} else {
+			hideSearch.value = false;
+		}
+})
+
 </script>
 
 <style scoped>
@@ -170,6 +153,13 @@ export default {
     color: rgb(219, 219, 219);
     transition-duration: 0;
     transition-delay: 1000ms;
+}
+
+.x {
+    display: none;
+    font-size: var(--h3);
+    align-self: flex-end;
+    margin-right: 1rem;
 }
 .biggerBox {
     position: fixed;
@@ -257,13 +247,13 @@ export default {
         top: 0;
         left: 0;
     }
+    .x {
+        display: block;
+    }
     .input,
     .biggerBox {
         width: 80vw;
         position: relative;
-    }
-    .input {
-        margin-top: 5vh;
     }
     .info-column {
         margin-left: 2vw;

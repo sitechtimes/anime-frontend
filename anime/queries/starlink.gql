@@ -1,7 +1,0 @@
-query launches($limit: Int = 5) {
-  launches(limit: $limit) {
-    id
-    launch_year
-    mission_name
-  }
-}
