@@ -1,11 +1,11 @@
 <template>
 	<div>
-		<InfoComp 
+		<InfoComp
 			:animeName="animeInfoData.animeName"
 			:episodes="animeInfoData.episodes"
 			:mediaType="animeInfoData.mediaType"
 			:status="animeInfoData.status"
-			:aired="aired(animeInfoData.airedFrom, animeInfoData!.airedTo)"
+			:aired="aired(animeInfoData.airedFrom, animeInfoData.airedTo)"
 			:genres="animeInfoData.animeGenre"
 			:synopsis="animeInfoData.summary"
 			:imageUrl="animeInfoData.largeImageUrl"
@@ -16,8 +16,7 @@
 
 <script setup lang="ts">
 import { useUserStore } from "~~/stores/userStore";
-import { ref } from "vue";
-import { animeGraphql } from "~~/types/anime";
+import { ref, onMounted } from "vue";
 import InfoComp from "../components/InfoComp.vue";
 
 const userStore = useUserStore();
@@ -25,39 +24,45 @@ const animeInfoData = ref();
 
 onMounted(() => {
 	userStore.getOneAnime().then((data) => {
-		// data = JSON.parse(JSON.stringify(data));
-		console.log(data);
 		animeInfoData.value = data;
-		console.log(animeInfoData.value);
 	});
 });
 
 function aired(airTimeStart: string, airTimeEnd: string): string {
-	function changeMonth(dMonth: string): string {
-		if (dMonth == "01") return "Jan";
-		if (dMonth == "02") return "Feb";
-		if (dMonth == "03") return "Mar";
-		if (dMonth == "04") return "Apr";
-		if (dMonth == "05") return "May";
-		if (dMonth == "06") return "Jun";
-		if (dMonth == "07") return "Jul";
-		if (dMonth == "08") return "Aug";
-		if (dMonth == "09") return "Sep";
-		if (dMonth == "10") return "Oct";
-		if (dMonth == "11") return "Nov";
-		else return "Dec";
+	function changeMonth(month: string): string {
+		switch (month) {
+			case "01":
+				return "January";
+			case "02":
+				return "February";
+			case "03":
+				return "March";
+			case "04":
+				return "April";
+			case "05":
+				return "May";
+			case "06":
+				return "June";
+			case "07":
+				return "July";
+			case "08":
+				return "August";
+			case "09":
+				return "September";
+			case "10":
+				return "October";
+			case "11":
+				return "November";
+			case "12":
+				return "December";
+		}
 	}
-	function changeDay(dDay: string): string {
-		if (dDay == "01") return "1";
-		if (dDay == "02") return "2";
-		if (dDay == "03") return "3";
-		if (dDay == "04") return "4";
-		if (dDay == "05") return "5";
-		if (dDay == "06") return "6";
-		if (dDay == "07") return "7";
-		if (dDay == "08") return "8";
-		if (dDay == "09") return "9";
-		else return dDay;
+	function changeDay(day: string): string {
+		if (day[0] == "0") {
+			return day[1];
+		} else {
+			return day;
+		}
 	}
 	function dat(date: string): string {
 		const dateArr = date.split("-");

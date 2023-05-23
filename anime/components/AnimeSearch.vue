@@ -217,29 +217,25 @@ import { useUserStore } from "~~/stores/userStore";
 import { ref } from "vue";
 import { onMounted } from "vue";
 import { animeRest } from "~~/types/anime";
-import AnimeCard from "./homepage/AnimeCard.vue";
-import RightPageButton from "./RightPageButtonSvg.vue";
-import LeftPageButton from "./LeftPageButtonSvg.vue";
-import AnimeCardLoading from "./homepage/AnimeCardLoading.vue";
 
 const userStore = useUserStore();
 
-const text = ref("");
+const text = ref<string>("");
 const animeResults = ref([] as animeRest[]);
 
 const pageExistLeft = ref<boolean>(false);
 const pageExistRight = ref<boolean>(true);
 const pageFilteredAnime = ref([] as animeRest[]);
 
-const media_genre = ref("");
-const media_year = ref("");
-const media_season = ref("");
-const media_status = ref("");
-const media_type = ref("");
-const media_sort = ref("");
+const media_genre = ref<string>("");
+const media_year = ref<string>("");
+const media_season = ref<string>("");
+const media_status = ref<string>("");
+const media_type = ref<string>("");
+const media_sort = ref<string>("");
 
-if (userStore.startPageIndex != 0) {
-	pageExistLeft.value = true;
+if (userStore.startPageIndex == 0) {
+	pageExistLeft.value = false;
 }
 
 const loadingAnime: number[] = [...Array(14).keys()];
@@ -254,7 +250,7 @@ onMounted(() => {
 	const filterAnime = [] as animeRest[];
 
 	userStore.filterAnime.forEach((anime: animeRest) => {
-		filterAnime.push(anime);
+		filterAnime.push(<animeRest>anime);
 	});
 
 	pageFilteredAnime.value = userStore.filterAnime.slice(
@@ -266,7 +262,7 @@ onMounted(() => {
 	text.value = userStore.search;
 });
 
-function next(): void {
+function next() {
 	if (userStore.endPageIndex < userStore.filterAnime.length) {
 		userStore.startPageIndex += 35;
 		userStore.endPageIndex += 35;
@@ -281,7 +277,7 @@ function next(): void {
 	}
 }
 
-function previous(): void {
+function previous() {
 	if (userStore.pageNumber == 1) {
 		pageExistLeft.value = false;
 		pageExistRight.value = true;
@@ -297,7 +293,7 @@ function previous(): void {
 	}
 }
 
-function saveClickedAnimeID(id: number): void {
+function saveClickedAnimeID(id: number) {
 	userStore.storeAnimeId(id);
 }
 
@@ -331,7 +327,7 @@ function filter(): animeRest[] {
 							.replace(/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/, "");
 
 						if (animeWordsSlice.startsWith(textResultsSlice)) {
-							searchResult.push(anime);
+							searchResult.push(<animeRest>anime);
 						}
 					}
 				}
@@ -451,7 +447,7 @@ function filter(): animeRest[] {
 	return newFilterAnime;
 }
 
-function clearFilter(): void {
+function clearFilter() {
 	media_season.value = "";
 	media_year.value = "";
 	media_status.value = "";
