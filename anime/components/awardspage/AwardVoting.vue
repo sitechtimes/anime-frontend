@@ -22,44 +22,17 @@
   </div>
 </template>
   
-<script lang="ts">
+<script lang="ts" setup>
 import { useUserStore } from "~~/stores/userStore";
+import { ref, onMounted} from "vue"
 
-export default ({
-  setup(){
-        const userStore = useUserStore()
-        // userStore.$persist()
-        // console.log(userStore.userData)
+let awards = ref([])
+const userStore = useUserStore()
 
-        return{
-            userStore,
-        }
-    },
-  data: () => ({
-    // useUserStore,
-    awards: [
-      // "Best Anime",
-      // "Best Character Design",
-      // "Best Animation",
-      // "Best New Series",
-      // "Best Continuing Series",
-      // "Best Opening Sequence",
-      // "Best Ending Sequence",
-      // "Best Main Character",
-      // "Best Supporting Character",
-      // "Best Action",
-      // "Best Comedy",
-      // "Best Drama",
-      // "Best Fantasy",
-      // "Best Romance",
-      // "Best Anime Song",
-    ],
-  }),
-   mounted() {
-    this.userStore.getAllAwards()
-    this.awards = this.userStore.allAwards
-    console.log(this.awards)
-  }
+onMounted(() => {
+     userStore.getAllAwards()
+    awards.value = userStore.allAwards
+    console.log(awards.value)
 })
 </script>
   

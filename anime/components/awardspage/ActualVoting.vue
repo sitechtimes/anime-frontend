@@ -81,16 +81,18 @@ const props = defineProps({
   awardName: String
 })
 
+
 function searchAnime(text: String) {
   console.log(isAnime.value, isCharacter.value)
   
   // console.log(userStore.allAnime)
   if(isAnime.value) {
-    console.log("fv")
+    console.log(userStore.allAnime)
     animeSearching.value = false
     filteredAnime.value = userStore.allAnime.filter(anime => 
     anime.anime_name.toLowerCase().includes(text.toLowerCase())
-  ) 
+  )
+  // filteredAnime.value = filteredAnime.value.splice(20)
   console.log(filteredAnime.value)
   } else if(isCharacter.value) {
     console.log(allCharacters.value)
