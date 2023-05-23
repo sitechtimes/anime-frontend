@@ -1,5 +1,5 @@
 <template>
-	<div class="home-body">
+	<section class="home-body">
 		<div class="allAnime-container">
 			<div class="allAnime-header">
 				<h2 class="allAnime-title">Filter</h2>
@@ -209,7 +209,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</section>
 </template>
 
 <script setup lang="ts">
@@ -377,7 +377,6 @@ function filter(): animeRest[] {
 	});
 
 	if (media_sort.value == "Release Date") {
-
 		newFilterAnime.sort((a: animeRest, b: animeRest) => {
 			if (a.season == null) {
 				a.season = "0 0";
@@ -404,7 +403,6 @@ function filter(): animeRest[] {
 				return 1;
 			}
 		});
-		
 	}
 
 	if (media_sort.value == "Name A-Z") {
