@@ -388,6 +388,7 @@ export default {
     border-radius: 1rem;
 }
 .profile-grade {
+    width: 20rem;
     color: rgb(219, 219, 219);
     font-size: var(--h5);
     font-weight: var(--fw-light);
@@ -609,6 +610,12 @@ export default {
 .profile-info {
     margin-top: 15rem;
 }
+.profile-name {
+    margin-top: 7rem;
+}
+.profile-grade {
+    font-size: var(--h6);
+}
 }
 @media screen and (max-width: 1025px) {
 .banner {
@@ -646,6 +653,12 @@ export default {
 .banner {
     height: 25vh;
 }
+.profile-info {
+    margin-top: 18rem;
+}
+.profile-name {
+    margin-top: 4rem;
+}
 }
 @media screen and (max-width: 915px) {
 .tab-title {
@@ -679,7 +692,10 @@ export default {
     height: 17vh;
 }
 .profile-info {
-    margin-top: 15rem;
+    margin-top: 16rem;
+}
+.profile-name {
+    margin-top: 6rem;
 }
 }
 @media screen and (max-width: 825px) {
@@ -696,8 +712,11 @@ export default {
     height: 12vh;
 }
 .profile-info {
-    margin-top: 20rem;
+    margin-top: 22rem;
     margin-bottom: 2rem;
+}
+.profile-name {
+    margin-top: 7rem;
 }
 }
 @media screen and (max-width: 780px) {
@@ -712,6 +731,9 @@ export default {
 .underNav {
     height: 5vh;
 }
+.tab-title {
+    margin-left: 6rem;
+}
 .anime-title {
     font-size: var(--smallText);
 }
@@ -721,6 +743,9 @@ export default {
 }
 .profile-info {
     margin-top: 18rem;
+}
+.profile-name {
+    margin-top: 4rem;
 }
 }
 @media screen and (max-width: 550px) {
@@ -761,9 +786,20 @@ export default {
     height: 5vh;
 }
 }
+@media screen and (max-width: 520px) {
+.profile-info {
+    margin-top: 17rem;
+}
+.profile-name {
+    margin-top: 5rem;
+}
+}
 @media screen and (max-width: 460px) {
 .profile-info {
     margin-top: 16rem;
+}
+.profile-name {
+    margin-top: 6rem;
 }
 }
 @media screen and (max-width: 420px) {
@@ -786,12 +822,23 @@ export default {
     margin-bottom: 2rem;
 }
 }
-@media screen and (max-width: 380px) {
+@media screen and (max-width: 390px) {
 .tab-title {
     margin-left: 3.5rem;
 }
+.profile-img {
+    width: 10rem;
+    height: 10rem;
+}
 .profile-info {
-    margin-top: 14rem;
+    margin-top: 17rem;
+}
+.profile-name {
+    margin-top: 5rem;
+}
+.profile-grade {
+    width: 15rem;
+    font-size: var(--h7);
 }
 }
 @media screen and (max-width: 290px) {
@@ -819,8 +866,16 @@ export default {
     height: 7rem;
 }
 .profile-info {
-    margin-top: 7rem;
+    margin-top: 10rem;
+    margin-left: -2rem;
     margin-bottom: 0rem;
+}
+.profile-name {
+    margin-top: 3rem;
+    font-size: var(--smallText);
+}
+.profile-grade {
+    width: 13rem;
 }
 }
 </style>
