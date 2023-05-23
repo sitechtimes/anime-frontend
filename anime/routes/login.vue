@@ -28,19 +28,11 @@ export default {
   setup(){
         const userStore = useUserStore()
         // userStore.$persist()
-        // console.log(userStore.userData)
+
 
         return{
             userStore,
         }
-    },
-    methods: {
-      signOut() {
-        const auth2 = gapi.auth2.getAuthInstance()
-        auth2.signOut().then(() => {
-          console.log("user is signed out")
-        })
-      }
     }
 }
 </script>

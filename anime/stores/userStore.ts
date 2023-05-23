@@ -41,7 +41,7 @@ export const useUserStore = defineStore("user", {
 	getters: {
 		// getToken() {
 		//     const token = localStorage.getItem("token")
-		//     console.log(token)
+
 		//     return token
 		// },
 		// getUser() {
@@ -73,7 +73,7 @@ export const useUserStore = defineStore("user", {
 
 				return data;
 			} catch (error) {
-				console.log(error);
+				alert(error)
 			}
 		},
 
@@ -108,15 +108,15 @@ export const useUserStore = defineStore("user", {
 				const response = await fetch(endpoint, options);
 				const awardData = await response.json();
 
-				// console.log(awardData.data.allAwards)
+
 				
 
 				
 				awardData.data.allAwards.edges.forEach(node => {
-					// console.log(node.node.awardName)
+
 					const awardName = node.node.awardName
 					if (this.allAwards.includes(awardName)) {
-						// console.log("award exist")
+
 						
 					} else {
 						this.allAwards.push(node.node.awardName)
@@ -124,7 +124,7 @@ export const useUserStore = defineStore("user", {
 					
 				});
 				// this.allAwards = []
-				// console.log(this.allAwards)
+
 				// return this.allAwards
 				// const refinedAnimeData = animeData.data.allAnime.edges[0].node;
 
@@ -142,7 +142,8 @@ export const useUserStore = defineStore("user", {
 
 				// return refinedAnimeData;
 			} catch (error) {
-				console.log(error);
+				alert("You need to be logged in")
+				return navigateTo("/login")
 			}
 		},
 		
@@ -225,22 +226,22 @@ export const useUserStore = defineStore("user", {
 
 				const animeData = dataRes;
 
-				console.log(animeData);
+
 
 				return animeData;
 			} catch (error) {
-				console.log(error);
+				alert(error)
 			}
 		},
 		async login(res: any) {
-			//console.log(res.code);
+
 			try {
 				axios
 					.post("http://localhost:8000/social-login/google/", {
 						code: res.code,
 					})
 					.then((res) => {
-						//console.log(res.data);
+
 						this.token = res.data.access_token;
 						// localStorage.setItem('token', JSON.stringify(this.token))
 						axios
@@ -248,14 +249,14 @@ export const useUserStore = defineStore("user", {
 								headers: { Authorization: `Bearer ${res.data.access_token}` },
 							})
 							.then((res) => {
-								//console.log(res.data);
-								//console.log(this.token);
+
+
 								let index = res.data.email.indexOf("@");
-								//console.log(res.data.email.slice(index + 1));
-								//console.log(index);
+
+
 
 								let account = res.data.email.slice(index + 1);
-								//console.log(account);
+
 								//add teacher later
 								if (account != ("nycstudents.net" || "schools.nyc.gov")) {
 									this.token = null;
@@ -263,11 +264,11 @@ export const useUserStore = defineStore("user", {
 										"Need to login with your school account (i.e. nycstudents.net)"
 									);
 								}
-								// console.log(res.data.pk)
+
 								// localStorage.setItem("user", res.data.first_name)
 								// this.userData = localStorage.getItem("user")
 								// this.user = res.data.first_name
-								// console.log(res.data)
+
 								this.userID = res.data.pk
 								this.username = res.data.username;
 								// this.userData = res.data;
@@ -276,14 +277,14 @@ export const useUserStore = defineStore("user", {
 								this.email = res.data.email;
 								this.isAuthenticated = true;
 								this.redirect = true;
-								console.log(this.userID)
+
 								return navigateTo("/");
 								// this.$router.push("/")
 								// router.push({ path: "/"})
 							});
 					});
 			} catch (error) {
-				console.log(error);
+				alert(error)
 				// const response = error.response?.data;
 				// if (
 				//   response?.non_field_errors &&
@@ -301,18 +302,18 @@ export const useUserStore = defineStore("user", {
 		async checkCookie() {
 			try {
 				// let user = useCookie("user")
-				//console.log(this.token);
+
 				const res = await axios
 					.get("http://127.0.0.1:8000/auth/user/", {
 						headers: { Authorization: `Bearer ${this.token}` },
 					})
 					.then((res) => {});
-				// console.log((await res).status)
+
 			} catch (error) {
 				if (!this.token) {
 					return;
 				} else if ((error = "AxiosError: Request failed with status code 401")) {
-					// console.log("erfref")
+
 					alert("Your session has expired. Please login again!");
 					this.logout();
 					return navigateTo("/login");
@@ -339,7 +340,7 @@ export const useUserStore = defineStore("user", {
 				// this.$router.push("/")
 				// googleLogout();
 			} catch (error) {
-				console.error(error);
+				alert(error)
 			}
 		},
 		// logout() {

@@ -42,7 +42,7 @@ export default {
     // },
     // mounted() {
     //   this.userStore.getToken
-    //   console.log(this.userStore.getToken, this.userStore.getUser)
+
     // }
 };
 </script>

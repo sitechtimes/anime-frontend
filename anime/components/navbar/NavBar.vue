@@ -58,7 +58,7 @@ export default {
         const userStore = useUserStore();
         // const router = useRoute()
         // userStore.$persist()
-        // console.log(userStore.userData)
+
 
         return {
             userStore,
@@ -80,11 +80,11 @@ export default {
         };
     },
     mounted() {
-        console.log(this.userStore.isAuthenticated)
+
         this.lastScrollPosition = window.pageYOffset;
         window.addEventListener("scroll", this.onScroll);
 
-        // console.log(this.user)
+
     },
 
     beforeDestroy() {
@@ -109,16 +109,16 @@ export default {
         // signOut() {
         //     const auth2 = gapi.auth2.getAuthInstance()
         //     auth2.signOut().then(() => {
-        //       console.log("user is signed out")
+
         //     })
         // },
         // callback(res: any) {
-        //     console.log(res.access_token)
+
         //     axios.post("http://localhost:8000/social-login/google/", {access_token: res.access_token}).then((res) => {
-        //         console.log(res)
+
         //         axios.get('http://127.0.0.1:8000/auth/user/', {headers:{"Authorization": `Bearer ${res.data.access_token}`}}).then((res)=>
         //         {
-        //             console.log(res.data.first_name)
+
         //             // this.user = res.data.first_name
         //             this.user = res.data
         //         }

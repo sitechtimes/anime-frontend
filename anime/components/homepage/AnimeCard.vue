@@ -1,6 +1,6 @@
 <template>
 	<NuxtLink :to="`/anime/` + mal_id">
-		<div class="card-container" @click="$emit('saveAnimeID')">
+		<div class="card-container">
 			<div class="card-cover">
 				<img class="card-image" :src="`${imageUrl}`" alt="" format="webp"/>
 				<div class="card-info">

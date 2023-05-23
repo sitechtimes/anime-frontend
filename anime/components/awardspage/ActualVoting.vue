@@ -3,40 +3,65 @@
     <h1 class="award-name">{{ awardName }}</h1>
     <!-- <SearchBar/> -->
     <form class="input-Box">
-					<input
-						v-model="text"
-						placeholder="Search nominee..."
-						spellcheck="false"
-						class="input"
-            @keyup="searchAnime(text)"
-					/>
-				</form>
-
+      <input
+        v-model="text"
+        placeholder="Search nominee..."
+        spellcheck="false"
+        class="input"
+        @keyup="searchAnime(text)"
+      />
+    </form>
 
     <div v-if="isAnime" class="nominee-container">
-      <div v-if="animeSearching" v-for="anime in animes"  ref="nomineeBox" class="nominee-box" @click="select">
-        <img class="image-placeholder" :src="anime.node.imageUrl" alt="">
-        <h1 class="anime-title">{{anime.node.animeName}}</h1>
+      <div
+        v-if="animeSearching"
+        v-for="anime in animes"
+        ref="nomineeBox"
+        class="nominee-box"
+        @click="select"
+      >
+        <img class="image-placeholder" :src="anime.node.imageUrl" alt="" />
+        <h1 class="anime-title">{{ anime.node.animeName }}</h1>
       </div>
-      <div v-else v-for="anime in filteredAnime" :key="anime" ref="nomineeBox" class="nominee-box" @click="select">
-        <img class="image-placeholder" :src="anime.image_url" alt="">
-        <h1 class="anime-title">{{anime.anime_name}}</h1>
+      <div
+        v-else
+        v-for="anime in filteredAnime"
+        :key="anime"
+        ref="nomineeBox"
+        class="nominee-box"
+        @click="select"
+      >
+        <img class="image-placeholder" :src="anime.image_url" alt="" />
+        <h1 class="anime-title">{{ anime.anime_name }}</h1>
       </div>
     </div>
 
     <div v-if="isCharacter" class="nominee-container">
-      <div v-if="characterSearching" v-for="character in characters" ref="nomineeBox" class="nominee-box" @click="select">
-        <img class="image-placeholder" :src="character.imageUrl" alt="">
-        <h1 class="anime-title">{{character.characterName}}</h1>
+      <div
+        v-if="characterSearching"
+        v-for="character in characters"
+        ref="nomineeBox"
+        class="nominee-box"
+        @click="select"
+      >
+        <img class="image-placeholder" :src="character.imageUrl" alt="" />
+        <h1 class="anime-title">{{ character.characterName }}</h1>
       </div>
-      <div v-else v-for="character in filteredCharacters" :key="character" ref="nomineeBox" class="nominee-box" @click="select">
-        <img class="image-placeholder" :src="character.imageUrl" alt="">
-        <h1 class="anime-title">{{character.characterName}}</h1>
+      <div
+        v-else
+        v-for="character in filteredCharacters"
+        :key="character"
+        ref="nomineeBox"
+        class="nominee-box"
+        @click="select"
+      >
+        <img class="image-placeholder" :src="character.imageUrl" alt="" />
+        <h1 class="anime-title">{{ character.characterName }}</h1>
       </div>
     </div>
     <div class="btn-container">
       <NuxtLink to="/awards"><button class="btn">Back</button></NuxtLink>
-      <button class="btn" @click="vote" id="vote-btn">Vote</button>
+      <button class="btn" @click="voteMutation" id="vote-btn">Vote</button>
     </div>
     <div id="popup">
       <div class="popup-content">
@@ -53,72 +78,56 @@
 
 <script setup lang="ts">
 import SearchBar from "../navbar/SearchBar.vue";
-import { useUserStore } from '~~/stores/userStore'
-import { ref, onMounted } from "vue"
+import { useUserStore } from "~~/stores/userStore";
+import { ref, onMounted } from "vue";
 
+let selected = ref(false);
+let animeSearching = ref(true);
+let characterSearching = ref(true);
+let animes = ref([] as any);
+let characters = ref([] as any);
+let allCharacters = ref([] as any);
+let nominee = ref("");
+let error = ref("");
+let isCharacter = ref(false);
+let isAnime = ref(false);
+let text = ref("");
+let filteredAnime = ref([] as any);
+let filteredCharacters = ref([] as any);
+const nomineeBox = ref(null);
 
-
-
-let selected = ref(false)
-let animeSearching = ref(true)
-let characterSearching = ref(true)
-let animes = ref([] as any)
-let characters = ref([] as any)
-let allCharacters = ref([] as any)
-let nominee = ref("")
-let error = ref("")
-let isCharacter = ref(false)
-let isAnime = ref(false)
-let text = ref("")
-let filteredAnime = ref([] as any)
-let filteredCharacters = ref([] as any)
-const nomineeBox = ref(null)
-
-const userStore = useUserStore()
-
+const userStore = useUserStore();
 
 const props = defineProps({
-  awardName: String
-})
-
+  awardName: String,
+});
 
 function searchAnime(text: String) {
-  console.log(isAnime.value, isCharacter.value)
-  
-  // console.log(userStore.allAnime)
-  if(isAnime.value) {
-    console.log(userStore.allAnime)
-    animeSearching.value = false
-    filteredAnime.value = userStore.allAnime.filter(anime => 
-    anime.anime_name.toLowerCase().includes(text.toLowerCase())
-  )
-  // filteredAnime.value = filteredAnime.value.splice(20)
-  console.log(filteredAnime.value)
-  } else if(isCharacter.value) {
-    console.log(allCharacters.value)
-    characterSearching.value = false
-    const addCharactersArray = allCharacters.value.concat(characters.value)
-    console.log(addCharactersArray)
-    
-    filteredCharacters.value = addCharactersArray.filter(character => 
-      character.characterName.toLowerCase().includes(text.toLowerCase())
-      // console.log(character.characterName.toLowerCase())
-      // console.log(text)
+  if (isAnime.value) {
+    animeSearching.value = false;
+    filteredAnime.value = userStore.allAnime.filter((anime) =>
+      anime.anime_name.toLowerCase().includes(text.toLowerCase())
+    );
+    // filteredAnime.value = filteredAnime.value.splice(20)
+  } else if (isCharacter.value) {
+    characterSearching.value = false;
+    const addCharactersArray = allCharacters.value.concat(characters.value);
 
-    )
-    console.log(filteredCharacters.value)
+    filteredCharacters.value = addCharactersArray.filter((character) =>
+      character.characterName.toLowerCase().includes(text.toLowerCase())
+    );
   }
 }
 
 async function getAnimes() {
   try {
-        const endpoint = "http://127.0.0.1:8000/graphql/";
-				const headers = {
-					"content-type": "application/json",
-					Authorization: `Bearer ${userStore.token}`,
-				};
-				const graphqlQuery = {
-					query: `{
+    const endpoint = "http://127.0.0.1:8000/graphql/";
+    const headers = {
+      "content-type": "application/json",
+      Authorization: `Bearer ${userStore.token}`,
+    };
+    const graphqlQuery = {
+      query: `{
 					  allAnime {
     edges{
       node{
@@ -128,214 +137,207 @@ async function getAnimes() {
     }
   }
 							}`,
-					variables: {},
-				};
-				const options = {
-					method: "POST",
-					headers: headers,
-					body: JSON.stringify(graphqlQuery),
-				};
-				const response = await fetch(endpoint, options);
-				const animeData = await response.json();
-        const animeArray = animeData.data.allAnime.edges.splice(1,6)
-        animes.value = animeArray
-        console.log(animeData)
-      } catch (error) {
-        console.log(error)
-      }
-} 
+      variables: {},
+    };
+    const options = {
+      method: "POST",
+      headers: headers,
+      body: JSON.stringify(graphqlQuery),
+    };
+    const response = await fetch(endpoint, options);
+    const animeData = await response.json();
+    const animeArray = animeData.data.allAnime.edges.splice(1, 6);
+    animes.value = animeArray;
+  } catch (error) {
+    alert(error);
+  }
+}
 
 async function getCharacters() {
   try {
-        const endpoint = "http://127.0.0.1:8000/graphql/";
-				const headers = {
-					"content-type": "application/json",
-					Authorization: `Bearer ${userStore.token}`,
-				};
-				const graphqlQuery = {
-					query: ` {
+    const endpoint = "http://127.0.0.1:8000/graphql/";
+    const headers = {
+      "content-type": "application/json",
+      Authorization: `Bearer ${userStore.token}`,
+    };
+    const graphqlQuery = {
+      query: ` {
   allCharacters{
     characterName,
     imageUrl
   }
 }`,
-					variables: {},
-				};
-				const options = {
-					method: "POST",
-					headers: headers,
-					body: JSON.stringify(graphqlQuery),
-				};
-				const response = await fetch(endpoint, options);
-				const characterData = await response.json();
-        console.log(characterData.data.allCharacters)
-        allCharacters.value = characterData.data.allCharacters
-        const characterArray = characterData.data.allCharacters.splice(1,6)
-       
-        characters.value = characterArray
-        console.log(characters.value)
-      } catch (error) {
-        console.log(error)
-      }
+      variables: {},
+    };
+    const options = {
+      method: "POST",
+      headers: headers,
+      body: JSON.stringify(graphqlQuery),
+    };
+    const response = await fetch(endpoint, options);
+    const characterData = await response.json();
+
+    allCharacters.value = characterData.data.allCharacters;
+    const characterArray = characterData.data.allCharacters.splice(1, 6);
+
+    characters.value = characterArray;
+  } catch (error) {
+    alert(error);
+  }
 }
 
-function select(e: String) {
+function select(anime: String) {
+  selected.value = true;
+  let click = anime.target;
+  nominee.value = click.outerText;
 
-      selected.value = true
-      let click = e.target
-      nominee.value = click.outerText
-
-      
-
-        
-      console.log(nomineeBox.value)
-
-
-        // console.log(boxes)
-        nomineeBox.value.forEach(box => {
-          box.style.background = "#252525"
-        });
-      if (click.className == "nominee-box") {
-        click.style.background = "var(--primary)"
-      } else {
-        click.parentElement.style.background = "var(--primary)"
-      }
-    }
-
-  console.log(nominee.value)
-function vote() {
-      voteMutation() 
-      
-      // if (this.voted === true) {
-      //   const msg = document.getElementById("popup")
-      //   msg.style.display = "flex"
-      // } else if (this.selected === true) {
-      //   this.voteMutation()
-      //   const vote = document.getElementById("vote-btn")
-      //   vote.style.background = "var(--primary)"
-      //   vote.innerHTML = "Voted"
-      //   vote.style.opacity = "50%"
-        
-      //   const boxes = Array.from(document.getElementsByClassName("nominee-box") as HTMLCollectionOf<HTMLElement>)
-      //   boxes.forEach(box => {
-      //     box.style.pointerEvents = "none"
-      //     if (box.style.background == "rgb(37, 37, 37)") {
-      //       box.style.opacity = "50%"
-      //     }
-      //   });
-      //   console.log(this.nominee)
-  
-      // }
-    }
-async function voteMutation() {
-  console.log(userStore.userID, nominee.value, props.awardName)
-      if (isAnime.value){
-        try {
-        const endpoint = "http://127.0.0.1:8000/graphql/";
-				const headers = {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${userStore.token}`,
-				};
-				const graphqlQuery = {
-					query: `mutation{
-   addAnimeVote(userData: {userId: "${userStore.userID}"}, animeData: {animeName: "${nominee.value}"}, awardName: "${props.awardName}") {
-       animeAward{
-           voteCount,
-           anime{
-               animeName
-           },
-           allUsers{
-               edges{
-                   node{
-                       user{
-                           username
-                       }
-                   }
-               }
-           }
-       }
-   }
-}`,
-					variables: {},
-				};
-				const options = {
-					method: "POST",
-					headers: headers,
-					body: JSON.stringify(graphqlQuery),
-				};
-				const response = await fetch(endpoint, options);
-				const voteData = await response.json();
-        if (voteData.errors[0].message) {
-          return alert(voteData.errors[0].message)
-         
-        }
-      } catch (error) {
-        console.log(error)
-      }
-      } else if(isCharacter.value) {
-        try {
-        const endpoint = "http://127.0.0.1:8000/graphql/";
-				const headers = {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${userStore.token}`,
-				};
-				const graphqlQuery = {
-					query: `mutation{
-   addCharacterVote(userData: {userId: "${userStore.userID}"}, characterName:"${nominee.value}", awardName: "${props.awardName}") {
-	characterAward {
-    award {
-      awardName
-    },
-    voteCount,
-    
+  nomineeBox.value.forEach((box) => {
+    box.style.background = "#252525";
+  });
+  if (click.className == "nominee-box") {
+    click.style.background = "var(--primary)";
+  } else {
+    click.parentElement.style.background = "var(--primary)";
   }
-  },
-    
-    
+}
+
+async function voteMutation() {
+  if (isAnime.value) {
+    try {
+      const endpoint = "http://127.0.0.1:8000/graphql/";
+      const headers = {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userStore.token}`,
+      };
+      const graphqlQuery = {
+        query: `mutation{
+addAnimeVote(userData: {userId: "${userStore.userID}"}, animeData: {animeName: "${nominee.value}"}, awardName: "${props.awardName}") {
+ animeAward{
+     voteCount,
+     anime{
+         animeName
+     },
+     allUsers{
+         edges{
+             node{
+                 user{
+                     username
+                 }
+             }
+         }
+     }
+ }
+}
 }`,
-					variables: {},
-				};
-				const options = {
-					method: "POST",
-					headers: headers,
-					body: JSON.stringify(graphqlQuery),
-				};
-				const response = await fetch(endpoint, options);
-				const voteData = await response.json();
-        
-        if (voteData.errors[0].message) {
-          return alert(voteData.errors[0].message)
-         
-        }
+        variables: {},
+      };
+      const options = {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify(graphqlQuery),
+      };
+      const response = await fetch(endpoint, options);
+      const voteData = await response.json();
 
-        return alert("You have voted")
-      } catch (error) {
-        console.log(error)
-      }
-      }
-     
-    }
 
-function close() {
-      const msg = document.getElementById("popup")
-      msg!.style.display = "none"
+      if (voteData.data.addAnimeVote == null) {
+        return alert(voteData.errors[0].message)
+      } else {
+        alert("You have voted")
+      }
+    } catch (error) {
+      alert(error);
     }
+  } else if (isCharacter.value) {
+    try {
+      const endpoint = "http://127.0.0.1:8000/graphql/";
+      const headers = {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userStore.token}`,
+      };
+      const graphqlQuery = {
+        query: `mutation{
+addCharacterVote(userData: {userId: "${userStore.userID}"}, characterName:"${nominee.value}", awardName: "${props.awardName}") {
+characterAward {
+award {
+awardName
+},
+voteCount,
+
+}
+},
+
+
+}`,
+        variables: {},
+      };
+      const options = {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify(graphqlQuery),
+      };
+      const response = await fetch(endpoint, options);
+      const voteData = await response.json();
+
+      // if (!voteData.errors) {
+      //   return alert("You have voted")
+      // } else {
+      //   return alert(voteData.errors[0].message);
+      // }
+
+
+    } catch (error) {
+      // if (error == "")
+      // if (error != "user already voted for this award" || error != "Anime matching query does not exist." || error != "TypeError: voteData.errors is undefined") {
+      //   alert("You have voted")
+      // }
+      // console.log(error)
+      alert(error);
+    }
+  }
+}
+
+// function vote() {
+//   voteMutation();
+
+  // if (this.voted === true) {
+  //   const msg = document.getElementById("popup")
+  //   msg.style.display = "flex"
+  // } else if (this.selected === true) {
+  //   this.voteMutation()
+  //   const vote = document.getElementById("vote-btn")
+  //   vote.style.background = "var(--primary)"
+  //   vote.innerHTML = "Voted"
+  //   vote.style.opacity = "50%"
+
+  //   const boxes = Array.from(document.getElementsByClassName("nominee-box") as HTMLCollectionOf<HTMLElement>)
+  //   boxes.forEach(box => {
+  //     box.style.pointerEvents = "none"
+  //     if (box.style.background == "rgb(37, 37, 37)") {
+  //       box.style.opacity = "50%"
+  //     }
+  //   });
+
+  // }
+// }
+
+// function close() {
+//   const msg = document.getElementById("popup");
+//   msg!.style.display = "none";
+// }
 
 onMounted(() => {
-    if (props.awardName?.includes("Character")) {
-      console.log("character award")
-      isCharacter.value = true
-      isAnime.value = false
-      getCharacters()
-    } else {
-      console.log("anime award")
-      isCharacter.value = false
-      isAnime.value = true
-      
-      getAnimes()
-    }
-})
-console.log(isAnime.value, isCharacter.value)
+  if (props.awardName?.includes("Character")) {
+    isCharacter.value = true;
+    isAnime.value = false;
+    getCharacters();
+  } else {
+    isCharacter.value = false;
+    isAnime.value = true;
+
+    getAnimes();
+  }
+});
 </script>
 <!-- 
 <script lang="ts">
@@ -366,14 +368,14 @@ export default ({
     }
   },
   mounted() {
-    console.log(this.awardName)
+
     if (this.awardName?.includes("Character")) {
-      console.log("character award")
+
       this.isCharacter = true
       this.isAnime = false
       this.getCharacters()
     } else {
-      console.log("anime award")
+
       this.isCharacter = false
       this.isAnime = true
       this.getAnimes()
@@ -412,9 +414,9 @@ export default ({
 				const animeData = await response.json();
         const animeArray = animeData.data.allAnime.edges.splice(1,6)
         this.animes = animeArray
-        console.log(this.animes[0])
+
       } catch (error) {
-        console.log(error)
+
       }
     },
     async getCharacters() {
@@ -448,15 +450,15 @@ export default ({
 				const characterData = await response.json();
         const characterArray = characterData.data.allCharacters.edges.splice(1,6)
         this.characters = characterArray
-        console.log(this.characters)
+
       } catch (error) {
-        console.log(error)
+
       }
     },
     select(nominee) {
       this.selected = true
       let click = nominee.target
-      // console.log(click.outerText)
+
       this.nominee = click.outerText
       
       const boxes = Array.from(document.getElementsByClassName("nominee-box") as HTMLCollectionOf<HTMLElement>)
@@ -487,7 +489,7 @@ export default ({
             box.style.opacity = "50%"
           }
         });
-        console.log(this.nominee)
+
   
       }
     },
@@ -539,7 +541,7 @@ export default ({
          
         }
       } catch (error) {
-        console.log(error)
+
       }
       } else if(this.isCharacter) {
         try {
@@ -580,7 +582,7 @@ export default ({
          
         }
       } catch (error) {
-        console.log(error)
+
       }
       }
      
@@ -594,29 +596,28 @@ export default ({
 </script> -->
   
 <style scoped>
-
 .input-Box {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: flex-start;
-	column-gap: 1rem;
-	margin-right: 2rem;
-	width: 30rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  column-gap: 1rem;
+  margin-right: 2rem;
+  width: 30rem;
 }
 .input {
-	background-color: var(--bg-secondary);
-	border-radius: 0.75rem;
-	border: none;
-	color: var(--light-text);
-	font-size: var(--h5);
-	font-weight: var(--fw-regular);
-	padding: 0.5rem 1rem;
-	width: 100%;
+  background-color: var(--bg-secondary);
+  border-radius: 0.75rem;
+  border: none;
+  color: var(--light-text);
+  font-size: var(--h5);
+  font-weight: var(--fw-regular);
+  padding: 0.5rem 1rem;
+  width: 100%;
   margin-top: 2rem;
 }
 .input:focus {
-	outline: none;
+  outline: none;
 }
 
 #actual-voting {
@@ -680,7 +681,7 @@ export default ({
   background: var(--primary);
 }
 #popup {
-  background: rgb(0,0,0,0.6);
+  background: rgb(0, 0, 0, 0.6);
   position: fixed;
   z-index: 1;
   top: 0;

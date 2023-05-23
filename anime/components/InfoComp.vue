@@ -238,10 +238,10 @@ async function getUserProfile() {
       const response = await fetch(endpoint, options);
       const mutationData = await response.json();
 
-      console.log(mutationData.data.userAnimeData.userAnime.edges);
+
       mutationData.data.userAnimeData.userAnime.edges.forEach((element) => {
-        // console.log(element.node.anime.animeName)
-        console.log(element.node)
+
+
         if (element.node.anime.malId == props.mal_id) {
           userAnime.value = element.node;
         }
@@ -249,7 +249,7 @@ async function getUserProfile() {
       // const userAnime = mutationData.data.userAnimeData.userAnime.edges.filter(node => {
       // 	node.node.anime.animeName === "Your Lie in April"
       // })
-      console.log(userAnime.value.watchingStatus);
+
 
       if (userAnime.value.watchingStatus != "NOT_WATCHING") {
         watchStatus.value = userAnime.value.watchingStatus
@@ -259,7 +259,7 @@ async function getUserProfile() {
       } else {
         change.value = false;
       }
-      console.log(change.value);
+
     }
 
     async function getAllRatings() {
@@ -284,33 +284,33 @@ async function getUserProfile() {
       };
       const response = await fetch(endpoint, options);
       const ratingData = await response.json();
-      console.log(ratingData.data.specificUserAnime);
+
 
       // const test = ratingData.data.specificUserAnime.filter(object =>
       // 	object.rating == 6
       // )
 
-      // console.log(test)
+
       for (let i = 1; i <= 10; i++) {
-        console.log(i);
+
         allRatings.value.push([]);
         allRatings.value[i - 1] = ratingData.data.specificUserAnime.filter(
           (object) => object.rating == i
         ).length;
       }
 
-      console.log(allRatings.value);
+
 
 	  chartData.value.datasets[0].data = allRatings.value
 
 	  loaded.value = true
 	
-	  console.log(chartData.value.datasets[0].data)
+
     }
 
     function add() {
       addList.value = !addList.value;
-      console.log(addList.value);
+
       const hi = document.getElementById("watch");
       if (addList.value == true) {
         hi!.innerHTML = "Added to Watchlist";
@@ -331,7 +331,7 @@ async function getUserProfile() {
       changeRating()
     })
     async function changeWatchStatus() {
-      console.log(watchStatus.value, userStore.userID, props.mal_id);
+
       const endpoint = "http://127.0.0.1:8000/graphql/";
       const headers = {
         "Content-Type": "application/json",
@@ -367,7 +367,7 @@ async function getUserProfile() {
       };
       const response = await fetch(endpoint, options);
       const mutationData = await response.json();
-      console.log(mutationData);
+
 
 
 
@@ -376,7 +376,7 @@ async function getUserProfile() {
 
 
     async function changeRating() {
-      console.log(rating.value);
+
       const endpoint = "http://127.0.0.1:8000/graphql/";
       const headers = {
         "Content-Type": "application/json",
@@ -412,7 +412,7 @@ async function getUserProfile() {
       };
       const response = await fetch(endpoint, options);
       const mutationData = await response.json();
-      console.log(mutationData);
+
       window.location.reload();
     }
   
@@ -539,7 +539,7 @@ export default {
   }),
   watch: {
     async watchStatus(newValue, oldValue) {
-      console.log(this.watchStatus, this.userStore.userID, this.mal_id);
+
       const endpoint = "http://127.0.0.1:8000/graphql/";
       const headers = {
         "Content-Type": "application/json",
@@ -575,13 +575,13 @@ export default {
       };
       const response = await fetch(endpoint, options);
       const mutationData = await response.json();
-      console.log(mutationData);
+
 
 
 
     },
     async rating(value) {
-      console.log(this.rating);
+
       const endpoint = "http://127.0.0.1:8000/graphql/";
       const headers = {
         "Content-Type": "application/json",
@@ -617,7 +617,7 @@ export default {
       };
       const response = await fetch(endpoint, options);
       const mutationData = await response.json();
-      console.log(mutationData);
+
       window.location.reload();
     },
   },
@@ -663,9 +663,9 @@ export default {
       const response = await fetch(endpoint, options);
       const mutationData = await response.json();
 
-      console.log(mutationData.data.userAnimeData.userAnime.edges);
+
       mutationData.data.userAnimeData.userAnime.edges.forEach((element) => {
-        // console.log(element.node.anime.animeName)
+
         if (element.node.anime.malId == this.mal_id) {
           this.userAnime = element.node;
         }
@@ -673,7 +673,7 @@ export default {
       // const userAnime = mutationData.data.userAnimeData.userAnime.edges.filter(node => {
       // 	node.node.anime.animeName === "Your Lie in April"
       // })
-      console.log(this.userAnime.watchingStatus);
+
 
       if (this.userAnime.watchingStatus != "NOT_WATCHING") {
         this.watchStatus = this.userAnime.watchingStatus
@@ -683,7 +683,7 @@ export default {
       } else {
         this.change = false;
       }
-      console.log(this.change);
+
     },
     async getAllRatings() {
       const endpoint = "http://127.0.0.1:8000/graphql/";
@@ -707,37 +707,37 @@ export default {
       };
       const response = await fetch(endpoint, options);
       const ratingData = await response.json();
-      console.log(ratingData.data.specificUserAnime);
+
 
       // const test = ratingData.data.specificUserAnime.filter(object =>
       // 	object.rating == 6
       // )
 
-      // console.log(test)
+
       for (let i = 1; i <= 10; i++) {
-        console.log(i);
+
         this.allRatings.push([]);
         this.allRatings[i - 1] = ratingData.data.specificUserAnime.filter(
           (object) => object.rating == i
         ).length;
       }
 
-      console.log(this.allRatings);
+
 
 	  this.chartData.datasets[0].data = this.allRatings
 
 	  this.loaded = true
 	
-	  console.log(this.chartData.datasets[0].data)
+
     },
 
     test() {
-      console.log(this.watchStatus);
+
     },
 
     add() {
       this.addList = !this.addList;
-      console.log(this.addList);
+
       const hi = document.getElementById("watch");
       if (this.addList == true) {
         hi!.innerHTML = "Added to Watchlist";

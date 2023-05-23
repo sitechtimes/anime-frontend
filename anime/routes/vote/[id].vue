@@ -13,9 +13,9 @@
   // const {awardName} = useRoute().params
   const route = useRoute()
   const id = route.params.id
-  console.log(route.params.id)
 
-  // console.log($route.params.id)
+
+
   
 //   export default ({
 //     name: 'vote',

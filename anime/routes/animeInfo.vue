@@ -26,9 +26,9 @@ const animeInfoData = ref();
 onMounted(() => {
 	userStore.getOneAnime().then((data) => {
 		// data = JSON.parse(JSON.stringify(data));
-		console.log(data);
+
 		animeInfoData.value = data;
-		console.log(animeInfoData.value);
+
 	});
 });
 
@@ -66,7 +66,7 @@ function aired(airTimeStart: string, airTimeEnd: string): string {
 		return month + " " + day + ", " + dateArr[0];
 	}
 	if (airTimeEnd == null) {
-		console.log(airTimeStart);
+
 		return airTimeStart;
 	} else {
 		return dat(airTimeStart) + " to " + dat(airTimeEnd);

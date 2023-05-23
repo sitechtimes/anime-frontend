@@ -113,7 +113,7 @@ onMounted(() => {
 			loading.value = false;
 		})
 		.catch((err) => {
-			console.log(err);
+			alert(err)
 		});
 });
 
@@ -143,7 +143,7 @@ async function getTopChart() {
       };
       const response = await fetch(endpoint, options);
       const queryData = await response.json();
-	  console.log(queryData.data.sortedCurrentlyWatching)
+
 	  sortedAnimeTop.value = queryData.data.sortedCurrentlyWatching
 }
 

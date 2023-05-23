@@ -32,7 +32,7 @@ const userStore = useUserStore()
 onMounted(() => {
      userStore.getAllAwards()
     awards.value = userStore.allAwards
-    console.log(awards.value)
+
 })
 </script>
   

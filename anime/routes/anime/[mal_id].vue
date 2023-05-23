@@ -25,7 +25,7 @@ import { onMounted, ref } from 'vue';
 
   const route = useRoute()
   let mal_id = route.params.mal_id
-  console.log(route.params.mal_id)
+
   
   const userStore = useUserStore()
 
@@ -97,7 +97,7 @@ async function getAnime() {
 				const response = await fetch(endpoint, options);
 				const animeDataNode = await response.json();
         const animeData = animeDataNode.data.allAnime.edges[0].node
-        console.log(animeData)
+
         
         imageURL.value = animeData.imageUrl
         mediaType.value = animeData.mediaType
@@ -114,15 +114,15 @@ async function getAnime() {
 
 
 
-        console.log(animeData)
+
       } catch (error) {
-        console.log(error)
+        alert(error)
       }
 }
 
 onMounted(() => {
   getAnime()
-  console.log(imageURL)
+
 })
 </script>
 
