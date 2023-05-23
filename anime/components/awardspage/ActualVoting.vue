@@ -284,7 +284,11 @@ voteCount,
       // } else {
       //   return alert(voteData.errors[0].message);
       // }
-
+      if (voteData.data.addCharacterVote == null) {
+        return alert(voteData.errors[0].message)
+      } else {
+        alert("You have voted")
+      }
 
     } catch (error) {
       // if (error == "")
