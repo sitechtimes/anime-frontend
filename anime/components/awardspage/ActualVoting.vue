@@ -20,8 +20,8 @@
         class="nominee-box"
         @click="select"
       >
-        <img class="image-placeholder" :src="anime.image_url" alt="" />
-        <h1 class="anime-title">{{ anime.anime_name }}</h1>
+        <img class="image-placeholder" :src="anime.node.imageUrl" alt="" />
+        <h1 class="anime-title">{{ anime.node.animeName }}</h1>
       </div>
       <div
         v-else
@@ -84,7 +84,7 @@ import { ref, onMounted } from "vue";
 let selected = ref(false);
 let animeSearching = ref(true);
 let characterSearching = ref(true);
-// let animes = ref([] as any);
+let animes = ref([] as any);
 let characters = ref([] as any);
 let allCharacters = ref([] as any);
 let nominee = ref("");
@@ -98,8 +98,6 @@ const nomineeBox = ref(null);
 
 const userStore = useUserStore();
 
-let animes = userStore.allAnime.slice(0,6)
-
 const props = defineProps({
   awardName: String,
 });
@@ -110,7 +108,7 @@ function searchAnime(text: String) {
     filteredAnime.value = userStore.allAnime.filter((anime) =>
       anime.anime_name.toLowerCase().includes(text.toLowerCase())
     );
-    filteredAnime.value = filteredAnime.value.slice(0,20)
+    // filteredAnime.value = filteredAnime.value.splice(20)
   } else if (isCharacter.value) {
     characterSearching.value = false;
     const addCharactersArray = allCharacters.value.concat(characters.value);
@@ -118,43 +116,42 @@ function searchAnime(text: String) {
     filteredCharacters.value = addCharactersArray.filter((character) =>
       character.characterName.toLowerCase().includes(text.toLowerCase())
     );
-    filteredCharacters.value = filteredCharacters.value.slice(0,20)
   }
 }
 
-// async function getAnimes() {
-//   try {
-//     const endpoint = "http://127.0.0.1:8000/graphql/";
-//     const headers = {
-//       "content-type": "application/json",
-//       Authorization: `Bearer ${userStore.token}`,
-//     };
-//     const graphqlQuery = {
-//       query: `{
-// 					  allAnime {
-//     edges{
-//       node{
-//         animeName,
-//         imageUrl
-//       }
-//     }
-//   }
-// 							}`,
-//       variables: {},
-//     };
-//     const options = {
-//       method: "POST",
-//       headers: headers,
-//       body: JSON.stringify(graphqlQuery),
-//     };
-//     const response = await fetch(endpoint, options);
-//     const animeData = await response.json();
-//     const animeArray = animeData.data.allAnime.edges.splice(1, 6);
-//     animes.value = animeArray;
-//   } catch (error) {
-//     alert(error);
-//   }
-// }
+async function getAnimes() {
+  try {
+    const endpoint = "http://127.0.0.1:8000/graphql/";
+    const headers = {
+      "content-type": "application/json",
+      Authorization: `Bearer ${userStore.token}`,
+    };
+    const graphqlQuery = {
+      query: `{
+					  allAnime {
+    edges{
+      node{
+        animeName,
+        imageUrl
+      }
+    }
+  }
+							}`,
+      variables: {},
+    };
+    const options = {
+      method: "POST",
+      headers: headers,
+      body: JSON.stringify(graphqlQuery),
+    };
+    const response = await fetch(endpoint, options);
+    const animeData = await response.json();
+    const animeArray = animeData.data.allAnime.edges.splice(1, 6);
+    animes.value = animeArray;
+  } catch (error) {
+    alert(error);
+  }
+}
 
 async function getCharacters() {
   try {
