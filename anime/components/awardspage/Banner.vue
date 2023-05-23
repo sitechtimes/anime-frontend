@@ -7,7 +7,7 @@
         <div class="info-column">
             <h3 class="animeTitle">{{ title }}</h3>
             <div class="star-rating">
-                <starSVG class="star" />
+                <StarSVG class="star" />
                 <p>{{ stars.toFixed(2) }}</p>
             </div>
         </div>
@@ -16,33 +16,16 @@
         </span>
     </div>
 </template>
-
-<script lang="ts">
-export default {
-    props: {
-        rank: {
-            type: Number,
-            required: true,
-        },
-        title: {
-            type: String,
-            required: true,
-        },
-        genre: {
-            type: String,
-            required: true,
-        },
-        stars: {
-            type: Number,
-            required: true,
-        },
-        img: {
-            type: String,
-            required: true,
-        },
-    },
-};
+<script setup lang="ts">
+const props = defineProps({
+    rank: { type: Number, required: true },
+    img: { type: String, required: true },
+    title: { type: String, required: true },
+    genre: { type: String, required: true },
+    stars: { type: Number, required: true },
+});
 </script>
+
 <style scoped>
 .award-anime-display {
     display: flex;

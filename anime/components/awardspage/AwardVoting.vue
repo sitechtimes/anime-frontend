@@ -10,19 +10,17 @@
     </div>
 </template>
 
-<script lang="ts">
-export default {
-    props: {
-        award: {
-            type: String,
-            required: true,
-        },
-        img: {
-            type: String,
-            required: true,
-        },
+<script setup lang="ts">
+const props = defineProps({
+    award: {
+        type: String,
+        required: true,
     },
-};
+    img: {
+        type: String,
+        required: true,
+    },
+});
 </script>
 
 <style scoped>

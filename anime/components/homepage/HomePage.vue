@@ -21,10 +21,10 @@
                     </div>
                     <div class="page-buttonBox">
                         <button class="page-button" v-on:click="previous">
-                            <LeftPageButton :pageExist="pageExistLeft" />
+                            <LeftPageButtonSvg :pageExist="pageExistLeft" />
                         </button>
                         <button class="page-button" v-on:click="next">
-                            <RightPageButton :pageExist="pageExistRight" />
+                            <RightPageButtonSvg :pageExist="pageExistRight" />
                         </button>
                     </div>
                 </div>

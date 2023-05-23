@@ -6,7 +6,7 @@
             <h3 class="topChartsComp-title">{{ title }}</h3>
             <div class="topChartsComp-details">
                 <div class="topChartsComp-episode">
-                    <EpisodeSVG :episode="episode" />
+                    <EpisodeSvg :episode="episode" />
                 </div>
                 <h4 class="topChartsComp-votes">{{ votes }}</h4>
             </div>
@@ -16,14 +16,13 @@
 
 <script setup lang="ts">
 const props = defineProps({
-		rank: Number,
-		img: String,
-		episode: Number,
-        votes: Number,
-        title:String,
+    rank: Number,
+    img: String,
+    episode: Number,
+    votes: Number,
+    title: String,
 });
 </script>
-
 
 <style scoped>
 .topChartsComp-container {

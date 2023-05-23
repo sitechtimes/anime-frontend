@@ -4,7 +4,7 @@
             <h1 id="logo">
                 <NuxtLink to="/" class="home-link">Technime</NuxtLink>
             </h1>
-            <SearchBar />
+            <NavbarSearchBar />
             <ul class="routers">
                 <li class="link">
                     <NuxtLink to="/awards" class="link-href">Awards</NuxtLink>
@@ -45,15 +45,10 @@
     </section>
 </template>
 <script lang="ts">
-import SearchBar from "./SearchBar.vue";
 import axios from "axios";
 import { useUserStore } from "../../stores/userStore";
 
 export default {
-    name: "NavBar",
-    components: {
-        SearchBar,
-    },
     setup() {
         const userStore = useUserStore();
         // const router = useRoute()
@@ -105,34 +100,10 @@ export default {
             this.showHeader = window.pageYOffset < this.lastScrollPosition;
             this.lastScrollPosition = window.pageYOffset;
         },
-        // signOut() {
-        //     const auth2 = gapi.auth2.getAuthInstance()
-        //     auth2.signOut().then(() => {
-        //       console.log("user is signed out")
-        //     })
-        // },
-        // callback(res: any) {
-        //     console.log(res.access_token)
-        //     axios.post("http://localhost:8000/social-login/google/", {access_token: res.access_token}).then((res) => {
-        //         console.log(res)
-        //         axios.get('http://127.0.0.1:8000/auth/user/', {headers:{"Authorization": `Bearer ${res.data.access_token}`}}).then((res)=>
-        //         {
-        //             console.log(res.data.first_name)
-        //             // this.user = res.data.first_name
-        //             this.user = res.data
-        //         }
-        //         )
-
-        //     })
-
-        // }
     },
 };
 </script>
 <style scoped>
-/* .log-in {
-    width: 100%;
-} */
 .navigation {
     z-index: 5;
     width: 100%;

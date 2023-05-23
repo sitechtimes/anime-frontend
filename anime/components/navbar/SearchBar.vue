@@ -32,7 +32,7 @@
                 />
                 <div class="biggerBox" v-if="showAnimeResults">
                     <p class="biggerBox-text">Anime</p>
-                    <NavbarSearchResult
+                    <SearchResult
                         @saveAnimeID="saveClickedAnimeID(anime.mal_id)"
                         @click="reload()"
                         v-for="anime in animeResults.slice(0, 5)"
@@ -134,17 +134,16 @@ function enterSearchMobile() {
 }
 
 function exitSearchMobile() {
-	hideSearch.value = true;
+    hideSearch.value = true;
 }
 
 onMounted(() => {
     if (window.innerWidth <= 568) {
-			hideSearch.value = true;
-		} else {
-			hideSearch.value = false;
-		}
-})
-
+        hideSearch.value = true;
+    } else {
+        hideSearch.value = false;
+    }
+});
 </script>
 
 <style scoped>

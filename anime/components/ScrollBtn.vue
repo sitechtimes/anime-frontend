@@ -10,21 +10,10 @@
     </div>
 </template>
 
-<script lang="ts">
-export default {
-    name: "ScrollUp",
-    props: {
-        msg: String,
-    },
-    methods: {
-        // scrollUp() {
-        //     document.querySelector("html").style.scrollBehavior = "smooth";
-        //         setTimeout(() => {
-        //     document.querySelector("html").style.scrollBehavior = "unset";
-        //     }, 1000);
-        // },
-    },
-};
+<script setup lang="ts">
+const props = defineProps({
+    msg: String,
+});
 </script>
 
 <style scoped>
