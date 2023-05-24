@@ -122,7 +122,7 @@ function searchAnime(text: String) {
 
 async function getAnimes() {
   try {
-    const endpoint = "http://127.0.0.1:8000/graphql/";
+    const endpoint = "https://anime-backend-cuv2.onrender.com/graphql/";
     const headers = {
       "content-type": "application/json",
       Authorization: `Bearer ${userStore.token}`,
@@ -156,7 +156,7 @@ async function getAnimes() {
 
 async function getCharacters() {
   try {
-    const endpoint = "http://127.0.0.1:8000/graphql/";
+    const endpoint = "https://anime-backend-cuv2.onrender.com/graphql/";
     const headers = {
       "content-type": "application/json",
       Authorization: `Bearer ${userStore.token}`,
@@ -205,7 +205,7 @@ function select(anime: String) {
 async function voteMutation() {
   if (isAnime.value) {
     try {
-      const endpoint = "http://127.0.0.1:8000/graphql/";
+      const endpoint = "https://anime-backend-cuv2.onrender.com/graphql/";
       const headers = {
         "Content-Type": "application/json",
         Authorization: `Bearer ${userStore.token}`,
@@ -251,7 +251,7 @@ addAnimeVote(userData: {userId: "${userStore.userID}"}, animeData: {animeName: "
     }
   } else if (isCharacter.value) {
     try {
-      const endpoint = "http://127.0.0.1:8000/graphql/";
+      const endpoint = "https://anime-backend-cuv2.onrender.com/graphql/";
       const headers = {
         "Content-Type": "application/json",
         Authorization: `Bearer ${userStore.token}`,
