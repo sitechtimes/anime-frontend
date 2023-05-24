@@ -2,7 +2,7 @@
     <div>
         <NavbarNavigationMobile />
         <NavbarNavBar />
-
+        
         <slot />
         <ScrollBtn />
     </div>

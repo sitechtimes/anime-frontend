@@ -63,14 +63,14 @@
       <NuxtLink to="/awards"><button class="btn">Back</button></NuxtLink>
       <button class="btn" @click="voteMutation" id="vote-btn">Vote</button>
     </div>
-    <div class="popup" ref="popup">
+    <!-- <div class="popup" ref="popup">
       <div class="popup-content">
         <span class="popup-close" @click="close">&times</span>
         <div class="popup-msg">
           <h1>You voted already.</h1>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 

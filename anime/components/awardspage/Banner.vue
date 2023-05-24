@@ -8,7 +8,7 @@
             <h3 class="animeTitle">{{ title }}</h3>
             <div class="star-rating">
                 <starSVG class="star" />
-                <p>{{ stars.toFixed(2) }}</p>
+                <!-- <p>{{ stars.toFixed(2) }}</p> -->
             </div>
         </div>
         <span class="genre-text">
