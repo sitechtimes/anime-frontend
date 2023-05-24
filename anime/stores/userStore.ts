@@ -239,7 +239,7 @@ export const useUserStore = defineStore("user", {
 
 				axios
 					.post("https://anime-backend-cuv2.onrender.com/social-login/google/", {
-						"access_token": res.access_token,
+						"code": res.code,
 					})
 					.then((res) => {
 
