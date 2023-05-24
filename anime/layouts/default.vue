@@ -2,7 +2,7 @@
     <div>
         <NavbarNavigationMobile />
         <NavbarNavBar />
-        <NuxtPage/>
+
         <slot />
         <ScrollBtn />
     </div>
