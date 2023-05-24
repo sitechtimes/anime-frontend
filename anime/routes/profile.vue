@@ -379,18 +379,18 @@ export default {
     box-shadow: 0 4px 8px 0 var(--tertiary);
 }
 .banner {
-    object-fit: cover;
-    object-position: bottom;
     width: 80vw;
     height: 25vh;
+    object-fit: cover;
+    object-position: bottom;
     position: absolute;
     margin: 0 auto;
     border-radius: 1rem;
 }
 .profile-grade {
     width: 20rem;
-    color: rgb(219, 219, 219);
     font-size: var(--h5);
+    color: rgb(219, 219, 219);
     font-weight: var(--fw-light);
 }
 .profile-info {
@@ -403,8 +403,8 @@ export default {
     margin-bottom: 5rem;
 }
 .profile-img {
-    width: 16rem;
-    height: 16rem;
+    width: 15rem;
+    height: 15rem;
     border-radius: 50%;
     object-fit: cover;
 }
@@ -675,8 +675,12 @@ export default {
 .pf-carousel-slide {
     height: 10vh;
 }
+.profile-img {
+    width: 18rem;
+    height: 18rem;
+}
 .profile-info {
-    margin-top: 17rem;
+    margin-top: 27rem;
     margin-bottom: 6rem;
 }
 }
@@ -691,6 +695,10 @@ export default {
 .pf-carousel-slide {
     height: 17vh;
 }
+.profile-img {
+    width: 14rem;
+    height: 14rem;
+}
 .profile-info {
     margin-top: 16rem;
 }
@@ -701,6 +709,9 @@ export default {
 @media screen and (max-width: 825px) {
 .anime-img {
     height: 10vh;
+}
+.tab-title {
+    margin-left: 7rem;
 }
 .pf-carousel {
     width: 58vw;
