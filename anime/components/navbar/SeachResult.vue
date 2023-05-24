@@ -1,5 +1,5 @@
 <template>
-	<NuxtLink to="/animeInfo" class="box" @click="$emit('saveAnimeID')">
+	<NuxtLink :to="`/anime/` + mal_id" class="box" @click="$emit('saveAnimeID')">
 		<img class="image-placeholder" :src="`${imageUrl}`" alt="" />
 		<div class="info-column">
 			<h3 class="title">{{ animeName }}</h3>
@@ -29,6 +29,9 @@ export default {
 		episodes: {
 			required: true,
 		},
+		mal_id: {
+			type: Number
+		}
 	},
 };
 </script>

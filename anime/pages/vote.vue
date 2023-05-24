@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import ActualVoting from '../components/awardspage/ActualVoting.vue'
+import ActualVoting from '../../components/awardspage/ActualVoting.vue'
 
 export default ({
   name: 'vote',

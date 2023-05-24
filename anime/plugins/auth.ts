@@ -5,7 +5,8 @@ import vue3GoogleLogin from "vue3-google-login"
 
 export default defineNuxtPlugin(nuxtApp =>  {
     const config = useRuntimeConfig()
-    const ID = "533107689780-kmlp9v2avfkpqiqm424b6f324vhlt1uu.apps.googleusercontent.com"
+    const ID = config.public.clientID
+
 
     nuxtApp.vueApp.use(vue3GoogleLogin, {
         // clientId: process.env.CLIENT_ID

@@ -1,13 +1,9 @@
 <template>
-    <div id="mobile">
-        <!-- <div class="menu" v-class="{ close: isClose }"> -->
-        <div class="menu">
-            <ul class="mq-routers">
-                <!-- <li class="link" v-on:click="toggleOn()"> -->
-                <li class="link">
-                    <NuxtLink to="/awards" class="mobile-link-href"
-                        >Awards</NuxtLink
-                    >
+<div id="mobile">
+    <div class="menu" :class="{ close: isClose }">
+          <ul class="mq-routers">
+                <li class="link" v-on:click="toggleOn()">
+                    <NuxtLink to="/awards" class="mobile-link-href">Awards</NuxtLink>
                 </li>
                 <!-- <li class="link" v-on:click="toggleOn()"> -->
                 <li class="link">

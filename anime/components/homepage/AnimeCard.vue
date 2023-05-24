@@ -1,6 +1,6 @@
 <template>
-	<NuxtLink to="/animeInfo">
-		<div class="card-container" @click="$emit('saveAnimeID')">
+	<NuxtLink :to="`/anime/` + mal_id">
+		<div class="card-container">
 			<div class="card-cover">
 				<img class="card-image" :src="`${imageUrl}`" alt="" format="webp"/>
 				<div class="card-info">
@@ -8,12 +8,13 @@
 					<p class="card-media">{{ mediaType }}</p>
 				</div>
 			</div>
-			<h5 class="card-title">{{ animeName }}</h5>
+			<p class="card-title">{{ animeName }}</p>
 		</div>
 	</NuxtLink>
 </template>
 
 <script lang="ts">
+
 import EpisodeSVG from "../EpisodeSvg.vue";
 
 export default {
@@ -36,6 +37,9 @@ export default {
 			type: String,
 			required: true,
 		},
+		mal_id: {
+			type: Number
+		}
 	},
 	computed: {
 		trimTitle() {

@@ -1,7 +1,7 @@
 <template>
 	<div id="episode-box">
-		<div id="episode-text" v-if="episode">{{ episode }}</div>
-		<div id="episode-text" v-if="!episode">N/A</div>
+		<p id="episode-text" v-if="episode">{{ episode }}</p>
+		<p id="episode-text" v-else>N/A</p>
 		<svg
 			id="epBox"
 			width="1rem"

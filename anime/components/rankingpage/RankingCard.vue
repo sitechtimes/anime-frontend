@@ -1,10 +1,10 @@
 <template>
 	<div class="rankingCard">
-		<div class="rc-rank" :id="`rank${rank}`">{{ rank }}</div>
+		<p class="rc-rank" :id="`rank${rank}`">{{ rank }}</p>
 		<div class="rc-info">
-			<div class="rc-title">{{ title }}</div>
+			<p class="rc-title">{{ title }}</p>
 			<div class="rc-sub">
-				<div class="rc-studio">{{ studio }}</div>
+				<p class="rc-studio">{{ studio }}</p>
 				<div class="rc-stars">
 					<starSVG />
 					<p class="rc-stars-num">{{ stars }}</p>

@@ -1,26 +1,47 @@
 <template>
-    <div id="award-voting">
+  <div id="award-voting">
+    <div class="text-box">
+      <h1 class="text-head">#Vote Here in the Boxes Below</h1>
+      <div class="text-sub">
+        <h2 class="text-tab">Seasonal</h2>
+        <h2 class="text-tab">Year</h2>
+        <NuxtLink to="/history"><h2 class="text-tab">Past Winners</h2></NuxtLink>
+      </div>
+    </div>
+    <div class="award-container">
+      <NuxtLink to="/vote" v-for="award in awards" :key="award">
         <div class="award-box">
             <img :src="`${img}`" alt="" class="img" />
             <h1 class="award-name">{{ award }}</h1>
             <div class="fake-vote-btn"><p>Vote</p></div>
         </div>
+     </NuxtLink>
     </div>
+</div>
 </template>
-
+  
 <script lang="ts">
-export default {
-    props: {
-        award: {
-            type: String,
-            required: true,
-        },
-        img: {
-            type: String,
-            required: true,
-        },
-    },
-};
+export default ({
+  data: () => ({
+    awards: [
+      "Best Anime",
+      "Best Character Design",
+      "Best Animation",
+      "Best New Series",
+      "Best Continuing Series",
+      "Best Opening Sequence",
+      "Best Ending Sequence",
+      "Best Main Character",
+      "Best Supporting Character",
+      "Best Action",
+      "Best Comedy",
+      "Best Drama",
+      "Best Fantasy",
+      "Best Romance",
+      "Best Anime Song",
+    ],
+  }),
+})
 </script>
 
 <style scoped>
