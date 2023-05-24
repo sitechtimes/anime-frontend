@@ -21,7 +21,7 @@ export default defineNuxtConfig({
 	// buildModules: [],
 	dir: {
 		// Rename `pages` directory to `routes`
-		pages: "routes",
+		// pages: "routes",
 	},
 	modules: [
 		// ...

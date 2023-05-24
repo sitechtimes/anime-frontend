@@ -2,16 +2,17 @@
     <div>
         <NavbarNavigationMobile />
         <NavbarNavBar />
+        <NuxtPage/>
         <slot />
         <ScrollBtn />
     </div>
 </template>
 
 <script lang="ts">
-import NavBar from "./components/navbar/NavBar.vue";
-import { useUserStore } from "./stores/userStore";
-import NavigationMobile from "./components/navbar/NavigationMobile.vue";
-import ScrollBtn from "./components/ScrollBtn.vue";
+import NavBar from "../components/navbar/NavBar.vue";
+import { useUserStore } from "../stores/userStore";
+import NavigationMobile from "../components/navbar/NavigationMobile.vue";
+import ScrollBtn from "../components/ScrollBtn.vue";
 export default {
     name: "IndexPage",
     components: {
