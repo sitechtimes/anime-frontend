@@ -221,7 +221,7 @@ export const useUserStore = defineStore("user", {
       }
     },
     async login(res: any) {
-		console.log(res.code)
+		console.log(res.access_token)
       try {
 
         await axios
