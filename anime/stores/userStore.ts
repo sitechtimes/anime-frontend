@@ -8,86 +8,84 @@ import { animeRest, animeGraphql } from "~/types/anime";
 // const router = useRouter()
 
 export const useUserStore = defineStore("user", {
-	state: () => ({
-		allAnime: [] as any,
-		currentAnime: [] as any,
-		filterAnime: [] as any,
-		allAwards: [] as any,
-		// allAnime: [] as animeRest[],
-		airingAnime: [] as animeRest[],
-		// filterAnime: [] as animeRest[],
-		search: "",
-		startPageIndex: 0,
-		endPageIndex: 12,
-		pageNumber: 1,
-		animeId: 0,
-		username: null,
-		first_name: null,
-		last_name: null,
-		email: null,
-		userID: null,
-		redirect: false,
-		userData: null,
-		token: null,
-		isAuthenticated: false,
-		// userData: JSON.parse(localStorage.getItem("user")),
-		// token: JSON.parse(localStorage.getItem("token"))
-	}),
-	persist: [
-		{
-			storage: persistedState.sessionStorage,
-		},
-	],
-	getters: {
-		// getToken() {
-		//     const token = localStorage.getItem("token")
+  state: () => ({
+    allAnime: [] as any,
+    currentAnime: [] as any,
+    filterAnime: [] as any,
+    allAwards: [] as any,
+    // allAnime: [] as animeRest[],
+    airingAnime: [] as animeRest[],
+    // filterAnime: [] as animeRest[],
+    search: "",
+    startPageIndex: 0,
+    endPageIndex: 12,
+    pageNumber: 1,
+    animeId: 0,
+    username: null,
+    first_name: null,
+    last_name: null,
+    email: null,
+    userID: null,
+    redirect: false,
+    userData: null,
+    token: null,
+    isAuthenticated: false,
+    // userData: JSON.parse(localStorage.getItem("user")),
+    // token: JSON.parse(localStorage.getItem("token"))
+  }),
+  persist: [
+    {
+      storage: persistedState.sessionStorage,
+    },
+  ],
+  getters: {
+    // getToken() {
+    //     const token = localStorage.getItem("token")
+    //     return token
+    // },
+    // getUser() {
+    //     const user = localStorage.getItem("user")
+    //     return user
+    // }
+  },
+  actions: {
+    storeAnimeId(id: number) {
+      this.animeId = id;
+    },
+    async getAllAnime() {
+      try {
+        const endpoint = "https://anime-backend-cuv2.onrender.com/anime/";
+        const headers = {
+          "Content-Type": "application/json",
+          "Accept-encoding": "gzip", //does not work
+        };
 
-		//     return token
-		// },
-		// getUser() {
-		//     const user = localStorage.getItem("user")
-		//     return user
-		// }
-	},
-	actions: {
-		storeAnimeId(id: number) {
-			this.animeId = id;
-		},
-		async getAllAnime() {
-			try {
-				const endpoint = "https://anime-backend-cuv2.onrender.com/anime/";
-				const headers = {
-					"Content-Type": "application/json",
-					"Accept-encoding": "gzip", //does not work
-				};
+        const options = {
+          method: "GET",
+          headers: headers,
+        };
 
-				const options = {
-					method: "GET",
-					headers: headers,
-				};
+        const response = await fetch(endpoint, options);
+        const data: animeRest[] = await response.json();
 
-				const response = await fetch(endpoint, options);
-				const data: animeRest[] = await response.json();
+        this.allAnime = data;
 
-				this.allAnime = data;
+        return data;
+      } catch (error) {
+        alert(error);
+      }
+    },
 
-				return data;
-			} catch (error) {
-				alert(error)
-			}
-		},
+    async getAllAwards() {
+      try {
+        const endpoint = "https://anime-backend-cuv2.onrender.com/graphql/";
+        const headers = {
+          "content-type": "application/json",
+          Authorization: `Bearer ${this.token}`,
+        };
 
-
-		async getAllAwards() {
-			try {
-				const endpoint = "https://anime-backend-cuv2.onrender.com/graphql/";
-				const headers = {
-					"content-type": "application/json",
-					Authorization: `Bearer ${this.token}`,
-				};
-
-				const graphqlQuery = {
-					query: `{
+        const graphqlQuery = {
+          query: `{
 						allAwards{
 							edges{
 							  node{
@@ -96,68 +94,59 @@ export const useUserStore = defineStore("user", {
 							}
 						  }
 							}`,
-					variables: {},
-				};
+          variables: {},
+        };
 
-				const options = {
-					method: "POST",
-					headers: headers,
-					body: JSON.stringify(graphqlQuery),
-				};
+        const options = {
+          method: "POST",
+          headers: headers,
+          body: JSON.stringify(graphqlQuery),
+        };
 
-				const response = await fetch(endpoint, options);
-				const awardData = await response.json();
+        const response = await fetch(endpoint, options);
+        const awardData = await response.json();
 
+        awardData.data.allAwards.edges.forEach((node) => {
+          const awardName = node.node.awardName;
+          if (this.allAwards.includes(awardName)) {
+          } else {
+            this.allAwards.push(node.node.awardName);
+          }
+        });
+        // this.allAwards = []
 
-				
+        // return this.allAwards
+        // const refinedAnimeData = animeData.data.allAnime.edges[0].node;
 
-				
-				awardData.data.allAwards.edges.forEach(node => {
+        // refinedAnimeData.animeGenre = refinedAnimeData.animeGenre.edges.map((edge: any) => {
+        // 	return edge.node.genre;
+        // });
 
-					const awardName = node.node.awardName
-					if (this.allAwards.includes(awardName)) {
+        // refinedAnimeData.animeStudio = refinedAnimeData.animeStudio.edges[0].node.studio;
 
-						
-					} else {
-						this.allAwards.push(node.node.awardName)
-					}
-					
-				});
-				// this.allAwards = []
+        // refinedAnimeData.animeAwards = refinedAnimeData.animeAwards.edges.map(
+        // 	(edge: any) => {
+        // 		return edge.node.id;
+        // 	}
+        // );
 
-				// return this.allAwards
-				// const refinedAnimeData = animeData.data.allAnime.edges[0].node;
+        // return refinedAnimeData;
+      } catch (error) {
+        alert("You need to be logged in");
+        return navigateTo("/login");
+      }
+    },
 
-				// refinedAnimeData.animeGenre = refinedAnimeData.animeGenre.edges.map((edge: any) => {
-				// 	return edge.node.genre;
-				// });
+    async getOneAnime() {
+      try {
+        const endpoint = "https://anime-backend-cuv2.onrender.com/graphql/";
+        const headers = {
+          "content-type": "application/json",
+          Authorization: `Bearer ${this.token}`,
+        };
 
-				// refinedAnimeData.animeStudio = refinedAnimeData.animeStudio.edges[0].node.studio;
-
-				// refinedAnimeData.animeAwards = refinedAnimeData.animeAwards.edges.map(
-				// 	(edge: any) => {
-				// 		return edge.node.id;
-				// 	}
-				// );
-
-				// return refinedAnimeData;
-			} catch (error) {
-				alert("You need to be logged in")
-				return navigateTo("/login")
-			}
-		},
-		
-
-		async getOneAnime() {
-			try {
-				const endpoint = "https://anime-backend-cuv2.onrender.com/graphql/";
-				const headers = {
-					"content-type": "application/json",
-					Authorization: `Bearer ${this.token}`,
-				};
-
-				const graphqlQuery = {
-					query: `{
+        const graphqlQuery = {
+          query: `{
 								allAnime(malId: ${this.animeId}) {
 									edges {
 										node {
@@ -198,166 +187,162 @@ export const useUserStore = defineStore("user", {
 									}
 								}
 							}`,
-					variables: {},
-				};
+          variables: {},
+        };
 
-				const options = {
-					method: "POST",
-					headers: headers,
-					body: JSON.stringify(graphqlQuery),
-				};
+        const options = {
+          method: "POST",
+          headers: headers,
+          body: JSON.stringify(graphqlQuery),
+        };
 
-				const response = await fetch(endpoint, options);
-				const data = await response.json();
+        const response = await fetch(endpoint, options);
+        const data = await response.json();
 
-				const dataRes = data.data.allAnime.edges[0].node;
+        const dataRes = data.data.allAnime.edges[0].node;
 
-				dataRes.animeGenre = dataRes.animeGenre.edges.map((edge: any) => {
-					return edge.node.genre;
-				});
+        dataRes.animeGenre = dataRes.animeGenre.edges.map((edge: any) => {
+          return edge.node.genre;
+        });
 
-				dataRes.animeStudio = dataRes.animeStudio.edges.map((edge: any) => {
-					return edge.node.studio;
-				});
+        dataRes.animeStudio = dataRes.animeStudio.edges.map((edge: any) => {
+          return edge.node.studio;
+        });
 
-				dataRes.animeAwards = dataRes.animeAwards.edges.map((edge: any) => {
-					return edge.node.id;
-				});
+        dataRes.animeAwards = dataRes.animeAwards.edges.map((edge: any) => {
+          return edge.node.id;
+        });
 
-				const animeData = dataRes;
+        const animeData = dataRes;
 
+        return animeData;
+      } catch (error) {
+        alert(error);
+      }
+    },
+    async login(res: any) {
+		console.log(res.code)
+      try {
 
+        await axios
+          .post(
+            "https://anime-backend-cuv2.onrender.com/social-login/google/",
+            {
+              "code": res.code,
+            }
+          )
+          .then((res) => {
+            this.token = res.data.access_token;
+            // localStorage.setItem('token', JSON.stringify(this.token))
+            axios
+              .get("https://anime-backend-cuv2.onrender.com/auth/user/", {
+                headers: { Authorization: `Bearer ${res.data.access_token}` },
+              })
+              .then((res) => {
+                let index = res.data.email.indexOf("@");
 
-				return animeData;
-			} catch (error) {
-				alert(error)
-			}
-		},
-		async login(res: any) {
-			
-			try {
+                let account = res.data.email.slice(index + 1);
 
-				axios
-					.post("https://anime-backend-cuv2.onrender.com/social-login/google/", {
-						"code": res.code,
-					})
-					.then((res) => {
+                //add teacher later
+                if (account != ("nycstudents.net" || "schools.nyc.gov")) {
+                  this.token = null;
+                  return alert(
+                    "Need to login with your school account (i.e. nycstudents.net)"
+                  );
+                }
 
-						this.token = res.data.access_token;
-						// localStorage.setItem('token', JSON.stringify(this.token))
-						axios
-							.get("https://anime-backend-cuv2.onrender.com/auth/user/", {
-								headers: { Authorization: `Bearer ${res.data.access_token}` },
-							})
-							.then((res) => {
+                // localStorage.setItem("user", res.data.first_name)
+                // this.userData = localStorage.getItem("user")
+                // this.user = res.data.first_name
 
+                this.userID = res.data.pk;
+                this.username = res.data.username;
+                // this.userData = res.data;
+                this.first_name = res.data.first_name;
+                this.last_name = res.data.last_name;
+                this.email = res.data.email;
+                this.isAuthenticated = true;
+                this.redirect = true;
 
-								let index = res.data.email.indexOf("@");
+                return navigateTo("/");
+                // this.$router.push("/")
+                // router.push({ path: "/"})
+              });
+          });
+      } catch (error) {
+        alert(error);
+        // const response = error.response?.data;
+        // if (
+        //   response?.non_field_errors &&
+        //   Array.isArray(response?.non_field_errors) &&
+        //   response?.non_field_errors.length === 1
+        // ) {
+        //   return `/auth/login?error=${encodeURIComponent(
+        //     response?.non_field_errors[0]
+        //   )}`;
+        // }
 
+        // return false;
+      }
+    },
+    async checkCookie() {
+      try {
+        // let user = useCookie("user")
 
+        const res = await axios
+          .get("https://anime-backend-cuv2.onrender.com/auth/user/", {
+            headers: { Authorization: `Bearer ${this.token}` },
+          })
+          .then((res) => {});
+      } catch (error) {
+        if (!this.token) {
+          return;
+        } else if (
+          (error = "AxiosError: Request failed with status code 401")
+        ) {
+          alert("Your session has expired. Please login again!");
+          this.logout();
+          return navigateTo("/login");
 
-								let account = res.data.email.slice(index + 1);
+          //add router.push
+        }
+      }
+    },
+    logout() {
+      try {
+        console.log("logout");
+        // let user = useCookie('user')
+        // user = null
+        // localStorage.removeItem("token");
+        // location.reload();
+        this.username = null;
+        // this.userData = res.data;
+        this.first_name = null;
+        this.last_name = null;
+        this.email = null;
+        this.isAuthenticated = false;
+        this.token = null;
+        this.userID = null;
+        // this.$router.push("/")
+        // googleLogout();
+      } catch (error) {
+        alert(error);
+      }
+    },
+    // logout() {
+    //     this.userData = null;
+    //     this.token = null;
+    //     localStorage.removeItem("user");
+    //     localStorage.removeItem("token");
+    //     location.reload();
+    //     this.isAuthenticated = false;
+    //     gapi.auth2.
+    //   },
+  },
 
-								//add teacher later
-								if (account != ("nycstudents.net" || "schools.nyc.gov")) {
-									this.token = null;
-									return alert(
-										"Need to login with your school account (i.e. nycstudents.net)"
-									);
-								}
-
-								// localStorage.setItem("user", res.data.first_name)
-								// this.userData = localStorage.getItem("user")
-								// this.user = res.data.first_name
-
-								this.userID = res.data.pk
-								this.username = res.data.username;
-								// this.userData = res.data;
-								this.first_name = res.data.first_name;
-								this.last_name = res.data.last_name;
-								this.email = res.data.email;
-								this.isAuthenticated = true;
-								this.redirect = true;
-
-								return navigateTo("/");
-								// this.$router.push("/")
-								// router.push({ path: "/"})
-							});
-					});
-			} catch (error) {
-				alert(error)
-				// const response = error.response?.data;
-				// if (
-				//   response?.non_field_errors &&
-				//   Array.isArray(response?.non_field_errors) &&
-				//   response?.non_field_errors.length === 1
-				// ) {
-				//   return `/auth/login?error=${encodeURIComponent(
-				//     response?.non_field_errors[0]
-				//   )}`;
-				// }
-
-				// return false;
-			}
-		},
-		async checkCookie() {
-			try {
-				// let user = useCookie("user")
-
-				const res = await axios
-					.get("https://anime-backend-cuv2.onrender.com/auth/user/", {
-						headers: { Authorization: `Bearer ${this.token}` },
-					})
-					.then((res) => {});
-
-			} catch (error) {
-				if (!this.token) {
-					return;
-				} else if ((error = "AxiosError: Request failed with status code 401")) {
-
-					alert("Your session has expired. Please login again!");
-					this.logout();
-					return navigateTo("/login");
-
-					//add router.push
-				}
-			}
-		},
-		logout() {
-			try {
-				console.log("logout")
-				// let user = useCookie('user')
-				// user = null
-				// localStorage.removeItem("token");
-				// location.reload();
-				this.username = null;
-				// this.userData = res.data;
-				this.first_name = null;
-				this.last_name = null;
-				this.email = null;
-				this.isAuthenticated = false;
-				this.token = null;
-				this.userID = null
-				// this.$router.push("/")
-				// googleLogout();
-			} catch (error) {
-				alert(error)
-			}
-		},
-		// logout() {
-		//     this.userData = null;
-		//     this.token = null;
-		//     localStorage.removeItem("user");
-		//     localStorage.removeItem("token");
-		//     location.reload();
-		//     this.isAuthenticated = false;
-		//     gapi.auth2.
-		//   },
-	},
-
-	// persist: {
-	//     storage: persistedState.cookiesWithOptions({
-	//       sameSite: 'strict',
-	//     }),
-	//   },
+  // persist: {
+  //     storage: persistedState.cookiesWithOptions({
+  //       sameSite: 'strict',
+  //     }),
+  //   },
 });
