@@ -108,7 +108,7 @@ function searchAnime(text: String) {
     filteredAnime.value = userStore.allAnime.filter((anime) =>
       anime.anime_name.toLowerCase().includes(text.toLowerCase())
     );
-    // filteredAnime.value = filteredAnime.value.splice(20)
+    filteredAnime.value = filteredAnime.value.slice(0,20)
   } else if (isCharacter.value) {
     characterSearching.value = false;
     const addCharactersArray = allCharacters.value.concat(characters.value);
@@ -116,6 +116,7 @@ function searchAnime(text: String) {
     filteredCharacters.value = addCharactersArray.filter((character) =>
       character.characterName.toLowerCase().includes(text.toLowerCase())
     );
+    filteredCharacters.value = filteredCharacters.value.slice(0, 20)
   }
 }
 
