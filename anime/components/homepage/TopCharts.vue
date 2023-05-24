@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts">
-import EpisodeSVG from "../EpisodeSvg.vue";
+import EpisodeSVG from "../episodeSvg.vue"
 import { Icon } from '#components'
 
 export default {
