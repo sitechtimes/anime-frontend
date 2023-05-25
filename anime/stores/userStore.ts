@@ -249,7 +249,7 @@ export const useUserStore = defineStore("user", {
 							.get("http://127.0.0.1:8000/auth/user/", {
 								headers: { Authorization: `Bearer ${res.data.access_token}` },
 							})
-							.then((res) => {
+							.then(async (res) => {
 
 
 								let index = res.data.email.indexOf("@");
@@ -278,10 +278,34 @@ export const useUserStore = defineStore("user", {
 								this.email = res.data.email;
 								this.isAuthenticated = true;
 								this.redirect = true;
+								const endpoint = "http://127.0.0.1:8000/graphql/";
+      const headers = {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${this.token}`,
+      };
+      const graphqlQuery = {
+        query: `{
+			userAnimeData(id: ${this.userID}) {
+			  admin
+			}
+		  }`,
+        variables: {},
+      };
+      const options = {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify(graphqlQuery),
+      };
+      const response = await fetch(endpoint, options);
+      const userData = await response.json();
+
+	  console.log(userData.data.userAnimeData)
+
 
 								return navigateTo("/");
 								// this.$router.push("/")
 								// router.push({ path: "/"})
+								
 							});
 					});
 			} catch (error) {
