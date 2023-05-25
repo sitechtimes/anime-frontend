@@ -19,10 +19,10 @@
 					</div>
 					<div class="page-buttonBox">
 						<button class="page-button" v-on:click="previous">
-							<LeftPageButton :pageExist="pageExistLeft" />
+							<LeftPageButtonSvg :pageExist="pageExistLeft" />
 						</button>
 						<button class="page-button" v-on:click="next">
-							<RightPageButton :pageExist="pageExistRight" />
+							<RightPageButtonSvg :pageExist="pageExistRight" />
 						</button>
 					</div>
 				</div>
@@ -73,7 +73,7 @@
 						@change="selectPage(1)"
 					>
 						<option value="" disabled selected>Select Type</option>
-						<option v-for="type in types" :value="type">{{ type }}</option>
+						<option v-for="mtype in types" :value="mtype">{{ mtype }}</option>
 					</select>
 				</div>
 				<div class="allAnime-filterBox">
