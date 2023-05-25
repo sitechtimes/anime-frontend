@@ -216,6 +216,8 @@ genres.value = [
 	"Avant Garde",
 	"Gourmet",
 	"Slice of Life",
+	"Girls Love",
+	"Boys Love",
 ];
 
 for (let i = 2021; i >= 1990; i--) {
@@ -300,21 +302,6 @@ function filter(): animeRest[] {
 				if (animeWords[i].startsWith(textResults[0])) {
 					if (textResults.length == 1) {
 						searchResult.push(anime);
-					} else {
-						const animeWordsSlice = animeWords
-							.slice(i, animeWords.length)
-							.join("")
-							.replace(/[^a-zA-Z ]/, "")
-							.replace(/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/, "");
-
-						const textResultsSlice = textResults
-							.join("")
-							.replace(/[^a-zA-Z ]/, "")
-							.replace(/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/, "");
-
-						if (animeWordsSlice.startsWith(textResultsSlice)) {
-							searchResult.push(<animeRest>anime);
-						}
 					}
 				}
 			}
