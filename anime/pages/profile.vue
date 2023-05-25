@@ -98,6 +98,8 @@ const userStore = useUserStore();
 const firstName = userStore.first_name;
 const lastName = userStore.last_name;
 const emailDOE = userStore.email;
+
+
 </script>
 
 <script lang="ts">
