@@ -116,7 +116,7 @@ async function getUserProfile() {
 				const graphqlQuery = {
 					query: `
 query{
-  userAnimeData(id:2) {
+  userAnimeData(id:${userStore.userID}) {
     userAnime{
       edges {
         node{
