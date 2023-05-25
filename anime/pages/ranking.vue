@@ -4,13 +4,13 @@
         <h2 id="rankings-title">Top Anime of the Month</h2>
         <div class="monthly-ranking-box">
             <RankingCard
-                v-for="anime in ranking_arr"
+                v-for="(anime, index) in ranking_arr"
                 :key="anime.id"
-                :rank="anime.avg_rating"
+                :stars="anime.avg_rating"
                 :title="anime.anime_name"
                 :studio="anime.anime_studio"
-      
-                :img="anime.image_url"
+                :rank="index + 1"
+                :img="anime.large_image_url"
             />
         </div>
         <div class="monthly-ranking-graph"></div>
@@ -23,7 +23,7 @@ import RankingCard from "~~/components/rankingpage/RankingCard.vue";
 
 import { animeRest } from "~~/types/anime";
 import { useUserStore } from "~~/stores/userStore";
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 
 const userStore = useUserStore();
 const ranking_arr = ref()
@@ -36,7 +36,7 @@ onMounted(() => {
     const arr_anime = JSON.parse(JSON.stringify(userStore.allAnime))
     arr_anime.sort((a: any, b: any) => b.avg_rating - a.avg_rating);
     console.log(arr_anime)
-    const x = arr_anime.slice(1,10)
+    const x = arr_anime.slice(1,11)
     ranking_arr.value = x
 	// userStore
 	// 	.getAllAnime()
