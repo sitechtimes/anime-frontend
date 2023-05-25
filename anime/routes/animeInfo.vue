@@ -69,16 +69,16 @@ function aired(airTimeStart: string, airTimeEnd: string): string {
 			return day;
 		}
 	}
-	function dat(date: string): string {
+	function animeDate(date: string): string {
 		const dateArr = date.split("-");
 		const month = changeMonth(dateArr[1]);
 		const day = changeDay(dateArr[2]);
 		return month + " " + day + ", " + dateArr[0];
 	}
 	if (airTimeEnd == null) {
-		return dat(airTimeStart);
+		return animeDate(airTimeStart);
 	} else {
-		const time = dat(airTimeStart) + " to " + dat(airTimeEnd);
+		const time = animeDate(airTimeStart) + " to " + animeDate(airTimeEnd);
 		return time;
 	}
 }

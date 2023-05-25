@@ -109,7 +109,7 @@ onMounted(() => {
 		});
 });
 
-function next(): void {
+function next() {
 	if (userStore.endPageIndex < userStore.airingAnime.length) {
 		userStore.startPageIndex += 11;
 		userStore.endPageIndex += 11;
@@ -152,97 +152,6 @@ function selectPage(num: number): void {
 		userStore.endPageIndex
 	);
 }
-</script>
-
-<script lang="ts">
-export default {
-	data() {
-		return {
-			top: [
-				{
-					id: 1,
-					img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-					episode: 126,
-					votes: 100,
-					title: "One Piecesd dflkjasdfk ldkflksdjkldfalsdknflasnflds",
-					rank: 1,
-				},
-				{
-					id: 2,
-					img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-					episode: 1252,
-					votes: 100,
-					title: "One Piecesd dflkjasdfk ldkflksdjkldfalsdknflasnflds",
-					rank: 2,
-				},
-				{
-					id: 3,
-					img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-					episode: 129,
-					votes: 100,
-					title: "nsdlfnsflksdnflknslfsdlnfldsnfls",
-					rank: 3,
-				},
-				{
-					id: 4,
-					img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-					episode: 125,
-					votes: 100,
-					title: "One Piece",
-					rank: 4,
-				},
-				{
-					id: 5,
-					img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-					episode: 121,
-					votes: 100,
-					title: "One Piece",
-					rank: 5,
-				},
-				{
-					id: 6,
-					img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-					episode: 125,
-					votes: 100,
-					title: "One Piece",
-					rank: 6,
-				},
-				{
-					id: 7,
-					img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-					episode: 125,
-					votes: 100,
-					title: "One Piece",
-					rank: 7,
-				},
-				{
-					id: 8,
-					img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-					episode: 125,
-					votes: 100,
-					title: "One Piece",
-					rank: 8,
-				},
-				{
-					id: 9,
-					img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-					episode: 125,
-					votes: 100,
-					title: "One Piece",
-					rank: 9,
-				},
-				{
-					id: 10,
-					img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-					episode: 125,
-					votes: 100,
-					title: "One Piece",
-					rank: 10,
-				},
-			],
-		};
-	},
-};
 </script>
 
 <style scoped>

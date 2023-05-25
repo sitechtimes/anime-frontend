@@ -189,9 +189,6 @@ const media_status = ref<string>("");
 const media_type = ref<string>("");
 const media_sort = ref<string>("");
 
-if (userStore.startPageIndex == 0) {
-	pageExistLeft.value = false;
-}
 
 const loadingAnime: number[] = [...Array(14).keys()];
 const loading = ref<boolean>(true);
@@ -348,17 +345,17 @@ function filter(): animeRest[] {
 	});
 
 	if (media_sort.value == "Release Date") {
-		newFilterAnime.sort((a: animeRest, b: animeRest) => {
-			if (a.season == null) {
-				a.season = "0 0";
+		newFilterAnime.sort((anime1: animeRest, anime2: animeRest) => {
+			if (anime1.season == null) {
+				anime1.season = "0 0";
 			}
-			if (b.season == null) {
-				b.season = "0 0";
+			if (anime2.season == null) {
+				anime2.season = "0 0";
 			}
-			const aSeason = a.season.split(" ")[0];
-			const aYear = a.season.split(" ")[1];
-			const bSeason = b.season.split(" ")[0];
-			const bYear = b.season.split(" ")[1];
+			const aSeason = anime1.season.split(" ")[0];
+			const aYear = anime1.season.split(" ")[1];
+			const bSeason = anime2.season.split(" ")[0];
+			const bYear = anime2.season.split(" ")[1];
 
 			if (aYear == bYear) {
 				if (aSeason == bSeason) {
@@ -416,7 +413,7 @@ function filter(): animeRest[] {
 	return newFilterAnime;
 }
 
-function clearFilter() {
+function clearAllFilter() {
 	media_season.value = "";
 	media_year.value = "";
 	media_status.value = "";
@@ -441,7 +438,7 @@ function goToSeachAnime() {
 	);
 }
 
-function selectPage(num: number): void {
+function selectPage(num: number) {
 	userStore.startPageIndex = num * 35 - 35;
 	userStore.endPageIndex = num * 35 + 1;
 
@@ -454,12 +451,12 @@ function selectPage(num: number): void {
 	);
 }
 
-function toTop(): void {
+function toTop() {
 	window.scrollTo({ top: 0, behavior: "auto" });
 }
 </script>
 
-<style>
+<style scoped>
 .home-body {
 	display: flex;
 	flex-direction: row;
