@@ -66,7 +66,6 @@
 <script setup lang="ts">
 import { animeRest } from "~~/types/anime";
 import { useUserStore } from "~~/stores/userStore";
-import { ref } from "vue";
 
 const userStore = useUserStore();
 
