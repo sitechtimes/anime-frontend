@@ -5,7 +5,7 @@
 			:episodes="animeInfoData.episodes"
 			:mediaType="animeInfoData.mediaType"
 			:status="animeInfoData.status"
-			:aired="aired(animeInfoData.airedFrom, animeInfoData.airedTo)"
+			:aired="time"
 			:genres="animeInfoData.animeGenre"
 			:synopsis="animeInfoData.summary"
 			:imageUrl="animeInfoData.largeImageUrl"
@@ -28,8 +28,13 @@ onMounted(() => {
 	});
 });
 
+const time = ref<string>("");
+
+time.value = aired(animeInfoData.value.airTimeStart, animeInfoData.value.airTimeEnd);
+console.log(time.value);
+
 function aired(airTimeStart: string, airTimeEnd: string): string {
-	function changeMonth(month: string): string {
+	function changeMonth(month: string) {
 		switch (month) {
 			case "01":
 				return "January";
@@ -71,10 +76,10 @@ function aired(airTimeStart: string, airTimeEnd: string): string {
 		return month + " " + day + ", " + dateArr[0];
 	}
 	if (airTimeEnd == null) {
-		console.log(airTimeStart);
-		return airTimeStart;
+		return dat(airTimeStart);
 	} else {
-		return dat(airTimeStart) + " to " + dat(airTimeEnd);
+		const time = dat(airTimeStart) + " to " + dat(airTimeEnd);
+		return time;
 	}
 }
 </script>

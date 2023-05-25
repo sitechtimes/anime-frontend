@@ -43,23 +43,7 @@
 						@change="selectPage(1)"
 					>
 						<option value="" disabled selected>Select Genre</option>
-						<option value="Fantasy">Fantasy</option>
-						<option value="Action">Action</option>
-						<option value="Adventure">Adventure</option>
-						<option value="Comedy">Comedy</option>
-						<option value="Drama">Drama</option>
-						<option value="Supernatural">Supernatural</option>
-						<option value="Suspense">Suspense</option>
-						<option value="Romance">Romance</option>
-						<option value="Award Winning">Award Winning</option>
-						<option value="Horror">Horror</option>
-						<option value="Sci-Fi">Sci-Fi</option>
-						<option value="Ecchi">Ecchi</option>
-						<option value="Mystery">Mystery</option>
-						<option value="Sports">Sports</option>
-						<option value="Avant Garde">Avant Garde</option>
-						<option value="Gourmet">Gourmet</option>
-						<option value="Slice of Life">Slice of Life</option>
+						<option v-for="genre in genres" :value="genre">{{ genre }}</option>
 					</select>
 				</div>
 				<div class="allAnime-filterBox">
@@ -69,10 +53,7 @@
 						@change="selectPage(1)"
 					>
 						<option value="" disabled selected>Select Season</option>
-						<option value="Spring">Spring</option>
-						<option value="Summer">Summer</option>
-						<option value="Fall">Fall</option>
-						<option value="Winter">Winter</option>
+						<option v-for="season in seasons" :value="season">{{ season }}</option>
 					</select>
 				</div>
 				<div class="allAnime-filterBox">
@@ -82,30 +63,7 @@
 						@change="selectPage(1)"
 					>
 						<option value="" disabled selected>Select Year</option>
-						<option value="2023">2023</option>
-						<option value="2022">2022</option>
-						<option value="2021">2021</option>
-						<option value="2020">2020</option>
-						<option value="2019">2019</option>
-						<option value="2018">2018</option>
-						<option value="2017">2017</option>
-						<option value="2016">2016</option>
-						<option value="2015">2015</option>
-						<option value="2014">2014</option>
-						<option value="2013">2013</option>
-						<option value="2012">2012</option>
-						<option value="2011">2011</option>
-						<option value="2010">2010</option>
-						<option value="2009">2009</option>
-						<option value="2008">2008</option>
-						<option value="2007">2007</option>
-						<option value="2006">2006</option>
-						<option value="2005">2005</option>
-						<option value="2004">2004</option>
-						<option value="2003">2003</option>
-						<option value="2002">2002</option>
-						<option value="2001">2001</option>
-						<option value="2000">2000</option>
+						<option v-for="year in years" :value="year">{{ year }}</option>
 					</select>
 				</div>
 				<div class="allAnime-filterBox">
@@ -115,11 +73,7 @@
 						@change="selectPage(1)"
 					>
 						<option value="" disabled selected>Select Type</option>
-						<option value="TV">TV</option>
-						<option value="Movie">Movie</option>
-						<option value="OVA">OVA</option>
-						<option value="ONA">ONA</option>
-						<option value="Special">Special</option>
+						<option v-for="type in types" :value="type">{{ type }}</option>
 					</select>
 				</div>
 				<div class="allAnime-filterBox">
@@ -129,8 +83,7 @@
 						@change="selectPage(1)"
 					>
 						<option value="" disabled selected>Select Status</option>
-						<option value="Currently Airing">Ongoing</option>
-						<option value="Finished Airing">Completed</option>
+						<option v-for="status in statuses" :value="status">{{ status }}</option>
 					</select>
 				</div>
 				<div class="allAnime-filterBox">
@@ -140,20 +93,16 @@
 						@change="selectPage(1)"
 					>
 						<option value="" disabled selected>Select Sort</option>
-						<option value="Release Date">Release Date</option>
-						<option value="Name A-Z">Name A-Z</option>
-						<option value="Most Liked">Most Liked</option>
-						<option value="Number of Episodes">Number of Episodes</option>
-						<option value="Highest Rated">Highest Rated</option>
+						<option v-for="sort in sorts" :value="sort">{{ sort }}</option>
 					</select>
 				</div>
 				<button class="button-clear" @click="clearFilter">Clear All Filter</button>
 			</div>
 			<div class="content-condition" v-if="loading">
-				<AnimeCardLoading v-for="anime in loadingAnime" />
+				<homepageAnimeCardLoading v-for="anime in loadingAnime" />
 			</div>
 			<div class="content-condition" v-else>
-				<AnimeCard
+				<homepageAnimeCard
 					@saveAnimeID="saveClickedAnimeID(anime.mal_id)"
 					v-for="anime in pageFilteredAnime"
 					:mal_id="anime.mal_id"
@@ -195,7 +144,7 @@
 							toTop();
 						"
 					>
-						<LeftPageButton :pageExist="pageExistLeft" />
+						<LeftPageButtonSvg :pageExist="pageExistLeft" />
 					</button>
 					<button
 						class="page-button"
@@ -204,7 +153,7 @@
 							toTop();
 						"
 					>
-						<RightPageButton :pageExist="pageExistRight" />
+						<RightPageButtonSvg :pageExist="pageExistRight" />
 					</button>
 				</div>
 			</div>
@@ -221,6 +170,14 @@ import { animeRest } from "~~/types/anime";
 const userStore = useUserStore();
 
 const text = ref<string>("");
+
+const genres = ref([] as string[]);
+const years = ref([] as string[]);
+const sorts = ref([] as string[]);
+const seasons = ref([] as string[]);
+const statuses = ref([] as string[]);
+const types = ref([] as string[]);
+
 const animeResults = ref([] as animeRest[]);
 
 const pageExistLeft = ref<boolean>(false);
@@ -240,6 +197,35 @@ if (userStore.startPageIndex == 0) {
 
 const loadingAnime: number[] = [...Array(14).keys()];
 const loading = ref<boolean>(true);
+
+genres.value = [
+	"Action",
+	"Adventure",
+	"Comedy",
+	"Supernatural",
+	"Suspense",
+	"Drama",
+	"Fantasy",
+	"Horror",
+	"Romance",
+	"Sci-Fi",
+	"Ecchi",
+	"Mystery",
+	"Sports",
+	"Award Winning",
+	"Avant Garde",
+	"Gourmet",
+	"Slice of Life",
+];
+
+for (let i = 2021; i >= 1990; i--) {
+	years.value.push(i.toString());
+}
+
+sorts.value = ["Release Date", "Name A-Z", "Number of Episodes", "Highest Rated"];
+seasons.value = ["Winter", "Spring", "Summer", "Fall"];
+statuses.value = ["Currently Airing", "Finished Airing"];
+types.value = ["TV", "Movie", "OVA", "ONA", "Special"];
 
 onMounted(() => {
 	userStore.animeId = 0;

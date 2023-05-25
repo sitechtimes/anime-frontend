@@ -19,19 +19,23 @@
 					</div>
 					<div class="page-buttonBox">
 						<button class="page-button" v-on:click="previous">
-							<LeftPageButton :pageExist="pageExistLeft" />
+							<LeftPageButtonSvg :pageExist="pageExistLeft" />
 						</button>
 						<button class="page-button" v-on:click="next">
-							<RightPageButton :pageExist="pageExistRight" />
+							<RightPageButtonSvg :pageExist="pageExistRight" />
 						</button>
 					</div>
 				</div>
 			</div>
 			<div class="airing-content" v-if="loading">
-				<AnimeCardLoading v-for="anime in loadingAnimeHome" :id="anime" :key="anime"/>
+				<homepageAnimeCardLoading
+					v-for="anime in loadingAnimeHome"
+					:id="anime"
+					:key="anime"
+				/>
 			</div>
 			<div class="airing-content" v-else>
-				<AnimeCard
+				<homepageAnimeCard
 					@saveAnimeID="saveClickedAnimeID(anime.mal_id)"
 					v-for="anime in airingAnime"
 					:id="anime.mal_id"
@@ -46,7 +50,7 @@
 		</div>
 		<div class="topCharts-container">
 			<h2 class="topCharts-title">Top Charts</h2>
-			<TopCharts
+			<homepageTopCharts
 				v-for="charts in top"
 				:key="charts.id"
 				:img="charts.img"
@@ -60,11 +64,6 @@
 </template>
 
 <script setup lang="ts">
-import AnimeCard from "./AnimeCard.vue";
-import TopCharts from "./TopCharts.vue";
-import RightPageButton from "../RightPageButtonSvg.vue";
-import LeftPageButton from "../LeftPageButtonSvg.vue";
-import AnimeCardLoading from "./AnimeCardLoading.vue";
 import { animeRest } from "~~/types/anime";
 import { useUserStore } from "~~/stores/userStore";
 import { ref } from "vue";
