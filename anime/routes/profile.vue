@@ -147,7 +147,7 @@ export default {
         currentAnimes: [
             {
                 animeID: "01",
-                title: "One Punch Man",
+                title: "One Piece",
                 img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
             },
             {
@@ -194,7 +194,7 @@ export default {
         favoriteAnimes: [
             {
                 animeID: "01",
-                title: "One Punch Man",
+                title: "One Piece",
                 img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
             },
             {
@@ -241,7 +241,7 @@ export default {
         RatedAnimes: [
             {
                 animeID: "01",
-                title: "One Punch Man",
+                title: "One Piece",
                 img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
             },
             {
@@ -362,30 +362,30 @@ export default {
     width: 100%;
     height: 100%;
     display: flex;
-    justify-content: center;
-    color: var(--white);
     margin-bottom: 8%;
+    color: var(--white);
+    justify-content: center;
 }
 .tabs-class .tab {
-    background-color: var(--tertiary);
     width: 70vw;
     height: 100%;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     position: relative;
     border-radius: 5px;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--tertiary);
     box-shadow: 0 4px 8px 0 var(--tertiary);
 }
 .banner {
     width: 80vw;
     height: 25vh;
-    object-fit: cover;
-    object-position: bottom;
-    position: absolute;
     margin: 0 auto;
+    object-fit: cover;
+    position: absolute;
     border-radius: 1rem;
+    object-position: bottom;
 }
 .profile-grade {
     width: 20rem;
@@ -394,9 +394,9 @@ export default {
     font-weight: var(--fw-light);
 }
 .profile-info {
-    display: flex;
     width: 40vw;
     height: 10rem;
+    display: flex;
     margin-top: 20rem;
     margin-right: 25vw;
     position: relative;
@@ -405,8 +405,8 @@ export default {
 .profile-img {
     width: 15rem;
     height: 15rem;
-    border-radius: 50%;
     object-fit: cover;
+    border-radius: 50%;
 }
 .profile-name {
     margin-top: 5rem;
@@ -458,8 +458,8 @@ export default {
     border-radius: 1rem;
 }
 .middle-title {
-    margin-bottom: 2.5%;
     margin-left: 5%;
+    margin-bottom: 2.5%;
     font-size: var(--h4);
 }
 /* overall best anime (gray section) */
@@ -590,17 +590,18 @@ export default {
     height: 20vh;
 }
 .anime-title {
+    height: 2rem;
     font-size: var(--h6);
 }
 .carousel-arrow {
     font-size: var(--h3);
 }
 .pf-carousel {
-    height: 28vh;
+    height: 26vh;
 }
 .pf-carousel-slide {
     width: 13vw;
-    height: 22vh;
+    height: 24vh;
     margin: auto;
 }
 .profile-img {
