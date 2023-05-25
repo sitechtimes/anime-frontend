@@ -51,7 +51,7 @@
                             <h3 class="tab-detail">Technime</h3>
                         </div>
                         <div class="tab-bottom">
-                            <h3 class="tab-title">Favorites</h3>
+                            <h3 class="tab-title">Currently Watching</h3>
                             <div class="profile-slide">
                                 <div class="pf-carousel">
                                     <AnimeList
@@ -92,12 +92,112 @@
 
 <script setup lang="ts">
 import { useUserStore } from "~~/stores/userStore";
+import { ref, onMounted } from "vue" 
 
 const userStore = useUserStore();
 
 const firstName = userStore.first_name;
 const lastName = userStore.last_name;
 const emailDOE = userStore.email;
+const currentlyAnimes = ref([])
+const watchlist = ref([])
+const votedAnimes = ref([])
+const votedCharacters = ref([])
+
+
+async function getUserProfile() {
+    try {
+        const endpoint = "http://127.0.0.1:8000/graphql/";
+				const headers = {
+					"content-type": "application/json",
+					Authorization: `Bearer ${userStore.token}`,
+				};
+
+				const graphqlQuery = {
+					query: `
+query{
+  userAnimeData(id:2) {
+    userAnime{
+      edges {
+        node{
+          anime{
+            animeName
+          },
+          watchingStatus
+          rating
+        }
+      },
+      
+    },
+    userVotedCharacters{
+      edges {
+        node{
+          award{
+            awardName,
+            date
+          },
+          character {
+            characterName
+          }
+        },
+        
+      },
+      
+    }
+    ,
+    userVotedAnimes{
+      edges{
+        node{
+          award{
+            awardName,
+            date
+          }
+            ,
+          anime{
+            animeName
+          }
+        },
+        
+      },
+      
+    }
+  }
+}`,
+					variables: {},
+				};
+
+				const options = {
+					method: "POST",
+					headers: headers,
+					body: JSON.stringify(graphqlQuery),
+				};
+
+				const response = await fetch(endpoint, options);
+				const userData = await response.json();
+
+
+                watchlist.value = userData.data.userAnimeData.userAnime.edges.filter(node => 
+                // console.log(node.node.watchingStatus)
+                    node.node.watchingStatus == "WATCHLIST"
+                )
+                currentlyAnimes.value = userData.data.userAnimeData.userAnime.edges.filter(node => 
+                // console.log(node.node.watchingStatus)
+                    node.node.watchingStatus == "CURRENTLY_WATCHING"
+                )
+
+                votedAnimes.value = userData.data.userAnimeData.userVotedAnimes.edges
+                votedCharacters.value = userData.data.userAnimeData.userVotedCharacters.edges
+                console.log(watchlist.value, currentlyAnimes.value, votedAnimes.value, votedCharacters.value)
+
+    } catch (error) {
+        alert(error)
+    }
+}
+
+
+onMounted(() => {
+    getUserProfile()
+})
 
 
 </script>
