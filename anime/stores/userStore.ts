@@ -30,6 +30,7 @@ export const useUserStore = defineStore("user", {
 		userData: null,
 		token: null,
 		isAuthenticated: false,
+		admin_status: false,
 		// userData: JSON.parse(localStorage.getItem("user")),
 		// token: JSON.parse(localStorage.getItem("token"))
 	}),
@@ -268,7 +269,7 @@ export const useUserStore = defineStore("user", {
 								// localStorage.setItem("user", res.data.first_name)
 								// this.userData = localStorage.getItem("user")
 								// this.user = res.data.first_name
-
+								this.admin_status = res.data.admin
 								this.userID = res.data.pk
 								this.username = res.data.username;
 								// this.userData = res.data;
