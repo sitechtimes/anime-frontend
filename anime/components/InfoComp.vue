@@ -33,9 +33,7 @@
           <p>{{ avgRating }}</p>
         </div>
         <div>
-          <!-- <button class="btn">Heart</button> -->
-          <!-- <button class="btn" id="watch" @click="add">Add to Watchlist</button> -->
-          <select id="doughtnut-graph"  v-model="watchStatus">
+          <select id="doughtnut-graph" class="select" v-model="watchStatus">
             <option value="NOT_WATCHING" selected>Not Watching</option>
             <option value="CURRENTLY_WATCHING">
               Currently Watching
@@ -44,7 +42,7 @@
             <option value="FINISHED_ANIME">Finished Anime</option>
           </select>
 
-          <select id="rating-form" v-model="rating">
+          <select id="rating-form" class="select" v-model="rating">
             <!-- <option v-if="change" value="" disabled selected>{{ userAnime.rating }}</option> -->
             <option v-if="change" value="0" disabled selected>
               {{ userAnime.rating }}
@@ -69,7 +67,7 @@
       <div class="info-block">
         <h2>Synopsis</h2>
         <div class="divider"></div>
-        <p class="w">{{ synopsis }}</p>
+        <p class="synopsis">{{ synopsis }}</p>
       </div>
       <div class="info-block">
         <h2>Characters</h2>
@@ -308,21 +306,6 @@ async function getUserProfile() {
 
     }
 
-    function add() {
-      addList.value = !addList.value;
-
-      const hi = document.getElementById("watch");
-      if (addList.value == true) {
-        hi!.innerHTML = "Added to Watchlist";
-        hi!.style.background = "rgb(255, 120, 140)";
-        hi!.style.filter = "opacity(80%)";
-      } else {
-        hi!.innerHTML = "Add to watchlist";
-        hi!.style.background = "lightpink";
-        hi!.style.filter = "none";
-      }
-    }
-
     watch(watchStatus, (newValue) => {
       changeWatchStatus()
     })
@@ -422,336 +405,6 @@ async function getUserProfile() {
     getAllRatings();
 })
 </script>
-<!-- 
-<script lang="ts">
-import starSVG from "../components/starSVG.vue";
-import LineChart from "../components/LineChart.vue";
-import { useUserStore } from "~~/stores/userStore";
-
-export default {
-  name: "AnimeInfo",
-  components: {
-    starSVG,
-    LineChart,
-  },
-  props: {
-    imageUrl: String,
-    mediaType: String,
-    episodes: Number,
-    status: String,
-    aired: String,
-    studios: Array,
-    genres: Array,
-    animeName: String,
-    synopsis: String,
-    characters: Array,
-    mal_id: String,
-    avgRating: Number,
-  },
-  setup() {
-    const userStore = useUserStore();
-
-    return {
-      userStore,
-    };
-  },
-  data: () => ({
-    addList: false,
-    watchStatus: "NOT_WATCHING",
-    rating: 0,
-    change: false,
-    userAnime: null,
-    ratingOne: [],
-    allRatings: [],
-	chartRatings:[],
-    loaded: false,
-    // characters: [
-    // 	{ name: "Alpha Red1" },
-    // 	{ name: "Alpha Red the Most Alpha of Reds" },
-    // 	{ name: "Alpha Red2" },
-    // 	{ name: "Alpha Red3" },
-    // 	{ name: "Alpha Red4" },
-    // 	{ name: "Alpha Red5" },
-    // 	{ name: "Al-fuh-red" },
-    // 	{ name: "Alfredo" },
-    // ],
-    chartData: {
-      labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-      datasets: [
-        {
-          label: "Rating Distribution",
-          //random data
-          // data: Array.from({ length: 10 }, () => Math.floor(Math.random() * 100)),
-          data: [],
-          fill: "start",
-          borderColor: "rgb(75, 192, 192)",
-          backgroundColor: "rgba(75, 192, 192, 0.2)",
-          pointStyle: false,
-        },
-      ],
-    },
-    chartOptions: {
-      scales: {
-        y: {
-          type: "linear",
-          min: 0,
-          beginAtZero: true,
-          drawticks: false,
-          grid: {
-            display: false,
-          },
-          display: false,
-          grace: "5%",
-        },
-        x: {
-          grid: {
-            display: false,
-          },
-          font: {
-            size: 30,
-          },
-        },
-      },
-      plugins: {
-        legend: false,
-        title: {
-          display: true,
-          text: "Rating Distribution",
-          padding: {
-            top: 10,
-            bottom: 30,
-          },
-          font: {
-            size: 20,
-          },
-        },
-      },
-      interaction: {
-        mode: "point",
-        intersect: false,
-      },
-      elements: {
-        line: {
-          cubicInterpolationMode: "monotone",
-        },
-      },
-    },
-  }),
-  watch: {
-    async watchStatus(newValue, oldValue) {
-
-      const endpoint = "http://127.0.0.1:8000/graphql/";
-      const headers = {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${this.userStore.token}`,
-      };
-      const graphqlQuery = {
-        query: `mutation{
-						userAnimeMutation(animeData:{animeId:"${this.mal_id}"}, userData:{userId:"${this.userStore.userID}"}, userAnimeData:{watchStatus: "${this.watchStatus}"}){
-    user{
-      user{
-        username
-      }
-    },
-    userAnime{
-      anime{
-        animeName
-      },
-      rating,
-      watchingStatus
-    },
-    anime{
-      animeName,
-      avgRating
-    }
-  }
-}`,
-        variables: {},
-      };
-      const options = {
-        method: "POST",
-        headers: headers,
-        body: JSON.stringify(graphqlQuery),
-      };
-      const response = await fetch(endpoint, options);
-      const mutationData = await response.json();
-
-
-
-
-    },
-    async rating(value) {
-
-      const endpoint = "http://127.0.0.1:8000/graphql/";
-      const headers = {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${this.userStore.token}`,
-      };
-      const graphqlQuery = {
-        query: `mutation{
-						userAnimeMutation(animeData:{animeId:"${this.mal_id}"}, userData:{userId:"${this.userStore.userID}"}, userAnimeData:{rating:${this.rating}}){
-    user{
-      user{
-        username
-      }
-    },
-    userAnime{
-      anime{
-        animeName
-      },
-      rating,
-      watchingStatus
-    },
-    anime{
-      animeName,
-      avgRating
-    }
-  }
-}`,
-        variables: {},
-      };
-      const options = {
-        method: "POST",
-        headers: headers,
-        body: JSON.stringify(graphqlQuery),
-      };
-      const response = await fetch(endpoint, options);
-      const mutationData = await response.json();
-
-      window.location.reload();
-    },
-  },
-  mounted() {
-    this.getUserProfile();
-    this.getAllRatings();
-  },
-  methods: {
-    async getUserProfile() {
-      const endpoint = "http://127.0.0.1:8000/graphql/";
-      const headers = {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${this.userStore.token}`,
-      };
-      const graphqlQuery = {
-        query: `{
-  userAnimeData(id:${this.userStore.userID}) {
-
-   userAnime{
-    edges{
-      node{
-        anime{
-          animeName,
-		  malId
-        },
-        rating,
-        watchingStatus
-      }
-    }
-  }
-}
-
-
-         
-}`,
-        variables: {},
-      };
-      const options = {
-        method: "POST",
-        headers: headers,
-        body: JSON.stringify(graphqlQuery),
-      };
-      const response = await fetch(endpoint, options);
-      const mutationData = await response.json();
-
-
-      mutationData.data.userAnimeData.userAnime.edges.forEach((element) => {
-
-        if (element.node.anime.malId == this.mal_id) {
-          this.userAnime = element.node;
-        }
-      });
-      // const userAnime = mutationData.data.userAnimeData.userAnime.edges.filter(node => {
-      // 	node.node.anime.animeName === "Your Lie in April"
-      // })
-
-
-      if (this.userAnime.watchingStatus != "NOT_WATCHING") {
-        this.watchStatus = this.userAnime.watchingStatus
-      }
-      if (this.userAnime.rating > 0) {
-        this.change = true;
-      } else {
-        this.change = false;
-      }
-
-    },
-    async getAllRatings() {
-      const endpoint = "http://127.0.0.1:8000/graphql/";
-      const headers = {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${this.userStore.token}`,
-      };
-      const graphqlQuery = {
-        query: `{
-  specificUserAnime(id:${this.mal_id}){
-    rating
-    # watchingStatus
-  }
-}`,
-        variables: {},
-      };
-      const options = {
-        method: "POST",
-        headers: headers,
-        body: JSON.stringify(graphqlQuery),
-      };
-      const response = await fetch(endpoint, options);
-      const ratingData = await response.json();
-
-
-      // const test = ratingData.data.specificUserAnime.filter(object =>
-      // 	object.rating == 6
-      // )
-
-
-      for (let i = 1; i <= 10; i++) {
-
-        this.allRatings.push([]);
-        this.allRatings[i - 1] = ratingData.data.specificUserAnime.filter(
-          (object) => object.rating == i
-        ).length;
-      }
-
-
-
-	  this.chartData.datasets[0].data = this.allRatings
-
-	  this.loaded = true
-	
-
-    },
-
-    test() {
-
-    },
-
-    add() {
-      this.addList = !this.addList;
-
-      const hi = document.getElementById("watch");
-      if (this.addList == true) {
-        hi!.innerHTML = "Added to Watchlist";
-        hi!.style.background = "rgb(255, 120, 140)";
-        hi!.style.filter = "opacity(80%)";
-      } else {
-        hi!.innerHTML = "Add to watchlist";
-        hi!.style.background = "lightpink";
-        hi!.style.filter = "none";
-      }
-    },
-  },
-};
-</script> -->
 
 <style scoped>
 #anime-info {
@@ -820,25 +473,20 @@ export default {
 .star {
   height: 1.5rem;
 }
-.w {
+.synopsis {
   font-size: var(--h5);
   font-weight: var(--fw-light);
   line-height: 3.5rem;
   word-spacing: 0.2rem;
   color: white;
 }
-.btn {
+.select {
+  border-radius: 15px;
   background-color: lightpink;
   font-size: var(--h5);
-  padding: 0.5rem 1rem;
-  margin-right: 1rem;
-  transition: 200ms all;
-}
-.btn:hover {
-  background-color: rgb(255, 120, 140);
-}
-#watch {
-  width: 18rem;
+  padding: 0.3rem 1rem;
+  margin-right: 2rem;
+  outline: none;
 }
 .divider {
   height: 0.2rem;
