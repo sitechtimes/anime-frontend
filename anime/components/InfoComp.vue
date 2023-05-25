@@ -60,8 +60,6 @@
             <option value="1">1</option>
           
           </select>
-          <!-- <starSVG class="star" /> -->
-          <!-- <button class="btn">Rate</button> -->
         </div>
       </div>
       <div class="info-block">
