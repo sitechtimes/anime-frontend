@@ -194,28 +194,6 @@ const media_sort = ref<string>("");
 const loadingAnime: number[] = [...Array(35).keys()];
 const loading = ref<boolean>(true);
 
-genres.value = [
-	"Action",
-	"Adventure",
-	"Comedy",
-	"Supernatural",
-	"Suspense",
-	"Drama",
-	"Fantasy",
-	"Horror",
-	"Romance",
-	"Sci-Fi",
-	"Ecchi",
-	"Mystery",
-	"Sports",
-	"Award Winning",
-	"Avant Garde",
-	"Gourmet",
-	"Slice of Life",
-	"Girls Love",
-	"Boys Love",
-];
-
 for (let i = 2021; i >= 1990; i--) {
 	years.value.push(i.toString());
 }
@@ -244,6 +222,12 @@ onMounted(() => {
 	loading.value = false;
 
 	text.value = userStore.search;
+
+	userStore.getAllGenre().then((arr) => {
+		arr.forEach((genre: { genre: string }) => {
+			genres.value.push(genre.genre);
+		});
+	});
 });
 
 function calculateTotalPage() {
@@ -435,6 +419,10 @@ function clearAllFilter() {
 	media_sort.value = "";
 	text.value = "";
 	animeResults.value = [];
+	userStore.animeId = 0;
+	userStore.startPageIndex = 0;
+	userStore.endPageIndex = animePerPage.value;
+	userStore.pageNumber = 1;
 
 	calculateTotalPage();
 
@@ -445,8 +433,8 @@ function clearAllFilter() {
 }
 
 function selectPage(num: number) {
-	userStore.startPageIndex = num * 35 - 35;
-	userStore.endPageIndex = num * 35 + 1;
+	userStore.startPageIndex = num * animePerPage.value - animePerPage.value + 1;
+	userStore.endPageIndex = num * animePerPage.value + 1;
 
 	const filterAnimeArr = filter();
 	userStore.filterAnime = filterAnimeArr;
