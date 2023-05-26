@@ -33,24 +33,24 @@
                         <div class="tab-bottom">
                             <h3 class="tab-title">Watchlist</h3>
                                 <div class="pf-carousel">
-                                    <button class="carousel-arrow left-arrow" v-on:click="currentLeft"> &lsaquo; </button>
+                                    <button class="carousel-arrow left-arrow" v-on:click="watchLeft"> &lsaquo; </button>
                                     <transition-group name="test" tag="div">
-                                        <div v-for="i in [currentIndex]" :key="i">
+                                        <div v-for="i in [watchIndex]" :key="i">
                                             <div class="pf-carousel-slide">
-                                            <img :src="showCurrent.img" class="anime-img"/>
-                                            <h3 class="anime-title"> {{ showCurrent.title }} </h3>
+                                            <img :src="showWatch.img" class="anime-img"/>
+                                            <h3 class="anime-title"> {{ showWatch.title }} </h3>
                                             </div>
                                             <div class="pf-carousel-slide">
-                                            <img :src="secondCurrent.img" class="anime-img"/>
-                                            <h3 class="anime-title"> {{ secondCurrent.title }} </h3>
+                                            <img :src="secondWatch.img" class="anime-img"/>
+                                            <h3 class="anime-title"> {{ secondWatch.title }} </h3>
                                             </div>
                                             <div class="pf-carousel-slide">
-                                            <img :src="thirdCurrent.img" class="anime-img"/>
-                                            <h3 class="anime-title"> {{ thirdCurrent.title }} </h3>
+                                            <img :src="thirdWatch.img" class="anime-img"/>
+                                            <h3 class="anime-title"> {{ thirdWatch.title }} </h3>
                                             </div>
                                         </div>
                                     </transition-group>
-                                    <button class="carousel-arrow right-arrow" v-on:click="currentRight"> &rsaquo; </button>
+                                    <button class="carousel-arrow right-arrow" v-on:click="watchRight"> &rsaquo; </button>
                                 </div>
                         </div>
                     </div>
@@ -142,27 +142,27 @@ export default {
     },
     data: () => ({
         ratedIndex: 0,
-        currentIndex: 0,
+        watchIndex: 0,
         favoriteIndex: 0,
-        currentAnimes: [
+        WatchlistAnimes: [
             {
                 animeID: "01",
-                title: "One Piece",
+                title: "One Punch Man",
                 img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
             },
             {
                 animeID: "02",
-                title: "Spy x Family",
+                title: "Dead Mount Death Play",
                 img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
             },
             {
                 animeID: "03",
-                title: "Chainsaw Man",
+                title: "Trigun Stampede",
                 img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
             },
             {
                 animeID: "04",
-                title: "Blue Lock",
+                title: "World Trigger",
                 img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
             },
             {
@@ -191,7 +191,7 @@ export default {
                 img: "https://wallpapercave.com/wp/wp4445507.jpg",
             },
         ],
-        favoriteAnimes: [
+        FavoriteAnimes: [
             {
                 animeID: "01",
                 title: "One Piece",
@@ -299,27 +299,27 @@ export default {
                 this.ratedIndex = 0
             }
         },
-        currentLeft () {
-            this.currentIndex -=1;
-            if ( this.currentIndex <= -1) {
-                this.currentIndex = this.currentAnimes.length-1
+        watchLeft () {
+            this.watchIndex -=1;
+            if ( this.watchIndex <= -1) {
+                this.watchIndex = this.WatchlistAnimes.length-1
             }
         },
-        currentRight () {
-            this.currentIndex +=1;
-            if ( this.currentIndex >= this.currentAnimes.length) {
-                this.currentIndex = 0
+        watchRight () {
+            this.watchIndex +=1;
+            if ( this.watchIndex >= this.WatchlistAnimes.length) {
+                this.watchIndex = 0
             }
         },
         favoriteLeft () {
             this.favoriteIndex -=1;
             if ( this.favoriteIndex <= -1) {
-                this.favoriteIndex = this.favoriteAnimes.length-1
+                this.favoriteIndex = this.FavoriteAnimes.length-1
             }
         },
         favoriteRight () {
             this.favoriteIndex +=1;
-            if ( this.favoriteIndex >= this.favoriteAnimes.length) {
+            if ( this.favoriteIndex >= this.FavoriteAnimes.length) {
                 this.favoriteIndex = 0
             }
         },
@@ -334,23 +334,23 @@ export default {
         thirdRated () {
             return this.RatedAnimes[Math.abs(this.ratedIndex+2) % this.RatedAnimes.length];
         },
-        showCurrent () {
-            return this.currentAnimes[Math.abs(this.currentIndex) % this.currentAnimes.length];
+        showWatch () {
+            return this.WatchlistAnimes[Math.abs(this.watchIndex) % this.WatchlistAnimes.length];
         },
-        secondCurrent () {
-            return this.currentAnimes[Math.abs(this.currentIndex+1) % this.currentAnimes.length];
+        secondWatch () {
+            return this.WatchlistAnimes[Math.abs(this.watchIndex+1) % this.WatchlistAnimes.length];
         },
-        thirdCurrent () {
-            return this.currentAnimes[Math.abs(this.currentIndex+2) % this.currentAnimes.length];
+        thirdWatch () {
+            return this.WatchlistAnimes[Math.abs(this.watchIndex+2) % this.WatchlistAnimes.length];
         },
         showFavorite () {
-            return this.favoriteAnimes[Math.abs(this.favoriteIndex) % this.favoriteAnimes.length];
+            return this.FavoriteAnimes[Math.abs(this.favoriteIndex) % this.FavoriteAnimes.length];
         },
         secondFavorite () {
-            return this.favoriteAnimes[Math.abs(this.favoriteIndex+1) % this.favoriteAnimes.length];
+            return this.FavoriteAnimes[Math.abs(this.favoriteIndex+1) % this.FavoriteAnimes.length];
         },
         thirdFavorite () {
-            return this.favoriteAnimes[Math.abs(this.favoriteIndex+2) % this.favoriteAnimes.length];
+            return this.FavoriteAnimes[Math.abs(this.favoriteIndex+2) % this.FavoriteAnimes.length];
         },
     },
 };
