@@ -78,8 +78,7 @@ body {
     --bg-primary: #272727;
     --bg-secondary: #2f2f2f;
     --alt-linear: #7926ff;
-    --info-btn: #ffb6c1;
-    --info-btn-click: #ff788c;
+    --info-select: #ffb6c1;
 
     /* font weight */
     --fw-light: 300;

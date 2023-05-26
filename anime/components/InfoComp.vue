@@ -4,7 +4,7 @@
       <img class="animeImage" :src="`${imageUrl}`" alt="Anime Cover" />
       <div class="quick-info">
         <div>
-          <h4>Information</h4>
+          <h4 class="info-head">Information</h4>
           <div class="divider"></div>
         </div>
         <p>Type: {{ mediaType }}</p>
@@ -27,7 +27,7 @@
     </div>
     <div class="column-2">
       <div class="info-block">
-        <p>{{ animeName }}</p>
+        <p class="anime-name">{{ animeName }}</p>
         <div class="star-rating">
           <starSVG class="star" />
           <p>{{ avgRating }}</p>
@@ -66,6 +66,7 @@
         <h2>Synopsis</h2>
         <div class="divider"></div>
         <p class="synopsis">{{ synopsis }}</p>
+        <button class="show" @click="showMore">Show More</button>
       </div>
       <div class="info-block">
         <h2>Characters</h2>
@@ -99,7 +100,7 @@
 import starSVG from "../components/starSVG.vue";
 import LineChart from "../components/LineChart.vue";
 import { useUserStore } from "~~/stores/userStore";
-import { ref, onMounted, watch } from "vue"
+import { ref, onMounted, watch, onUpdated } from "vue"
 
 let addList = ref(false)
 let watchStatus = ref("NOT_WATCHING")
@@ -110,6 +111,7 @@ let ratingOne = ref([])
 let allRatings = ref([])
 let chartRatings = ref([])
 let loaded = ref(false)
+const show = ref(false)
 
 const userStore = useUserStore()
 
@@ -402,11 +404,21 @@ async function getUserProfile() {
       getUserProfile();
     getAllRatings();
 })
+
+function showMore() {
+  show.value = !show.value
+  console.log(show.value)
+  // if (show.value = false) {
+  //   console.log("h synop")
+  // } else if (show.value = true) {
+  //   console.log("a synop")
+  // }
+}
 </script>
 
 <style scoped>
 #anime-info {
-  color: rgb(255, 255, 255);
+  color: var(--white);
   padding-top: 13vh;
   display: flex;
   justify-content: center;
@@ -419,7 +431,7 @@ async function getUserProfile() {
   top: 5vh;
 }
 .animeImage {
-  width: 15vw;
+  width: 100%;
   object-fit: cover;
 }
 .quick-info {
@@ -428,7 +440,7 @@ async function getUserProfile() {
   flex-direction: column;
   justify-content: center;
   row-gap: 1.5rem;
-  width: 15vw;
+  width: 100%;
   margin-top: 2vh;
   padding: 0.5rem 1rem;
   font-size: var(--h5);
@@ -450,6 +462,8 @@ async function getUserProfile() {
 }
 .info-block {
   margin-bottom: 5rem;
+  display: flex;
+  flex-direction: column;
 }
 .info-block h1 {
   font-size: 3.5rem;
@@ -460,6 +474,10 @@ async function getUserProfile() {
   font-size: var(--h3);
   font-weight: var(--fw-med);
   margin-bottom: 1rem;
+}
+.anime-name {
+	font-size: var(--h2);
+	font-weight: var(--fw-med);
 }
 .star-rating {
   display: flex;
@@ -476,19 +494,27 @@ async function getUserProfile() {
   font-weight: var(--fw-light);
   line-height: 3.5rem;
   word-spacing: 0.2rem;
-  color: white;
 }
 .select {
   border-radius: 15px;
-  background-color: lightpink;
+  background-color: var(--info-select);
   font-size: var(--h5);
   padding: 0.3rem 1rem;
   margin-right: 2rem;
   outline: none;
 }
+.show {
+	background: none;
+	color: var(--primary);
+	padding: 0;
+	font-size: var(--h5);
+	transition: 0ms;
+	align-self: flex-end;
+	/* display: none; */
+}
 .divider {
   height: 0.2rem;
-  background-color: white;
+  background-color: var(--white);
 }
 .character-container {
   display: flex;
@@ -513,12 +539,84 @@ async function getUserProfile() {
   object-fit: cover;
 }
 .character-name {
-  background-color: blue;
+  background-color: #b10064;;
   text-align: center;
   font-size: var(--h5);
   overflow: hidden;
   text-overflow: ellipsis;
   padding: 0 1rem;
   width: 9rem;
+}
+@media screen and (max-width: 1440px) {
+	.column-1 {
+		width: 23rem;
+	}
+	.column-2 {
+		margin-left: 4rem;
+	}
+  .info-block {
+    margin-bottom: 3rem;
+  }
+	.synopsis {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-line-clamp: 5;
+		-webkit-box-orient: vertical;
+	}
+	.show {
+		display: block;
+	}
+}
+
+@media screen and (max-width: 1200px) {
+	.synopsis, .show {
+		font-size: var(--h6);
+	}
+	.character {
+		width: 7rem;
+	}
+	.character-img {
+		height: 8rem;
+	}
+	.character-name {
+		font-size: var(--h7);
+	}
+}
+
+@media screen and (max-width: 1024px) {
+	.column-1 {
+		width: 21rem;
+	}
+	.quick-info {
+		font-size: var(--h8);
+	}
+	.info-head {
+		font-size: var(--h6);
+	}
+	.anime-name {
+		font-size: var(--h3);
+	}
+	.info-block h2 {
+		font-size: var(--h4);
+	}
+	.select {
+		font-size: var(--h6);
+	}
+}
+
+@media screen and (max-width: 915px) {
+	#anime-info {
+		flex-direction: column;
+		align-items: center;
+	}
+	.column-1 {
+		position: static;
+		align-self: auto;
+		width: 80vw;
+	}
+	.animeImage {
+		width: 21rem;
+	}
 }
 </style>
