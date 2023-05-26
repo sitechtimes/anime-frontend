@@ -18,11 +18,11 @@
 						</form>
 					</div>
 					<div class="page-buttonBox">
-						<button class="page-button" v-on:click="previous">
-							<LeftPageButtonSvg :pageExist="pageExistLeft" />
+						<button class="page-button" v-on:click="pagenation(0)">
+							<LeftPageButtonSvg :pageExist="pageLeftIndicator" />
 						</button>
-						<button class="page-button" v-on:click="next">
-							<RightPageButtonSvg :pageExist="pageExistRight" />
+						<button class="page-button" v-on:click="pagenation(1)">
+							<RightPageButtonSvg :pageExist="pageRightIndicator" />
 						</button>
 					</div>
 				</div>
@@ -69,14 +69,17 @@ import { useUserStore } from "~~/stores/userStore";
 
 const userStore = useUserStore();
 
-const pageExistLeft = ref<boolean>(false);
-const pageExistRight = ref<boolean>(true);
+const pageLeftIndicator = ref<boolean>(false);
+const pageRightIndicator = ref<boolean>(true);
 const airingAnime = ref<animeRest[]>();
 const loading = ref<boolean>(true);
 const loadingAnimeHome: number[] = [...Array(12).keys()];
+const animePerPage = ref<number>(12);
+const totalPage = ref<number>(0);
+const pageFilteredAnime = ref([] as animeRest[]);
 
 if (userStore.startPageIndex != 0) {
-	pageExistLeft.value = true;
+	pageLeftIndicator.value = true;
 }
 onMounted(() => {
 	userStore.animeId = 0;
@@ -101,6 +104,7 @@ onMounted(() => {
 				userStore.startPageIndex,
 				userStore.endPageIndex
 			);
+			calculateTotalPage();
 
 			loading.value = false;
 		})
@@ -109,35 +113,46 @@ onMounted(() => {
 		});
 });
 
-function next() {
-	if (userStore.endPageIndex < userStore.airingAnime.length) {
-		userStore.startPageIndex += 11;
-		userStore.endPageIndex += 11;
-		userStore.pageNumber += 1;
-		pageExistLeft.value = true;
-		airingAnime.value = userStore.airingAnime.slice(
-			userStore.startPageIndex,
-			userStore.endPageIndex
-		);
+function calculateTotalPage() {
+	totalPage.value = Math.ceil(userStore.airingAnime.length / animePerPage.value);
+}
+
+function pageExistIndicator() {
+	if (userStore.pageNumber == 1) {
+		pageLeftIndicator.value = false;
 	} else {
-		pageExistRight.value = false;
+		pageLeftIndicator.value = true;
+	}
+	if (userStore.pageNumber == totalPage.value) {
+		pageRightIndicator.value = false;
+	} else {
+		pageRightIndicator.value = true;
 	}
 }
 
-function previous(): void {
-	if (userStore.pageNumber == 1) {
-		pageExistLeft.value = false;
-		pageExistRight.value = true;
-	} else {
-		userStore.startPageIndex -= 11;
-		userStore.endPageIndex -= 11;
-		userStore.pageNumber -= 1;
-		pageExistRight.value = true;
-		airingAnime.value = userStore.airingAnime.slice(
-			userStore.startPageIndex,
-			userStore.endPageIndex
-		);
+function pagenation(direction: number) {
+	if (direction == 0) {
+		if (userStore.pageNumber != 1) {
+			pageLeftIndicator.value = true;
+			pageRightIndicator.value = true;
+			userStore.startPageIndex -= animePerPage.value;
+			userStore.endPageIndex -= animePerPage.value;
+			userStore.pageNumber -= 1;
+		}
+	} else if (direction == 1) {
+		if (userStore.pageNumber != totalPage.value) {
+			pageLeftIndicator.value = true;
+			pageRightIndicator.value = true;
+			userStore.startPageIndex += animePerPage.value;
+			userStore.endPageIndex += animePerPage.value;
+			userStore.pageNumber += 1;
+		}
 	}
+	pageExistIndicator();
+	pageFilteredAnime.value = userStore.filterAnime.slice(
+		userStore.startPageIndex,
+		userStore.endPageIndex
+	);
 }
 
 function saveClickedAnimeID(id: number): void {
