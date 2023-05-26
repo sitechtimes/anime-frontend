@@ -34,11 +34,12 @@
                             <h3 class="tab-title">Watchlist</h3>
                             <div class="profile-slide">
                                 <div class="pf-carousel">
+
                                     <AnimeList
-                                        v-for="anime in currentAnimes"
-                                        :key="anime.animeID"
-                                        :img="anime.img"
-                                        :title="anime.title"
+                                        v-for="node in watchlist"
+                                        :key="node.node.anime.malId"
+                                        :img="node.node.anime.imageUrl"
+                                        :title="node.node.anime.animeName"
                                     />
                                 </div>
                             </div>
@@ -55,10 +56,10 @@
                             <div class="profile-slide">
                                 <div class="pf-carousel">
                                     <AnimeList
-                                        v-for="anime in favoriteAnime"
-                                        :key="anime.animeID"
-                                        :img="anime.img"
-                                        :title="anime.title"
+                                        v-for="node in currentlyAnimes"
+                                        :key="node.node.anime.malId"
+                                        :img="node.node.anime.imageUrl"
+                                        :title="node.node.anime.animeName"
                                     />
                                 </div>
                             </div>
@@ -71,17 +72,17 @@
                             <h3 class="tab-detail">Technime</h3>
                         </div>
                         <div class="tab-bottom">
-                            <h3 class="tab-title">Rated</h3>
-                        </div>
-                    </div>
-                </Tab>
-                <Tab title="Example 2">
-                    <div class="tabShow">
-                        <div class="tab-logo">
-                            <h3 class="tab-detail">Technime</h3>
-                        </div>
-                        <div class="tab-bottom">
-                            <h3 class="tab-title">Example 2</h3>
+                            <h3 class="tab-title">Voted Animes</h3>
+                            <div class="profile-slide">
+                                <div class="pf-carousel">
+                                    <AnimeList
+                                        v-for="node in votedAnimes"
+                                        :key="node.node.anime.malId"
+                                        :img="node.node.anime.imageUrl"
+                                        :title="node.node.anime.animeName"
+                                    />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </Tab>
@@ -121,7 +122,9 @@ query{
       edges {
         node{
           anime{
-            animeName
+            animeName,
+            imageUrl,
+      malId
           },
           watchingStatus
           rating
@@ -154,7 +157,9 @@ query{
           }
             ,
           anime{
-            animeName
+            animeName,
+            imageUrl,
+            malId
           }
         },
         
@@ -187,7 +192,7 @@ query{
 
                 votedAnimes.value = userData.data.userAnimeData.userVotedAnimes.edges
                 votedCharacters.value = userData.data.userAnimeData.userVotedCharacters.edges
-                console.log(watchlist.value, currentlyAnimes.value, votedAnimes.value, votedCharacters.value)
+                console.log(watchlist.value[0].node.anime, currentlyAnimes.value, votedAnimes.value, votedCharacters.value)
 
     } catch (error) {
         alert(error)
