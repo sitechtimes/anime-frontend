@@ -18,11 +18,11 @@
 						</form>
 					</div>
 					<div class="page-buttonBox">
-						<button class="page-button" v-on:click="previous">
-							<LeftPageButtonSvg :pageExist="pageExistLeft" />
+						<button class="page-button" v-on:click="pagenation(0)">
+							<LeftPageButtonSvg :pageExist="pageLeftIndicator" />
 						</button>
-						<button class="page-button" v-on:click="next">
-							<RightPageButtonSvg :pageExist="pageExistRight" />
+						<button class="page-button" v-on:click="pagenation(1)">
+							<RightPageButtonSvg :pageExist="pageRightIndicator" />
 						</button>
 					</div>
 				</div>
@@ -96,7 +96,7 @@
 						<option v-for="sort in sorts" :value="sort">{{ sort }}</option>
 					</select>
 				</div>
-				<button class="button-clear" @click="clearFilter">Clear All Filter</button>
+				<button class="button-clear" @click="clearAllFilter">Clear All Filter</button>
 			</div>
 			<div class="content-condition" v-if="loading">
 				<homepageAnimeCardLoading v-for="anime in loadingAnime" />
@@ -140,20 +140,20 @@
 					<button
 						class="page-button"
 						v-on:click="
-							previous();
+							pagenation(0);
 							toTop();
 						"
 					>
-						<LeftPageButtonSvg :pageExist="pageExistLeft" />
+						<LeftPageButtonSvg :pageExist="pageLeftIndicator" />
 					</button>
 					<button
 						class="page-button"
 						v-on:click="
-							next();
+							pagenation(1);
 							toTop();
 						"
 					>
-						<RightPageButtonSvg :pageExist="pageExistRight" />
+						<RightPageButtonSvg :pageExist="pageRightIndicator" />
 					</button>
 				</div>
 			</div>
@@ -178,9 +178,11 @@ const types = ref([] as string[]);
 
 const animeResults = ref([] as animeRest[]);
 
-const pageExistLeft = ref<boolean>(false);
-const pageExistRight = ref<boolean>(true);
+const pageLeftIndicator = ref<boolean>(false);
+const pageRightIndicator = ref<boolean>(true);
 const pageFilteredAnime = ref([] as animeRest[]);
+const animePerPage = ref<number>(35);
+const totalPage = ref<number>(0);
 
 const media_genre = ref<string>("");
 const media_year = ref<string>("");
@@ -189,8 +191,7 @@ const media_status = ref<string>("");
 const media_type = ref<string>("");
 const media_sort = ref<string>("");
 
-
-const loadingAnime: number[] = [...Array(14).keys()];
+const loadingAnime: number[] = [...Array(35).keys()];
 const loading = ref<boolean>(true);
 
 genres.value = [
@@ -227,7 +228,7 @@ types.value = ["TV", "Movie", "OVA", "ONA", "Special"];
 onMounted(() => {
 	userStore.animeId = 0;
 	userStore.startPageIndex = 0;
-	userStore.endPageIndex = 35;
+	userStore.endPageIndex = animePerPage.value;
 	userStore.pageNumber = 1;
 
 	const filterAnime = [] as animeRest[];
@@ -235,7 +236,7 @@ onMounted(() => {
 	userStore.filterAnime.forEach((anime: animeRest) => {
 		filterAnime.push(<animeRest>anime);
 	});
-
+	calculateTotalPage();
 	pageFilteredAnime.value = userStore.filterAnime.slice(
 		userStore.startPageIndex,
 		userStore.endPageIndex
@@ -245,35 +246,46 @@ onMounted(() => {
 	text.value = userStore.search;
 });
 
-function next() {
-	if (userStore.endPageIndex < userStore.filterAnime.length) {
-		userStore.startPageIndex += 35;
-		userStore.endPageIndex += 35;
-		userStore.pageNumber += 1;
-		pageExistLeft.value = true;
-		pageFilteredAnime.value = userStore.filterAnime.slice(
-			userStore.startPageIndex,
-			userStore.endPageIndex
-		);
+function calculateTotalPage() {
+	totalPage.value = Math.ceil(userStore.filterAnime.length / animePerPage.value);
+}
+
+function pageExistIndicator() {
+	if (userStore.pageNumber == 1) {
+		pageLeftIndicator.value = false;
 	} else {
-		pageExistRight.value = false;
+		pageLeftIndicator.value = true;
+	}
+	if (userStore.pageNumber == totalPage.value) {
+		pageRightIndicator.value = false;
+	} else {
+		pageRightIndicator.value = true;
 	}
 }
 
-function previous() {
-	if (userStore.pageNumber == 1) {
-		pageExistLeft.value = false;
-		pageExistRight.value = true;
-	} else {
-		userStore.startPageIndex -= 35;
-		userStore.endPageIndex -= 35;
-		userStore.pageNumber -= 1;
-		pageExistRight.value = true;
-		pageFilteredAnime.value = userStore.filterAnime.slice(
-			userStore.startPageIndex,
-			userStore.endPageIndex
-		);
+function pagenation(direction: number) {
+	if (direction == 0) {
+		if (userStore.pageNumber != 1) {
+			pageLeftIndicator.value = true;
+			pageRightIndicator.value = true;
+			userStore.startPageIndex -= animePerPage.value;
+			userStore.endPageIndex -= animePerPage.value;
+			userStore.pageNumber -= 1;
+		}
+	} else if (direction == 1) {
+		if (userStore.pageNumber != totalPage.value) {
+			pageLeftIndicator.value = true;
+			pageRightIndicator.value = true;
+			userStore.startPageIndex += animePerPage.value;
+			userStore.endPageIndex += animePerPage.value;
+			userStore.pageNumber += 1;
+		}
 	}
+	pageExistIndicator();
+	pageFilteredAnime.value = userStore.filterAnime.slice(
+		userStore.startPageIndex,
+		userStore.endPageIndex
+	);
 }
 
 function saveClickedAnimeID(id: number) {
@@ -410,6 +422,7 @@ function filter(): animeRest[] {
 			}
 		});
 	}
+	calculateTotalPage();
 	return newFilterAnime;
 }
 
@@ -423,16 +436,9 @@ function clearAllFilter() {
 	text.value = "";
 	animeResults.value = [];
 
-	pageFilteredAnime.value = userStore.allAnime.slice(
-		userStore.startPageIndex,
-		userStore.endPageIndex
-	);
-}
+	calculateTotalPage();
 
-function goToSeachAnime() {
-	userStore.filterAnime = animeResults.value;
-	userStore.filterAnime = filter();
-	pageFilteredAnime.value = userStore.filterAnime.slice(
+	pageFilteredAnime.value = userStore.allAnime.slice(
 		userStore.startPageIndex,
 		userStore.endPageIndex
 	);
