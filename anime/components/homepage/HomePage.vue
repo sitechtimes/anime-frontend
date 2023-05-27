@@ -51,13 +51,14 @@
 		<div class="topCharts-container">
 			<h2 class="topCharts-title">Top Charts</h2>
 			<homepageTopCharts
-				v-for="charts in sortedAnimeTop"
+				v-for="(charts, index) in sortedAnimeTop"
 				:key="charts.id"
+				:malid="charts.malId"
 				:img="charts.imageUrl"
 				:episode="charts.episodes"
 				:votes="charts.currentlyWatching"
 				:title="charts.animeName"
-				:rank="sortedAnimeTop.indexOf(charts) + 1"
+				:rank="index + 1"
 			/>
 		</div>
 	</div>
@@ -143,6 +144,7 @@ async function getTopChart() {
       const queryData = await response.json();
 
 	  sortedAnimeTop.value = queryData.data.sortedCurrentlyWatching
+	  console.log(sortedAnimeTop.value)
 }
 
 function next(): void {

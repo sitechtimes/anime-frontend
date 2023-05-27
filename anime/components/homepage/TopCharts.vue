@@ -1,6 +1,7 @@
 <template>
     <div class="topChartsComp-container">
         <p class="topChartsComp-rank">{{ rank }}</p>
+        <NuxtLink class="topChartsComp-container-sub" :to="`/anime/` + malid">
         <img class="topChartsComp-image" :src="`${img}`" alt="" />
         <div class="topChartsComp-info">
             <h3 class="topChartsComp-title">{{ title }}</h3>
@@ -13,6 +14,7 @@
                 <h4 class="topChartsComp-votes">{{ votes }}</h4>
             </div>
         </div>
+    </NuxtLink>
     </div>
 </template>
 
@@ -26,6 +28,10 @@ export default {
         EpisodeSVG,
     },
     props: {
+        malid: {
+            type: Number,
+            required: true
+        },
         rank: {
             type: Number,
             required: true,
@@ -62,6 +68,16 @@ export default {
     height: 7.7rem;
     background-color: var(--tertiary);
     margin-top: 1rem;
+    border-radius: 0.75rem;
+}
+
+.topChartsComp-container-sub {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 7.7rem;
+    background-color: var(--tertiary);
+    width: 100%;
     border-radius: 0.75rem;
 }
 .topChartsComp-rank {
