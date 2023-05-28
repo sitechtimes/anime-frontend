@@ -75,11 +75,13 @@
                             <h3 class="tab-title">Voted Animes</h3>
                             <div class="profile-slide">
                                 <div class="pf-carousel">
-                                    <AnimeList
+                                    <VotedAnimeList
                                         v-for="node in votedAnimes"
                                         :key="node.node.anime.malId"
                                         :img="node.node.anime.imageUrl"
                                         :title="node.node.anime.animeName"
+                                        :awardName="node.node.award.awardName"
+                                        :date="node.node.award.date"
                                     />
                                 </div>
                             </div>
@@ -93,6 +95,7 @@
 
 <script setup lang="ts">
 import { useUserStore } from "~~/stores/userStore";
+import VotedAnimeList from "~~/components/profile/VotedAnimeList.vue";
 import { ref, onMounted } from "vue" 
 
 const userStore = useUserStore();
@@ -192,7 +195,7 @@ query{
 
                 votedAnimes.value = userData.data.userAnimeData.userVotedAnimes.edges
                 votedCharacters.value = userData.data.userAnimeData.userVotedCharacters.edges
-                console.log(watchlist.value[0].node.anime, currentlyAnimes.value, votedAnimes.value, votedCharacters.value)
+                console.log(currentlyAnimes.value, votedAnimes.value, votedCharacters.value)
 
     } catch (error) {
         alert(error)
@@ -269,6 +272,10 @@ export default {
 </script>
 
 <style scoped>
+
+.profile-slide {
+    /* overflow-y: scroll; */
+}
 .profile-top,
 .tabs-class {
     width: 100%;
@@ -289,6 +296,7 @@ export default {
     position: relative;
     border-radius: 5px;
     box-shadow: 0 4px 8px 0 var(--tertiary);
+    /* overflow-x: auto; */
 }
 .banner {
     object-fit: cover;
@@ -440,7 +448,9 @@ export default {
 }
 .pf-carousel {
     display: flex;
+    flex-wrap: wrap;
     width: 70vw;
+    /* overflow: auto; */
 }
 .underNav {
     width: 100vw;
