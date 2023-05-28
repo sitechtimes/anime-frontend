@@ -17,6 +17,9 @@
                 <li class="link">
                     <NuxtLink to="/history" class="link-href">History</NuxtLink>
                 </li>
+                <li  v-if="userStore.isAdmin"  class="link">
+                    <NuxtLink to="/admin" class="link-href">Admin</NuxtLink>
+                </li>
                 <NuxtLink
                     v-if="userStore.isAuthenticated == false"
                     to="/login"
