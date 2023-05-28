@@ -18,6 +18,7 @@
                 <div class="profile-name">
                     <h3 class="profile-id">{{ firstName }} {{ lastName }}</h3>
                     <p class="profile-grade">{{ emailDOE }}</p>
+
                     <!-- <p class="profile-grade">Senior Class of 2023</p> -->
                     <!-- <p class="profile-grade">Date Started: 01/19/2023</p> -->
                 </div>
@@ -108,7 +109,7 @@ const watchlist = ref([])
 const votedAnimes = ref([])
 const votedCharacters = ref([])
 
-
+console.log(userStore.isAdmin)
 async function getUserProfile() {
     try {
         const endpoint = "http://127.0.0.1:8000/graphql/";

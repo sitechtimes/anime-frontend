@@ -30,6 +30,7 @@ export const useUserStore = defineStore("user", {
 		userData: null,
 		token: null,
 		isAuthenticated: false,
+		isAdmin: false,
 		// userData: JSON.parse(localStorage.getItem("user")),
 		// token: JSON.parse(localStorage.getItem("token"))
 	}),
@@ -233,6 +234,39 @@ export const useUserStore = defineStore("user", {
 				alert(error)
 			}
 		},
+		async getAdmin() {
+			try {
+				const endpoint = "http://127.0.0.1:8000/graphql/";
+				const headers = {
+					"content-type": "application/json",
+					Authorization: `Bearer ${this.token}`,
+				};
+
+				const graphqlQuery = {
+					query: `
+query{
+  userAnimeData(id:${this.userID}) {
+    admin
+  }
+}`,
+					variables: {},
+				};
+
+				const options = {
+					method: "POST",
+					headers: headers,
+					body: JSON.stringify(graphqlQuery),
+				};
+
+				const response = await fetch(endpoint, options);
+				const userData = await response.json();
+				// console.log(userData.data.userAnimeData.admin)
+				this.isAdmin = userData.data.userAnimeData.admin
+				console.log(this.isAdmin)
+			} catch (error) {
+				alert(error)
+			}
+		},
 		async login(res: any) {
 
 			try {
@@ -277,7 +311,7 @@ export const useUserStore = defineStore("user", {
 								this.email = res.data.email;
 								this.isAuthenticated = true;
 								this.redirect = true;
-
+								this.getAdmin()
 								return navigateTo("/");
 								// this.$router.push("/")
 								// router.push({ path: "/"})
