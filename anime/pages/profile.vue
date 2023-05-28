@@ -75,7 +75,7 @@
                             <h3 class="tab-detail">Technime</h3>
                         </div>
                         <div class="tab-bottom">
-                            <h3 class="tab-title">Voted Animes</h3>
+                            <h3 class="tab-title">Voted Animes/Characters</h3>
                             <div class="profile-slide">
                                 <div class="pf-carousel">
                                     <VotedAnimeList
@@ -86,6 +86,15 @@
                                         :awardName="node.node.award.awardName"
                                         :date="node.node.award.date"
                                         :malid="node.node.anime.malId"
+                                    />
+                                    <VotedAnimeList
+                                        v-for="node in votedCharacters"
+                                        :key="node.node.character.characterName"
+                                        :img="node.node.character.imageUrl"
+                                        :title="node.node.character.characterName"
+                                        :awardName="node.node.award.awardName"
+                                        :date="node.node.award.date"
+
                                     />
                                 </div>
                             </div>
@@ -147,7 +156,8 @@ query{
             date
           },
           character {
-            characterName
+            characterName,
+            imageUrl
           }
         },
         
