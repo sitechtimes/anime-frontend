@@ -78,6 +78,26 @@ export const useUserStore = defineStore("user", {
 			}
 		},
 
+		async updateAnime() {
+			try {
+				const endpoint = "http://127.0.0.1:8000/updateAnime/";
+				const headers = {
+					"Content-Type": "application/json",
+					"Accept-encoding": "gzip", //does not work
+				};
+
+				const options = {
+					method: "GET",
+					headers: headers,
+				};
+
+				const response = await fetch(endpoint, options);
+				// const data: animeRest[] = await response.json();
+
+			} catch (error) {
+				alert(error)
+			}
+		},
 
 		async getAllAwards() {
 			try {
@@ -267,6 +287,54 @@ query{
 				alert(error)
 			}
 		},
+
+
+		async getWinner() {
+			try {
+				const endpoint = "http://127.0.0.1:8000/graphql/";
+				const headers = {
+					"content-type": "application/json",
+					Authorization: `Bearer ${this.token}`,
+				};
+
+				const graphqlQuery = {
+					query: `
+					mutation{
+						winner{
+						 animeAwards{
+						   winner{
+							 anime{
+							   animeName
+							 },
+							 award{
+								 awardName,
+								 date
+							 },
+							   voteCount
+						   }
+						 }
+						}
+						 }
+						`,
+					variables: {},
+				};
+
+				const options = {
+					method: "POST",
+					headers: headers,
+					body: JSON.stringify(graphqlQuery),
+				};
+
+				const response = await fetch(endpoint, options);
+				const userData = await response.json();
+				// console.log(userData.data.userAnimeData.admin)
+				// this.isAdmin = userData.data.userAnimeData.admin
+				// console.log(this.isAdmin)
+			} catch (error) {
+				alert(error)
+			}
+		},
+
 		async login(res: any) {
 
 			try {
