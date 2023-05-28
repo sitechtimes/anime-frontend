@@ -41,6 +41,7 @@
                                         :key="node.node.anime.malId"
                                         :img="node.node.anime.imageUrl"
                                         :title="node.node.anime.animeName"
+                                        :malid="node.node.anime.malId"
                                     />
                                 </div>
                             </div>
@@ -61,6 +62,7 @@
                                         :key="node.node.anime.malId"
                                         :img="node.node.anime.imageUrl"
                                         :title="node.node.anime.animeName"
+                                        :malid="node.node.anime.malId"
                                     />
                                 </div>
                             </div>
@@ -83,6 +85,7 @@
                                         :title="node.node.anime.animeName"
                                         :awardName="node.node.award.awardName"
                                         :date="node.node.award.date"
+                                        :malid="node.node.anime.malId"
                                     />
                                 </div>
                             </div>
@@ -285,6 +288,7 @@ export default {
     justify-content: center;
     color: var(--white);
     margin-bottom: 8%;
+    /* overflow: auto; */
 }
 .tabs-class .tab {
     background-color: var(--tertiary);
@@ -298,6 +302,14 @@ export default {
     border-radius: 5px;
     box-shadow: 0 4px 8px 0 var(--tertiary);
     /* overflow-x: auto; */
+}
+
+.tab-bottom {
+    margin-top: 25rem;
+    transform: translateX(20%);
+    /* display: flex;
+    flex-direction: row;
+    justify-content: flex-end; */
 }
 .banner {
     object-fit: cover;
@@ -427,10 +439,13 @@ export default {
 
 /* actual (inside each) tab css */
 .tabShow {
+    /* top: 0; */
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 100%;
     justify-content: center;
+    overflow: auto;
+    overflow-x: hidden;
 }
 .tab-logo {
     display: flex;
@@ -449,8 +464,13 @@ export default {
 }
 .pf-carousel {
     display: flex;
+    align-items: center;
     flex-wrap: wrap;
-    width: 70vw;
+    width: 70%;
+ 
+
+    /* justify-content: flex-end; */
+    /* justify-content: center; */
     /* overflow: auto; */
 }
 .underNav {
