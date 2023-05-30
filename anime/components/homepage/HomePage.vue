@@ -18,20 +18,24 @@
 						</form>
 					</div>
 					<div class="page-buttonBox">
-						<button class="page-button" v-on:click="previous">
-							<LeftPageButton :pageExist="pageExistLeft" />
+						<button class="page-button" v-on:click="pagenation(0)">
+							<LeftPageButtonSvg :pageExist="pageLeftIndicator" />
 						</button>
-						<button class="page-button" v-on:click="next">
-							<RightPageButton :pageExist="pageExistRight" />
+						<button class="page-button" v-on:click="pagenation(1)">
+							<RightPageButtonSvg :pageExist="pageRightIndicator" />
 						</button>
 					</div>
 				</div>
 			</div>
 			<div class="airing-content" v-if="loading">
-				<AnimeCardLoading v-for="anime in loadingAnimeHome" :id="anime" :key="anime"/>
+				<homepageAnimeCardLoading
+					v-for="anime in loadingAnimeHome"
+					:id="anime"
+					:key="anime"
+				/>
 			</div>
 			<div class="airing-content" v-else>
-				<AnimeCard
+				<homepageAnimeCard
 					@saveAnimeID="saveClickedAnimeID(anime.mal_id)"
 					v-for="anime in airingAnime"
 					:id="anime.mal_id"
@@ -46,8 +50,8 @@
 		</div>
 		<div class="topCharts-container">
 			<h2 class="topCharts-title">Top Charts</h2>
-			<TopCharts
-				v-for="charts in sortedAnimeTop"
+			<homepageTopCharts
+				v-for="charts in top"
 				:key="charts.id"
 				:img="charts.imageUrl"
 				:episode="charts.episodes"
@@ -60,36 +64,26 @@
 </template>
 
 <script setup lang="ts">
-import AnimeCard from "./AnimeCard.vue";
-import TopCharts from "./TopCharts.vue";
-import RightPageButton from "../RightPageButtonSvg.vue";
-import LeftPageButton from "../LeftPageButtonSvg.vue";
-import AnimeCardLoading from "./AnimeCardLoading.vue";
 import { animeRest } from "~~/types/anime";
 import { useUserStore } from "~~/stores/userStore";
-import { ref } from "vue";
 
 const userStore = useUserStore();
 
-const pageExistLeft = ref<boolean>(false);
-const pageExistRight = ref<boolean>(true);
+const pageLeftIndicator = ref<boolean>(false);
+const pageRightIndicator = ref<boolean>(true);
 const airingAnime = ref<animeRest[]>();
 const loading = ref<boolean>(true);
 const loadingAnimeHome: number[] = [...Array(12).keys()];
-let sortedAnimeTop = ref([] as any)
-
-if (userStore.startPageIndex != 0) {
-	pageExistLeft.value = true;
-}
-
-
+const animePerPage = ref<number>(12);
+const totalPage = ref<number>(0);
+const pageFilteredAnime = ref([] as animeRest[]);
+const startPageIndex = ref<number>(0);
+const endPageIndex = ref<number>(12);
 
 onMounted(() => {
 	getTopChart()
 	
 	userStore.animeId = 0;
-	userStore.startPageIndex = 0;
-	userStore.endPageIndex = 12;
 	userStore.pageNumber = 1;
 
 	userStore
@@ -97,7 +91,7 @@ onMounted(() => {
 		.then((data) => {
 			const airingAnimeArr = [] as animeRest[];
 
-			data!.filter(function (anime: animeRest): void {
+			data!.filter(function (anime: animeRest) {
 				if (anime.status == "Currently Airing") {
 					airingAnimeArr.push(anime);
 				}
@@ -106,9 +100,10 @@ onMounted(() => {
 			userStore.airingAnime = airingAnimeArr;
 
 			airingAnime.value = userStore.airingAnime.slice(
-				userStore.startPageIndex,
-				userStore.endPageIndex
+				startPageIndex.value,
+				endPageIndex.value
 			);
+			calculateTotalPage();
 
 			loading.value = false;
 		})
@@ -157,25 +152,43 @@ function next(): void {
 			userStore.startPageIndex,
 			userStore.endPageIndex
 		);
+function calculateTotalPage() {
+	totalPage.value = Math.ceil(userStore.airingAnime.length / animePerPage.value);
+}
+
+function pageExistIndicator() {
+	if (userStore.pageNumber == 1) {
+		pageLeftIndicator.value = false;
 	} else {
-		pageExistRight.value = false;
+		pageLeftIndicator.value = true;
+	}
+	if (userStore.pageNumber == totalPage.value) {
+		pageRightIndicator.value = false;
+	} else {
+		pageRightIndicator.value = true;
 	}
 }
 
-function previous(): void {
-	if (userStore.pageNumber == 1) {
-		pageExistLeft.value = false;
-		pageExistRight.value = true;
-	} else {
-		userStore.startPageIndex -= 11;
-		userStore.endPageIndex -= 11;
-		userStore.pageNumber -= 1;
-		pageExistRight.value = true;
-		airingAnime.value = userStore.airingAnime.slice(
-			userStore.startPageIndex,
-			userStore.endPageIndex
-		);
+function pagenation(direction: number) {
+	if (direction == 0) {
+		if (userStore.pageNumber != 1) {
+			pageLeftIndicator.value = true;
+			pageRightIndicator.value = true;
+			startPageIndex.value -= animePerPage.value;
+			endPageIndex.value -= animePerPage.value;
+			userStore.pageNumber -= 1;
+		}
+	} else if (direction == 1) {
+		if (userStore.pageNumber != totalPage.value) {
+			pageLeftIndicator.value = true;
+			pageRightIndicator.value = true;
+			startPageIndex.value += animePerPage.value;
+			endPageIndex.value += animePerPage.value;
+			userStore.pageNumber += 1;
+		}
 	}
+	pageExistIndicator();
+	pageFilteredAnime.value = userStore.filterAnime.slice(startPageIndex.value, endPageIndex.value);
 }
 
 function saveClickedAnimeID(id: number): void {
@@ -190,97 +203,6 @@ function selectPage(num: number): void {
 		userStore.endPageIndex
 	);
 }
-</script>
-
-<script lang="ts">
-export default {
-	data() {
-		return {
-			top: [
-				{
-					id: 1,
-					img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-					episode: 126,
-					votes: 100,
-					title: "One Piecesd dflkjasdfk ldkflksdjkldfalsdknflasnflds",
-					rank: 1,
-				},
-				{
-					id: 2,
-					img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-					episode: 1252,
-					votes: 100,
-					title: "One Piecesd dflkjasdfk ldkflksdjkldfalsdknflasnflds",
-					rank: 2,
-				},
-				{
-					id: 3,
-					img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-					episode: 129,
-					votes: 100,
-					title: "nsdlfnsflksdnflknslfsdlnfldsnfls",
-					rank: 3,
-				},
-				{
-					id: 4,
-					img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-					episode: 125,
-					votes: 100,
-					title: "One Piece",
-					rank: 4,
-				},
-				{
-					id: 5,
-					img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-					episode: 121,
-					votes: 100,
-					title: "One Piece",
-					rank: 5,
-				},
-				{
-					id: 6,
-					img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-					episode: 125,
-					votes: 100,
-					title: "One Piece",
-					rank: 6,
-				},
-				{
-					id: 7,
-					img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-					episode: 125,
-					votes: 100,
-					title: "One Piece",
-					rank: 7,
-				},
-				{
-					id: 8,
-					img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-					episode: 125,
-					votes: 100,
-					title: "One Piece",
-					rank: 8,
-				},
-				{
-					id: 9,
-					img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-					episode: 125,
-					votes: 100,
-					title: "One Piece",
-					rank: 9,
-				},
-				{
-					id: 10,
-					img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-					episode: 125,
-					votes: 100,
-					title: "One Piece",
-					rank: 10,
-				},
-			],
-		};
-	},
-};
 </script>
 
 <style scoped>

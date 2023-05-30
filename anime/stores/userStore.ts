@@ -4,7 +4,7 @@ import { createPersistedState } from "pinia-plugin-persistedstate";
 import { googleLogout } from "vue3-google-login";
 import { useRouter } from "nuxt/app";
 import { createPinia } from "pinia";
-import { animeRest, animeGraphql } from "~/types/anime";
+import { animeRest, animeGraphql, animeGenre } from "~/types/anime";
 // const router = useRouter()
 
 export const useUserStore = defineStore("user", {
@@ -54,12 +54,31 @@ export const useUserStore = defineStore("user", {
 		storeAnimeId(id: number) {
 			this.animeId = id;
 		},
+		async getAllGenre() {
+			try {
+				const endpoint = "http://127.0.0.1:8000/genres";
+				const headers = {
+					"Content-Type": "application/json",
+				};
+
+				const options = {
+					method: "GET",
+					headers: headers,
+				};
+
+				const response = await fetch(endpoint, options);
+				const data: animeGenre[] = await response.json();
+
+				return data;
+			} catch (error) {
+				console.log(error);
+			}
+		},
 		async getAllAnime() {
 			try {
 				const endpoint = "http://127.0.0.1:8000/anime/";
 				const headers = {
 					"Content-Type": "application/json",
-					"Accept-encoding": "gzip", //does not work
 				};
 
 				const options = {
