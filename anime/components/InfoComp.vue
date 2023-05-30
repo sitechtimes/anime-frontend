@@ -66,7 +66,7 @@
         <h2>Synopsis</h2>
         <div class="divider"></div>
         <p class="synopsis">{{ synopsis }}</p>
-        <button class="show" @click="showMore">Show More</button>
+        <button class="show" ref="showBtn" @click="showMore">Show More</button>
       </div>
       <div class="info-block">
         <h2>Characters</h2>
@@ -111,7 +111,8 @@ let ratingOne = ref([])
 let allRatings = ref([])
 let chartRatings = ref([])
 let loaded = ref(false)
-const show = ref(false)
+const showAll = ref(false)
+const showBtn = ref("Show More")
 
 const userStore = useUserStore()
 
@@ -406,12 +407,12 @@ async function getUserProfile() {
 })
 
 function showMore() {
-  show.value = !show.value
-  console.log(show.value)
-  // if (show.value = false) {
-  //   console.log("h synop")
-  // } else if (show.value = true) {
-  //   console.log("a synop")
+  // showAll.value = !showAll.value
+  // if (showAll.value === false) {
+  //   console.log("synopsis partially shown")
+  //   console.log(showBtn.value)
+  // } else if (showAll.value === true) {
+  //   console.log("synopsis fully shown")
   // }
 }
 </script>
@@ -510,7 +511,7 @@ function showMore() {
 	font-size: var(--h5);
 	transition: 0ms;
 	align-self: flex-end;
-	/* display: none; */
+	display: none;
 }
 .divider {
   height: 0.2rem;
@@ -574,7 +575,7 @@ function showMore() {
 		font-size: var(--h6);
 	}
 	.character {
-		width: 7rem;
+		width: 9rem;
 	}
 	.character-img {
 		height: 8rem;
