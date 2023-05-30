@@ -183,6 +183,8 @@ const pageRightIndicator = ref<boolean>(true);
 const pageFilteredAnime = ref([] as animeRest[]);
 const animePerPage = ref<number>(35);
 const totalPage = ref<number>(0);
+const startPageIndex = ref<number>(0);
+const endPageIndex = ref<number>(animePerPage.value);
 
 const media_genre = ref<string>("");
 const media_year = ref<string>("");
@@ -205,8 +207,7 @@ types.value = ["TV", "Movie", "OVA", "ONA", "Special"];
 
 onMounted(() => {
 	userStore.animeId = 0;
-	userStore.startPageIndex = 0;
-	userStore.endPageIndex = animePerPage.value;
+	endPageIndex.value = animePerPage.value;
 	userStore.pageNumber = 1;
 
 	const filterAnime = [] as animeRest[];
@@ -216,8 +217,8 @@ onMounted(() => {
 	});
 	calculateTotalPage();
 	pageFilteredAnime.value = userStore.filterAnime.slice(
-		userStore.startPageIndex,
-		userStore.endPageIndex
+		startPageIndex.value,
+		endPageIndex.value
 	);
 	loading.value = false;
 
