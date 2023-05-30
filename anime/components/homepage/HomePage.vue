@@ -92,7 +92,7 @@ onMounted(() => {
 		.then((data) => {
 			const airingAnimeArr = [] as animeRest[];
 
-			data!.filter(function (anime: animeRest): void {
+			data!.filter(function (anime: animeRest) {
 				if (anime.status == "Currently Airing") {
 					airingAnimeArr.push(anime);
 				}

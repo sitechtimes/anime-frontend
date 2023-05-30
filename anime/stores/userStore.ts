@@ -4,7 +4,7 @@ import { createPersistedState } from "pinia-plugin-persistedstate";
 import { googleLogout } from "vue3-google-login";
 import { useRouter } from "nuxt/app";
 import { createPinia } from "pinia";
-import { animeRest, animeGraphql } from "~/types/anime";
+import { animeRest, animeGraphql, animeGenre } from "~/types/anime";
 // const router = useRouter()
 
 export const useUserStore = defineStore("user", {
@@ -61,7 +61,7 @@ export const useUserStore = defineStore("user", {
 				};
 
 				const response = await fetch(endpoint, options);
-				const data = await response.json();
+				const data: animeGenre[] = await response.json();
 
 				return data;
 			} catch (error) {

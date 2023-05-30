@@ -16,7 +16,6 @@
 
 <script setup lang="ts">
 import { useUserStore } from "~~/stores/userStore";
-import { ref, onMounted } from "vue";
 import InfoComp from "../components/InfoComp.vue";
 
 const userStore = useUserStore();

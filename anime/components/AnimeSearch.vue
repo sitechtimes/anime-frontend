@@ -163,7 +163,7 @@
 
 <script setup lang="ts">
 import { useUserStore } from "~~/stores/userStore";
-import { animeRest } from "~~/types/anime";
+import { animeRest, animeGenre } from "~~/types/anime";
 
 const userStore = useUserStore();
 
@@ -223,8 +223,8 @@ onMounted(() => {
 
 	text.value = userStore.search;
 
-	userStore.getAllGenre().then((arr) => {
-		arr.forEach((genre: { genre: string }) => {
+	userStore.getAllGenre().then((genreArr) => {
+		genreArr!.forEach((genre: { genre: string }) => {
 			genres.value.push(genre.genre);
 		});
 	});
@@ -370,12 +370,12 @@ function filter(): animeRest[] {
 	}
 
 	if (media_sort.value == "Name A-Z") {
-		newFilterAnime.sort((a: animeRest, b: animeRest) => {
-			a.anime_name = a.anime_name;
-			b.anime_name = b.anime_name;
-			if (a.anime_name < b.anime_name) {
+		newFilterAnime.sort((media1: animeRest, media2: animeRest) => {
+			media1.anime_name = media1.anime_name;
+			media2.anime_name = media2.anime_name;
+			if (media1.anime_name < media2.anime_name) {
 				return -1;
-			} else if (a.anime_name > b.anime_name) {
+			} else if (media1.anime_name > media2.anime_name) {
 				return 1;
 			} else {
 				return 0;
@@ -384,10 +384,10 @@ function filter(): animeRest[] {
 	}
 
 	if (media_sort.value == "Number of Episodes") {
-		newFilterAnime.sort((a: animeRest, b: animeRest) => {
-			if (a.episodes == b.episodes) {
+		newFilterAnime.sort((media1: animeRest, media2: animeRest) => {
+			if (media1.episodes == media2.episodes) {
 				return 0;
-			} else if (a.episodes > b.episodes) {
+			} else if (media1.episodes > media2.episodes) {
 				return -1;
 			} else {
 				return 1;
