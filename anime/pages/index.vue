@@ -3,6 +3,7 @@
         <span class="underNav"></span>
         <HomepageCarousel />
         <HomepageHomePage />
+   
         <footer class="footer"></footer>
     </div>
 </template>
