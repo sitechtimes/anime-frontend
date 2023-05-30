@@ -153,7 +153,7 @@ query{
         node{
           award{
             awardName,
-            date
+
           },
           character {
             characterName,
@@ -170,7 +170,7 @@ query{
         node{
           award{
             awardName,
-            date
+
           }
             ,
           anime{

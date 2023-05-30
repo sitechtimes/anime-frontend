@@ -26,10 +26,6 @@ export default {
             type: String,
             required: true,
         },
-        date: {
-            type: String,
-            // required: true
-        },
         malid: {
             type: String,
             // required: true
