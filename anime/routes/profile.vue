@@ -167,7 +167,7 @@ export default {
             },
             {
                 animeID: "05",
-                title: "Oshi no Ko",
+                title: "Assassination Classroom",
                 img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
             },
             {
@@ -241,7 +241,7 @@ export default {
         RatedAnimes: [
             {
                 animeID: "01",
-                title: "One Piece",
+                title: "World Trigger",
                 img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
             },
             {
@@ -829,9 +829,18 @@ export default {
     width: 13vw;
     height: 12vh;
 }
+.profile-img {
+    width: 10rem;
+    height: 10rem;
+}
 .profile-info {
-    margin-top: 17rem;
+    margin-top: 19rem;
     margin-bottom: 2rem;
+}
+}
+@media screen and (max-width: 395px) {
+.profile-info {
+    margin-top: 18rem;
 }
 }
 @media screen and (max-width: 390px) {
@@ -839,11 +848,11 @@ export default {
     margin-left: 3.5rem;
 }
 .profile-img {
-    width: 10rem;
-    height: 10rem;
+    width: 8rem;
+    height: 8rem;
 }
 .profile-info {
-    margin-top: 17rem;
+    margin-top: 15rem;
 }
 .profile-name {
     margin-top: 5rem;

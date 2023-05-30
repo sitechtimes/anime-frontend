@@ -41,7 +41,7 @@ export default {
     margin-bottom: 5rem;
     padding: 0;
     width: 7vw;
-    height: 60vh;
+    height: 62vh;
     top: -10%;
     z-index: 3;
     background-color: var(--secondary);
@@ -60,6 +60,9 @@ export default {
     border-radius: 0.5rem;
 }
 @media screen and (max-width: 2565px) {
+.tabs-header {
+    height: 60vh;
+}
 .tabs-header li {
     font-size: var(--h3);
 }
@@ -133,6 +136,9 @@ export default {
 }
 }
 @media screen and (max-width: 550px) {
+.tabs {
+    margin-top: 0rem;
+}
 .tabs-header {
     width: 11vw;
 }
@@ -155,11 +161,11 @@ export default {
 }
 @media screen and (max-width: 420px) {
 .tabs {
-    height: 26vh;
+    height: 27vh;
 }
 .tabs-header {
     width: 14vw;
-    height: 30vh;
+    height: 32vh;
     margin-left: 2rem;
 }
 .tabs-header li {
@@ -174,6 +180,7 @@ export default {
 @media screen and (max-width: 380px) {
 .tabs-header {
     width: 13vw;
+    height: 34vh;
 }
 .tabs-header li {
     width: 13vw;
