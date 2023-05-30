@@ -1,5 +1,6 @@
 <template>
 	<div>
+		<InfoMobile><InfoMobile/>
 		<InfoComp 
 			:animeName="animeInfoData.animeName"
 			:episodes="animeInfoData.episodes"
