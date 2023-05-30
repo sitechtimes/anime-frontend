@@ -19,7 +19,6 @@
 </template>
 
 <script setup lang="ts">
-const animeName = ref(props.animeName);
 const props = defineProps({
     imageUrl: String,
     episode: Number,
@@ -28,6 +27,7 @@ const props = defineProps({
     },
     animeName: String,
 });
+const animeName = ref(props.animeName);
 // rewrite slice code for cutting anime titles after character count exceeds 28
 </script>
 
