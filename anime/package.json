@@ -9,7 +9,8 @@
 	},
 	"devDependencies": {
 		"@pinia-plugin-persistedstate/nuxt": "^1.0.0",
-		"nuxt": "3.0.0"
+		"nuxt": "3.0.0",
+		"nuxt-icon": "^0.4.1"
 	},
 	"dependencies": {
 		"@pinia/nuxt": "^0.4.6",

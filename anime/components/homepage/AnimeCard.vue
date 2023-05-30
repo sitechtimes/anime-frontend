@@ -1,6 +1,6 @@
 <template>
-    <NuxtLink to="/animeInfo">
-        <div class="card-container" @click="$emit('saveAnimeID')">
+    <NuxtLink :to="`/anime/` + mal_id">
+        <div class="card-container">
             <div class="card-cover">
                 <img
                     class="card-image"
@@ -13,7 +13,7 @@
                     <p class="card-media">{{ mediaType }}</p>
                 </div>
             </div>
-            <h5 class="card-title">{{ animeName }}</h5>
+            <p class="card-title">{{ animeName }}</p>
         </div>
     </NuxtLink>
 </template>
@@ -28,7 +28,6 @@ const props = defineProps({
     animeName: String,
 });
 const animeName = ref(props.animeName);
-// rewrite slice code for cutting anime titles after character count exceeds 28
 </script>
 
 <style scoped>

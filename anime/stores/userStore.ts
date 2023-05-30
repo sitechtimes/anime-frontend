@@ -4,6 +4,7 @@ import { createPersistedState } from "pinia-plugin-persistedstate";
 import { googleLogout } from "vue3-google-login";
 import { useRouter } from "nuxt/app";
 import { createPinia } from "pinia";
+import { animeRest, animeGraphql } from "~/types/anime";
 // const router = useRouter()
 
 export const useUserStore = defineStore("user", {
@@ -11,18 +12,25 @@ export const useUserStore = defineStore("user", {
 		allAnime: [] as any,
 		currentAnime: [] as any,
 		filterAnime: [] as any,
+		allAwards: [] as any,
+		// allAnime: [] as animeRest[],
+		airingAnime: [] as animeRest[],
+		// filterAnime: [] as animeRest[],
+		search: "",
 		startPageIndex: 0,
 		endPageIndex: 12,
 		pageNumber: 1,
-		animeId: null,
+		animeId: 0,
 		username: null,
 		first_name: null,
 		last_name: null,
 		email: null,
+		userID: null,
 		redirect: false,
 		userData: null,
 		token: null,
 		isAuthenticated: false,
+		isAdmin: false,
 		// userData: JSON.parse(localStorage.getItem("user")),
 		// token: JSON.parse(localStorage.getItem("token"))
 	}),
@@ -34,7 +42,7 @@ export const useUserStore = defineStore("user", {
 	getters: {
 		// getToken() {
 		//     const token = localStorage.getItem("token")
-		//     console.log(token)
+
 		//     return token
 		// },
 		// getUser() {
@@ -43,7 +51,7 @@ export const useUserStore = defineStore("user", {
 		// }
 	},
 	actions: {
-		storeAnimeId(id: any) {
+		storeAnimeId(id: number) {
 			this.animeId = id;
 		},
 		async getAllAnime() {
@@ -51,6 +59,7 @@ export const useUserStore = defineStore("user", {
 				const endpoint = "http://127.0.0.1:8000/anime/";
 				const headers = {
 					"Content-Type": "application/json",
+					"Accept-encoding": "gzip", //does not work
 				};
 
 				const options = {
@@ -59,13 +68,107 @@ export const useUserStore = defineStore("user", {
 				};
 
 				const response = await fetch(endpoint, options);
-				const data = await response.json();
+				const data: animeRest[] = await response.json();
+
+				this.allAnime = data;
 
 				return data;
 			} catch (error) {
-				console.log(error);
+				alert(error)
 			}
 		},
+
+		async updateAnime() {
+			try {
+				const endpoint = "http://127.0.0.1:8000/updateAnime/";
+				const headers = {
+					"Content-Type": "application/json",
+					"Accept-encoding": "gzip", //does not work
+				};
+
+				const options = {
+					method: "GET",
+					headers: headers,
+				};
+
+				const response = await fetch(endpoint, options);
+				// const data: animeRest[] = await response.json();
+
+			} catch (error) {
+				alert(error)
+			}
+		},
+
+		async getAllAwards() {
+			try {
+				const endpoint = "http://127.0.0.1:8000/graphql/";
+				const headers = {
+					"content-type": "application/json",
+					Authorization: `Bearer ${this.token}`,
+				};
+
+				const graphqlQuery = {
+					query: `{
+						allAwards{
+							edges{
+							  node{
+								awardName
+							  }
+							}
+						  }
+							}`,
+					variables: {},
+				};
+
+				const options = {
+					method: "POST",
+					headers: headers,
+					body: JSON.stringify(graphqlQuery),
+				};
+
+				const response = await fetch(endpoint, options);
+				const awardData = await response.json();
+
+
+				
+
+				
+				awardData.data.allAwards.edges.forEach(node => {
+
+					const awardName = node.node.awardName
+					if (this.allAwards.includes(awardName)) {
+
+						
+					} else {
+						this.allAwards.push(node.node.awardName)
+					}
+					
+				});
+				// this.allAwards = []
+
+				// return this.allAwards
+				// const refinedAnimeData = animeData.data.allAnime.edges[0].node;
+
+				// refinedAnimeData.animeGenre = refinedAnimeData.animeGenre.edges.map((edge: any) => {
+				// 	return edge.node.genre;
+				// });
+
+				// refinedAnimeData.animeStudio = refinedAnimeData.animeStudio.edges[0].node.studio;
+
+				// refinedAnimeData.animeAwards = refinedAnimeData.animeAwards.edges.map(
+				// 	(edge: any) => {
+				// 		return edge.node.id;
+				// 	}
+				// );
+
+				// return refinedAnimeData;
+			} catch (error) {
+				alert("You need to be logged in")
+				return navigateTo("/login")
+			}
+		},
+		
+
 		async getOneAnime() {
 			try {
 				const endpoint = "http://127.0.0.1:8000/graphql/";
@@ -86,7 +189,8 @@ export const useUserStore = defineStore("user", {
 											status
 											summary
 											largeImageUrl
-											numberRating
+											numRated
+											avgRating
 											airedTo
 											airedFrom
 											animeGenre {
@@ -125,36 +229,121 @@ export const useUserStore = defineStore("user", {
 				};
 
 				const response = await fetch(endpoint, options);
-				const animeData = await response.json();
+				const data = await response.json();
 
-				const refinedAnimeData = animeData.data.allAnime.edges[0].node;
+				const dataRes = data.data.allAnime.edges[0].node;
 
-				refinedAnimeData.animeGenre = refinedAnimeData.animeGenre.edges.map((edge: any) => {
+				dataRes.animeGenre = dataRes.animeGenre.edges.map((edge: any) => {
 					return edge.node.genre;
 				});
 
-				refinedAnimeData.animeStudio = refinedAnimeData.animeStudio.edges[0].node.studio;
+				dataRes.animeStudio = dataRes.animeStudio.edges.map((edge: any) => {
+					return edge.node.studio;
+				});
 
-				refinedAnimeData.animeAwards = refinedAnimeData.animeAwards.edges.map(
-					(edge: any) => {
-						return edge.node.id;
-					}
-				);
+				dataRes.animeAwards = dataRes.animeAwards.edges.map((edge: any) => {
+					return edge.node.id;
+				});
 
-				return refinedAnimeData;
+				const animeData = dataRes;
+
+
+
+				return animeData;
 			} catch (error) {
-				console.log(error);
+				alert(error)
 			}
 		},
+		async getAdmin() {
+			try {
+				const endpoint = "http://127.0.0.1:8000/graphql/";
+				const headers = {
+					"content-type": "application/json",
+					Authorization: `Bearer ${this.token}`,
+				};
+
+				const graphqlQuery = {
+					query: `
+query{
+  userAnimeData(id:${this.userID}) {
+    admin
+  }
+}`,
+					variables: {},
+				};
+
+				const options = {
+					method: "POST",
+					headers: headers,
+					body: JSON.stringify(graphqlQuery),
+				};
+
+				const response = await fetch(endpoint, options);
+				const userData = await response.json();
+				// console.log(userData.data.userAnimeData.admin)
+				this.isAdmin = userData.data.userAnimeData.admin
+				console.log(this.isAdmin)
+			} catch (error) {
+				alert(error)
+			}
+		},
+
+
+		async getWinner() {
+			try {
+				const endpoint = "http://127.0.0.1:8000/graphql/";
+				const headers = {
+					"content-type": "application/json",
+					Authorization: `Bearer ${this.token}`,
+				};
+
+				const graphqlQuery = {
+					query: `
+					mutation{
+						winner{
+						 animeAwards{
+						   winner{
+							 anime{
+							   animeName
+							 },
+							 award{
+								 awardName,
+								 date
+							 },
+							   voteCount
+						   }
+						 }
+						}
+						 }
+						`,
+					variables: {},
+				};
+
+				const options = {
+					method: "POST",
+					headers: headers,
+					body: JSON.stringify(graphqlQuery),
+				};
+
+				const response = await fetch(endpoint, options);
+				const userData = await response.json();
+				// console.log(userData.data.userAnimeData.admin)
+				// this.isAdmin = userData.data.userAnimeData.admin
+				// console.log(this.isAdmin)
+			} catch (error) {
+				alert(error)
+			}
+		},
+
 		async login(res: any) {
-			//console.log(res.code);
+
 			try {
 				axios
 					.post("http://localhost:8000/social-login/google/", {
 						code: res.code,
 					})
 					.then((res) => {
-						//console.log(res.data);
+
 						this.token = res.data.access_token;
 						// localStorage.setItem('token', JSON.stringify(this.token))
 						axios
@@ -162,14 +351,14 @@ export const useUserStore = defineStore("user", {
 								headers: { Authorization: `Bearer ${res.data.access_token}` },
 							})
 							.then((res) => {
-								//console.log(res.data);
-								//console.log(this.token);
+
+
 								let index = res.data.email.indexOf("@");
-								//console.log(res.data.email.slice(index + 1));
-								//console.log(index);
+
+
 
 								let account = res.data.email.slice(index + 1);
-								//console.log(account);
+
 								//add teacher later
 								if (account != ("nycstudents.net" || "schools.nyc.gov")) {
 									this.token = null;
@@ -181,6 +370,8 @@ export const useUserStore = defineStore("user", {
 								// localStorage.setItem("user", res.data.first_name)
 								// this.userData = localStorage.getItem("user")
 								// this.user = res.data.first_name
+
+								this.userID = res.data.pk
 								this.username = res.data.username;
 								// this.userData = res.data;
 								this.first_name = res.data.first_name;
@@ -188,12 +379,14 @@ export const useUserStore = defineStore("user", {
 								this.email = res.data.email;
 								this.isAuthenticated = true;
 								this.redirect = true;
+								this.getAdmin()
 								return navigateTo("/");
+								// this.$router.push("/")
 								// router.push({ path: "/"})
 							});
 					});
 			} catch (error) {
-				console.log(error);
+				alert(error)
 				// const response = error.response?.data;
 				// if (
 				//   response?.non_field_errors &&
@@ -211,18 +404,18 @@ export const useUserStore = defineStore("user", {
 		async checkCookie() {
 			try {
 				// let user = useCookie("user")
-				//console.log(this.token);
+
 				const res = await axios
 					.get("http://127.0.0.1:8000/auth/user/", {
 						headers: { Authorization: `Bearer ${this.token}` },
 					})
 					.then((res) => {});
-				// console.log((await res).status)
+
 			} catch (error) {
 				if (!this.token) {
 					return;
 				} else if ((error = "AxiosError: Request failed with status code 401")) {
-					// console.log("erfref")
+
 					alert("Your session has expired. Please login again!");
 					this.logout();
 					return navigateTo("/login");
@@ -233,6 +426,7 @@ export const useUserStore = defineStore("user", {
 		},
 		logout() {
 			try {
+				console.log("logout")
 				// let user = useCookie('user')
 				// user = null
 				// localStorage.removeItem("token");
@@ -244,9 +438,11 @@ export const useUserStore = defineStore("user", {
 				this.email = null;
 				this.isAuthenticated = false;
 				this.token = null;
+				this.userID = null
+				// this.$router.push("/")
 				// googleLogout();
 			} catch (error) {
-				console.error(error);
+				alert(error)
 			}
 		},
 		// logout() {

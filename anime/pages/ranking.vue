@@ -4,13 +4,13 @@
         <h2 id="rankings-title">Top Anime of the Month</h2>
         <div class="monthly-ranking-box">
             <RankingpageRankingCard
-                v-for="anime in topAnimeRank"
+                v-for="(anime, index) in ranking_arr"
                 :key="anime.id"
-                :rank="anime.rank"
-                :title="anime.title"
-                :studio="anime.studio"
-                :stars="anime.stars"
-                :img="anime.img"
+                :stars="anime.avg_rating"
+                :title="anime.anime_name"
+                :studio="anime.anime_studio"
+                :rank="index + 1"
+                :img="anime.large_image_url"
             />
         </div>
         <div class="monthly-ranking-graph"></div>
@@ -18,88 +18,46 @@
 </template>
 
 <script setup lang="ts">
-const topAnimeRank = ref([
-    {
-        id: 1,
-        rank: 1,
-        title: "One Piece",
-        studio: "Toei Animation",
-        stars: 7.91,
-        img: "https://sportshub.cbsistatic.com/i/2021/03/18/fc9eba90-ae7a-4e45-bef9-037145add04d/one-piece-wano-arc-1232360.jpg",
-    },
-    {
-        id: 2,
-        rank: 2,
-        title: "One Piece",
-        studio: "Toei Animation",
-        stars: 7.91,
-        img: "https://sportshub.cbsistatic.com/i/2021/03/18/fc9eba90-ae7a-4e45-bef9-037145add04d/one-piece-wano-arc-1232360.jpg",
-    },
-    {
-        id: 3,
-        rank: 3,
-        title: "One Piece",
-        studio: "Toei Animation",
-        stars: 7.91,
-        img: "https://sportshub.cbsistatic.com/i/2021/03/18/fc9eba90-ae7a-4e45-bef9-037145add04d/one-piece-wano-arc-1232360.jpg",
-    },
-    {
-        id: 4,
-        rank: 4,
-        title: "One Piece",
-        studio: "Toei Animation",
-        stars: 7.91,
-        img: "https://sportshub.cbsistatic.com/i/2021/03/18/fc9eba90-ae7a-4e45-bef9-037145add04d/one-piece-wano-arc-1232360.jpg",
-    },
-    {
-        id: 5,
-        rank: 5,
-        title: "One Piece",
-        studio: "Toei Animation",
-        stars: 7.91,
-        img: "https://sportshub.cbsistatic.com/i/2021/03/18/fc9eba90-ae7a-4e45-bef9-037145add04d/one-piece-wano-arc-1232360.jpg",
-    },
-    {
-        id: 6,
-        rank: 6,
-        title: "One Piece",
-        studio: "Toei Animation",
-        stars: 7.91,
-        img: "https://sportshub.cbsistatic.com/i/2021/03/18/fc9eba90-ae7a-4e45-bef9-037145add04d/one-piece-wano-arc-1232360.jpg",
-    },
-    {
-        id: 7,
-        rank: 7,
-        title: "One Piece",
-        studio: "Toei Animation",
-        stars: 7.91,
-        img: "https://sportshub.cbsistatic.com/i/2021/03/18/fc9eba90-ae7a-4e45-bef9-037145add04d/one-piece-wano-arc-1232360.jpg",
-    },
-    {
-        id: 8,
-        rank: 8,
-        title: "One Piece",
-        studio: "Toei Animation",
-        stars: 7.91,
-        img: "https://sportshub.cbsistatic.com/i/2021/03/18/fc9eba90-ae7a-4e45-bef9-037145add04d/one-piece-wano-arc-1232360.jpg",
-    },
-    {
-        id: 9,
-        rank: 9,
-        title: "One Piece",
-        studio: "Toei Animation",
-        stars: 7.91,
-        img: "https://sportshub.cbsistatic.com/i/2021/03/18/fc9eba90-ae7a-4e45-bef9-037145add04d/one-piece-wano-arc-1232360.jpg",
-    },
-    {
-        id: 10,
-        rank: 10,
-        title: "One Piece",
-        studio: "Toei Animation",
-        stars: 7.91,
-        img: "https://sportshub.cbsistatic.com/i/2021/03/18/fc9eba90-ae7a-4e45-bef9-037145add04d/one-piece-wano-arc-1232360.jpg",
-    },
-]);
+import RankingCard from "~~/components/rankingpage/RankingCard.vue";
+// <!-- :stars="anime.stars" -->
+
+import { animeRest } from "~~/types/anime";
+import { useUserStore } from "~~/stores/userStore";
+import { ref, onMounted } from "vue";
+
+const userStore = useUserStore();
+const ranking_arr = ref();
+
+onMounted(() => {
+    const arr_anime = JSON.parse(JSON.stringify(userStore.allAnime));
+    arr_anime.sort((a: any, b: any) => b.avg_rating - a.avg_rating);
+    console.log(arr_anime);
+    const x = arr_anime.slice(1, 11);
+    ranking_arr.value = x;
+    // userStore
+    // 	.getAllAnime()
+    // 	.then((data) => {
+    // 		const airingAnimeArr = [] as animeRest[];
+
+    // 		data!.filter(function (anime: animeRest): void {
+    // 			if (anime.status == "Currently Airing") {
+    // 				airingAnimeArr.push(anime);
+    // 			}
+    // 		});
+
+    // 		userStore.airingAnime = airingAnimeArr;
+
+    // 		airingAnime.value = userStore.airingAnime.slice(
+    // 			userStore.startPageIndex,
+    // 			userStore.endPageIndex
+    // 		);
+
+    // 		loading.value = false;
+    // 	})
+    // 	.catch((err) => {
+    // 		alert(err)
+    // 	});
+});
 </script>
 
 <style scoped>

@@ -18,8 +18,7 @@
                 />
             </svg>
         </div>
-        <div v-else class="search-bar">
-            <div @click="exitSearchMobile" class="x">&times;</div>
+        <div v-else @click="exitSearchMobile" class="search-bar">
             <form @submit.prevent="goToSeachAnime()">
                 <input
                     v-model="text"
@@ -32,12 +31,13 @@
                 />
                 <div class="biggerBox" v-if="showAnimeResults">
                     <p class="biggerBox-text">Anime</p>
-                    <SearchResult
+                    <SearchResultComp
                         @saveAnimeID="saveClickedAnimeID(anime.mal_id)"
                         @click="reload()"
                         v-for="anime in animeResults.slice(0, 5)"
                         :id="anime.mal_id"
                         :key="anime.mal_id"
+                        :mal_id="anime.mal_id"
                         :animeName="anime.anime_name"
                         :imageUrl="anime.large_image_url"
                         :episodes="anime.episodes"
@@ -52,19 +52,22 @@
 import { useUserStore } from "~~/stores/userStore";
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
+import { animeRest } from "~~/types/anime";
 
 const route = useRoute();
 const userStore = useUserStore();
 const showAnimeResults = ref(false);
-const animeResults = ref([] as any);
+const animeResults = ref([] as animeRest[]);
 const text = ref("");
 const hideSearch = ref(false);
 
 function searchAnime(text: string) {
-    const searchResult = [] as any;
+    const searchResult = [] as animeRest[];
+
+    userStore.search = text;
 
     if (text.length > 0) {
-        userStore.allAnime.filter((anime: any) => {
+        userStore.allAnime.filter((anime: animeRest) => {
             const animeWords = anime.anime_name.toLowerCase().split(" ");
             if (text.slice(-1) == " ") {
                 text = text.slice(0, -1);
@@ -117,12 +120,12 @@ function clearSearch() {
         showAnimeResults.value = false;
         text.value = "";
         animeResults.value = [];
-    }, 100);
+    }, 200);
 }
 
 function goToSeachAnime() {
     userStore.filterAnime = animeResults.value;
-    navigateTo("animeSearch");
+    navigateTo("/animeSearch");
     if (route.name === "animeSearch") {
         window.location.reload();
     }
@@ -144,6 +147,35 @@ onMounted(() => {
         hideSearch.value = false;
     }
 });
+
+// export default {
+// 	data: () => ({
+// 		text: "",
+// 		screenWidth: 0,
+// 		hideSearch: false,
+// 	}),
+// 	components: {
+// 		SearchResultComp,
+// 	},
+// 	methods: {
+// 		enterSearchMobile() {
+// 			this.hideSearch = false;
+// 		},
+// 		exitSearchMobile(e: any) {
+// 			if (this.screenWidth <= 568 && e.target.className === "search-bar") {
+// 				this.hideSearch = true;
+// 			}
+// 		},
+// 	},
+// 	mounted() {
+// 		this.screenWidth = window.innerWidth;
+// 		if (window.innerWidth <= 568) {
+// 			this.hideSearch = true;
+// 		} else {
+// 			this.hideSearch = false;
+// 		}
+// 	},
+// };
 </script>
 
 <style scoped>
@@ -246,13 +278,13 @@ onMounted(() => {
         top: 0;
         left: 0;
     }
-    .x {
-        display: block;
-    }
     .input,
     .biggerBox {
         width: 80vw;
         position: relative;
+    }
+    .input {
+        margin-top: 5vh;
     }
     .info-column {
         margin-left: 2vw;

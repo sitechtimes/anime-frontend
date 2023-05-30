@@ -17,6 +17,9 @@
                 <li class="link">
                     <NuxtLink to="/history" class="link-href">History</NuxtLink>
                 </li>
+                <li v-if="userStore.isAdmin" class="link">
+                    <NuxtLink to="/admin" class="link-href">Admin</NuxtLink>
+                </li>
                 <NuxtLink
                     v-if="userStore.isAuthenticated == false"
                     to="/login"
@@ -53,7 +56,6 @@ export default {
         const userStore = useUserStore();
         // const router = useRoute()
         // userStore.$persist()
-        // console.log(userStore.userData)
 
         return {
             userStore,
@@ -77,8 +79,6 @@ export default {
     mounted() {
         this.lastScrollPosition = window.pageYOffset;
         window.addEventListener("scroll", this.onScroll);
-
-        // console.log(this.user)
     },
 
     beforeDestroy() {

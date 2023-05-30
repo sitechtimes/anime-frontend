@@ -1,10 +1,14 @@
 <template>
-    <NuxtLink to="/animeInfo" class="box" @click="$emit('saveAnimeID')">
+    <NuxtLink
+        :to="`/anime/` + mal_id"
+        class="box"
+        @click="$emit('saveAnimeID')"
+    >
         <img class="image-placeholder" :src="`${imageUrl}`" alt="" />
         <div class="info-column">
             <h3 class="title">{{ animeName }}</h3>
             <div class="info-row">
-                <EpisodeSvg :episode="episodes" />
+                <EpisodeSVG :episode="episodes" />
             </div>
         </div>
     </NuxtLink>

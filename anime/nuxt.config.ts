@@ -13,21 +13,23 @@ export default defineNuxtConfig({
         "~/assets/global.css",
     ],
 
-    runtimeConfig: {
-        public: {
-            clientID: process.env.CLIENT_ID,
-        },
-    },
-    // buildModules: [],
-    dir: {
-        pages: "pages",
-    },
-    modules: [
-        // ...
-        "@pinia/nuxt",
-        "@pinia-plugin-persistedstate/nuxt",
-    ],
-    nitro: {
-        compressPublicAssets: true,
-    },
+	runtimeConfig: {
+		public: {
+			clientID: process.env.clientID,
+		},
+	},
+	// buildModules: [],
+	dir: {
+		// Rename `pages` directory to `routes`
+		// pages: "routes",
+	},
+	modules: [
+		// ...
+		"@pinia/nuxt",
+		"@pinia-plugin-persistedstate/nuxt",
+		'nuxt-icon'
+	],
+	nitro: {
+		compressPublicAssets: true,
+	},
 });
