@@ -77,14 +77,11 @@ const loadingAnimeHome: number[] = [...Array(12).keys()];
 const animePerPage = ref<number>(12);
 const totalPage = ref<number>(0);
 const pageFilteredAnime = ref([] as animeRest[]);
+const startPageIndex = ref<number>(0);
+const endPageIndex = ref<number>(12);
 
-if (userStore.startPageIndex != 0) {
-	pageLeftIndicator.value = true;
-}
 onMounted(() => {
 	userStore.animeId = 0;
-	userStore.startPageIndex = 0;
-	userStore.endPageIndex = 12;
 	userStore.pageNumber = 1;
 
 	userStore
@@ -101,8 +98,8 @@ onMounted(() => {
 			userStore.airingAnime = airingAnimeArr;
 
 			airingAnime.value = userStore.airingAnime.slice(
-				userStore.startPageIndex,
-				userStore.endPageIndex
+				startPageIndex.value,
+				endPageIndex.value
 			);
 			calculateTotalPage();
 
@@ -135,24 +132,21 @@ function pagenation(direction: number) {
 		if (userStore.pageNumber != 1) {
 			pageLeftIndicator.value = true;
 			pageRightIndicator.value = true;
-			userStore.startPageIndex -= animePerPage.value;
-			userStore.endPageIndex -= animePerPage.value;
+			startPageIndex.value -= animePerPage.value;
+			endPageIndex.value -= animePerPage.value;
 			userStore.pageNumber -= 1;
 		}
 	} else if (direction == 1) {
 		if (userStore.pageNumber != totalPage.value) {
 			pageLeftIndicator.value = true;
 			pageRightIndicator.value = true;
-			userStore.startPageIndex += animePerPage.value;
-			userStore.endPageIndex += animePerPage.value;
+			startPageIndex.value += animePerPage.value;
+			endPageIndex.value += animePerPage.value;
 			userStore.pageNumber += 1;
 		}
 	}
 	pageExistIndicator();
-	pageFilteredAnime.value = userStore.filterAnime.slice(
-		userStore.startPageIndex,
-		userStore.endPageIndex
-	);
+	pageFilteredAnime.value = userStore.filterAnime.slice(startPageIndex.value, endPageIndex.value);
 }
 
 function saveClickedAnimeID(id: number): void {
