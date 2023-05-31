@@ -151,7 +151,7 @@ function next(): void {
 		airingAnime.value = userStore.airingAnime.slice(
 			userStore.startPageIndex,
 			userStore.endPageIndex
-		);
+		);}}
 function calculateTotalPage() {
 	totalPage.value = Math.ceil(userStore.airingAnime.length / animePerPage.value);
 }
