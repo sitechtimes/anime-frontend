@@ -82,16 +82,17 @@
           </div>
         </div>
         <div class="divider"></div>
-        <div class="info-block">
-          <h2>Rating Distribution</h2>
-          <div class="divider"></div>
-          <LineChart
-            v-if="loaded"
-            :chartData="chartData"
-            :chartOptions="chartOptions"
-          />
-        </div>
       </div>
+      <div class="info-block">
+        <h2>Rating Distribution</h2>
+        <div class="divider"></div>
+        <LineChart
+          v-if="loaded"
+          :chartData="chartData"
+          :chartOptions="chartOptions"
+        />
+      </div>
+      
     </div>
   </div>
 </template>
@@ -474,7 +475,7 @@ function showMore() {
 .info-block h2 {
   font-size: var(--h3);
   font-weight: var(--fw-med);
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 .anime-name {
 	font-size: var(--h2);
@@ -603,21 +604,6 @@ function showMore() {
 	}
 	.select {
 		font-size: var(--h6);
-	}
-}
-
-@media screen and (max-width: 915px) {
-	#anime-info {
-		flex-direction: column;
-		align-items: center;
-	}
-	.column-1 {
-		position: static;
-		align-self: auto;
-		width: 80vw;
-	}
-	.animeImage {
-		width: 21rem;
 	}
 }
 </style>

@@ -13,6 +13,22 @@
        :characters="characters"
        :mal_id="mal_id"
        :avgRating="rating"
+       class="info-comp"
+       />
+       <InfoMobile
+       :animeName="animeName"
+       :imageUrl="imageURL"
+       :episodes="episodes"
+       :status="status"
+       :aired="aired"
+       :mediaType="mediaType"
+       :synopsis="synopsis"
+       :studios="studios"
+       :genres="genres"
+       :characters="characters"
+       :mal_id="mal_id"
+       :avgRating="rating"
+       class="info-mobile"
        />
     </div>
 </template>
@@ -126,6 +142,17 @@ onMounted(() => {
 })
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
+.info-mobile {
+  display: none;
+}
 
+@media screen and (max-width: 915px) {
+  .info-comp {
+    display: none;
+  }
+  .info-mobile {
+    display: block;
+  }
+}
 </style>
