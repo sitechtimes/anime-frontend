@@ -1,38 +1,42 @@
 <template>
     <div id="anime-info-mobile">
-        <div class="row-1"></div>
-        <div class="row-2">
-            <div class="info-block">
-                <h2>Synopsis</h2>
-                <div class="divider"></div>
-                <p class="synopsis">{{ synopsis }}</p>
-                <button class="show" ref="showBtn" @click="showMore">Show More</button>
-            </div>
-            <div class="info-block">
-                <h2>Characters</h2>
-                <div class="divider"></div>
-                <div class="character-container">
-                    <div
-                    v-for="character in characters"
-                    :key="character.node.characterName"
-                    class="character"
-                    >
-                        <img class="character-img" :src="character.node.imageUrl" alt="" />
-                        <p class="character-name">{{ character.node.characterName }}</p>
-                    </div>
-                </div>
-                <div class="divider"></div>
-            </div>
-            <div class="info-block">
-                <h2>Rating Distribution</h2>
-                <div class="divider"></div>
-                <LineChart
-                  v-if="loaded"
-                  :chartData="chartData"
-                  :chartOptions="chartOptions"
-                />
-            </div>
+      <div class="row-1">
+        <img class="animeImage" :src="`${imageUrl}`" alt="Anime Cover" />
+      </div>
+
+      <div class="info-block">
+        <h2>Synopsis</h2>
+        <div class="divider"></div>
+        <p class="synopsis">{{ synopsis }}</p>
+        <button class="show" ref="showBtn" @click="showMore">Show More</button>
+      </div>
+
+      <div class="info-block">
+        <h2>Characters</h2>
+        <div class="divider"></div>
+        <div class="character-container">
+          <div
+            v-for="character in characters"
+            :key="character.node.characterName"
+            class="character"
+          >
+            <img class="character-img" :src="character.node.imageUrl" alt="" />
+            <p class="character-name">{{ character.node.characterName }}</p>
+          </div>
         </div>
+        <div class="divider"></div>
+      </div>
+
+      <div class="info-block">
+        <h2>Rating Distribution</h2>
+        <div class="divider"></div>
+        <LineChart
+          v-if="loaded"
+          :chartData="chartData"
+          :chartOptions="chartOptions"
+        />
+      </div>
+
     </div>
 </template>
 
@@ -358,4 +362,16 @@ function showMore() {
 </script>
 
 <style scoped>
+#anime-info-mobile {
+  display: none;
+  color: var(--white);
+  padding-top: 13vh;
+  margin: auto;
+}
+
+@media screen and (max-width: 915px) {
+  #anime-info-mobile {
+    display: block;
+  }
+}
 </style>

@@ -143,16 +143,5 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.info-mobile {
-  display: none;
-}
 
-@media screen and (max-width: 915px) {
-  .info-comp {
-    display: none;
-  }
-  .info-mobile {
-    display: block;
-  }
-}
 </style>

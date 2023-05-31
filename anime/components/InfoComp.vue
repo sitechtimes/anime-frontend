@@ -606,4 +606,10 @@ function showMore() {
 		font-size: var(--h6);
 	}
 }
+
+@media screen and (max-width: 915px) {
+  #anime-info {
+    display: none;
+  }
+}
 </style>
