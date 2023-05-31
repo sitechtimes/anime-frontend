@@ -59,28 +59,39 @@
                             </form>
                         </div>
                         <div class="page-buttonBox">
-                            <button class="page-button" v-on:click="previous">
-                                <LeftPageButtonSvg :pageExist="pageExistLeft" />
+                            <button
+                                class="page-button"
+                                v-on:click="pagenation(0)"
+                            >
+                                <LeftPageButtonSvg
+                                    :pageExist="pageLeftIndicator"
+                                />
                             </button>
-                            <button class="page-button" v-on:click="next">
+                            <button
+                                class="page-button"
+                                v-on:click="pagenation(1)"
+                            >
                                 <RightPageButtonSvg
-                                    :pageExist="pageExistRight"
+                                    :pageExist="pageRightIndicator"
                                 />
                             </button>
                         </div>
                     </div>
                 </div>
                 <div class="airing-content" v-if="loading">
-                    <HomepageAnimeCardLoading
+                    <homepageAnimeCardLoading
                         v-for="anime in loadingAnimeHome"
+                        :id="anime"
+                        :key="anime"
                     />
                 </div>
                 <div class="airing-content" v-else>
-                    <HomepageAnimeCard
+                    <homepageAnimeCard
                         @saveAnimeID="saveClickedAnimeID(anime.mal_id)"
-                        v-for="anime in pagePopularAnime"
+                        v-for="anime in airingAnime"
                         :id="anime.mal_id"
                         :key="anime.mal_id"
+                        :mal_id="anime.mal_id"
                         :episode="anime.episodes"
                         :animeName="anime.anime_name"
                         :imageUrl="anime.large_image_url"
@@ -90,14 +101,14 @@
             </div>
             <div class="topCharts-container">
                 <h2 class="topCharts-title">Top Charts</h2>
-                <HomepageTopCharts
-                    v-for="charts in top"
+                <homepageTopCharts
+                    v-for="(charts, index) in sortedAnimeTop"
                     :key="charts.id"
-                    :img="charts.img"
-                    :episode="charts.episode"
-                    :votes="charts.votes"
-                    :title="charts.title"
-                    :rank="charts.rank"
+                    :img="charts.imageUrl"
+                    :episode="charts.episodes"
+                    :votes="charts.currentlyWatching"
+                    :title="charts.animeName"
+                    :rank="index + 1"
                 />
             </div>
         </section>
@@ -106,16 +117,152 @@
 </template>
 
 <script setup lang="ts">
+import { animeRest } from "~~/types/anime";
 import { useUserStore } from "~~/stores/userStore";
-import { ref } from "vue";
 
 const userStore = useUserStore();
 
-const pageExistLeft = ref(false);
-const pageExistRight = ref(true);
-const pagePopularAnime = ref([] as any);
-if (userStore.startPageIndex != 0) {
-    pageExistLeft.value = true;
+const pageLeftIndicator = ref<boolean>(false);
+const pageRightIndicator = ref<boolean>(true);
+const airingAnime = ref<animeRest[]>();
+const loading = ref<boolean>(true);
+const loadingAnimeHome: number[] = [...Array(12).keys()];
+const animePerPage = ref<number>(12);
+const totalPage = ref<number>(0);
+const pageFilteredAnime = ref([] as animeRest[]);
+const startPageIndex = ref<number>(0);
+const endPageIndex = ref<number>(12);
+const sortedAnimeTop = ref([]);
+// const pageExistLeft = reffalse
+
+onMounted(() => {
+    getTopChart();
+
+    userStore.animeId = 0;
+    userStore.pageNumber = 1;
+
+    userStore
+        .getAllAnime()
+        .then((data) => {
+            const airingAnimeArr = [] as animeRest[];
+
+            data!.filter(function (anime: animeRest) {
+                if (anime.status == "Currently Airing") {
+                    airingAnimeArr.push(anime);
+                }
+            });
+
+            userStore.airingAnime = airingAnimeArr;
+
+            airingAnime.value = userStore.airingAnime.slice(
+                startPageIndex.value,
+                endPageIndex.value
+            );
+            calculateTotalPage();
+
+            loading.value = false;
+        })
+        .catch((err) => {
+            alert(err);
+        });
+});
+
+async function getTopChart() {
+    const endpoint = "http://127.0.0.1:8000/graphql/";
+    const headers = {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userStore.token}`,
+    };
+    const graphqlQuery = {
+        query: `{
+  sortedCurrentlyWatching{
+    animeName,
+    currentlyWatching,
+    imageUrl,
+    episodes,
+	malId
+  }
+}`,
+        variables: {},
+    };
+    const options = {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify(graphqlQuery),
+    };
+    const response = await fetch(endpoint, options);
+    const queryData = await response.json();
+
+    sortedAnimeTop.value = queryData.data.sortedCurrentlyWatching;
+}
+
+function next(): void {
+    if (userStore.endPageIndex < userStore.airingAnime.length) {
+        userStore.startPageIndex += 11;
+        userStore.endPageIndex += 11;
+        userStore.pageNumber += 1;
+        pageExistLeft.value = true;
+        airingAnime.value = userStore.airingAnime.slice(
+            userStore.startPageIndex,
+            userStore.endPageIndex
+        );
+    }
+}
+function calculateTotalPage() {
+    totalPage.value = Math.ceil(
+        userStore.airingAnime.length / animePerPage.value
+    );
+}
+
+function pageExistIndicator() {
+    if (userStore.pageNumber == 1) {
+        pageLeftIndicator.value = false;
+    } else {
+        pageLeftIndicator.value = true;
+    }
+    if (userStore.pageNumber == totalPage.value) {
+        pageRightIndicator.value = false;
+    } else {
+        pageRightIndicator.value = true;
+    }
+}
+
+function pagenation(direction: number) {
+    if (direction == 0) {
+        if (userStore.pageNumber != 1) {
+            pageLeftIndicator.value = true;
+            pageRightIndicator.value = true;
+            startPageIndex.value -= animePerPage.value;
+            endPageIndex.value -= animePerPage.value;
+            userStore.pageNumber -= 1;
+        }
+    } else if (direction == 1) {
+        if (userStore.pageNumber != totalPage.value) {
+            pageLeftIndicator.value = true;
+            pageRightIndicator.value = true;
+            startPageIndex.value += animePerPage.value;
+            endPageIndex.value += animePerPage.value;
+            userStore.pageNumber += 1;
+        }
+    }
+    pageExistIndicator();
+    pageFilteredAnime.value = userStore.filterAnime.slice(
+        startPageIndex.value,
+        endPageIndex.value
+    );
+}
+
+function saveClickedAnimeID(id: number): void {
+    userStore.storeAnimeId(id);
+}
+
+function selectPage(num: number): void {
+    userStore.startPageIndex = num * 11 - 11;
+    userStore.endPageIndex = num * 11 + 1;
+    airingAnime.value = userStore.airingAnime.slice(
+        userStore.startPageIndex,
+        userStore.endPageIndex
+    );
 }
 const animes = ref([
     {
@@ -158,191 +305,6 @@ const animes = ref([
                     propel him back into sports as a kabaddi player!`,
     },
 ]);
-const loadingAnimeHome = [...Array(12).keys()];
-const loading = ref(true);
-const top = ref([
-    {
-        id: 1,
-        img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-        episode: 126,
-        votes: 100,
-        title: "One Piecesd dflkjasdfk ldkflksdjkldfalsdknflasnflds",
-        rank: 1,
-    },
-    {
-        id: 2,
-        img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-        episode: 1252,
-        votes: 100,
-        title: "One Piecesd dflkjasdfk ldkflksdjkldfalsdknflasnflds",
-        rank: 2,
-    },
-    {
-        id: 3,
-        img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-        episode: 129,
-        votes: 100,
-        title: "nsdlfnsflksdnflknslfsdlnfldsnfls",
-        rank: 3,
-    },
-    {
-        id: 4,
-        img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-        episode: 125,
-        votes: 100,
-        title: "One Piece",
-        rank: 4,
-    },
-    {
-        id: 5,
-        img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-        episode: 121,
-        votes: 100,
-        title: "One Piece",
-        rank: 5,
-    },
-    {
-        id: 6,
-        img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-        episode: 125,
-        votes: 100,
-        title: "One Piece",
-        rank: 6,
-    },
-    {
-        id: 7,
-        img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-        episode: 125,
-        votes: 100,
-        title: "One Piece",
-        rank: 7,
-    },
-    {
-        id: 8,
-        img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-        episode: 125,
-        votes: 100,
-        title: "One Piece",
-        rank: 8,
-    },
-    {
-        id: 9,
-        img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-        episode: 125,
-        votes: 100,
-        title: "One Piece",
-        rank: 9,
-    },
-    {
-        id: 10,
-        img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-        episode: 125,
-        votes: 100,
-        title: "One Piece",
-        rank: 10,
-    },
-]);
-
-onMounted(
-    () => {
-        userStore.animeId = null;
-        userStore.startPageIndex = 0;
-        userStore.endPageIndex = 12;
-        userStore.pageNumber = 1;
-
-        userStore
-            .getAllAnime()
-            .then((data) => {
-                const refineData = data.filter(function (anime: any) {
-                    //delete anime.large_image_url;
-                    delete anime.small_image_url;
-                    delete anime.image_url;
-                    delete anime.trailer_youtube_url;
-                    delete anime.aired_from;
-                    delete anime.aired_to;
-                    delete anime.summary;
-                    delete anime.anime_studio;
-                    delete anime.anime_genre;
-                    delete anime.number_rating;
-                    delete anime.anime_characters;
-                    delete anime.anime_awards;
-                    delete anime.season;
-                    delete anime.avg_rating;
-                    delete anime.id;
-
-                    return true;
-                });
-
-                const airingAnime = [] as any;
-
-                refineData.filter(function (anime: any) {
-                    if (anime.status == "Currently Airing") {
-                        airingAnime.push(anime);
-                    }
-                });
-
-                userStore.allAnime = refineData;
-                userStore.currentAnime = airingAnime;
-
-                pagePopularAnime.value = userStore.currentAnime.slice(
-                    userStore.startPageIndex,
-                    userStore.endPageIndex
-                );
-
-                loading.value = false;
-                console.log(userStore.currentAnime);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }
-    //}
-);
-
-function next() {
-    if (userStore.endPageIndex < userStore.currentAnime.length) {
-        userStore.startPageIndex += 11;
-        userStore.endPageIndex += 11;
-        userStore.pageNumber += 1;
-        pageExistLeft.value = true;
-        pagePopularAnime.value = userStore.currentAnime.slice(
-            userStore.startPageIndex,
-            userStore.endPageIndex
-        );
-    } else {
-        pageExistRight.value = false;
-    }
-}
-
-function previous() {
-    if (userStore.pageNumber == 1) {
-        pageExistLeft.value = false;
-        pageExistRight.value = true;
-    } else {
-        userStore.startPageIndex -= 11;
-        userStore.endPageIndex -= 11;
-        userStore.pageNumber -= 1;
-        pageExistRight.value = true;
-        pagePopularAnime.value = userStore.currentAnime.slice(
-            userStore.startPageIndex,
-            userStore.endPageIndex
-        );
-    }
-}
-
-function saveClickedAnimeID(id: number) {
-    userStore.storeAnimeId(id);
-}
-
-function selectPage(num: number) {
-    userStore.startPageIndex = num * 11 - 11;
-    userStore.endPageIndex = num * 11 + 1;
-
-    pagePopularAnime.value = userStore.currentAnime.slice(
-        userStore.startPageIndex,
-        userStore.endPageIndex
-    );
-}
 </script>
 <style scoped>
 /* undernavigation  */
