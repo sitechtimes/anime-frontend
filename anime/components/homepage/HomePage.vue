@@ -51,13 +51,13 @@
 		<div class="topCharts-container">
 			<h2 class="topCharts-title">Top Charts</h2>
 			<homepageTopCharts
-				v-for="charts in top"
+				v-for="(charts, index) in sortedAnimeTop"
 				:key="charts.id"
 				:img="charts.imageUrl"
 				:episode="charts.episodes"
 				:votes="charts.currentlyWatching"
 				:title="charts.animeName"
-				:rank="sortedAnimeTop.indexOf(charts) + 1"
+				:rank="index + 1"
 			/>
 		</div>
 	</div>
@@ -79,6 +79,7 @@ const totalPage = ref<number>(0);
 const pageFilteredAnime = ref([] as animeRest[]);
 const startPageIndex = ref<number>(0);
 const endPageIndex = ref<number>(12);
+const sortedAnimeTop = ref([]);
 
 onMounted(() => {
 	getTopChart()
