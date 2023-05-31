@@ -174,7 +174,12 @@ export default {
 }
 @media screen and (max-width: 400px) {
 .tabs-header {
+    width: 12vw;
+    height: 34vh;
     padding-top: 0.5rem;
+}
+.tabs-header li {
+    width: 12vw;
 }
 }
 @media screen and (max-width: 380px) {

@@ -242,7 +242,7 @@ export default {
             {
                 animeID: "01",
                 title: "World Trigger",
-                img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
+                img: "https://wallpapercave.com/wp/wp6557115.jpg",
             },
             {
                 animeID: "02",
@@ -732,11 +732,18 @@ export default {
 }
 }
 @media screen and (max-width: 780px) {
+.underNav {
+    height: 15vh;
+}
 .pf-carousel {
     margin-left: 2rem;
 }
+.profile-img {
+    width: 14rem;
+    height: 14rem;
+}
 .profile-info {
-    margin-top: 15rem;
+    margin-top: 20rem;
 }
 }
 @media screen and (max-width: 680px) {
@@ -750,8 +757,8 @@ export default {
     font-size: var(--smallText);
 }
 .profile-img {
-    width: 12rem;
-    height: 12rem;
+    width: 11rem;
+    height: 11rem;
 }
 .profile-info {
     margin-top: 18rem;
@@ -761,6 +768,9 @@ export default {
 }
 }
 @media screen and (max-width: 550px) {
+.banner {
+    height: 15vh;
+}
 .tab-logo {
     font-size: var(--h6);
 }
@@ -787,11 +797,11 @@ export default {
     font-size: var(--h5);
 }
 .profile-img {
-    width: 12rem;
-    height: 12rem;
+    width: 9rem;
+    height: 9rem;
 }
 .profile-info {
-    margin-top: 12rem;
+    margin-top: 9rem;
     margin-bottom: 1rem;
 }
 .underNav {
@@ -799,22 +809,11 @@ export default {
 }
 }
 @media screen and (max-width: 520px) {
-.profile-info {
-    margin-top: 17rem;
-}
 .profile-name {
     margin-top: 5rem;
 }
 }
-@media screen and (max-width: 460px) {
-.profile-info {
-    margin-top: 16rem;
-}
-.profile-name {
-    margin-top: 6rem;
-}
-}
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 435px) {
 .tab-title {
     margin-left: 4.5rem;
 }
@@ -830,20 +829,18 @@ export default {
     height: 12vh;
 }
 .profile-img {
-    width: 10rem;
-    height: 10rem;
+    width: 8rem;
+    height: 8rem;
 }
 .profile-info {
-    margin-top: 19rem;
+    margin-top: 10rem;
     margin-bottom: 2rem;
 }
 }
-@media screen and (max-width: 395px) {
-.profile-info {
-    margin-top: 18rem;
-}
-}
 @media screen and (max-width: 390px) {
+.banner {
+    height: 14vh;
+}
 .tab-title {
     margin-left: 3.5rem;
 }
@@ -852,10 +849,11 @@ export default {
     height: 8rem;
 }
 .profile-info {
-    margin-top: 15rem;
+    margin-top: 10rem;
+    margin-bottom: 0rem;
 }
 .profile-name {
-    margin-top: 5rem;
+    margin-top: 3rem;
 }
 .profile-grade {
     width: 15rem;
@@ -883,12 +881,11 @@ export default {
     font-size: 0.6rem;
 }
 .profile-img {
-    width: 7rem;
-    height: 7rem;
+    width: 6rem;
+    height: 6rem;
 }
 .profile-info {
-    margin-top: 10rem;
-    margin-left: -2rem;
+    margin-top: 8rem;
     margin-bottom: 0rem;
 }
 .profile-name {
