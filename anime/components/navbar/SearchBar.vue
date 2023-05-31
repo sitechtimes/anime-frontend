@@ -50,7 +50,7 @@
 
 <script setup lang="ts">
 import { useUserStore } from "~~/stores/userStore";
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 import { useRoute } from "vue-router";
 import { animeRest } from "~~/types/anime";
 
@@ -59,7 +59,6 @@ const userStore = useUserStore();
 const showAnimeResults = ref(false);
 const animeResults = ref([] as animeRest[]);
 const text = ref("");
-const hideSearch = ref(false);
 
 function searchAnime(text: string) {
     const searchResult = [] as animeRest[];
@@ -125,57 +124,48 @@ function clearSearch() {
 
 function goToSeachAnime() {
     userStore.filterAnime = animeResults.value;
-    navigateTo("/animeSearch");
+    navigateTo("animeSearch");
     if (route.name === "animeSearch") {
         window.location.reload();
     }
     showAnimeResults.value = false;
 }
+</script>
 
-function enterSearchMobile() {
-    hideSearch.value = false;
-}
+<script lang="ts">
+import SearchResultComp from "./SeachResult.vue";
 
-function exitSearchMobile() {
-    hideSearch.value = true;
-}
-
-onMounted(() => {
-    if (window.innerWidth <= 568) {
-        hideSearch.value = true;
-    } else {
-        hideSearch.value = false;
-    }
-});
-
-// export default {
-// 	data: () => ({
-// 		text: "",
-// 		screenWidth: 0,
-// 		hideSearch: false,
-// 	}),
-// 	components: {
-// 		SearchResultComp,
-// 	},
-// 	methods: {
-// 		enterSearchMobile() {
-// 			this.hideSearch = false;
-// 		},
-// 		exitSearchMobile(e: any) {
-// 			if (this.screenWidth <= 568 && e.target.className === "search-bar") {
-// 				this.hideSearch = true;
-// 			}
-// 		},
-// 	},
-// 	mounted() {
-// 		this.screenWidth = window.innerWidth;
-// 		if (window.innerWidth <= 568) {
-// 			this.hideSearch = true;
-// 		} else {
-// 			this.hideSearch = false;
-// 		}
-// 	},
-// };
+export default {
+    data: () => ({
+        text: "",
+        screenWidth: 0,
+        hideSearch: false,
+    }),
+    components: {
+        SearchResultComp,
+    },
+    methods: {
+        enterSearchMobile() {
+            this.hideSearch = false;
+        },
+        exitSearchMobile(e: any) {
+            if (
+                this.screenWidth <= 568 &&
+                e.target.className === "search-bar"
+            ) {
+                this.hideSearch = true;
+            }
+        },
+    },
+    mounted() {
+        this.screenWidth = window.innerWidth;
+        if (window.innerWidth <= 568) {
+            this.hideSearch = true;
+        } else {
+            this.hideSearch = false;
+        }
+    },
+};
 </script>
 
 <style scoped>
@@ -184,13 +174,6 @@ onMounted(() => {
     color: rgb(219, 219, 219);
     transition-duration: 0;
     transition-delay: 1000ms;
-}
-
-.x {
-    display: none;
-    font-size: var(--h3);
-    align-self: flex-end;
-    margin-right: 1rem;
 }
 .biggerBox {
     position: fixed;
