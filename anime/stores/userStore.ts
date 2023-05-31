@@ -320,6 +320,21 @@ query{
 					query: `
 					mutation{
 						winner{
+						  characterAwards {
+							characterWinner{
+							  character{
+								characterName
+							  },
+							  award{
+								awardName,
+							  },
+							  voteCount,
+							
+							},
+							  season,
+							year
+						  }
+						  ,
 						 animeAwards{
 						   winner{
 							 anime{
@@ -327,10 +342,12 @@ query{
 							 },
 							 award{
 								 awardName,
-								 date
 							 },
-							   voteCount
-						   }
+							   voteCount,
+							
+						  },
+						  season,
+						  year
 						 }
 						}
 						 }
@@ -345,7 +362,8 @@ query{
 				};
 
 				const response = await fetch(endpoint, options);
-				const userData = await response.json();
+				const winnerData = await response.json();
+				console.log(winnerData)
 				// console.log(userData.data.userAnimeData.admin)
 				// this.isAdmin = userData.data.userAnimeData.admin
 				// console.log(this.isAdmin)
