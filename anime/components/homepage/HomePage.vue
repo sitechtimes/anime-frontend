@@ -80,6 +80,7 @@ const pageFilteredAnime = ref([] as animeRest[]);
 const startPageIndex = ref<number>(0);
 const endPageIndex = ref<number>(12);
 const sortedAnimeTop = ref([]);
+// const pageExistLeft = reffalse
 
 onMounted(() => {
 	getTopChart()
