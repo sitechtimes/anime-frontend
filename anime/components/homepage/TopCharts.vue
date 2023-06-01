@@ -18,42 +18,51 @@
     </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import EpisodeSVG from "../EpisodeSvg.vue";
 import { Icon } from '#components'
 
-export default {
-    name: "EpisodeCard",
-    components: {
-        EpisodeSVG,
-    },
-    props: {
-        malid: {
-            type: Number,
-            required: true
-        },
-        rank: {
-            type: Number,
-            required: true,
-        },
-        img: {
-            type: String,
-            required: true,
-        },
-        episode: {
-            type: Number,
-            required: true,
-        },
-        votes: {
-            type: Number,
-            required: true,
-        },
-        title: {
-            type: String,
-            required: true,
-        },
-    },
-};
+defineProps({
+  malid: Number,
+  rank: Number,
+  img: String,
+  episode: String,
+  votes: Number,
+  title: String,
+})
+
+// export default {
+//     name: "EpisodeCard",
+//     components: {
+//         EpisodeSVG,
+//     },
+//     props: {
+//         malid: {
+//             type: Number,
+//             required: true
+//         },
+//         rank: {
+//             type: Number,
+//             required: true,
+//         },
+//         img: {
+//             type: String,
+//             required: true,
+//         },
+//         episode: {
+//             type: Number,
+//             required: true,
+//         },
+//         votes: {
+//             type: Number,
+//             required: true,
+//         },
+//         title: {
+//             type: String,
+//             required: true,
+//         },
+//     },
+// };
 </script>
 
 <style scoped>
