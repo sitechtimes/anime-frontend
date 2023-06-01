@@ -1,6 +1,6 @@
 <template>
     <div class="topChartsComp-container">
-        <p class="topChartsComp-rank">{{ rank }}</p>
+        <h2 class="topChartsComp-rank">{{ rank }}</h2>
         <NuxtLink class="topChartsComp-container-sub" :to="`/anime/` + malid">
         <img class="topChartsComp-image" :src="`${img}`" alt="" />
         <div class="topChartsComp-info">
