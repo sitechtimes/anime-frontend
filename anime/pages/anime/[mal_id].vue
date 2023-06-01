@@ -21,6 +21,7 @@
 import InfoComp from '../../components/InfoComp.vue';
 import { useUserStore } from '~~/stores/userStore'
 import { onMounted, ref } from 'vue';
+import { navigateTo } from 'nuxt/app';
 
 
   const route = useRoute()
@@ -116,7 +117,9 @@ async function getAnime() {
 
 
       } catch (error) {
-        alert(error)
+        alert("You need to be logged in")
+        return navigateTo("/login")
+       
       }
 }
 

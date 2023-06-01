@@ -1,6 +1,7 @@
 <template>
     <div class="topChartsComp-container">
-        <p class="topChartsComp-rank">{{ rank }}</p>
+        <h2 class="topChartsComp-rank">{{ rank }}</h2>
+        <NuxtLink class="topChartsComp-container-sub" :to="`/anime/` + malid">
         <img class="topChartsComp-image" :src="`${img}`" alt="" />
         <div class="topChartsComp-info">
             <h3 class="topChartsComp-title">{{ title }}</h3>
@@ -13,41 +14,55 @@
                 <h4 class="topChartsComp-votes">{{ votes }}</h4>
             </div>
         </div>
+    </NuxtLink>
     </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import EpisodeSVG from "../EpisodeSvg.vue";
 import { Icon } from '#components'
 
-export default {
-    name: "EpisodeCard",
-    components: {
-        EpisodeSVG,
-    },
-    props: {
-        rank: {
-            type: Number,
-            required: true,
-        },
-        img: {
-            type: String,
-            required: true,
-        },
-        episode: {
-            type: Number,
-            required: true,
-        },
-        votes: {
-            type: Number,
-            required: true,
-        },
-        title: {
-            type: String,
-            required: true,
-        },
-    },
-};
+defineProps({
+  malid: Number,
+  rank: Number,
+  img: String,
+  episode: String,
+  votes: Number,
+  title: String,
+})
+
+// export default {
+//     name: "EpisodeCard",
+//     components: {
+//         EpisodeSVG,
+//     },
+//     props: {
+//         malid: {
+//             type: Number,
+//             required: true
+//         },
+//         rank: {
+//             type: Number,
+//             required: true,
+//         },
+//         img: {
+//             type: String,
+//             required: true,
+//         },
+//         episode: {
+//             type: Number,
+//             required: true,
+//         },
+//         votes: {
+//             type: Number,
+//             required: true,
+//         },
+//         title: {
+//             type: String,
+//             required: true,
+//         },
+//     },
+// };
 </script>
 
 <style scoped>
@@ -62,6 +77,16 @@ export default {
     height: 7.7rem;
     background-color: var(--tertiary);
     margin-top: 1rem;
+    border-radius: 0.75rem;
+}
+
+.topChartsComp-container-sub {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 7.7rem;
+    background-color: var(--tertiary);
+    width: 100%;
     border-radius: 0.75rem;
 }
 .topChartsComp-rank {
