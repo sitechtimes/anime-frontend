@@ -16,6 +16,7 @@
       <div
         v-if="animeSearching"
         v-for="anime in animes"
+        :key="anime.id"
         ref="nomineeBox"
         class="nominee-box"
         @click="select"
@@ -40,6 +41,7 @@
       <div
         v-if="characterSearching"
         v-for="character in characters"
+        :key="character.id"
         ref="nomineeBox"
         class="nominee-box"
         @click="select"
