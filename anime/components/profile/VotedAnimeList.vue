@@ -20,6 +20,6 @@ defineProps({
 </script>
 <style scoped>
 .pf-anime-img {
-    width: 35%;
+    width: 100%;
 }
 </style>

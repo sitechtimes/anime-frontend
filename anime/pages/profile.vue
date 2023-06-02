@@ -474,9 +474,10 @@ export default {
     font-weight: var(--fw-light);
 }
 .pf-carousel {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    column-gap: 1rem;
+    row-gap: 1rem;
     width: 70%;
  
 

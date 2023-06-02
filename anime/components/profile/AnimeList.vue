@@ -46,6 +46,13 @@ defineProps({
     /* background: red; */
 }
 .pf-anime-img {
-    width: 35%;
+    object-fit: cover;
+    height: 17rem;
+    width: 100%;
+}
+.title {
+    text-align: center;
+    width: 100%;
+    overflow: hiddens;
 }
 </style>
