@@ -45,4 +45,8 @@ interface animeGraphql {
 	}[];
 }
 
-export { animeRest, animeGraphql };
+interface animeGenre {
+	genre: string;
+}
+
+export { animeRest, animeGraphql, animeGenre };

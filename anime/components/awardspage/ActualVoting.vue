@@ -16,6 +16,7 @@
       <div
         v-if="animeSearching"
         v-for="anime in animes"
+        :key="anime.id"
         ref="nomineeBox"
         class="nominee-box"
         @click="select"
@@ -40,6 +41,7 @@
       <div
         v-if="characterSearching"
         v-for="character in characters"
+        :key="character.id"
         ref="nomineeBox"
         class="nominee-box"
         @click="select"
@@ -108,7 +110,7 @@ function searchAnime(text: String) {
     filteredAnime.value = userStore.allAnime.filter((anime) =>
       anime.anime_name.toLowerCase().includes(text.toLowerCase())
     );
-    filteredAnime.value = filteredAnime.value.slice(0,20)
+    filteredAnime.value = filteredAnime.value.slice(0,10)
   } else if (isCharacter.value) {
     characterSearching.value = false;
     const addCharactersArray = allCharacters.value.concat(characters.value);
@@ -116,7 +118,7 @@ function searchAnime(text: String) {
     filteredCharacters.value = addCharactersArray.filter((character) =>
       character.characterName.toLowerCase().includes(text.toLowerCase())
     );
-    filteredCharacters.value = filteredCharacters.value.slice(0, 20)
+    filteredCharacters.value = filteredCharacters.value.slice(0, 10)
   }
 }
 
