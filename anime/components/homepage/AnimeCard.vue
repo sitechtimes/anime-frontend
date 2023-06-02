@@ -15,7 +15,7 @@
 
 <script lang="ts">
 
-import EpisodeSVG from "../EpisodeSvg.vue";
+import EpisodeSVG from "../episodeSvg.vue";
 
 export default {
 	name: "AnimeCard",
