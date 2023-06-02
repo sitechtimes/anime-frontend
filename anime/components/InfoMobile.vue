@@ -78,7 +78,7 @@
             v-for="character in characters"
             :key="character.node.characterName"
             class="character"
-          >
+            >
             <img class="character-img" :src="character.node.imageUrl" alt="" />
             <p class="character-name">{{ character.node.characterName }}</p>
           </div>
@@ -548,7 +548,6 @@ function showMore() {
   overflow: hidden;
   text-overflow: ellipsis;
   padding: 0 1rem;
-  width: 9rem;
 }
 
 @media screen and (max-width: 915px) {
@@ -561,8 +560,95 @@ function showMore() {
   #anime-info-mobile {
     padding-top: 3rem;
   }
+  .animeImage {
+    width: 15rem;
+  }
+  .info-head {
+    font-size: var(--h6);
+  }
   .quick-info-grid {
     font-size: var(--h8);
+  }
+}
+
+@media screen and (max-width: 568px) {
+  .animeImage {
+    width: 11rem;
+  }
+  .animeInfo {
+    margin-left: 2rem;
+  }
+  .anime-name {
+    font-size: var(--h4);
+  }
+  .star-rating {
+    font-size: var(--h7);
+    gap: 0;
+  }
+  .star {
+    height: 1rem;
+  }
+  .dropdowns-row {
+    margin: 1rem 0;
+  }
+  .dropdown {
+    font-size: var(--h8);
+    padding: 0.1rem 0.3rem;
+    margin-right: 1rem;
+  }
+  .quick-info {
+    padding: 0.5rem 1rem;
+  }
+  .info-head{
+    font-size: var(--h8);
+  }
+  .quick-info-grid {
+    font-size: var(--smallText);
+  }
+  .info-block h2 {
+    font-size: var(--h5);
+  }
+  .synopsis {
+    font-size: var(--h7);
+    line-height: 3rem;
+  }
+  .show {
+    font-size: var(--h7);
+  }
+  .character-container::-webkit-scrollbar {
+  height: 5px;
+  }
+  .character-container {
+    gap: 1rem;
+  }
+  .character {
+    width: 6rem;
+  }
+  .character-img {
+    height: 6rem;
+    width: 6rem;
+  }
+  .character-name {
+    font-size: var(--h8);
+  }
+}
+
+@media screen and (max-width: 425px) {
+  #anime-info-mobile {
+    width: 85vw;
+  }
+  .animeImage {
+    width: 10rem;
+  }
+  .animeInfo {
+    margin-left: 1rem;
+  }
+  .dropdown {
+    padding: 0;
+    margin-right: 0.5rem;
+  }
+  .quick-info-grid {
+    column-gap: 0.5rem;
   }
 }
 </style>
