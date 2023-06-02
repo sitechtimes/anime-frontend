@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import EpisodeSVG from "../EpisodeSvg.vue";
+import EpisodeSVG from "../episodeSvg.vue";
 import { Icon } from '#components'
 
 defineProps({
