@@ -56,7 +56,7 @@ export const useUserStore = defineStore("user", {
 		},
 		async getAllGenre() {
 			try {
-				const endpoint = "http://127.0.0.1:8000/genres";
+				const endpoint = "https://anime-backend-cuv2.onrender.com/genres";
 				const headers = {
 					"Content-Type": "application/json",
 				};
@@ -76,7 +76,7 @@ export const useUserStore = defineStore("user", {
 		},
 		async getAllAnime() {
 			try {
-				const endpoint = "http://127.0.0.1:8000/anime/";
+				const endpoint = "https://anime-backend-cuv2.onrender.com/anime/";
 				const headers = {
 					"Content-Type": "application/json",
 				};
@@ -99,7 +99,7 @@ export const useUserStore = defineStore("user", {
 
 		async updateAnime() {
 			try {
-				const endpoint = "http://127.0.0.1:8000/updateAnime/";
+				const endpoint = "https://anime-backend-cuv2.onrender.com/updateAnime/";
 				const headers = {
 					"Content-Type": "application/json",
 					"Accept-encoding": "gzip", //does not work
@@ -120,7 +120,7 @@ export const useUserStore = defineStore("user", {
 
 		async getAllAwards() {
 			try {
-				const endpoint = "http://127.0.0.1:8000/graphql/";
+				const endpoint = "https://anime-backend-cuv2.onrender.com/graphql/";
 				const headers = {
 					"content-type": "application/json",
 					Authorization: `Bearer ${this.token}`,
@@ -190,7 +190,7 @@ export const useUserStore = defineStore("user", {
 
 		async getOneAnime() {
 			try {
-				const endpoint = "http://127.0.0.1:8000/graphql/";
+				const endpoint = "https://anime-backend-cuv2.onrender.com/graphql/";
 				const headers = {
 					"content-type": "application/json",
 					Authorization: `Bearer ${this.token}`,
@@ -275,7 +275,7 @@ export const useUserStore = defineStore("user", {
 		},
 		async getAdmin() {
 			try {
-				const endpoint = "http://127.0.0.1:8000/graphql/";
+				const endpoint = "https://anime-backend-cuv2.onrender.com/graphql/";
 				const headers = {
 					"content-type": "application/json",
 					Authorization: `Bearer ${this.token}`,
@@ -310,7 +310,7 @@ query{
 
 		async getWinner() {
 			try {
-				const endpoint = "http://127.0.0.1:8000/graphql/";
+				const endpoint = "https://anime-backend-cuv2.onrender.com/graphql/";
 				const headers = {
 					"content-type": "application/json",
 					Authorization: `Bearer ${this.token}`,
@@ -405,7 +405,7 @@ query{
 
 			try {
 				axios
-					.post("http://localhost:8000/social-login/google/", {
+					.post("https://anime-backend-cuv2.onrender.com/social-login/google/", {
 						code: res.code,
 					})
 					.then((res) => {
@@ -413,7 +413,7 @@ query{
 						this.token = res.data.access_token;
 						// localStorage.setItem('token', JSON.stringify(this.token))
 						axios
-							.get("http://127.0.0.1:8000/auth/user/", {
+							.get("https://anime-backend-cuv2.onrender.com/auth/user/", {
 								headers: { Authorization: `Bearer ${res.data.access_token}` },
 							})
 							.then((res) => {
@@ -472,7 +472,7 @@ query{
 				// let user = useCookie("user")
 
 				const res = await axios
-					.get("http://127.0.0.1:8000/auth/user/", {
+					.get("https://anime-backend-cuv2.onrender.com/auth/user/", {
 						headers: { Authorization: `Bearer ${this.token}` },
 					})
 					.then((res) => {});

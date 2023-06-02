@@ -203,7 +203,7 @@ const props = defineProps({
 })
 
 async function getUserProfile() {
-      const endpoint = "http://127.0.0.1:8000/graphql/";
+      const endpoint = "https://anime-backend-cuv2.onrender.com/graphql/";
       const headers = {
         "Content-Type": "application/json",
         Authorization: `Bearer ${userStore.token}`,
@@ -264,7 +264,7 @@ async function getUserProfile() {
     }
 
     async function getAllRatings() {
-      const endpoint = "http://127.0.0.1:8000/graphql/";
+      const endpoint = "https://anime-backend-cuv2.onrender.com/graphql/";
       const headers = {
         "Content-Type": "application/json",
         Authorization: `Bearer ${userStore.token}`,
@@ -318,7 +318,7 @@ async function getUserProfile() {
     })
     async function changeWatchStatus() {
 
-      const endpoint = "http://127.0.0.1:8000/graphql/";
+      const endpoint = "https://anime-backend-cuv2.onrender.com/graphql/";
       const headers = {
         "Content-Type": "application/json",
         Authorization: `Bearer ${userStore.token}`,
@@ -363,7 +363,7 @@ async function getUserProfile() {
 
     async function changeRating() {
 
-      const endpoint = "http://127.0.0.1:8000/graphql/";
+      const endpoint = "https://anime-backend-cuv2.onrender.com/graphql/";
       const headers = {
         "Content-Type": "application/json",
         Authorization: `Bearer ${userStore.token}`,

@@ -60,7 +60,7 @@ import { navigateTo } from 'nuxt/app';
 
 async function getAnime() {
   try {
-        const endpoint = "http://127.0.0.1:8000/graphql/";
+        const endpoint = "https://anime-backend-cuv2.onrender.com/graphql/";
 				const headers = {
 					"content-type": "application/json",
 					Authorization: `Bearer ${userStore.token}`,
