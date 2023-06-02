@@ -17,10 +17,13 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
+import { Icon } from "#components";
+
+defineProps({
+    malid: Number,
     rank: Number,
     img: String,
-    episode: Number,
+    episode: String,
     votes: Number,
     title: String,
 });
