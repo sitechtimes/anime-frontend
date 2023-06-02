@@ -104,6 +104,7 @@
                 <HomepageTopCharts
                     v-for="(charts, index) in sortedAnimeTop"
                     :key="charts.id"
+                    :malid="charts.malId"
                     :img="charts.imageUrl"
                     :episode="charts.episodes"
                     :votes="charts.currentlyWatching"
