@@ -40,7 +40,7 @@ onMounted(() => {
 #award-voting {
   margin: auto;
   width: 75vw;
-  margin-bottom: 30vh;
+  margin-top: 10vh;
   color: var(--white);
 }
 .text-box {

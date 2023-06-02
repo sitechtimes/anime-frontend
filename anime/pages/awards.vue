@@ -1,6 +1,12 @@
 <template>
     <div id="awards">
-        <Banner/>
+        <Banner
+        :rank="1"
+        :title="'Attack on Titan'"
+        :genre="'Action, Drama, Fantasy'"
+        :stars=4.5
+        :img="'https://cdn.myanimelist.net/images/anime/10/47347.jpg'"
+        />
         <AwardVoting />
     </div>
 </template>

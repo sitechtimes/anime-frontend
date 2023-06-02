@@ -35,7 +35,7 @@ const ranking_arr = ref()
 onMounted(() => {
     const arr_anime = JSON.parse(JSON.stringify(userStore.allAnime))
     arr_anime.sort((a: any, b: any) => b.avg_rating - a.avg_rating);
-    console.log(arr_anime)
+    // console.log(arr_anime)
     const x = arr_anime.slice(1,11)
     ranking_arr.value = x
 	// userStore

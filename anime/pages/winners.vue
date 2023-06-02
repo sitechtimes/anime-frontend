@@ -1,32 +1,11 @@
 <template>
     <section class="winners">
 		<div class="header">
-			<h1>Past Winners</h1>
+			<h1>{{ season }} {{ year }} Winners!</h1>
         </div>  
-		<div class="filter-form">
-			<form>
-				<label for="year">Year</label>
-				<select name="year" id="year" v-model="yearFilter">
-					<option value="2023">2023</option>
-					<option value="2022">2022</option>
-					<option value="2021">2021</option>
-					<option value="2020">2020</option>
-
-				</select>
-			</form>
-			<form>
-				<label for="season">Season</label>
-				<select name="season" id="season" v-model="seasonFilter">
-					<option value="Winter">Winter</option>
-					<option value="Spring">Spring</option>
-					<option value="Summer">Summer</option>
-					<option value="Fall">Fall</option>
-				</select>
-			</form>
-		</div>
             <div class="gallery">
                 <WinnerCard
-                 v-for="winner in filteredAnimeWinners" 
+                 v-for="winner in seasonAnimeWinners" 
                 :key="winner.id"
                 :winner="winner.winner.anime.animeName" 
                 :img="winner.winner.anime.imageUrl"
@@ -34,7 +13,7 @@
                 
                 />
                 <WinnerCard
-                 v-for="winner in filteredCharacterWinners" 
+                 v-for="winner in seasonCharacterWinners" 
                 :key="winner.id"
                 :winner="winner.characterWinner.character.characterName" 
                 :img="winner.characterWinner.character.imageUrl"
@@ -42,6 +21,9 @@
                 />
                  
             </div>
+		<div class="past">
+            <NuxtLink to="/history" class="past-btn">Past Winners</NuxtLink>
+        </div>
 
     </section>
 </template>
@@ -52,16 +34,11 @@ import { useUserStore } from "~~/stores/userStore";
 const userStore = useUserStore();
 const seasonAnimeWinners = ref([]);
 const seasonCharacterWinners = ref([]);
-const historyAnimeWinners = ref([]);
-const historyCharacterWinners = ref([]);
+const history = ref([]);
 const season = ref("");
 const today = new Date()
 const year = ref(today.getFullYear())
 const monthNumber = today.getMonth() + 1
-const yearFilter = ref("2023")
-const seasonFilter = ref("Winter")
-const filteredAnimeWinners = ref([])
-const filteredCharacterWinners = ref([])
 
 
 async function getAllWinners() {
@@ -150,44 +127,20 @@ async function getAllWinners() {
 						alert("There is no month")
 				}
 
-				historyAnimeWinners.value = allAnimeWinners.filter((winner) => 
-					 winner.season !== season.value || winner.year !== year.value
+				seasonAnimeWinners.value = allAnimeWinners.filter((winner) => 
+					 winner.season === season.value && winner.year === year.value
 				);
 
-				historyCharacterWinners.value = allCharacterWinners.filter((winner) => 
-                winner.season !== season.value || winner.year !== year.value
+				seasonCharacterWinners.value = allCharacterWinners.filter((winner) => 
+                winner.season === season.value && winner.year === year.value
 				);
 				
-				// console.log(historyAnimeWinners.value, historyCharacterWinners.value);
+				// console.log(seasonAnimeWinners.value, seasonCharacterWinners.value);
 			} catch (error) {
 				alert(error);
 			}
 		}
 
-	watch(yearFilter, (newYear) => {
-		// console.log(Number(newYear), seasonFilter.value)
-		filteredAnimeWinners.value = historyAnimeWinners.value.filter((winner) => 
-			winner.year === Number(newYear) && winner.season === seasonFilter.value
-			// console.log(winner.year, winner.season)
-		);
-		filteredCharacterWinners.value = historyCharacterWinners.value.filter((winner) => 
-			winner.year === Number(newYear) && winner.season === seasonFilter.value
-		);
-		// console.log(filteredAnimeWinners.value, filteredCharacterWinners.value, historyAnimeWinners.value)
-	})
-
-	watch(seasonFilter, (newSeason) => {
-		// console.log(Number(yearFilter.value), newSeason)
-		filteredAnimeWinners.value = historyAnimeWinners.value.filter((winner) => 
-			winner.year === Number(yearFilter.value) && winner.season === newSeason
-			// console.log(winner.year, winner.season)
-		);
-		filteredCharacterWinners.value = historyCharacterWinners.value.filter((winner) => 
-			winner.year === Number(yearFilter.value) && winner.season === newSeason
-		);
-		// console.log(filteredAnimeWinners.value, filteredCharacterWinners.value, historyAnimeWinners.value)
-	}
-	)
 onMounted(() => {
     getAllWinners()
 })
