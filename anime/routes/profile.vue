@@ -558,7 +558,9 @@ export default {
     text-align: right;
 }
 .carousel-arrow {
+    margin: auto;
     padding: 0.5rem;
+    align-self: center;
     color: var(--white);
     font-size: var(--h2);
     background-color: unset;
@@ -643,7 +645,7 @@ export default {
     margin: auto;
 }
 .profile-info {
-    margin-top: 11rem;
+    margin-top: 18rem;
     margin-bottom: 8rem;
 }
 }
@@ -654,6 +656,10 @@ export default {
 .banner {
     height: 25vh;
 }
+.profile-img {
+    width: 16rem;
+    height: 16rem;
+}
 .profile-info {
     margin-top: 18rem;
 }
@@ -662,32 +668,38 @@ export default {
 }
 }
 @media screen and (max-width: 915px) {
+.banner {
+    height: 18vh;
+}
 .tab-title {
     margin-left: 4rem;
     margin-bottom: 1rem;
 }
 .anime-img {
-    height: 8vh;
+    height: 10vh;
 }
 .pf-carousel {
-    height: 11vh;
+    height: 13vh;
     margin-left: 4rem;
 }
 .pf-carousel-slide {
-    height: 10vh;
+    height: 12vh;
 }
 .profile-img {
-    width: 18rem;
-    height: 18rem;
+    width: 15rem;
+    height: 15rem;
 }
 .profile-info {
-    margin-top: 27rem;
+    margin-top: 2rem;
     margin-bottom: 6rem;
 }
 }
 @media screen and (max-width: 900px) {
 .anime-img {
     height: 15vh;
+}
+.tab-title {
+    margin-left: 7rem;
 }
 .pf-carousel {
     height: 18vh;
@@ -697,11 +709,12 @@ export default {
     height: 17vh;
 }
 .profile-img {
-    width: 14rem;
-    height: 14rem;
+    width: 12rem;
+    height: 12rem;
 }
 .profile-info {
-    margin-top: 16rem;
+    margin-top: 13rem;
+    margin-bottom: 0rem;
 }
 .profile-name {
     margin-top: 6rem;
@@ -716,16 +729,19 @@ export default {
 }
 .pf-carousel {
     width: 58vw;
-    height: 13vh;
-    margin-left: 1.5rem;
+    height: 18vh;
+    margin-left: 2.5rem;
 }
 .pf-carousel-slide {
-    width: 13vw;
+    width: 17vw;
     height: 12vh;
 }
+.profile-img {
+    width: 11rem;
+    height: 11rem;
+}
 .profile-info {
-    margin-top: 22rem;
-    margin-bottom: 2rem;
+    margin-top: 14rem;
 }
 .profile-name {
     margin-top: 7rem;
@@ -739,11 +755,11 @@ export default {
     margin-left: 2rem;
 }
 .profile-img {
-    width: 14rem;
-    height: 14rem;
+    width: 12rem;
+    height: 12rem;
 }
 .profile-info {
-    margin-top: 20rem;
+    margin-top: 16rem;
 }
 }
 @media screen and (max-width: 680px) {
@@ -797,8 +813,8 @@ export default {
     font-size: var(--h5);
 }
 .profile-img {
-    width: 9rem;
-    height: 9rem;
+    width: 7rem;
+    height: 7rem;
 }
 .profile-info {
     margin-top: 9rem;
@@ -814,6 +830,9 @@ export default {
 }
 }
 @media screen and (max-width: 435px) {
+.banner {
+    height: 10vh;
+}
 .tab-title {
     margin-left: 4.5rem;
 }
@@ -828,28 +847,24 @@ export default {
     width: 13vw;
     height: 12vh;
 }
-.profile-img {
-    width: 8rem;
-    height: 8rem;
-}
 .profile-info {
-    margin-top: 10rem;
-    margin-bottom: 2rem;
+    margin-top: 7rem;
+    margin-bottom: 0rem;
 }
 }
-@media screen and (max-width: 390px) {
+@media screen and (max-width: 395px) {
 .banner {
-    height: 14vh;
+    height: 10vh;
 }
 .tab-title {
     margin-left: 3.5rem;
 }
 .profile-img {
-    width: 8rem;
-    height: 8rem;
+    width: 6rem;
+    height: 6rem;
 }
 .profile-info {
-    margin-top: 10rem;
+    margin-top: 6.5rem;
     margin-bottom: 0rem;
 }
 .profile-name {
@@ -865,7 +880,7 @@ export default {
     width: 105vw;
 }
 .banner {
-    height: 15vh;
+    height: 8vh;
 }
 .pf-carousel {
     margin-left: 1.5rem;
@@ -881,12 +896,11 @@ export default {
     font-size: 0.6rem;
 }
 .profile-img {
-    width: 6rem;
-    height: 6rem;
+    width: 5rem;
+    height: 5rem;
 }
 .profile-info {
-    margin-top: 8rem;
-    margin-bottom: 0rem;
+    margin-top: 4rem;
 }
 .profile-name {
     margin-top: 3rem;

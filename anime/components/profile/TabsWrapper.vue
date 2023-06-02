@@ -101,12 +101,19 @@ export default {
     margin-top: 8rem;
 }
 .tabs-header {
+    width: 10vw;
     height: 35vh;
+}
+.tabs-header li {
+    width: 10vw;
 }
 }
 @media screen and (max-width: 900px) {
 .tabs {
     height: 40vh;
+}
+.tabs-header {
+    height: 49vh;
 }
 }
 @media screen and (max-width: 870px) {
@@ -116,14 +123,14 @@ export default {
 }
 @media screen and (max-width: 825px) {
 .tabs {
-    height: 32vh;
-}
-.tabs-header {
-    width: 10vw;
     height: 38vh;
 }
+.tabs-header {
+    width: 9vw;
+    height: 46vh;
+}
 .tabs-header li {
-    width: 10vw;
+    width: 9vw;
     font-size: var(--h7);
 }
 }
