@@ -195,6 +195,7 @@ async function getTopChart() {
     const queryData = await response.json();
 
     sortedAnimeTop.value = queryData.data.sortedCurrentlyWatching;
+    console.log(sortedAnimeTop.value);
 }
 
 function next(): void {
