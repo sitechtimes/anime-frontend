@@ -10,15 +10,12 @@ import { animeRest, animeGraphql, animeGenre } from "~/types/anime";
 export const useUserStore = defineStore("user", {
 	state: () => ({
 		allAnime: [] as any,
-		currentAnime: [] as any,
 		filterAnime: [] as any,
 		allAwards: [] as any,
 		// allAnime: [] as animeRest[],
 		airingAnime: [] as animeRest[],
 		// filterAnime: [] as animeRest[],
 		search: "",
-		startPageIndex: 0,
-		endPageIndex: 12,
 		pageNumber: 1,
 		animeId: 0,
 		username: null,
@@ -42,7 +39,6 @@ export const useUserStore = defineStore("user", {
 	getters: {
 		// getToken() {
 		//     const token = localStorage.getItem("token")
-
 		//     return token
 		// },
 		// getUser() {
@@ -93,7 +89,7 @@ export const useUserStore = defineStore("user", {
 
 				return data;
 			} catch (error) {
-				alert(error)
+				alert(error);
 			}
 		},
 
@@ -112,9 +108,8 @@ export const useUserStore = defineStore("user", {
 
 				const response = await fetch(endpoint, options);
 				// const data: animeRest[] = await response.json();
-
 			} catch (error) {
-				alert(error)
+				alert(error);
 			}
 		},
 
@@ -148,20 +143,12 @@ export const useUserStore = defineStore("user", {
 				const response = await fetch(endpoint, options);
 				const awardData = await response.json();
 
-
-				
-
-				
-				awardData.data.allAwards.edges.forEach(node => {
-
-					const awardName = node.node.awardName
+				awardData.data.allAwards.edges.forEach((node) => {
+					const awardName = node.node.awardName;
 					if (this.allAwards.includes(awardName)) {
-
-						
 					} else {
-						this.allAwards.push(node.node.awardName)
+						this.allAwards.push(node.node.awardName);
 					}
-					
 				});
 				// this.allAwards = []
 
@@ -182,11 +169,10 @@ export const useUserStore = defineStore("user", {
 
 				// return refinedAnimeData;
 			} catch (error) {
-				alert("You need to be logged in")
-				return navigateTo("/login")
+				alert("You need to be logged in");
+				return navigateTo("/login");
 			}
 		},
-		
 
 		async getOneAnime() {
 			try {
@@ -266,11 +252,9 @@ export const useUserStore = defineStore("user", {
 
 				const animeData = dataRes;
 
-
-
 				return animeData;
 			} catch (error) {
-				alert(error)
+				alert(error);
 			}
 		},
 		async getAdmin() {
@@ -300,13 +284,12 @@ query{
 				const response = await fetch(endpoint, options);
 				const userData = await response.json();
 				// console.log(userData.data.userAnimeData.admin)
-				this.isAdmin = userData.data.userAnimeData.admin
-				console.log(this.isAdmin)
+				this.isAdmin = userData.data.userAnimeData.admin;
+				console.log(this.isAdmin);
 			} catch (error) {
-				alert(error)
+				alert(error);
 			}
 		},
-
 
 		async getWinner() {
 			try {
@@ -363,24 +346,22 @@ query{
 
 				const response = await fetch(endpoint, options);
 				const winnerData = await response.json();
-				console.log(winnerData)
+				console.log(winnerData);
 				// console.log(userData.data.userAnimeData.admin)
 				// this.isAdmin = userData.data.userAnimeData.admin
 				// console.log(this.isAdmin)
 			} catch (error) {
-				alert(error)
+				alert(error);
 			}
 		},
 
 		async login(res: any) {
-
 			try {
 				axios
 					.post("http://localhost:8000/social-login/google/", {
 						code: res.code,
 					})
 					.then((res) => {
-
 						this.token = res.data.access_token;
 						// localStorage.setItem('token', JSON.stringify(this.token))
 						axios
@@ -388,11 +369,7 @@ query{
 								headers: { Authorization: `Bearer ${res.data.access_token}` },
 							})
 							.then((res) => {
-
-
 								let index = res.data.email.indexOf("@");
-
-
 
 								let account = res.data.email.slice(index + 1);
 
@@ -408,7 +385,7 @@ query{
 								// this.userData = localStorage.getItem("user")
 								// this.user = res.data.first_name
 
-								this.userID = res.data.pk
+								this.userID = res.data.pk;
 								this.username = res.data.username;
 								// this.userData = res.data;
 								this.first_name = res.data.first_name;
@@ -416,14 +393,14 @@ query{
 								this.email = res.data.email;
 								this.isAuthenticated = true;
 								this.redirect = true;
-								this.getAdmin()
+								this.getAdmin();
 								return navigateTo("/");
 								// this.$router.push("/")
 								// router.push({ path: "/"})
 							});
 					});
 			} catch (error) {
-				alert(error)
+				alert(error);
 				// const response = error.response?.data;
 				// if (
 				//   response?.non_field_errors &&
@@ -447,12 +424,10 @@ query{
 						headers: { Authorization: `Bearer ${this.token}` },
 					})
 					.then((res) => {});
-
 			} catch (error) {
 				if (!this.token) {
 					return;
 				} else if ((error = "AxiosError: Request failed with status code 401")) {
-
 					alert("Your session has expired. Please login again!");
 					this.logout();
 					return navigateTo("/login");
@@ -463,7 +438,7 @@ query{
 		},
 		logout() {
 			try {
-				console.log("logout")
+				console.log("logout");
 				// let user = useCookie('user')
 				// user = null
 				// localStorage.removeItem("token");
@@ -475,11 +450,11 @@ query{
 				this.email = null;
 				this.isAuthenticated = false;
 				this.token = null;
-				this.userID = null
+				this.userID = null;
 				// this.$router.push("/")
 				// googleLogout();
 			} catch (error) {
-				alert(error)
+				alert(error);
 			}
 		},
 		// logout() {

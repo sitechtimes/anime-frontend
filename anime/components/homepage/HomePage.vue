@@ -75,7 +75,7 @@ const pageRightIndicator = ref<boolean>(true);
 const airingAnime = ref<animeRest[]>();
 const loading = ref<boolean>(true);
 const loadingAnimeHome: number[] = [...Array(12).keys()];
-const animePerPage = ref<number>(12);
+const animePerPage = ref<number>(11);
 const totalPage = ref<number>(0);
 const pageFilteredAnime = ref([] as animeRest[]);
 const startPageIndex = ref<number>(0);
@@ -84,8 +84,8 @@ const sortedAnimeTop = ref([]);
 // const pageExistLeft = reffalse
 
 onMounted(() => {
-	getTopChart()
-	
+	getTopChart();
+
 	userStore.animeId = 0;
 	userStore.pageNumber = 1;
 
@@ -111,19 +111,18 @@ onMounted(() => {
 			loading.value = false;
 		})
 		.catch((err) => {
-			alert(err)
+			alert(err);
 		});
 });
 
-
 async function getTopChart() {
 	const endpoint = "http://127.0.0.1:8000/graphql/";
-      const headers = {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${userStore.token}`,
-      };
-      const graphqlQuery = {
-        query: `{
+	const headers = {
+		"Content-Type": "application/json",
+		Authorization: `Bearer ${userStore.token}`,
+	};
+	const graphqlQuery = {
+		query: `{
   sortedCurrentlyWatching{
     animeName,
     currentlyWatching,
@@ -132,30 +131,20 @@ async function getTopChart() {
 	malId
   }
 }`,
-        variables: {},
-      };
-      const options = {
-        method: "POST",
-        headers: headers,
-        body: JSON.stringify(graphqlQuery),
-      };
-      const response = await fetch(endpoint, options);
-      const queryData = await response.json();
+		variables: {},
+	};
+	const options = {
+		method: "POST",
+		headers: headers,
+		body: JSON.stringify(graphqlQuery),
+	};
+	const response = await fetch(endpoint, options);
+	const queryData = await response.json();
 
-	  sortedAnimeTop.value = queryData.data.sortedCurrentlyWatching
-	  console.log(sortedAnimeTop.value)
+	sortedAnimeTop.value = queryData.data.sortedCurrentlyWatching;
+	console.log(sortedAnimeTop.value);
 }
 
-function next(): void {
-	if (userStore.endPageIndex < userStore.airingAnime.length) {
-		userStore.startPageIndex += 11;
-		userStore.endPageIndex += 11;
-		userStore.pageNumber += 1;
-		pageExistLeft.value = true;
-		airingAnime.value = userStore.airingAnime.slice(
-			userStore.startPageIndex,
-			userStore.endPageIndex
-		);}}
 function calculateTotalPage() {
 	totalPage.value = Math.ceil(userStore.airingAnime.length / animePerPage.value);
 }
@@ -200,12 +189,9 @@ function saveClickedAnimeID(id: number): void {
 }
 
 function selectPage(num: number): void {
-	userStore.startPageIndex = num * 11 - 11;
-	userStore.endPageIndex = num * 11 + 1;
-	airingAnime.value = userStore.airingAnime.slice(
-		userStore.startPageIndex,
-		userStore.endPageIndex
-	);
+	startPageIndex.value = num * animePerPage.value - animePerPage.value;
+	endPageIndex.value = num * animePerPage.value + 1;
+	airingAnime.value = userStore.airingAnime.slice(startPageIndex.value, endPageIndex.value);
 }
 </script>
 
@@ -330,7 +316,7 @@ function selectPage(num: number): void {
 	display: block;
 }
 
-input[type=number] {
-  -moz-appearance: textfield;
+input[type="number"] {
+	-moz-appearance: textfield;
 }
 </style>
