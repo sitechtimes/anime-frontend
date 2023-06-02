@@ -98,7 +98,6 @@
 				</div>
 				<button class="button-clear" @click="clearAllFilter">Clear All Filter</button>
 			</div>
-			<div></div>
 			<div class="content-condition" v-if="loading">
 				<homepageAnimeCardLoading v-for="anime in loadingAnime" />
 			</div>

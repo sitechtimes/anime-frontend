@@ -181,7 +181,7 @@ function pagenation(direction: number) {
 		}
 	}
 	pageExistIndicator();
-	pageFilteredAnime.value = userStore.filterAnime.slice(startPageIndex.value, endPageIndex.value);
+	airingAnime.value = userStore.airingAnime.slice(startPageIndex.value, endPageIndex.value);
 }
 
 function saveClickedAnimeID(id: number): void {
