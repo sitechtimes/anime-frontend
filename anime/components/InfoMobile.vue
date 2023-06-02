@@ -43,25 +43,40 @@
             <div class="quick-info-grid">
               <p>Type: {{ mediaType }}</p>
               <p>Episodes: {{ episodes }}</p>
-              <p>Status: {{ status }}</p>
-              <p>Aired: {{ aired }}</p>
-              <div class="quick-info-sub">
-                <p>Studio:</p>
-                <div v-for="studio in studios" :key="studio">
-                  <p>{{ studio.node.studio }}</p>
-                </div>
-              </div>
-              <div class="quick-info-sub">
-                <p>Genres:</p>
-                <div v-for="genre in genres" :key="genre">
-                  <p>{{ genre.node.genre }},</p>
-                </div>
-              </div>
+              <p class="hide-425px">Status: {{ status }}</p>
+              <p class="hide-425px">Aired: {{ aired }}</p>
             </div>
+            <button class="more-info-btn" @click="showInfo">More Info</button>
           </div>
 
         </div>
       </div>
+
+      <div class="popup" v-if="moreInfoShown">
+        <div class="more-info">
+              <h4 class="more-info-head">Information</h4>
+              <div class="divider"></div>
+              <div class="more-info-grid">
+                <p>Type: {{ mediaType }}</p>
+                <p>Episodes: {{ episodes }}</p>
+                <p>Status: {{ status }}</p>
+                <p>Aired: {{ aired }}</p>
+                <div class="quick-info-sub">
+                  <p>Studio:</p>
+                  <div v-for="studio in studios" :key="studio">
+                    <p>{{ studio.node.studio }}</p>
+                  </div>
+                </div>
+                <div class="quick-info-sub">
+                  <p>Genres:</p>
+                  <div v-for="genre in genres" :key="genre">
+                    <p>{{ genre.node.genre }},</p>
+                  </div>
+                </div>
+              </div>
+              <button class="show" @click="hideInfo">Close</button>
+            </div>
+          </div>
 
       <div class="info-block">
         <h2>Synopsis</h2>
@@ -115,7 +130,7 @@ let allRatings = ref([])
 let chartRatings = ref([])
 let loaded = ref(false)
 const showAll = ref(false)
-const showBtn = ref("Show More")
+const moreInfoShown = ref(false)
 
 const userStore = useUserStore()
 
@@ -409,14 +424,12 @@ async function getUserProfile() {
     getAllRatings();
 })
 
-function showMore() {
-  // showAll.value = !showAll.value
-  // if (showAll.value === false) {
-  //   console.log("synopsis partially shown")
-  //   console.log(showBtn.value)
-  // } else if (showAll.value === true) {
-  //   console.log("synopsis fully shown")
-  // }
+function showInfo() {
+  moreInfoShown.value = true
+}
+
+function hideInfo() {
+  moreInfoShown.value = false
 }
 </script>
 
@@ -468,6 +481,8 @@ function showMore() {
   background: var(--bg-secondary);
   padding: 1rem 2rem;
   font-size: var(--h6);
+  display: flex;
+  flex-direction: column;
 }
 .info-head {
   font-size: var(--h5);
@@ -476,14 +491,52 @@ function showMore() {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   row-gap: 0.5rem;
-  column-gap: 1rem;
-  padding-top: 0.5rem;
+  column-gap: 3rem;
+  padding: 1rem 0 1.5rem;
 }
 .quick-info-sub {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   column-gap: 0.3rem;
+}
+.more-info-btn {
+  background: none;
+	color: var(--primary);
+	padding: 0;
+	font-size: var(--h6);
+	transition: 0ms;
+	align-self: flex-end;
+}
+.popup {
+  background: rgb(0, 0, 0, 0.6);
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.more-info {
+  width: 80vw;
+  padding: 2rem 3rem;
+  font-size: var(--h5);
+  background: var(--bg-secondary);
+  display: flex;
+  flex-direction: column;
+}
+.more-info-head {
+  font-size: var(--h4);
+}
+.more-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  row-gap: 0.5rem;
+  column-gap: 3rem;
+  padding: 1rem 0 1.5rem;
 }
 .info-block {
   margin-bottom: 3rem;
@@ -568,6 +621,14 @@ function showMore() {
   }
   .quick-info-grid {
     font-size: var(--h8);
+    column-gap: 1rem;
+    padding: 1rem 0;
+  }
+  .more-info-btn {
+    font-size: var(--h7);
+  }
+  .more-info-grid {
+    font-size: var(--h6);
   }
 }
 
@@ -584,6 +645,7 @@ function showMore() {
   .star-rating {
     font-size: var(--h7);
     gap: 0;
+    margin: -0.6rem 0;
   }
   .star {
     height: 1rem;
@@ -599,11 +661,21 @@ function showMore() {
   .quick-info {
     padding: 0.5rem 1rem;
   }
-  .info-head{
+  .info-head, .more-info-btn{
     font-size: var(--h8);
   }
   .quick-info-grid {
     font-size: var(--smallText);
+  }
+  .more-info {
+    padding: 2rem;
+  }
+  .more-info-head {
+    font-size: var(--h5);
+  }
+  .more-info-grid {
+    font-size: var(--h8);
+    column-gap: 2rem;
   }
   .info-block h2 {
     font-size: var(--h5);
@@ -611,9 +683,6 @@ function showMore() {
   .synopsis {
     font-size: var(--h7);
     line-height: 3rem;
-  }
-  .show {
-    font-size: var(--h7);
   }
   .character-container::-webkit-scrollbar {
   height: 5px;
@@ -635,20 +704,33 @@ function showMore() {
 
 @media screen and (max-width: 425px) {
   #anime-info-mobile {
-    width: 85vw;
-  }
-  .animeImage {
-    width: 10rem;
+    width: 87vw;
   }
   .animeInfo {
     margin-left: 1rem;
   }
   .dropdown {
-    padding: 0;
+    padding: 0.1rem;
     margin-right: 0.5rem;
   }
   .quick-info-grid {
     column-gap: 0.5rem;
+    padding: 0.7rem 0;
+  }
+  .hide-425px {
+    display: none;
+  }
+  .more-info-btn {
+    font-size: var(--h8);
+  }
+  .more-info-head {
+    font-size: var(--h6);
+  }
+  .more-info-grid {
+    font-size: var(--smallText);
+  }
+  .show {
+    font-size: var(--h7);
   }
 }
 </style>
