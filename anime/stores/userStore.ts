@@ -301,7 +301,7 @@ query{
 				const userData = await response.json();
 				// console.log(userData.data.userAnimeData.admin)
 				this.isAdmin = userData.data.userAnimeData.admin
-				console.log(this.isAdmin)
+				// console.log(this.isAdmin)
 			} catch (error) {
 				alert(error)
 			}
@@ -363,7 +363,7 @@ query{
 
 				const response = await fetch(endpoint, options);
 				const winnerData = await response.json();
-				console.log(winnerData)
+				// console.log(winnerData)
 
 				// const today = new Date()
 				// const year = today.getFullYear()
@@ -492,7 +492,7 @@ query{
 		},
 		logout() {
 			try {
-				console.log("logout")
+				// console.log("logout")
 				// let user = useCookie('user')
 				// user = null
 				// localStorage.removeItem("token");

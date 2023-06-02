@@ -30,7 +30,7 @@ onMounted(() => {
 const time = ref<string>("");
 
 time.value = aired(animeInfoData.value.airTimeStart, animeInfoData.value.airTimeEnd);
-console.log(time.value);
+// console.log(time.value);
 
 function aired(airTimeStart: string, airTimeEnd: string): string {
 	function changeMonth(month: string) {

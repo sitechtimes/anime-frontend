@@ -111,7 +111,7 @@ async function getAllWinners() {
 					case 5:
 					case 6:
 						season.value = "Spring"
-						console.log("Spring")
+						// console.log("Spring")
 						break;
 					case 7:
 					case 8:
@@ -135,9 +135,9 @@ async function getAllWinners() {
                 winner.season === season.value && winner.year === year.value
 				);
 				
-				console.log(seasonAnimeWinners.value, seasonCharacterWinners.value);
+				// console.log(seasonAnimeWinners.value, seasonCharacterWinners.value);
 			} catch (error) {
-				console.log(error);
+				alert(error);
 			}
 		}
 

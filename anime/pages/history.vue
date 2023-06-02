@@ -134,7 +134,7 @@ async function getAllWinners() {
 					case 5:
 					case 6:
 						season.value = "Spring"
-						console.log("Spring")
+						// console.log("Spring")
 						break;
 					case 7:
 					case 8:
@@ -158,14 +158,14 @@ async function getAllWinners() {
                 winner.season !== season.value || winner.year !== year.value
 				);
 				
-				console.log(historyAnimeWinners.value, historyCharacterWinners.value);
+				// console.log(historyAnimeWinners.value, historyCharacterWinners.value);
 			} catch (error) {
-				console.log(error);
+				alert(error);
 			}
 		}
 
 	watch(yearFilter, (newYear) => {
-		console.log(Number(newYear), seasonFilter.value)
+		// console.log(Number(newYear), seasonFilter.value)
 		filteredAnimeWinners.value = historyAnimeWinners.value.filter((winner) => 
 			winner.year === Number(newYear) && winner.season === seasonFilter.value
 			// console.log(winner.year, winner.season)
@@ -173,11 +173,11 @@ async function getAllWinners() {
 		filteredCharacterWinners.value = historyCharacterWinners.value.filter((winner) => 
 			winner.year === Number(newYear) && winner.season === seasonFilter.value
 		);
-		console.log(filteredAnimeWinners.value, filteredCharacterWinners.value, historyAnimeWinners.value)
+		// console.log(filteredAnimeWinners.value, filteredCharacterWinners.value, historyAnimeWinners.value)
 	})
 
 	watch(seasonFilter, (newSeason) => {
-		console.log(Number(yearFilter.value), newSeason)
+		// console.log(Number(yearFilter.value), newSeason)
 		filteredAnimeWinners.value = historyAnimeWinners.value.filter((winner) => 
 			winner.year === Number(yearFilter.value) && winner.season === newSeason
 			// console.log(winner.year, winner.season)
@@ -185,7 +185,7 @@ async function getAllWinners() {
 		filteredCharacterWinners.value = historyCharacterWinners.value.filter((winner) => 
 			winner.year === Number(yearFilter.value) && winner.season === newSeason
 		);
-		console.log(filteredAnimeWinners.value, filteredCharacterWinners.value, historyAnimeWinners.value)
+		// console.log(filteredAnimeWinners.value, filteredCharacterWinners.value, historyAnimeWinners.value)
 	}
 	)
 onMounted(() => {
