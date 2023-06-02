@@ -2,6 +2,65 @@
     <div id="anime-info-mobile">
       <div class="row-1">
         <img class="animeImage" :src="`${imageUrl}`" alt="Anime Cover" />
+        <div class="animeInfo">
+          <p class="anime-name">{{ animeName }}</p>
+          <div class="star-rating">
+            <starSVG class="star" />
+            <p>{{ avgRating }}</p>
+          </div>
+          <div>
+            <select id="doughtnut-graph" class="select" v-model="watchStatus">
+              <option value="NOT_WATCHING" selected>Not Watching</option>
+              <option value="CURRENTLY_WATCHING">
+                Currently Watching
+              </option>
+              <option value="WATCHLIST">Watchlist</option>
+              <option value="FINISHED_ANIME">Finished Anime</option>
+            </select>
+
+            <select id="rating-form" class="select" v-model="rating">
+              <!-- <option v-if="change" value="" disabled selected>{{ userAnime.rating }}</option> -->
+              <option v-if="change" value="0" disabled selected>
+                {{ userAnime.rating }}
+              </option>
+              <option v-else value="0" disabled selected>Rate</option>
+              <option value="10">10</option>
+              <option value="9">9</option>
+              <option value="8">8</option>
+              <option value="7">7</option>
+              <option value="6">6</option>
+              <option value="5">5</option>
+              <option value="4">4</option>
+              <option value="3">3</option>
+              <option value="2">2</option>
+              <option value="1">1</option>
+            </select>
+          </div>
+
+          <div class="quick-info">
+            <div>
+              <h4 class="info-head">Information</h4>
+              <div class="divider"></div>
+            </div>
+            <p>Type: {{ mediaType }}</p>
+            <p>Episodes: {{ episodes }}</p>
+            <p>Status: {{ status }}</p>
+            <p>Aired: {{ aired }}</p>
+            <div class="quick-info-sub">
+              <p>Studio:</p>
+              <div v-for="studio in studios" :key="studio">
+                <p>{{ studio.node.studio }}</p>
+              </div>
+            </div>
+            <div class="quick-info-sub">
+              <p>Genres:</p>
+              <div v-for="genre in genres" :key="genre">
+                <p>{{ genre.node.genre }},</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
 
       <div class="info-block">
@@ -367,6 +426,106 @@ function showMore() {
   color: var(--white);
   padding-top: 13vh;
   margin: auto;
+  width: 80vw;
+}
+.row-1 {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 3rem;
+}
+.animeImage {
+  width: 20rem;
+  object-fit: cover;
+}
+.animeInfo {
+  margin-left: 3rem;
+}
+.anime-name {
+	font-size: var(--h3);
+	font-weight: var(--fw-med);
+}
+.star-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--h4);
+  margin-bottom: 1rem;
+}
+.star {
+  height: 1.5rem;
+}
+.select {
+  border-radius: 15px;
+  background-color: var(--info-select);
+  font-size: var(--h6);
+  padding: 0.3rem 1rem;
+  margin-right: 2rem;
+  outline: none;
+}
+.info-block {
+  margin-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+}
+.info-block h2 {
+  font-size: var(--h4);
+  font-weight: var(--fw-med);
+  margin-bottom: 0.5rem;
+}
+.divider {
+  height: 0.2rem;
+  background-color: var(--white);
+}
+.synopsis {
+  font-size: var(--h6);
+  font-weight: var(--fw-light);
+  line-height: 3.5rem;
+  word-spacing: 0.2rem;
+  overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 5;
+	-webkit-box-orient: vertical;
+}
+.show {
+	background: none;
+	color: var(--primary);
+	padding: 0;
+	font-size: var(--h6);
+	transition: 0ms;
+	align-self: flex-end;
+}
+.character-container {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  margin: 1rem 0;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.character-container::-webkit-scrollbar {
+  height: 10px;
+}
+.character {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-bottom: 1.5rem;
+  width: 9rem;
+}
+.character-img {
+  height: 8rem;
+  width: 9rem;
+  object-fit: cover;
+}
+.character-name {
+  background-color: #b10064;;
+  text-align: center;
+  font-size: var(--h7);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 1rem;
+  width: 9rem;
 }
 
 @media screen and (max-width: 915px) {

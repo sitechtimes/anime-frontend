@@ -467,11 +467,6 @@ function showMore() {
   display: flex;
   flex-direction: column;
 }
-.info-block h1 {
-  font-size: 3.5rem;
-  font-weight: var(--fw-med);
-  margin-bottom: 1rem;
-}
 .info-block h2 {
   font-size: var(--h3);
   font-weight: var(--fw-med);
@@ -491,12 +486,6 @@ function showMore() {
 .star {
   height: 1.5rem;
 }
-.synopsis {
-  font-size: var(--h5);
-  font-weight: var(--fw-light);
-  line-height: 3.5rem;
-  word-spacing: 0.2rem;
-}
 .select {
   border-radius: 15px;
   background-color: var(--info-select);
@@ -504,6 +493,12 @@ function showMore() {
   padding: 0.3rem 1rem;
   margin-right: 2rem;
   outline: none;
+}
+.synopsis {
+  font-size: var(--h5);
+  font-weight: var(--fw-light);
+  line-height: 3.5rem;
+  word-spacing: 0.2rem;
 }
 .show {
 	background: none;
