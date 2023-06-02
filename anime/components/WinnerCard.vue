@@ -14,7 +14,7 @@ defineProps<{
 }>()
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 
 .winner-card{
     display: flex;
