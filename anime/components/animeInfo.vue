@@ -1,7 +1,6 @@
 <template>
 	<div>
-		<InfoMobile></InfoMobile>  
-		<!-- <InfoComp 
+		<InfoComp 
 			:animeName="animeInfoData.animeName"
 			:episodes="animeInfoData.episodes"
 			:mediaType="animeInfoData.mediaType"
@@ -11,7 +10,7 @@
 			:synopsis="animeInfoData.summary"
 			:imageUrl="animeInfoData.largeImageUrl"
 			:studio="animeInfoData.animeStudio"
-		/> -->
+		/>
 	</div>
 </template>
 
@@ -19,8 +18,6 @@
 import { useUserStore } from "~~/stores/userStore";
 import { ref } from "vue";
 import { animeGraphql } from "~~/types/anime";
-import InfoComp from "./InfoComp.vue";
-import InfoMobile from "~~/components/InfoMobile.vue";
 
 const userStore = useUserStore();
 const animeInfoData = ref();
