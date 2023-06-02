@@ -35,8 +35,6 @@ export default {
 </script>
 
 <style scoped>
-
-
 #login {
   padding-top: 9vh;
   height: 100vh;
@@ -146,24 +144,18 @@ export default {
 .img {
   display: none;
 }
-.title {
-  font-size: 7rem;
-}
 .login-form {
-  width: 80%;
+  width: 75%;
+  padding: 1rem;
+}
+.title {
+  font-size: var(--h1);
+}
+.login-msg {
+  margin: -1rem;
 }
 .login-with-google-btn {
   font-size: var(--h5);
-}
-}
-
-@media screen and (max-width: 825px) {
-.img {
-  display: none;
-}
-.login-form {
-  width: 80vw;
-  height: 70vh;
 }
 }
 
@@ -172,15 +164,12 @@ export default {
   padding: 0;
   height: 85vh;
 }
+.title {
+  font-size: var(--h2);
+}
 }
 
 @media screen and (max-width: 550px) {
-.img {
-  display: none;
-}
-.title {
-  font-size: var(--h1);
-}
 .login-form {
   width: 85vw;
   height: 75vh;
@@ -191,34 +180,18 @@ export default {
 }
 
 @media screen and (max-width: 415px) {
-.img {
-  display: none;
+.login-form {
+  width: 90vw;
 }
 .title {
   font-size: var(--h2);
 }
-.login-form {
-  width: 90vw;
-  height: 66vh;
+.login-msg {
+  margin: -1rem;
+  font-size: var(--h6);
 }
 .login-with-google-btn {
   font-size: 16px;
-}
-}
-
-@media screen and (max-width: 285px) {
-.img {
-  display: none;
-}
-.title {
-  font-size: var(--h2);
-}
-.login-form {
-  width: 88vw;
-  height: 67vh;
-}
-.login-with-google-btn {
-  font-size: 11px;
 }
 }
 </style>

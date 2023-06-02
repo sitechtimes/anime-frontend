@@ -301,7 +301,7 @@ query{
 				const userData = await response.json();
 				// console.log(userData.data.userAnimeData.admin)
 				this.isAdmin = userData.data.userAnimeData.admin
-				console.log(this.isAdmin)
+				// console.log(this.isAdmin)
 			} catch (error) {
 				alert(error)
 			}
@@ -363,7 +363,36 @@ query{
 
 				const response = await fetch(endpoint, options);
 				const winnerData = await response.json();
-				console.log(winnerData)
+				// console.log(winnerData)
+
+				// const today = new Date()
+				// const year = today.getFullYear()
+				// const monthNumber = today.getMonth() + 1
+				// let season = ""
+
+				// switch (monthNumber) {
+				// 	case 1 || 2 || 3:
+				// 		season = "Winter"
+				// 		break;
+				// 	case 4 || 5 || 6:
+				// 		season = "Spring"
+				// 		break;
+				// 	case 7 || 8 || 9:
+				// 		season = "Summer"
+				// 		break;
+				// 	case 10 || 11 || 12:
+				// 		season = "Fall"
+				// 		break;
+				// 	default:
+				// 		alert("There is no month")
+				// }
+				// console.log(year, season, monthNumber)
+				if (winnerData.errors) {
+					alert(winnerData.errors[0].message)
+					// return navigateTo("/login")
+				} else {
+					alert("You have ran the winner query")
+				}
 				// console.log(userData.data.userAnimeData.admin)
 				// this.isAdmin = userData.data.userAnimeData.admin
 				// console.log(this.isAdmin)
@@ -463,7 +492,7 @@ query{
 		},
 		logout() {
 			try {
-				console.log("logout")
+				// console.log("logout")
 				// let user = useCookie('user')
 				// user = null
 				// localStorage.removeItem("token");

@@ -13,6 +13,22 @@
        :characters="characters"
        :mal_id="mal_id"
        :avgRating="rating"
+       class="info-comp"
+       />
+       <InfoMobile
+       :animeName="animeName"
+       :imageUrl="imageURL"
+       :episodes="episodes"
+       :status="status"
+       :aired="aired"
+       :mediaType="mediaType"
+       :synopsis="synopsis"
+       :studios="studios"
+       :genres="genres"
+       :characters="characters"
+       :mal_id="mal_id"
+       :avgRating="rating"
+       class="info-mobile"
        />
     </div>
 </template>
@@ -21,6 +37,7 @@
 import InfoComp from '../../components/InfoComp.vue';
 import { useUserStore } from '~~/stores/userStore'
 import { onMounted, ref } from 'vue';
+import { navigateTo } from 'nuxt/app';
 
 
   const route = useRoute()
@@ -116,7 +133,9 @@ async function getAnime() {
 
 
       } catch (error) {
-        alert(error)
+        alert("You need to be logged in")
+        return navigateTo("/login")
+       
       }
 }
 
@@ -126,6 +145,6 @@ onMounted(() => {
 })
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 
 </style>

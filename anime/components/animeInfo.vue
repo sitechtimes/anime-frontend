@@ -1,4 +1,4 @@
-<template>
+``<template>
 	<div>
 		<InfoComp
 			:animeName="animeInfoData.animeName"
@@ -17,6 +17,8 @@
 <script setup lang="ts">
 import { useUserStore } from "~~/stores/userStore";
 import InfoComp from "../components/InfoComp.vue";
+import { ref } from "vue";
+import { animeGraphql } from "~~/types/anime";
 
 const userStore = useUserStore();
 const animeInfoData = ref();
@@ -30,7 +32,7 @@ onMounted(() => {
 const time = ref<string>("");
 
 time.value = aired(animeInfoData.value.airTimeStart, animeInfoData.value.airTimeEnd);
-console.log(time.value);
+// console.log(time.value);
 
 function aired(airTimeStart: string, airTimeEnd: string): string {
 	function changeMonth(month: string) {

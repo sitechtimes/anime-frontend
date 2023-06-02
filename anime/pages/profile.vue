@@ -17,8 +17,8 @@
                 />
                 <div class="profile-name">
                     <h3 class="profile-id">{{ firstName }} {{ lastName }}</h3>
-                    <p class="profile-grade">{{ emailDOE }}</p>
-                    <p class="profile-grade">{{Admin}}</p>
+                    <h3 class="profile-grade">{{ emailDOE }}</h3>
+
                     <!-- <p class="profile-grade">Senior Class of 2023</p> -->
                     <!-- <p class="profile-grade">Date Started: 01/19/2023</p> -->
                 </div>
@@ -35,11 +35,13 @@
                             <h3 class="tab-title">Watchlist</h3>
                             <div class="profile-slide">
                                 <div class="pf-carousel">
+
                                     <AnimeList
-                                        v-for="anime in currentAnimes"
-                                        :key="anime.animeID"
-                                        :img="anime.img"
-                                        :title="anime.title"
+                                        v-for="node in watchlist"
+                                        :key="node.node.anime.malId"
+                                        :img="node.node.anime.imageUrl"
+                                        :title="node.node.anime.animeName"
+                                        :malid="node.node.anime.malId"
                                     />
                                 </div>
                             </div>
@@ -52,14 +54,15 @@
                             <h3 class="tab-detail">Technime</h3>
                         </div>
                         <div class="tab-bottom">
-                            <h3 class="tab-title">Favorites</h3>
+                            <h3 class="tab-title">Currently Watching</h3>
                             <div class="profile-slide">
                                 <div class="pf-carousel">
                                     <AnimeList
-                                        v-for="anime in favoriteAnime"
-                                        :key="anime.animeID"
-                                        :img="anime.img"
-                                        :title="anime.title"
+                                        v-for="node in currentlyAnimes"
+                                        :key="node.node.anime.malId"
+                                        :img="node.node.anime.imageUrl"
+                                        :title="node.node.anime.animeName"
+                                        :malid="node.node.anime.malId"
                                     />
                                 </div>
                             </div>
@@ -72,17 +75,29 @@
                             <h3 class="tab-detail">Technime</h3>
                         </div>
                         <div class="tab-bottom">
-                            <h3 class="tab-title">Rated</h3>
-                        </div>
-                    </div>
-                </Tab>
-                <Tab title="Example 2">
-                    <div class="tabShow">
-                        <div class="tab-logo">
-                            <h3 class="tab-detail">Technime</h3>
-                        </div>
-                        <div class="tab-bottom">
-                            <h3 class="tab-title">Example 2</h3>
+                            <h3 class="tab-title">Voted Animes/Characters</h3>
+                            <div class="profile-slide">
+                                <div class="pf-carousel">
+                                    <VotedAnimeList
+                                        v-for="node in votedAnimes"
+                                        :key="node.node.anime.malId"
+                                        :img="node.node.anime.imageUrl"
+                                        :title="node.node.anime.animeName"
+                                        :awardName="node.node.award.awardName"
+                                        :date="node.node.award.date"
+                                        :malid="node.node.anime.malId"
+                                    />
+                                    <VotedAnimeList
+                                        v-for="node in votedCharacters"
+                                        :key="node.node.character.characterName"
+                                        :img="node.node.character.imageUrl"
+                                        :title="node.node.character.characterName"
+                                        :awardName="node.node.award.awardName"
+                                        :date="node.node.award.date"
+
+                                    />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </Tab>
@@ -93,6 +108,8 @@
 
 <script setup lang="ts">
 import { useUserStore } from "~~/stores/userStore";
+import VotedAnimeList from "~~/components/profile/VotedAnimeList.vue";
+import { ref, onMounted } from "vue" 
 
 const userStore = useUserStore();
 
@@ -100,11 +117,125 @@ const firstName = userStore.first_name;
 const Admin = userStore.admin_status;
 const lastName = userStore.last_name;
 const emailDOE = userStore.email;
-const currentAnimes = ref([
-    {
-        animeID: "01",
-        title: "One Punch Man",
-        img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
+const currentlyAnimes = ref([])
+const watchlist = ref([])
+const votedAnimes = ref([])
+const votedCharacters = ref([])
+
+console.log(userStore.isAdmin)
+async function getUserProfile() {
+    try {
+        const endpoint = "http://127.0.0.1:8000/graphql/";
+				const headers = {
+					"content-type": "application/json",
+					Authorization: `Bearer ${userStore.token}`,
+				};
+
+				const graphqlQuery = {
+					query: `
+query{
+  userAnimeData(id:${userStore.userID}) {
+    userAnime{
+      edges {
+        node{
+          anime{
+            animeName,
+            imageUrl,
+      malId
+          },
+          watchingStatus
+          rating
+        }
+      },
+      
+    },
+    userVotedCharacters{
+      edges {
+        node{
+          award{
+            awardName,
+
+          },
+          character {
+            characterName,
+            imageUrl
+          }
+        },
+        
+      },
+      
+    }
+    ,
+    userVotedAnimes{
+      edges{
+        node{
+          award{
+            awardName,
+
+          }
+            ,
+          anime{
+            animeName,
+            imageUrl,
+            malId
+          }
+        },
+        
+      },
+      
+    }
+  }
+}`,
+					variables: {},
+				};
+
+				const options = {
+					method: "POST",
+					headers: headers,
+					body: JSON.stringify(graphqlQuery),
+				};
+
+				const response = await fetch(endpoint, options);
+				const userData = await response.json();
+
+
+                watchlist.value = userData.data.userAnimeData.userAnime.edges.filter(node => 
+                // console.log(node.node.watchingStatus)
+                    node.node.watchingStatus == "WATCHLIST"
+                )
+                currentlyAnimes.value = userData.data.userAnimeData.userAnime.edges.filter(node => 
+                // console.log(node.node.watchingStatus)
+                    node.node.watchingStatus == "CURRENTLY_WATCHING"
+                )
+
+                votedAnimes.value = userData.data.userAnimeData.userVotedAnimes.edges
+                votedCharacters.value = userData.data.userAnimeData.userVotedCharacters.edges
+                console.log(currentlyAnimes.value, votedAnimes.value, votedCharacters.value)
+
+    } catch (error) {
+        alert(error)
+    }
+}
+
+
+onMounted(() => {
+    getUserProfile()
+})
+
+
+</script>
+
+<!-- <script lang="ts">
+import Tab from "../components/profile/Tab.vue";
+import TabsWrapper from "../components/profile/TabsWrapper.vue";
+import AnimeList from "../components/profile/AnimeList.vue";
+// import Tabs from '../components/profile/Tabs.vue'
+export default {
+    components: {
+        Tab,
+        TabsWrapper,
+        AnimeList,
+        //   Tabs
     },
     {
         animeID: "02",
@@ -144,9 +275,13 @@ const favoriteAnime = ref([
         img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
     },
 ]);
-</script>
+</script> -->
 
 <style scoped>
+
+.profile-slide {
+    /* overflow-y: scroll; */
+}
 .profile-top,
 .tabs-class {
     width: 100%;
@@ -155,6 +290,7 @@ const favoriteAnime = ref([
     justify-content: center;
     color: var(--white);
     margin-bottom: 8%;
+    /* overflow: auto; */
 }
 .tabs-class .tab {
     background-color: var(--tertiary);
@@ -167,6 +303,15 @@ const favoriteAnime = ref([
     position: relative;
     border-radius: 5px;
     box-shadow: 0 4px 8px 0 var(--tertiary);
+    /* overflow-x: auto; */
+}
+
+.tab-bottom {
+    margin-top: 25rem;
+    transform: translateX(20%);
+    /* display: flex;
+    flex-direction: row;
+    justify-content: flex-end; */
 }
 .banner {
     object-fit: cover;
@@ -296,10 +441,13 @@ const favoriteAnime = ref([
 
 /* actual (inside each) tab css */
 .tabShow {
+    /* top: 0; */
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 100%;
     justify-content: center;
+    overflow: auto;
+    overflow-x: hidden;
 }
 .tab-logo {
     display: flex;
@@ -317,8 +465,16 @@ const favoriteAnime = ref([
     font-weight: var(--fw-light);
 }
 .pf-carousel {
-    display: flex;
-    width: 70vw;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    column-gap: 1rem;
+    row-gap: 1rem;
+    width: 70%;
+ 
+
+    /* justify-content: flex-end; */
+    /* justify-content: center; */
+    /* overflow: auto; */
 }
 .underNav {
     width: 100vw;

@@ -80,7 +80,7 @@ a {
 /* media query */
 @media screen and (max-width: 1300px) {
 }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 767px) {
     .nav-mobile,
     .menu {
         display: none;

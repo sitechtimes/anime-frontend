@@ -18,7 +18,6 @@
 </template>
 
 <script setup lang="ts">
-import RankingCard from "~~/components/rankingpage/RankingCard.vue";
 // <!-- :stars="anime.stars" -->
 
 import { animeRest } from "~~/types/anime";
@@ -31,13 +30,13 @@ const ranking_arr = ref();
 onMounted(() => {
     const arr_anime = JSON.parse(JSON.stringify(userStore.allAnime));
     arr_anime.sort((a: any, b: any) => b.avg_rating - a.avg_rating);
-    console.log(arr_anime);
-    const x = arr_anime.slice(1, 11);
-    ranking_arr.value = x;
-    // userStore
-    // 	.getAllAnime()
-    // 	.then((data) => {
-    // 		const airingAnimeArr = [] as animeRest[];
+    // console.log(arr_anime)
+    const x = arr_anime.slice(1,11)
+    ranking_arr.value = x
+	// userStore
+	// 	.getAllAnime()
+	// 	.then((data) => {
+	// 		const airingAnimeArr = [] as animeRest[];
 
     // 		data!.filter(function (anime: animeRest): void {
     // 			if (anime.status == "Currently Airing") {
