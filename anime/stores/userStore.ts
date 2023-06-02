@@ -426,12 +426,12 @@ query{
 								let account = res.data.email.slice(index + 1);
 
 								//add teacher later
-								if (account != ("nycstudents.net" || "schools.nyc.gov")) {
-									this.token = null;
-									return alert(
-										"Need to login with your school account (i.e. nycstudents.net)"
-									);
-								}
+								// if (account != ("nycstudents.net" || "schools.nyc.gov")) {
+								// 	this.token = null;
+								// 	return alert(
+								// 		"Need to login with your school account (i.e. nycstudents.net)"
+								// 	);
+								// }
 
 								// localStorage.setItem("user", res.data.first_name)
 								// this.userData = localStorage.getItem("user")
@@ -505,6 +505,7 @@ query{
 				this.isAuthenticated = false;
 				this.token = null;
 				this.userID = null
+				return navigateTo("/login");
 				// this.$router.push("/")
 				// googleLogout();
 			} catch (error) {
