@@ -65,7 +65,7 @@
       <div class="info-block">
         <h2>Synopsis</h2>
         <div class="divider"></div>
-        <p class="synopsis">{{ synopsis }}</p>
+        <p class="synopsis" :class="active ? 'active' : 'non-active'">{{ synopsis }}</p>
         <button class="show" ref="showBtn" @click="showMore">Show More</button>
       </div>
       <div class="info-block">
@@ -112,8 +112,9 @@ let ratingOne = ref([])
 let allRatings = ref([])
 let chartRatings = ref([])
 let loaded = ref(false)
-const showAll = ref(false)
-const showBtn = ref("Show More")
+const showFullSynop = ref(false)
+const showBtn = ref("")
+const active = ref(false)
 
 const userStore = useUserStore()
 
@@ -408,13 +409,13 @@ async function getUserProfile() {
 })
 
 function showMore() {
-  // showAll.value = !showAll.value
-  // if (showAll.value === false) {
-  //   console.log("synopsis partially shown")
-  //   console.log(showBtn.value)
-  // } else if (showAll.value === true) {
-  //   console.log("synopsis fully shown")
-  // }
+  showFullSynop.value = !showFullSynop.value
+  active.value = !active.value
+  if (showFullSynop.value === false) {
+    showBtn.value.textContent = "Show More"
+  } else if (showFullSynop.value === true) {
+    showBtn.value.textContent = "Hide"
+  }
 }
 </script>
 
@@ -557,9 +558,14 @@ function showMore() {
 		overflow: hidden;
 		text-overflow: ellipsis;
 		display: -webkit-box;
-		-webkit-line-clamp: 5;
 		-webkit-box-orient: vertical;
 	}
+  .active {
+    -webkit-line-clamp: none;
+  }
+  .non-active {
+    -webkit-line-clamp: 5;
+  }
 	.show {
 		display: block;
 	}

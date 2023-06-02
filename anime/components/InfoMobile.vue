@@ -81,7 +81,7 @@
       <div class="info-block">
         <h2>Synopsis</h2>
         <div class="divider"></div>
-        <p class="synopsis">{{ synopsis }}</p>
+        <p class="synopsis" :class="active ? 'active' : 'non-active'">{{ synopsis }}</p>
         <button class="show" ref="showBtn" @click="showMore">Show More</button>
       </div>
 
@@ -129,7 +129,9 @@ let ratingOne = ref([])
 let allRatings = ref([])
 let chartRatings = ref([])
 let loaded = ref(false)
-const showAll = ref(false)
+const showFullSynop = ref(false)
+const showBtn = ref("")
+const active = ref(false)
 const moreInfoShown = ref(false)
 
 const userStore = useUserStore()
@@ -424,6 +426,16 @@ async function getUserProfile() {
     getAllRatings();
 })
 
+function showMore() {
+  showFullSynop.value = !showFullSynop.value
+  active.value = !active.value
+  if (showFullSynop.value === false) {
+    showBtn.value.textContent = "Show More"
+  } else if (showFullSynop.value === true) {
+    showBtn.value.textContent = "Hide"
+  }
+}
+
 function showInfo() {
   moreInfoShown.value = true
 }
@@ -560,8 +572,13 @@ function hideInfo() {
   overflow: hidden;
 	text-overflow: ellipsis;
 	display: -webkit-box;
-	-webkit-line-clamp: 5;
 	-webkit-box-orient: vertical;
+}
+.active {
+  -webkit-line-clamp: none;
+}
+.non-active {
+  -webkit-line-clamp: 5;
 }
 .show {
 	background: none;
