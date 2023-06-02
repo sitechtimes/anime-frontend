@@ -101,7 +101,7 @@
             </div>
             <div class="topCharts-container">
                 <h2 class="topCharts-title">Top Charts</h2>
-                <homepageTopCharts
+                <HomepageTopCharts
                     v-for="(charts, index) in sortedAnimeTop"
                     :key="charts.id"
                     :img="charts.imageUrl"
