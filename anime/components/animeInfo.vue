@@ -17,6 +17,8 @@
 <script setup lang="ts">
 import { useUserStore } from "~~/stores/userStore";
 import InfoComp from "../components/InfoComp.vue";
+import { ref } from "vue";
+import { animeGraphql } from "~~/types/anime";
 
 const userStore = useUserStore();
 const animeInfoData = ref();

@@ -1,73 +1,90 @@
 <template>
-  <div id="anime-info">
-    <div class="column-1">
-      <img class="animeImage" :src="`${imageUrl}`" alt="Anime Cover" />
-      <div class="quick-info">
-        <div>
-          <h4 class="info-head">Information</h4>
-          <div class="divider"></div>
-        </div>
-        <p>Type: {{ mediaType }}</p>
-        <p>Episodes: {{ episodes }}</p>
-        <p>Status: {{ status }}</p>
-        <p>Aired: {{ aired }}</p>
-        <div class="quick-info-sub">
-          <p>Studio:</p>
-          <div v-for="studio in studios" :key="studio">
-            <p>{{ studio.node.studio }}</p>
+    <div id="anime-info-mobile">
+      <div class="row-1">
+        <img class="animeImage" :src="`${imageUrl}`" alt="Anime Cover" />
+        <div class="animeInfo">
+          <p class="anime-name">{{ animeName }}</p>
+          <div class="star-rating">
+            <starSVG class="star" />
+            <p>{{ avgRating }}</p>
           </div>
-        </div>
-        <div class="quick-info-sub">
-          <p>Genres:</p>
-          <div v-for="genre in genres" :key="genre">
-            <p>{{ genre.node.genre }},</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="column-2">
-      <div class="info-block">
-        <p class="anime-name">{{ animeName }}</p>
-        <div class="star-rating">
-          <starSVG class="star" />
-          <p>{{ avgRating }}</p>
-        </div>
-        <div>
-          <select id="doughtnut-graph" class="dropdown" v-model="watchStatus">
-            <option value="NOT_WATCHING" selected>Not Watching</option>
-            <option value="CURRENTLY_WATCHING">
-              Currently Watching
-            </option>
-            <option value="WATCHLIST">Watchlist</option>
-            <option value="FINISHED_ANIME">Finished Anime</option>
-          </select>
+          <div class="dropdowns-row">
+            <select id="doughtnut-graph" class="dropdown" v-model="watchStatus">
+              <option value="NOT_WATCHING" selected>Not Watching</option>
+              <option value="CURRENTLY_WATCHING">
+                Currently Watching
+              </option>
+              <option value="WATCHLIST">Watchlist</option>
+              <option value="FINISHED_ANIME">Finished Anime</option>
+            </select>
 
-          <select id="rating-form" class="dropdown" v-model="rating">
-            <!-- <option v-if="change" value="" disabled selected>{{ userAnime.rating }}</option> -->
-            <option v-if="change" value="0" disabled selected>
-              {{ userAnime.rating }}
-            </option>
-            <option v-else value="0" disabled selected>Rate</option>
-            <option value="10">10</option>
-            <option value="9">9</option>
-            <option value="8">8</option>
-            <option value="7">7</option>
-            <option value="6">6</option>
-            <option value="5">5</option>
-            <option value="4">4</option>
-            <option value="3">3</option>
-            <option value="2">2</option>
-            <option value="1">1</option>
-          
-          </select>
+            <select id="rating-form" class="dropdown" v-model="rating">
+              <!-- <option v-if="change" value="" disabled selected>{{ userAnime.rating }}</option> -->
+              <option v-if="change" value="0" disabled selected>
+                {{ userAnime.rating }}
+              </option>
+              <option v-else value="0" disabled selected>Rate</option>
+              <option value="10">10</option>
+              <option value="9">9</option>
+              <option value="8">8</option>
+              <option value="7">7</option>
+              <option value="6">6</option>
+              <option value="5">5</option>
+              <option value="4">4</option>
+              <option value="3">3</option>
+              <option value="2">2</option>
+              <option value="1">1</option>
+            </select>
+          </div>
+
+          <div class="quick-info">
+            <h4 class="info-head">Information</h4>
+            <div class="divider"></div>
+            <div class="quick-info-grid">
+              <p>Type: {{ mediaType }}</p>
+              <p>Episodes: {{ episodes }}</p>
+              <p class="hide-425px">Status: {{ status }}</p>
+              <p class="hide-425px">Aired: {{ aired }}</p>
+            </div>
+            <button class="more-info-btn" @click="showInfo">More Info</button>
+          </div>
+
         </div>
       </div>
+
+      <div class="popup" v-if="moreInfoShown">
+        <div class="more-info">
+              <h4 class="more-info-head">Information</h4>
+              <div class="divider"></div>
+              <div class="more-info-grid">
+                <p>Type: {{ mediaType }}</p>
+                <p>Episodes: {{ episodes }}</p>
+                <p>Status: {{ status }}</p>
+                <p>Aired: {{ aired }}</p>
+                <div class="quick-info-sub">
+                  <p>Studio:</p>
+                  <div v-for="studio in studios" :key="studio">
+                    <p>{{ studio.node.studio }}</p>
+                  </div>
+                </div>
+                <div class="quick-info-sub">
+                  <p>Genres:</p>
+                  <div v-for="genre in genres" :key="genre">
+                    <p>{{ genre.node.genre }},</p>
+                  </div>
+                </div>
+              </div>
+              <button class="show" @click="hideInfo">Close</button>
+            </div>
+          </div>
+
       <div class="info-block">
         <h2>Synopsis</h2>
         <div class="divider"></div>
         <p class="synopsis" :class="active ? 'active' : 'non-active'">{{ synopsis }}</p>
         <button class="show" ref="showBtn" @click="showMore">Show More</button>
       </div>
+
       <div class="info-block">
         <h2>Characters</h2>
         <div class="divider"></div>
@@ -76,13 +93,14 @@
             v-for="character in characters"
             :key="character.node.characterName"
             class="character"
-          >
+            >
             <img class="character-img" :src="character.node.imageUrl" alt="" />
             <p class="character-name">{{ character.node.characterName }}</p>
           </div>
         </div>
         <div class="divider"></div>
       </div>
+
       <div class="info-block">
         <h2>Rating Distribution</h2>
         <div class="divider"></div>
@@ -92,16 +110,15 @@
           :chartOptions="chartOptions"
         />
       </div>
-      
+
     </div>
-  </div>
 </template>
 
 <script lang="ts" setup>
 import starSVG from "../components/starSVG.vue";
 import LineChart from "../components/LineChart.vue";
 import { useUserStore } from "~~/stores/userStore";
-import { ref, onMounted, watch} from "vue"
+import { ref, onMounted, watch, onUpdated } from "vue"
 
 let addList = ref(false)
 let watchStatus = ref("NOT_WATCHING")
@@ -115,6 +132,7 @@ let loaded = ref(false)
 const showFullSynop = ref(false)
 const showBtn = ref("")
 const active = ref(false)
+const moreInfoShown = ref(false)
 
 const userStore = useUserStore()
 
@@ -417,63 +435,38 @@ function showMore() {
     showBtn.value.textContent = "Hide"
   }
 }
+
+function showInfo() {
+  moreInfoShown.value = true
+}
+
+function hideInfo() {
+  moreInfoShown.value = false
+}
 </script>
 
 <style scoped>
-#anime-info {
+#anime-info-mobile {
+  display: none;
   color: var(--white);
   padding-top: 11rem;
-  display: flex;
-  justify-content: center;
   margin: auto;
+  width: 80vw;
 }
-.column-1 {
-  width: 15vw;
-  position: sticky;
-  align-self: flex-start;
-  top: 5vh;
+.row-1 {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 3rem;
 }
 .animeImage {
-  width: 100%;
+  width: 20rem;
   object-fit: cover;
 }
-.quick-info {
-  background: var(--bg-secondary);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  row-gap: 1.5rem;
-  width: 100%;
-  margin-top: 2vh;
-  font-size: var(--h5);
-  padding: 2rem;
-  margin-bottom: 4rem;
-}
-.quick-info p {
-  font-size: var(--h6);
-}
-.quick-info-sub {
-  display: flex;
-  flex-wrap: wrap;
-  column-gap: 0.3rem;
-}
-.column-2 {
-  width: 53vw;
-  font-size: var(--h4);
-  margin-left: 2rem;
-}
-.info-block {
-  margin-bottom: 5rem;
-  display: flex;
-  flex-direction: column;
-}
-.info-block h2 {
-  font-size: var(--h3);
-  font-weight: var(--fw-med);
-  margin-bottom: 0.5rem;
+.animeInfo {
+  margin-left: 3rem;
 }
 .anime-name {
-	font-size: var(--h2);
+	font-size: var(--h3);
 	font-weight: var(--fw-med);
 }
 .star-rating {
@@ -481,37 +474,119 @@ function showMore() {
   align-items: center;
   gap: 0.5rem;
   font-size: var(--h4);
-  margin-bottom: 1rem;
 }
 .star {
   height: 1.5rem;
 }
+.dropdowns-row {
+  margin: 1rem 0 2rem;
+}
 .dropdown {
   border-radius: 15px;
   background-color: var(--info-select);
-  font-size: var(--h5);
+  font-size: var(--h6);
   padding: 0.3rem 1rem;
   margin-right: 2rem;
   outline: none;
 }
-.synopsis {
+.quick-info {
+  background: var(--bg-secondary);
+  padding: 1rem 2rem;
+  font-size: var(--h6);
+  display: flex;
+  flex-direction: column;
+}
+.info-head {
   font-size: var(--h5);
+}
+.quick-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  row-gap: 0.5rem;
+  column-gap: 3rem;
+  padding: 1rem 0 1.5rem;
+}
+.quick-info-sub {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  column-gap: 0.3rem;
+}
+.more-info-btn {
+  background: none;
+	color: var(--primary);
+	padding: 0;
+	font-size: var(--h6);
+	transition: 0ms;
+	align-self: flex-end;
+}
+.popup {
+  background: rgb(0, 0, 0, 0.6);
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.more-info {
+  width: 80vw;
+  padding: 2rem 3rem;
+  font-size: var(--h5);
+  background: var(--bg-secondary);
+  display: flex;
+  flex-direction: column;
+}
+.more-info-head {
+  font-size: var(--h4);
+}
+.more-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  row-gap: 0.5rem;
+  column-gap: 3rem;
+  padding: 1rem 0 1.5rem;
+}
+.info-block {
+  margin-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+}
+.info-block h2 {
+  font-size: var(--h4);
+  font-weight: var(--fw-med);
+  margin-bottom: 0.5rem;
+}
+.divider {
+  height: 0.2rem;
+  background-color: var(--white);
+}
+.synopsis {
+  font-size: var(--h6);
   font-weight: var(--fw-light);
   line-height: 3.5rem;
   word-spacing: 0.2rem;
+  overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+}
+.active {
+  -webkit-line-clamp: none;
+}
+.non-active {
+  -webkit-line-clamp: 5;
 }
 .show {
 	background: none;
 	color: var(--primary);
 	padding: 0;
-	font-size: var(--h5);
+	font-size: var(--h6);
 	transition: 0ms;
 	align-self: flex-end;
-	display: none;
-}
-.divider {
-  height: 0.2rem;
-  background-color: var(--white);
 }
 .character-container {
   display: flex;
@@ -529,87 +604,150 @@ function showMore() {
   flex-direction: column;
   justify-content: flex-start;
   margin-bottom: 1.5rem;
+  width: 9rem;
 }
 .character-img {
-  height: 10rem;
+  height: 8rem;
   width: 9rem;
   object-fit: cover;
 }
 .character-name {
   background-color: #b10064;;
   text-align: center;
-  font-size: var(--h5);
+  font-size: var(--h7);
   overflow: hidden;
   text-overflow: ellipsis;
   padding: 0 1rem;
-  width: 9rem;
-}
-@media screen and (max-width: 1440px) {
-	.column-1 {
-		width: 23rem;
-	}
-	.column-2 {
-		margin-left: 4rem;
-	}
-  .info-block {
-    margin-bottom: 3rem;
-  }
-	.synopsis {
-		overflow: hidden;
-		text-overflow: ellipsis;
-		display: -webkit-box;
-		-webkit-box-orient: vertical;
-	}
-  .active {
-    -webkit-line-clamp: none;
-  }
-  .non-active {
-    -webkit-line-clamp: 5;
-  }
-	.show {
-		display: block;
-	}
-}
-
-@media screen and (max-width: 1200px) {
-	.synopsis, .show {
-		font-size: var(--h6);
-	}
-	.character {
-		width: 9rem;
-	}
-	.character-img {
-		height: 8rem;
-	}
-	.character-name {
-		font-size: var(--h7);
-	}
-}
-
-@media screen and (max-width: 1024px) {
-	.column-1 {
-		width: 21rem;
-	}
-	.quick-info {
-		font-size: var(--h8);
-	}
-	.info-head {
-		font-size: var(--h6);
-	}
-	.anime-name {
-		font-size: var(--h3);
-	}
-	.info-block h2 {
-		font-size: var(--h4);
-	}
-	.dropdown {
-		font-size: var(--h6);
-	}
 }
 
 @media screen and (max-width: 915px) {
-  #anime-info {
+  #anime-info-mobile {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #anime-info-mobile {
+    padding-top: 3rem;
+  }
+  .animeImage {
+    width: 15rem;
+  }
+  .info-head {
+    font-size: var(--h6);
+  }
+  .quick-info-grid {
+    font-size: var(--h8);
+    column-gap: 1rem;
+    padding: 1rem 0;
+  }
+  .more-info-btn {
+    font-size: var(--h7);
+  }
+  .more-info-grid {
+    font-size: var(--h6);
+  }
+}
+
+@media screen and (max-width: 568px) {
+  .animeImage {
+    width: 11rem;
+  }
+  .animeInfo {
+    margin-left: 2rem;
+  }
+  .anime-name {
+    font-size: var(--h4);
+  }
+  .star-rating {
+    font-size: var(--h7);
+    gap: 0;
+    margin: -0.6rem 0;
+  }
+  .star {
+    height: 1rem;
+  }
+  .dropdowns-row {
+    margin: 1rem 0;
+  }
+  .dropdown {
+    font-size: var(--h8);
+    padding: 0.1rem 0.3rem;
+    margin-right: 1rem;
+  }
+  .quick-info {
+    padding: 0.5rem 1rem;
+  }
+  .info-head, .more-info-btn{
+    font-size: var(--h8);
+  }
+  .quick-info-grid {
+    font-size: var(--smallText);
+  }
+  .more-info {
+    padding: 2rem;
+  }
+  .more-info-head {
+    font-size: var(--h5);
+  }
+  .more-info-grid {
+    font-size: var(--h8);
+    column-gap: 2rem;
+  }
+  .info-block h2 {
+    font-size: var(--h5);
+  }
+  .synopsis {
+    font-size: var(--h7);
+    line-height: 3rem;
+  }
+  .character-container::-webkit-scrollbar {
+  height: 5px;
+  }
+  .character-container {
+    gap: 1rem;
+  }
+  .character {
+    width: 6rem;
+  }
+  .character-img {
+    height: 6rem;
+    width: 6rem;
+  }
+  .character-name {
+    font-size: var(--h8);
+  }
+}
+
+@media screen and (max-width: 425px) {
+  #anime-info-mobile {
+    width: 87vw;
+  }
+  .animeInfo {
+    margin-left: 1rem;
+  }
+  .dropdown {
+    padding: 0.1rem;
+    margin-right: 0.5rem;
+  }
+  .quick-info-grid {
+    column-gap: 0.5rem;
+    padding: 0.7rem 0;
+  }
+  .hide-425px {
     display: none;
+  }
+  .more-info-btn {
+    font-size: var(--h8);
+  }
+  .more-info-head {
+    font-size: var(--h6);
+  }
+  .more-info-grid {
+    font-size: var(--smallText);
+  }
+  .show {
+    font-size: var(--h7);
   }
 }
 </style>
