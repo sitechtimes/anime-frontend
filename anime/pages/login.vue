@@ -40,7 +40,8 @@ export default {
   height: 100vh;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: center;
+  gap: 15rem;
   align-items: center;
 }
 .img {
@@ -50,7 +51,7 @@ export default {
   color: var(--white);
   background: var(--primary);
   height: 70vh;
-  width: 30vw;
+  width: 55rem;
   border-radius: 30px;
   box-shadow: inset 0 0 60px var(--secondary-dark);
   display: flex;
@@ -84,7 +85,7 @@ export default {
   box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 1px 1px rgba(0, 0, 0, .25);
   
   color: #757575;
-  font-size: 14px;
+  font-size: var(--h5);
   font-weight: 500;
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
   
@@ -117,7 +118,16 @@ export default {
   cursor: not-allowed;
 }
 
-@media screen and (max-width: 1285px) {
+@media screen and (max-width: 1440px) {
+  #login {
+    gap: 10rem;
+  }
+  .login-form {
+    width: 50rem;
+  }
+}
+
+/* @media screen and (max-width: 1285px) {
 .login-form {
   width: 40vw;
   height: 72vh;
@@ -127,7 +137,7 @@ export default {
 }
 }
 
-@media screen and (max-width: 1025px) {
+@media screen and (max-width: 1024px) {
 .title {
   font-size: var(--h2);
 }
@@ -193,5 +203,5 @@ export default {
 .login-with-google-btn {
   font-size: 16px;
 }
-}
+} */
 </style>
