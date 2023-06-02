@@ -101,7 +101,7 @@
 import starSVG from "../components/starSVG.vue";
 import LineChart from "../components/LineChart.vue";
 import { useUserStore } from "~~/stores/userStore";
-import { ref, onMounted, watch, onUpdated } from "vue"
+import { ref, onMounted, watch} from "vue"
 
 let addList = ref(false)
 let watchStatus = ref("NOT_WATCHING")
