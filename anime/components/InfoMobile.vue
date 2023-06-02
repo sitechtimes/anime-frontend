@@ -8,8 +8,8 @@
             <starSVG class="star" />
             <p>{{ avgRating }}</p>
           </div>
-          <div>
-            <select id="doughtnut-graph" class="select" v-model="watchStatus">
+          <div class="dropdowns-row">
+            <select id="doughtnut-graph" class="dropdown" v-model="watchStatus">
               <option value="NOT_WATCHING" selected>Not Watching</option>
               <option value="CURRENTLY_WATCHING">
                 Currently Watching
@@ -18,7 +18,7 @@
               <option value="FINISHED_ANIME">Finished Anime</option>
             </select>
 
-            <select id="rating-form" class="select" v-model="rating">
+            <select id="rating-form" class="dropdown" v-model="rating">
               <!-- <option v-if="change" value="" disabled selected>{{ userAnime.rating }}</option> -->
               <option v-if="change" value="0" disabled selected>
                 {{ userAnime.rating }}
@@ -38,24 +38,24 @@
           </div>
 
           <div class="quick-info">
-            <div>
-              <h4 class="info-head">Information</h4>
-              <div class="divider"></div>
-            </div>
-            <p>Type: {{ mediaType }}</p>
-            <p>Episodes: {{ episodes }}</p>
-            <p>Status: {{ status }}</p>
-            <p>Aired: {{ aired }}</p>
-            <div class="quick-info-sub">
-              <p>Studio:</p>
-              <div v-for="studio in studios" :key="studio">
-                <p>{{ studio.node.studio }}</p>
+            <h4 class="info-head">Information</h4>
+            <div class="divider"></div>
+            <div class="quick-info-grid">
+              <p>Type: {{ mediaType }}</p>
+              <p>Episodes: {{ episodes }}</p>
+              <p>Status: {{ status }}</p>
+              <p>Aired: {{ aired }}</p>
+              <div class="quick-info-sub">
+                <p>Studio:</p>
+                <div v-for="studio in studios" :key="studio">
+                  <p>{{ studio.node.studio }}</p>
+                </div>
               </div>
-            </div>
-            <div class="quick-info-sub">
-              <p>Genres:</p>
-              <div v-for="genre in genres" :key="genre">
-                <p>{{ genre.node.genre }},</p>
+              <div class="quick-info-sub">
+                <p>Genres:</p>
+                <div v-for="genre in genres" :key="genre">
+                  <p>{{ genre.node.genre }},</p>
+                </div>
               </div>
             </div>
           </div>
@@ -424,7 +424,7 @@ function showMore() {
 #anime-info-mobile {
   display: none;
   color: var(--white);
-  padding-top: 13vh;
+  padding-top: 11rem;
   margin: auto;
   width: 80vw;
 }
@@ -449,18 +449,41 @@ function showMore() {
   align-items: center;
   gap: 0.5rem;
   font-size: var(--h4);
-  margin-bottom: 1rem;
 }
 .star {
   height: 1.5rem;
 }
-.select {
+.dropdowns-row {
+  margin: 1rem 0 2rem;
+}
+.dropdown {
   border-radius: 15px;
   background-color: var(--info-select);
   font-size: var(--h6);
   padding: 0.3rem 1rem;
   margin-right: 2rem;
   outline: none;
+}
+.quick-info {
+  background: var(--bg-secondary);
+  padding: 1rem 2rem;
+  font-size: var(--h6);
+}
+.info-head {
+  font-size: var(--h5);
+}
+.quick-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  row-gap: 0.5rem;
+  column-gap: 1rem;
+  padding-top: 0.5rem;
+}
+.quick-info-sub {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  column-gap: 0.3rem;
 }
 .info-block {
   margin-bottom: 3rem;
@@ -531,6 +554,15 @@ function showMore() {
 @media screen and (max-width: 915px) {
   #anime-info-mobile {
     display: block;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #anime-info-mobile {
+    padding-top: 3rem;
+  }
+  .quick-info-grid {
+    font-size: var(--h8);
   }
 }
 </style>

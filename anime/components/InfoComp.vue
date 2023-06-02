@@ -33,7 +33,7 @@
           <p>{{ avgRating }}</p>
         </div>
         <div>
-          <select id="doughtnut-graph" class="select" v-model="watchStatus">
+          <select id="doughtnut-graph" class="dropdown" v-model="watchStatus">
             <option value="NOT_WATCHING" selected>Not Watching</option>
             <option value="CURRENTLY_WATCHING">
               Currently Watching
@@ -42,7 +42,7 @@
             <option value="FINISHED_ANIME">Finished Anime</option>
           </select>
 
-          <select id="rating-form" class="select" v-model="rating">
+          <select id="rating-form" class="dropdown" v-model="rating">
             <!-- <option v-if="change" value="" disabled selected>{{ userAnime.rating }}</option> -->
             <option v-if="change" value="0" disabled selected>
               {{ userAnime.rating }}
@@ -421,7 +421,7 @@ function showMore() {
 <style scoped>
 #anime-info {
   color: var(--white);
-  padding-top: 13vh;
+  padding-top: 11rem;
   display: flex;
   justify-content: center;
   margin: auto;
@@ -444,10 +444,9 @@ function showMore() {
   row-gap: 1.5rem;
   width: 100%;
   margin-top: 2vh;
-  padding: 0.5rem 1rem;
   font-size: var(--h5);
   padding: 2rem;
-  padding-bottom: 4rem;
+  margin-bottom: 4rem;
 }
 .quick-info p {
   font-size: var(--h6);
@@ -455,7 +454,7 @@ function showMore() {
 .quick-info-sub {
   display: flex;
   flex-wrap: wrap;
-  column-gap: 0.5rem;
+  column-gap: 0.3rem;
 }
 .column-2 {
   width: 53vw;
@@ -486,7 +485,7 @@ function showMore() {
 .star {
   height: 1.5rem;
 }
-.select {
+.dropdown {
   border-radius: 15px;
   background-color: var(--info-select);
   font-size: var(--h5);
@@ -597,7 +596,7 @@ function showMore() {
 	.info-block h2 {
 		font-size: var(--h4);
 	}
-	.select {
+	.dropdown {
 		font-size: var(--h6);
 	}
 }
