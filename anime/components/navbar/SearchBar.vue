@@ -59,6 +59,7 @@ const animeResults = ref<animeRest[]>([]);
 const text = ref<string>("");
 
 function searchAnime(text: string) {
+	
 	const searchResult = [] as animeRest[];
 
 	userStore.search = text;
