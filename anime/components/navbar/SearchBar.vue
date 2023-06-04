@@ -166,10 +166,8 @@ onMounted(() => {
 
 .biggerBox {
 	position: fixed;
-	z-index: -1;
 	width: 25vw;
-	top: 50%;
-	padding-top: 4rem;
+	padding-top: 1rem;
 	padding-bottom: 3rem;
 	border-radius: 10px;
 	background-color: rgb(52, 52, 52);
@@ -253,7 +251,9 @@ onMounted(() => {
 	.input,
 	.biggerBox {
 		width: 80vw;
-		position: relative;
+	}
+	.biggerBox {
+		margin-top: 3rem;
 	}
 	.info-column {
 		margin-left: 2vw;
