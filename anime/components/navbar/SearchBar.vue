@@ -52,14 +52,13 @@
 <script setup lang="ts">
 import { useUserStore } from "~~/stores/userStore";
 import { ref, onMounted } from "vue";
-import { useRoute } from "vue-router";
 import { animeRest } from "~~/types/anime";
 
 const route = useRoute();
 const userStore = useUserStore();
-const showAnimeResults = ref(false);
-const animeResults = ref([] as animeRest[]);
-const text = ref("");
+const showAnimeResults = ref<boolean>(false);
+const animeResults = ref<animeRest[]>([]);
+const text = ref<string>("");
 const hideSearch = ref(false);
 
 function searchAnime(text: string) {
@@ -80,20 +79,13 @@ function searchAnime(text: string) {
 					if (textResults.length == 1) {
 						searchResult.push(anime);
 					} else {
-						const animeWordsSlice = animeWords
-							.slice(i, animeWords.length)
-							.join("")
-							.replace(/[^a-zA-Z ]/, "")
-							.replace(/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/, "");
-
-						const textResultsSlice = textResults
-							.join("")
-							.replace(/[^a-zA-Z ]/, "")
-							.replace(/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/, "");
-
-						if (animeWordsSlice.startsWith(textResultsSlice)) {
-							searchResult.push(anime);
-						}
+						textResults.forEach((word: string) => {
+							if (animeWords[i + 1] != undefined) {
+								if (animeWords[i + 1].startsWith(word)) {
+									searchResult.push(anime);
+								}
+							}
+						});
 					}
 				}
 			}
@@ -125,12 +117,14 @@ function clearSearch() {
 }
 
 function goToSeachAnime() {
-	userStore.filterAnime = animeResults.value;
-	navigateTo("animeSearch");
-	if (route.name === "animeSearch") {
-		window.location.reload();
+	if (text.value != "") {
+		userStore.filterAnime = animeResults.value;
+		navigateTo("animeSearch");
+		if (route.name === "animeSearch") {
+			window.location.reload();
+		}
+		showAnimeResults.value = false;
 	}
-	showAnimeResults.value = false;
 }
 
 function enterSearchMobile() {

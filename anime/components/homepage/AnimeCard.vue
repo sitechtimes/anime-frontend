@@ -2,9 +2,9 @@
 	<NuxtLink :to="`/anime/` + mal_id">
 		<div class="card-container">
 			<div class="card-cover">
-				<img class="card-image" :src="`${imageUrl}`" alt="" format="webp"/>
+				<img class="card-image" :src="`${imageUrl}`" alt="" format="webp" />
 				<div class="card-info">
-					<EpisodeSVG :episode="episode" />
+					<EpisodeSvg :episode="episode" />
 					<p class="card-media">{{ mediaType }}</p>
 				</div>
 			</div>
@@ -14,14 +14,8 @@
 </template>
 
 <script lang="ts">
-
-import EpisodeSVG from "../EpisodeSvg.vue";
-
 export default {
 	name: "AnimeCard",
-	components: {
-		EpisodeSVG,
-	},
 	props: {
 		imageUrl: {
 			type: String,
@@ -38,8 +32,8 @@ export default {
 			required: true,
 		},
 		mal_id: {
-			type: Number
-		}
+			type: Number,
+		},
 	},
 	computed: {
 		trimTitle() {

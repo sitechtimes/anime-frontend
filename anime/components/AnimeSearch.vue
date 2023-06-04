@@ -163,24 +163,24 @@
 
 <script setup lang="ts">
 import { useUserStore } from "~~/stores/userStore";
-import { animeRest, animeGenre } from "~~/types/anime";
+import { animeRest } from "~~/types/anime";
 
 const userStore = useUserStore();
 
 const text = ref<string>("");
 
-const genres = ref([] as string[]);
-const years = ref([] as string[]);
-const sorts = ref([] as string[]);
-const seasons = ref([] as string[]);
-const statuses = ref([] as string[]);
-const types = ref([] as string[]);
+const genres = ref<string[]>([]);
+const years = ref<string[]>([]);
+const sorts = ref<string[]>([]);
+const seasons = ref<string[]>([]);
+const statuses = ref<string[]>([]);
+const types = ref<string[]>([]);
 
-const animeResults = ref([] as animeRest[]);
+const animeResults = ref<animeRest[]>([]);
 
 const pageLeftIndicator = ref<boolean>(false);
 const pageRightIndicator = ref<boolean>(true);
-const pageFilteredAnime = ref([] as animeRest[]);
+const pageFilteredAnime = ref<animeRest[]>([]);
 const animePerPage = ref<number>(35);
 const totalPage = ref<number>(0);
 const startPageIndex = ref<number>(0);
@@ -193,7 +193,7 @@ const media_status = ref<string>("");
 const media_type = ref<string>("");
 const media_sort = ref<string>("");
 
-const loadingAnime: number[] = [...Array(35).keys()];
+const loadingAnime: number[] = [...Array(animePerPage.value).keys()];
 const loading = ref<boolean>(true);
 
 for (let i = 2021; i >= 1990; i--) {
@@ -216,10 +216,7 @@ onMounted(() => {
 		filterAnime.push(<animeRest>anime);
 	});
 	calculateTotalPage();
-	pageFilteredAnime.value = userStore.filterAnime.slice(
-		startPageIndex.value,
-		endPageIndex.value
-	);
+	pageFilteredAnime.value = userStore.filterAnime.slice(startPageIndex.value, endPageIndex.value);
 	loading.value = false;
 
 	text.value = userStore.search;
@@ -253,24 +250,21 @@ function pagenation(direction: number) {
 		if (userStore.pageNumber != 1) {
 			pageLeftIndicator.value = true;
 			pageRightIndicator.value = true;
-			userStore.startPageIndex -= animePerPage.value;
-			userStore.endPageIndex -= animePerPage.value;
+			startPageIndex.value -= animePerPage.value;
+			endPageIndex.value -= animePerPage.value;
 			userStore.pageNumber -= 1;
 		}
 	} else if (direction == 1) {
 		if (userStore.pageNumber != totalPage.value) {
 			pageLeftIndicator.value = true;
 			pageRightIndicator.value = true;
-			userStore.startPageIndex += animePerPage.value;
-			userStore.endPageIndex += animePerPage.value;
+			startPageIndex.value += animePerPage.value;
+			endPageIndex.value += animePerPage.value;
 			userStore.pageNumber += 1;
 		}
 	}
 	pageExistIndicator();
-	pageFilteredAnime.value = userStore.filterAnime.slice(
-		userStore.startPageIndex,
-		userStore.endPageIndex
-	);
+	pageFilteredAnime.value = userStore.filterAnime.slice(startPageIndex.value, endPageIndex.value);
 }
 
 function saveClickedAnimeID(id: number) {
@@ -294,6 +288,14 @@ function filter(): animeRest[] {
 				if (animeWords[i].startsWith(textResults[0])) {
 					if (textResults.length == 1) {
 						searchResult.push(anime);
+					} else {
+						textResults.forEach((word: string) => {
+							if (animeWords[i + 1] != undefined) {
+								if (animeWords[i + 1].startsWith(word)) {
+									searchResult.push(anime);
+								}
+							}
+						});
 					}
 				}
 			}
@@ -421,29 +423,23 @@ function clearAllFilter() {
 	text.value = "";
 	animeResults.value = [];
 	userStore.animeId = 0;
-	userStore.startPageIndex = 0;
-	userStore.endPageIndex = animePerPage.value;
+	startPageIndex.value = 0;
+	endPageIndex.value = animePerPage.value;
 	userStore.pageNumber = 1;
 
 	calculateTotalPage();
 
-	pageFilteredAnime.value = userStore.allAnime.slice(
-		userStore.startPageIndex,
-		userStore.endPageIndex
-	);
+	pageFilteredAnime.value = userStore.allAnime.slice(startPageIndex.value, endPageIndex.value);
 }
 
 function selectPage(num: number) {
-	userStore.startPageIndex = num * animePerPage.value - animePerPage.value + 1;
-	userStore.endPageIndex = num * animePerPage.value + 1;
+	startPageIndex.value = num * animePerPage.value - animePerPage.value + 1;
+	endPageIndex.value = num * animePerPage.value + 1;
 
 	const filterAnimeArr = filter();
 	userStore.filterAnime = filterAnimeArr;
 
-	pageFilteredAnime.value = filterAnimeArr.slice(
-		userStore.startPageIndex,
-		userStore.endPageIndex
-	);
+	pageFilteredAnime.value = filterAnimeArr.slice(startPageIndex.value, endPageIndex.value);
 }
 
 function toTop() {
