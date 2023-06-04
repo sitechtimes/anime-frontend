@@ -34,27 +34,19 @@ export default {
 
 <style scoped>
 .box {
-	background-color: rgb(52, 52, 52);
+	background-color: var(--search-light);
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	cursor: pointer;
 	height: 8rem;
+	transition: 0ms;
 }
 .box:nth-child(even) {
-	background-color: rgb(39, 39, 39);
+	background-color: var(--search-dark);
 }
 .box:hover {
-	background-color: rgb(112, 53, 53);
-	transition: 0ms;
-}
-.box:active {
-	background-color: rgb(112, 53, 53);
-	transition: 0ms;
-}
-.box:not(hover) {
-	background-color: rgb(68, 68, 68);
-	transition: 0ms;
+	background-color: var(--search-hover);
 }
 .image-placeholder {
 	height: 90%;

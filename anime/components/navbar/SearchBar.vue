@@ -147,7 +147,7 @@ onMounted(() => {
 <style scoped>
 .search-bar {
 	width: 25vw;
-	color: rgb(219, 219, 219);
+	color: var(--search-text);
 	transition-duration: 0;
 	transition-delay: 1000ms;
 }
@@ -164,7 +164,7 @@ onMounted(() => {
 	padding-top: 1rem;
 	padding-bottom: 3rem;
 	border-radius: 10px;
-	background-color: rgb(52, 52, 52);
+	background-color: var(--search-light);
 }
 .biggerBox-text {
 	font-size: var(--h7);
@@ -173,9 +173,9 @@ onMounted(() => {
 	margin-left: 1rem;
 }
 .input {
-	background: rgb(68, 68, 68);
+	background: var(--search-bg);
 	font-size: var(--h4);
-	color: rgb(219, 219, 219);
+	color: var(--search-text);
 	border: none;
 	border-radius: 10px;
 	outline: none;
