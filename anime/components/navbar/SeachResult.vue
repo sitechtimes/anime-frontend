@@ -4,7 +4,8 @@
 		<div class="info-column">
 			<h3 class="title">{{ animeName }}</h3>
 			<div class="info-row">
-				<EpisodeSVG :episode="episodes" />
+				{{episodes}}
+				<!-- <EpisodeSVG :episode="episodes" /> -->
 			</div>
 		</div>
 	</NuxtLink>

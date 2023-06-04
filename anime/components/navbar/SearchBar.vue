@@ -62,6 +62,7 @@ const text = ref<string>("");
 const hideSearch = ref(false);
 
 function searchAnime(text: string) {
+	
 	const searchResult = [] as animeRest[];
 
 	userStore.search = text;
