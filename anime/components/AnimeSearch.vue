@@ -534,12 +534,11 @@ function toTop() {
 }
 
 .content-condition {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: flex-start;
-	row-gap: 4rem;
+	display: grid;
+	grid-template-columns: repeat(7, minmax(0, 1fr));
+	row-gap: 2rem;
+	column-gap: 3rem;
 	margin-bottom: 5rem;
-	column-gap: 2.3%;
 }
 .allAnime-content {
 	display: flex;
@@ -621,5 +620,42 @@ function toTop() {
 }
 .svg-button {
 	display: block;
+}
+
+@media screen and (max-width: 1440px) {
+	.content-condition {
+		grid-template-columns: repeat(6, minmax(0, 1fr));
+	}
+}
+
+@media screen and (max-width: 1024px) {
+	.content-condition {
+		grid-template-columns: repeat(5, minmax(0, 1fr));
+		column-gap: 2rem;
+	}
+}
+
+@media screen and (max-width: 767px) {
+	.allAnime-container {
+		margin-top: 0;
+	}
+	.content-condition {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		column-gap: 2rem;
+	}
+}
+
+@media screen and (max-width: 568px) {
+	.content-condition {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		column-gap: 2rem;
+	}
+}
+
+@media screen and (max-width: 425px) {
+	.content-condition {
+		column-gap: 1rem;
+		row-gap: 1rem;
+	}
 }
 </style>

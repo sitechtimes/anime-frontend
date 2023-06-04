@@ -50,7 +50,6 @@ export default {
 .card-container {
 	display: flex;
 	flex-direction: column;
-	width: 11vw;
 }
 .card-cover {
 	position: relative;
