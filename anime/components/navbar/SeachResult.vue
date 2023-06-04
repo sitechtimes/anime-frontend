@@ -11,12 +11,8 @@
 </template>
 
 <script lang="ts">
-import EpisodeSVG from "../EpisodeSvg.vue";
 export default {
 	name: "SearchResultComp",
-	components: {
-		EpisodeSVG,
-	},
 	props: {
 		imageUrl: {
 			type: String,
@@ -30,8 +26,8 @@ export default {
 			required: true,
 		},
 		mal_id: {
-			type: Number
-		}
+			type: Number,
+		},
 	},
 };
 </script>
