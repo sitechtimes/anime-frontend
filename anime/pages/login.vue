@@ -3,7 +3,7 @@
     <img class="img" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/5e5896a5-4a79-496a-bea4-81f26cfa2650/de910q8-18db91c0-990c-420a-8a95-b78f7a57eccd.png/v1/fill/w_1280,h_2391,strp/klee_genshin_impact_character_render_by_deg5270_de910q8-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MjM5MSIsInBhdGgiOiJcL2ZcLzVlNTg5NmE1LTRhNzktNDk2YS1iZWE0LTgxZjI2Y2ZhMjY1MFwvZGU5MTBxOC0xOGRiOTFjMC05OTBjLTQyMGEtOGE5NS1iNzhmN2E1N2VjY2QucG5nIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.L8L6CqwfET7ty7Q-sHFupjSZalDiteazo-x6n61e6v4" alt="">
     <form action="" class="login-form">
       <div class="login-content">
-        <h1 class="title">Technime</h1>
+        <p class="login-head">Technime</p>
         <p class="login-msg">Welcome to Technime. Sign in here.</p>
         <GoogleLogin v-if="userStore.isAuthenticated == false" :callback="userStore.login"  class="login-with-google-btn">
                       <!-- <button>Sign in with Google</button> -->
@@ -53,18 +53,18 @@ export default {
   height: 70vh;
   width: 55rem;
   border-radius: 30px;
-  box-shadow: inset 0 0 60px var(--secondary-dark);
   display: flex;
   justify-content: center;
-  padding: 4rem 1rem;
+  padding: 4rem 0;
 }
 .login-content {
-  width: 80%;
   display: flex;
   flex-direction: column;
   text-align: center;
+  width: 80%;
+  height: 100%;
 }
-.title {
+.login-head {
   font-size: var(--h1);
 }
 .login-msg {
@@ -72,7 +72,7 @@ export default {
 }
 .gif {
   object-fit: cover;
-  height: 50%;
+  overflow: hidden;
 }
 .login-with-google-btn {
   cursor: pointer;
@@ -125,83 +125,64 @@ export default {
   .login-form {
     width: 50rem;
   }
+  .login-msg {
+    margin: -0.5rem 0;
+  }
 }
 
-/* @media screen and (max-width: 1285px) {
-.login-form {
-  width: 40vw;
-  height: 72vh;
-}
-.login-with-google-btn {
-  font-size: 17px;
-}
+@media screen and (max-width: 1200px) {
+  .login-head {
+    font-size: var(--h2);
+  }
+  .login-with-google-btn {
+    margin: 2rem 0;
+    padding: 1rem;
+  }
 }
 
 @media screen and (max-width: 1024px) {
-.title {
-  font-size: var(--h2);
-}
-.login-form {
-  width: 40vw;
-  height: 75vh;
-}
-.login-with-google-btn {
-  font-size: 13px;
-}
+  #login {
+    gap: 5rem;
+  }
+  .login-form {
+    width: 40rem;
+  }
+  .login-msg, .login-with-google-btn {
+    font-size: var(--h6);
+  }
 }
 
 @media screen and (max-width: 915px) {
-.img {
-  display: none;
-}
-.login-form {
-  width: 75%;
-  padding: 1rem;
-}
-.title {
-  font-size: var(--h1);
-}
-.login-msg {
-  margin: -1rem;
-}
-.login-with-google-btn {
-  font-size: var(--h5);
-}
+  .login-form {
+    height: 70vh;
+  }
+  .img {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 767px) {
-#login {
-  padding: 0;
-  height: 85vh;
-}
-.title {
-  font-size: var(--h2);
-}
+  #login {
+    padding: 0;
+    height: 85vh;
+  }
 }
 
-@media screen and (max-width: 550px) {
-.login-form {
-  width: 85vw;
-  height: 75vh;
-}
-.login-with-google-btn {
-  font-size: 14px;
-}
+@media screen and (max-width: 568px) {
+  .login-form {
+    width: 80vw;
+  }
 }
 
-@media screen and (max-width: 415px) {
-.login-form {
-  width: 90vw;
+@media screen and (max-width: 425px) {
+  .login-form {
+    height: auto;
+  }
+  .login-head {
+    font-size: var(--h3);
+  }
+  .login-msg, .login-with-google-btn {
+    font-size: var(--h7);
+  }
 }
-.title {
-  font-size: var(--h2);
-}
-.login-msg {
-  margin: -1rem;
-  font-size: var(--h6);
-}
-.login-with-google-btn {
-  font-size: 16px;
-}
-} */
 </style>

@@ -36,7 +36,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .box {
 	background-color: rgb(52, 52, 52);
 	display: flex;
