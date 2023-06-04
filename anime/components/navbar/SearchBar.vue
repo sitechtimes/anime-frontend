@@ -190,9 +190,6 @@ onMounted(() => {
 	padding: 1rem 2rem;
 	width: 100%;
 }
-.input:focus {
-	background-color: rgb(52, 52, 52);
-}
 
 @media screen and (max-width: 1300px) {
 	.box {
@@ -257,9 +254,6 @@ onMounted(() => {
 	.biggerBox {
 		width: 80vw;
 		position: relative;
-	}
-	.input {
-		margin-top: 5vh;
 	}
 	.info-column {
 		margin-left: 2vw;
