@@ -287,6 +287,9 @@ export default {
 </script>
 
 <style scoped>
+#profile {
+    overflow: hidden;
+}
 
 .profile-slide {
     /* overflow-y: scroll; */
@@ -299,7 +302,7 @@ export default {
     justify-content: center;
     color: var(--white);
     margin-bottom: 8%;
-    /* overflow: auto; */
+    /* overflow: hidden; */
 }
 .tabs-class .tab {
     background-color: var(--tertiary);
