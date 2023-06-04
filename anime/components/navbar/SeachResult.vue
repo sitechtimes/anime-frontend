@@ -34,7 +34,7 @@ export default {
 
 <style scoped>
 .box {
-	background-color: var(--search-light);
+	background-color: var(--bg-secondary);
 	display: flex;
 	flex-direction: row;
 	align-items: center;

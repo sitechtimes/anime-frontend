@@ -164,7 +164,7 @@ onMounted(() => {
 	padding-top: 1rem;
 	padding-bottom: 3rem;
 	border-radius: 10px;
-	background-color: var(--search-light);
+	background-color: var(--bg-secondary);
 }
 .biggerBox-text {
 	font-size: var(--h7);

@@ -459,15 +459,9 @@ function toTop() {
 	background-size: cover;
 }
 .allAnime-container {
-	background-color: var(--bg-primary);
-	border-radius: 1.5rem;
 	display: flex;
 	flex-direction: column;
-	height: 100%;
-	margin-right: 2rem;
-	margin-left: 2rem;
-	margin-top: 10rem;
-	margin-bottom: 10rem;
+	margin: 10rem 2rem;
 	width: 90vw;
 }
 .allAnime-header {
@@ -488,42 +482,35 @@ function toTop() {
 	border-radius: 0.75rem;
 	margin-bottom: 0.5rem;
 }
-
+.allAnime-filter {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	flex-wrap: wrap;
+	row-gap: 1.5rem;
+	column-gap: 2rem;
+	margin: 2rem 0 4rem;
+}
 .input-Box {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	justify-content: flex-start;
-	column-gap: 1rem;
-	margin-right: 2rem;
-	width: 30rem;
+	flex: 1;
+	min-width: 20rem;
 }
 .input {
 	background-color: var(--bg-secondary);
 	border-radius: 0.75rem;
 	border: none;
+	width: 100%;
 	color: var(--light-text);
 	font-size: var(--h5);
 	font-weight: var(--fw-regular);
 	padding: 0.5rem 1rem;
-	width: 100%;
-}
-.input:focus {
 	outline: none;
 }
-.allAnime-filter {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: flex-end;
-	column-gap: 1rem;
-	margin-right: 2rem;
-	width: 100%;
-	height: 8rem;
-	margin-bottom: 2rem;
-}
-
-.allAnime-filter .allAnime-filterSelect {
+.allAnime-filterSelect {
 	background-color: var(--bg-secondary);
 	border-radius: 0.75rem;
 	border: none;
@@ -629,6 +616,9 @@ function toTop() {
 }
 
 @media screen and (max-width: 1024px) {
+	.input, .allAnime-filterSelect, .button-clear {
+		font-size: var(--h6);
+	}
 	.content-condition {
 		grid-template-columns: repeat(5, minmax(0, 1fr));
 		column-gap: 2rem;
@@ -636,6 +626,15 @@ function toTop() {
 }
 
 @media screen and (max-width: 767px) {
+	.input, .allAnime-filterSelect, .button-clear {
+		font-size: var(--h7);
+	}
+	.allAnime-filterSelect {
+		padding: 0.5rem;
+	}
+	.button-clear {
+		width: 12rem;
+	}
 	.allAnime-container {
 		margin-top: 0;
 	}
@@ -646,6 +645,9 @@ function toTop() {
 }
 
 @media screen and (max-width: 568px) {
+	.input-Box {
+		min-width: 15rem;
+	}
 	.content-condition {
 		grid-template-columns: repeat(3, minmax(0, 1fr));
 		column-gap: 2rem;
