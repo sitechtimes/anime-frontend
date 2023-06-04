@@ -219,6 +219,7 @@ function selectPage(num: number): void {
 	align-items: flex-start;
 	background-size: cover;
 	margin-bottom: 10rem;
+	overflow: hidden;
 }
 .topCharts-container {
 	background-color: var(--bg-primary);

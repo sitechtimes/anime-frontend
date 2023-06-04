@@ -3,8 +3,6 @@
     <div class="text-box">
       <h1 class="text-head">#Vote Here in the Boxes Below</h1>
       <div class="text-sub">
-        <h2 class="text-tab">Seasonal</h2>
-        <h2 class="text-tab">Year</h2>
         <NuxtLink to="/history"><h2 class="text-tab">Past Winners</h2></NuxtLink>
       </div>
     </div>

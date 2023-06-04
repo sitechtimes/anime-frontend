@@ -4,7 +4,7 @@
 		<div class="rc-info">
 			<p class="rc-title">{{ title }}</p>
 			<div class="rc-sub">
-				<p class="rc-studio">{{ studio }}</p>
+				<p v-for="studio in studios" :key="studio.id" class="rc-studio">{{ studio.studio }}</p>
 				<div class="rc-stars">
 					<starSVG />
 					<p class="rc-stars-num">{{ stars }}</p>
@@ -34,8 +34,8 @@ export default {
 			type: String,
 			required: true,
 		},
-		studio: {
-			type: String,
+		studios: {
+			type: Array,
 			required: true,
 		},
 		stars: {
