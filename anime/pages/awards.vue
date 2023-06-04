@@ -5,17 +5,25 @@
     </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import Banner from "../components/awardspage/Banner.vue";
 import AwardVoting from "../components/awardspage/AwardVoting.vue";
+import { ref, onMounted } from "vue";
+import { useUserStore } from "~/stores/userStore";
 
-export default {
-    name: "awards",
-    components: {
-        Banner,
-        AwardVoting,
-    },
-};
+const userStore = useUserStore();
+
+
+
+
+
+// export default {
+//     name: "awards",
+//     components: {
+//         Banner,
+//         AwardVoting,
+//     },
+// };
 </script>
 
 <style scoped></style>

@@ -22,26 +22,26 @@
                 <ul class="anime-list">
                     <h2 class="season-text">Anime of the Season</h2>
                     <li
-                        v-for="anime in animes"
+                        v-for="(anime, index) in animes"
                         :key="anime.animeID"
                         class="bestAnime"
                     >
                         <div class="picture-column">
-                            <h2 class="rank-number">{{ anime.animeID }}</h2>
+                            <h2 class="rank-number">{{ index + 1}}</h2>
                             <img
                                 class="anime-pfp"
-                                src="https://cdn.myanimelist.net/images/characters/4/457933.jpg"
-                                alt=""
+                                :src="anime.image_url"
+                                alt="anime-image"
                             />
                         </div>
                         <div class="info-column">
-                            <h1 class="animeTitle">{{ anime.title }}</h1>
+                            <h1 class="animeTitle">{{ anime.anime_name }}</h1>
                             <div class="star-rating">
                                 <starSVG />
-                                <p>{{ anime.stars.toFixed(2) }}</p>
+                                <p>{{ anime.avg_rating }}</p>
                             </div>
                         </div>
-                        <span class="genre-text">{{ anime.genre }}</span>
+                        <span class="genre-text">{{ anime.anime_genre[0].genre }}</span>
                     </li>
                 </ul>
             </div>
@@ -49,52 +49,67 @@
     </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import starSVG from "@/components/starSVG.vue";
-export default {
-    components: {
-        starSVG,
-    },
-    data: () => ({
-        animes: [
-            {
-                animeID: "01",
-                title: "One Punch Man",
-                stars: 8.5,
-                releaseDate: "Oct 5, 2015",
-                genre: "Adventure",
-            },
-            {
-                animeID: "02",
-                title: "Spy x Family",
-                stars: 9.99,
-                releaseDate: "Apr 9, 2022",
-                genre: "Comedy",
-            },
-            {
-                animeID: "03",
-                title: "Chainsaw Man",
-                stars: 8.24,
-                releaseDate: "Oct 11, 2022",
-                genre: "Graphic",
-            },
-            {
-                animeID: "04",
-                title: "Summertime Render",
-                stars: 9.61,
-                releaseDate: "Apr 15, 2022",
-                genre: "School Life",
-            },
-            {
-                animeID: "05",
-                title: "Is It Wrong To Try To Pick Up Girls In A Dungeon?",
-                stars: 7.69,
-                releaseDate: "Apr 4, 2015",
-                genre: "Fantasy",
-            },
-        ],
-    }),
-};
+import { useUserStore } from "~/stores/userStore";
+
+const userStore = useUserStore();
+
+const animes = ref([])
+
+onMounted(() => {
+    const arr_anime = JSON.parse(JSON.stringify(userStore.allAnime))
+    arr_anime.sort((a: any, b: any) => b.avg_rating - a.avg_rating);
+    // console.log(arr_anime)
+    const x = arr_anime.slice(1,6)
+    animes.value = x
+
+    console.log(animes.value)
+});
+// export default {
+//     components: {
+//         starSVG,
+//     },
+//     data: () => ({
+//         animes: [
+//             {
+//                 animeID: "01",
+//                 title: "One Punch Man",
+//                 stars: 8.5,
+//                 releaseDate: "Oct 5, 2015",
+//                 genre: "Adventure",
+//             },
+//             {
+//                 animeID: "02",
+//                 title: "Spy x Family",
+//                 stars: 9.99,
+//                 releaseDate: "Apr 9, 2022",
+//                 genre: "Comedy",
+//             },
+//             {
+//                 animeID: "03",
+//                 title: "Chainsaw Man",
+//                 stars: 8.24,
+//                 releaseDate: "Oct 11, 2022",
+//                 genre: "Graphic",
+//             },
+//             {
+//                 animeID: "04",
+//                 title: "Summertime Render",
+//                 stars: 9.61,
+//                 releaseDate: "Apr 15, 2022",
+//                 genre: "School Life",
+//             },
+//             {
+//                 animeID: "05",
+//                 title: "Is It Wrong To Try To Pick Up Girls In A Dungeon?",
+//                 stars: 7.69,
+//                 releaseDate: "Apr 4, 2015",
+//                 genre: "Fantasy",
+//             },
+//         ],
+//     }),
+// };
 </script>
 
 <style scoped>
