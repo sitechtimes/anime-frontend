@@ -464,10 +464,16 @@ function hideInfo() {
 }
 .animeInfo {
   margin-left: 3rem;
+  flex-grow: 1;
 }
 .anime-name {
 	font-size: var(--h3);
 	font-weight: var(--fw-med);
+	overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+	-webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
 }
 .star-rating {
   display: flex;
@@ -626,7 +632,7 @@ function hideInfo() {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   #anime-info-mobile {
     padding-top: 3rem;
   }
