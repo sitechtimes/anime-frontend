@@ -5,8 +5,8 @@
         </div>  
 		<div class="filter-form">
 			<form>
-				<label for="year">Year</label>
-				<select name="year" id="year" v-model="yearFilter">
+				<!-- <label for="year">Year</label> -->
+				<select class="dropdown" name="year" id="year" v-model="yearFilter">
 					<option value="2023">2023</option>
 					<option value="2022">2022</option>
 					<option value="2021">2021</option>
@@ -15,8 +15,8 @@
 				</select>
 			</form>
 			<form>
-				<label for="season">Season</label>
-				<select name="season" id="season" v-model="seasonFilter">
+				<!-- <label for="season">Season</label> -->
+				<select class="dropdown" name="season" id="season" v-model="seasonFilter">
 					<option value="Winter">Winter</option>
 					<option value="Spring">Spring</option>
 					<option value="Summer">Summer</option>
@@ -231,6 +231,21 @@ onMounted(() => {
     padding: 1rem 2rem;
     border-radius: 1.5rem;
 }
+.filter-form {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	margin-top: 2rem;
+}
 
+.dropdown {
+	border-radius: 15px;
+  background-color: var(--info-select);
+  font-size: var(--h5);
+  padding: 0.3rem 1rem;
+  margin-right: 2rem;
+  outline: none;
+}
 
 </style>
