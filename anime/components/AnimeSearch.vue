@@ -114,7 +114,7 @@
 					:mediaType="anime.media_type"
 				/>
 			</div>
-			<div class="page-container-bot">
+			<div class="page-container">
 				<div class="page-number">
 					<p class="page-text">Page</p>
 					<form
@@ -451,36 +451,25 @@ function toTop() {
 .home-body {
 	display: flex;
 	flex-direction: row;
-	width: 100%;
-	border-radius: 10px;
-	column-gap: 2rem;
-	align-items: flex-start;
 	justify-content: center;
-	background-size: cover;
 }
 .allAnime-container {
 	display: flex;
 	flex-direction: column;
-	margin: 10rem 2rem;
+	margin: 12rem 2rem 10rem;
 	width: 90vw;
 }
 .allAnime-header {
-	align-items: center;
 	display: flex;
-	height: 6rem;
+	align-items: center;
 	justify-content: space-between;
-	margin-top: 2rem;
 }
 .allAnime-title {
 	font-size: var(--h3);
 	font-weight: var(--fw-semi-bold);
 	color: var(--light-text);
-	height: 7rem;
-	width: 100%;
 	display: flex;
 	align-items: center;
-	border-radius: 0.75rem;
-	margin-bottom: 0.5rem;
 }
 .allAnime-filter {
 	display: flex;
@@ -547,9 +536,9 @@ function toTop() {
 	padding: 0.5rem 1rem;
 }
 .page-container {
-	justify-content: flex-end;
 	display: flex;
 	align-items: center;
+	justify-content: center;
 	column-gap: 1rem;
 }
 .page-button {
@@ -598,13 +587,6 @@ function toTop() {
 	align-items: center;
 	column-gap: 1rem;
 }
-.page-container-bot {
-	justify-content: center;
-	display: flex;
-	align-items: center;
-	column-gap: 1rem;
-	margin-right: 1rem;
-}
 .svg-button {
 	display: block;
 }
@@ -616,6 +598,15 @@ function toTop() {
 }
 
 @media screen and (max-width: 1024px) {
+	.allAnime-container {
+		margin: 10rem 2rem;
+	}
+	.allAnime-title {
+		font-size: var(--h4);
+	}
+	.page-text, .page-input {
+		font-size: var(--h7);
+	}
 	.input, .allAnime-filterSelect, .button-clear {
 		font-size: var(--h6);
 	}
@@ -626,6 +617,9 @@ function toTop() {
 }
 
 @media screen and (max-width: 767px) {
+	.allAnime-container {
+		margin-top: 3rem;
+	}
 	.input, .allAnime-filterSelect, .button-clear {
 		font-size: var(--h7);
 	}
@@ -634,9 +628,6 @@ function toTop() {
 	}
 	.button-clear {
 		width: 12rem;
-	}
-	.allAnime-container {
-		margin-top: 0;
 	}
 	.content-condition {
 		grid-template-columns: repeat(4, minmax(0, 1fr));

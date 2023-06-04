@@ -52,13 +52,8 @@ export default {
 	flex-direction: column;
 }
 .card-cover {
-	position: relative;
 	display: flex;
 	flex-direction: column;
-	justify-content: flex-end;
-	width: 100%;
-	border-radius: 0.5rem;
-	overflow: hidden;
 }
 .card-cover:not(hover) > img {
 	opacity: 100%;
