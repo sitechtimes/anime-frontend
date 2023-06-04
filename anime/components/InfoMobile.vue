@@ -3,7 +3,7 @@
       <div class="row-1">
         <img class="animeImage" :src="`${imageUrl}`" alt="Anime Cover" />
         <div class="animeInfo">
-          <p class="anime-name">{{ animeName }}</p>
+          <h4 class="anime-name">{{ animeName }}</h4>
           <div class="star-rating">
             <starSVG class="star" />
             <p>{{ avgRating }}</p>
@@ -54,6 +54,7 @@
 
       <div class="popup" v-if="moreInfoShown">
         <div class="more-info">
+              <h4 class="more-info-name">{{ animeName }}</h4>
               <h4 class="more-info-head">Information</h4>
               <div class="divider"></div>
               <div class="more-info-grid">
@@ -546,6 +547,10 @@ function hideInfo() {
   display: flex;
   flex-direction: column;
 }
+.more-info-name {
+  font-size: var(--h3);
+  margin-bottom: 2rem;
+}
 .more-info-head {
   font-size: var(--h4);
 }
@@ -693,6 +698,9 @@ function hideInfo() {
   .more-info {
     padding: 2rem;
   }
+  .more-info-name {
+    font-size: var(--h4);
+  }
   .more-info-head {
     font-size: var(--h5);
   }
@@ -745,6 +753,9 @@ function hideInfo() {
   }
   .more-info-btn {
     font-size: var(--h8);
+  }
+  .more-info-name {
+    font-size: var(--h5);
   }
   .more-info-head {
     font-size: var(--h6);
