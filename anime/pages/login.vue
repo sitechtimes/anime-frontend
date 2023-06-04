@@ -90,6 +90,7 @@ export default {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  cursor: pointer;
 }
 .login-with-google-btn:hover {
   box-shadow: 0 2px 4px var(--login-shadow);
