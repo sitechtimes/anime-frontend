@@ -15,11 +15,11 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
+defineProps<{
     imageUrl: String,
     animeName: String,
     episodes: Number,
-});
+}>();
 </script>
 
 <style>

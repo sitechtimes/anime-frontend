@@ -1,4 +1,5 @@
 <template>
+    <section>
     <div id="award-voting">
         <NuxtLink to="/vote">
             <div class="award-box">
@@ -22,6 +23,7 @@
             </div>
         </NuxtLink>
     </div>
+    </section>
 </template>
 
 <script lang="ts" setup>

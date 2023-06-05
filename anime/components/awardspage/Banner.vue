@@ -17,13 +17,13 @@
     </div>
 </template>
 <script setup lang="ts">
-const props = defineProps({
-    rank: { type: Number, required: true },
-    img: { type: String, required: true },
-    title: { type: String, required: true },
-    genre: { type: String, required: true },
-    stars: { type: Number, required: true },
-});
+defineProps<{
+    rank: { type: Number; required: true };
+    img: { type: String; required: true };
+    title: { type: String; required: true };
+    genre: { type: String; required: true };
+    stars: { type: Number; required: true };
+}>();
 </script>
 
 <style scoped>
