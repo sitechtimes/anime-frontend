@@ -11,9 +11,9 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
-    msg: String,
-});
+defineProps<{
+    msg: String;
+}>();
 </script>
 
 <style scoped>
