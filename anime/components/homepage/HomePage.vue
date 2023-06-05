@@ -199,30 +199,12 @@ function selectPage(num: number): void {
 .home-body {
 	display: flex;
 	flex-direction: row;
-	width: 100%;
-	border-radius: 10px;
-	column-gap: 2rem;
-	align-items: flex-start;
-	background-size: cover;
-	margin-bottom: 10rem;
-}
-.topCharts-container {
-	background-color: var(--bg-primary);
-	border-radius: 1.5rem;
-	display: flex;
-	flex-direction: column;
-	height: 100%;
-	margin-right: 2rem;
-	margin-top: 10rem;
-	width: 20vw;
+	margin: 0 auto 10rem;
+	width: 95vw;
+	column-gap: 3rem;
 }
 .airing-container {
-	background-color: var(--bg-primary);
-	border-radius: 1.5rem;
-	margin-bottom: 3rem;
-	margin-left: 2rem;
-	padding: 1.5rem 3rem 3rem;
-	width: 100vw;
+	flex: 1;
 }
 .airing-header {
 	align-items: center;
@@ -237,20 +219,6 @@ function selectPage(num: number): void {
 	color: var(--light-text);
 	height: 6rem;
 	padding: 0;
-}
-.topCharts-title {
-	font-size: var(--h3);
-	font-family: "LIBRARY 3 AM", sans-serif;
-	font-weight: var(--fw-semi-bold);
-	color: var(--light-text);
-	height: 7rem;
-	width: 100%;
-	display: flex;
-	align-items: center;
-	padding-left: 2rem;
-	background-color: var(--tertiary);
-	border-radius: 0.75rem;
-	margin-bottom: 0.5rem;
 }
 .airing-content {
 	display: flex;
@@ -318,5 +286,19 @@ function selectPage(num: number): void {
 
 input[type="number"] {
 	-moz-appearance: textfield;
+}
+.topCharts-container {
+	display: flex;
+	flex-direction: column;
+	width: 35rem;
+}
+.topCharts-title {
+	font-size: var(--h3);
+	font-family: var(--second-font);
+	font-weight: var(--fw-semi-bold);
+	color: var(--light-text);
+	background-color: var(--tertiary);
+	padding: 1rem 2rem;
+	border-radius: 1rem;
 }
 </style>

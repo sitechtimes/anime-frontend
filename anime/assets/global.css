@@ -64,7 +64,7 @@ body {
 :root {
     /* fonts */
     --body-font: "Merriweather Sans", sans-serif;
-    --rank-font: "LIBRARY 3 AM", sans-serif;
+    --second-font: "LIBRARY 3 AM", sans-serif;
 
     /* colors */
     --primary: #f8665e;

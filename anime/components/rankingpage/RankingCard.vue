@@ -57,7 +57,7 @@ export default {
 	column-gap: 2rem;
 }
 .rc-rank {
-	font-family: var(--rank-font);
+	font-family: var(--second-font);
 	font-size: var(--h1);
 	color: var(--white);
 	background-color: var(--bg-rank);
