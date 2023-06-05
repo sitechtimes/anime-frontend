@@ -134,6 +134,11 @@ export default {
     font-size: var(--h7);
 }
 }
+@media screen and (max-width: 780px) {
+.tabs {
+    height: 40vh;
+}
+}
 @media screen and (max-width: 680px) {
 .tabs {
     height: 30vh;
@@ -171,12 +176,8 @@ export default {
     height: 27vh;
 }
 .tabs-header {
-    width: 14vw;
     height: 32vh;
     margin-left: 2rem;
-}
-.tabs-header li {
-    width: 14vw;
 }
 }
 @media screen and (max-width: 400px) {
@@ -191,12 +192,13 @@ export default {
 }
 @media screen and (max-width: 380px) {
 .tabs-header {
-    width: 13vw;
+    width: 10vw;
     height: 34vh;
 }
 .tabs-header li {
-    width: 13vw;
+    width: 10vw;
     padding: 0.5rem;
+    font-size: 0.65rem;
 }
 }
 @media screen and (max-width: 285px) {
