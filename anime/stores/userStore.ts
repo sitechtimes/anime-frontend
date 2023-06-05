@@ -387,7 +387,7 @@ query{
 		async login(res: any) {
 			try {
 				axios
-					.post("https://anime-backend-cuv2.onrender.com/google/", {
+					.post("https://anime-backend-cuv2.onrender.com/social-login/google/", {
 						code: res.code,
 					})
 					.then((res) => {
