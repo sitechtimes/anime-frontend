@@ -4,7 +4,8 @@
 		<div class="info-column">
 			<h3 class="title">{{ animeName }}</h3>
 			<div class="info-row">
-				{{episodes}}
+				<p v-if="episodes">{{ episodes }}</p>
+				<p v-else>N/A</p>
 				<!-- <EpisodeSVG :episode="episodes" /> -->
 			</div>
 		</div>
