@@ -132,4 +132,7 @@ defineProps({
     font-weight: var(--fw-reg);
     margin-left: 0.5rem;
 }
+
+@media screen and (max-width: 1440px) {
+}
 </style>

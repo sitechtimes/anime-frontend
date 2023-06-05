@@ -205,6 +205,8 @@ function selectPage(num: number): void {
 }
 .airing-container {
 	flex: 1;
+	display: flex;
+	flex-direction: column;
 }
 .airing-header {
 	align-items: center;
@@ -299,5 +301,20 @@ input[type="number"] {
 	background-color: var(--tertiary);
 	padding: 1rem 2rem;
 	border-radius: 1rem;
+}
+
+@media screen and (max-width: 1440px) {
+	.airing-content {
+		grid-template-columns: repeat(5, minmax(0, 1fr));		
+	}
+}
+
+@media screen and (max-width: 1200px){
+	.airing-content {
+		column-gap: 1rem;
+	}
+	.topCharts-container {
+		width: 30rem;
+	}
 }
 </style>
