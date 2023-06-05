@@ -35,9 +35,9 @@
     </div>
 </template>
 <script setup lang="ts">
-const props = defineProps({
-    pageExist: { type: Boolean, default: true },
-});
+defineProps<{
+    pageExist: { type: Boolean; default: true };
+}>();
 </script>
 
 <style scoped>
@@ -58,8 +58,9 @@ const props = defineProps({
 }
 
 @media screen and (max-width: 1024px) {
-	#leftPageButton, svg {
-		height: 1.5rem;
-	}
+    #leftPageButton,
+    svg {
+        height: 1.5rem;
+    }
 }
 </style>
