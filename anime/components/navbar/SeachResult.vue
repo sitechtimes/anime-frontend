@@ -41,7 +41,6 @@ export default {
 	align-items: center;
 	cursor: pointer;
 	height: 8rem;
-	transition: 0ms;
 }
 .box:nth-child(even) {
 	background-color: var(--search-dark);
@@ -56,36 +55,28 @@ export default {
 	margin: 0.5rem;
 }
 .info-column {
-	margin-left: 1vw;
-	width: 75%;
 	display: flex;
 	flex-direction: column;
-	gap: 0.5vh;
-	height: 100%;
+	height: 90%;
+	flex: 1;
+	margin: 0.5rem 2rem 0.5rem 0.5rem;
 }
 .title {
 	font-size: var(--h5);
 	font-weight: var(--reg);
-	white-space: nowrap;
 	overflow: hidden;
 	display: block;
 	text-overflow: ellipsis;
-	margin-top: 0.5rem;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
 }
 .info-row {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	font-size: var(--h7);
-	gap: 2rem;
-}
-.star-rating {
-	display: flex;
-	align-items: center;
-}
-.star {
-	height: 1rem;
-	width: 1rem;
-	margin-right: 0.5rem;
+	font-size: var(--h8);
+	background-color: var(--secondary);
+	border-radius: 0.5rem;
+	margin-top: 0.5rem;
+	text-align: center;
+	width: 3rem;
 }
 </style>

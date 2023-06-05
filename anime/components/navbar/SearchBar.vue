@@ -161,6 +161,7 @@ onMounted(() => {
 
 .biggerBox {
 	position: fixed;
+	z-index: 5;
 	width: 25vw;
 	padding-top: 1rem;
 	padding-bottom: 3rem;
@@ -184,26 +185,8 @@ onMounted(() => {
 	width: 100%;
 }
 
-@media screen and (max-width: 1300px) {
-	.box {
-		padding: 0.75rem;
-	}
-	.title {
-		font-size: var(--h5);
-	}
-	.info-row {
-		font-size: var(--smallText);
-	}
-	.age-rating {
-		width: 15%;
-	}
-}
-
 @media screen and (max-width: 1024px) {
-	.search-bar {
-		width: 30vw;
-	}
-	.biggerBox {
+	.search-bar, .biggerBox {
 		width: 30vw;
 	}
 }
@@ -217,13 +200,6 @@ onMounted(() => {
 	}
 	.input {
 		font-size: var(--h5);
-	}
-	.box {
-		padding: 0.5rem;
-		height: 10vh;
-	}
-	.age-rating {
-		width: 20%;
 	}
 }
 
@@ -249,21 +225,6 @@ onMounted(() => {
 	}
 	.biggerBox {
 		margin-top: 3rem;
-	}
-	.info-column {
-		margin-left: 2vw;
-	}
-	.age-rating {
-		width: 10%;
-	}
-}
-
-@media screen and (max-width: 425px) {
-	.age-rating {
-		width: 15%;
-	}
-	.info-column {
-		margin-left: 3vw;
 	}
 }
 </style>

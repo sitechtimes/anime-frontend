@@ -19,10 +19,10 @@ export default {
 <style scoped>
 #episode-box {
 	background-color: var(--secondary);
-	width: 5rem;
+	width: 4rem;
 	height: 2rem;
-	clip-path: polygon(0 0, 100% 0, 75% 100%, 0% 100%);
-	padding-left: 0.6rem;
+	text-align: center;
+	border-radius: 0.5rem;
 }
 #episode-text {
 	font-size: var(--h7);
@@ -32,7 +32,7 @@ export default {
 @media screen and (max-width: 767px) {
 	#episode-box {
 		height: 1.5rem;
-		width: 3.5rem;
+		width: 3rem;
 	}
 	#episode-text {
 		font-size: var(--smallText);
