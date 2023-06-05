@@ -4,7 +4,7 @@
 		<div class="rc-info">
 			<p class="rc-title">{{ title }}</p>
 			<div class="rc-sub">
-				<p v-for="studio in studios" :key="studio.id" class="rc-studio">{{ studio.studio }}</p>
+				<p v-for="studio in studios" :key="studio.studio" class="rc-studio">{{ studio.studio }}</p>
 				<div class="rc-stars">
 					<starSVG class="star"/>
 					<p class="rc-stars-num">{{ stars }}</p>
