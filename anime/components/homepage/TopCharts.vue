@@ -134,5 +134,11 @@ defineProps({
 }
 
 @media screen and (max-width: 1440px) {
+    .topChartsComp-container {
+        height: 7rem;
+    }
+}
+
+@media screen and (max-width: 1200px) {
 }
 </style>

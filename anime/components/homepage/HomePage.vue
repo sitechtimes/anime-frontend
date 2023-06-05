@@ -232,7 +232,7 @@ function selectPage(num: number): void {
 	grid-template-columns: repeat(6, minmax(0, 1fr));
 	row-gap: 2rem;
 	column-gap: 2rem;
-	margin-top: 1rem;
+	margin-top: 2rem;
 }
 .page-button {
 	background-color: transparent;
@@ -291,7 +291,9 @@ input[type="number"] {
 .topCharts-container {
 	display: flex;
 	flex-direction: column;
-	width: 35rem;
+	width: 30rem;
+	/* row-gap: 0;
+	grid-template-columns: repeat(1, minmax(0, 1fr)); */
 }
 .topCharts-title {
 	font-size: var(--h3);
@@ -309,12 +311,23 @@ input[type="number"] {
 	}
 }
 
-@media screen and (max-width: 1200px){
+@media screen and (max-width: 1200px) {
+	.home-body {
+		flex-direction: column;
+		width: 90vw;
+	}
+}
+
+@media screen and (max-width: 767px) {
 	.airing-content {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
 		column-gap: 1rem;
 	}
-	.topCharts-container {
-		width: 30rem;
+}
+
+@media screen and (max-width: 568px) {
+	.airing-content {
+		grid-template-columns: repeat(3, minmax(0, 1fr));		
 	}
 }
 </style>
