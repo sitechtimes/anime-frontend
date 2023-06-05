@@ -211,7 +211,6 @@ function selectPage(num: number): void {
 	display: flex;
 	height: 6rem;
 	justify-content: space-between;
-	margin-bottom: 0.5rem;
 }
 .airing-title {
 	font-size: var(--h3);
@@ -220,18 +219,18 @@ function selectPage(num: number): void {
 	height: 6rem;
 	padding: 0;
 }
-.airing-content {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: flex-start;
-	row-gap: 4rem;
-	column-gap: 1.2%;
-}
 .page-container {
 	justify-content: flex-end;
 	display: flex;
 	align-items: center;
 	column-gap: 1rem;
+}
+.airing-content {
+	display: grid;
+	grid-template-columns: repeat(6, minmax(0, 1fr));
+	row-gap: 2rem;
+	column-gap: 2rem;
+	margin-top: 1rem;
 }
 .page-button {
 	background-color: transparent;
