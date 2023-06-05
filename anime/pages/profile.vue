@@ -125,7 +125,7 @@ const votedCharacters = ref([])
 console.log(userStore.isAdmin)
 async function getUserProfile() {
     try {
-        const endpoint = "http://127.0.0.1:8000/graphql/";
+        const endpoint = "https://anime-backend-cuv2.onrender.com/graphql/";
 				const headers = {
 					"content-type": "application/json",
 					Authorization: `Bearer ${userStore.token}`,
@@ -278,6 +278,9 @@ const favoriteAnime = ref([
 </script> -->
 
 <style scoped>
+#profile {
+    overflow: hidden;
+}
 
 .profile-slide {
     /* overflow-y: scroll; */
@@ -290,7 +293,7 @@ const favoriteAnime = ref([
     justify-content: center;
     color: var(--white);
     margin-bottom: 8%;
-    /* overflow: auto; */
+    /* overflow: hidden; */
 }
 .tabs-class .tab {
     background-color: var(--tertiary);

@@ -4,16 +4,21 @@
         <div class="rc-info">
             <p class="rc-title">{{ title }}</p>
             <div class="rc-sub">
-                <p class="rc-studio">{{ studio }}</p>
+                <p v-for="studio in studios" :key="studio.id" class="rc-studio">
+                    {{ studio.studio }}
+                </p>
                 <div class="rc-stars">
-                    <starSVG class="star" />
+                    <starSVG />
                     <p class="rc-stars-num">{{ stars }}</p>
                 </div>
             </div>
         </div>
-        <img class="rc-img" :src="`${img}`" alt="" />
+        <div class="rc-img">
+            <img :src="`${img}`" alt="" />
+        </div>
     </div>
 </template>
+
 <script setup lang="ts">
 const props = defineProps({
     rank: Number,

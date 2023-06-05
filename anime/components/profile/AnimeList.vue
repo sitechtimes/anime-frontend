@@ -43,6 +43,7 @@ defineProps({
     display: flex;
     flex-direction: column;
     align-items: center;
+    /* overflow: hidden; */
     /* background: red; */
 }
 .pf-anime-img {

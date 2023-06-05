@@ -30,7 +30,9 @@
 
 <script setup lang="ts">
 import { useUserStore } from "~~/stores/userStore";
+import { useRouter } from "nuxt/app";
 
+const router = useRouter()
 const userStore = useUserStore();
 const seasonAnimeWinners = ref([]);
 const seasonCharacterWinners = ref([]);
@@ -43,7 +45,7 @@ const monthNumber = today.getMonth() + 1
 
 async function getAllWinners() {
 			try {
-				const endpoint = "http://127.0.0.1:8000/graphql/";
+				const endpoint = "https://anime-backend-cuv2.onrender.com/graphql/";
 				const headers = {
 					"content-type": "application/json",
 					Authorization: `Bearer ${userStore.token}`,
@@ -142,6 +144,10 @@ async function getAllWinners() {
 		}
 
 onMounted(() => {
+	if (userStore.isAuthenticated === false) {
+		alert("You must be logged in to view this page");
+		router.push("/login");
+	}
     getAllWinners()
 })
 

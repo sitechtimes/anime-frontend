@@ -3,7 +3,7 @@
         <a href="#" class="up__btn">
             <img
                 class="up-arrow"
-                src="../assets/media/carrot up.png"
+                src="../assets/media/carrot_up.png"
                 alt="carrot svg"
             />
         </a>

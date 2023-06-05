@@ -7,7 +7,7 @@
                 :key="anime.id"
                 :stars="anime.avg_rating"
                 :title="anime.anime_name"
-                :studio="anime.anime_studio"
+                :studios="anime.anime_studio"
                 :rank="index + 1"
                 :img="anime.large_image_url"
             />
@@ -21,6 +21,9 @@
 import { animeRest } from "~~/types/anime";
 import { useUserStore } from "~~/stores/userStore";
 import { ref, onMounted } from "vue";
+import { useRouter } from "nuxt/app";
+
+const router = useRouter()
 
 const userStore = useUserStore();
 const ranking_arr = ref();

@@ -64,110 +64,19 @@
     </div>
 </template>
 <script setup lang="ts">
-const bestAnimesAward = ref([
-    {
-        rank: 0o1,
-        title: "One Punch Man",
-        stars: 8.5,
-        releaseDate: "Oct 5, 2015",
-        genre: "Adventure",
-        img: `https://cdn.myanimelist.net/images/characters/4/457933.jpg`,
-    },
-    {
-        rank: 0o2,
-        title: "Spy x Family",
-        stars: 9.99,
-        releaseDate: "Apr 9, 2022",
-        genre: "Comedy",
-        img: `https://cdn.myanimelist.net/images/characters/4/457933.jpg`,
-    },
-    {
-        rank: 0o3,
-        title: "Chainsaw Man",
-        stars: 8.24,
-        releaseDate: "Oct 11, 2022",
-        genre: "Graphic",
-        img: `https://cdn.myanimelist.net/images/characters/4/457933.jpg`,
-    },
-    {
-        rank: 0o4,
-        title: "Summertime Render",
-        stars: 9.61,
-        releaseDate: "Apr 15, 2022",
-        genre: "School Life",
-        img: `https://cdn.myanimelist.net/images/characters/4/457933.jpg`,
-    },
-    {
-        rank: 0o5,
-        title: "Is It Wrong To Try To Pick Up Girls In A Dungeon?",
-        stars: 7.69,
-        releaseDate: "Apr 4, 2015",
-        genre: "Fantasy",
-        img: `https://cdn.myanimelist.net/images/characters/4/457933.jpg`,
-    },
-]);
-const awards = ref([
-    {
-        award: "Best Anime",
-        img: `https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg`,
-    },
-    {
-        award: "Best Character Design",
-        img: `https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg`,
-    },
-    {
-        award: "Best Animation",
-        img: `https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg`,
-    },
-    {
-        award: "Best New Series",
-        img: `https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg`,
-    },
-    {
-        award: "Best Continuing Series",
-        img: `https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg`,
-    },
-    {
-        award: "Best Opening Sequence",
-        img: `https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg`,
-    },
-    {
-        award: "Best Ending Sequence",
-        img: `https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg`,
-    },
-    {
-        award: "Best Main Character",
-        img: `https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg`,
-    },
-    {
-        award: "Best Supporting Character",
-        img: `https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg`,
-    },
-    {
-        award: "Best Action",
-        img: `https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg`,
-    },
-    {
-        award: "Best Comedy",
-        img: `https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg`,
-    },
-    {
-        award: "Best Drama",
-        img: `https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg`,
-    },
-    {
-        award: "Best Fantasy",
-        img: `https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg`,
-    },
-    {
-        award: "Best Romance",
-        img: `https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg`,
-    },
-    {
-        award: "Best Anime Song",
-        img: `https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg`,
-    },
-]);
+import { ref, onMounted } from "vue";
+import { useUserStore } from "~/stores/userStore";
+import { useRouter } from "nuxt/app";
+const router = useRouter();
+
+const userStore = useUserStore();
+
+onMounted(() => {
+    if (userStore.isAuthenticated == false) {
+        alert("You must be logged in to view this page");
+        router.push("/login");
+    }
+});
 </script>
 <style scoped>
 #banner {
