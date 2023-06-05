@@ -150,13 +150,13 @@ async function getAllWinners() {
 			}
 		}
 
-// onMounted(() => {
-// 	if (userStore.isAuthenticated === false) {
-// 		alert("You must be logged in to view this page");
-// 		router.push("/login");
-// 	}
-//     getAllWinners()
-// })
+onMounted(() => {
+	if (userStore.isAuthenticated === false) {
+		alert("You must be logged in to view this page");
+		router.push("/login");
+	}
+    getAllWinners()
+})
 
 
 </script>

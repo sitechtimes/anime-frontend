@@ -13,7 +13,7 @@
 					<NuxtLink to="/ranking" class="link-href">Rankings</NuxtLink>
 				</li>
 				<li class="link">
-					<NuxtLink to="/winners" class="link-href">winners</NuxtLink>
+					<NuxtLink to="/winners" class="link-href">Winners</NuxtLink>
 				</li>
 				<li v-if="userStore.isAdmin" class="link">
 					<NuxtLink to="/admin" class="link-href">Admin</NuxtLink>
