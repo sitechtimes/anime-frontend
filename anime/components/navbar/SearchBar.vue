@@ -20,7 +20,7 @@
         </div>
         <div v-else class="search-bar">
             <div @click="exitSearchMobile" class="x">&times;</div>
-            <form @submit.prevent="goToSeachAnime()">
+            <form @submit.prevent="goToSearchAnime()">
                 <input
                     v-model="text"
                     placeholder="Search anime..."
@@ -32,7 +32,7 @@
                 />
                 <div class="biggerBox" v-if="showAnimeResults">
                     <p class="biggerBox-text">Anime</p>
-                    <SearchResultComp
+                    <NavbarSearchResult
                         @saveAnimeID="saveClickedAnimeID(anime.mal_id)"
                         @click="reload()"
                         v-for="anime in animeResults.slice(0, 5)"
@@ -116,7 +116,7 @@ function clearSearch() {
     }, 200);
 }
 
-function goToSeachAnime() {
+function goToSearchAnime() {
     if (text.value != "") {
         userStore.filterAnime = animeResults.value;
         navigateTo("animeSearch");

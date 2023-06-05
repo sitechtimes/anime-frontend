@@ -4,7 +4,7 @@
             <h1 id="logo">
                 <NuxtLink to="/" class="home-link">Technime</NuxtLink>
             </h1>
-            <SearchBar />
+            <NavbarSearchBar />
             <ul class="routers">
                 <li class="link">
                     <NuxtLink to="/awards" class="link-href">Awards</NuxtLink>
