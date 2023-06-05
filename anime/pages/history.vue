@@ -49,6 +49,11 @@
 <script setup lang="ts">
 import { useUserStore } from "~~/stores/userStore";
 
+definePageMeta({
+  middleware: ["auth"]
+  // or middleware: 'auth'
+})
+
 const userStore = useUserStore();
 const seasonAnimeWinners = ref([]);
 const seasonCharacterWinners = ref([]);
