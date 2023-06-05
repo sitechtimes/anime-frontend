@@ -387,14 +387,14 @@ query{
 		async login(res: any) {
 			try {
 				axios
-					.post("https://anime-backend-cuv2.onrender.com/social-login/google/", {
+					.post("http://localhost:8000/social-login/google/", {
 						code: res.code,
 					})
 					.then((res) => {
 						this.token = res.data.access_token;
 						// localStorage.setItem('token', JSON.stringify(this.token))
 						axios
-							.get("https://anime-backend-cuv2.onrender.com/auth/user/", {
+							.get("http://localhost:8000/auth/user/", {
 								headers: { Authorization: `Bearer ${res.data.access_token}` },
 							})
 							.then((res) => {
