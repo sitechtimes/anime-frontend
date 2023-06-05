@@ -75,7 +75,7 @@ const pageRightIndicator = ref<boolean>(true);
 const airingAnime = ref<animeRest[]>();
 const loading = ref<boolean>(true);
 const loadingAnimeHome: number[] = [...Array(12).keys()];
-const animePerPage = ref<number>(12);
+const animePerPage = ref<number>(11);
 const totalPage = ref<number>(0);
 const pageFilteredAnime = ref([] as animeRest[]);
 const startPageIndex = ref<number>(0);
@@ -84,8 +84,8 @@ const sortedAnimeTop = ref([]);
 // const pageExistLeft = reffalse
 
 onMounted(() => {
-	getTopChart()
-	
+	getTopChart();
+
 	userStore.animeId = 0;
 	userStore.pageNumber = 1;
 
@@ -111,10 +111,9 @@ onMounted(() => {
 			loading.value = false;
 		})
 		.catch((err) => {
-			alert(err)
+			alert(err);
 		});
 });
-
 
 async function getTopChart() {
 	const endpoint = "https://anime-backend-cuv2.onrender.com/graphql/";
@@ -132,30 +131,20 @@ async function getTopChart() {
 	malId
   }
 }`,
-        variables: {},
-      };
-      const options = {
-        method: "POST",
-        headers: headers,
-        body: JSON.stringify(graphqlQuery),
-      };
-      const response = await fetch(endpoint, options);
-      const queryData = await response.json();
+		variables: {},
+	};
+	const options = {
+		method: "POST",
+		headers: headers,
+		body: JSON.stringify(graphqlQuery),
+	};
+	const response = await fetch(endpoint, options);
+	const queryData = await response.json();
 
-	  sortedAnimeTop.value = queryData.data.sortedCurrentlyWatching
-	  console.log(sortedAnimeTop.value)
+	sortedAnimeTop.value = queryData.data.sortedCurrentlyWatching;
+	console.log(sortedAnimeTop.value);
 }
 
-function next(): void {
-	if (userStore.endPageIndex < userStore.airingAnime.length) {
-		userStore.startPageIndex += 11;
-		userStore.endPageIndex += 11;
-		userStore.pageNumber += 1;
-		pageExistLeft.value = true;
-		airingAnime.value = userStore.airingAnime.slice(
-			userStore.startPageIndex,
-			userStore.endPageIndex
-		);}}
 function calculateTotalPage() {
 	totalPage.value = Math.ceil(userStore.airingAnime.length / animePerPage.value);
 }
@@ -192,7 +181,7 @@ function pagenation(direction: number) {
 		}
 	}
 	pageExistIndicator();
-	pageFilteredAnime.value = userStore.filterAnime.slice(startPageIndex.value, endPageIndex.value);
+	airingAnime.value = userStore.airingAnime.slice(startPageIndex.value, endPageIndex.value);
 }
 
 function saveClickedAnimeID(id: number): void {
@@ -200,12 +189,9 @@ function saveClickedAnimeID(id: number): void {
 }
 
 function selectPage(num: number): void {
-	userStore.startPageIndex = num * 11 - 11;
-	userStore.endPageIndex = num * 11 + 1;
-	airingAnime.value = userStore.airingAnime.slice(
-		userStore.startPageIndex,
-		userStore.endPageIndex
-	);
+	startPageIndex.value = num * animePerPage.value - animePerPage.value;
+	endPageIndex.value = num * animePerPage.value + 1;
+	airingAnime.value = userStore.airingAnime.slice(startPageIndex.value, endPageIndex.value);
 }
 </script>
 
@@ -213,38 +199,18 @@ function selectPage(num: number): void {
 .home-body {
 	display: flex;
 	flex-direction: row;
-	width: 100%;
-	border-radius: 10px;
-	column-gap: 2rem;
-	align-items: flex-start;
-	background-size: cover;
-	margin-bottom: 10rem;
-	overflow: hidden;
-}
-.topCharts-container {
-	background-color: var(--bg-primary);
-	border-radius: 1.5rem;
-	display: flex;
-	flex-direction: column;
-	height: 100%;
-	margin-right: 2rem;
-	margin-top: 10rem;
-	width: 20vw;
+	margin: 0 auto 10rem;
+	width: 95vw;
+	column-gap: 3rem;
 }
 .airing-container {
-	background-color: var(--bg-primary);
-	border-radius: 1.5rem;
-	margin-bottom: 3rem;
-	margin-left: 2rem;
-	padding: 1.5rem 3rem 3rem;
-	width: 100vw;
+	flex: 1;
 }
 .airing-header {
 	align-items: center;
 	display: flex;
 	height: 6rem;
 	justify-content: space-between;
-	margin-bottom: 0.5rem;
 }
 .airing-title {
 	font-size: var(--h3);
@@ -253,32 +219,18 @@ function selectPage(num: number): void {
 	height: 6rem;
 	padding: 0;
 }
-.topCharts-title {
-	font-size: var(--h3);
-	font-family: "LIBRARY 3 AM", sans-serif;
-	font-weight: var(--fw-semi-bold);
-	color: var(--light-text);
-	height: 7rem;
-	width: 100%;
-	display: flex;
-	align-items: center;
-	padding-left: 2rem;
-	background-color: var(--tertiary);
-	border-radius: 0.75rem;
-	margin-bottom: 0.5rem;
-}
-.airing-content {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: flex-start;
-	row-gap: 4rem;
-	column-gap: 1.2%;
-}
 .page-container {
 	justify-content: flex-end;
 	display: flex;
 	align-items: center;
 	column-gap: 1rem;
+}
+.airing-content {
+	display: grid;
+	grid-template-columns: repeat(6, minmax(0, 1fr));
+	row-gap: 2rem;
+	column-gap: 2rem;
+	margin-top: 1rem;
 }
 .page-button {
 	background-color: transparent;
@@ -331,7 +283,21 @@ function selectPage(num: number): void {
 	display: block;
 }
 
-input[type=number] {
-  -moz-appearance: textfield;
+input[type="number"] {
+	-moz-appearance: textfield;
+}
+.topCharts-container {
+	display: flex;
+	flex-direction: column;
+	width: 35rem;
+}
+.topCharts-title {
+	font-size: var(--h3);
+	font-family: var(--second-font);
+	font-weight: var(--fw-semi-bold);
+	color: var(--light-text);
+	background-color: var(--tertiary);
+	padding: 1rem 2rem;
+	border-radius: 1rem;
 }
 </style>

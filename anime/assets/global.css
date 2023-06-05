@@ -64,6 +64,7 @@ body {
 :root {
     /* fonts */
     --body-font: "Merriweather Sans", sans-serif;
+    --second-font: "LIBRARY 3 AM", sans-serif;
 
     /* colors */
     --primary: #f8665e;
@@ -76,9 +77,18 @@ body {
     --shaded-text: #7a7a7a;
     --dark-text: #24201e;
     --bg-primary: #272727;
-    --bg-secondary: #2f2f2f;
+    --bg-secondary: rgb(52, 52, 52);
     --alt-linear: #7926ff;
     --info-select: #ffb6c1;
+    --login-shadow: rgba(0, 0, 0, .25);
+    --search-hover: rgb(112, 53, 53);
+    --search-dark: rgb(29, 29, 29);
+    --search-text: rgb(219, 219, 219);
+    --search-bg: rgb(68, 68, 68);
+    --bg-rank: #87000b;
+    --rank1: rgb(255, 183, 0);
+    --rank2: rgb(0, 195, 255);
+    --rank3: #04ff9f;
 
     /* font weight */
     --fw-light: 300;

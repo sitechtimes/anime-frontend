@@ -23,17 +23,6 @@
 	</div>
 </template>
 
-<script lang="ts">
-import EpisodeSVG from "../episodeSvg.vue";
-
-export default {
-	name: "AnimeCardLoading",
-	components: {
-		EpisodeSVG,
-	},
-};
-</script>
-
 <style scoped>
 .cardLoad-container {
 	display: flex;

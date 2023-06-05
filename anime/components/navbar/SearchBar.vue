@@ -18,7 +18,8 @@
 				/>
 			</svg>
 		</div>
-		<div v-else @click="exitSearchMobile" class="search-bar">
+		<div v-else class="search-bar">
+			<div @click="exitSearchMobile" class="x">&times;</div>
 			<form @submit.prevent="goToSeachAnime()">
 				<input
 					v-model="text"
@@ -50,17 +51,18 @@
 
 <script setup lang="ts">
 import { useUserStore } from "~~/stores/userStore";
-import { ref } from "vue";
-import { useRoute } from "vue-router";
+import { ref, onMounted } from "vue";
 import { animeRest } from "~~/types/anime";
 
 const route = useRoute();
 const userStore = useUserStore();
-const showAnimeResults = ref(false);
-const animeResults = ref([] as animeRest[]);
-const text = ref("");
+const showAnimeResults = ref<boolean>(false);
+const animeResults = ref<animeRest[]>([]);
+const text = ref<string>("");
+const hideSearch = ref(false);
 
 function searchAnime(text: string) {
+	
 	const searchResult = [] as animeRest[];
 
 	userStore.search = text;
@@ -78,20 +80,13 @@ function searchAnime(text: string) {
 					if (textResults.length == 1) {
 						searchResult.push(anime);
 					} else {
-						const animeWordsSlice = animeWords
-							.slice(i, animeWords.length)
-							.join("")
-							.replace(/[^a-zA-Z ]/, "")
-							.replace(/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/, "");
-
-						const textResultsSlice = textResults
-							.join("")
-							.replace(/[^a-zA-Z ]/, "")
-							.replace(/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/, "");
-
-						if (animeWordsSlice.startsWith(textResultsSlice)) {
-							searchResult.push(anime);
-						}
+						textResults.forEach((word: string) => {
+							if (animeWords[i + 1] != undefined) {
+								if (animeWords[i + 1].startsWith(word)) {
+									searchResult.push(anime);
+								}
+							}
+						});
 					}
 				}
 			}
@@ -123,64 +118,55 @@ function clearSearch() {
 }
 
 function goToSeachAnime() {
-	userStore.filterAnime = animeResults.value;
-	navigateTo("animeSearch");
-	if (route.name === "animeSearch") {
-		window.location.reload();
-	}
-	showAnimeResults.value = false;
-}
-</script>
-
-<script lang="ts">
-import SearchResultComp from "./SeachResult.vue";
-
-export default {
-	data: () => ({
-		text: "",
-		screenWidth: 0,
-		hideSearch: false,
-	}),
-	components: {
-		SearchResultComp,
-	},
-	methods: {
-		enterSearchMobile() {
-			this.hideSearch = false;
-		},
-		exitSearchMobile(e: any) {
-			if (this.screenWidth <= 568 && e.target.className === "search-bar") {
-				this.hideSearch = true;
-			}
-		},
-	},
-	mounted() {
-		this.screenWidth = window.innerWidth;
-		if (window.innerWidth <= 568) {
-			this.hideSearch = true;
-		} else {
-			this.hideSearch = false;
+	if (text.value != "") {
+		userStore.filterAnime = animeResults.value;
+		navigateTo("animeSearch");
+		if (route.name === "animeSearch") {
+			window.location.reload();
 		}
-	},
-};
+		showAnimeResults.value = false;
+	}
+}
+
+function enterSearchMobile() {
+    hideSearch.value = false;
+}
+
+function exitSearchMobile() {
+    hideSearch.value = true;
+}
+
+onMounted(() => {
+    if (window.innerWidth <= 568) {
+            hideSearch.value = true;
+        } else {
+            hideSearch.value = false;
+        }
+})
 </script>
 
 <style scoped>
 .search-bar {
 	width: 25vw;
-	color: rgb(219, 219, 219);
+	color: var(--search-text);
 	transition-duration: 0;
 	transition-delay: 1000ms;
 }
+.x {
+    display: none;
+    font-size: var(--h3);
+    align-self: flex-end;
+    margin-right: 1rem;
+}
+
 .biggerBox {
 	position: fixed;
-	z-index: -1;
+	z-index: 5;
 	width: 25vw;
-	top: 50%;
-	padding-top: 4rem;
+	padding-top: 1rem;
 	padding-bottom: 3rem;
 	border-radius: 10px;
-	background-color: rgb(52, 52, 52);
+	background-color: var(--bg-secondary);
 }
 .biggerBox-text {
 	font-size: var(--h7);
@@ -189,39 +175,18 @@ export default {
 	margin-left: 1rem;
 }
 .input {
-	background: rgb(68, 68, 68);
+	background: var(--search-bg);
 	font-size: var(--h4);
-	color: rgb(219, 219, 219);
+	color: var(--search-text);
 	border: none;
 	border-radius: 10px;
 	outline: none;
 	padding: 1rem 2rem;
 	width: 100%;
 }
-.input:focus {
-	background-color: rgb(52, 52, 52);
-}
-
-@media screen and (max-width: 1300px) {
-	.box {
-		padding: 0.75rem;
-	}
-	.title {
-		font-size: var(--h5);
-	}
-	.info-row {
-		font-size: var(--smallText);
-	}
-	.age-rating {
-		width: 15%;
-	}
-}
 
 @media screen and (max-width: 1024px) {
-	.search-bar {
-		width: 30vw;
-	}
-	.biggerBox {
+	.search-bar, .biggerBox {
 		width: 30vw;
 	}
 }
@@ -235,13 +200,6 @@ export default {
 	}
 	.input {
 		font-size: var(--h5);
-	}
-	.box {
-		padding: 0.5rem;
-		height: 10vh;
-	}
-	.age-rating {
-		width: 20%;
 	}
 }
 
@@ -258,28 +216,15 @@ export default {
 		top: 0;
 		left: 0;
 	}
+	.x {
+		display: block;
+	}
 	.input,
 	.biggerBox {
 		width: 80vw;
-		position: relative;
 	}
-	.input {
-		margin-top: 5vh;
-	}
-	.info-column {
-		margin-left: 2vw;
-	}
-	.age-rating {
-		width: 10%;
-	}
-}
-
-@media screen and (max-width: 425px) {
-	.age-rating {
-		width: 15%;
-	}
-	.info-column {
-		margin-left: 3vw;
+	.biggerBox {
+		margin-top: 3rem;
 	}
 }
 </style>

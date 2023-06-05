@@ -1,6 +1,5 @@
 <template>
     <div id="rankings">
-        <span class="underNav"></span>
         <h2 id="rankings-title">Top Anime of the Month</h2>
         <div class="monthly-ranking-box">
             <RankingCard
@@ -13,7 +12,6 @@
                 :img="anime.large_image_url"
             />
         </div>
-        <div class="monthly-ranking-graph"></div>
     </div>
 </template>
 
@@ -68,17 +66,49 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.underNav {
-    width: 100%;
-    height: 10rem;
-    display: block;
+#rankings {
+    display: flex;
+    flex-direction: column;
+    width: 70vw;
+    margin: 0 auto 10rem;
+    padding-top: 10rem;
 }
 #rankings-title {
-    color: #fff;
+    color: var(--white);
     font-size: var(--h2);
     font-weight: var(--fw-semi);
-    margin-top: 4rem;
-    margin-bottom: 6rem;
-    margin-left: 14.5%;
+    margin: 4rem 0 6rem;
+}
+
+@media screen and (max-width: 1440px) {
+    #rankings {
+        width: 80vw;
+    }
+    #rankings-title {
+        margin: 4rem 0 3rem;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    #rankings {
+        width: 85vw;
+    }
+    #rankings-title {
+        font-size: var(--h3);
+        margin: 2rem 0 3rem;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    #rankings {
+        padding: 0;
+    }
+}
+
+@media screen and (max-width: 568px) {
+    #rankings-title {
+        font-size: var(--h4);
+        margin: 2rem 0;
+    }
 }
 </style>

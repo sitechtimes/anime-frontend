@@ -4,19 +4,17 @@
 		<div class="info-column">
 			<h3 class="title">{{ animeName }}</h3>
 			<div class="info-row">
-				<EpisodeSVG :episode="episodes" />
+				<p v-if="episodes">{{ episodes }}</p>
+				<p v-else>N/A</p>
+				<!-- <EpisodeSVG :episode="episodes" /> -->
 			</div>
 		</div>
 	</NuxtLink>
 </template>
 
 <script lang="ts">
-import EpisodeSVG from "../episodeSvg.vue";
 export default {
 	name: "SearchResultComp",
-	components: {
-		EpisodeSVG,
-	},
 	props: {
 		imageUrl: {
 			type: String,
@@ -30,15 +28,15 @@ export default {
 			required: true,
 		},
 		mal_id: {
-			type: Number
-		}
+			type: Number,
+		},
 	},
 };
 </script>
 
-<style>
+<style scoped>
 .box {
-	background-color: rgb(52, 52, 52);
+	background-color: var(--bg-secondary);
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -46,19 +44,10 @@ export default {
 	height: 8rem;
 }
 .box:nth-child(even) {
-	background-color: rgb(39, 39, 39);
+	background-color: var(--search-dark);
 }
 .box:hover {
-	background-color: rgb(112, 53, 53);
-	transition: 0ms;
-}
-.box:active {
-	background-color: rgb(112, 53, 53);
-	transition: 0ms;
-}
-.box:not(hover) {
-	background-color: rgb(68, 68, 68);
-	transition: 0ms;
+	background-color: var(--search-hover);
 }
 .image-placeholder {
 	height: 90%;
@@ -67,36 +56,28 @@ export default {
 	margin: 0.5rem;
 }
 .info-column {
-	margin-left: 1vw;
-	width: 75%;
 	display: flex;
 	flex-direction: column;
-	gap: 0.5vh;
-	height: 100%;
+	height: 90%;
+	flex: 1;
+	margin: 0.5rem 2rem 0.5rem 0.5rem;
 }
 .title {
 	font-size: var(--h5);
 	font-weight: var(--reg);
-	white-space: nowrap;
 	overflow: hidden;
 	display: block;
 	text-overflow: ellipsis;
-	margin-top: 0.5rem;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
 }
 .info-row {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	font-size: var(--h7);
-	gap: 2rem;
-}
-.star-rating {
-	display: flex;
-	align-items: center;
-}
-.star {
-	height: 1rem;
-	width: 1rem;
-	margin-right: 0.5rem;
+	font-size: var(--h8);
+	background-color: var(--secondary);
+	border-radius: 0.5rem;
+	margin-top: 0.5rem;
+	text-align: center;
+	width: 3rem;
 }
 </style>
