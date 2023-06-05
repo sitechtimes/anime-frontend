@@ -205,6 +205,8 @@ function selectPage(num: number): void {
 }
 .airing-container {
 	flex: 1;
+	display: flex;
+	flex-direction: column;
 }
 .airing-header {
 	align-items: center;
@@ -230,7 +232,7 @@ function selectPage(num: number): void {
 	grid-template-columns: repeat(6, minmax(0, 1fr));
 	row-gap: 2rem;
 	column-gap: 2rem;
-	margin-top: 1rem;
+	margin-top: 2rem;
 }
 .page-button {
 	background-color: transparent;
@@ -289,7 +291,9 @@ input[type="number"] {
 .topCharts-container {
 	display: flex;
 	flex-direction: column;
-	width: 35rem;
+	width: 30rem;
+	/* row-gap: 0;
+	grid-template-columns: repeat(1, minmax(0, 1fr)); */
 }
 .topCharts-title {
 	font-size: var(--h3);
@@ -299,5 +303,31 @@ input[type="number"] {
 	background-color: var(--tertiary);
 	padding: 1rem 2rem;
 	border-radius: 1rem;
+}
+
+@media screen and (max-width: 1440px) {
+	.airing-content {
+		grid-template-columns: repeat(5, minmax(0, 1fr));		
+	}
+}
+
+@media screen and (max-width: 1200px) {
+	.home-body {
+		flex-direction: column;
+		width: 90vw;
+	}
+}
+
+@media screen and (max-width: 767px) {
+	.airing-content {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		column-gap: 1rem;
+	}
+}
+
+@media screen and (max-width: 568px) {
+	.airing-content {
+		grid-template-columns: repeat(3, minmax(0, 1fr));		
+	}
 }
 </style>
