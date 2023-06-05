@@ -64,6 +64,7 @@ body {
 :root {
     /* fonts */
     --body-font: "Merriweather Sans", sans-serif;
+    --rank-font: "LIBRARY 3 AM", sans-serif;
 
     /* colors */
     --primary: #f8665e;
@@ -84,6 +85,10 @@ body {
     --search-dark: rgb(29, 29, 29);
     --search-text: rgb(219, 219, 219);
     --search-bg: rgb(68, 68, 68);
+    --bg-rank: #87000b;
+    --rank1: rgb(255, 183, 0);
+    --rank2: rgb(0, 195, 255);
+    --rank3: #04ff9f;
 
     /* font weight */
     --fw-light: 300;

@@ -57,10 +57,10 @@ export default {
 	column-gap: 2rem;
 }
 .rc-rank {
-	font-family: "LIBRARY 3 AM", sans-serif;
+	font-family: var(--rank-font);
 	font-size: var(--h1);
 	color: var(--white);
-	background-color: #87000b;
+	background-color: var(--bg-rank);
 	height: 100%;
 	width: 8rem;
 	margin-left: 2rem;
@@ -69,13 +69,13 @@ export default {
 	justify-content: center;
 }
 #rank1 {
-	color: rgb(255, 183, 0);
+	color: var(--rank1);
 }
 #rank2 {
-	color: rgb(0, 195, 255);
+	color: var(--rank2);
 }
 #rank3 {
-	color: #04ff9f;
+	color: var(--rank3);
 }
 .rc-info {
 	display: flex;
