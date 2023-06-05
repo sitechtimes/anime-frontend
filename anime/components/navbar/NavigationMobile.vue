@@ -2,30 +2,34 @@
     <div id="mobile">
         <div class="menu" :class="[isClose ? `open` : '!open']">
             <ul class="mq-routers">
-                <li class="link" @click="toggleOff()">
+                <li class="link" @click="toggleOn()">
                     <NuxtLink to="/awards" class="mobile-link-href"
                         >Awards</NuxtLink
                     >
                 </li>
-                <li class="link" @click="toggleOff()">
+                <li class="link" @click="toggleOn()">
                     <NuxtLink to="/ranking" class="mobile-link-href"
                         >Rankings</NuxtLink
                     >
                 </li>
-                <li class="link" @click="toggleOff()">
+                <li class="link" @click="toggleOn()">
                     <NuxtLink to="/history" class="mobile-link-href"
                         >History</NuxtLink
                     >
                 </li>
                 <NuxtLink to="/login">
-                    <button class="mobile-log-in" @click="toggleOff()">
+                    <button class="mobile-log-in" @click="toggleOn()">
                         Log In
                     </button></NuxtLink
                 >
             </ul>
         </div>
         <div class="nav-mobile">
-            <div class="navigation-icon" @click="toggleOn()">
+            <div
+                class="navigation-icon"
+                @click="toggleOn()"
+                :class="[isChange ? `change` : '!change']"
+            >
                 <div class="burger1 change"></div>
                 <div class="burger2 change"></div>
                 <div class="burger3 change"></div>
@@ -35,8 +39,7 @@
             </h1>
             <NavbarSearchBar />
             <NuxtLink to="/login">
-                <!-- <button class="mobile-log-in" v-on:click="toggleOn()"></button> -->
-                <button class="log-in-2">Log In</button>
+                <button class="log-in-2" @click="toggleOn()">Log In</button>
             </NuxtLink>
         </div>
     </div>
@@ -45,11 +48,10 @@
 <script setup lang="ts">
 import { ref } from "vue";
 const isClose = ref(false);
+const isChange = ref(false);
 function toggleOn() {
-    isClose.value = true;
-}
-function toggleOff() {
-    isClose.value = false;
+    isClose.value = !isClose.value;
+    isChange.value = !isChange.value;
 }
 </script>
 
@@ -72,12 +74,12 @@ function toggleOff() {
     background-color: var(--bg-primary);
 }
 .change {
-    z-index: 3;
+    z-index: 30;
 }
 .burger1,
 .burger2,
 .burger3 {
-    z-index: 30;
+    z-index: 3;
     width: 35px;
     height: 5px;
     margin: 6px 0;
