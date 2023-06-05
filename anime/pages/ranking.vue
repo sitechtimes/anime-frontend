@@ -24,6 +24,9 @@ import RankingCard from "~~/components/rankingpage/RankingCard.vue";
 import { animeRest } from "~~/types/anime";
 import { useUserStore } from "~~/stores/userStore";
 import { ref, onMounted } from "vue";
+import { useRouter } from "nuxt/app";
+
+const router = useRouter()
 
 const userStore = useUserStore();
 const ranking_arr = ref()

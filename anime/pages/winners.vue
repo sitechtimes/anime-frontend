@@ -30,7 +30,9 @@
 
 <script setup lang="ts">
 import { useUserStore } from "~~/stores/userStore";
+import { useRouter } from "nuxt/app";
 
+const router = useRouter()
 const userStore = useUserStore();
 const seasonAnimeWinners = ref([]);
 const seasonCharacterWinners = ref([]);
@@ -142,6 +144,10 @@ async function getAllWinners() {
 		}
 
 onMounted(() => {
+	if (userStore.isAuthenticated === false) {
+		alert("You must be logged in to view this page");
+		router.push("/login");
+	}
     getAllWinners()
 })
 

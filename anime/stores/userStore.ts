@@ -504,7 +504,9 @@ query{
 				this.email = null;
 				this.isAuthenticated = false;
 				this.token = null;
+				this.isAdmin = false;
 				this.userID = null
+				// window.location.reload();
 				return navigateTo("/login");
 				// this.$router.push("/")
 				// googleLogout();
