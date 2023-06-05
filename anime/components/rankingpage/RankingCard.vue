@@ -6,14 +6,12 @@
 			<div class="rc-sub">
 				<p class="rc-studio">{{ studio }}</p>
 				<div class="rc-stars">
-					<starSVG />
+					<starSVG class="star"/>
 					<p class="rc-stars-num">{{ stars }}</p>
 				</div>
 			</div>
 		</div>
-		<div class="rc-img">
-			<img :src="`${img}`" alt="" />
-		</div>
+		<img class="rc-img" :src="`${img}`" alt="" />
 	</div>
 </template>
 
@@ -53,28 +51,22 @@ export default {
 <style>
 .rankingCard {
 	display: flex;
-	margin: auto;
-	align-items: center;
-	justify-content: space-between;
 	background-color: var(--primary);
-	box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
 	margin-bottom: 3rem;
-	width: 70vw;
 	height: 14rem;
-	padding-left: 1.5%;
+	column-gap: 2rem;
 }
 .rc-rank {
 	font-family: "LIBRARY 3 AM", sans-serif;
+	font-size: var(--h1);
 	color: var(--white);
-	/* background-color: var(--secondary); */
 	background-color: #87000b;
 	height: 100%;
-	width: 7rem;
+	width: 8rem;
+	margin-left: 2rem;
+	display: flex;
 	align-items: center;
 	justify-content: center;
-	display: flex;
-	font-size: var(--h1);
-	font-weight: var(--fw-med);
 }
 #rank1 {
 	color: rgb(255, 183, 0);
@@ -88,47 +80,131 @@ export default {
 .rc-info {
 	display: flex;
 	flex-direction: column;
-	height: 100%;
-	flex-grow: 2;
-	padding-left: 3rem;
-	padding-top: 1rem;
+	flex: 1;
 }
 .rc-title {
 	font-size: var(--h3);
 	color: var(--white);
 	font-weight: var(--fw-med);
+	margin-top: 1rem;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 1;
 }
 .rc-sub {
 	display: flex;
 	align-items: center;
-	column-gap: 4rem;
 	justify-content: space-between;
-	width: 90%;
+	column-gap: 1rem;
 }
 .rc-studio {
 	font-size: var(--h5);
 	font-weight: 400;
 	color: var(--white);
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 1;
 }
 .rc-stars {
 	display: flex;
 	align-items: center;
 	column-gap: 0.25rem;
+	margin-right: 1rem;
 }
 .rc-stars-num {
 	font-size: var(--h5);
-	font-weight: var(--fw-reg);
 	color: var(--white);
 }
 .rc-img {
-	width: 60%;
 	height: 100%;
-	border-radius: 0.5rem;
-	overflow: hidden;
-}
-.rc-img img {
-	width: 100%;
-	height: 100%;
+	width: 45%;
 	object-fit: cover;
+}
+
+@media screen and (max-width: 1200px) {
+	.rankingCard {
+		height: 12rem;
+	}
+	.rc-studio, .rc-stars-num {
+		font-size: var(--h6);
+	}
+	.star {
+		height: 1.5rem;
+	}
+}
+
+@media screen and (max-width: 1024px) {
+	.rankingCard {
+		height: 10rem;
+	}
+	.rc-rank {
+		font-size: var(--h2);
+		width: 6rem;
+	}
+	.rc-title {
+		font-size: var(--h4);
+	}
+	.rc-studio, .rc-stars-num {
+		font-size: var(--h7);
+	}
+	.star {
+		height: 1.2rem;
+	}
+}
+
+@media screen and (max-width: 767px) {
+	.rankingCard {
+		height: 8rem;
+		column-gap: 1rem;
+		margin-bottom: 2rem;
+	}
+	.rc-rank {
+		font-size: var(--h3);
+		width: 5rem;
+		margin-left: 1rem;
+	}
+	.rc-title {
+		font-size: var(--h5);
+	}
+	.rc-studio, .rc-stars-num {
+		font-size: var(--h8);
+	}
+	.rc-stars {
+		margin: 0;
+		column-gap: 0;
+	}
+	.rc-img {
+		width: 40%;
+	}
+}
+
+@media screen and (max-width: 568px) {
+	.rc-rank {
+		font-size: var(--h4);
+		width: 4rem;
+	}
+	.rc-img {
+		width: 30%;
+	}
+}
+
+@media screen and (max-width: 425px) {
+	.rankingCard {
+		height: 7rem;
+	}
+	.rc-studio, .rc-stars-num {
+		font-size: var(--smallText);
+	}
+	.star {
+		height: 1rem;
+		margin-right: -0.3rem;
+	}
+	.rc-img {
+	width: 20%;
+	}
 }
 </style>
