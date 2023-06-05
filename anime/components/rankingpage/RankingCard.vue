@@ -101,7 +101,6 @@ export default {
 }
 .rc-studio {
 	font-size: var(--h5);
-	font-weight: 400;
 	color: var(--white);
 	overflow: hidden;
 	text-overflow: ellipsis;
