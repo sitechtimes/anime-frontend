@@ -2,7 +2,7 @@
     <div id="rankings">
         <h2 id="rankings-title">Top Anime of the Month</h2>
         <div class="monthly-ranking-box">
-            <RankingCard
+            <RankingpageRankingCard
                 v-for="(anime, index) in ranking_arr"
                 :key="anime.id"
                 :stars="anime.avg_rating"
@@ -16,7 +16,6 @@
 </template>
 
 <script setup lang="ts">
-import RankingCard from "~~/components/rankingpage/RankingCard.vue";
 // <!-- :stars="anime.stars" -->
 
 import { animeRest } from "~~/types/anime";
@@ -27,14 +26,10 @@ import { useRouter } from "nuxt/app";
 const router = useRouter()
 
 const userStore = useUserStore();
-const ranking_arr = ref()
-
-
-
-
+const ranking_arr = ref();
 
 onMounted(() => {
-    const arr_anime = JSON.parse(JSON.stringify(userStore.allAnime))
+    const arr_anime = JSON.parse(JSON.stringify(userStore.allAnime));
     arr_anime.sort((a: any, b: any) => b.avg_rating - a.avg_rating);
     // console.log(arr_anime)
     const x = arr_anime.slice(1,11)
@@ -44,24 +39,24 @@ onMounted(() => {
 	// 	.then((data) => {
 	// 		const airingAnimeArr = [] as animeRest[];
 
-	// 		data!.filter(function (anime: animeRest): void {
-	// 			if (anime.status == "Currently Airing") {
-	// 				airingAnimeArr.push(anime);
-	// 			}
-	// 		});
+    // 		data!.filter(function (anime: animeRest): void {
+    // 			if (anime.status == "Currently Airing") {
+    // 				airingAnimeArr.push(anime);
+    // 			}
+    // 		});
 
-	// 		userStore.airingAnime = airingAnimeArr;
+    // 		userStore.airingAnime = airingAnimeArr;
 
-	// 		airingAnime.value = userStore.airingAnime.slice(
-	// 			userStore.startPageIndex,
-	// 			userStore.endPageIndex
-	// 		);
+    // 		airingAnime.value = userStore.airingAnime.slice(
+    // 			userStore.startPageIndex,
+    // 			userStore.endPageIndex
+    // 		);
 
-	// 		loading.value = false;
-	// 	})
-	// 	.catch((err) => {
-	// 		alert(err)
-	// 	});
+    // 		loading.value = false;
+    // 	})
+    // 	.catch((err) => {
+    // 		alert(err)
+    // 	});
 });
 </script>
 

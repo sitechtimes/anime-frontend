@@ -1,31 +1,35 @@
 <template>
-<div id="mobile">
-    <div class="menu" :class="{ close: isClose }">
-          <ul class="mq-routers">
-                <li class="link" v-on:click="toggleOn()">
-                    <NuxtLink to="/awards" class="mobile-link-href">Awards</NuxtLink>
+    <div id="mobile">
+        <div class="menu" :class="[isClose ? `open` : '!open']">
+            <ul class="mq-routers">
+                <li class="link" @click="toggleOn()">
+                    <NuxtLink to="/awards" class="mobile-link-href"
+                        >Awards</NuxtLink
+                    >
                 </li>
-                <!-- <li class="link" v-on:click="toggleOn()"> -->
-                <li class="link">
+                <li class="link" @click="toggleOn()">
                     <NuxtLink to="/ranking" class="mobile-link-href"
                         >Rankings</NuxtLink
                     >
                 </li>
-                <!-- <li class="link" v-on:click="toggleOn()"> -->
-                <li class="link">
+                <li class="link" @click="toggleOn()">
                     <NuxtLink to="/history" class="mobile-link-href"
                         >History</NuxtLink
                     >
                 </li>
                 <NuxtLink to="/login">
-                    <!-- <button class="mobile-log-in" v-on:click="toggleOn()"> -->
-                    <button class="mobile-log-in">Log In</button></NuxtLink
+                    <button class="mobile-log-in" @click="toggleOn()">
+                        Log In
+                    </button></NuxtLink
                 >
             </ul>
         </div>
         <div class="nav-mobile">
-            <!-- <div class="navigation-icon" v-on:click="toggleOn()"> -->
-            <div class="navigation-icon">
+            <div
+                class="navigation-icon"
+                @click="toggleOn()"
+                :class="[isChange ? `change` : '!change']"
+            >
                 <div class="burger1 change"></div>
                 <div class="burger2 change"></div>
                 <div class="burger3 change"></div>
@@ -35,14 +39,21 @@
             </h1>
             <NavbarSearchBar />
             <NuxtLink to="/login">
-                <!-- <button class="mobile-log-in" v-on:click="toggleOn()"></button> -->
-                <button class="log-in-2">Log In</button>
+                <button class="log-in-2" @click="toggleOn()">Log In</button>
             </NuxtLink>
         </div>
     </div>
 </template>
 
-<script lang="ts"></script>
+<script setup lang="ts">
+import { ref } from "vue";
+const isClose = ref(false);
+const isChange = ref(false);
+function toggleOn() {
+    isClose.value = !isClose.value;
+    isChange.value = !isChange.value;
+}
+</script>
 
 <style>
 #logo2 {
@@ -63,7 +74,7 @@
     background-color: var(--bg-primary);
 }
 .change {
-    z-index: 3;
+    z-index: 30;
 }
 .burger1,
 .burger2,
@@ -119,9 +130,13 @@
     position: absolute;
     transform: translate(0, -11px) rotate(45deg);
 }
-div .close {
-    z-index: 2;
+div .open {
+    z-index: 20;
     transform: translateX(110%);
+}
+.close {
+    z-index: 2;
+    transform: translateX(-110%);
 }
 .navigation-icon {
     cursor: pointer;

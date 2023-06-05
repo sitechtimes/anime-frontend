@@ -1,115 +1,42 @@
 <template>
-    <div id="banner">
-        <span class="underNav"></span>
-        <div class="banner-flex">
-            <div class="banner-bg">
-                <div class="banner-text">
-                    <h2 class="trending-text">#trending</h2>
-                    <h1 class="title-banner">
-                        vote for your <br />faves anytime
-                    </h1>
-                    <p class="voting-description">
-                        Mission Statement and more writing yeah
-                    </p>
-                </div>
-                <img
-                    src="@/assets/media/award-anya.png"
-                    alt="Anya falling with icecream"
-                    class="banner-image"
-                />
-            </div>
-            <div class="banner-season">
-                <ul class="anime-list">
-                    <h2 class="season-text">Anime of the Season</h2>
-                    <li
-                        v-for="(anime, index) in animes"
-                        :key="anime.animeID"
-                        class="bestAnime"
-                    >
-                        <div class="picture-column">
-                            <h2 class="rank-number">{{ index + 1}}</h2>
-                            <img
-                                class="anime-pfp"
-                                :src="anime.image_url"
-                                alt="anime-image"
-                            />
-                        </div>
-                        <div class="info-column">
-                            <h1 class="animeTitle">{{ anime.anime_name }}</h1>
-                            <div class="star-rating">
-                                <starSVG />
-                                <p>{{ anime.avg_rating }}</p>
-                            </div>
-                        </div>
-                        <span class="genre-text">{{ anime.anime_genre[0].genre }}</span>
-                    </li>
-                </ul>
+    <div class="award-anime-display">
+        <div class="picture-column">
+            <h2 class="rank-number" :id="`rank${rank}`">{{ rank }}</h2>
+            <img class="anime-pfp" :src="`${img}`" alt="" />
+        </div>
+        <div class="info-column">
+            <h3 class="animeTitle">{{ title }}</h3>
+            <div class="star-rating">
+                <StarSVG class="star" />
+                <!-- <p>{{ stars.toFixed(2) }}</p> -->
             </div>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-import starSVG from "@/components/starSVG.vue";
 import { useUserStore } from "~/stores/userStore";
 
 const userStore = useUserStore();
 
-const animes = ref([])
+const animes = ref([]);
 
 onMounted(() => {
-    const arr_anime = JSON.parse(JSON.stringify(userStore.allAnime))
+    const arr_anime = JSON.parse(JSON.stringify(userStore.allAnime));
     arr_anime.sort((a: any, b: any) => b.avg_rating - a.avg_rating);
     // console.log(arr_anime)
-    const x = arr_anime.slice(1,6)
-    animes.value = x
+    const x = arr_anime.slice(1, 6);
+    animes.value = x;
 
-    console.log(animes.value)
+    console.log(animes.value);
 });
-// export default {
-//     components: {
-//         starSVG,
-//     },
-//     data: () => ({
-//         animes: [
-//             {
-//                 animeID: "01",
-//                 title: "One Punch Man",
-//                 stars: 8.5,
-//                 releaseDate: "Oct 5, 2015",
-//                 genre: "Adventure",
-//             },
-//             {
-//                 animeID: "02",
-//                 title: "Spy x Family",
-//                 stars: 9.99,
-//                 releaseDate: "Apr 9, 2022",
-//                 genre: "Comedy",
-//             },
-//             {
-//                 animeID: "03",
-//                 title: "Chainsaw Man",
-//                 stars: 8.24,
-//                 releaseDate: "Oct 11, 2022",
-//                 genre: "Graphic",
-//             },
-//             {
-//                 animeID: "04",
-//                 title: "Summertime Render",
-//                 stars: 9.61,
-//                 releaseDate: "Apr 15, 2022",
-//                 genre: "School Life",
-//             },
-//             {
-//                 animeID: "05",
-//                 title: "Is It Wrong To Try To Pick Up Girls In A Dungeon?",
-//                 stars: 7.69,
-//                 releaseDate: "Apr 4, 2015",
-//                 genre: "Fantasy",
-//             },
-//         ],
-//     }),
-// };
+defineProps<{
+    rank: { type: Number; required: true };
+    img: { type: String; required: true };
+    title: { type: String; required: true };
+    genre: { type: String; required: true };
+    stars: { type: Number; required: true };
+}>();
 </script>
 
 <style scoped>
@@ -246,10 +173,9 @@ onMounted(() => {
 }
 /* undernavigation  */
 
-.underNav{
-  height: 15rem;
-  display: block;
-
+.underNav {
+    height: 15rem;
+    display: block;
 }
 
 /* Media Queries */
@@ -450,51 +376,50 @@ onMounted(() => {
     }
 }
 @media screen and (max-width: 545px) {
-#banner{
-  height: 100vh;
-}
-.underNav {
-  height: 4rem;
-}
-.banner-bg {
-  width: 58%;
-  height: 50%;
-}
-.banner-flex {
-  width: 97%;
-  height: 55rem;
-  flex-direction: column;
-}
-.banner-season {
-  width: 58%;
-  height: 54%;
-  margin-left: 20%;
-}
-.genre-text {
-  width: 25%;
-  margin-left: 3%;
-  font-size: var(--h7);
-}
-.info-column {
-  width: 35%;
-  margin-left: 5%;
-}
-.picture-column {
-  width: 18%;
-}
-.animeTitle {
-  font-size: var(--h6);
-}
-.title-banner {
-  font-size: var(--h3);
-}
-.trending-text {
-  font-size: var(--h4);
-}
-.season-text {
-  font-size: var(--h5);
-}
-
+    #banner {
+        height: 100vh;
+    }
+    .underNav {
+        height: 4rem;
+    }
+    .banner-bg {
+        width: 58%;
+        height: 50%;
+    }
+    .banner-flex {
+        width: 97%;
+        height: 55rem;
+        flex-direction: column;
+    }
+    .banner-season {
+        width: 58%;
+        height: 54%;
+        margin-left: 20%;
+    }
+    .genre-text {
+        width: 25%;
+        margin-left: 3%;
+        font-size: var(--h7);
+    }
+    .info-column {
+        width: 35%;
+        margin-left: 5%;
+    }
+    .picture-column {
+        width: 18%;
+    }
+    .animeTitle {
+        font-size: var(--h6);
+    }
+    .title-banner {
+        font-size: var(--h3);
+    }
+    .trending-text {
+        font-size: var(--h4);
+    }
+    .season-text {
+        font-size: var(--h5);
+    }
 }
 @media screen and (max-width: 415px) {
     .banner-bg {

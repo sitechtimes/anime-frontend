@@ -225,7 +225,7 @@ onMounted(() => {
 
 </script>
 
-<script lang="ts">
+<!-- <script lang="ts">
 import Tab from "../components/profile/Tab.vue";
 import TabsWrapper from "../components/profile/TabsWrapper.vue";
 import AnimeList from "../components/profile/AnimeList.vue";
@@ -237,54 +237,45 @@ export default {
         AnimeList,
         //   Tabs
     },
-    data: () => ({
-        currentAnimes: [
-            {
-                animeID: "01",
-                title: "One Punch Man",
-                img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-            },
-            {
-                animeID: "02",
-                title: "Spy x Family",
-                img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-            },
-            {
-                animeID: "03",
-                title: "Chainsaw Man",
-                img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-            },
-            {
-                animeID: "04",
-                title: "Blue Lock",
-                img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-            },
-        ],
-        favoriteAnime: [
-            {
-                animeID: "01",
-                title: "One Punch Man",
-                img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-            },
-            {
-                animeID: "02",
-                title: "Spy x Family",
-                img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-            },
-            {
-                animeID: "03",
-                title: "Chainsaw Man",
-                img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-            },
-            {
-                animeID: "04",
-                title: "Blue Lock",
-                img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-            },
-        ],
-    }),
-};
-</script>
+    {
+        animeID: "02",
+        title: "Spy x Family",
+        img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
+    },
+    {
+        animeID: "03",
+        title: "Chainsaw Man",
+        img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
+    },
+    {
+        animeID: "04",
+        title: "Blue Lock",
+        img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
+    },
+]);
+const favoriteAnime = ref([
+    {
+        animeID: "01",
+        title: "One Punch Man",
+        img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
+    },
+    {
+        animeID: "02",
+        title: "Spy x Family",
+        img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
+    },
+    {
+        animeID: "03",
+        title: "Chainsaw Man",
+        img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
+    },
+    {
+        animeID: "04",
+        title: "Blue Lock",
+        img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
+    },
+]);
+</script> -->
 
 <style scoped>
 #profile {

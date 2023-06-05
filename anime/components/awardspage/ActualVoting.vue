@@ -79,7 +79,6 @@
 
 
 <script setup lang="ts">
-import SearchBar from "../navbar/SearchBar.vue";
 import { useUserStore } from "~~/stores/userStore";
 import { ref, onMounted } from "vue";
 

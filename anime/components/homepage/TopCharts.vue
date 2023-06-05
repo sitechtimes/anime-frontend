@@ -18,50 +18,16 @@
 </template>
 
 <script setup lang="ts">
-import EpisodeSVG from "../episodeSvg.vue";
-import { Icon } from '#components'
+import { Icon } from "#components";
 
 defineProps({
-  malid: Number,
-  rank: Number,
-  img: String,
-  episode: String,
-  votes: Number,
-  title: String,
-})
-
-// export default {
-//     name: "EpisodeCard",
-//     components: {
-//         EpisodeSVG,
-//     },
-//     props: {
-//         malid: {
-//             type: Number,
-//             required: true
-//         },
-//         rank: {
-//             type: Number,
-//             required: true,
-//         },
-//         img: {
-//             type: String,
-//             required: true,
-//         },
-//         episode: {
-//             type: Number,
-//             required: true,
-//         },
-//         votes: {
-//             type: Number,
-//             required: true,
-//         },
-//         title: {
-//             type: String,
-//             required: true,
-//         },
-//     },
-// };
+    malid: Number,
+    rank: Number,
+    img: String,
+    episode: String,
+    votes: Number,
+    title: String,
+});
 </script>
 
 <style scoped>
@@ -109,10 +75,10 @@ defineProps({
     color: var(--light-text);
     font-size: var(--h5);
     font-weight: var(--fw-reg);
-	overflow: hidden;
+    overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-	-webkit-box-orient: vertical;
+    -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
 }
 .topChartsComp-details {

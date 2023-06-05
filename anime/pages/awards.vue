@@ -1,29 +1,81 @@
 <template>
     <div id="awards">
-        <Banner/>
-        <AwardVoting />
+        <section id="banner">
+            <div class="banner-flex">
+                <div class="banner-bg">
+                    <div class="banner-text">
+                        <h2 class="trending-text">#trending</h2>
+                        <h1 class="title-banner">
+                            vote for your <br />faves anytime
+                        </h1>
+                        <p class="voting-description">
+                            Mission Statement and more writing yeah
+                        </p>
+                    </div>
+                    <img
+                        src="@/assets/media/award-anya.png"
+                        alt="Anya falling with icecream"
+                        class="banner-image"
+                    />
+                </div>
+                <div class="banner-season">
+                    <ul class="anime-list">
+                        <h2 class="season-text">Anime of the Season</h2>
+                        <AwardspageBanner
+                            v-for="anime in bestAnimesAward"
+                            :key="anime.rank"
+                            :title="anime.title"
+                            :stars="anime.stars"
+                            :img="anime.img"
+                            :genre="anime.genre"
+                            :rank="anime.rank"
+                        />
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section id="awards-list">
+            <div class="text-box">
+                <h1 class="text-head">#Vote Here in the Boxes Below</h1>
+                <div class="text-sub">
+                    <h2 class="text-tab">Seasonal</h2>
+                    <h2 class="text-tab">Year</h2>
+                    <NuxtLink to="/history"
+                        ><h2 class="text-tab">Past Winners</h2></NuxtLink
+                    >
+                </div>
+            </div>
+            <div class="award-container">
+                <AwardspageAwardVoting
+                    v-for="award in awards"
+                    :key="award.award"
+                    :award="award.award"
+                    :img="award.img"
+                />
+            </div>
+        </section>
+        <!-- <AwardspageBanner
+        :rank="1"
+        :title="'Attack on Titan'"
+        :genre="'Action, Drama, Fantasy'"
+        :stars=4.5
+        :img="'https://cdn.myanimelist.net/images/anime/10/47347.jpg'"
+        /> -->
     </div>
 </template>
-
 <script setup lang="ts">
-import Banner from "../components/awardspage/Banner.vue";
-import AwardVoting from "../components/awardspage/AwardVoting.vue";
 import { ref, onMounted } from "vue";
 import { useUserStore } from "~/stores/userStore";
 import { useRouter } from "nuxt/app";
 
 definePageMeta({
-  middleware: ["auth"]
-  // or middleware: 'auth'
-})
+    middleware: ["auth"],
+    // or middleware: 'auth'
+});
 
-const router = useRouter()
+const router = useRouter();
 
 const userStore = useUserStore();
-
-
-
-
 
 // export default {
 //     name: "awards",
@@ -33,5 +85,259 @@ const userStore = useUserStore();
 //     },
 // };
 </script>
+<style scoped>
+#banner {
+    padding-top: 9vh;
+}
+.banner-flex {
+    display: flex;
+    width: 80%;
+    height: 45rem;
+    margin: auto;
+    margin-top: 5vh;
+    margin-bottom: 9vh;
+    justify-content: center;
+    column-gap: 7rem;
+    color: var(--white);
+}
+.banner-bg {
+    background: var(--primary);
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+}
+.banner-text {
+    height: 85%;
+    width: 42rem;
+    background: var(--secondary);
+    border-radius: 25px;
+    margin-left: 5%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    padding-top: 5rem;
+}
+.trending-text,
+.title-banner,
+.voting-description {
+    margin: 0 2rem 0 2rem;
+}
+.trending-text {
+    font-size: var(--h4);
+    font-weight: var(--fw-light);
+    text-transform: uppercase;
+}
+.title-banner {
+    font-size: var(--h2);
+    font-weight: var(--fw-bold);
+    text-transform: uppercase;
+}
+.voting-description {
+    font-size: var(--h5);
+}
+.banner-image {
+    height: 75%;
+}
+.banner-season {
+    background: var(--tertiary);
+    width: 35%;
+    border-radius: 25px;
+    padding: 3rem 2rem;
+}
+.anime-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+    padding: 0;
+}
+.season-text {
+    text-align: center;
+    font-size: var(--h3);
+}
+/* section #awards-list */
+.award-container {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    column-gap: 6rem;
+    row-gap: 6rem;
+}
+#awards-list {
+    margin: auto;
+    width: 75vw;
+    margin-bottom: 30vh;
+    color: var(--white);
+}
+.text-box {
+    margin-bottom: 4rem;
+}
+.text-head {
+    font-size: var(--h2);
+}
+.text-sub {
+    display: flex;
+}
+.text-tab {
+    font-size: var(--h4);
+    margin-right: 3rem;
+    transition: 200ms ease-in-out;
+    font-weight: var(--fw-light);
+}
+.text-tab:hover {
+    color: var(--primary);
+    text-decoration: underline;
+}
+@media screen and (max-width: 1440px) {
+    .banner-flex {
+        height: 37rem;
+    }
+    .banner-text {
+        width: 32rem;
+        padding-top: 4rem;
+    }
+    .banner-image {
+        height: 70%;
+    }
+    .title-banner {
+        font-size: var(--h3);
+    }
+    .trending-text {
+        font-size: var(--h5);
+    }
+    .voting-description {
+        font-size: var(--h6);
+    }
+    .award-container {
+        row-gap: 4rem;
+    }
+}
 
-<style scoped></style>
+@media screen and (max-width: 1200px) {
+    .banner-flex {
+        height: 33rem;
+        margin-bottom: 5vh;
+        column-gap: 3rem;
+    }
+    .banner-text {
+        width: 30rem;
+        padding-top: 3rem;
+    }
+    .banner-season {
+        width: 40%;
+    }
+    .season-text {
+        font-size: var(--h4);
+        margin-bottom: 1rem;
+    }
+    .award-container {
+        column-gap: 3rem;
+        row-gap: 3rem;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .banner-flex {
+        height: 30rem;
+    }
+    .banner-text {
+        width: 25rem;
+    }
+    .title-banner {
+        font-size: var(--h4);
+    }
+}
+
+@media screen and (max-width: 915px) {
+    .banner-image {
+        display: none;
+    }
+    .banner-bg {
+        background: var(--secondary);
+        height: 28rem;
+        box-shadow: var(--primary) -2rem 2rem;
+    }
+    .banner-text {
+        margin: 1rem;
+        background: none;
+        padding-top: 1rem;
+        width: 22rem;
+    }
+    .banner-season {
+        width: 50%;
+    }
+    .text-head {
+        font-size: var(--h3);
+    }
+    .text-tab {
+        font-size: var(--h4);
+        margin-right: 2rem;
+    }
+    .award-container {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media screen and (max-width: 767px) {
+    #banner {
+        padding-top: 0;
+    }
+    .banner-flex {
+        flex-direction: column;
+        height: auto;
+        align-items: center;
+    }
+    .banner-bg {
+        margin-bottom: 5rem;
+        width: 80%;
+        height: fit-content;
+        padding: 2rem 0;
+    }
+    .banner-text {
+        width: fit-content;
+        padding: 0;
+    }
+    .banner-season {
+        width: 80%;
+    }
+    br {
+        display: none;
+    }
+    .award-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 3rem;
+    }
+}
+
+@media screen and (max-width: 568px) {
+    .text-head {
+        font-size: var(--h4);
+    }
+    .text-tab {
+        font-size: var(--h6);
+    }
+    .award-container {
+        width: 90%;
+        margin: auto;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .banner-bg {
+        width: 90%;
+    }
+    .banner-season {
+        width: 100%;
+    }
+    .text-head {
+        font-size: var(--h4);
+    }
+    .text-tab {
+        margin-right: 1.5rem;
+        font-size: var(--h6);
+    }
+    .award-container {
+        width: 100%;
+        column-gap: 2rem;
+    }
+}
+</style>
