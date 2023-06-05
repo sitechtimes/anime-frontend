@@ -52,4 +52,10 @@ const props = defineProps({
     fill: var(--light-text);
     transition: 0.2s;
 }
+
+@media screen and (max-width: 1024px) {
+	#rightPageButton, svg {
+		height: 1.5rem;
+	}
+}
 </style>

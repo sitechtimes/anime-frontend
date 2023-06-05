@@ -136,7 +136,7 @@
                     :mediaType="anime.media_type"
                 />
             </div>
-            <div class="page-container-bot">
+            <div class="page-container">
                 <div class="page-number">
                     <p class="page-text">Page</p>
                     <form
@@ -185,24 +185,25 @@
 
 <script setup lang="ts">
 import { useUserStore } from "~~/stores/userStore";
-import { animeRest, animeGenre } from "~~/types/anime";
+import { animeRest } from "~~/types/anime";
+import { ref } from "vue";
 
 const userStore = useUserStore();
 
 const text = ref<string>("");
 
-const genres = ref([] as string[]);
-const years = ref([] as string[]);
-const sorts = ref([] as string[]);
-const seasons = ref([] as string[]);
-const statuses = ref([] as string[]);
-const types = ref([] as string[]);
+const genres = ref<string[]>([]);
+const years = ref<string[]>([]);
+const sorts = ref<string[]>([]);
+const seasons = ref<string[]>([]);
+const statuses = ref<string[]>([]);
+const types = ref<string[]>([]);
 
-const animeResults = ref([] as animeRest[]);
+const animeResults = ref<animeRest[]>([]);
 
 const pageLeftIndicator = ref<boolean>(false);
 const pageRightIndicator = ref<boolean>(true);
-const pageFilteredAnime = ref([] as animeRest[]);
+const pageFilteredAnime = ref<animeRest[]>([]);
 const animePerPage = ref<number>(35);
 const totalPage = ref<number>(0);
 const startPageIndex = ref<number>(0);
@@ -215,7 +216,7 @@ const media_status = ref<string>("");
 const media_type = ref<string>("");
 const media_sort = ref<string>("");
 
-const loadingAnime: number[] = [...Array(35).keys()];
+const loadingAnime: number[] = [...Array(animePerPage.value).keys()];
 const loading = ref<boolean>(true);
 
 for (let i = 2021; i >= 1990; i--) {
@@ -282,23 +283,23 @@ function pagenation(direction: number) {
         if (userStore.pageNumber != 1) {
             pageLeftIndicator.value = true;
             pageRightIndicator.value = true;
-            userStore.startPageIndex -= animePerPage.value;
-            userStore.endPageIndex -= animePerPage.value;
+            startPageIndex.value -= animePerPage.value;
+            endPageIndex.value -= animePerPage.value;
             userStore.pageNumber -= 1;
         }
     } else if (direction == 1) {
         if (userStore.pageNumber != totalPage.value) {
             pageLeftIndicator.value = true;
             pageRightIndicator.value = true;
-            userStore.startPageIndex += animePerPage.value;
-            userStore.endPageIndex += animePerPage.value;
+            startPageIndex.value += animePerPage.value;
+            endPageIndex.value += animePerPage.value;
             userStore.pageNumber += 1;
         }
     }
     pageExistIndicator();
     pageFilteredAnime.value = userStore.filterAnime.slice(
-        userStore.startPageIndex,
-        userStore.endPageIndex
+        startPageIndex.value,
+        endPageIndex.value
     );
 }
 
@@ -323,6 +324,14 @@ function filter(): animeRest[] {
                 if (animeWords[i].startsWith(textResults[0])) {
                     if (textResults.length == 1) {
                         searchResult.push(anime);
+                    } else {
+                        textResults.forEach((word: string) => {
+                            if (animeWords[i + 1] != undefined) {
+                                if (animeWords[i + 1].startsWith(word)) {
+                                    searchResult.push(anime);
+                                }
+                            }
+                        });
                     }
                 }
             }
@@ -451,29 +460,28 @@ function clearAllFilter() {
     text.value = "";
     animeResults.value = [];
     userStore.animeId = 0;
-    userStore.startPageIndex = 0;
-    userStore.endPageIndex = animePerPage.value;
+    startPageIndex.value = 0;
+    endPageIndex.value = animePerPage.value;
     userStore.pageNumber = 1;
 
     calculateTotalPage();
 
     pageFilteredAnime.value = userStore.allAnime.slice(
-        userStore.startPageIndex,
-        userStore.endPageIndex
+        startPageIndex.value,
+        endPageIndex.value
     );
 }
 
 function selectPage(num: number) {
-    userStore.startPageIndex =
-        num * animePerPage.value - animePerPage.value + 1;
-    userStore.endPageIndex = num * animePerPage.value + 1;
+    startPageIndex.value = num * animePerPage.value - animePerPage.value + 1;
+    endPageIndex.value = num * animePerPage.value + 1;
 
     const filterAnimeArr = filter();
     userStore.filterAnime = filterAnimeArr;
 
     pageFilteredAnime.value = filterAnimeArr.slice(
-        userStore.startPageIndex,
-        userStore.endPageIndex
+        startPageIndex.value,
+        endPageIndex.value
     );
 }
 
@@ -486,79 +494,55 @@ function toTop() {
 .home-body {
     display: flex;
     flex-direction: row;
-    width: 100%;
-    border-radius: 10px;
-    column-gap: 2rem;
-    align-items: flex-start;
     justify-content: center;
-    background-size: cover;
 }
 .allAnime-container {
-    background-color: var(--bg-primary);
-    border-radius: 1.5rem;
     display: flex;
     flex-direction: column;
-    height: 100%;
-    margin-right: 2rem;
-    margin-left: 2rem;
-    margin-top: 10rem;
-    margin-bottom: 10rem;
+    margin: 12rem 2rem 10rem;
     width: 90vw;
 }
 .allAnime-header {
-    align-items: center;
     display: flex;
-    height: 6rem;
+    align-items: center;
     justify-content: space-between;
-    margin-top: 2rem;
 }
 .allAnime-title {
     font-size: var(--h3);
     font-weight: var(--fw-semi-bold);
     color: var(--light-text);
-    height: 7rem;
-    width: 100%;
     display: flex;
     align-items: center;
-    border-radius: 0.75rem;
-    margin-bottom: 0.5rem;
-}
-
-.input-Box {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    column-gap: 1rem;
-    margin-right: 2rem;
-    width: 30rem;
-}
-.input {
-    background-color: var(--bg-secondary);
-    border-radius: 0.75rem;
-    border: none;
-    color: var(--light-text);
-    font-size: var(--h5);
-    font-weight: var(--fw-regular);
-    padding: 0.5rem 1rem;
-    width: 100%;
-}
-.input:focus {
-    outline: none;
 }
 .allAnime-filter {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: flex-end;
-    column-gap: 1rem;
-    margin-right: 2rem;
-    width: 100%;
-    height: 8rem;
-    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    row-gap: 1.5rem;
+    column-gap: 2rem;
+    margin: 2rem 0 4rem;
 }
-
-.allAnime-filter .allAnime-filterSelect {
+.input-Box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    flex: 1;
+    min-width: 20rem;
+}
+.input {
+    background-color: var(--bg-secondary);
+    border-radius: 0.75rem;
+    border: none;
+    width: 100%;
+    color: var(--light-text);
+    font-size: var(--h5);
+    font-weight: var(--fw-regular);
+    padding: 0.5rem 1rem;
+    outline: none;
+}
+.allAnime-filterSelect {
     background-color: var(--bg-secondary);
     border-radius: 0.75rem;
     border: none;
@@ -569,12 +553,11 @@ function toTop() {
 }
 
 .content-condition {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    row-gap: 4rem;
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    row-gap: 2rem;
+    column-gap: 3rem;
     margin-bottom: 5rem;
-    column-gap: 2.3%;
 }
 .allAnime-content {
     display: flex;
@@ -596,9 +579,9 @@ function toTop() {
     padding: 0.5rem 1rem;
 }
 .page-container {
-    justify-content: flex-end;
     display: flex;
     align-items: center;
+    justify-content: center;
     column-gap: 1rem;
 }
 .page-button {
@@ -647,14 +630,73 @@ function toTop() {
     align-items: center;
     column-gap: 1rem;
 }
-.page-container-bot {
-    justify-content: center;
-    display: flex;
-    align-items: center;
-    column-gap: 1rem;
-    margin-right: 1rem;
-}
 .svg-button {
     display: block;
+}
+
+@media screen and (max-width: 1440px) {
+    .content-condition {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .allAnime-container {
+        margin: 10rem 2rem;
+    }
+    .allAnime-title {
+        font-size: var(--h4);
+    }
+    .page-text,
+    .page-input {
+        font-size: var(--h7);
+    }
+    .input,
+    .allAnime-filterSelect,
+    .button-clear {
+        font-size: var(--h6);
+    }
+    .content-condition {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        column-gap: 2rem;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .allAnime-container {
+        margin-top: 3rem;
+    }
+    .input,
+    .allAnime-filterSelect,
+    .button-clear {
+        font-size: var(--h7);
+    }
+    .allAnime-filterSelect {
+        padding: 0.5rem;
+    }
+    .button-clear {
+        width: 12rem;
+    }
+    .content-condition {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        column-gap: 2rem;
+    }
+}
+
+@media screen and (max-width: 568px) {
+    .input-Box {
+        min-width: 15rem;
+    }
+    .content-condition {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        column-gap: 2rem;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .content-condition {
+        column-gap: 1rem;
+        row-gap: 1rem;
+    }
 }
 </style>
