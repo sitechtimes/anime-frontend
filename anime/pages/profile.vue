@@ -12,7 +12,7 @@
                     src="https://th.bing.com/th/id/OIP.5Xv2gQmaNhcCJVB0E6zuwgHaEK?pid=ImgDet&rs=1"
                     alt="profile picture"
                 />
-                <div class="profile-name">
+                <div class="profile-userinfo">
                     <h3 class="profile-id">{{ firstName }} {{ lastName }}</h3>
                     <h3 class="profile-grade">{{ emailDOE }}</h3>
 
@@ -238,10 +238,17 @@ onMounted(() => {
     object-position: bottom;
     border-radius: 1rem;
 }
+.profile-info {
+    display: flex;
+}
 .profile-img {
     border-radius: 50%;
     width: 15rem;
     height: 15rem;
     object-fit: cover;
+}
+.profile-userinfo {
+    color: var(--white);
+    font-size: var(--h4);
 }
 </style>
