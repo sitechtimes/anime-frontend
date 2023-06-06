@@ -199,9 +199,10 @@ function selectPage(num: number): void {
 .home-body {
 	display: flex;
 	flex-direction: row;
-	margin: 5rem auto 10rem;
+	margin: 0 auto 10rem;
 	width: 95vw;
 	column-gap: 3rem;
+	padding-top: 3rem;
 }
 .airing-container {
 	flex: 1;
