@@ -468,8 +468,6 @@ function toTop() {
 	font-size: var(--h3);
 	font-weight: var(--fw-semi-bold);
 	color: var(--light-text);
-	display: flex;
-	align-items: center;
 }
 .allAnime-filter {
 	display: flex;
@@ -541,54 +539,40 @@ function toTop() {
 	justify-content: center;
 	column-gap: 1rem;
 }
-.page-button {
-	background-color: transparent;
-	border: none;
-	padding: 0;
-	padding-right: 0;
-	cursor: pointer;
+.page-number {
 	display: flex;
-	justify-content: center;
+	column-gap: 0.8rem;
 }
 .page-text {
 	font-size: var(--h5);
-	font-weight: var(--fw-semi-bold);
 	color: var(--light-text);
 }
-.page-input::-webkit-outer-spin-button,
-.page-input::-webkit-inner-spin-button {
-	-webkit-appearance: none;
-	margin: 0;
-}
 .page-input {
-	min-width: 4.5rem;
+	width: 7rem;
 	font-size: var(--h5);
-	font-weight: var(--fw-med);
 	color: var(--light-text);
 	background-color: var(--bg-secondary);
 	border: none;
 	border-radius: 0.5rem;
 	padding: 0.5rem 1rem;
 	text-align: center;
-}
-.page-input:focus {
 	outline: none;
 }
-.page-number {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	column-gap: 0.8rem;
+.page-input::-webkit-outer-spin-button,
+.page-input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
 }
 .page-buttonBox {
-	background-color: transparent;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	column-gap: 1rem;
 }
-.svg-button {
-	display: block;
+.page-button {
+	background: none;
+	padding: 0;
+	cursor: pointer;
 }
 
 @media screen and (max-width: 1440px) {
@@ -631,7 +615,12 @@ function toTop() {
 	}
 	.content-condition {
 		grid-template-columns: repeat(4, minmax(0, 1fr));
-		column-gap: 2rem;
+	}
+	.page-input {
+		width: 5rem;
+	}
+	.page-buttonBox {
+		column-gap: 0;
 	}
 }
 
@@ -641,7 +630,6 @@ function toTop() {
 	}
 	.content-condition {
 		grid-template-columns: repeat(3, minmax(0, 1fr));
-		column-gap: 2rem;
 	}
 }
 
