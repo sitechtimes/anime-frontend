@@ -65,14 +65,14 @@
       <NuxtLink to="/awards"><button class="btn">Back</button></NuxtLink>
       <button class="btn" @click="voteMutation" id="vote-btn">Vote</button>
     </div>
-    <!-- <div class="popup" ref="popup">
+    <div v-if="showPopup" class="popup">
       <div class="popup-content">
-        <span class="popup-close" @click="close">&times</span>
+        <button class="popup-close" @click="closePopup">&times</button>
         <div class="popup-msg">
-          <h1>You voted already.</h1>
+          <p>You voted already.</p>
         </div>
       </div>
-    </div> -->
+    </div>
   </div>
 </template>
 
@@ -97,6 +97,7 @@ let text = ref("");
 let filteredAnime = ref([] as any);
 let filteredCharacters = ref([] as any);
 const nomineeBox = ref(null);
+const showPopup = ref(false);
 
 const userStore = useUserStore();
 
@@ -195,7 +196,7 @@ function select(anime: String) {
   nominee.value = click.outerText;
 
   nomineeBox.value.forEach((box) => {
-    box.style.background = "#252525";
+    box.style.background = "var(--bg-secondary)";
   });
   if (click.className == "nominee-box") {
     click.style.background = "var(--primary)";
@@ -345,6 +346,10 @@ onMounted(() => {
     getAnimes();
   }
 });
+
+function closePopup() {
+  showPopup.value = false;
+}
 </script>
 <!-- 
 <script lang="ts">
@@ -618,7 +623,7 @@ export default ({
   font-size: var(--h1);
   text-align: center;
   margin-top: 7rem;
-  border-radius: 5rem;
+  border-radius: 3rem;
 }
 .input {
   color: var(--search-text);
@@ -681,38 +686,37 @@ export default ({
 .btn:hover {
   background: var(--primary);
 }
-
-/* #popup {
-  background: rgb(0, 0, 0, 0.6);
+.popup {
+  background: var(--vote-shadow);
   position: fixed;
-  z-index: 1;
+  z-index: 5;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
-  display: none;
+  display: flex;
+  justify-content: center;
 }
 .popup-content {
   background: var(--primary);
-  flex-direction: column;
-  align-items: flex-end;
-  height: 20rem;
-  width: 40rem;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 25rem;
+  width: 50rem;
   margin: auto;
 }
 .popup-close {
+  align-self: flex-end;
+  color: var(--white);
   font-size: var(--h2);
-  margin-right: 1rem;
+  font-weight: var(--fw-reg);
+  padding: 1rem 2rem;
 }
 .popup-msg {
-  width: 100%;
-  text-align: center;
-} */
-
-/* .search-bar {
+  font-size: var(--h3);
   margin-top: 2rem;
-} */
+}
 
 @media screen and (max-width: 1440px) {
   #actual-voting {
@@ -726,6 +730,14 @@ export default ({
   }
   .anime-title, .btn {
     font-size: var(--h4);
+  }
+  .popup-content {
+    height: 20rem;
+    width: 40rem;
+  }
+  .popup-msg {
+    font-size: var(--h4);
+    margin-top: 1rem;
   }
 }
 
@@ -762,6 +774,20 @@ export default ({
   }
   .anime-title, .btn {
     font-size: var(--h5);
+  }
+}
+
+@media screen and (max-width: 568px) {
+  .popup-content {
+    width: 75vw;
+    height: 15rem;
+  }
+  .popup-close {
+    font-size: var(--h3);
+  }
+  .popup-msg {
+    font-size: var(--h5);
+    margin-top: 0;
   }
 }
 
