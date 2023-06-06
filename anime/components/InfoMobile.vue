@@ -767,4 +767,10 @@ function hideInfo() {
     font-size: var(--h7);
   }
 }
+
+@media screen and (max-width: 375px) {
+  .animeImage {
+    width: 10rem;
+  }
+}
 </style>
