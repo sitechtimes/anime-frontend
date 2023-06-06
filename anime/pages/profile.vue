@@ -320,7 +320,6 @@ export default {
 
 .tab-bottom {
     margin-top: 25rem;
-    transform: translateX(20%);
     /* display: flex;
     flex-direction: row;
     justify-content: flex-end; */
