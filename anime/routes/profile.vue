@@ -589,7 +589,7 @@ export default {
     font-size: var(--h4);
 }
 .anime-img {
-    height: 22vh;
+    height: 20vh;
 }
 .anime-title {
     font-size: var(--h6);
@@ -734,11 +734,11 @@ export default {
     height: 10vh;
 }
 .anime-title {
-    width: 17vw;
+    width: 16vw;
 }
 .pf-carousel {
     width: 57vw;
-    height: 14vh;
+    height: 13vh;
     margin-left: 2.5rem;
 }
 .pf-carousel-slide {
@@ -746,8 +746,8 @@ export default {
     height: 12vh;
 }
 .profile-img {
-    width: 11rem;
-    height: 11rem;
+    width: 13rem;
+    height: 13rem;
 }
 .profile-info {
     margin-top: 18rem;
@@ -815,16 +815,17 @@ export default {
     height: 9vh;
 }
 .anime-title {
-    width: 11vw;
+    width: 13vw;
     height: 1.5rem;
     font-size: var(--smallText);
 }
 .pf-carousel {
-    width: 59vw;
+    width: 53vw;
     height: 11vh;
+    margin-left: 4rem;
 }
 .pf-carousel-slide {
-    width: 11vw;
+    width: 13vw;
     height: 11vh;
 }
 .carousel-arrow {
@@ -845,6 +846,16 @@ export default {
 @media screen and (max-width: 520px) {
 .anime-img {
     height: 8vh;
+}
+.anime-title {
+    width: 11vw;
+}
+.pf-carousel {
+    width: 59vw;
+    margin-left: 0rem;
+}
+.pf-carousel-slide {
+    width: 11vw;
 }
 .profile-name {
     margin-top: 5rem;
@@ -876,7 +887,7 @@ export default {
 }
 @media screen and (max-width: 415px) {
 .pf-carousel {
-    width: 56vw;
+    width: 55vw;
     margin-left: 2.5rem;
 }
 }

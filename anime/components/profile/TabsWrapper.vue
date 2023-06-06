@@ -88,7 +88,7 @@ export default {
 }
 .tabs-header {
     width: 9vw;
-    height: 65vh;
+    height: 67vh;
 }
 .tabs-header li {
     width: 9vw;
@@ -123,11 +123,11 @@ export default {
 }
 @media screen and (max-width: 825px) {
 .tabs {
-    height: 38vh;
+    height: 33vh;
 }
 .tabs-header {
-    width: 9vw;
-    height: 46vh;
+    width: 9.5vw;
+    height: 39vh;
 }
 .tabs-header li {
     width: 9vw;
@@ -136,7 +136,11 @@ export default {
 }
 @media screen and (max-width: 780px) {
 .tabs {
-    height: 40vh;
+    height: 36vh;
+}
+.tabs-header {
+    width: 9vw;
+    height: 44vh;
 }
 }
 @media screen and (max-width: 680px) {
@@ -173,27 +177,27 @@ export default {
 }
 @media screen and (max-width: 420px) {
 .tabs {
-    height: 27vh;
+    height: 22vh;
 }
 .tabs-header {
-    height: 32vh;
+    height: 27vh;
     margin-left: 2rem;
 }
 }
 @media screen and (max-width: 400px) {
 .tabs-header {
-    width: 12vw;
-    height: 34vh;
+    width: 11vw;
+    height: 28vh;
     padding-top: 0.5rem;
 }
 .tabs-header li {
-    width: 12vw;
+    width: 11vw;
 }
 }
 @media screen and (max-width: 380px) {
 .tabs-header {
     width: 10vw;
-    height: 34vh;
+    height: 26vh;
 }
 .tabs-header li {
     width: 10vw;
