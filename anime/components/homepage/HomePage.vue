@@ -50,16 +50,18 @@
 		</div>
 		<div class="topCharts-container">
 			<h2 class="topCharts-title">Top Charts</h2>
-			<homepageTopCharts
-				v-for="(charts, index) in sortedAnimeTop"
-				:key="charts.id"
-				:malid="charts.malId"
-				:img="charts.imageUrl"
-				:episode="charts.episodes"
-				:votes="charts.currentlyWatching"
-				:title="charts.animeName"
-				:rank="index + 1"
-			/>
+			<div class="topCharts-content">
+				<homepageTopCharts
+					v-for="(charts, index) in sortedAnimeTop"
+					:key="charts.id"
+					:malid="charts.malId"
+					:img="charts.imageUrl"
+					:episode="charts.episodes"
+					:votes="charts.currentlyWatching"
+					:title="charts.animeName"
+					:rank="index + 1"
+				/>
+			</div>
 		</div>
 	</div>
 </template>
@@ -202,6 +204,7 @@ function selectPage(num: number): void {
 	margin: 0 auto 10rem;
 	width: 95vw;
 	column-gap: 3rem;
+	padding-top: 3rem;
 }
 .airing-container {
 	flex: 1;
@@ -209,23 +212,56 @@ function selectPage(num: number): void {
 	flex-direction: column;
 }
 .airing-header {
-	align-items: center;
 	display: flex;
-	height: 6rem;
+	align-items: baseline;
 	justify-content: space-between;
 }
 .airing-title {
 	font-size: var(--h3);
 	font-weight: var(--fw-semi-bold);
 	color: var(--light-text);
-	height: 6rem;
-	padding: 0;
 }
 .page-container {
-	justify-content: flex-end;
 	display: flex;
 	align-items: center;
+	justify-content: center;
 	column-gap: 1rem;
+	margin: auto 0;
+}
+.page-number {
+	display: flex;
+	column-gap: 0.8rem;
+}
+.page-text {
+	font-size: var(--h5);
+	color: var(--light-text);
+}
+.page-input {
+	width: 7rem;
+	font-size: var(--h5);
+	color: var(--light-text);
+	background-color: var(--bg-secondary);
+	border: none;
+	border-radius: 0.5rem;
+	padding: 0.5rem 1rem;
+	text-align: center;
+	outline: none;
+}
+.page-input::-webkit-outer-spin-button,
+.page-input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+.page-buttonBox {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	column-gap: 1rem;
+}
+.page-button {
+	background: none;
+	padding: 0;
+	cursor: pointer;
 }
 .airing-content {
 	display: grid;
@@ -234,66 +270,10 @@ function selectPage(num: number): void {
 	column-gap: 2rem;
 	margin-top: 2rem;
 }
-.page-button {
-	background-color: transparent;
-	border: none;
-	padding: 0;
-	padding-right: 0;
-	cursor: pointer;
-	display: flex;
-	justify-content: center;
-}
-.page-text {
-	font-size: var(--h5);
-	font-weight: var(--fw-semi-bold);
-	color: var(--light-text);
-}
-
-.page-input::-webkit-outer-spin-button,
-.page-input::-webkit-inner-spin-button {
-	-webkit-appearance: none;
-	margin: 0;
-}
-.page-input {
-	min-width: 4.5rem;
-	font-size: var(--h5);
-	font-weight: var(--fw-med);
-	color: var(--light-text);
-	background-color: var(--bg-secondary);
-	border: none;
-	border-radius: 0.5rem;
-	padding: 0.5rem 1rem;
-	text-align: center;
-}
-.page-input:focus {
-	outline: none;
-}
-.page-number {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	column-gap: 0.8rem;
-}
-.page-buttonBox {
-	background-color: transparent;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	column-gap: 1rem;
-}
-.svg-button {
-	display: block;
-}
-
-input[type="number"] {
-	-moz-appearance: textfield;
-}
 .topCharts-container {
 	display: flex;
 	flex-direction: column;
 	width: 30rem;
-	/* row-gap: 0;
-	grid-template-columns: repeat(1, minmax(0, 1fr)); */
 }
 .topCharts-title {
 	font-size: var(--h3);
@@ -306,28 +286,85 @@ input[type="number"] {
 }
 
 @media screen and (max-width: 1440px) {
-	.airing-content {
-		grid-template-columns: repeat(5, minmax(0, 1fr));		
-	}
-}
-
-@media screen and (max-width: 1200px) {
 	.home-body {
 		flex-direction: column;
 		width: 90vw;
 	}
+	.topCharts-container {
+		margin-top: 5rem;
+		width: 100%;
+	}
+	.topCharts-title {
+		width: max-content;
+		background: var(--secondary);
+		color: var(--white);
+		padding: 0.5rem 2rem;
+	}
+	.topCharts-content {
+		margin-top: 2rem;
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		row-gap: 1rem;
+		column-gap: 3rem;
+	}
+}
+
+@media screen and (max-width: 1024px) {
+	.airing-content {
+		grid-template-columns: repeat(5, minmax(0, 1fr));
+	}
 }
 
 @media screen and (max-width: 767px) {
+	.airing-title {
+		font-size: var(--h4);
+	}
+	.page-text, .page-input {
+		font-size: var(--h7);
+	}
+	.page-input {
+		width: 5rem;
+	}
+	.page-buttonBox {
+		column-gap: 0;
+	}
 	.airing-content {
 		grid-template-columns: repeat(4, minmax(0, 1fr));
-		column-gap: 1rem;
+	}
+	.topCharts-title {
+		font-size: var(--h4);
+	}
+	.topCharts-content {
+		column-gap: 2rem;
 	}
 }
 
 @media screen and (max-width: 568px) {
 	.airing-content {
 		grid-template-columns: repeat(3, minmax(0, 1fr));		
+	}
+	.topCharts-content {
+		grid-template-columns: repeat(1, minmax(0, 1fr));
+	}
+}
+
+@media screen and (max-width: 425px) {
+	.home-body {
+		width: 85vw;
+	}
+	.airing-content {
+		column-gap: 1rem;
+		row-gap: 1rem;
+	}
+}
+
+@media screen and (max-width: 375px) {
+	.airing-title {
+		font-size: var(--h6);
+	}
+	.topCharts-title {
+		width: 100%;
+		text-align: center;
 	}
 }
 </style>

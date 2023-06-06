@@ -71,8 +71,8 @@ defineProps({
     align-items: center;
     height: 7.5rem;
     background-color: var(--tertiary);
-    margin-top: 1rem;
     border-radius: 1rem;
+    margin-top: 1rem;
 }
 .topChartsComp-rank {
     font-family: var(--second-font);
@@ -135,10 +135,22 @@ defineProps({
 
 @media screen and (max-width: 1440px) {
     .topChartsComp-container {
-        height: 7rem;
+        margin-top: 0;
     }
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 767px) {
+    .topChartsComp-container {
+        height: 6.5rem;
+    }
+    .topChartsComp-rank {
+        font-size: var(--h4);
+    }
+    .topChartsComp-info {
+        justify-content: center;
+    }
+    .topChartsComp-title {
+        font-size: var(--h6);
+    }
 }
 </style>

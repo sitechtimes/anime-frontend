@@ -13,4 +13,10 @@
     height: 45vh;
     display: block;
 }
+
+@media screen and (max-width: 767px) {
+    .underNav {
+        height: 35vh;
+    }
+}
 </style>

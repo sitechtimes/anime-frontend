@@ -32,7 +32,7 @@
 				/>
 				<div class="biggerBox" v-if="showAnimeResults">
 					<p class="biggerBox-text">Anime</p>
-					<SearchResultComp
+					<NavbarSearchResult
 						@saveAnimeID="saveClickedAnimeID(anime.mal_id)"
 						@click="reload()"
 						v-for="anime in animeResults.slice(0, 5)"
@@ -53,6 +53,7 @@
 import { useUserStore } from "~~/stores/userStore";
 import { ref, onMounted } from "vue";
 import { animeRest } from "~~/types/anime";
+
 
 const route = useRoute();
 const userStore = useUserStore();
