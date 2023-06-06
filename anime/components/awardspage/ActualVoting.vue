@@ -1,8 +1,8 @@
 <template>
   <div id="actual-voting">
-    <h1 class="award-name">{{ awardName }}</h1>
+    <h3 class="award-name">{{ awardName }}</h3>
     <!-- <SearchBar/> -->
-    <form class="input-Box">
+    <form>
       <input
         v-model="text"
         placeholder="Search nominee..."
@@ -22,7 +22,7 @@
         @click="select"
       >
         <img class="image-placeholder" :src="anime.node.imageUrl" alt="" />
-        <h1 class="anime-title">{{ anime.node.animeName }}</h1>
+        <h5 class="anime-title">{{ anime.node.animeName }}</h5>
       </div>
       <div
         v-else
@@ -58,7 +58,7 @@
         @click="select"
       >
         <img class="image-placeholder" :src="character.imageUrl" alt="" />
-        <h1 class="anime-title">{{ character.characterName }}</h1>
+        <h5 class="anime-title">{{ character.characterName }}</h5>
       </div>
     </div>
     <div class="btn-container">
@@ -606,35 +606,11 @@ export default ({
 </script> -->
   
 <style scoped>
-.input-Box {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  column-gap: 1rem;
-  margin-right: 2rem;
-  width: 30rem;
-}
-.input {
-  background-color: var(--bg-secondary);
-  border-radius: 0.75rem;
-  border: none;
-  color: var(--light-text);
-  font-size: var(--h5);
-  font-weight: var(--fw-regular);
-  padding: 0.5rem 1rem;
-  width: 100%;
-  margin-top: 2rem;
-}
-.input:focus {
-  outline: none;
-}
-
 #actual-voting {
   padding-top: 9vh;
   width: 70vw;
   margin: auto;
-  margin-bottom: 10vh;
+  margin-bottom: 10rem;
   color: var(--white);
 }
 .award-name {
@@ -642,12 +618,29 @@ export default ({
   font-size: var(--h1);
   text-align: center;
   margin-top: 7rem;
+  border-radius: 5rem;
 }
+
+
+
+.input {
+  color: var(--light-text);
+  font-size: var(--h3);
+  background-color: var(--bg-secondary);
+
+  border-radius: 1rem;
+  border: none;
+  outline: none;
+  padding: 0.5rem 1rem;
+ 
+}
+
+
 .nominee-container {
-  margin-top: 5vh;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  display: none;
 }
 .nominee-box {
   padding: 0rem;
@@ -676,6 +669,7 @@ export default ({
   justify-content: space-between;
   width: 20vw;
   margin: auto;
+  display: none;
 }
 .btn {
   color: var(--white);
@@ -690,7 +684,15 @@ export default ({
 .btn:hover {
   background: var(--primary);
 }
-#popup {
+
+
+
+
+
+
+
+
+/* #popup {
   background: rgb(0, 0, 0, 0.6);
   position: fixed;
   z-index: 1;
@@ -716,7 +718,7 @@ export default ({
 .popup-msg {
   width: 100%;
   text-align: center;
-}
+} */
 
 /* .search-bar {
   margin-top: 2rem;
@@ -768,8 +770,8 @@ export default ({
   .btn {
     width: 30vw;
   }
-  .popup-content {
+  /* .popup-content {
     width: 30rem;
-  }
+  } */
 }
 </style>
