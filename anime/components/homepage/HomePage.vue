@@ -50,16 +50,18 @@
 		</div>
 		<div class="topCharts-container">
 			<h2 class="topCharts-title">Top Charts</h2>
-			<homepageTopCharts
-				v-for="(charts, index) in sortedAnimeTop"
-				:key="charts.id"
-				:malid="charts.malId"
-				:img="charts.imageUrl"
-				:episode="charts.episodes"
-				:votes="charts.currentlyWatching"
-				:title="charts.animeName"
-				:rank="index + 1"
-			/>
+			<div class="topCharts-content">
+				<homepageTopCharts
+					v-for="(charts, index) in sortedAnimeTop"
+					:key="charts.id"
+					:malid="charts.malId"
+					:img="charts.imageUrl"
+					:episode="charts.episodes"
+					:votes="charts.currentlyWatching"
+					:title="charts.animeName"
+					:rank="index + 1"
+				/>
+			</div>
 		</div>
 	</div>
 </template>
@@ -95,7 +97,7 @@ onMounted(() => {
 			const airingAnimeArr = [] as animeRest[];
 
 			data!.filter(function (anime: animeRest) {
-				if (anime.status == "Finished Airing") {
+				if (anime.status == "Currently Airing") {
 					airingAnimeArr.push(anime);
 				}
 			});
@@ -271,7 +273,7 @@ function selectPage(num: number): void {
 .topCharts-container {
 	display: flex;
 	flex-direction: column;
-	width: 35rem;
+	width: 30rem;
 }
 .topCharts-title {
 	font-size: var(--h3);
@@ -287,6 +289,23 @@ function selectPage(num: number): void {
 	.home-body {
 		flex-direction: column;
 		width: 90vw;
+	}
+	.topCharts-container {
+		margin-top: 5rem;
+		width: 100%;
+	}
+	.topCharts-title {
+		width: max-content;
+		background: var(--secondary);
+		color: var(--white);
+		padding: 0.5rem 2rem;
+	}
+	.topCharts-content {
+		margin-top: 2rem;
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		row-gap: 1rem;
+		column-gap: 3rem;
 	}
 }
 
@@ -312,15 +331,27 @@ function selectPage(num: number): void {
 	.airing-content {
 		grid-template-columns: repeat(4, minmax(0, 1fr));
 	}
+	.topCharts-title {
+		font-size: var(--h4);
+	}
+	.topCharts-content {
+		column-gap: 2rem;
+	}
 }
 
 @media screen and (max-width: 568px) {
 	.airing-content {
 		grid-template-columns: repeat(3, minmax(0, 1fr));		
 	}
+	.topCharts-content {
+		grid-template-columns: repeat(1, minmax(0, 1fr));
+	}
 }
 
 @media screen and (max-width: 425px) {
+	.home-body {
+		width: 85vw;
+	}
 	.airing-content {
 		column-gap: 1rem;
 		row-gap: 1rem;
@@ -330,6 +361,10 @@ function selectPage(num: number): void {
 @media screen and (max-width: 375px) {
 	.airing-title {
 		font-size: var(--h6);
+	}
+	.topCharts-title {
+		width: 100%;
+		text-align: center;
 	}
 }
 </style>
