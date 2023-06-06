@@ -608,7 +608,7 @@ export default ({
 <style scoped>
 #actual-voting {
   padding-top: 9vh;
-  width: 70vw;
+  width: 75vw;
   margin: auto;
   margin-bottom: 10rem;
   color: var(--white);
@@ -620,36 +620,27 @@ export default ({
   margin-top: 7rem;
   border-radius: 5rem;
 }
-
-
-
 .input {
-  color: var(--light-text);
-  font-size: var(--h3);
-  background-color: var(--bg-secondary);
-
+  color: var(--search-text);
+  font-size: var(--h4);
+  background-color: var(--search-bg);
   border-radius: 1rem;
   border: none;
   outline: none;
-  padding: 0.5rem 1rem;
- 
+  padding: 1rem 2rem;
+  margin: 3rem 0 4rem;
+  width: 40%;
 }
-
-
 .nominee-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  display: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 3rem;
 }
 .nominee-box {
-  padding: 0rem;
-  width: 33vw;
-  height: 12vh;
+  height: 12rem;
   display: flex;
   flex-direction: row;
-  background: #252525;
-  margin-bottom: 3rem;
+  background: var(--bg-secondary);
   transition: 100ms;
 }
 .nominee-box:hover {
@@ -663,34 +654,33 @@ export default ({
 .anime-title {
   font-size: var(--h3);
   margin: 1rem 2rem;
+  height: fit-content;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+	-webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 .btn-container {
+  margin-top: 5rem;
+  width: 100%;
   display: flex;
-  justify-content: space-between;
-  width: 20vw;
-  margin: auto;
-  display: none;
+  justify-content: center;
+  column-gap: 5rem;
 }
 .btn {
   color: var(--white);
   font-size: var(--h3);
+  font-weight: var(--fw-reg);
   background: none;
   border: 0.3rem solid var(--primary);
-  border-radius: 0;
-  width: 8vw;
-  padding: 0.5rem 0;
+  border-radius: 1rem;
+  padding: 0.5rem 4rem;
   transition: 300ms;
 }
 .btn:hover {
   background: var(--primary);
 }
-
-
-
-
-
-
-
 
 /* #popup {
   background: rgb(0, 0, 0, 0.6);
@@ -724,54 +714,64 @@ export default ({
   margin-top: 2rem;
 } */
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1440px) {
+  #actual-voting {
+    width: 80vw;
+  }
   .award-name {
-    margin-top: 5rem;
     font-size: var(--h2);
   }
   .nominee-box {
     height: 10rem;
   }
-  .anime-title {
-    font-size: var(--h4);
-  }
-  .btn-container {
-    width: 30vw;
-  }
-  .btn {
-    width: 12vw;
+  .anime-title, .btn {
     font-size: var(--h4);
   }
 }
 
-@media screen and (max-width: 768px) {
-  .nominee-box {
+@media screen and (max-width: 1024px) {
+  .input {
+    margin: 2rem 0 3rem;
+    padding: 0.5rem 1rem;
+    font-size: var(--h5);
+  }
+  .nominee-container {
+    gap: 2rem;
+  }
+  .btn-container {
+    margin-top: 2rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  #actual-voting {
+    padding-top: 5vh;
+  }
+  .award-name {
+    font-size: var(--h3);
+    margin-top: 0;
+  }
+  .input {
     width: 100%;
   }
-  .btn-container {
-    width: 40vw;
-  }
-  .btn {
-    width: 15vw;
-  }
-}
-
-@media screen and (max-width: 425px) {
-  #actual-voting {
-    padding-top: 0;
-    width: 80vw;
+  .nominee-container {
+    grid-template-columns: repeat(1, minmax(0, 1fr));    
   }
   .nominee-box {
     height: 8rem;
   }
+  .anime-title, .btn {
+    font-size: var(--h5);
+  }
+}
+
+@media screen and (max-width: 375px) {
   .btn-container {
-    width: 80%;
+    column-gap: 0;
+    justify-content: space-between;
   }
   .btn {
-    width: 30vw;
+    padding: 0.5rem 3.5rem;
   }
-  /* .popup-content {
-    width: 30rem;
-  } */
 }
 </style>
