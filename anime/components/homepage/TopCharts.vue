@@ -71,8 +71,8 @@ defineProps({
     align-items: center;
     height: 7.5rem;
     background-color: var(--tertiary);
-    margin-top: 1rem;
     border-radius: 1rem;
+    margin-bottom: 1rem;
 }
 .topChartsComp-rank {
     font-family: var(--second-font);
@@ -131,14 +131,5 @@ defineProps({
     font-size: var(--h6);
     font-weight: var(--fw-reg);
     margin-left: 0.5rem;
-}
-
-@media screen and (max-width: 1440px) {
-    .topChartsComp-container {
-        height: 7rem;
-    }
-}
-
-@media screen and (max-width: 1200px) {
 }
 </style>
