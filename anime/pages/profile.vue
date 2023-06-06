@@ -305,7 +305,7 @@ export default {
     /* overflow: hidden; */
 }
 .tabs-class .tab {
-    background-color: var(--tertiary);
+    background-color: rgb(0, 0, 77);
     width: 70vw;
     height: 100%;
     display: flex;

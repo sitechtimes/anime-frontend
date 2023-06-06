@@ -35,25 +35,14 @@ export default {
 .tabs-header {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    align-items: space-around;
-    margin-bottom: 5rem;
     padding: 0;
-    width: 7vw;
-    height: 120%;
-    top: -10%;
-    z-index: 3;
-    background-color: var(--secondary);
-    margin-left: 4rem;
-    position: absolute;
-    box-shadow: 0 4px 8px 0 var(--tertiary);
-    border-radius: 5px;
+    z-index: 1;
 }
 .tabs-header li {
     font-size: var(--h4);
     text-align: center;
-    padding: 0.5rem 1rem;
-    margin-bottom: 5rem;
+    background-color: var(--secondary);
     border-radius: 0.5rem;
+    padding: 1rem;
 }
 </style>
