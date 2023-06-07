@@ -253,14 +253,21 @@ onMounted(() => {
     flex: 1;
     border-radius: 0 1rem 1rem 1rem;
     padding: 3rem 4rem;
+    display: flex;
+    flex-direction: column;
 }
 .tab-header {
     display: flex;
     justify-content: space-between;
-    font-size: var(--h4);
+    font-size: var(--h3);
     color: var(--white);
 }
 .tab-logo {
     color: var(--secondary);
+}
+.tab-list {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 </style>
