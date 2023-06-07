@@ -249,12 +249,18 @@ onMounted(() => {
     display: flex;
 }
 .tab-container {
-    background: blue;
+    background: var(--tertiary);
     flex: 1;
     border-radius: 0 1rem 1rem 1rem;
+    padding: 3rem 4rem;
 }
 .tab-header {
     display: flex;
     justify-content: space-between;
+    font-size: var(--h4);
+    color: var(--white);
+}
+.tab-logo {
+    color: var(--secondary);
 }
 </style>

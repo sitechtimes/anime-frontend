@@ -38,7 +38,7 @@ export default {
     z-index: 1;
 }
 .tabs-header li {
-    font-size: var(--h4);
+    font-size: var(--h5);
     text-align: center;
     background-color: var(--secondary);
     border-radius: 1rem 0 0 1rem;
