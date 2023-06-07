@@ -39,21 +39,22 @@ defineProps({
 </script>
 <style scoped>
 .pf-anime-list {
-    width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    /* overflow: hidden; */
-    /* background: red; */
 }
 .pf-anime-img {
     object-fit: cover;
-    height: 17rem;
-    width: 100%;
+    height: 23rem;
+    border-radius: 1rem;
 }
 .title {
     text-align: center;
     width: 100%;
-    overflow: hiddens;
+    font-size: var(--h6);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+	-webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
 }
 </style>

@@ -266,8 +266,12 @@ onMounted(() => {
     color: var(--secondary);
 }
 .tab-list {
+    margin-top: 2rem;
     flex: 1;
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    column-gap: 1rem;
+    row-gap: 2rem;
+    overflow-y: scroll;
 }
 </style>
