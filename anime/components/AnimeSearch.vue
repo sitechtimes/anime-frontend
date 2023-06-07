@@ -505,6 +505,7 @@ function toTop() {
 	font-size: var(--h5);
 	font-weight: var(--fw-regular);
 	padding: 0.5rem 1rem;
+	outline: none;
 }
 
 .content-condition {
