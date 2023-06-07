@@ -21,85 +21,65 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="tabs-class">
+        <div class="profile-bottom">
             <ProfileTabsWrapper>
-                <ProfileTab title="Watchlist">
-                    <div class="tabShow">
-                        <div class="tab-logo">
-                            <h3 class="tab-detail">Technime</h3>
-                        </div>
-                        <div class="tab-bottom">
-                            <h3 class="tab-title">Watchlist</h3>
-                            <div class="profile-slide">
-                                <div class="pf-carousel">
-
-                                    <ProfileAnimeList
-                                        v-for="node in watchlist"
-                                        :key="node.node.anime.malId"
-                                        :img="node.node.anime.imageUrl"
-                                        :title="node.node.anime.animeName"
-                                        :malid="node.node.anime.malId"
-                                    />
-                                </div>
-                            </div>
-                        </div>
+                <ProfileTab title="Watchlist" class="tab-container">
+                    <div class="tab-header">
+                        <h3 class="tab-title">Watchlist</h3>
+                        <h3 class="tab-logo">Technime</h3>
+                    </div>
+                    <div class="tab-list">
+                        <ProfileAnimeList
+                            v-for="node in watchlist"
+                            :key="node.node.anime.malId"
+                            :img="node.node.anime.imageUrl"
+                            :title="node.node.anime.animeName"
+                            :malid="node.node.anime.malId"
+                        />
                     </div>
                 </ProfileTab>
-                <ProfileTab title="Favorites">
-                    <div class="tabShow">
-                        <div class="tab-logo">
-                            <h3 class="tab-detail">Technime</h3>
-                        </div>
-                        <div class="tab-bottom">
-                            <h3 class="tab-title">Currently Watching</h3>
-                            <div class="profile-slide">
-                                <div class="pf-carousel">
-                                    <ProfileAnimeList
-                                        v-for="node in currentlyAnimes"
-                                        :key="node.node.anime.malId"
-                                        :img="node.node.anime.imageUrl"
-                                        :title="node.node.anime.animeName"
-                                        :malid="node.node.anime.malId"
-                                    />
-                                </div>
-                            </div>
-                        </div>
+                <ProfileTab title="Favorites" class="tab-container">
+                    <div class="tab-header">
+                        <h3 class="tab-title">Currently Watching</h3>
+                        <h3 class="tab-logo">Technime</h3>
+                    </div>
+                    <div class="tab-list">
+                        <ProfileAnimeList
+                            v-for="node in currentlyAnimes"
+                            :key="node.node.anime.malId"
+                            :img="node.node.anime.imageUrl"
+                            :title="node.node.anime.animeName"
+                            :malid="node.node.anime.malId"
+                        />
                     </div>
                 </ProfileTab>
-                <ProfileTab title="Rated">
-                    <div class="tabShow">
-                        <div class="tab-logo">
-                            <h3 class="tab-detail">Technime</h3>
-                        </div>
-                        <div class="tab-bottom">
-                            <h3 class="tab-title">Voted Animes/Characters</h3>
-                            <div class="profile-slide">
-                                <div class="pf-carousel">
-                                    <ProfileVotedAnimeList
-                                        v-for="node in votedAnimes"
-                                        :key="node.node.anime.malId"
-                                        :img="node.node.anime.imageUrl"
-                                        :title="node.node.anime.animeName"
-                                        :awardName="node.node.award.awardName"
-                                        :date="node.node.award.date"
-                                        :malid="node.node.anime.malId"
-                                    />
-                                    <ProfileVotedAnimeList
-                                        v-for="node in votedCharacters"
-                                        :key="node.node.character.characterName"
-                                        :img="node.node.character.imageUrl"
-                                        :title="node.node.character.characterName"
-                                        :awardName="node.node.award.awardName"
-                                        :date="node.node.award.date"
-
-                                    />
-                                </div>
-                            </div>
-                        </div>
+                <ProfileTab title="Rated" class="tab-container">
+                    <div class="tab-header">
+                        <h3 class="tab-title">Voted Animes/Characters</h3>
+                        <h3 class="tab-logo">Technime</h3>
+                    </div>
+                    <div class="tab-list">
+                        <ProfileVotedAnimeList
+                            v-for="node in votedAnimes"
+                            :key="node.node.anime.malId"
+                            :img="node.node.anime.imageUrl"
+                            :title="node.node.anime.animeName"
+                            :awardName="node.node.award.awardName"
+                            :date="node.node.award.date"
+                            :malid="node.node.anime.malId"
+                        />
+                        <ProfileVotedAnimeList
+                            v-for="node in votedCharacters"
+                            :key="node.node.character.characterName"
+                            :img="node.node.character.imageUrl"
+                            :title="node.node.character.characterName"
+                            :awardName="node.node.award.awardName"
+                            :date="node.node.award.date"
+                        />
                     </div>
                 </ProfileTab>
             </ProfileTabsWrapper>
-        </div> -->
+        </div>
     </div>
 </template>
 
@@ -225,11 +205,17 @@ onMounted(() => {
 <style scoped>
 #profile {
     width: 80vw;
+    height: 100vh;
     margin: auto;
     padding-top: 8rem;
+    display: flex;
+    flex-direction: column;
 }
 .profile-top {
     margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .banner {
     width: 100%;
@@ -240,6 +226,8 @@ onMounted(() => {
 }
 .profile-info {
     display: flex;
+    margin-top: -4rem;
+    width: 80%;
 }
 .profile-img {
     border-radius: 50%;
@@ -250,5 +238,23 @@ onMounted(() => {
 .profile-userinfo {
     color: var(--white);
     font-size: var(--h4);
+    margin: 5rem 0 0 3rem;
+}
+.profile-id, .profile-grade {
+    font-weight: var(--fw-reg);
+}
+.profile-bottom {
+    margin: 5rem 0;
+    flex: 1;
+    display: flex;
+}
+.tab-container {
+    background: blue;
+    flex: 1;
+    border-radius: 0 1rem 1rem 1rem;
+}
+.tab-header {
+    display: flex;
+    justify-content: space-between;
 }
 </style>

@@ -29,8 +29,7 @@ export default {
 <style scoped>
 .tabs {
     display: flex;
-    height: 50vh;
-    position: relative;
+    width: 100%;
 }
 .tabs-header {
     display: flex;
@@ -42,7 +41,10 @@ export default {
     font-size: var(--h4);
     text-align: center;
     background-color: var(--secondary);
-    border-radius: 0.5rem;
+    border-radius: 1rem 0 0 1rem;
     padding: 1rem;
+}
+.tabs-header li:nth-child(even) {
+    background: var(--primary);
 }
 </style>
