@@ -24,7 +24,7 @@
 				<NuxtLink v-if="userStore.isAuthenticated == true" to="/profile" class="link-href"
 					><img
 						src="https://th.bing.com/th/id/R.945f33b643f2ceffcdae90fb57c61854?rik=Ox1dcxb6rfOngw&riu=http%3a%2f%2fgetdrawings.com%2ffree-icon-bw%2ffree-avatars-icons-25.png&ehk=i8VrSYUn0ZsIdAnnI51DInJ0WdIXd3ukvat6kwZC%2f3c%3d&risl=&pid=ImgRaw&r=0"
-						alt=""
+						alt="profile icon"
 						class="profile-button"
 				/></NuxtLink>
 				<button

@@ -11,7 +11,7 @@
 				</div>
 			</div>
 		</div>
-		<img class="rc-img" :src="`${img}`" alt="" />
+		<img class="rc-img" :src="`${img}`" :alt="`${title} image`" />
 	</div>
 </template>
 

@@ -1,7 +1,7 @@
 <template>
     <div class="winner-card">
                     <h2 class="award-name">{{ award }}</h2>
-                    <img :src="img" alt="" class="img">
+                    <img :src="img" :alt="`${winner} image`" class="img">
                     <h3 class="winner-name">{{ winner }}</h3>
                 </div>
 </template>

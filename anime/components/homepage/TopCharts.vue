@@ -2,7 +2,7 @@
     <div class="topChartsComp-container">
         <h2 class="topChartsComp-rank">{{ rank }}</h2>
         <NuxtLink class="topChartsComp-container-sub" :to="`/anime/` + malid">
-            <img class="topChartsComp-image" :src="`${img}`" alt="" />
+            <img class="topChartsComp-image" :src="`${img}`" :alt="`${title} image`" />
             <div class="topChartsComp-info">
                 <h3 class="topChartsComp-title">{{ title }}</h3>
                 <div class="topChartsComp-details">

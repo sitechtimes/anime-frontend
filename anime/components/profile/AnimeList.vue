@@ -1,7 +1,7 @@
 <template>
     <NuxtLink  :to="`/anime/` + malid">
         <div class="pf-anime-list">
-            <img class="pf-anime-img" :src="`${img}`" alt="" />
+            <img class="pf-anime-img" :src="`${img}`" :alt="`${title} image`" />
             <h5 class="title">{{ title }}</h5>
         </div>
     </NuxtLink>

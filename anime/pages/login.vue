@@ -11,7 +11,7 @@
           <p class="login-header">Sign in with Google</p>
           <div class="hide"></div>
         </GoogleLogin>
-        <img class="gif" src="https://www.icegif.com/wp-content/uploads/icegif-2013.gif" alt="">
+        <img class="gif" src="https://www.icegif.com/wp-content/uploads/icegif-2013.gif" alt="login gif">
       </div>
     </form>
   </div>

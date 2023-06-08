@@ -11,7 +11,7 @@
       <!-- this should be another compoenent -->
       <NuxtLink :to="`/vote/` +  award" v-for="award in awards" :key="award">
         <div class="award-box">
-          <img src="https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg" alt="" class="img">
+          <img src="https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg" :alt="`${award} image`" class="img">
           <h1 class="award-name">{{award}}</h1>
           <div class="fake-vote-btn">Vote</div>
         </div>

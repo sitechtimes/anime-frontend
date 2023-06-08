@@ -95,7 +95,7 @@
             :key="character.node.characterName"
             class="character"
             >
-            <img class="character-img" :src="character.node.imageUrl" alt="" />
+            <img class="character-img" :src="character.node.imageUrl" :alt="`${character.node.characterName} image`" />
             <p class="character-name">{{ character.node.characterName }}</p>
           </div>
         </div>

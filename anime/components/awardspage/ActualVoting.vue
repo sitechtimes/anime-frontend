@@ -21,7 +21,7 @@
         class="nominee-box"
         @click="select"
       >
-        <img class="image-placeholder" :src="anime.node.imageUrl" alt="" />
+        <img class="image-placeholder" :src="anime.node.imageUrl" :alt="`${anime.node.animeName} image`" />
         <h5 class="anime-title">{{ anime.node.animeName }}</h5>
       </div>
       <div
@@ -32,7 +32,7 @@
         class="nominee-box"
         @click="select"
       >
-        <img class="image-placeholder" :src="anime.image_url" alt="" />
+        <img class="image-placeholder" :src="anime.image_url" :alt="`${anime.anime_name} image`" />
         <h1 class="anime-title">{{ anime.anime_name }}</h1>
       </div>
     </div>
@@ -46,7 +46,7 @@
         class="nominee-box"
         @click="select"
       >
-        <img class="image-placeholder" :src="character.imageUrl" alt="" />
+        <img class="image-placeholder" :src="character.imageUrl" :alt="`${character.characterName} image`" />
         <h1 class="anime-title">{{ character.characterName }}</h1>
       </div>
       <div
@@ -57,7 +57,7 @@
         class="nominee-box"
         @click="select"
       >
-        <img class="image-placeholder" :src="character.imageUrl" alt="" />
+        <img class="image-placeholder" :src="character.imageUrl" :alt="character.characterName" />
         <h5 class="anime-title">{{ character.characterName }}</h5>
       </div>
     </div>

@@ -1,6 +1,6 @@
 <template>
 	<NuxtLink :to="`/anime/` + mal_id" class="box" @click="$emit('saveAnimeID')">
-		<img class="image-placeholder" :src="`${imageUrl}`" alt="" />
+		<img class="image-placeholder" :src="`${imageUrl}`" :alt="`${animeName} image`" />
 		<div class="info-column">
 			<h3 class="title">{{ animeName }}</h3>
 			<div class="info-row">

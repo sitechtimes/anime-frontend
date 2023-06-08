@@ -4,7 +4,7 @@
             <img
                 class="banner"
                 src="https://i.pinimg.com/originals/e8/56/45/e856453f7f9b8c29bd73e51fc71813db.jpg"
-                alt=""
+                alt="banner picture"
             />
             <div class="profile-info">
                 <img

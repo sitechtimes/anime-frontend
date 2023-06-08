@@ -2,7 +2,7 @@
      <NuxtLink  :to="`/anime/` + malid">
     <div class="pf-anime-list">
         <h2>{{ date }}</h2>
-        <img class="pf-anime-img" :src="`${img}`" alt="" />
+        <img class="pf-anime-img" :src="`${img}`" :alt="`${title} image`" />
         <h5 class="title">{{ title }}</h5>
         <h2 class="award-name">{{ awardName }}</h2>
     </div>
