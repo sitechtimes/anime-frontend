@@ -1,8 +1,8 @@
 <template>
   <div id="actual-voting">
-    <h1 class="award-name">{{ awardName }}</h1>
+    <h3 class="award-name">{{ awardName }}</h3>
     <!-- <SearchBar/> -->
-    <form class="input-Box">
+    <form>
       <input
         v-model="text"
         placeholder="Search nominee..."
@@ -22,7 +22,7 @@
         @click="select"
       >
         <img class="image-placeholder" :src="anime.node.imageUrl" alt="" />
-        <h1 class="anime-title">{{ anime.node.animeName }}</h1>
+        <h5 class="anime-title">{{ anime.node.animeName }}</h5>
       </div>
       <div
         v-else
@@ -58,21 +58,21 @@
         @click="select"
       >
         <img class="image-placeholder" :src="character.imageUrl" alt="" />
-        <h1 class="anime-title">{{ character.characterName }}</h1>
+        <h5 class="anime-title">{{ character.characterName }}</h5>
       </div>
     </div>
     <div class="btn-container">
       <NuxtLink to="/awards"><button class="btn">Back</button></NuxtLink>
       <button class="btn" @click="voteMutation" id="vote-btn">Vote</button>
     </div>
-    <!-- <div class="popup" ref="popup">
+    <div v-if="showPopup" class="popup">
       <div class="popup-content">
-        <span class="popup-close" @click="close">&times</span>
+        <button class="popup-close" @click="closePopup">&times</button>
         <div class="popup-msg">
-          <h1>You voted already.</h1>
+          <p>You voted already.</p>
         </div>
       </div>
-    </div> -->
+    </div>
   </div>
 </template>
 
@@ -97,6 +97,7 @@ let text = ref("");
 let filteredAnime = ref([] as any);
 let filteredCharacters = ref([] as any);
 const nomineeBox = ref(null);
+const showPopup = ref(false);
 
 const userStore = useUserStore();
 
@@ -195,7 +196,7 @@ function select(anime: String) {
   nominee.value = click.outerText;
 
   nomineeBox.value.forEach((box) => {
-    box.style.background = "#252525";
+    box.style.background = "var(--bg-secondary)";
   });
   if (click.className == "nominee-box") {
     click.style.background = "var(--primary)";
@@ -345,6 +346,10 @@ onMounted(() => {
     getAnimes();
   }
 });
+
+function closePopup() {
+  showPopup.value = false;
+}
 </script>
 <!-- 
 <script lang="ts">
@@ -606,35 +611,11 @@ export default ({
 </script> -->
   
 <style scoped>
-.input-Box {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  column-gap: 1rem;
-  margin-right: 2rem;
-  width: 30rem;
-}
-.input {
-  background-color: var(--bg-secondary);
-  border-radius: 0.75rem;
-  border: none;
-  color: var(--light-text);
-  font-size: var(--h5);
-  font-weight: var(--fw-regular);
-  padding: 0.5rem 1rem;
-  width: 100%;
-  margin-top: 2rem;
-}
-.input:focus {
-  outline: none;
-}
-
 #actual-voting {
   padding-top: 9vh;
-  width: 70vw;
+  width: 75vw;
   margin: auto;
-  margin-bottom: 10vh;
+  margin-bottom: 10rem;
   color: var(--white);
 }
 .award-name {
@@ -642,21 +623,29 @@ export default ({
   font-size: var(--h1);
   text-align: center;
   margin-top: 7rem;
+  border-radius: 3rem;
+}
+.input {
+  color: var(--search-text);
+  font-size: var(--h4);
+  background-color: var(--search-bg);
+  border-radius: 1rem;
+  border: none;
+  outline: none;
+  padding: 1rem 2rem;
+  margin: 3rem 0 4rem;
+  width: 40%;
 }
 .nominee-container {
-  margin-top: 5vh;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 3rem;
 }
 .nominee-box {
-  padding: 0rem;
-  width: 33vw;
-  height: 12vh;
+  height: 12rem;
   display: flex;
   flex-direction: row;
-  background: #252525;
-  margin-bottom: 3rem;
+  background: var(--bg-secondary);
   transition: 100ms;
 }
 .nominee-box:hover {
@@ -670,106 +659,145 @@ export default ({
 .anime-title {
   font-size: var(--h3);
   margin: 1rem 2rem;
+  height: fit-content;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+	-webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 .btn-container {
+  margin-top: 5rem;
+  width: 100%;
   display: flex;
-  justify-content: space-between;
-  width: 20vw;
-  margin: auto;
+  justify-content: center;
+  column-gap: 5rem;
 }
 .btn {
   color: var(--white);
   font-size: var(--h3);
+  font-weight: var(--fw-reg);
   background: none;
   border: 0.3rem solid var(--primary);
-  border-radius: 0;
-  width: 8vw;
-  padding: 0.5rem 0;
+  border-radius: 1rem;
+  padding: 0.5rem 4rem;
   transition: 300ms;
 }
 .btn:hover {
   background: var(--primary);
 }
-#popup {
-  background: rgb(0, 0, 0, 0.6);
+.popup {
+  background: var(--vote-shadow);
   position: fixed;
-  z-index: 1;
+  z-index: 5;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
-  display: none;
+  display: flex;
+  justify-content: center;
 }
 .popup-content {
   background: var(--primary);
-  flex-direction: column;
-  align-items: flex-end;
-  height: 20rem;
-  width: 40rem;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 25rem;
+  width: 50rem;
   margin: auto;
 }
 .popup-close {
+  align-self: flex-end;
+  color: var(--white);
   font-size: var(--h2);
-  margin-right: 1rem;
+  font-weight: var(--fw-reg);
+  padding: 1rem 2rem;
 }
 .popup-msg {
-  width: 100%;
-  text-align: center;
+  font-size: var(--h3);
+  margin-top: 2rem;
 }
 
-/* .search-bar {
-  margin-top: 2rem;
-} */
-
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1440px) {
+  #actual-voting {
+    width: 80vw;
+  }
   .award-name {
-    margin-top: 5rem;
     font-size: var(--h2);
   }
   .nominee-box {
     height: 10rem;
   }
-  .anime-title {
+  .anime-title, .btn {
     font-size: var(--h4);
   }
-  .btn-container {
-    width: 30vw;
+  .popup-content {
+    height: 20rem;
+    width: 40rem;
   }
-  .btn {
-    width: 12vw;
+  .popup-msg {
     font-size: var(--h4);
+    margin-top: 1rem;
   }
 }
 
-@media screen and (max-width: 768px) {
-  .nominee-box {
+@media screen and (max-width: 1024px) {
+  .input {
+    margin: 2rem 0 3rem;
+    padding: 0.5rem 1rem;
+    font-size: var(--h5);
+  }
+  .nominee-container {
+    gap: 2rem;
+  }
+  .btn-container {
+    margin-top: 2rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  #actual-voting {
+    padding-top: 5vh;
+  }
+  .award-name {
+    font-size: var(--h3);
+    margin-top: 0;
+  }
+  .input {
     width: 100%;
   }
-  .btn-container {
-    width: 40vw;
-  }
-  .btn {
-    width: 15vw;
-  }
-}
-
-@media screen and (max-width: 425px) {
-  #actual-voting {
-    padding-top: 0;
-    width: 80vw;
+  .nominee-container {
+    grid-template-columns: repeat(1, minmax(0, 1fr));    
   }
   .nominee-box {
     height: 8rem;
   }
+  .anime-title, .btn {
+    font-size: var(--h5);
+  }
+}
+
+@media screen and (max-width: 568px) {
+  .popup-content {
+    width: 75vw;
+    height: 15rem;
+  }
+  .popup-close {
+    font-size: var(--h3);
+  }
+  .popup-msg {
+    font-size: var(--h5);
+    margin-top: 0;
+  }
+}
+
+@media screen and (max-width: 375px) {
   .btn-container {
-    width: 80%;
+    column-gap: 0;
+    justify-content: space-between;
   }
   .btn {
-    width: 30vw;
-  }
-  .popup-content {
-    width: 30rem;
+    padding: 0.5rem 3.5rem;
   }
 }
 </style>

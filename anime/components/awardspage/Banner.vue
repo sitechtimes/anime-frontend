@@ -190,7 +190,7 @@ onMounted(() => {
     margin-left: 5%;
     line-height: 1.4;
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     flex-direction: column;
     background-color: var(--secondary);
     border-radius: 25px;

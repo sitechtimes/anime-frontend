@@ -1,21 +1,18 @@
 <template>
     <div id="profile">
-        <span class="underNav"></span>
         <div class="profile-top">
-            <div class="banner">
-                <img
-                    class="banner"
-                    src="https://i.pinimg.com/originals/e8/56/45/e856453f7f9b8c29bd73e51fc71813db.jpg"
-                    alt=""
-                />
-            </div>
+            <img
+                class="banner"
+                src="https://i.pinimg.com/originals/e8/56/45/e856453f7f9b8c29bd73e51fc71813db.jpg"
+                alt=""
+            />
             <div class="profile-info">
                 <img
                     class="profile-img"
                     src="https://th.bing.com/th/id/OIP.5Xv2gQmaNhcCJVB0E6zuwgHaEK?pid=ImgDet&rs=1"
                     alt="profile picture"
                 />
-                <div class="profile-name">
+                <div class="profile-userinfo">
                     <h3 class="profile-id">{{ firstName }} {{ lastName }}</h3>
                     <h3 class="profile-grade">{{ emailDOE }}</h3>
 
@@ -24,84 +21,64 @@
                 </div>
             </div>
         </div>
-        <div class="tabs-class">
-            <TabsWrapper>
-                <Tab title="Watchlist">
-                    <div class="tabShow">
-                        <div class="tab-logo">
-                            <h3 class="tab-detail">Technime</h3>
-                        </div>
-                        <div class="tab-bottom">
-                            <h3 class="tab-title">Watchlist</h3>
-                            <div class="profile-slide">
-                                <div class="pf-carousel">
-
-                                    <AnimeList
-                                        v-for="node in watchlist"
-                                        :key="node.node.anime.malId"
-                                        :img="node.node.anime.imageUrl"
-                                        :title="node.node.anime.animeName"
-                                        :malid="node.node.anime.malId"
-                                    />
-                                </div>
-                            </div>
-                        </div>
+        <div class="profile-bottom">
+            <ProfileTabsWrapper>
+                <ProfileTab title="Watchlist" class="tab-container">
+                    <div class="tab-header">
+                        <h3 class="tab-title">Watchlist</h3>
+                        <h3 class="tab-logo">Technime</h3>
                     </div>
-                </Tab>
-                <Tab title="Favorites">
-                    <div class="tabShow">
-                        <div class="tab-logo">
-                            <h3 class="tab-detail">Technime</h3>
-                        </div>
-                        <div class="tab-bottom">
-                            <h3 class="tab-title">Currently Watching</h3>
-                            <div class="profile-slide">
-                                <div class="pf-carousel">
-                                    <AnimeList
-                                        v-for="node in currentlyAnimes"
-                                        :key="node.node.anime.malId"
-                                        :img="node.node.anime.imageUrl"
-                                        :title="node.node.anime.animeName"
-                                        :malid="node.node.anime.malId"
-                                    />
-                                </div>
-                            </div>
-                        </div>
+                    <div class="tab-list">
+                        <ProfileAnimeList
+                            v-for="node in watchlist"
+                            :key="node.node.anime.malId"
+                            :img="node.node.anime.imageUrl"
+                            :title="node.node.anime.animeName"
+                            :malid="node.node.anime.malId"
+                        />
                     </div>
-                </Tab>
-                <Tab title="Rated">
-                    <div class="tabShow">
-                        <div class="tab-logo">
-                            <h3 class="tab-detail">Technime</h3>
-                        </div>
-                        <div class="tab-bottom">
-                            <h3 class="tab-title">Voted Animes/Characters</h3>
-                            <div class="profile-slide">
-                                <div class="pf-carousel">
-                                    <VotedAnimeList
-                                        v-for="node in votedAnimes"
-                                        :key="node.node.anime.malId"
-                                        :img="node.node.anime.imageUrl"
-                                        :title="node.node.anime.animeName"
-                                        :awardName="node.node.award.awardName"
-                                        :date="node.node.award.date"
-                                        :malid="node.node.anime.malId"
-                                    />
-                                    <VotedAnimeList
-                                        v-for="node in votedCharacters"
-                                        :key="node.node.character.characterName"
-                                        :img="node.node.character.imageUrl"
-                                        :title="node.node.character.characterName"
-                                        :awardName="node.node.award.awardName"
-                                        :date="node.node.award.date"
-
-                                    />
-                                </div>
-                            </div>
-                        </div>
+                </ProfileTab>
+                <ProfileTab title="Favorites" class="tab-container">
+                    <div class="tab-header">
+                        <h3 class="tab-title">Currently Watching</h3>
+                        <h3 class="tab-logo">Technime</h3>
                     </div>
-                </Tab>
-            </TabsWrapper>
+                    <div class="tab-list">
+                        <ProfileAnimeList
+                            v-for="node in currentlyAnimes"
+                            :key="node.node.anime.malId"
+                            :img="node.node.anime.imageUrl"
+                            :title="node.node.anime.animeName"
+                            :malid="node.node.anime.malId"
+                        />
+                    </div>
+                </ProfileTab>
+                <ProfileTab title="Rated" class="tab-container">
+                    <div class="tab-header">
+                        <h3 class="tab-title">Voted Animes/Characters</h3>
+                        <h3 class="tab-logo">Technime</h3>
+                    </div>
+                    <div class="tab-list">
+                        <ProfileVotedAnimeList
+                            v-for="node in votedAnimes"
+                            :key="node.node.anime.malId"
+                            :img="node.node.anime.imageUrl"
+                            :title="node.node.anime.animeName"
+                            :awardName="node.node.award.awardName"
+                            :date="node.node.award.date"
+                            :malid="node.node.anime.malId"
+                        />
+                        <ProfileVotedAnimeList
+                            v-for="node in votedCharacters"
+                            :key="node.node.character.characterName"
+                            :img="node.node.character.imageUrl"
+                            :title="node.node.character.characterName"
+                            :awardName="node.node.award.awardName"
+                            :date="node.node.award.date"
+                        />
+                    </div>
+                </ProfileTab>
+            </ProfileTabsWrapper>
         </div>
     </div>
 </template>
@@ -225,272 +202,179 @@ onMounted(() => {
 
 </script>
 
-<script lang="ts">
-import Tab from "../components/profile/Tab.vue";
-import TabsWrapper from "../components/profile/TabsWrapper.vue";
-import AnimeList from "../components/profile/AnimeList.vue";
-// import Tabs from '../components/profile/Tabs.vue'
-export default {
-    components: {
-        Tab,
-        TabsWrapper,
-        AnimeList,
-        //   Tabs
-    },
-    data: () => ({
-        currentAnimes: [
-            {
-                animeID: "01",
-                title: "One Punch Man",
-                img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-            },
-            {
-                animeID: "02",
-                title: "Spy x Family",
-                img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-            },
-            {
-                animeID: "03",
-                title: "Chainsaw Man",
-                img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-            },
-            {
-                animeID: "04",
-                title: "Blue Lock",
-                img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-            },
-        ],
-        favoriteAnime: [
-            {
-                animeID: "01",
-                title: "One Punch Man",
-                img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-            },
-            {
-                animeID: "02",
-                title: "Spy x Family",
-                img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-            },
-            {
-                animeID: "03",
-                title: "Chainsaw Man",
-                img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-            },
-            {
-                animeID: "04",
-                title: "Blue Lock",
-                img: "https://cdn.animenewsnetwork.com/hotlink/thumbnails/max700x700/cms/news.2/147637/001_size8.jpg",
-            },
-        ],
-    }),
-};
-</script>
-
 <style scoped>
 #profile {
-    overflow: hidden;
-}
-
-.profile-slide {
-    /* overflow-y: scroll; */
-}
-.profile-top,
-.tabs-class {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    color: var(--white);
-    margin-bottom: 8%;
-    /* overflow: hidden; */
-}
-.tabs-class .tab {
-    background-color: var(--tertiary);
-    width: 70vw;
-    height: 100%;
+    width: 80vw;
+    margin: auto;
+    padding-top: 8rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px 0 var(--tertiary);
-    /* overflow-x: auto; */
 }
-
-.tab-bottom {
-    margin-top: 25rem;
-    transform: translateX(20%);
-    /* display: flex;
-    flex-direction: row;
-    justify-content: flex-end; */
+.profile-top {
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .banner {
+    width: 100%;
+    height: 25vh;
     object-fit: cover;
     object-position: bottom;
-    width: 80vw;
-    height: 25vh;
-    position: absolute;
-    margin: 0 auto;
     border-radius: 1rem;
-}
-.profile-grade {
-    color: rgb(219, 219, 219);
-    font-size: var(--h5);
-    font-weight: var(--fw-light);
 }
 .profile-info {
     display: flex;
-    width: 40vw;
-    height: 10rem;
-    margin-top: 20rem;
-    margin-right: 25vw;
-    position: relative;
+    margin-top: -4rem;
+    width: 80%;
 }
 .profile-img {
+    border-radius: 50%;
     width: 15rem;
     height: 15rem;
-    border-radius: 50%;
     object-fit: cover;
 }
-.profile-name {
+.profile-userinfo {
     color: var(--white);
     font-size: var(--h4);
-    font-weight: var(--fw-bold);
-    margin-top: 5rem;
-    margin-left: 2vw;
+    margin: 5rem 0 0 3rem;
 }
-.current-anime {
-    width: 35%;
-    height: 30vh;
-    margin-right: 5%;
-    margin-top: 8vh;
-    border-radius: 1rem;
+.profile-id, .profile-grade {
+    font-weight: var(--fw-reg);
 }
-.anime-info-labels {
-    display: flex;
-    justify-content: center;
+.profile-bottom {
+    margin: 7rem 0;
 }
-.profile-stats {
-    width: 25%;
-    height: 30vh;
-    margin-top: 8vh;
-    border-radius: 1rem;
-}
-.favorite-anime {
-    width: 40%;
-    height: 30vh;
-    margin-right: 5%;
-    margin-top: 5vh;
-    border-radius: 1rem;
-}
-.labels {
-    color: rgb(219, 219, 219);
-}
-.rank {
-    width: 20%;
-}
-.title {
-    width: 45%;
-}
-.genre {
-    width: 20%;
-}
-.favorite-genre {
-    width: 20%;
-    height: 30vh;
-    margin-top: 5vh;
-    border-radius: 1rem;
-}
-.middle-title {
-    margin-bottom: 2.5%;
-    margin-left: 5%;
-    font-size: var(--h4);
-}
-
-/* overall best anime (gray section) */
-.bestAnime {
-    display: flex;
-    flex-direction: row;
-}
-
-.anime-pfp {
-    border-radius: 50%;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -o-border-radius: 50%;
-    width: 5rem;
-    height: 5rem;
-    margin-left: 1rem;
-}
-.animeTitle {
-    font-size: var(--h4);
-    overflow: hidden;
-    white-space: nowrap;
-    display: block;
-    text-overflow: ellipsis;
-}
-.genre-text {
-    background-color: var(--primary);
-    width: 20%;
-    height: 35%;
-    display: flex;
-    justify-content: center;
-    border-radius: 1rem;
-    margin-top: 1vw;
-    overflow: hidden;
-}
-.info-column {
-    width: 45%;
-}
-
-.picture-column {
-    width: 22%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* actual (inside each) tab css */
-.tabShow {
-    /* top: 0; */
+.tab-container {
+    background: var(--tertiary);
+    flex: 1;
+    border-radius: 0 1rem 1rem 1rem;
+    padding: 3rem 4rem;
     display: flex;
     flex-direction: column;
-    width: 100%;
-    justify-content: center;
-    overflow: auto;
-    overflow-x: hidden;
+    height: 50rem;
 }
-.tab-logo {
+.tab-header {
     display: flex;
-    justify-content: flex-end;
-    font-size: var(--h3);
-    color: var(--primary);
-    text-transform: lowercase;
-    right: 5%;
-    top: 10%;
-    position: absolute;
-}
-.tab-title {
+    justify-content: space-between;
     font-size: var(--h3);
     color: var(--white);
-    font-weight: var(--fw-light);
 }
-.pf-carousel {
+.tab-logo {
+    color: var(--secondary);
+}
+.tab-list {
+    margin-top: 2rem;
+    padding-right: 2rem;
+    flex: 1;
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    column-gap: 1rem;
-    row-gap: 1rem;
-    width: 70%;
- 
-
-    /* justify-content: flex-end; */
-    /* justify-content: center; */
-    /* overflow: auto; */
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    column-gap: 2rem;
+    row-gap: 3rem;
+    overflow-y: scroll;
 }
-.underNav {
-    width: 100vw;
-    height: 12vh;
-    display: block;
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+@media screen and (max-width: 1200px) {
+    #profile {
+        width: 85vw;
+    }
+    .banner {
+        height: 20vh;
+    }
+    .tab-list {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .profile-userinfo {
+        font-size: var(--h5);
+    }
+    .tab-container {
+        flex: none;
+    }
+    .tab-header {
+        font-size: var(--h4);
+    }
+}
+
+@media screen and (max-width: 767px) {
+    #profile {
+        padding-top: 0;
+    }
+    .profile-info {
+        width: 85%;
+    }
+    .profile-img {
+        height: 12rem;
+        width: 12rem;
+    }
+    .profile-userinfo {
+        font-size: var(--h6);
+        margin: 4.5rem 0 0 2rem;
+    }
+    .tab-container {
+        height: 35rem;
+        padding: 2rem 3rem;
+    }
+    .tab-header {
+        font-size: var(--h5);
+    }
+    .tab-list {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        padding-right: 1rem;
+        column-gap: 1rem;
+        row-gap: 2rem;
+    }
+}
+
+@media screen and (max-width: 568px) {
+    .profile-top {
+        margin-top: 3rem;
+    }
+    .profile-info {
+        width: 90%;
+    }
+    .profile-img {
+        height: 10rem;
+        width: 10rem;
+    }
+    .profile-userinfo {
+        font-size: var(--h7);
+        margin: 4.5rem 0 0 1.5rem;
+    }
+    .profile-bottom {
+        margin: 4rem 0;
+    }
+    .tab-logo {
+        display: none;
+    }
+    .tab-list {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .banner {
+        height: 15vh;
+    }
+    .profile-info {
+        margin-top: -2rem;
+        width: 95%;
+    }
+    .profile-img {
+        height: 8rem;
+        width: 8rem;
+    }
+    .profile-userinfo {
+        font-size: var(--h8);
+        margin: 2.5rem 0 0 1.5rem;
+    }
+    .tab-container {
+        padding: 1.5rem 2rem;
+    }
 }
 </style>

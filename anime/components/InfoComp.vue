@@ -536,7 +536,7 @@ function showMore() {
   object-fit: cover;
 }
 .character-name {
-  background-color: #b10064;;
+  background-color: var(--info-character);
   text-align: center;
   font-size: var(--h5);
   overflow: hidden;
