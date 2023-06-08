@@ -90,6 +90,7 @@ body {
     --rank1: rgb(255, 183, 0);
     --rank2: rgb(0, 195, 255);
     --rank3: #04ff9f;
+    --info-character: #b10064;
 
     /* font weight */
     --fw-light: 300;

@@ -521,9 +521,6 @@ function showMore() {
   overflow-x: auto;
   white-space: nowrap;
 }
-.character-container::-webkit-scrollbar {
-  height: 10px;
-}
 .character {
   display: flex;
   flex-direction: column;
@@ -536,7 +533,7 @@ function showMore() {
   object-fit: cover;
 }
 .character-name {
-  background-color: #b10064;;
+  background-color: var(--info-character);
   text-align: center;
   font-size: var(--h5);
   overflow: hidden;

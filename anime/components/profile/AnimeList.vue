@@ -1,9 +1,9 @@
 <template>
     <NuxtLink  :to="`/anime/` + malid">
         <div class="pf-anime-list">
-        <img class="pf-anime-img" :src="`${img}`" alt="" />
-        <h5 class="title">{{ title }}</h5>
-    </div>
+            <img class="pf-anime-img" :src="`${img}`" alt="" />
+            <h5 class="title">{{ title }}</h5>
+        </div>
     </NuxtLink>
     
 </template>
@@ -44,17 +44,27 @@ defineProps({
 }
 .pf-anime-img {
     object-fit: cover;
-    height: 23rem;
     border-radius: 1rem;
+    aspect-ratio: 225/350;
 }
 .title {
-    text-align: center;
-    width: 100%;
-    font-size: var(--h6);
+    font-size: var(--h5);
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
 	-webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
+}
+.pf-anime-list:hover > .pf-anime-img {
+	opacity: 50%;
+}
+.pf-anime-list:hover > .title {
+	color: var(--primary);
+}
+
+@media screen and (max-width: 1200px) {
+    .title {
+        font-size: var(--h6);
+    }
 }
 </style>

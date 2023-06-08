@@ -47,4 +47,17 @@ export default {
 .tabs-header li:nth-child(even) {
     background: var(--primary);
 }
+
+@media screen and (max-width: 1024px) {
+    .tabs {
+        flex-direction: column;
+    }
+    .tabs-header {
+        flex-direction: row;
+    }
+    .tabs-header li {
+        border-radius: 1rem 1rem 0 0;
+        padding: 0.5rem 2rem;
+    }
+}
 </style>

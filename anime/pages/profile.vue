@@ -205,7 +205,6 @@ onMounted(() => {
 <style scoped>
 #profile {
     width: 80vw;
-    height: 100vh;
     margin: auto;
     padding-top: 8rem;
     display: flex;
@@ -244,9 +243,7 @@ onMounted(() => {
     font-weight: var(--fw-reg);
 }
 .profile-bottom {
-    margin: 5rem 0;
-    flex: 1;
-    display: flex;
+    margin: 7rem 0;
 }
 .tab-container {
     background: var(--tertiary);
@@ -255,6 +252,7 @@ onMounted(() => {
     padding: 3rem 4rem;
     display: flex;
     flex-direction: column;
+    height: 50rem;
 }
 .tab-header {
     display: flex;
@@ -267,11 +265,45 @@ onMounted(() => {
 }
 .tab-list {
     margin-top: 2rem;
+    padding-right: 2rem;
     flex: 1;
     display: grid;
-    grid-template-columns: repeat(8, minmax(0, 1fr));
-    column-gap: 1rem;
-    row-gap: 2rem;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    column-gap: 2rem;
+    row-gap: 3rem;
     overflow-y: scroll;
+}
+
+@media screen and (max-width: 1200px) {
+    #profile {
+        width: 85vw;
+    }
+    .banner {
+        height: 20vh;
+    }
+    .tab-list {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .profile-userinfo {
+        font-size: var(--h5);
+    }
+    .tab-container {
+        flex: none;
+    }
+    .tab-header {
+        font-size: var(--h4);
+    }
+}
+
+@media screen and (max-width: 767px) {
+    #profile {
+        padding-top: 0;
+    }
+    .tab-list {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
 }
 </style>
