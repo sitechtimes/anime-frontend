@@ -60,4 +60,17 @@ export default {
         padding: 0.5rem 2rem;
     }
 }
+
+@media screen and (max-width: 767px) {
+    .tabs-header li {
+        font-size: var(--h6);
+    }
+}
+
+@media screen and (max-width: 568px) {
+    .tabs-header li {
+        font-size: var(--h7);
+        padding: 0.5rem 1rem;
+    }
+}
 </style>

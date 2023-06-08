@@ -608,7 +608,7 @@ function hideInfo() {
   white-space: nowrap;
 }
 .character-container::-webkit-scrollbar {
-  height: 10px;
+  height: 5px;
 }
 .character {
   display: flex;

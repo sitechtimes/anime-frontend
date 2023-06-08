@@ -273,6 +273,9 @@ onMounted(() => {
     row-gap: 3rem;
     overflow-y: scroll;
 }
+::-webkit-scrollbar {
+    width: 10px;
+}
 
 @media screen and (max-width: 1200px) {
     #profile {
@@ -302,8 +305,76 @@ onMounted(() => {
     #profile {
         padding-top: 0;
     }
+    .profile-info {
+        width: 85%;
+    }
+    .profile-img {
+        height: 12rem;
+        width: 12rem;
+    }
+    .profile-userinfo {
+        font-size: var(--h6);
+        margin: 4.5rem 0 0 2rem;
+    }
+    .tab-container {
+        height: 35rem;
+        padding: 2rem 3rem;
+    }
+    .tab-header {
+        font-size: var(--h5);
+    }
     .tab-list {
         grid-template-columns: repeat(4, minmax(0, 1fr));
+        padding-right: 1rem;
+        column-gap: 1rem;
+        row-gap: 2rem;
+    }
+}
+
+@media screen and (max-width: 568px) {
+    .profile-top {
+        margin-top: 3rem;
+    }
+    .profile-info {
+        width: 90%;
+    }
+    .profile-img {
+        height: 10rem;
+        width: 10rem;
+    }
+    .profile-userinfo {
+        font-size: var(--h7);
+        margin: 4.5rem 0 0 1.5rem;
+    }
+    .profile-bottom {
+        margin: 4rem 0;
+    }
+    .tab-logo {
+        display: none;
+    }
+    .tab-list {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .banner {
+        height: 15vh;
+    }
+    .profile-info {
+        margin-top: -2rem;
+        width: 95%;
+    }
+    .profile-img {
+        height: 8rem;
+        width: 8rem;
+    }
+    .profile-userinfo {
+        font-size: var(--h8);
+        margin: 2.5rem 0 0 1.5rem;
+    }
+    .tab-container {
+        padding: 1.5rem 2rem;
     }
 }
 </style>

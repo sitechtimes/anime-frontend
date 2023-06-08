@@ -51,4 +51,13 @@ defineProps({
         font-size: var(--h6);
     }
 }
+
+@media screen and (max-width: 767px) {
+    .title {
+        font-size: var(--smallText);
+    }
+    .award-name {
+        font-size: var(--h8);
+    }
+}
 </style>

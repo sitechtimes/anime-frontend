@@ -521,6 +521,9 @@ function showMore() {
   overflow-x: auto;
   white-space: nowrap;
 }
+.character-container::-webkit-scrollbar {
+  height: 10px;
+}
 .character {
   display: flex;
   flex-direction: column;
