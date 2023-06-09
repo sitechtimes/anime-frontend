@@ -1,5 +1,6 @@
 <template>
     <div id="profile">
+        <underNav/>
         <div class="profile-top">
             <img
                 class="banner"
@@ -206,7 +207,6 @@ onMounted(() => {
 #profile {
     width: 80vw;
     margin: auto;
-    padding-top: 8rem;
     display: flex;
     flex-direction: column;
 }
@@ -302,9 +302,6 @@ onMounted(() => {
 }
 
 @media screen and (max-width: 767px) {
-    #profile {
-        padding-top: 0;
-    }
     .profile-info {
         width: 85%;
     }

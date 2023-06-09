@@ -1,99 +1,101 @@
 <template>
   <div id="anime-info">
-    <div class="column-1">
-      <img class="animeImage" :src="`${imageUrl}`" alt="Anime Cover" />
-      <div class="quick-info">
-        <div>
-          <h4 class="info-head">Information</h4>
+    <underNav/>
+    <div class="anime-info">
+      <div class="column-1">
+        <img class="animeImage" :src="`${imageUrl}`" alt="Anime Cover" />
+        <div class="quick-info">
+          <div>
+            <h4 class="info-head">Information</h4>
+            <div class="divider"></div>
+          </div>
+          <p>Type: {{ mediaType }}</p>
+          <p>Episodes: {{ episodes }}</p>
+          <p>Status: {{ status }}</p>
+          <p>Aired: {{ aired }}</p>
+          <div class="quick-info-sub">
+            <p>Studio:</p>
+            <div v-for="studio in studios" :key="studio">
+              <p>{{ studio.node.studio }}</p>
+            </div>
+          </div>
+          <div class="quick-info-sub">
+            <p>Genres:</p>
+            <div v-for="genre in genres" :key="genre">
+              <p>{{ genre.node.genre }},</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="column-2">
+        <div class="info-block">
+          <p class="anime-name">{{ animeName }}</p>
+          <div class="star-rating">
+            <starSVG class="star" />
+            <p>{{ avgRating }}</p>
+          </div>
+          <div>
+            <select id="doughtnut-graph" class="dropdown" v-model="watchStatus">
+              <option value="NOT_WATCHING" selected>Not Watching</option>
+              <option value="CURRENTLY_WATCHING">
+                Currently Watching
+              </option>
+              <option value="WATCHLIST">Watchlist</option>
+              <option value="FINISHED_ANIME">Finished Anime</option>
+            </select>
+
+            <select id="rating-form" class="dropdown" v-model="rating">
+              <!-- <option v-if="change" value="" disabled selected>{{ userAnime.rating }}</option> -->
+              <option v-if="change" value="0" disabled selected>
+                {{ userAnime.rating }}
+              </option>
+              <option v-else value="0" disabled selected>Rate</option>
+              <option value="10">10</option>
+              <option value="9">9</option>
+              <option value="8">8</option>
+              <option value="7">7</option>
+              <option value="6">6</option>
+              <option value="5">5</option>
+              <option value="4">4</option>
+              <option value="3">3</option>
+              <option value="2">2</option>
+              <option value="1">1</option>
+            
+            </select>
+          </div>
+        </div>
+        <div class="info-block">
+          <h2>Synopsis</h2>
+          <div class="divider"></div>
+          <p class="synopsis" :class="active ? 'active' : 'non-active'">{{ synopsis }}</p>
+          <button class="show" ref="showBtn" @click="showMore">Show More</button>
+        </div>
+        <div class="info-block">
+          <h2>Characters</h2>
+          <div class="divider"></div>
+          <div class="character-container">
+            <div
+              v-for="character in characters"
+              :key="character.node.characterName"
+              class="character"
+            >
+              <img class="character-img" :src="character.node.imageUrl" :alt="`${character.node.characterName} image`" />
+              <p class="character-name">{{ character.node.characterName }}</p>
+            </div>
+          </div>
           <div class="divider"></div>
         </div>
-        <p>Type: {{ mediaType }}</p>
-        <p>Episodes: {{ episodes }}</p>
-        <p>Status: {{ status }}</p>
-        <p>Aired: {{ aired }}</p>
-        <div class="quick-info-sub">
-          <p>Studio:</p>
-          <div v-for="studio in studios" :key="studio">
-            <p>{{ studio.node.studio }}</p>
-          </div>
-        </div>
-        <div class="quick-info-sub">
-          <p>Genres:</p>
-          <div v-for="genre in genres" :key="genre">
-            <p>{{ genre.node.genre }},</p>
-          </div>
-        </div>
+        <div class="info-block">
+          <h2>Rating Distribution</h2>
+          <div class="divider"></div>
+          <LineChart
+            v-if="loaded"
+            :chartData="chartData"
+            :chartOptions="chartOptions"
+          />
+        </div>    
       </div>
-    </div>
-    <div class="column-2">
-      <div class="info-block">
-        <p class="anime-name">{{ animeName }}</p>
-        <div class="star-rating">
-          <starSVG class="star" />
-          <p>{{ avgRating }}</p>
-        </div>
-        <div>
-          <select id="doughtnut-graph" class="dropdown" v-model="watchStatus">
-            <option value="NOT_WATCHING" selected>Not Watching</option>
-            <option value="CURRENTLY_WATCHING">
-              Currently Watching
-            </option>
-            <option value="WATCHLIST">Watchlist</option>
-            <option value="FINISHED_ANIME">Finished Anime</option>
-          </select>
-
-          <select id="rating-form" class="dropdown" v-model="rating">
-            <!-- <option v-if="change" value="" disabled selected>{{ userAnime.rating }}</option> -->
-            <option v-if="change" value="0" disabled selected>
-              {{ userAnime.rating }}
-            </option>
-            <option v-else value="0" disabled selected>Rate</option>
-            <option value="10">10</option>
-            <option value="9">9</option>
-            <option value="8">8</option>
-            <option value="7">7</option>
-            <option value="6">6</option>
-            <option value="5">5</option>
-            <option value="4">4</option>
-            <option value="3">3</option>
-            <option value="2">2</option>
-            <option value="1">1</option>
-          
-          </select>
-        </div>
-      </div>
-      <div class="info-block">
-        <h2>Synopsis</h2>
-        <div class="divider"></div>
-        <p class="synopsis" :class="active ? 'active' : 'non-active'">{{ synopsis }}</p>
-        <button class="show" ref="showBtn" @click="showMore">Show More</button>
-      </div>
-      <div class="info-block">
-        <h2>Characters</h2>
-        <div class="divider"></div>
-        <div class="character-container">
-          <div
-            v-for="character in characters"
-            :key="character.node.characterName"
-            class="character"
-          >
-            <img class="character-img" :src="character.node.imageUrl" :alt="`${character.node.characterName} image`" />
-            <p class="character-name">{{ character.node.characterName }}</p>
-          </div>
-        </div>
-        <div class="divider"></div>
-      </div>
-      <div class="info-block">
-        <h2>Rating Distribution</h2>
-        <div class="divider"></div>
-        <LineChart
-          v-if="loaded"
-          :chartData="chartData"
-          :chartOptions="chartOptions"
-        />
-      </div>
-      
-    </div>
+    </div>  
   </div>
 </template>
 
@@ -420,12 +422,11 @@ function showMore() {
 </script>
 
 <style scoped>
-#anime-info {
+.anime-info {
   color: var(--white);
-  padding-top: 11rem;
   display: flex;
   justify-content: center;
-  margin: auto;
+  margin: 3rem auto 0;
 }
 .column-1 {
   width: 15vw;

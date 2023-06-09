@@ -1,6 +1,7 @@
 <template>
 	<section class="home-body">
 		<div class="allAnime-container">
+			<underNav/>
 			<div class="allAnime-header">
 				<h2 class="allAnime-title">Filter</h2>
 				<div class="page-container">
@@ -456,7 +457,7 @@ function toTop() {
 .allAnime-container {
 	display: flex;
 	flex-direction: column;
-	margin: 12rem 2rem 10rem;
+	margin: 3rem 0;
 	width: 90vw;
 }
 .allAnime-header {
@@ -582,9 +583,6 @@ function toTop() {
 }
 
 @media screen and (max-width: 1024px) {
-	.allAnime-container {
-		margin: 10rem 2rem;
-	}
 	.allAnime-title {
 		font-size: var(--h4);
 	}
@@ -602,7 +600,7 @@ function toTop() {
 
 @media screen and (max-width: 767px) {
 	.allAnime-container {
-		margin-top: 3rem;
+		margin-top: 2rem;
 	}
 	.input, .allAnime-filterSelect, .button-clear {
 		font-size: var(--h7);

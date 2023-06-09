@@ -1,5 +1,6 @@
 <template>
     <div id="rankings">
+        <underNav/>
         <h2 id="rankings-title">Top Anime of the Month</h2>
         <div class="monthly-ranking-box">
             <RankingCard
@@ -70,22 +71,18 @@ onMounted(() => {
     display: flex;
     flex-direction: column;
     width: 70vw;
-    margin: 0 auto 10rem;
-    padding-top: 10rem;
+    margin: 0 auto 3rem;
 }
 #rankings-title {
     color: var(--white);
     font-size: var(--h2);
     font-weight: var(--fw-semi);
-    margin: 4rem 0 6rem;
+    margin: 3rem 0;
 }
 
 @media screen and (max-width: 1440px) {
     #rankings {
         width: 80vw;
-    }
-    #rankings-title {
-        margin: 4rem 0 3rem;
     }
 }
 
@@ -95,7 +92,7 @@ onMounted(() => {
     }
     #rankings-title {
         font-size: var(--h3);
-        margin: 2rem 0 3rem;
+        margin: 2rem 0;
     }
 }
 
@@ -108,7 +105,6 @@ onMounted(() => {
 @media screen and (max-width: 568px) {
     #rankings-title {
         font-size: var(--h4);
-        margin: 2rem 0;
     }
 }
 </style>

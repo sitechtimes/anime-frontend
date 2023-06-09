@@ -201,7 +201,7 @@ function selectPage(num: number): void {
 .home-body {
 	display: flex;
 	flex-direction: row;
-	margin: 0 auto 10rem;
+	margin: 0 auto 5rem;
 	width: 95vw;
 	column-gap: 3rem;
 	padding-top: 3rem;

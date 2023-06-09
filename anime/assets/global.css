@@ -81,7 +81,7 @@ body {
     --alt-linear: #7926ff;
     --info-select: #ffb6c1;
     --login-shadow: rgba(0, 0, 0, .25);
-    --vote-shadow: rgb(0, 0, 0, 0.6);
+    --popup-shadow: rgb(0, 0, 0, 0.6);
     --search-hover: rgb(112, 53, 53);
     --search-dark: rgb(29, 29, 29);
     --search-text: rgb(219, 219, 219);

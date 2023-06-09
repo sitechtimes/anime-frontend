@@ -615,14 +615,14 @@ export default ({
   padding-top: 9vh;
   width: 75vw;
   margin: auto;
-  margin-bottom: 10rem;
+  margin-bottom: 3rem;
   color: var(--white);
 }
 .award-name {
   background: var(--secondary);
   font-size: var(--h1);
   text-align: center;
-  margin-top: 7rem;
+  margin-top: 4rem;
   border-radius: 3rem;
 }
 .input {
@@ -637,12 +637,14 @@ export default ({
   width: 40%;
 }
 .nominee-container {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 3rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  row-gap: 3rem;
 }
 .nominee-box {
   height: 12rem;
+  width: 48%;
   display: flex;
   flex-direction: row;
   background: var(--bg-secondary);
@@ -687,7 +689,7 @@ export default ({
   background: var(--primary);
 }
 .popup {
-  background: var(--vote-shadow);
+  background: var(--popup-shadow);
   position: fixed;
   z-index: 5;
   top: 0;
@@ -748,7 +750,7 @@ export default ({
     font-size: var(--h5);
   }
   .nominee-container {
-    gap: 2rem;
+    row-gap: 2rem;
   }
   .btn-container {
     margin-top: 2rem;
@@ -766,11 +768,9 @@ export default ({
   .input {
     width: 100%;
   }
-  .nominee-container {
-    grid-template-columns: repeat(1, minmax(0, 1fr));    
-  }
   .nominee-box {
     height: 8rem;
+    width: 100%;
   }
   .anime-title, .btn {
     font-size: var(--h5);

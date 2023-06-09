@@ -1,5 +1,6 @@
 <template>
     <div id="anime-info-mobile">
+      <underNav/>
       <div class="row-1">
         <img class="animeImage" :src="`${imageUrl}`" alt="Anime Cover" />
         <div class="animeInfo">
@@ -450,7 +451,7 @@ function hideInfo() {
 #anime-info-mobile {
   display: none;
   color: var(--white);
-  padding-top: 11rem;
+  padding-top: 3rem;
   margin: auto;
   width: 80vw;
 }
@@ -528,7 +529,7 @@ function hideInfo() {
 	align-self: flex-end;
 }
 .popup {
-  background: rgb(0, 0, 0, 0.6);
+  background: var(--popup-shadow);
   position: fixed;
   z-index: 1;
   top: 0;
@@ -623,7 +624,7 @@ function hideInfo() {
   object-fit: cover;
 }
 .character-name {
-  background-color: #b10064;;
+  background-color: var(--info-character);
   text-align: center;
   font-size: var(--h7);
   overflow: hidden;
