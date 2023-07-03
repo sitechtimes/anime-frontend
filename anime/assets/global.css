@@ -1,0 +1,111 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@400;500;600;700&display=swap");
+
+@import url("https://fonts.cdnfonts.com/css/library-3-am");
+
+html {
+    box-sizing: border-box;
+    font-size: var(--standard-font-size);
+    line-height: 1.15; /* 1 */
+    -webkit-text-size-adjust: 100%; /* 2 */
+    width: 100%;
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+/* animation: fadeIn 750ms linear forwards; */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 20px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #555;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: var(--primary);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary);
+}
+
+img {
+    pointer-events: none;
+}
+body {
+    font-weight: 400;
+    line-height: 1.75;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    margin: 0;
+    font-family: var(--body-font);
+    scroll-behavior: smooth;
+}
+:root {
+    /* fonts */
+    --body-font: "Merriweather Sans", sans-serif;
+    --second-font: "LIBRARY 3 AM", sans-serif;
+
+    /* colors */
+    --primary: #f8665e;
+    --secondary: #d33c3c;
+    --tertiary: #101010;
+    --quaternary: #fb5549;
+    --white: #fff;
+    --off-white: #f0f0f0;
+    --light-text: #b4b4b4;
+    --shaded-text: #7a7a7a;
+    --dark-text: #24201e;
+    --bg-primary: #272727;
+    --bg-secondary: rgb(52, 52, 52);
+    --alt-linear: #7926ff;
+    --info-select: #ffb6c1;
+    --login-shadow: rgba(0, 0, 0, .25);
+    --search-hover: rgb(112, 53, 53);
+    --search-dark: rgb(29, 29, 29);
+    --search-text: rgb(219, 219, 219);
+    --search-bg: rgb(68, 68, 68);
+    --bg-rank: #87000b;
+    --rank1: rgb(255, 183, 0);
+    --rank2: rgb(0, 195, 255);
+    --rank3: #04ff9f;
+
+    /* font weight */
+    --fw-light: 300;
+    --fw-reg: 400;
+    --fw-med: 500;
+    --fw-semi: 600;
+    --fw-bold: 700;
+
+    /* font sizes */
+    --standard-font-size: 62.5%;
+    --h1: 5.653rem;
+    --h2: 3.998rem;
+    --h3: 2.827rem;
+    --h4: 1.999rem;
+    --h5: 1.6rem;
+    --h6: 1.414rem;
+    --h7: 1.2rem;
+    --h8: 1rem;
+    --smallText: 0.8rem;
+}
